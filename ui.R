@@ -2,7 +2,12 @@ shinyUI(navbarPage(
 	title = "Heatmapper", 
 	
 	#### Main Panel ####
-	tabPanel(title = "Introduction"),
+	tabPanel(title = "Introduction", 
+		tabsetPanel(type = "tabs", 
+			tabPanel(title = "Overview"),
+			tabPanel(title = "Gallery"),
+			tabPanel(title = "Instructions"),
+			tabPanel(title = "Contact"))),
 	
 	#### Microarray Panel ####
 	tabPanel(title = "Microarray", 
