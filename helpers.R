@@ -1,3 +1,18 @@
+#### Heatmap Helpers ####
+
+get_heatmap <- function(x, rowv = NA, colv = NA) {
+	if(is.null(x)){
+		return(NULL)
+	}
+	else{
+		heatmap(x, Rowv = rowv, Colv = colv)
+	}
+}
+
+get_dendrogram <- function(x){
+	as.dendrogram(hclust(dist(x)))
+}
+
 # Note: percent map is designed to work with the counties data set
 # It may not work correctly with other data sets if their row order does 
 # not exactly match the order in which the maps package plots counties

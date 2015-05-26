@@ -5,7 +5,14 @@ shinyUI(navbarPage(
 	tabPanel(title = "Introduction"),
 	
 	#### Microarray Panel ####
-	tabPanel(title = "Microarray"), 
+	tabPanel(title = "Microarray", 
+		sidebarLayout(
+    		sidebarPanel(fileInput("heatmapFile", label = h3("File input"))),
+			mainPanel(
+				tabsetPanel(type = "tabs", 
+					tabPanel(title = "Plot", plotOutput("heatmap")),
+					tabPanel(title = "Dendrogram", plotOutput("heatmapDendrogram")),
+					tabPanel(title = "Table", dataTableOutput("heatmapTable")))))), 
 	
 	#### Continuous Maps Panel ####
 	tabPanel(title = "Continuous Maps", 
