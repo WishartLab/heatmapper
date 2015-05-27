@@ -1,6 +1,7 @@
 library(shiny)
 library(maps)
 library(mapproj)
+library(ctc)
 source("helpers.R")
 
 shinyServer(function(input, output){
@@ -10,7 +11,7 @@ shinyServer(function(input, output){
 		path <- get_path(input$cdtFile)
 		
 		if(!is.null(path)){
-			data <- read.delim(path, header=TRUE, sep="\t")
+			data <- read.delim(path, header=TRUE, sep="\t", row.names = NULL)
 			if(is.null(data)){
 				return(NULL)
 			}
@@ -22,10 +23,21 @@ shinyServer(function(input, output){
 		}
 	}
 	
+	get_cdt <- function(){
+		path <- get_path(input$cdtFile)
+		if(!is.null(path)){
+			cdt <-read.table(path, sep='\t', header=TRUE, row.names=NULL)
+			return(cdt)
+		}
+		else{
+			return(NULL)
+		}
+	}
+	
 	get_gtr <- function(){
 		path <- get_path(input$gtrFile)
 		if(!is.null(path)){
-			return(read.table(path, sep='\t', header=FALSE, as.is=TRUE))
+			return(as.dendrogram(xcluster2r(path)))
 		}
 		else{
 			return(NA)
@@ -35,7 +47,7 @@ shinyServer(function(input, output){
 	get_atr <- function(){
 		path <- get_path(input$atrFile)
 		if(!is.null(path)){
-			return(read.table(path, sep='\t', header=FALSE, as.is=TRUE))
+			return(as.dendrogram(xcluster2r(path)))
 		}
 		else{
 			return(NA)

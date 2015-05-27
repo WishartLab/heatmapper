@@ -1,7 +1,6 @@
 get_path <- function(inFile){
 	
 	if(is.null(inFile)){
-		print("RETRUNSKDJ")
 		return(NULL)
 	}
 	else{

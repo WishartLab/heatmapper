@@ -16,9 +16,9 @@ shinyUI(navbarPage(
 				selectInput('fileType', 
 					label = h3("Select File Input Type"), 
 					choices = c(
-						"cdt" = 'cdt', 
-						"pcl" = 'pcl',
-						"txt" = 'txt'), 
+						"Clustered Data (.cdt)" = 'cdt', 
+						"Preclustered Data (.txt, .csv, .pcl)" = 'txt'
+						), 
 					selected = 'cdt'),
 				conditionalPanel(condition = "input.fileType == 'cdt'", 
 					fileInput("cdtFile", label = h3(".cdt File input")), 
