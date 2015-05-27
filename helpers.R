@@ -1,5 +1,15 @@
-#### Heatmap Helpers ####
+get_path <- function(inFile){
+	
+	if(is.null(inFile)){
+		print("RETRUNSKDJ")
+		return(NULL)
+	}
+	else{
+    path <- inFile$datapath
+	}
+}
 
+#### Heatmap Helpers ####
 get_heatmap <- function(x, rowv = NA, colv = NA) {
 	if(is.null(x)){
 		return(NULL)

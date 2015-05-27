@@ -7,19 +7,43 @@ shinyServer(function(input, output){
 	
 	#### HEATMAP ####
 	get_heatmap_file <- function(){
-		inFile <- input$heatmapFile
-		if(is.null(inFile)){
-			return(NULL)
-		}
-		else{
-	    path <- inFile$datapath
+		path <- get_path(input$cdtFile)
+		
+		if(!is.null(path)){
 			data <- read.delim(path, header=TRUE, sep="\t")
+			if(is.null(data)){
+				return(NULL)
+			}
 	    data <- remove_strings(data)
 	    return(data)
 		}
+		else{
+			return(NULL)
+		}
 	}
+	
+	get_gtr <- function(){
+		path <- get_path(input$gtrFile)
+		if(!is.null(path)){
+			return(read.table(path, sep='\t', header=FALSE, as.is=TRUE))
+		}
+		else{
+			return(NA)
+		}
+	}
+	
+	get_atr <- function(){
+		path <- get_path(input$atrFile)
+		if(!is.null(path)){
+			return(read.table(path, sep='\t', header=FALSE, as.is=TRUE))
+		}
+		else{
+			return(NA)
+		}
+	}
+	
 	output$heatmap <- renderPlot({
-		get_heatmap(get_heatmap_file(), rowv = TRUE)
+		get_heatmap(get_heatmap_file(), rowv = get_gtr(), colv = get_atr())
 	})
 	
 	output$rowDendrogram <- renderPlot({
