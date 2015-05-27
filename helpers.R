@@ -9,8 +9,35 @@ get_heatmap <- function(x, rowv = NA, colv = NA) {
 	}
 }
 
-get_dendrogram <- function(x){
-	as.dendrogram(hclust(dist(x)))
+get_row_dendrogram <- function(x){
+	if(is.null(x)){
+		return(NULL)
+	}
+	else{
+		as.dendrogram(hclust(dist(x)))
+	}
+}
+
+get_col_dendrogram <- function(x){
+	if(is.null(x)){
+		return(NULL)
+	}
+	else{
+		as.dendrogram(hclust(dist(t(x))))
+	}
+}
+
+remove_strings <- function(x){
+	nums <- sapply(x, is.numeric)
+	y <- x[,nums]
+	
+	# try to find a column with title name
+	name = 'NAME'
+	tryCatch({
+		nameRow <- x[,name]
+		rownames(y) <- make.names(nameRow, unique=TRUE)
+		},
+		finally = {return(data.matrix(y))})
 }
 
 # Note: percent map is designed to work with the counties data set
