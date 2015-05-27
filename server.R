@@ -26,8 +26,9 @@ shinyServer(function(input, output){
 	get_cdt <- function(){
 		path <- get_path(input$cdtFile)
 		if(!is.null(path)){
-			cdt <-read.table(path, sep='\t', header=TRUE, row.names=NULL)
-			return(cdt)
+			#cdt <-read.table(path, sep='\t', header=TRUE, row.names=NULL)
+			print(class(xcluster2r(path)))
+			return(xcluster2r(path))
 		}
 		else{
 			return(NULL)
@@ -55,20 +56,20 @@ shinyServer(function(input, output){
 	}
 	
 	output$heatmap <- renderPlot({
-		get_heatmap(get_heatmap_file(), rowv = get_gtr(), colv = get_atr())
+		get_heatmap(get_cdt(), rowv = get_gtr(), colv = get_atr())
 	})
 	
 	output$rowDendrogram <- renderPlot({
-		x <- get_row_dendrogram(get_heatmap_file())
-		validate(need(!is.null(x), "No row dendrogram file found"))
-		plot(x)
+		x <- get_gtr()
+		validate(need(!is.na(x), "No row dendrogram file found"))
+		plot(as.hclust(x))
 		
 	})
 	
 	output$colDendrogram <- renderPlot({
-		x <- get_col_dendrogram(get_heatmap_file())
-		validate(need(!is.null(x), "No column dendrogram file found"))
-		plot(x)
+		x <- get_atr()
+		validate(need(!is.na(x), "No column dendrogram file found"))
+		plot(as.hclust(x))
 		
 	})
 	
