@@ -1,5 +1,4 @@
 get_path <- function(inFile){
-	
 	if(is.null(inFile)){
 		return(NULL)
 	}

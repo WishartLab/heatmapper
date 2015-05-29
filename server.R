@@ -4,7 +4,7 @@ library(mapproj)
 library(ctc)
 source("helpers.R")
 
-shinyServer(function(input, output){
+shinyServer(function(input, output, session){
 	
 	#### HEATMAP ####
 	get_heatmap_file <- function(){
@@ -27,8 +27,8 @@ shinyServer(function(input, output){
 		path <- get_path(input$cdtFile)
 		if(!is.null(path)){
 			#cdt <-read.table(path, sep='\t', header=TRUE, row.names=NULL)
-			print(class(xcluster2r(path)))
-			return(xcluster2r(path))
+			x <- data.matrix(read.eisen(path))
+			return(x)
 		}
 		else{
 			return(NULL)
@@ -62,14 +62,14 @@ shinyServer(function(input, output){
 	output$rowDendrogram <- renderPlot({
 		x <- get_gtr()
 		validate(need(!is.na(x), "No row dendrogram file found"))
-		plot(as.hclust(x))
+		plot(x)
 		
 	})
 	
 	output$colDendrogram <- renderPlot({
 		x <- get_atr()
 		validate(need(!is.na(x), "No column dendrogram file found"))
-		plot(as.hclust(x))
+		plot(x)
 		
 	})
 	
@@ -90,7 +90,15 @@ shinyServer(function(input, output){
 	#### DISCRETE MAP ####
 	output$discreteMap <- renderPlot({
 		counties <- readRDS("data/counties.rds")
-		percent_map(counties$white, "darkgreen", "% white")
+		updateSelectInput(session, inputId="dmColSelect", choices = colnames(counties)[-1], selected = input$dmColSelect)
+		validate(need(input$dmColSelect, "Please select a column to use"))
+		percent_map(
+			var = counties[,input$dmColSelect], 
+			color =  "darkgreen", 
+			legend.title = paste("%", input$dmColSelect), 
+			min = input$dmRange[1], 
+			max = input$dmRange[2])
+		
 	})
 	
 	output$discreteTable <- renderDataTable({

@@ -21,7 +21,7 @@ shinyUI(navbarPage(
 						), 
 					selected = 'cdt'),
 				conditionalPanel(condition = "input.fileType == 'cdt'", 
-					fileInput("cdtFile", label = h3(".cdt File input")), 
+					fileInput("cdtFile", multiple = TRUE, label = h3(".cdt File input")), 
 					fileInput("gtrFile", label = h3(".gtr File input")), 
 					fileInput("atrFile", label = h3(".atr File input")))),
 			tabPanel(title = "Plot", 
@@ -45,7 +45,11 @@ shinyUI(navbarPage(
 	#### Discrete Maps Panel ####
 	tabPanel(title = "Discrete Maps", 
 		sidebarLayout(
-    	sidebarPanel(fileInput("dmFile", label = h3("File input"))),
+    	sidebarPanel(
+    		fileInput("dmFile", label = h3("Choropleth File input")),
+    		selectInput("dmColSelect", label = "Select column to use", choices=c()),
+    		sliderInput("dmRange", label = "Range of interest:", min = 0, max = 100, value = c(0, 100))
+    		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Plot", plotOutput("discreteMap")), 
