@@ -103,7 +103,16 @@ shinyServer(function(input, output, session){
 	
 	#### DISCRETE MAP ####
 	output$discreteMap <- renderPlot({
+		
 		counties <- get_dmFile()
+		
+		if(input$dmLegend == ''){
+			legend <- paste("%", input$dmColSelect)
+		}
+		else{
+			legend <-input$dmLegend
+		}
+		
 		updateSelectInput(session, inputId="dmColSelect", choices = colnames(counties[-1]), selected = input$dmColSelect)
 		
 		validate(need(input$dmColSelect, "Please select a column to use"))
@@ -113,9 +122,10 @@ shinyServer(function(input, output, session){
 			var = counties[,input$dmColSelect], 
 			lowColour =  input$dmLowColour, 
 			highColour = input$dmHighColour,
-			legend.title = paste("%", input$dmColSelect), 
+			legend.title = legend, 
 			min = input$dmRange[1], 
-			max = input$dmRange[2])
+			max = input$dmRange[2] 
+			)
 		
 	})
 	

@@ -69,6 +69,9 @@ percent_map <- function(area, var, lowColour, highColour, legend.title, min = 0,
 	else if(area == 'state'){
 		get_state_dmap(fills)
 	}
+	else if(area == 'province'){
+		get_canada_dmap(fills)
+	}
   
   # add a legend
   inc <- (max - min) / 4
@@ -85,6 +88,12 @@ percent_map <- function(area, var, lowColour, highColour, legend.title, min = 0,
 }
 
 get_state_dmap <- function(fills) {
+	map("state", fill = TRUE, col = fills, 
+    resolution = 0, lty = 0, projection = "polyconic", 
+    myborder = 0, mar = c(0,0,0,0))
+}
+
+get_canada_dmap <- function(fills) {
 	map("state", fill = TRUE, col = fills, 
     resolution = 0, lty = 0, projection = "polyconic", 
     myborder = 0, mar = c(0,0,0,0))

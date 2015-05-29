@@ -102,7 +102,11 @@ shinyUI(navbarPage(
     				"white" = 'white',
     				"grey" = 'grey', 
     				"black" = 'black'),
-    			selected = 'darkgreen')
+    			selected = 'darkgreen'), 
+    		
+    		textInput('dmLegend',
+    			label = "Custom legend title", 
+    			value = "")
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
