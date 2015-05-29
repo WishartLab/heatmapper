@@ -51,7 +51,7 @@ remove_strings <- function(x){
 # Note: percent map is designed to work with the counties data set
 # It may not work correctly with other data sets if their row order does 
 # not exactly match the order in which the maps package plots counties
-percent_map <- function(var, lowColour, highColour, legend.title, min = 0, max = 100) {
+percent_map <- function(area, var, lowColour, highColour, legend.title, min = 0, max = 100) {
 
   # generate vector of fill colors for map
   shades <- colorRampPalette(c(lowColour, highColour))(100)
@@ -63,15 +63,12 @@ percent_map <- function(var, lowColour, highColour, legend.title, min = 0, max =
     include.lowest = TRUE, ordered = TRUE))
   fills <- shades[percents]
 
-  # plot choropleth map
-  map("county", fill = TRUE, col = fills, 
-    resolution = 0, lty = 0, projection = "polyconic", 
-    myborder = 0, mar = c(0,0,0,0))
-  
-  # overlay state borders
-  map("state", col = "white", fill = FALSE, add = TRUE,
-    lty = 1, lwd = 1, projection = "polyconic", 
-    myborder = 0, mar = c(0,0,0,0))
+	if(area == 'county'){
+		get_county_dmap(fills)
+	}
+	else if(area == 'state'){
+		get_state_dmap(fills)
+	}
   
   # add a legend
   inc <- (max - min) / 4
@@ -85,4 +82,23 @@ percent_map <- function(var, lowColour, highColour, legend.title, min = 0, max =
     legend = legend.text, 
     fill = shades[c(1, 25, 50, 75, 100)], 
     title = legend.title)
+}
+
+get_state_dmap <- function(fills) {
+	map("state", fill = TRUE, col = fills, 
+    resolution = 0, lty = 0, projection = "polyconic", 
+    myborder = 0, mar = c(0,0,0,0))
+}
+
+get_county_dmap <- function(fills) {
+	# plot choropleth map
+  map("county", fill = TRUE, col = fills, 
+    resolution = 0, lty = 0, projection = "polyconic", 
+    myborder = 0, mar = c(0,0,0,0))
+  
+  # overlay state borders
+  map("state", col = "white", fill = FALSE, add = TRUE,
+    lty = 1, lwd = 1, projection = "polyconic", 
+    myborder = 0, mar = c(0,0,0,0))
+  
 }

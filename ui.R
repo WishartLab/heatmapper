@@ -46,7 +46,27 @@ shinyUI(navbarPage(
 	tabPanel(title = "Discrete Maps", 
 		sidebarLayout(
     	sidebarPanel(
-    		fileInput("dmFile", label = h3("Choropleth File input")),
+    	
+    		radioButtons('dmChooseInput',
+    			label = "Choose Input Type",
+    			choices = c(
+    				"Upload File" = 'dmFileUpload',
+						"Example File" = 'dmExample'),
+    			selected = 'dmExample'),
+    		
+    		conditionalPanel(condition = "input.dmChooseInput == 'dmFileUpload'", 
+    			fileInput("dmFile", label = h3("Choropleth File input"))), 
+    		
+    		conditionalPanel(condition = "input.dmChooseInput == 'dmExample'", 
+    			wellPanel(
+    				HTML("This example file is from the <a href=\"http://shiny.rstudio.com/tutorial/lesson5/\">RStudio Shiny tutorial</a>"))),
+    		
+    		selectInput("dmArea", label = "Area to use", 
+    			choices = c(
+    				"USA: By County" = 'county', 
+    				"USA: By State" = 'state', 
+    				"Canada: By Province" = 'province'), 
+    			selected = 'county'),
     		
     		selectInput("dmColSelect", label = "Column to use", choices = c()),
     		
@@ -56,7 +76,7 @@ shinyUI(navbarPage(
     			max = 100, 
     			value = c(0, 100)), 
     		
-    		selectInput("lowColour", 
+    		selectInput("dmLowColour", 
     			label = "Colour for low values", 
     			choices = c( 
     				"red" = 'red',
@@ -70,7 +90,7 @@ shinyUI(navbarPage(
     				"black" = 'black'),
     			selected = 'white'),
     		
-    		selectInput("highColour", 
+    		selectInput("dmHighColour", 
     			label = "Colour for high values", 
     			choices = c( 
     				"red" = 'red',

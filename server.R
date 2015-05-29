@@ -86,16 +86,33 @@ shinyServer(function(input, output, session){
 	output$continuousTable <- renderDataTable({
 	})
 	
+	get_dmFile <- function(){
+		
+		if(input$dmChooseInput == 'dmExample'){
+			path <- "data/counties.rds"
+			counties <- readRDS(path)
+		}
+		else{
+		#	validate(need(input$dmFile$datapath, "Please upload a file"))
+		#	counties <- read.delim(input$dmFile$datapath, header = TRUE)
+			counties <- read.table("data/statetest.txt", header = TRUE, sep="\t")	
+			counties[,-1] <- as.numeric(sub("%","",counties[,-1]))
+		}
+		return(counties)
+	}
 	
 	#### DISCRETE MAP ####
 	output$discreteMap <- renderPlot({
-		counties <- readRDS("data/counties.rds")
-		updateSelectInput(session, inputId="dmColSelect", choices = colnames(counties)[-1], selected = input$dmColSelect)
+		counties <- get_dmFile()
+		updateSelectInput(session, inputId="dmColSelect", choices = colnames(counties[-1]), selected = input$dmColSelect)
+		
 		validate(need(input$dmColSelect, "Please select a column to use"))
+		
 		percent_map(
+			area = input$dmArea,
 			var = counties[,input$dmColSelect], 
-			lowColour =  input$lowColour, 
-			highColour = input$highColour,
+			lowColour =  input$dmLowColour, 
+			highColour = input$dmHighColour,
 			legend.title = paste("%", input$dmColSelect), 
 			min = input$dmRange[1], 
 			max = input$dmRange[2])
@@ -103,6 +120,6 @@ shinyServer(function(input, output, session){
 	})
 	
 	output$discreteTable <- renderDataTable({
-		readRDS(file = "data/counties.rds")
+		get_dmFile()
 	})
 })
