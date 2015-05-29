@@ -47,8 +47,42 @@ shinyUI(navbarPage(
 		sidebarLayout(
     	sidebarPanel(
     		fileInput("dmFile", label = h3("Choropleth File input")),
-    		selectInput("dmColSelect", label = "Select column to use", choices=c()),
-    		sliderInput("dmRange", label = "Range of interest:", min = 0, max = 100, value = c(0, 100))
+    		
+    		selectInput("dmColSelect", label = "Column to use", choices = c()),
+    		
+    		sliderInput("dmRange", 
+    			label = "Range of interest:", 
+    			min = 0, 
+    			max = 100, 
+    			value = c(0, 100)), 
+    		
+    		selectInput("lowColour", 
+    			label = "Colour for low values", 
+    			choices = c( 
+    				"red" = 'red',
+    				"orange" = 'orange',
+    				"yellow" = 'yellow',
+    				"green" = 'darkgreen',
+    				"blue" = 'blue',
+    				"purple" = 'purple', 
+    				"white" = 'white',
+    				"grey" = 'grey', 
+    				"black" = 'black'),
+    			selected = 'white'),
+    		
+    		selectInput("highColour", 
+    			label = "Colour for high values", 
+    			choices = c( 
+    				"red" = 'red',
+    				"orange" = 'orange',
+    				"yellow" = 'yellow',
+    				"green" = 'darkgreen',
+    				"blue" = 'blue',
+    				"purple" = 'purple', 
+    				"white" = 'white',
+    				"grey" = 'grey', 
+    				"black" = 'black'),
+    			selected = 'darkgreen')
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 

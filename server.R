@@ -94,7 +94,8 @@ shinyServer(function(input, output, session){
 		validate(need(input$dmColSelect, "Please select a column to use"))
 		percent_map(
 			var = counties[,input$dmColSelect], 
-			color =  "darkgreen", 
+			lowColour =  input$lowColour, 
+			highColour = input$highColour,
 			legend.title = paste("%", input$dmColSelect), 
 			min = input$dmRange[1], 
 			max = input$dmRange[2])
