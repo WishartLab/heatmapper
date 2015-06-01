@@ -110,7 +110,8 @@ shinyUI(navbarPage(
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", plotOutput("discreteMap")), 
-					tabPanel(title = "Table", dataTableOutput("discreteTable"))))))
+					tabPanel(title = "Table", dataTableOutput("discreteTable")), 
+					tabPanel(title = "Plot", plotOutput("discreteMap"))
+					))))
 	
 ))
