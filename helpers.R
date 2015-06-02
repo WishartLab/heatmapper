@@ -90,7 +90,7 @@ percent_map <- function(area, var, lowColour, highColour, legend.title, min = 0,
 get_state_dmap <- function(fills) {
 	map("state", fill = TRUE, col = fills, 
     resolution = 0, lty = 0, projection = "polyconic", 
-    myborder = 0, mar = c(0,0,0,0))
+    myborder = 0, mar = c(0,0,0,0), bg="black")
 }
 
 get_canada_dmap <- function(fills) {

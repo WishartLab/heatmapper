@@ -3,6 +3,7 @@ library(maps)
 library(mapproj)
 library(ctc)
 source("helpers.R")
+options(shiny.deprecation.messages=FALSE)
 
 shinyServer(function(input, output, session){
 	
@@ -97,6 +98,7 @@ shinyServer(function(input, output, session){
 		#	counties <- read.delim(input$dmFile$datapath, header = TRUE)
 			counties <- read.table("data/statetest.txt", header = TRUE, sep="\t")	
 			counties[,-1] <- as.numeric(sub("%","",counties[,-1]))
+			counties[,1] <- tolower(counties[,1])
 		}
 		return(counties)
 	}
