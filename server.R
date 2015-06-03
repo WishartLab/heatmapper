@@ -106,15 +106,16 @@ shinyServer(function(input, output, session){
 			zoom = input$cmZoom, 
 			location = c(
 				lon = median(points$Longitude), 
-				lat = median(points$Latitude)))
+				lat = median(points$Latitude)), 
+			maptype = input$cmType
+			)
 		
 		ggmap(map) + 
-		geom_density2d(data = points, aes(x = Longitude, y = Latitude), size = 0.3) + 
+		geom_density2d(data = points, aes(x = Longitude, y = Latitude), size = 0.3) +
 		stat_density2d(data = points, aes(x = Longitude, y = Latitude, fill = ..level.., alpha = ..level..), 
 			size = 0.01, bins = 16, geom = "polygon") + 
-		scale_fill_gradient(low = "green", high = "red") + 
-    scale_alpha(range = c(0, 0.3), guide = FALSE)
-		   
+		scale_fill_gradient(low = input$cmLowColour, high = input$cmHighColour) + 
+    scale_alpha(range = c(0, 0.3), guide = FALSE)  
 	})
 	
 	output$continuousTable <- renderDataTable({

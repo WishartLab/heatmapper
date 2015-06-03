@@ -52,8 +52,41 @@ shinyUI(navbarPage(
     			label = "Zoom", 
     			min = 3, 
     			max = 20,
-    			value = 10)
+    			value = 10), 
     		
+    		selectInput('cmLowColour', 
+    			label = "Colour for low values", 
+    			choices = c( 
+    				"red" = 'red',
+    				"orange" = 'orange',
+    				"yellow" = 'yellow',
+    				"green" = 'green',
+    				"blue" = 'blue',
+    				"purple" = 'purple'),
+    			selected = 'green'),
+    		
+    		selectInput('cmHighColour', 
+    			label = "Colour for high values", 
+    			choices = c( 
+    				"red" = 'red',
+    				"orange" = 'orange',
+    				"yellow" = 'yellow',
+    				"green" = 'green',
+    				"blue" = 'blue',
+    				"purple" = 'purple'),
+    			selected = 'red'), 
+    		
+    		selectInput('cmType', 
+    			label = "Map type", 
+    			choices = c(
+    				"terrain" = 'terrain', 
+    				"terrain background" = 'terrain-background', 
+    				"satellite" = 'satellite',
+    				"roadmap" = 'roadmap', 
+    				"hybrid" = 'hybrid', 
+    				"toner" = 'toner',
+    				"watercolor" = 'watercolor'), 
+    			selected = 'terrain')
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
