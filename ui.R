@@ -1,7 +1,7 @@
 shinyUI(navbarPage(
 	title = "Heatmapper", 
 	
-	#### Main Panel ####
+	############################################################################# Main Panel ####
 	tabPanel(title = "Introduction", 
 		tabsetPanel(type = "tabs", 
 			tabPanel(title = "Overview"),
@@ -9,7 +9,7 @@ shinyUI(navbarPage(
 			tabPanel(title = "Instructions"),
 			tabPanel(title = "Contact"))),
 	
-	#### Microarray Panel ####
+	############################################################################# Microarray Panel ####
 	tabPanel(title = "Microarray", 
 		tabsetPanel(type = "tabs", 
 			tabPanel(title = "Options", 
@@ -33,17 +33,43 @@ shinyUI(navbarPage(
 				plotOutput("colDendrogram")),
 			tabPanel(title = "Table", dataTableOutput("heatmapTable")))), 
 	
-	#### Continuous Maps Panel ####
-	tabPanel(title = "Continuous Maps", 
+	############################################################################# Continuous Maps Panel ####
+	tabPanel(title = "Latitude/Longitude", 
 		sidebarLayout(
-    	sidebarPanel(fileInput("cmFile", label = h3("File input"))),
+    	sidebarPanel(
+    		
+    		radioButtons('cmChooseInput',
+    			label = "Choose Input Type",
+    			choices = c(
+    				"Upload File" = 'cmFileUpload',
+						"Example File" = 'cmExample'),
+    			selected = 'cmExample'),
+    		
+    		conditionalPanel(condition = "input.cmChooseInput == 'cmFileUpload'", 
+    			fileInput("cmFile", label = h3("File input")), 
+    			
+    			selectInput("cmArea", label = "Area to use", 
+    			choices = c(
+    				"USA" = 'USA', 
+    				"Canada" = 'CAN',
+    				"United Kingdom" = 'GBR'
+    				), 
+    			selected = 'GBR')), 
+    		
+    		sliderInput('cmLOD', 
+    			label = "Level of detail", 
+    			min = 0, 
+    			max = 2,
+    			value = 0)
+    		
+    		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Plot", plotOutput("continuousMap")), 
 					tabPanel(title = "Table", dataTableOutput("continuousTable")))))), 
 
-	#### Discrete Maps Panel ####
-	tabPanel(title = "Discrete Maps", 
+	############################################################################# Discrete Maps Panel ####
+	tabPanel(title = "Choropleth", 
 		sidebarLayout(
     	sidebarPanel(
     	

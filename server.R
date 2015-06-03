@@ -86,14 +86,32 @@ shinyServer(function(input, output, session){
 	})
 	
 	
+	get_cmFile <- function(){
+		if(input$cmChooseInput == 'cmExample'){
+			points <- data.frame(
+				Longitude=c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
+				Latitude =c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5)))
+		}
+		else{
+			points <- read.table("data/latlong.txt", header = TRUE, sep="\t")
+		}
+		return(points)
+	}
+	
 	#### CONTINUOUS MAP ####
 	output$continuousMap <- renderPlot({
-		sample <- data.frame(Longitude=c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
-		                     Latitude =c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5)))
-		UKmap  <- readOGR(dsn="data/GBR_am/",layer="GBR_adm2")
+		points <- get_cmFile()
+		dsn = paste0("data/", input$cmArea)
+		layer = paste0(input$cmArea, "_adm", input$cmLOD)
+		if(input$cmChooseInput == 'cmExample'){
+			dsn = "data/GBR"
+			layer = paste0("GBR_adm", input$cmLOD)
+		}
+		
+		UKmap  <- readOGR(dsn=dsn,layer=layer)
 		map.df <- fortify(UKmap)
 		
-		ggplot(sample, aes(x=Longitude, y=Latitude)) + 
+		ggplot(points, aes(x=Longitude, y=Latitude)) + 
 		  stat_density2d(aes(fill = ..level..), alpha=0.5, geom="polygon")+
 		  #geom_point(colour="red")+
 		  geom_path(data=map.df,aes(x=long, y=lat,group=group), colour="grey50")+
@@ -103,8 +121,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	output$continuousTable <- renderDataTable({
-		data.frame(Longitude=c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
-		                     Latitude =c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5)))
+		get_cmFile()
 	})
 	
 	get_dmFile <- function(){
@@ -116,7 +133,7 @@ shinyServer(function(input, output, session){
 		else{
 		#	validate(need(input$dmFile$datapath, "Please upload a file"))
 		#	counties <- read.delim(input$dmFile$datapath, header = TRUE)
-			counties <- read.table("data/statetest.txt", header = TRUE, sep="\t")	
+			counties <- read.table("data/statetest2.txt", header = TRUE, sep="\t")	
 			counties[,-1] <- as.numeric(sub("%","",counties[,-1]))
 			counties[,1] <- tolower(counties[,1])
 		}
