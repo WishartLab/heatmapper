@@ -2,12 +2,8 @@ library(shiny)
 library(maps)
 library(mapproj)
 library(ctc)
+library(ggmap)
 source("helpers.R")
-
-library(maptools)
-library(rgdal)         # for readOGR(...)
-library(ggplot2)
-library(RColorBrewer)  # for brewer.pal(...)
 
 options(shiny.deprecation.messages=FALSE)
 
@@ -90,10 +86,14 @@ shinyServer(function(input, output, session){
 		if(input$cmChooseInput == 'cmExample'){
 			points <- data.frame(
 				Longitude=c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
-				Latitude =c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5)))
+				Latitude =c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))
+				)
 		}
 		else{
-			points <- read.table("data/latlong.txt", header = TRUE, sep="\t")
+			file <- read.table("data/latlong.txt", header = TRUE, sep="\t")
+			points <- data.frame(
+				Longitude = c(file$Longitude), 
+				Latitude = c(file$Latitude))
 		}
 		return(points)
 	}
@@ -101,23 +101,20 @@ shinyServer(function(input, output, session){
 	#### CONTINUOUS MAP ####
 	output$continuousMap <- renderPlot({
 		points <- get_cmFile()
-		dsn = paste0("data/", input$cmArea)
-		layer = paste0(input$cmArea, "_adm", input$cmLOD)
-		if(input$cmChooseInput == 'cmExample'){
-			dsn = "data/GBR"
-			layer = paste0("GBR_adm", input$cmLOD)
-		}
 		
-		UKmap  <- readOGR(dsn=dsn,layer=layer)
-		map.df <- fortify(UKmap)
+		map <- get_map(
+			zoom = input$cmZoom, 
+			location = c(
+				lon = median(points$Longitude), 
+				lat = median(points$Latitude)))
 		
-		ggplot(points, aes(x=Longitude, y=Latitude)) + 
-		  stat_density2d(aes(fill = ..level..), alpha=0.5, geom="polygon")+
-		  #geom_point(colour="red")+
-		  geom_path(data=map.df,aes(x=long, y=lat,group=group), colour="grey50")+
-		  scale_fill_gradientn(colours=rev(brewer.pal(7,"Spectral")))+
-		  xlim(-10,+2.5) +
-		  coord_fixed()
+		ggmap(map) + 
+		geom_density2d(data = points, aes(x = Longitude, y = Latitude), size = 0.3) + 
+		stat_density2d(data = points, aes(x = Longitude, y = Latitude, fill = ..level.., alpha = ..level..), 
+			size = 0.01, bins = 16, geom = "polygon") + 
+		scale_fill_gradient(low = "green", high = "red") + 
+    scale_alpha(range = c(0, 0.3), guide = FALSE)
+		   
 	})
 	
 	output$continuousTable <- renderDataTable({

@@ -46,21 +46,13 @@ shinyUI(navbarPage(
     			selected = 'cmExample'),
     		
     		conditionalPanel(condition = "input.cmChooseInput == 'cmFileUpload'", 
-    			fileInput("cmFile", label = h3("File input")), 
-    			
-    			selectInput("cmArea", label = "Area to use", 
-    			choices = c(
-    				"USA" = 'USA', 
-    				"Canada" = 'CAN',
-    				"United Kingdom" = 'GBR'
-    				), 
-    			selected = 'GBR')), 
+    			fileInput("cmFile", label = h3("File input"))), 
     		
-    		sliderInput('cmLOD', 
-    			label = "Level of detail", 
-    			min = 0, 
-    			max = 2,
-    			value = 0)
+    		sliderInput('cmZoom', 
+    			label = "Zoom", 
+    			min = 3, 
+    			max = 20,
+    			value = 10)
     		
     		),
 			mainPanel(
