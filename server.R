@@ -132,8 +132,7 @@ shinyServer(function(input, output, session){
 		else{
 		#	validate(need(input$dmFile$datapath, "Please upload a file"))
 		#	counties <- read.delim(input$dmFile$datapath, header = TRUE)
-			counties <- read.table("data/statetest2.txt", header = TRUE, sep="\t")	
-			counties[,-1] <- as.numeric(sub("%","",counties[,-1]))
+			counties <- read.table("data/statetest2.txt", header = TRUE, sep="\t")
 			counties[,1] <- tolower(counties[,1])
 		}
 		return(counties)
