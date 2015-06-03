@@ -76,6 +76,12 @@ shinyUI(navbarPage(
     				"purple" = 'purple'),
     			selected = 'red'), 
     		
+    		sliderInput('cmContourSize', 
+    			label = "Contour line size", 
+    			min = 0, 
+    			max = 1,
+    			value = 0.5), 
+    		
     		selectInput('cmType', 
     			label = "Map type", 
     			choices = c(
