@@ -87,7 +87,7 @@ shinyUI(navbarPage(
     			label = "Point size", 
     			min = 0, 
     			max = 5, 
-    			value = 5), 
+    			value = 2), 
     		
     		selectInput('cmType', 
     			label = "Map type", 

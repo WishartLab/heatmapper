@@ -3,6 +3,8 @@ library(maps)
 library(mapproj)
 library(ctc)
 library(ggmap)
+library(xlsx)
+
 source("helpers.R")
 
 options(shiny.deprecation.messages=FALSE)
@@ -90,7 +92,21 @@ shinyServer(function(input, output, session){
 				)
 		}
 		else{
-			file <- read.table("data/latlong.txt", header = TRUE, sep="\t")
+			#file <- read.table("data/latlong.txt", header = TRUE, sep="\t")
+			
+			validate(need(input$cmFile$datapath, "Please upload a file"))
+			
+			fileType <- tail(unlist(strsplit(x = input$cmFile$name, split = "[.]")), n=1)
+			
+			if(fileType == "xlsx"){
+				file <- read.xlsx(input$cmFile$datapath, 1) 
+			}
+			else if(fileType == "csv"){
+				file <- read.csv(input$cmFile$datapath, header = TRUE)
+			}
+			else{
+				file <- read.delim(input$cmFile$datapath, header = TRUE, sep="\t")
+			}
 			points <- data.frame(
 				Longitude = c(file$Longitude), 
 				Latitude = c(file$Latitude))
