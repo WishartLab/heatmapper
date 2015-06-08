@@ -81,7 +81,7 @@ shinyServer(function(input, output, session){
 		get_heatmap_file()
 	})
 	
-	
+	#### CONTINUOUS MAP ####
 	get_cmFile <- function(){
 		if(input$cmChooseInput == 'cmExample'){
 			points <- data.frame(
@@ -98,8 +98,7 @@ shinyServer(function(input, output, session){
 		return(points)
 	}
 	
-	#### CONTINUOUS MAP ####
-	output$continuousMap <- renderPlot({
+	get_cm_plot <- function(){
 		points <- get_cmFile()
 		
 		map <- get_map(
@@ -116,6 +115,10 @@ shinyServer(function(input, output, session){
 			size = 0.01, bins = 16, geom = "polygon") + 
 		scale_fill_gradient(low = input$cmLowColour, high = input$cmHighColour) + 
     scale_alpha(range = c(0, 0.3), guide = FALSE) 
+	}
+
+	output$continuousMap <- renderPlot({
+		get_cm_plot()
 		
 	})
 	
@@ -123,6 +126,23 @@ shinyServer(function(input, output, session){
 		get_cmFile()
 	})
 	
+	output$cmDownload <- downloadHandler(
+		filename = function(){
+			paste0("geoHeatmap.", input$cmDownloadType)
+		},
+		content = function(file) {
+			if(input$cmDownloadType == 'pdf'){
+				pdf(file)
+			}
+			else{
+				png(file)
+			}
+			plot(get_cm_plot())
+			dev.off()
+		}
+	)
+		
+	#### DISCRETE MAP ####
 	get_dmFile <- function(){
 		
 		if(input$dmChooseInput == 'dmExample'){
@@ -137,8 +157,7 @@ shinyServer(function(input, output, session){
 		}
 		return(counties)
 	}
-	
-	#### DISCRETE MAP ####
+
 	output$discreteMap <- renderPlot({
 		
 		counties <- get_dmFile()

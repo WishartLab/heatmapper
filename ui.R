@@ -92,7 +92,16 @@ shinyUI(navbarPage(
     				"hybrid" = 'hybrid', 
     				"toner" = 'toner',
     				"watercolor" = 'watercolor'), 
-    			selected = 'terrain')
+    			selected = 'terrain'),
+    		
+    		radioButtons('cmDownloadType', 
+    			label = "Downlaod file format", 
+    			choices = c(
+    				"PDF" = 'pdf', 
+    				"PNG" = 'png'), 
+    			selected = 'pdf'),
+    		
+    		downloadButton('cmDownload', "Download image")
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
