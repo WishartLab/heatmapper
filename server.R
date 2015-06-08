@@ -98,8 +98,8 @@ shinyServer(function(input, output, session){
 			
 			fileType <- tail(unlist(strsplit(x = input$cmFile$name, split = "[.]")), n=1)
 			
-			if(fileType == "xlsx"){
-				file <- read.xlsx(input$cmFile$datapath, 1) 
+			if(fileType == "xls" || fileType == "xlsx"){
+				file <- read.xlsx(input$cmFile$datapath, 1)
 			}
 			else if(fileType == "csv"){
 				file <- read.csv(input$cmFile$datapath, header = TRUE)
@@ -119,8 +119,8 @@ shinyServer(function(input, output, session){
 		
 		map <- get_map(
 			location = c(
-				lon = median(points$Longitude), 
-				lat = median(points$Latitude)), 
+				lon = median(na.rm = TRUE, points$Longitude), 
+				lat = median(na.rm = TRUE, points$Latitude)), 
 			zoom = input$cmZoom, 
 			maptype = input$cmType
 			)
