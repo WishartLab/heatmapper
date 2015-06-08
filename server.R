@@ -61,7 +61,7 @@ shinyServer(function(input, output, session){
 	}
 	
 	output$heatmap <- renderPlot({
-		get_heatmap(get_cdt(), rowv = get_gtr(), colv = get_atr())
+		get_heatmap(get_heatmap_file(), rowv = get_gtr(), colv = get_atr())
 	})
 	
 	output$rowDendrogram <- renderPlot({
