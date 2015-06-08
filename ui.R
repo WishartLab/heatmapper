@@ -82,6 +82,13 @@ shinyUI(navbarPage(
     			max = 1,
     			value = 0.5), 
     		
+    		
+    		sliderInput('cmPointSize', 
+    			label = "Point size", 
+    			min = 0, 
+    			max = 5, 
+    			value = 5), 
+    		
     		selectInput('cmType', 
     			label = "Map type", 
     			choices = c(

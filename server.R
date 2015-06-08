@@ -110,6 +110,7 @@ shinyServer(function(input, output, session){
 			)
 		
 		ggmap(map) + 
+		geom_point(data = points, aes(x = Longitude, y = Latitude), size = input$cmPointSize) +
 		geom_density2d(data = points, aes(x = Longitude, y = Latitude), size = input$cmContourSize) +
 		stat_density2d(data = points, aes(x = Longitude, y = Latitude, fill = ..level.., alpha = ..level..), 
 			size = 0.01, bins = 16, geom = "polygon") + 
