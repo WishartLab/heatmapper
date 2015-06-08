@@ -130,7 +130,7 @@ shinyServer(function(input, output, session){
 		geom_density2d(data = points, aes(x = Longitude, y = Latitude), size = input$cmContourSize) +
 		stat_density2d(data = points, aes(x = Longitude, y = Latitude, fill = ..level.., alpha = ..level..), 
 			size = 0.01, bins = 16, geom = "polygon") + 
-		scale_fill_gradient(low = input$cmLowColour, high = input$cmHighColour) + 
+		scale_fill_gradient(breaks = NULL, low = input$cmLowColour, high = input$cmHighColour) + 
     scale_alpha(range = c(0, 0.3), guide = FALSE) 
 		#scale_x_continuous(limits = c(min(points$Longitude), max(points$Longitude))) +
 		#scale_y_continuous(limits = c(min(points$Latitude), max(points$Latitude)))
