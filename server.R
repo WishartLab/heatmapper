@@ -210,13 +210,12 @@ shinyServer(function(input, output, session){
 	
 library(pheatmap)
 	output$distMap <- renderPlot({
-		#file <- read.delim("data/dist.txt")
-		test <- data.frame(x=sample(1:10000,7), 
-                   y=sample(1:10000,7), 
-                   z=sample(1:10000,7))
-		pheatmap(data.matrix(test), cluster_rows = FALSE, cluster_cols = FALSE, display_numbers = TRUE)
+		file <- read.delim("data/dist.txt", header=TRUE, sep="\t")
+		rownames(file) <- file[,1]
+		file <- file[,-1]
+		pheatmap(file, cluster_rows = FALSE, cluster_cols = FALSE, display_numbers = TRUE, labels_row = rownames(file), labels_col = colnames(file))
 	})
 	output$distTable <- renderDataTable({
-		
+		file <- read.delim("data/dist.txt", header=TRUE, sep="\t")
 	})
 })
