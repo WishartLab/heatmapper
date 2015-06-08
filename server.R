@@ -118,10 +118,10 @@ shinyServer(function(input, output, session){
 		points <- get_cmFile()
 		
 		map <- get_map(
-			zoom = input$cmZoom, 
 			location = c(
 				lon = median(points$Longitude), 
 				lat = median(points$Latitude)), 
+			zoom = input$cmZoom, 
 			maptype = input$cmType
 			)
 		
@@ -132,6 +132,8 @@ shinyServer(function(input, output, session){
 			size = 0.01, bins = 16, geom = "polygon") + 
 		scale_fill_gradient(low = input$cmLowColour, high = input$cmHighColour) + 
     scale_alpha(range = c(0, 0.3), guide = FALSE) 
+		#scale_x_continuous(limits = c(min(points$Longitude), max(points$Longitude))) +
+		#scale_y_continuous(limits = c(min(points$Latitude), max(points$Latitude)))
 	}
 
 	output$continuousMap <- renderPlot({
@@ -204,5 +206,17 @@ shinyServer(function(input, output, session){
 	
 	output$discreteTable <- renderDataTable({
 		get_dmFile()
+	})
+	
+library(pheatmap)
+	output$distMap <- renderPlot({
+		#file <- read.delim("data/dist.txt")
+		test <- data.frame(x=sample(1:10000,7), 
+                   y=sample(1:10000,7), 
+                   z=sample(1:10000,7))
+		pheatmap(data.matrix(test), cluster_rows = FALSE, cluster_cols = FALSE, display_numbers = TRUE)
+	})
+	output$distTable <- renderDataTable({
+		
 	})
 })

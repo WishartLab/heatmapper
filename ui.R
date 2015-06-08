@@ -185,6 +185,22 @@ shinyUI(navbarPage(
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Table", dataTableOutput("discreteTable")), 
 					tabPanel(title = "Plot", plotOutput("discreteMap"))
+					)))), 
+	############################################################################# Distance Matrix Panel ####
+	tabPanel(title = "Distance Matrix", 
+		sidebarLayout(
+			sidebarPanel(
+				radioButtons('distChooseInput',
+    			label = "Choose Input Type",
+    			choices = c(
+    				"Upload File" = 'distFileUpload',
+						"Example File" = 'distExample'),
+    			selected = 'distExample')
+    	), 
+			mainPanel(
+				tabsetPanel(type = "tabs", 
+					tabPanel(title = "Plot", plotOutput("distMap")),
+					tabPanel(title = "Table", dataTableOutput("distTable"))
 					))))
 	
 ))
