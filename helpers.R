@@ -112,31 +112,34 @@ get_county_dmap <- function(fills) {
   
 }
 
-get_body_map <- function(bodypartInput) {
-		#function to change the rgb color of the xml paths
-		changeColor<-function(bodypart,color){
-		        node<-xpathSApply(doc, paste("//path[@id='",bodypart,"']/context/rgb",sep=""))[[1]]
-		        rgbCol<-col2rgb(color)
-		        xmlAttrs(node)["r"]=rgbCol[1]/255
-		        xmlAttrs(node)["g"]=rgbCol[2]/255
-		        xmlAttrs(node)["b"]=rgbCol[3]/255
-		}
+get_body_map <- function(var) {
+
+	#function to change the rgb color of the xml paths
+	changeColor<-function(bodypart,color){
+	        node<-xpathSApply(doc, paste("//path[@id='",bodypart,"']/context/rgb",sep=""))[[1]]
+	        rgbCol<-col2rgb(color)
+	        xmlAttrs(node)["r"]=rgbCol[1]/255
+	        xmlAttrs(node)["g"]=rgbCol[2]/255
+	        xmlAttrs(node)["b"]=rgbCol[3]/255
+	}
 		
-		#read the xml image
-		doc<-xmlParse("data/Human_body_front_and_side.ps.xml")
+	#read the xml image
+	doc<-xmlParse("data/Human_body_front_and_side.ps.xml")
 		
-		#these are the different parts you can change
-		bodyparts<-c("head","hand-right","hand-left","foot-left","foot-right","lowerleg-left","lowerleg-right",
+	#these are the different parts you can change
+	bodyparts<-c("head","hand-right","hand-left","foot-left","foot-right","lowerleg-left","lowerleg-right",
 		            "upperleg-left","upperleg-right","torso","forearm-right","forearm-left","upperarm-right","upperarm-left")
-		shades <- colorRampPalette(c("red", "green"))(100)
 	
-		#color the bodyparts with random color
-		mapply(function(x,y){changeColor(x,y)},bodyparts,shades)
+	shades <- colorRampPalette(c("green", "red"))(100)
+	percents <- as.integer(cut(var, 100, include.lowest = TRUE, ordered = TRUE))
+	fills <- shades[percents]
+	
+	#color the bodyparts
+	mapply(function(x,y){changeColor(x,y)},bodyparts,fills)
 		
+	#load the XML as a picture
+	body<-readPicture(saveXML(doc))
 		
-		#load the XML as a picture
-		body<-readPicture(saveXML(doc))
-		
-		#plot it
-		grid.arrange(pictureGrob(body), ncol=1)
+	#plot it
+	grid.arrange(pictureGrob(body), ncol=1)
 }
