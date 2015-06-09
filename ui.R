@@ -205,7 +205,21 @@ shinyUI(navbarPage(
 	
 	tabPanel(title = "Human Body", 
 		sidebarLayout(
-			sidebarPanel(),
+			sidebarPanel(
+				numericInput("head", label = "head", value = 1), 
+				numericInput("hand-right", label = "hand-right", value = 1), 
+				numericInput("hand-left", label = "hand-left", value = 1), 
+				numericInput("foot-left", label = "foot-left", value = 1),
+				numericInput("foot-right", label = "foot-right", value = 1),
+				numericInput("lowerleg-left", label = "lowerleg-left", value = 1),
+				numericInput("lowerleg-right", label = "lowerleg-right", value = 1),
+				numericInput("upperleg-left", label = "upperleg-left", value = 1),
+				numericInput("upperleg-right", label = "upperleg-right", value = 1),
+				numericInput("torso", label = "torso", value = 1),
+				numericInput("forearm-right", label = "forearm-right", value = 1),
+				numericInput("forearm-left", label = "forearm-left", value = 1),
+				numericInput("upperarm-right", label = "upperarm-right", value = 1),
+				numericInput("upperarm-left", label = "upperarm-left", value = 1)),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Plot", plotOutput("bodyMap"))))
