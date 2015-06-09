@@ -112,7 +112,7 @@ get_county_dmap <- function(fills) {
   
 }
 
-get_body_map <- function() {
+get_body_map <- function(bodypartInput) {
 		#function to change the rgb color of the xml paths
 		changeColor<-function(bodypart,color){
 		        node<-xpathSApply(doc, paste("//path[@id='",bodypart,"']/context/rgb",sep=""))[[1]]
@@ -128,9 +128,10 @@ get_body_map <- function() {
 		#these are the different parts you can change
 		bodyparts<-c("head","hand-right","hand-left","foot-left","foot-right","lowerleg-left","lowerleg-right",
 		            "upperleg-left","upperleg-right","torso","forearm-right","forearm-left","upperarm-right","upperarm-left")
-		
+		shades <- colorRampPalette(c("red", "green"))(100)
+	
 		#color the bodyparts with random color
-		mapply(function(x,y){changeColor(x,y)},bodyparts,sample(colours(), 14))
+		mapply(function(x,y){changeColor(x,y)},bodyparts,shades)
 		
 		
 		#load the XML as a picture

@@ -231,6 +231,13 @@ library(pheatmap)
 	library(XML)
 	library(gridExtra)
 	output$bodyMap <- renderPlot({
-		get_body_map()
+		bodypartInput <- c(
+			input$head,input$handright,input$handleft,input$footleft,
+			input$footright,input$lowerlegleft,input$lowerlegright,
+			input$upperlegleft,input$upperlegright,input$torso,
+			input$forearmright,input$forearmleft,input$upperarmright,
+			input$upperarmleft)
+		
+		get_body_map(bodypartInput)
 	})
 })
