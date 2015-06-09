@@ -220,7 +220,41 @@ library(pheatmap)
 		}
 		pheatmap(file, cluster_rows = FALSE, cluster_cols = FALSE, display_numbers = TRUE, labels_row = rownames(file), labels_col = colnames(file))
 	})
+	
 	output$distTable <- renderDataTable({
 		file <- read.delim("data/dist.txt", header=TRUE, sep="\t")
+	})
+	
+	#### Body Map #### SOURCE: http://stackoverflow.com/questions/28664798/how-to-make-a-heat-map-in-r-based-on-a-gif-of-the-human-body
+	
+	library(grImport)
+	library(XML)
+	library(gridExtra)
+	output$bodyMap <- renderPlot({
+		#function to change the rgb color of the xml paths
+		changeColor<-function(bodypart,color){
+		        node<-xpathSApply(doc, paste("//path[@id='",bodypart,"']/context/rgb",sep=""))[[1]]
+		        rgbCol<-col2rgb(color)
+		        xmlAttrs(node)["r"]=rgbCol[1]/255
+		        xmlAttrs(node)["g"]=rgbCol[2]/255
+		        xmlAttrs(node)["b"]=rgbCol[3]/255
+		}
+		
+		#read the xml image
+		doc<-xmlParse("data/Human_body_front_and_side.ps.xml")
+		
+		#these are the different parts you can change
+		bodyparts<-c("head","hand-right","hand-left","foot-left","foot-right","lowerleg-left","lowerleg-right",
+		            "upperleg-left","upperleg-right","torso","forearm-right","forearm-left","upperarm-right","upperarm-left")
+		
+		#color the bodyparts with random color
+		mapply(function(x,y){changeColor(x,y)},bodyparts,sample(colours(), 14))
+		
+		
+		#load the XML as a picture
+		body<-readPicture(saveXML(doc))
+		
+		#plot it
+		grid.arrange(pictureGrob(body), ncol=1)
 	})
 })

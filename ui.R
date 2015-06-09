@@ -201,6 +201,13 @@ shinyUI(navbarPage(
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Plot", plotOutput("distMap")),
 					tabPanel(title = "Table", dataTableOutput("distTable"))
-					))))
+					)))), 
 	
+	tabPanel(title = "Human Body", 
+		sidebarLayout(
+			sidebarPanel(),
+			mainPanel(
+				tabsetPanel(type = "tabs", 
+					tabPanel(title = "Plot", plotOutput("bodyMap"))))
+			))
 ))
