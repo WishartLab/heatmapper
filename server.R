@@ -105,7 +105,7 @@ shinyServer(function(input, output, session){
 				file <- read.csv(input$cmFile$datapath, header = TRUE)
 			}
 			else{
-				file <- read.delim(input$cmFile$datapath, header = TRUE, sep="\t")
+				file <- read.delim(input$cmFile$datapath, header = TRUE, sep="\t", row.names = NULL)
 			}
 			points <- data.frame(
 				Longitude = c(file$Longitude), 
