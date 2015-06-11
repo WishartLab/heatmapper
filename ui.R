@@ -112,7 +112,13 @@ shinyUI(navbarPage(
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", plotOutput("continuousMap")), 
+					tabPanel(title = "Plot", 
+						plotOutput("continuousMap", 
+							click = "cm_click",
+							dblclick = "cm_dblclick",
+							hover = "cm_hover",
+							brush = "cm_brush"),
+						plotOutput("continuousMapZoom")),
 					tabPanel(title = "Table", dataTableOutput("continuousTable")))))), 
 
 	############################################################################# Discrete Maps Panel ####
@@ -203,7 +209,7 @@ shinyUI(navbarPage(
 					tabPanel(title = "Plot", plotOutput("distMap")),
 					tabPanel(title = "Table", dataTableOutput("distTable"))
 					)))), 
-	
+	############################################################################# 
 	tabPanel(title = "Human Body", 
 		sidebarLayout(
 			sidebarPanel(

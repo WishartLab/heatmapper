@@ -114,6 +114,8 @@ shinyServer(function(input, output, session){
 		return(points)
 	}
 	
+	cm_ranges <- reactiveValues(x = NULL, y = NULL)
+	
 	get_cm_plot <- function(){
 		points <- get_cmFile()
 		
@@ -131,14 +133,36 @@ shinyServer(function(input, output, session){
 		stat_density2d(data = points, aes(x = Longitude, y = Latitude, fill = ..level.., alpha = ..level..), 
 			size = 0.01, bins = 16, geom = "polygon") + 
 		scale_fill_gradient(breaks = NULL, low = input$cmLowColour, high = input$cmHighColour) + 
-    scale_alpha(range = c(0, 0.3), guide = FALSE) 
-		#scale_x_continuous(limits = c(min(points$Longitude), max(points$Longitude))) +
-		#scale_y_continuous(limits = c(min(points$Latitude), max(points$Latitude)))
+    scale_alpha(range = c(0, 0.3), guide = FALSE)
 	}
+	
+	get_zoom_cm_plot <- function(){
+		get_cm_plot() + coord_cartesian(xlim = cm_ranges$x, ylim = cm_ranges$y)
+	}
+	
+  # When a double-click happens, check if there's a brush on the plot.
+  # If so, zoom to the brush bounds; if not, reset the zoom.
+  observeEvent(input$cm_dblclick, {
+    brush <- input$cm_brush
+    if (!is.null(brush)) {
+      cm_ranges$x <- c(brush$xmin, brush$xmax)
+      cm_ranges$y <- c(brush$ymin, brush$ymax)
 
+    } else {
+      cm_ranges$x <- NULL
+      cm_ranges$y <- NULL
+    }
+  })
+	
+	
+	
 	output$continuousMap <- renderPlot({
 		get_cm_plot()
 		
+	})
+	
+	output$continuousMapZoom <- renderPlot({
+		get_zoom_cm_plot()
 	})
 	
 	output$continuousTable <- renderDataTable({
@@ -209,8 +233,15 @@ shinyServer(function(input, output, session){
 	})
 	
 library(pheatmap)
+	
+	get_dist_file <- function() {
+		file <- read.delim("data/dist.txt", header=TRUE, sep="\t")
+		return(file)
+	}
 	output$distMap <- renderPlot({
-		file <- read.delim("data/distNoRowNames.txt", header=TRUE, sep="\t")
+		file <- get_dist_file()
+		print(rownames(file))
+		print(colnames(file))
 		if(!is.numeric(file[,1])){
 			rownames(file) <- file[,1]
 			file <- file[,-1]
@@ -218,11 +249,17 @@ library(pheatmap)
 		else{
 			rownames(file) <- colnames(file)
 		}
-		pheatmap(file, col=rainbow(75), cluster_rows = FALSE, cluster_cols = FALSE, display_numbers = input$cellNums, labels_row = rownames(file), labels_col = colnames(file))
+		pheatmap(file, 
+			color=rainbow(25, end = 5/6), 
+			cluster_rows = FALSE, 
+			cluster_cols = FALSE, 
+			display_numbers = input$cellNums, 
+			labels_row = rownames(file), 
+			labels_col = colnames(file)) 
 	})
 	
 	output$distTable <- renderDataTable({
-		file <- read.delim("data/dist.txt", header=TRUE, sep="\t")
+		file <- get_dist_file
 	})
 	
 	#### Body Map #### SOURCE: http://stackoverflow.com/questions/28664798/how-to-make-a-heat-map-in-r-based-on-a-gif-of-the-human-body
@@ -240,4 +277,5 @@ library(pheatmap)
 		
 		get_body_map(bodypartInput)
 	})
+	
 })
