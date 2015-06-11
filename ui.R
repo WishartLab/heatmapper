@@ -206,7 +206,12 @@ shinyUI(navbarPage(
     	), 
 			mainPanel(
 				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", plotOutput("distMap")),
+					tabPanel(title = "Plot", plotOutput("distMap", 
+						click = "dist_click",
+						dblclick = "dist_dblclick",
+						hover = "dist_hover",
+						brush = "dist_brush"), 
+						verbatimTextOutput("info")),
 					tabPanel(title = "Table", dataTableOutput("distTable"))
 					)))), 
 	############################################################################# 

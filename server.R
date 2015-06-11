@@ -155,7 +155,6 @@ shinyServer(function(input, output, session){
   })
 	
 	
-	
 	output$continuousMap <- renderPlot({
 		get_cm_plot()
 		
@@ -234,14 +233,15 @@ shinyServer(function(input, output, session){
 	
 library(pheatmap)
 	
+	dist_ranges <- reactiveValues(x = NULL, y = NULL)
+	
+	
 	get_dist_file <- function() {
-		file <- read.delim("data/dist.txt", header=TRUE, sep="\t")
+		file <- read.delim("data/distance.dat", header=FALSE, sep="\t")
 		return(file)
 	}
 	output$distMap <- renderPlot({
 		file <- get_dist_file()
-		print(rownames(file))
-		print(colnames(file))
 		if(!is.numeric(file[,1])){
 			rownames(file) <- file[,1]
 			file <- file[,-1]
@@ -249,18 +249,50 @@ library(pheatmap)
 		else{
 			rownames(file) <- colnames(file)
 		}
-		pheatmap(file, 
-			color=rainbow(25, end = 5/6), 
-			cluster_rows = FALSE, 
-			cluster_cols = FALSE, 
-			display_numbers = input$cellNums, 
-			labels_row = rownames(file), 
-			labels_col = colnames(file)) 
+	#	pheatmap(file, 
+#			color=rainbow(25, start = 1/6), 
+#			cluster_rows = FALSE, 
+#			cluster_cols = FALSE, 
+#			display_numbers = input$cellNums, 
+	#		labels_row = rownames(file), 
+	#		labels_col = colnames(file)) 
+		#plot(as.matrix(file))
+		qplot(x=Var1, y=Var2, data=melt(cor(file)), fill=value, geom="tile")
 	})
+	output$info <- renderPrint({
+		file <- get_dist_file()
+		if(!is.numeric(file[,1])){
+			rownames(file) <- file[,1]
+			file <- file[,-1]
+		}
+		else{
+			rownames(file) <- colnames(file)
+		}
+    # With base graphics, need to tell it what the x and y variables are.
+    brushedPoints(melt(cor(file)), input$dist_brush)
+  })
 	
 	output$distTable <- renderDataTable({
-		file <- get_dist_file
+		file <- get_dist_file()
 	})
+	
+	
+#	coord_cartesian(xlim = dist_ranges$x, ylim = dist_ranges$y)
+	
+	
+  # When a double-click happens, check if there's a brush on the plot.
+  # If so, zoom to the brush bounds; if not, reset the zoom.
+  observeEvent(input$dist_dblclick, {
+    brush <- input$dist_brush
+    if (!is.null(brush)) {
+      dist_ranges$x <- c(brush$xmin, brush$xmax)
+      dist_ranges$y <- c(brush$ymin, brush$ymax)
+
+    } else {
+      dist_ranges$x <- NULL
+      dist_ranges$y <- NULL
+    }
+  })
 	
 	#### Body Map #### SOURCE: http://stackoverflow.com/questions/28664798/how-to-make-a-heat-map-in-r-based-on-a-gif-of-the-human-body
 	
