@@ -195,7 +195,8 @@ shinyUI(navbarPage(
     			choices = c(
     				"Upload File" = 'distFileUpload',
 						"Example File" = 'distExample'),
-    			selected = 'distExample')
+    			selected = 'distExample'),
+				checkboxInput("cellNums", label = "Show cell numbers")
     	), 
 			mainPanel(
 				tabsetPanel(type = "tabs", 

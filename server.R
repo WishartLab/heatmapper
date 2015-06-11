@@ -218,7 +218,7 @@ library(pheatmap)
 		else{
 			rownames(file) <- colnames(file)
 		}
-		pheatmap(file, cluster_rows = FALSE, cluster_cols = FALSE, display_numbers = TRUE, labels_row = rownames(file), labels_col = colnames(file))
+		pheatmap(file, col=rainbow(75), cluster_rows = FALSE, cluster_cols = FALSE, display_numbers = input$cellNums, labels_row = rownames(file), labels_col = colnames(file))
 	})
 	
 	output$distTable <- renderDataTable({
