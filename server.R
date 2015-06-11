@@ -232,7 +232,8 @@ shinyServer(function(input, output, session){
 	})
 	
 library(pheatmap)
-	
+library(ggplot2)
+library(reshape2)
 	dist_ranges <- reactiveValues(x = NULL, y = NULL)
 	
 	
@@ -297,8 +298,8 @@ library(pheatmap)
 	#### Body Map #### SOURCE: http://stackoverflow.com/questions/28664798/how-to-make-a-heat-map-in-r-based-on-a-gif-of-the-human-body
 	
 	library(grImport)
-	library(XML)
 	library(gridExtra)
+	library(XML)
 	output$bodyMap <- renderPlot({
 		bodypartInput <- c(
 			input$head,input$handright,input$handleft,input$footleft,
