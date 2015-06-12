@@ -202,7 +202,13 @@ shinyUI(navbarPage(
     				"Upload File" = 'distFileUpload',
 						"Example File" = 'distExample'),
     			selected = 'distExample'),
-				checkboxInput("cellNums", label = "Show cell numbers")
+				
+				conditionalPanel(condition = "input.distChooseInput == 'distFileUpload'", 
+    			fileInput("distFile", label = h3("Distance Matrix File Input"))), 
+				
+				textInput('distTitle', label = "Title", value = ""),
+				textInput('distXlab', label = "X Axis Label", value = ""),
+				textInput('distYlab', label = "Y Axis Label", value = "")
     	), 
 			mainPanel(
 				tabsetPanel(type = "tabs", 

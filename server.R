@@ -234,10 +234,17 @@ shinyServer(function(input, output, session){
 	})
 	
 ################################################
-	dist_ranges <- reactiveValues(x = NULL, y = NULL)
 	
 	get_dist_file <- function() {
-		file <- read.table("data/dist.txt", header=FALSE, sep="\t")
+		if(input$distChooseInput == 'distExample'){
+			file <- read.table("data/dist.txt", header=FALSE, sep="\t")
+		}
+		else {
+			if(is.null(input$distFile$datapath)){
+				return(NULL)
+			}
+			file <- read.table(input$distFile$datapath, header=FALSE, sep="\t")
+		}
 		
 		if(!is.numeric(file[[1]])){
 			colnames(file) <- file[[1]]
@@ -253,10 +260,21 @@ shinyServer(function(input, output, session){
 	}
 	output$distMap <- renderPlot({
 		file <- get_dist_file()
+		if(is.null(file)){
+			return(NULL)
+		}
 		data <- melt(file, id.vars = "cols", variable.name = "rows")
-		qplot(data = data, x=cols, y=rows, fill=as.numeric(value), geom="tile", xlab = "", ylab = "") + 
-			scale_fill_gradientn(colours = rainbow(7))
+		qplot(data = data, 
+			x=cols, 
+			y=rows, 
+			fill=as.numeric(value), 
+			geom="tile", 
+			xlab = input$distXlab, 
+			ylab = input$distYlab, 
+			main = input$distTitle) + 
+		scale_fill_gradientn(colours = rainbow(7), name = "Values")
 	})
+	
 	output$info <- renderPrint({
 		file <- get_dist_file()
     brushedPoints(melt(file, id.vars = "cols", variable.name = "rows"), input$dist_brush)
@@ -265,24 +283,6 @@ shinyServer(function(input, output, session){
 	output$distTable <- renderDataTable({
 		file <- get_dist_file()
 	})
-	
-	
-#	coord_cartesian(xlim = dist_ranges$x, ylim = dist_ranges$y)
-	
-	
-  # When a double-click happens, check if there's a brush on the plot.
-  # If so, zoom to the brush bounds; if not, reset the zoom.
-  observeEvent(input$dist_dblclick, {
-    brush <- input$dist_brush
-    if (!is.null(brush)) {
-      dist_ranges$x <- c(brush$xmin, brush$xmax)
-      dist_ranges$y <- c(brush$ymin, brush$ymax)
-
-    } else {
-      dist_ranges$x <- NULL
-      dist_ranges$y <- NULL
-    }
-  })
 	
 	#### Body Map #### SOURCE: http://stackoverflow.com/questions/28664798/how-to-make-a-heat-map-in-r-based-on-a-gif-of-the-human-body
 	
