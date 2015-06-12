@@ -237,23 +237,26 @@ shinyServer(function(input, output, session){
 	dist_ranges <- reactiveValues(x = NULL, y = NULL)
 	
 	get_dist_file <- function() {
-		file <- read.delim("data/distance.dat", header=FALSE, sep="\t")
+		file <- read.table("data/dist.txt", header=FALSE, sep="\t")
 		
-		if(!is.numeric(file[,1])){
-			rownames(file) <- file[,1]
+		if(!is.numeric(file[[1]])){
+			colnames(file) <- file[[1]]
+			file <- file[-1,]
 		}
-		else{
-			rownames(file) <- colnames(file)
+		
+		if(is.numeric(file[,1])){
 			file <- cbind(colnames(file), file)
-			colnames(file)[1] <- "cols"
 		}
+		
+		colnames(file)[1] <- "cols"
 		return(file)
 	}
 	output$distMap <- renderPlot({
 		file <- get_dist_file()
-		print(head(melt(file, id.vars = "cols"), n = 1))
-		qplot(data=melt(file, id.vars = "cols"), x=cols,  y=variable, fill=value, geom="tile") + 
-		scale_fill_gradientn(colours = rainbow(7))
+		data <- melt(file, id.vars = "cols")
+		p <- qplot(data = data, x=cols,  y=variable, fill=as.numeric(value), geom="tile")
+		p <- p + scale_fill_gradientn(colours = rainbow(7))
+		return(p)
 	})
 	output$info <- renderPrint({
 		file <- get_dist_file()
