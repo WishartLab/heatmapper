@@ -253,14 +253,13 @@ shinyServer(function(input, output, session){
 	}
 	output$distMap <- renderPlot({
 		file <- get_dist_file()
-		data <- melt(file, id.vars = "cols")
-		p <- qplot(data = data, x=cols,  y=variable, fill=as.numeric(value), geom="tile")
-		p <- p + scale_fill_gradientn(colours = rainbow(7))
-		return(p)
+		data <- melt(file, id.vars = "cols", variable.name = "rows")
+		qplot(data = data, x=cols, y=rows, fill=as.numeric(value), geom="tile", xlab = "", ylab = "") + 
+			scale_fill_gradientn(colours = rainbow(7))
 	})
 	output$info <- renderPrint({
 		file <- get_dist_file()
-    brushedPoints(melt(file, id.vars = "cols"), input$dist_brush)
+    brushedPoints(melt(file, id.vars = "cols", variable.name = "rows"), input$dist_brush)
   })
 	
 	output$distTable <- renderDataTable({
