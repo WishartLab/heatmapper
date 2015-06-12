@@ -4,6 +4,8 @@ library(mapproj)
 library(ctc)
 library(ggmap)
 library(xlsx)
+library(ggplot2)
+library(reshape2)
 
 source("helpers.R")
 
@@ -231,27 +233,26 @@ shinyServer(function(input, output, session){
 		get_dmFile()
 	})
 	
-library(pheatmap)
-library(ggplot2)
-library(reshape2)
+################################################
 	dist_ranges <- reactiveValues(x = NULL, y = NULL)
 	
-	
 	get_dist_file <- function() {
-		file <- read.delim("data/dist.txt", header=TRUE, sep="\t")
-		return(file)
+		file <- read.delim("data/distance.dat", header=FALSE, sep="\t")
+		
 		if(!is.numeric(file[,1])){
 			rownames(file) <- file[,1]
-			file <- file[,-1]
 		}
 		else{
 			rownames(file) <- colnames(file)
+			file <- cbind(colnames(file), file)
+			print(head(file, n=2))
 		}
 		return(file)
 	}
 	output$distMap <- renderPlot({
 		file <- get_dist_file()
-		qplot(data=melt(file), x=Name, y=variable, fill=value, geom="tile") + 
+		print(head(melt(file, id.vars = colnames(file)[1]), n = 1))
+		qplot(data=melt(file, id.vars = colnames(file)[1]), x=colnames(file)[1],  y=variable, fill=value, geom="tile") + 
 		scale_fill_gradientn(colours = rainbow(7))
 	})
 	output$info <- renderPrint({
