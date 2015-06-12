@@ -238,39 +238,25 @@ library(reshape2)
 	
 	
 	get_dist_file <- function() {
-		file <- read.delim("data/distance.dat", header=FALSE, sep="\t")
+		file <- read.delim("data/dist.txt", header=TRUE, sep="\t")
+		return(file)
+		if(!is.numeric(file[,1])){
+			rownames(file) <- file[,1]
+			file <- file[,-1]
+		}
+		else{
+			rownames(file) <- colnames(file)
+		}
 		return(file)
 	}
 	output$distMap <- renderPlot({
 		file <- get_dist_file()
-		if(!is.numeric(file[,1])){
-			rownames(file) <- file[,1]
-			file <- file[,-1]
-		}
-		else{
-			rownames(file) <- colnames(file)
-		}
-	#	pheatmap(file, 
-#			color=rainbow(25, start = 1/6), 
-#			cluster_rows = FALSE, 
-#			cluster_cols = FALSE, 
-#			display_numbers = input$cellNums, 
-	#		labels_row = rownames(file), 
-	#		labels_col = colnames(file)) 
-		#plot(as.matrix(file))
-		qplot(x=Var1, y=Var2, data=melt(cor(file)), fill=value, geom="tile")
+		qplot(data=melt(file), x=Name, y=variable, fill=value, geom="tile") + 
+		scale_fill_gradientn(colours = rainbow(7))
 	})
 	output$info <- renderPrint({
 		file <- get_dist_file()
-		if(!is.numeric(file[,1])){
-			rownames(file) <- file[,1]
-			file <- file[,-1]
-		}
-		else{
-			rownames(file) <- colnames(file)
-		}
-    # With base graphics, need to tell it what the x and y variables are.
-    brushedPoints(melt(cor(file)), input$dist_brush)
+    brushedPoints(melt(file), input$dist_brush)
   })
 	
 	output$distTable <- renderDataTable({
