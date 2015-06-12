@@ -245,19 +245,19 @@ shinyServer(function(input, output, session){
 		else{
 			rownames(file) <- colnames(file)
 			file <- cbind(colnames(file), file)
-			print(head(file, n=2))
+			colnames(file)[1] <- "cols"
 		}
 		return(file)
 	}
 	output$distMap <- renderPlot({
 		file <- get_dist_file()
-		print(head(melt(file, id.vars = colnames(file)[1]), n = 1))
-		qplot(data=melt(file, id.vars = colnames(file)[1]), x=colnames(file)[1],  y=variable, fill=value, geom="tile") + 
+		print(head(melt(file, id.vars = "cols"), n = 1))
+		qplot(data=melt(file, id.vars = "cols"), x=cols,  y=variable, fill=value, geom="tile") + 
 		scale_fill_gradientn(colours = rainbow(7))
 	})
 	output$info <- renderPrint({
 		file <- get_dist_file()
-    brushedPoints(melt(file), input$dist_brush)
+    brushedPoints(melt(file, id.vars = "cols"), input$dist_brush)
   })
 	
 	output$distTable <- renderDataTable({
