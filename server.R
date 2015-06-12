@@ -264,6 +264,8 @@ shinyServer(function(input, output, session){
 			return(NULL)
 		}
 		data <- melt(file, id.vars = "cols", variable.name = "rows")
+		data$cols <- factor(data$cols, levels = data$cols)
+		
 		qplot(data = data, 
 			x=cols, 
 			y=rows, 
