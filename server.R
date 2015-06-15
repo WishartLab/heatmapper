@@ -234,32 +234,36 @@ shinyServer(function(input, output, session){
 	})
 	
 ################################################
-	
-	get_dist_file <- function() {
-		if(input$distChooseInput == 'distExample'){
-			fileName <- "data/distance.dat"
-			tryCatch({
+	read_dist_file <- function(fileName) {
+		tryCatch({
 				scan(fileName,  nlines = 1)
 				dist_header <<- FALSE
 			}, 
 			error = function(e){
 				dist_header <<- TRUE
 			})
-			file <- read.table(fileName, header = dist_header, sep = "\t")
-			
+		file <- read.table(fileName, header = dist_header, sep = "\t")
+		return(file)
+	}
+	
+	get_dist_file <- function() {
+		if(input$distChooseInput == 'distExample'){
+			file <- read_dist_file("data/distance.dat")
 		}
 		else {
 			if(is.null(input$distFile$datapath)){
 				return(NULL)
 			}
-			file <- read.table(input$distFile$datapath, header=FALSE, sep="\t")
+			file <- read_dist_file(input$distFile$datapath)
 		}
-		print(is.numeric(file[[1]]))
-		if(dist_header == TRUE && is.numeric(file[[1]])){
+		
+		# if no row names are specified use the column names
+		if(is.numeric(file[[1]])){
 			file <- cbind(colnames(file), file)
 		}
 		
 		colnames(file)[1] <- "cols"
+		
 		return(file)
 	}
 	output$distMap <- renderPlot({
