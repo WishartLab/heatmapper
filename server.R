@@ -237,7 +237,7 @@ shinyServer(function(input, output, session){
 	
 	get_dist_file <- function() {
 		if(input$distChooseInput == 'distExample'){
-			file <- read.table("data/dist2.dat", header=FALSE, sep="\t")
+			file <- read.table("data/dist2.dat", header = TRUE, sep = "\t")
 		}
 		else {
 			if(is.null(input$distFile$datapath)){
@@ -246,12 +246,14 @@ shinyServer(function(input, output, session){
 			file <- read.table(input$distFile$datapath, header=FALSE, sep="\t")
 		}
 		
-		# if there are strings in the first row
-		if(!sapply(file[1,], is.numeric)){
+		print(names(file))
+		print(sapply(names(file), is.numeric))
+		# if there is at least one string in the first row assign the first row as colanames
+		if(length(file[!sapply(file[1,], is.numeric),]) > 0){
 			colnames(file) <- lapply(file[1,], as.character.factor)
 			file <- file[-1,]
 		}
-		
+		#print(sapply(file[,1], class))
 		# if there aren't strings in the first col
 		if(sapply(file[,1], is.numeric)){
 			file <- cbind(colnames(file), file)
