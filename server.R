@@ -237,7 +237,7 @@ shinyServer(function(input, output, session){
 	
 	get_dist_file <- function() {
 		if(input$distChooseInput == 'distExample'){
-			file <- read.table("data/dist.txt", header=FALSE, sep="\t")
+			file <- read.table("data/distance.dat", header=FALSE, sep="\t")
 		}
 		else {
 			if(is.null(input$distFile$datapath)){
@@ -246,11 +246,13 @@ shinyServer(function(input, output, session){
 			file <- read.table(input$distFile$datapath, header=FALSE, sep="\t")
 		}
 		
-		if(!is.numeric(file[[1]])){
-			colnames(file) <- file[[1]]
+		# if there are strings in the first row
+		if(!is.numeric(file[1,])){
+			colnames(file) <- lapply(file[1,] , FUN = function(x){as.character.factor(x)})
 			file <- file[-1,]
 		}
 		
+		# if there aren't strings in the first col
 		if(is.numeric(file[,1])){
 			file <- cbind(colnames(file), file)
 		}
