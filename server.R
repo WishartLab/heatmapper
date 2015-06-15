@@ -274,7 +274,8 @@ shinyServer(function(input, output, session){
 		data <- melt(file, id.vars = "cols", variable.name = "rows")
 		data$cols <- factor(data$cols, levels = data$cols)
 		
-		q <- qplot(data = data, 
+		q <- qplot(asp = 1,
+			data = data, 
 			x=cols, 
 			y=rows, 
 			fill=as.numeric(value), 
@@ -285,6 +286,10 @@ shinyServer(function(input, output, session){
 		
 		if(input$distColour == 'rainbow'){
 			q <- q + scale_fill_gradientn(colours = rainbow(7), name = "Values")
+		}
+		else if(input$distColour == 'custom'){
+			my_palette <- colorRampPalette(c(input$distLowColour, input$distMidColour, input$distHighColour))
+			q <- q + scale_fill_gradientn(colours = my_palette(7), name = "Values")
 		}
 		else{
 			q <- q + scale_fill_gradientn(colours = topo.colors(7), name = "Values")

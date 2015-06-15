@@ -212,8 +212,44 @@ shinyUI(navbarPage(
 				selectInput('distColour', label = "Colour Scheme", 
 					choices = c(
 						"Rainbow" = 'rainbow', 
-						"Topo" = 'topo'), 
-					selected = 'rainbow')
+						"Topo" = 'topo', 
+						"Custom" = 'custom'), 
+					selected = 'rainbow'), 
+				conditionalPanel(condition = "input.distColour == 'custom'", 
+					selectInput("distLowColour", 
+	    			label = "Colour for low values", 
+	    			choices = c( 
+	    				"red" = 'red',
+	    				"orange" = 'orange',
+	    				"yellow" = 'yellow',
+	    				"green" = 'green',
+	    				"blue" = 'blue',
+	    				"purple" = 'purple', 
+	    				"white" = 'white',
+	    				"grey" = 'grey', 
+	    				"black" = 'black'),
+	    			selected = 'red'),
+					
+					selectInput("distMidColour", 
+	    			label = "Colour for middle values", 
+	    			choices = c( 
+							"white" = 'white', 
+	    				"black" = 'black'), 
+						selected = 'white'),
+					
+	    		selectInput("distHighColour", 
+	    			label = "Colour for high values", 
+	    			choices = c( 
+	    				"red" = 'red',
+	    				"orange" = 'orange',
+	    				"yellow" = 'yellow',
+	    				"green" = 'green',
+	    				"blue" = 'blue',
+	    				"purple" = 'purple', 
+	    				"white" = 'white',
+	    				"grey" = 'grey', 
+	    				"black" = 'black'),
+	    			selected = 'green'))
     	), 
 			mainPanel(
 				tabsetPanel(type = "tabs", 
