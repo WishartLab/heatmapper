@@ -274,20 +274,30 @@ shinyServer(function(input, output, session){
 		data <- melt(file, id.vars = "cols", variable.name = "rows")
 		data$cols <- factor(data$cols, levels = data$cols)
 		
-		qplot(data = data, 
+		q <- qplot(data = data, 
 			x=cols, 
 			y=rows, 
 			fill=as.numeric(value), 
 			geom="tile", 
 			xlab = input$distXlab, 
 			ylab = input$distYlab, 
-			main = input$distTitle) + 
-		scale_fill_gradientn(colours = rainbow(7), name = "Values")
+			main = input$distTitle) 
+		
+		if(input$distColour == 'rainbow'){
+			q <- q + scale_fill_gradientn(colours = rainbow(7), name = "Values")
+		}
+		else{
+			q <- q + scale_fill_gradientn(colours = topo.colors(7), name = "Values")
+		}
+		
+		return(q)
 	})
 	
 	output$info <- renderPrint({
 		file <- get_dist_file()
-    brushedPoints(melt(file, id.vars = "cols", variable.name = "rows"), input$dist_brush)
+		if(!is.null(file)){
+			brushedPoints(melt(file, id.vars = "cols", variable.name = "rows"), input$dist_brush)
+		}
   })
 	
 	output$distTable <- renderDataTable({

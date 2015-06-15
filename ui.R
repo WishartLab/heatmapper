@@ -208,7 +208,12 @@ shinyUI(navbarPage(
 				
 				textInput('distTitle', label = "Title", value = ""),
 				textInput('distXlab', label = "X Axis Label", value = ""),
-				textInput('distYlab', label = "Y Axis Label", value = "")
+				textInput('distYlab', label = "Y Axis Label", value = ""),
+				selectInput('distColour', label = "Colour Scheme", 
+					choices = c(
+						"Rainbow" = 'rainbow', 
+						"Topo" = 'topo'), 
+					selected = 'rainbow')
     	), 
 			mainPanel(
 				tabsetPanel(type = "tabs", 
