@@ -6,14 +6,12 @@ library(ggmap)
 library(xlsx)
 library(ggplot2)
 library(reshape2)
-library(RLumShiny)
-
 source("helpers.R")
 
 options(shiny.deprecation.messages=FALSE)
 
 shinyServer(function(input, output, session){
-	
+
 	#### HEATMAP ####
 	get_heatmap_file <- function(){
 		path <- get_path(input$cdtFile)

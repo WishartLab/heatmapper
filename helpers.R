@@ -143,3 +143,13 @@ get_body_map <- function(var) {
 	#plot it
 	grid.arrange(pictureGrob(body), ncol=1)
 }
+
+
+jscolourInput2 <- function (inputId){
+	tagList(
+	tags$head(tags$script(src="js/jscolor/jscolor.js")),
+	tags$input(
+		id = inputId,
+		value = "#000000", 
+		class = "color {hash:true}"))
+}

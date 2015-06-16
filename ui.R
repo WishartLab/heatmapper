@@ -1,6 +1,6 @@
 shinyUI(navbarPage(
 	title = "Heatmapper", 
-	
+
 	############################################################################# Main Panel ####
 	tabPanel(title = "Introduction", 
 		tabsetPanel(type = "tabs", 
@@ -8,7 +8,7 @@ shinyUI(navbarPage(
 			tabPanel(title = "Gallery"),
 			tabPanel(title = "Instructions"),
 			tabPanel(title = "Contact"))),
-	
+
 	############################################################################# Microarray Panel ####
 	tabPanel(title = "Microarray", 
 		tabsetPanel(type = "tabs", 
@@ -125,7 +125,7 @@ shinyUI(navbarPage(
 	tabPanel(title = "Choropleth", 
 		sidebarLayout(
     	sidebarPanel(
-    	
+    		
     		radioButtons('dmChooseInput',
     			label = "Choose Input Type",
     			choices = c(
@@ -214,9 +214,10 @@ shinyUI(navbarPage(
 						"Rainbow" = 'rainbow', 
 						"Topo" = 'topo', 
 						"Custom" = 'custom'), 
-					selected = 'rainbow'), 
-				conditionalPanel(condition = "input.distColour == 'custom'", 
-					jscolorInput("distLowColour", label="Colour for low values"),
+					selected = 'custom'), 
+				
+				conditionalPanel(condition = "input.distColour == 'custom'",
+					jscolourInput2("distLowColour"),
 					
 					selectInput("distMidColour", 
 	    			label = "Colour for middle values", 
@@ -270,5 +271,5 @@ shinyUI(navbarPage(
 			mainPanel(
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Plot", plotOutput("bodyMap"))))
-			))
+			)) 
 ))
