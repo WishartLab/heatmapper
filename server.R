@@ -6,6 +6,7 @@ library(ggmap)
 library(xlsx)
 library(ggplot2)
 library(reshape2)
+library(RLumShiny)
 
 source("helpers.R")
 
@@ -248,7 +249,7 @@ shinyServer(function(input, output, session){
 	
 	get_dist_file <- function() {
 		if(input$distChooseInput == 'distExample'){
-			file <- read_dist_file("data/distance.dat")
+			file <- read_dist_file("data/dist.txt")
 		}
 		else {
 			if(is.null(input$distFile$datapath)){
