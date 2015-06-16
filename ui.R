@@ -55,27 +55,10 @@ shinyUI(navbarPage(
     			max = 20,
     			value = 10), 
     		
-    		selectInput('cmLowColour', 
-    			label = "Colour for low values", 
-    			choices = c( 
-    				"red" = 'red',
-    				"orange" = 'orange',
-    				"yellow" = 'yellow',
-    				"green" = 'green',
-    				"blue" = 'blue',
-    				"purple" = 'purple'),
-    			selected = 'green'),
+    		jscolourInput("cmLowColour", label = "Colour for low numbers", value = "#23B000"),
     		
-    		selectInput('cmHighColour', 
-    			label = "Colour for high values", 
-    			choices = c( 
-    				"red" = 'red',
-    				"orange" = 'orange',
-    				"yellow" = 'yellow',
-    				"green" = 'green',
-    				"blue" = 'blue',
-    				"purple" = 'purple'),
-    			selected = 'red'), 
+    		jscolourInput("cmHighColour", label = "Colour for high numbers", value = "#FF0000"),
+    		
     		
     		sliderInput('cmContourSize', 
     			label = "Contour line size", 
@@ -156,33 +139,9 @@ shinyUI(navbarPage(
     			max = 100, 
     			value = c(0, 100)), 
     		
-    		selectInput("dmLowColour", 
-    			label = "Colour for low values", 
-    			choices = c( 
-    				"red" = 'red',
-    				"orange" = 'orange',
-    				"yellow" = 'yellow',
-    				"green" = 'darkgreen',
-    				"blue" = 'blue',
-    				"purple" = 'purple', 
-    				"white" = 'white',
-    				"grey" = 'grey', 
-    				"black" = 'black'),
-    			selected = 'white'),
+    		jscolourInput("dmLowColour", label = "Colour for low numbers", value = "#F2F2FF"),
     		
-    		selectInput("dmHighColour", 
-    			label = "Colour for high values", 
-    			choices = c( 
-    				"red" = 'red',
-    				"orange" = 'orange',
-    				"yellow" = 'yellow',
-    				"green" = 'darkgreen',
-    				"blue" = 'blue',
-    				"purple" = 'purple', 
-    				"white" = 'white',
-    				"grey" = 'grey', 
-    				"black" = 'black'),
-    			selected = 'darkgreen'), 
+    		jscolourInput("dmHighColour", label = "Colour for high numbers", value = "#23B000"),
     		
     		textInput('dmLegend',
     			label = "Custom legend title", 
