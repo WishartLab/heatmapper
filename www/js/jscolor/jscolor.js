@@ -1,4 +1,27 @@
 /**
+ * source: http://shiny.rstudio.com/articles/building-inputs.html
+ */
+var jscolor = new Shiny.InputBinding();
+$.extend(jscolor, {
+  find: function(scope) {
+    return $(scope).find("input.color");
+  },
+  getValue: function(el) {
+    return $(el).val();
+  },
+  subscribe: function(el, callback) {
+    $(el).on("newVal", function(e) {
+      callback();
+    });
+  },
+  unsubscribe: function(el) {
+    $(el).off("input.color");
+  }
+});
+Shiny.inputBindings.register(jscolor);
+
+
+/**
  * jscolor, JavaScript Color Picker
  *
  * @version 1.4.4
@@ -8,7 +31,6 @@
  * @updated 2014-12-09
  * @link    http://jscolor.com
  */
-
 
 var jscolor = {
 

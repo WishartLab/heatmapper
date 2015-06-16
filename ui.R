@@ -217,28 +217,12 @@ shinyUI(navbarPage(
 					selected = 'custom'), 
 				
 				conditionalPanel(condition = "input.distColour == 'custom'",
-					jscolourInput2("distLowColour"),
 					
-					selectInput("distMidColour", 
-	    			label = "Colour for middle values", 
-	    			choices = c( 
-							"white" = 'white', 
-	    				"black" = 'black'), 
-						selected = 'white'),
+					jscolourInput("distLowColour", label = "Colour for low numbers", value = "#FF0000"),
 					
-	    		selectInput("distHighColour", 
-	    			label = "Colour for high values", 
-	    			choices = c( 
-	    				"red" = 'red',
-	    				"orange" = 'orange',
-	    				"yellow" = 'yellow',
-	    				"green" = 'green',
-	    				"blue" = 'blue',
-	    				"purple" = 'purple', 
-	    				"white" = 'white',
-	    				"grey" = 'grey', 
-	    				"black" = 'black'),
-	    			selected = 'green'))
+					jscolourInput("distMidColour", label = "Colour for middle numbers"),
+					
+					jscolourInput("distHighColour", label = "Colour for high numbers", value = "#23B000"))
     	), 
 			mainPanel(
 				tabsetPanel(type = "tabs", 

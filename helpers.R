@@ -144,12 +144,15 @@ get_body_map <- function(var) {
 	grid.arrange(pictureGrob(body), ncol=1)
 }
 
-
-jscolourInput2 <- function (inputId){
+jscolourInput <- function (inputId, label, value = "#000000"){
 	tagList(
-	tags$head(tags$script(src="js/jscolor/jscolor.js")),
-	tags$input(
-		id = inputId,
-		value = "#000000", 
-		class = "color {hash:true}"))
+		singleton(tags$head(tags$script(src="js/jscolor/jscolor.js"))),
+		tags$strong(label),
+		tags$input(
+			id = inputId,
+			value = value, 
+			class = "color {hash:true}", 
+			onchange = paste0("$('#", inputId, "').trigger('newVal')")), 
+		tags$br(), 
+		tags$br())
 }
