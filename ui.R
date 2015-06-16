@@ -1,3 +1,4 @@
+source("helpers.R")
 shinyUI(navbarPage(
 	title = "Heatmapper", 
 
