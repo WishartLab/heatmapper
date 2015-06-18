@@ -1,219 +1,41 @@
-source("helpers.R")
-shinyUI(navbarPage(
-	title = "Heatmapper", 
+library(jscolourR)
 
-	############################################################################# Main Panel ####
-	tabPanel(title = "Introduction", 
-		tabsetPanel(type = "tabs", 
-			tabPanel(title = "Overview"),
-			tabPanel(title = "Gallery"),
-			tabPanel(title = "Instructions"),
-			tabPanel(title = "Contact"))),
-
-	############################################################################# Microarray Panel ####
-	tabPanel(title = "Microarray", 
-		tabsetPanel(type = "tabs", 
-			tabPanel(title = "Options", 
-				selectInput('fileType', 
-					label = h3("Select File Input Type"), 
-					choices = c(
-						"Clustered Data (.cdt)" = 'cdt', 
-						"Preclustered Data (.txt, .csv, .pcl)" = 'txt'
-						), 
-					selected = 'cdt'),
-				conditionalPanel(condition = "input.fileType == 'cdt'", 
-					fileInput("cdtFile", multiple = TRUE, label = h3(".cdt File input")), 
-					fileInput("gtrFile", label = h3(".gtr File input")), 
-					fileInput("atrFile", label = h3(".atr File input")))),
-			tabPanel(title = "Plot", 
-				plotOutput("heatmap")),
-			tabPanel(title = "Dendrogram", 
-				h2("Row Dendrogram"), 
-				plotOutput("rowDendrogram"), 
-				h2("Column Dendrogram"), 
-				plotOutput("colDendrogram")),
-			tabPanel(title = "Table", dataTableOutput("heatmapTable")))), 
-	
-	############################################################################# Continuous Maps Panel ####
-	tabPanel(title = "Latitude/Longitude", 
-		sidebarLayout(
-    	sidebarPanel(
-    		
-    		radioButtons('cmChooseInput',
-    			label = "Choose Input Type",
-    			choices = c(
-    				"Upload File" = 'cmFileUpload',
-						"Example File" = 'cmExample'),
-    			selected = 'cmExample'),
-    		
-    		conditionalPanel(condition = "input.cmChooseInput == 'cmFileUpload'", 
-    			fileInput("cmFile", label = h3("File input"))), 
-    		
-    		sliderInput('cmZoom', 
-    			label = "Zoom", 
-    			min = 3, 
-    			max = 20,
-    			value = 10), 
-    		
-    		jscolourInput("cmLowColour", label = "Colour for low numbers", value = "#23B000"),
-    		
-    		jscolourInput("cmHighColour", label = "Colour for high numbers", value = "#FF0000"),
-    		
-    		
-    		sliderInput('cmContourSize', 
-    			label = "Contour line size", 
-    			min = 0, 
-    			max = 1,
-    			value = 0.5), 
-    		
-    		
-    		sliderInput('cmPointSize', 
-    			label = "Point size", 
-    			min = 0, 
-    			max = 5, 
-    			value = 2), 
-    		
-    		selectInput('cmType', 
-    			label = "Map type", 
-    			choices = c(
-    				"terrain" = 'terrain', 
-    				"terrain background" = 'terrain-background', 
-    				"satellite" = 'satellite',
-    				"roadmap" = 'roadmap', 
-    				"hybrid" = 'hybrid', 
-    				"toner" = 'toner',
-    				"watercolor" = 'watercolor'), 
-    			selected = 'terrain'),
-    		
-    		radioButtons('cmDownloadType', 
-    			label = "Downlaod file format", 
-    			choices = c(
-    				"PDF" = 'pdf', 
-    				"PNG" = 'png'), 
-    			selected = 'pdf'),
-    		
-    		downloadButton('cmDownload', "Download image")
-    		),
-			mainPanel(
-				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", 
-						plotOutput("continuousMap", 
-							click = "cm_click",
-							dblclick = "cm_dblclick",
-							hover = "cm_hover",
-							brush = "cm_brush"),
-						plotOutput("continuousMapZoom")),
-					tabPanel(title = "Table", dataTableOutput("continuousTable")))))), 
-
-	############################################################################# Discrete Maps Panel ####
-	tabPanel(title = "Choropleth", 
-		sidebarLayout(
-    	sidebarPanel(
-    		
-    		radioButtons('dmChooseInput',
-    			label = "Choose Input Type",
-    			choices = c(
-    				"Upload File" = 'dmFileUpload',
-						"Example File" = 'dmExample'),
-    			selected = 'dmExample'),
-    		
-    		conditionalPanel(condition = "input.dmChooseInput == 'dmFileUpload'", 
-    			fileInput("dmFile", label = h3("Choropleth File input"))), 
-    		
-    		conditionalPanel(condition = "input.dmChooseInput == 'dmExample'", 
-    			wellPanel(
-    				HTML("This example file is from the <a href=\"http://shiny.rstudio.com/tutorial/lesson5/\">RStudio Shiny tutorial</a>"))),
-    		
-    		selectInput("dmArea", label = "Area to use", 
-    			choices = c(
-    				"USA: By County" = 'county', 
-    				"USA: By State" = 'state', 
-    				"Canada: By Province" = 'province'), 
-    			selected = 'county'),
-    		
-    		selectInput("dmColSelect", label = "Column to use", choices = c()),
-    		
-    		sliderInput("dmRange", 
-    			label = "Range of interest:", 
-    			min = 0, 
-    			max = 100, 
-    			value = c(0, 100)), 
-    		
-    		jscolourInput("dmLowColour", label = "Colour for low numbers", value = "#F2F2FF"),
-    		
-    		jscolourInput("dmHighColour", label = "Colour for high numbers", value = "#23B000"),
-    		
-    		textInput('dmLegend',
-    			label = "Custom legend title", 
-    			value = "")
-    		),
-			mainPanel(
-				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Table", dataTableOutput("discreteTable")), 
-					tabPanel(title = "Plot", plotOutput("discreteMap"))
-					)))), 
-	############################################################################# Distance Matrix Panel ####
-	tabPanel(title = "Distance Matrix", 
+shinyUI(fluidPage(
+	includeHTML("navbar.html"),
 		sidebarLayout(
 			sidebarPanel(
-				radioButtons('distChooseInput',
+				radioButtons('chooseInput',
     			label = "Choose Input Type",
     			choices = c(
-    				"Upload File" = 'distFileUpload',
-						"Example File" = 'distExample'),
-    			selected = 'distExample'),
+    				"Upload File" = 'fileUpload',
+						"Example File" = 'example'),
+    			selected = 'example'),
 				
-				conditionalPanel(condition = "input.distChooseInput == 'distFileUpload'", 
-    			fileInput("distFile", label = h3("Distance Matrix File Input"))), 
+				conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
+    			fileInput("file", label = h3("Distance Matrix File Input"))), 
 				
-				textInput('distTitle', label = "Title", value = ""),
-				textInput('distXlab', label = "X Axis Label", value = ""),
-				textInput('distYlab', label = "Y Axis Label", value = ""),
-				selectInput('distColour', label = "Colour Scheme", 
+				textInput('title', label = "Title", value = ""),
+				textInput('xlab', label = "X Axis Label", value = ""),
+				textInput('ylab', label = "Y Axis Label", value = ""),
+				selectInput('colour', label = "Colour Scheme", 
 					choices = c(
 						"Rainbow" = 'rainbow', 
 						"Topo" = 'topo', 
 						"Custom" = 'custom'), 
 					selected = 'custom'), 
 				
-				conditionalPanel(condition = "input.distColour == 'custom'",
+				conditionalPanel(condition = "input.colour == 'custom'",
 					
-					jscolourInput("distLowColour", label = "Colour for low numbers", value = "#FF0000"),
+					jscolourInput("lowColour", label = "Colour for low numbers", value = "#FF0000"),
 					
-					jscolourInput("distMidColour", label = "Colour for middle numbers"),
+					jscolourInput("midColour", label = "Colour for middle numbers"),
 					
-					jscolourInput("distHighColour", label = "Colour for high numbers", value = "#23B000"))
+					jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000"))
     	), 
 			mainPanel(
 				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", plotOutput("distMap", 
-						click = "dist_click",
-						dblclick = "dist_dblclick",
-						hover = "dist_hover",
-						brush = "dist_brush"), 
+					tabPanel(title = "Plot", plotOutput("map", 
+						brush = "brush"), 
 						verbatimTextOutput("info")),
-					tabPanel(title = "Table", dataTableOutput("distTable"))
-					)))), 
-	############################################################################# 
-	tabPanel(title = "Human Body", 
-		sidebarLayout(
-			sidebarPanel(
-				numericInput("head", label = "head", value = 1), 
-				numericInput("handright", label = "hand-right", value = 1), 
-				numericInput("handleft", label = "hand-left", value = 1), 
-				numericInput("footleft", label = "foot-left", value = 1),
-				numericInput("footright", label = "foot-right", value = 1),
-				numericInput("lowerlegleft", label = "lowerleg-left", value = 1),
-				numericInput("lowerlegright", label = "lowerleg-right", value = 1),
-				numericInput("upperlegleft", label = "upperleg-left", value = 1),
-				numericInput("upperlegright", label = "upperleg-right", value = 1),
-				numericInput("torso", label = "torso", value = 1),
-				numericInput("forearmright", label = "forearm-right", value = 1),
-				numericInput("forearmleft", label = "forearm-left", value = 1),
-				numericInput("upperarmright", label = "upperarm-right", value = 1),
-				numericInput("upperarmleft", label = "upperarm-left", value = 1)),
-			mainPanel(
-				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", plotOutput("bodyMap"))))
-			)) 
-))
+					tabPanel(title = "Table", dataTableOutput("table"))
+					)))))

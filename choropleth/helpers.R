@@ -1,53 +1,3 @@
-get_path <- function(inFile){
-	if(is.null(inFile)){
-		return(NULL)
-	}
-	else{
-    path <- inFile$datapath
-	}
-}
-
-#### Heatmap Helpers ####
-get_heatmap <- function(x, rowv = NA, colv = NA) {
-	if(is.null(x)){
-		return(NULL)
-	}
-	else{
-		heatmap(x, Rowv = rowv, Colv = colv)
-	}
-}
-
-get_row_dendrogram <- function(x){
-	if(is.null(x)){
-		return(NULL)
-	}
-	else{
-		as.dendrogram(hclust(dist(x)))
-	}
-}
-
-get_col_dendrogram <- function(x){
-	if(is.null(x)){
-		return(NULL)
-	}
-	else{
-		as.dendrogram(hclust(dist(t(x))))
-	}
-}
-
-remove_strings <- function(x){
-	nums <- sapply(x, is.numeric)
-	y <- x[,nums]
-	
-	# try to find a column with title name
-	name = 'NAME'
-	tryCatch({
-		nameRow <- x[,name]
-		rownames(y) <- make.names(nameRow, unique=TRUE)
-		},
-		finally = {return(data.matrix(y))})
-}
-
 # Note: percent map is designed to work with the counties data set
 # It may not work correctly with other data sets if their row order does 
 # not exactly match the order in which the maps package plots counties
@@ -110,38 +60,6 @@ get_county_dmap <- function(fills) {
     lty = 1, lwd = 1, projection = "polyconic", 
     myborder = 0, mar = c(0,0,0,0))
   
-}
-
-get_body_map <- function(var) {
-
-	#function to change the rgb color of the xml paths
-	changeColor<-function(bodypart,color){
-	        node<-xpathSApply(doc, paste("//path[@id='",bodypart,"']/context/rgb",sep=""))[[1]]
-	        rgbCol<-col2rgb(color)
-	        xmlAttrs(node)["r"]=rgbCol[1]/255
-	        xmlAttrs(node)["g"]=rgbCol[2]/255
-	        xmlAttrs(node)["b"]=rgbCol[3]/255
-	}
-		
-	#read the xml image
-	doc<-xmlParse("data/Human_body_front_and_side.ps.xml")
-		
-	#these are the different parts you can change
-	bodyparts<-c("head","hand-right","hand-left","foot-left","foot-right","lowerleg-left","lowerleg-right",
-		            "upperleg-left","upperleg-right","torso","forearm-right","forearm-left","upperarm-right","upperarm-left")
-	
-	shades <- colorRampPalette(c("green", "red"))(100)
-	percents <- as.integer(cut(var, 100, include.lowest = TRUE, ordered = TRUE))
-	fills <- shades[percents]
-	
-	#color the bodyparts
-	mapply(function(x,y){changeColor(x,y)},bodyparts,fills)
-		
-	#load the XML as a picture
-	body<-readPicture(saveXML(doc))
-		
-	#plot it
-	grid.arrange(pictureGrob(body), ncol=1)
 }
 
 jscolourInput <- function (inputId, label, value = "#000000"){
