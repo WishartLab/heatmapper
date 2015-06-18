@@ -1,4 +1,5 @@
-source("helpers.R")
+library(jscolourR)
+
 shinyUI(fluidPage(
 	includeHTML("navbar.html"),
 	sidebarLayout(

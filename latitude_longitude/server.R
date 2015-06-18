@@ -2,9 +2,7 @@ library(shiny)
 library(ctc)
 library(ggmap)
 library(xlsx)
-source("helpers.R")
-
-options(shiny.deprecation.messages=FALSE)
+library(jscolourR)
 
 shinyServer(function(input, output, session){
 
