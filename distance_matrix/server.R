@@ -58,7 +58,12 @@ shinyServer(function(input, output, session){
 			q <- q + scale_fill_gradientn(colours = rainbow(7), name = "Values")
 		}
 		else if(input$colour == 'custom'){
-			my_palette <- colorRampPalette(c(input$lowColour, input$midColour, input$highColour))
+			if(input$customVars == 'custom2'){
+				my_palette <- colorRampPalette(c(input$lowColour, input$highColour))
+			}
+			else{
+				my_palette <- colorRampPalette(c(input$lowColour, input$midColour, input$highColour))
+			}
 			q <- q + scale_fill_gradientn(colours = my_palette(7), name = "Values")
 		}
 		else{

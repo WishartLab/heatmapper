@@ -26,9 +26,17 @@ shinyUI(fluidPage(
 				
 				conditionalPanel(condition = "input.colour == 'custom'",
 					
+					radioButtons('customVars', 
+						label = "Number of Colour Variables", 
+						choices = c(
+							"3 (low, middle, high)" = 'custom3',
+							"2 (low, high)" = 'custom2'), 
+						selected = 'custom3'), 
+					
 					jscolourInput("lowColour", label = "Colour for low numbers", value = "#FF0000"),
 					
-					jscolourInput("midColour", label = "Colour for middle numbers"),
+					conditionalPanel(condition = "input.customVars == 'custom3'", 
+						jscolourInput("midColour", label = "Colour for middle numbers")),
 					
 					jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000"))
     	), 
