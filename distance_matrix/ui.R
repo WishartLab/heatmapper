@@ -12,7 +12,7 @@ shinyUI(fluidPage(
     			selected = 'example'),
 				
 				conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
-    			fileInput("file", label = h3("Distance Matrix File Input"))), 
+    			fileInput("file", label = "Upload Distance Matrix File")), 
 				
 				textInput('title', label = "Title", value = ""),
 				textInput('xlab', label = "X Axis Label", value = ""),
@@ -38,7 +38,9 @@ shinyUI(fluidPage(
 					conditionalPanel(condition = "input.customVars == 'custom3'", 
 						jscolourInput("midColour", label = "Colour for middle numbers")),
 					
-					jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000"))
+					jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000")), 
+				
+				downloadButton('download', label = "Download Plot")
     	), 
 			mainPanel(
 				tabsetPanel(type = "tabs", 
