@@ -5,41 +5,41 @@ shinyUI(fluidPage(
 		sidebarLayout(
     	sidebarPanel(
     		
-    		radioButtons('cmChooseInput',
+    		radioButtons('chooseInput',
     			label = "Choose Input Type",
     			choices = c(
-    				"Upload File" = 'cmFileUpload',
-						"Example File" = 'cmExample'),
-    			selected = 'cmExample'),
+    				"Upload File" = 'fileUpload',
+						"Example File" = 'example'),
+    			selected = 'example'),
     		
-    		conditionalPanel(condition = "input.cmChooseInput == 'cmFileUpload'", 
-    			fileInput("cmFile", label = h3("File input"))), 
+    		conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
+    			fileInput("file", label = h3("File input"))), 
     		
-    		sliderInput('cmZoom', 
+    		sliderInput('zoom', 
     			label = "Zoom", 
     			min = 3, 
     			max = 20,
     			value = 10), 
     		
-    		jscolourInput("cmLowColour", label = "Colour for low numbers", value = "#23B000"),
+    		jscolourInput("lowColour", label = "Colour for low numbers", value = "#23B000"),
     		
-    		jscolourInput("cmHighColour", label = "Colour for high numbers", value = "#FF0000"),
+    		jscolourInput("highColour", label = "Colour for high numbers", value = "#FF0000"),
     		
     		
-    		sliderInput('cmContourSize', 
+    		sliderInput('contourSize', 
     			label = "Contour line size", 
     			min = 0, 
     			max = 1,
     			value = 0.5), 
     		
     		
-    		sliderInput('cmPointSize', 
+    		sliderInput('pointSize', 
     			label = "Point size", 
     			min = 0, 
     			max = 5, 
     			value = 2), 
     		
-    		selectInput('cmType', 
+    		selectInput('type', 
     			label = "Map type", 
     			choices = c(
     				"terrain" = 'terrain', 
@@ -51,22 +51,22 @@ shinyUI(fluidPage(
     				"watercolor" = 'watercolor'), 
     			selected = 'terrain'),
     		
-    		radioButtons('cmDownloadType', 
+    		radioButtons('downloadType', 
     			label = "Downlaod file format", 
     			choices = c(
     				"PDF" = 'pdf', 
     				"PNG" = 'png'), 
     			selected = 'pdf'),
     		
-    		downloadButton('cmDownload', "Download image")
+    		downloadButton('download', "Download image")
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Plot", 
-						plotOutput("continuousMap", 
-							click = "cm_click",
-							dblclick = "cm_dblclick",
-							hover = "cm_hover",
-							brush = "cm_brush"),
-						plotOutput("continuousMapZoom")),
-					tabPanel(title = "Table", dataTableOutput("continuousTable")))))))
+						plotOutput("map", 
+							click = "click",
+							dblclick = "dblclick",
+							hover = "hover",
+							brush = "brush"),
+						plotOutput("mapZoom")),
+					tabPanel(title = "Table", dataTableOutput("table")))))))

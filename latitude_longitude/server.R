@@ -6,8 +6,8 @@ library(jscolourR)
 
 shinyServer(function(input, output, session){
 
-	get_cmFile <- function(){
-		if(input$cmChooseInput == 'cmExample'){
+	get_file <- function(){
+		if(input$chooseInput == 'example'){
 			points <- data.frame(
 				Longitude=c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
 				Latitude =c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))
@@ -16,18 +16,18 @@ shinyServer(function(input, output, session){
 		else{
 			#file <- read.table("data/latlong.txt", header = TRUE, sep="\t")
 			
-			validate(need(input$cmFile$datapath, "Please upload a file"))
+			validate(need(input$file$datapath, "Please upload a file"))
 			
-			fileType <- tail(unlist(strsplit(x = input$cmFile$name, split = "[.]")), n=1)
+			fileType <- tail(unlist(strsplit(x = input$file$name, split = "[.]")), n=1)
 			
 			if(fileType == "xls" || fileType == "xlsx"){
-				file <- read.xlsx(input$cmFile$datapath, 1)
+				file <- read.xlsx(input$file$datapath, 1)
 			}
 			else if(fileType == "csv"){
-				file <- read.csv(input$cmFile$datapath, header = TRUE)
+				file <- read.csv(input$file$datapath, header = TRUE)
 			}
 			else{
-				file <- read.delim(input$cmFile$datapath, header = TRUE, sep="\t", row.names = NULL)
+				file <- read.delim(input$file$datapath, header = TRUE, sep="\t", row.names = NULL)
 			}
 			points <- data.frame(
 				Longitude = c(file$Longitude), 
@@ -36,72 +36,72 @@ shinyServer(function(input, output, session){
 		return(points)
 	}
 	
-	cm_ranges <- reactiveValues(x = NULL, y = NULL)
+	ranges <- reactiveValues(x = NULL, y = NULL)
 	
-	get_cm_plot <- function(){
-		points <- get_cmFile()
+	get_plot <- function(){
+		points <- get_file()
 		
 		map <- get_map(
 			location = c(
 				lon = median(na.rm = TRUE, points$Longitude), 
 				lat = median(na.rm = TRUE, points$Latitude)), 
-			zoom = input$cmZoom, 
-			maptype = input$cmType
+			zoom = input$zoom, 
+			maptype = input$type
 			)
 		
 		ggmap(map) + 
-		geom_point(data = points, aes(x = Longitude, y = Latitude), size = input$cmPointSize) +
-		geom_density2d(data = points, aes(x = Longitude, y = Latitude), size = input$cmContourSize) +
+		geom_point(data = points, aes(x = Longitude, y = Latitude), size = input$pointSize) +
+		geom_density2d(data = points, aes(x = Longitude, y = Latitude), size = input$contourSize) +
 		stat_density2d(data = points, aes(x = Longitude, y = Latitude, fill = ..level.., alpha = ..level..), 
 			size = 0.01, bins = 16, geom = "polygon") + 
-		scale_fill_gradient(breaks = NULL, low = input$cmLowColour, high = input$cmHighColour) + 
+		scale_fill_gradient(breaks = NULL, low = input$lowColour, high = input$highColour) + 
     scale_alpha(range = c(0, 0.3), guide = FALSE)
 	}
 	
-	get_zoom_cm_plot <- function(){
-		get_cm_plot() + coord_cartesian(xlim = cm_ranges$x, ylim = cm_ranges$y)
+	get_zoom_plot <- function(){
+		get_plot() + coord_cartesian(xlim = ranges$x, ylim = ranges$y)
 	}
 	
   # When a double-click happens, check if there's a brush on the plot.
   # If so, zoom to the brush bounds; if not, reset the zoom.
-  observeEvent(input$cm_dblclick, {
-    brush <- input$cm_brush
+  observeEvent(input$dblclick, {
+    brush <- input$brush
     if (!is.null(brush)) {
-      cm_ranges$x <- c(brush$xmin, brush$xmax)
-      cm_ranges$y <- c(brush$ymin, brush$ymax)
+      ranges$x <- c(brush$xmin, brush$xmax)
+      ranges$y <- c(brush$ymin, brush$ymax)
 
     } else {
-      cm_ranges$x <- NULL
-      cm_ranges$y <- NULL
+      ranges$x <- NULL
+      ranges$y <- NULL
     }
   })
 	
 	
-	output$continuousMap <- renderPlot({
-		get_cm_plot()
+	output$map <- renderPlot({
+		get_plot()
 		
 	})
 	
-	output$continuousMapZoom <- renderPlot({
-		get_zoom_cm_plot()
+	output$mapZoom <- renderPlot({
+		get_zoom_plot()
 	})
 	
-	output$continuousTable <- renderDataTable({
-		get_cmFile()
+	output$table <- renderDataTable({
+		get_file()
 	})
 	
-	output$cmDownload <- downloadHandler(
+	output$download <- downloadHandler(
 		filename = function(){
-			paste0("geoHeatmap.", input$cmDownloadType)
+			paste0("geoHeatmap.", input$downloadType)
 		},
 		content = function(file) {
-			if(input$cmDownloadType == 'pdf'){
+			if(input$downloadType == 'pdf'){
 				pdf(file)
 			}
 			else{
 				png(file)
 			}
-			plot(get_cm_plot())
+			plot(get_plot())
 			dev.off()
 		}
 	)
