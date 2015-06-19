@@ -1,4 +1,5 @@
 library(jscolourR)
+library(leaflet)
 
 shinyUI(fluidPage(
 	includeHTML("navbar.html"),
@@ -15,13 +16,7 @@ shinyUI(fluidPage(
     		conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
     			fileInput("file", label = h3("File input"))), 
     		
-    		sliderInput('zoom', 
-    			label = "Zoom", 
-    			min = 3, 
-    			max = 20,
-    			value = 10), 
-    		
-    		jscolourInput("lowColour", label = "Colour for low numbers", value = "#23B000"),
+    		jscolourInput("lowColour", label = "Colour for low numbers", value = "#FFFA00"),
     		
     		jscolourInput("highColour", label = "Colour for high numbers", value = "#FF0000"),
     		
@@ -38,6 +33,18 @@ shinyUI(fluidPage(
     			min = 0, 
     			max = 5, 
     			value = 2), 
+    		
+    		sliderInput('pointOpacity', 
+    			label = "Point Opacity", 
+    			min = 0, 
+    			max = 1, 
+    			value = 0.8),
+    		
+    		sliderInput('fillOpacity', 
+    			label = "Fill Opacity", 
+    			min = 0, 
+    			max = 1, 
+    			value = 0.5), 
     		
     		selectInput('type', 
     			label = "Map type", 
@@ -63,10 +70,4 @@ shinyUI(fluidPage(
 			mainPanel(
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Plot", leafletOutput("map")),
-						#plotOutput("map", 
-						#	click = "click",
-						#	dblclick = "dblclick",
-						#	hover = "hover",
-						#	brush = "brush"),
-						#plotOutput("mapZoom")),
 					tabPanel(title = "Table", dataTableOutput("table")))))))

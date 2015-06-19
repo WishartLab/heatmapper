@@ -41,16 +41,18 @@ shinyServer(function(input, output, session){
 	
 	get_plot <- function() {
 		df <- get_file() 
+		
+		# source: http://www.r-bloggers.com/interactive-maps-for-john-snows-cholera-data/
 		dens <- bkde2D(df, bandwidth=c(bw.ucv(df[,1]),bw.ucv(df[,2])))
 		CL <- contourLines(x = dens$x1, y = dens$x2, z = dens$fhat)
 	
 		max_CL <- length(CL)
-		colours <- colorRampPalette(c("yellow", "red"))(max_CL)
-		
-		m <- leaflet(df) %>% addTiles() %>% addCircles() 
+		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
+		fill_op <- input$fillOpacity
+		m <- leaflet(df) %>% addTiles() %>% addCircles(opacity = input$pointOpacity) 
 		
 		for(i in 1:max_CL){	
-			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), stroke = FALSE, fillOpacity = i/(max_CL*2)) 
+			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), stroke = FALSE, fillOpacity = fill_op) 
 		}
 		return(m)
 	}
