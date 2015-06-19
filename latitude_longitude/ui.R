@@ -62,11 +62,11 @@ shinyUI(fluidPage(
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", 
-						plotOutput("map", 
-							click = "click",
-							dblclick = "dblclick",
-							hover = "hover",
-							brush = "brush"),
-						plotOutput("mapZoom")),
+					tabPanel(title = "Plot", leafletOutput("map")),
+						#plotOutput("map", 
+						#	click = "click",
+						#	dblclick = "dblclick",
+						#	hover = "hover",
+						#	brush = "brush"),
+						#plotOutput("mapZoom")),
 					tabPanel(title = "Table", dataTableOutput("table")))))))

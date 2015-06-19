@@ -1,17 +1,19 @@
 library(shiny)
-library(ctc)
-library(ggmap)
-library(ggplot2)
+#library(ctc)
+#library(ggmap)
+#library(ggplot2)
 library(xlsx)
 library(jscolourR)
+library(leaflet)
+library(KernSmooth)
 
 shinyServer(function(input, output, session){
 
 	get_file <- function(){
 		if(input$chooseInput == 'example'){
 			points <- data.frame(
-				Longitude=c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
-				Latitude =c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))
+				Longitude = c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
+				Latitude = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))
 				)
 		}
 		else{
@@ -37,56 +39,25 @@ shinyServer(function(input, output, session){
 		return(points)
 	}
 	
-	ranges <- reactiveValues(x = NULL, y = NULL)
+	get_plot <- function() {
+		df <- get_file() 
+		dens <- bkde2D(df, bandwidth=c(bw.ucv(df[,1]),bw.ucv(df[,2])))
+		CL <- contourLines(x = dens$x1, y = dens$x2, z = dens$fhat)
 	
-	get_plot <- function(){
-		points <- get_file()
+		max_CL <- length(CL)
+		colours <- colorRampPalette(c("yellow", "red"))(max_CL)
 		
-		map <- get_map(
-			location = c(
-				lon = median(na.rm = TRUE, points$Longitude), 
-				lat = median(na.rm = TRUE, points$Latitude)), 
-			zoom = input$zoom, 
-			maptype = input$type
-			)
+		m <- leaflet(df) %>% addTiles() %>% addCircles() 
 		
-		GET_MAP <<- ggmap(map) + 
-		geom_point(data = points, aes(x = Longitude, y = Latitude), size = input$pointSize) +
-		geom_density2d(data = points, aes(x = Longitude, y = Latitude), size = input$contourSize) +
-		stat_density2d(data = points, aes(x = Longitude, y = Latitude, fill = ..level.., alpha = ..level..), 
-			size = 0.01, bins = 16, geom = "polygon") + 
-		scale_fill_gradient(breaks = NULL, low = input$lowColour, high = input$highColour) + 
-    scale_alpha(range = c(0, 0.3), guide = FALSE) + coord_cartesian(xlim = NULL, ylim = NULL)
-		return(GET_MAP)
+		for(i in 1:max_CL){	
+			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), stroke = FALSE, fillOpacity = i/(max_CL*2)) 
+		}
+		return(m)
 	}
-	
-	get_zoom_plot <- function(){
-		GET_MAP + coord_cartesian(xlim = ranges$x, ylim = ranges$y)
-	}
-	
-  # When a double-click happens, check if there's a brush on the plot.
-  # If so, zoom to the brush bounds; if not, reset the zoom.
-  observeEvent(input$dblclick, {
-    brush <- input$brush
-    if (!is.null(brush)) {
-      ranges$x <- c(brush$xmin, brush$xmax)
-      ranges$y <- c(brush$ymin, brush$ymax)
-
-    } else {
-      ranges$x <- NULL
-      ranges$y <- NULL
-    }
-  })
-	
-	
-	output$map <- renderPlot({
+	output$map <- renderLeaflet({
 		get_plot()
-		
 	})
 	
-	output$mapZoom <- renderPlot({
-		get_zoom_plot()
-	})
 	
 	output$table <- renderDataTable({
 		get_file()
