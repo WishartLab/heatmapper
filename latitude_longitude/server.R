@@ -1,6 +1,7 @@
 library(shiny)
 library(ctc)
 library(ggmap)
+library(ggplot2)
 library(xlsx)
 library(jscolourR)
 
@@ -49,17 +50,18 @@ shinyServer(function(input, output, session){
 			maptype = input$type
 			)
 		
-		ggmap(map) + 
+		GET_MAP <<- ggmap(map) + 
 		geom_point(data = points, aes(x = Longitude, y = Latitude), size = input$pointSize) +
 		geom_density2d(data = points, aes(x = Longitude, y = Latitude), size = input$contourSize) +
 		stat_density2d(data = points, aes(x = Longitude, y = Latitude, fill = ..level.., alpha = ..level..), 
 			size = 0.01, bins = 16, geom = "polygon") + 
 		scale_fill_gradient(breaks = NULL, low = input$lowColour, high = input$highColour) + 
-    scale_alpha(range = c(0, 0.3), guide = FALSE)
+    scale_alpha(range = c(0, 0.3), guide = FALSE) + coord_cartesian(xlim = NULL, ylim = NULL)
+		return(GET_MAP)
 	}
 	
 	get_zoom_plot <- function(){
-		get_plot() + coord_cartesian(xlim = ranges$x, ylim = ranges$y)
+		GET_MAP + coord_cartesian(xlim = ranges$x, ylim = ranges$y)
 	}
 	
   # When a double-click happens, check if there's a brush on the plot.
