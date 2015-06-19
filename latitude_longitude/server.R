@@ -49,10 +49,13 @@ shinyServer(function(input, output, session){
 		max_CL <- length(CL)
 		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
 		fill_op <- input$fillOpacity
-		m <- leaflet(df) %>% addTiles() %>% addCircles(opacity = input$pointOpacity) 
 		
+		m <- leaflet(df) %>% addCircles(opacity = input$pointOpacity, weight = input$pointSize) 
+		if(input$showMap){
+			m <- addTiles(m)
+		}
 		for(i in 1:max_CL){	
-			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), stroke = FALSE, fillOpacity = fill_op) 
+			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = input$contourSize) 
 		}
 		return(m)
 	}

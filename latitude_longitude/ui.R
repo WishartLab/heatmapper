@@ -16,22 +16,24 @@ shinyUI(fluidPage(
     		conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
     			fileInput("file", label = h3("File input"))), 
     		
+    		strong("Background"),
+    		checkboxInput('showMap', label = "Show Map", value = TRUE),
+    		
     		jscolourInput("lowColour", label = "Colour for low numbers", value = "#FFFA00"),
     		
     		jscolourInput("highColour", label = "Colour for high numbers", value = "#FF0000"),
     		
     		
     		sliderInput('contourSize', 
-    			label = "Contour line size", 
+    			label = "Contour Line Width (in pixels)", 
     			min = 0, 
-    			max = 1,
-    			value = 0.5), 
-    		
+    			max = 4,
+    			value = 1), 
     		
     		sliderInput('pointSize', 
-    			label = "Point size", 
+    			label = "Point Width (in pixels)", 
     			min = 0, 
-    			max = 5, 
+    			max = 10, 
     			value = 2), 
     		
     		sliderInput('pointOpacity', 
@@ -45,6 +47,7 @@ shinyUI(fluidPage(
     			min = 0, 
     			max = 1, 
     			value = 0.5), 
+    		
     		
     		selectInput('type', 
     			label = "Map type", 
