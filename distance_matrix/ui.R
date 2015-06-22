@@ -1,4 +1,5 @@
 library(jscolourR)
+library(d3heatmap)
 
 shinyUI(fluidPage(
 	includeHTML("navbar.html"),
@@ -47,5 +48,6 @@ shinyUI(fluidPage(
 					tabPanel(title = "Plot", plotOutput("map", 
 						brush = "brush"), 
 						verbatimTextOutput("info")),
+					tabPanel(title = "D3", d3heatmapOutput("d3map")),
 					tabPanel(title = "Table", dataTableOutput("table"))
 					)))))

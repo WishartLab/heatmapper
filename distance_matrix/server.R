@@ -1,6 +1,7 @@
 library(shiny)
 library(ggplot2)
 library(reshape2)
+library(d3heatmap)
 
 shinyServer(function(input, output, session){
 
@@ -55,24 +56,38 @@ shinyServer(function(input, output, session){
 			ylab = input$ylab,
 			main = input$title)
 
-		if(input$colour == 'rainbow'){
-			q <- q + scale_fill_gradientn(colours = rainbow(7), name = "Values")
-		}
-		else if(input$colour == 'custom'){
-			if(input$customVars == 'custom2'){
-				my_palette <- colorRampPalette(c(input$lowColour, input$highColour))
-			}
-			else{
-				my_palette <- colorRampPalette(c(input$lowColour, input$midColour, input$highColour))
-			}
-			q <- q + scale_fill_gradientn(colours = my_palette(7), name = "Values")
-		}
-		else{
-			q <- q + scale_fill_gradientn(colours = topo.colors(7), name = "Values")
-		}
+		q <- q + scale_fill_gradientn(colours = get_colour_palette(), name = "Values")
 
 		return(q)
 	}
+	
+	get_colour_palette <- function() {
+		if(input$colour == 'rainbow'){
+			return(rainbow(7))
+		}
+		else if(input$colour == 'custom'){
+			if(input$customVars == 'custom2'){
+				return(colorRampPalette(c(input$lowColour, input$highColour))(7))
+			}
+			else{
+				return(colorRampPalette(c(input$lowColour, input$midColour, input$highColour))(7))
+			}
+		}
+		else{
+			return(topo.colors(7))
+		}
+	}
+	
+	output$d3map <- renderD3heatmap({
+	file <- get_file()
+		if(is.null(file)){
+			return(NULL)
+		}
+		row.names(file)<- file[,1]
+		file <- file[,-1]
+		d3heatmap(file,colors = get_colour_palette(), Colv = NULL, Rowv = NULL)
+	})
+	
 	output$map <- renderPlot({
 		get_plot()
 	})
@@ -90,10 +105,14 @@ shinyServer(function(input, output, session){
 	})
 
 	output$download <- downloadHandler(
-		filename = "distanceMatrix.pdf",
+		filename = "distanceMatrix.png",
 		content = function(file){
-			pdf(file)
-			plot(get_plot())
+			png(file)
+			file2 <- get_file()
+			row.names(file2)<- file2[,1]
+			file2 <- file2[,-1]
+		
+			d3heatmap(file2,colors = get_colour_palette(), Colv = NULL, Rowv = NULL)
 			dev.off()
 		}
 	)
