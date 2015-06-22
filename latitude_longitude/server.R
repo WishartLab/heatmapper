@@ -50,13 +50,17 @@ shinyServer(function(input, output, session){
 		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
 		fill_op <- input$fillOpacity
 		
-		m <- leaflet(df) %>% addCircles(opacity = input$pointOpacity, weight = input$pointSize) 
+		m <- leaflet(df)
+		
 		if(input$showMap){
 			m <- addTiles(m)
 		}
+		
 		for(i in 1:max_CL){	
 			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = input$contourSize) 
 		}
+		
+		m <- addCircles(m, opacity = input$pointOpacity, weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude:", df$Longitude)))
 		return(m)
 	}
 	output$map <- renderLeaflet({
@@ -70,16 +74,12 @@ shinyServer(function(input, output, session){
 	
 	output$download <- downloadHandler(
 		filename = function(){
-			paste0("geoHeatmap.", input$downloadType)
+			"geoHeatmap.png"
 		},
 		content = function(file) {
-			if(input$downloadType == 'pdf'){
-				pdf(file)
-			}
-			else{
-				png(file)
-			}
-			plot(get_plot())
+			png(file)
+			
+			get_plot()
 			dev.off()
 		}
 	)
