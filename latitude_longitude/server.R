@@ -60,7 +60,10 @@ shinyServer(function(input, output, session){
 			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = input$contourSize) 
 		}
 		
-		m <- addCircles(m, opacity = input$pointOpacity, weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude:", df$Longitude)))
+		if(input$showPoints){
+			m <- addCircles(m, opacity = input$pointOpacity, weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude: ", df$Longitude)))
+		}
+		
 		return(m)
 	}
 	output$map <- renderLeaflet({

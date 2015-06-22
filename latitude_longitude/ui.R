@@ -30,17 +30,20 @@ shinyUI(fluidPage(
     			max = 4,
     			value = 1), 
     		
-    		sliderInput('pointSize', 
-    			label = "Point Width (in pixels)", 
-    			min = 0, 
-    			max = 10, 
-    			value = 2), 
+    		checkboxInput('showPoints', label = "Show Points", value = TRUE),
     		
-    		sliderInput('pointOpacity', 
-    			label = "Point Opacity", 
-    			min = 0, 
-    			max = 1, 
-    			value = 0.8),
+    		conditionalPanel(condition = "input.showPoints == true", 
+	    		sliderInput('pointSize', 
+	    			label = "Point Width (in pixels)", 
+	    			min = 0, 
+	    			max = 10, 
+	    			value = 2), 
+	    		
+	    		sliderInput('pointOpacity', 
+	    			label = "Point Opacity", 
+	    			min = 0, 
+	    			max = 1, 
+	    			value = 0.8)),
     		
     		sliderInput('fillOpacity', 
     			label = "Fill Opacity", 
@@ -72,5 +75,5 @@ shinyUI(fluidPage(
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", leafletOutput("map"), includeScript("http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.3/leaflet-image.js")),
+					tabPanel(title = "Plot", leafletOutput("map", height = 600), includeScript("http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.3/leaflet-image.js")),
 					tabPanel(title = "Table", dataTableOutput("table")))))))
