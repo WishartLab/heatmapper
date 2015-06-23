@@ -1,5 +1,19 @@
 $(document).ready(function() {
     
+    var colourDropdown = document.getElementById("colour");
+    colourDropdown.addEventListener("change", modifyColourSection);
+    
+    function modifyColourSection(e){
+        var selection = e.target.value;
+        if(selection == 'custom'){
+            document.getElementById("colourSection").setAttribute('style', "");
+        }
+        else{
+            var style = "filter:alpha(opacity=50); opacity: 0.5; -moz-opacity:0.50; z-index: 20;"
+            document.getElementById("colourSection").setAttribute('style', style);
+        }
+    }
+    
     var tabSelections = document.getElementById("tabSelections"); 
     tabSelections.addEventListener("click", modifyTabs);
     
@@ -12,7 +26,9 @@ $(document).ready(function() {
         	document.getElementById('xlab').readOnly = false;
         	document.getElementById('title').readOnly = false;
             document.getElementById('colour').disabled = false;
-            document.getElementById("colourSection").setAttribute('style', "");
+            if(document.getElementById("colour").value == "custom"){
+                document.getElementById("colourSection").setAttribute('style', "");
+            }  
         }
         else{
         	document.getElementById('ylab').readOnly = true;
@@ -27,7 +43,9 @@ $(document).ready(function() {
             }
             else{
                 document.getElementById('colour').disabled = false;
-                document.getElementById("colourSection").setAttribute('style', "");
+                if(document.getElementById("colour").value == "custom"){
+                    document.getElementById("colourSection").setAttribute('style', "");
+                }  
             }
         }
     }

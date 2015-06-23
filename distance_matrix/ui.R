@@ -22,8 +22,7 @@ shinyUI(fluidPage(
 						"Custom" = 'custom'), 
 					selected = 'custom'), 
 				
-				conditionalPanel(condition = "input.colour == 'custom'", id = "colourSection", 
-					
+				tags$div(id = 'colourSection', 
 					radioButtons('customVars', 
 						label = "Number of Colour Variables", 
 						choices = c(
