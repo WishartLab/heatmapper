@@ -3,11 +3,11 @@ library(d3heatmap)
 
 shinyUI(fluidPage(
 	includeHTML("navbar.html"),
-	tags$style(".toggleButton{width:100%;}"),
+	tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}"),
 		sidebarLayout(
 			sidebarPanel(
 				
-				actionButton('fileInputOptionsButton', label = "Hide File Input Options", class = "toggleButton"),
+				actionButton('fileInputOptionsButton', label = "Hide File Input Options", class = "toggleButton fa fa-angle-up"),
 				wellPanel(id = "fileInputPanel", 
 				radioButtons('chooseInput',
     			label = "Choose Input Type",
@@ -19,7 +19,7 @@ shinyUI(fluidPage(
 				conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
     			fileInput("file", label = "Upload Distance Matrix File"))), 
 				
-				actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton"),
+				actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
 				wellPanel(id = "colourPanel", 
 					selectInput('colour', label = "Colour Scheme", selectize = FALSE,
 						choices = c(
@@ -44,7 +44,7 @@ shinyUI(fluidPage(
 						jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000"))), 
 				
 				
-				actionButton('labelOptionsButton', label = "Hide Label Options", class = "toggleButton"),
+				actionButton('labelOptionsButton', label = "Hide Label Options", class = "toggleButton fa fa-angle-up"),
 				wellPanel(id = "labelPanel", 
 					textInput('title', label = "Title", value = ""),
 				
@@ -53,7 +53,7 @@ shinyUI(fluidPage(
 					textInput('ylab', label = "Y Axis Label", value = "")	
 				),
 				
-				actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton"),
+				actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
 				wellPanel(id = "downloadPanel", 
 					downloadButton('download', label = "Download Plot"))
 				

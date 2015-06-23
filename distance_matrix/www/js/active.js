@@ -1,13 +1,13 @@
 $(document).ready(function() {
     
-    var labelButtonCount = 0;
-    document.getElementById("labelOptionsButton").addEventListener("click", toggleLabelButton);
+    var fileInputButtonCount = 0;
+    document.getElementById("fileInputOptionsButton").addEventListener("click", toggleFileInputButton);
     
-    function toggleLabelButton(e){
-        generalToggleButtons("#labelPanel","labelOptionsButton", "Label", labelButtonCount);
-        labelButtonCount++;
-    }
-    
+    function toggleFileInputButton(e){
+        generalToggleButtons("#fileInputPanel","fileInputOptionsButton", "File Input", fileInputButtonCount);
+        fileInputButtonCount++;
+    } 
+       
     var colourButtonCount = 0;
     document.getElementById("colourOptionsButton").addEventListener("click", toggleColourButton);
     
@@ -15,13 +15,13 @@ $(document).ready(function() {
         generalToggleButtons("#colourPanel","colourOptionsButton", "Colour", colourButtonCount);
         colourButtonCount++;
     }
+     
+    var labelButtonCount = 0;
+    document.getElementById("labelOptionsButton").addEventListener("click", toggleLabelButton);
     
-    var fileInputButtonCount = 0;
-    document.getElementById("fileInputOptionsButton").addEventListener("click", toggleFileInputButton);
-    
-    function toggleFileInputButton(e){
-        generalToggleButtons("#fileInputPanel","fileInputOptionsButton", "File Input", fileInputButtonCount);
-        fileInputButtonCount++;
+    function toggleLabelButton(e){
+        generalToggleButtons("#labelPanel","labelOptionsButton", "Label", labelButtonCount);
+        labelButtonCount++;
     }
     
     var downloadButtonCount = 0;
@@ -35,11 +35,13 @@ $(document).ready(function() {
     
     function generalToggleButtons(panelId, messageId, message, count) {
         if(count%2){
+            $("#"+messageId).removeClass("fa fa-angle-down").addClass("fa fa-angle-up");
             /* current state is hidden */
             $(panelId).show();
             document.getElementById(messageId).innerHTML = "Hide " + message + " Options";
         }
         else{
+            $("#"+messageId).removeClass("fa fa-angle-up").addClass("fa fa-angle-down");
             $(panelId).hide();
             document.getElementById(messageId).innerHTML = "Show " + message + " Options";
         }
