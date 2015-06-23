@@ -55,14 +55,15 @@ shinyUI(fluidPage(
 				
 				actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
 				wellPanel(id = "downloadPanel", 
+					tags$strong("Download Image of Plot"), tags$br(),
 					downloadButton('download', label = "Download Plot"))
 				
     	), 
 			mainPanel(
 				tabsetPanel(id = "tabSelections", type = "tabs", 
 					tabPanel(title = "Plot", tags$br(), 
-						plotOutput("map", height = 600)),
-					tabPanel(title = "Interactive", tags$br(), tags$br(), d3heatmapOutput("d3map")),
+						plotOutput("map", height = 500)),
+					tabPanel(title = "Interactive", tags$br(), tags$br(), d3heatmapOutput("d3map", height = 500)),
 					tabPanel(title = "Table", tags$br(), dataTableOutput("table"))
 					))),	
 	singleton(includeScript("www/js/active.js"))
