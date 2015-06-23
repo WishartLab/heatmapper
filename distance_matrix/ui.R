@@ -46,9 +46,10 @@ shinyUI(fluidPage(
 				tags$script("
 					$(document).ready(function() {
 						var activeTab = 'Plot';
-						
-						$('#tabSelections').click(function() { 
+		
+						test = function() { 
 								activeTab = $('#tabSelections').find('.active').children().attr('data-value');
+								alert(activeTab);
 								if(activeTab == 'Plot'){
 									document.getElementById('ylab').readOnly = false;
 									document.getElementById('xlab').readOnly = false;
@@ -59,10 +60,9 @@ shinyUI(fluidPage(
 									document.getElementById('xlab').readOnly = true;
 									document.getElementById('main').readOnly = true;
 								}
-						})
-					})
-					
-					"),
+						};
+						$('#tabSelections').click(function(){test();});
+					})"),
 				
 				downloadButton('download', label = "Download Plot")
     	), 
