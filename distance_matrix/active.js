@@ -1,21 +1,35 @@
 $(document).ready(function() {
     
-    var toggleLabel = document.getElementById("labelOptions");
-    toggleLabel.addEventListener("click", toggleButtons);
-    var num = 0;
-    function toggleButtons(e){
-        
-        if(num%2){
+    var labelButtonCount = 0;
+    document.getElementById("labelOptions").addEventListener("click", toggleLabelButton);
+    
+    function toggleLabelButton(e){
+        generalToggleButtons("#labelPanel","labelOptions", "Label", labelButtonCount);
+        labelButtonCount++;
+    }
+    
+    var colourButtonCount = 0;
+    document.getElementById("colourOptions").addEventListener("click", toggleColourButton);
+    
+    function toggleColourButton(e){
+        generalToggleButtons("#colourPanel","colourOptions", "Colour", colourButtonCount);
+        colourButtonCount++;
+    }
+    
+    var fileInputButtonCount = 0;
+    
+    
+    
+    function generalToggleButtons(panelId, messageId, message, count) {
+        if(count%2){
             /* current state is hidden */
-            $("#labelPanel").show();
-            document.getElementById("labelOptions").innerHTML = "Hide Label Options";
+            $(panelId).show();
+            document.getElementById(messageId).innerHTML = "Hide " + message + " Options";
         }
         else{
-            $("#labelPanel").hide();
-            document.getElementById("labelOptions").innerHTML = "Show Label Options";
+            $(panelId).hide();
+            document.getElementById(messageId).innerHTML = "Show " + message + " Options";
         }
-        num++;
-        
     }
     
     var colourDropdown = document.getElementById("colour");

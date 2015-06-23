@@ -16,6 +16,8 @@ shinyUI(fluidPage(
 				conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
     			fileInput("file", label = "Upload Distance Matrix File")), 
 				
+				actionButton('colourOptions', label = "Hide Colour Options", class = "toggleButton"),
+				wellPanel(id = "colourPanel", 
 				selectInput('colour', label = "Colour Scheme", selectize = FALSE,
 					choices = c(
 						"Rainbow" = 'rainbow', 
@@ -36,7 +38,7 @@ shinyUI(fluidPage(
 					conditionalPanel(condition = "input.customVars == 'custom3'", 
 						jscolourInput("midColour", label = "Colour for middle numbers")),
 					
-					jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000")), 
+					jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000"))), 
 				
 				
 				actionButton('labelOptions', label = "Hide Label Options", class = "toggleButton"),
