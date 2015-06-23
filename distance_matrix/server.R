@@ -55,6 +55,7 @@ shinyServer(function(input, output, session){
 			geom="tile",
 			xlab = input$xlab,
 			ylab = input$ylab,
+			margins = FALSE,
 			main = input$title)
 
 		q <- q + scale_fill_gradientn(colours = get_colour_palette(), name = "Values")

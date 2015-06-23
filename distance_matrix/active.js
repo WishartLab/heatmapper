@@ -1,5 +1,23 @@
 $(document).ready(function() {
     
+    var toggleLabel = document.getElementById("labelOptions");
+    toggleLabel.addEventListener("click", toggleButtons);
+    var num = 0;
+    function toggleButtons(e){
+        
+        if(num%2){
+            /* current state is hidden */
+            $("#labelPanel").show();
+            document.getElementById("labelOptions").innerHTML = "Hide Label Options";
+        }
+        else{
+            $("#labelPanel").hide();
+            document.getElementById("labelOptions").innerHTML = "Show Label Options";
+        }
+        num++;
+        
+    }
+    
     var colourDropdown = document.getElementById("colour");
     colourDropdown.addEventListener("change", modifyColourSection);
     

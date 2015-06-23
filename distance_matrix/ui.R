@@ -3,6 +3,7 @@ library(d3heatmap)
 
 shinyUI(fluidPage(
 	includeHTML("navbar.html"),
+	tags$style(".toggleButton{width:100%;}"),
 		sidebarLayout(
 			sidebarPanel(
 				radioButtons('chooseInput',
@@ -37,19 +38,25 @@ shinyUI(fluidPage(
 					
 					jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000")), 
 				
-				textInput('title', label = "Title", value = ""),
 				
-				textInput('xlab', label = "X Axis Label", value = ""),
+				actionButton('labelOptions', label = "Hide Label Options", class = "toggleButton"),
+				wellPanel(id = "labelPanel", 
+					textInput('title', label = "Title", value = ""),
 				
-				textInput('ylab', label = "Y Axis Label", value = ""),		
+					textInput('xlab', label = "X Axis Label", value = ""),
+				
+					textInput('ylab', label = "Y Axis Label", value = "")	
+				),
 				
 				downloadButton('download', label = "Download Plot")
+				
     	), 
 			mainPanel(
 				tabsetPanel(id = "tabSelections", type = "tabs", 
-					tabPanel(title = "Plot", plotOutput("map")),
+					tabPanel(title = "Plot", tags$br(), 
+						plotOutput("map", height = 600)),
 					tabPanel(title = "Interactive", tags$br(), tags$br(), d3heatmapOutput("d3map")),
-					tabPanel(title = "Table", dataTableOutput("table"))
+					tabPanel(title = "Table", tags$br(), dataTableOutput("table"))
 					))),	
 	singleton(includeScript("active.js"))
 	))
