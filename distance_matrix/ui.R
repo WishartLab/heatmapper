@@ -15,14 +15,14 @@ shinyUI(fluidPage(
 				conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
     			fileInput("file", label = "Upload Distance Matrix File")), 
 				
-				selectInput('colour', label = "Colour Scheme", 
+				selectInput('colour', label = "Colour Scheme", selectize = FALSE,
 					choices = c(
 						"Rainbow" = 'rainbow', 
 						"Topo" = 'topo', 
 						"Custom" = 'custom'), 
 					selected = 'custom'), 
 				
-				conditionalPanel(condition = "input.colour == 'custom'",
+				conditionalPanel(condition = "input.colour == 'custom'", id = "colourSection", 
 					
 					radioButtons('customVars', 
 						label = "Number of Colour Variables", 
@@ -41,28 +41,8 @@ shinyUI(fluidPage(
 				textInput('title', label = "Title", value = ""),
 				
 				textInput('xlab', label = "X Axis Label", value = ""),
-				textInput('ylab', label = "Y Axis Label", value = ""),
-				#var activeTab = document.getElementById('tabSelections').getElementsByClassName('active')[0].children[0].getAttribute('data-value');				
-				tags$script("
-					$(document).ready(function() {
-						var activeTab = 'Plot';
-		
-						test = function() { 
-								activeTab = $('#tabSelections').find('.active').children().attr('data-value');
-								alert(activeTab);
-								if(activeTab == 'Plot'){
-									document.getElementById('ylab').readOnly = false;
-									document.getElementById('xlab').readOnly = false;
-									document.getElementById('main').readOnly = false;
-								}
-								else{
-									document.getElementById('ylab').readOnly = true;
-									document.getElementById('xlab').readOnly = true;
-									document.getElementById('main').readOnly = true;
-								}
-						};
-						$('#tabSelections').click(function(){test();});
-					})"),
+				
+				textInput('ylab', label = "Y Axis Label", value = ""),		
 				
 				downloadButton('download', label = "Download Plot")
     	), 
@@ -71,4 +51,6 @@ shinyUI(fluidPage(
 					tabPanel(title = "Plot", plotOutput("map")),
 					tabPanel(title = "Interactive", tags$br(), tags$br(), d3heatmapOutput("d3map")),
 					tabPanel(title = "Table", dataTableOutput("table"))
-					)))))
+					))),	
+	singleton(includeScript("active.js"))
+	))
