@@ -1,29 +1,36 @@
 $(document).ready(function() {
     
     var labelButtonCount = 0;
-    document.getElementById("labelOptions").addEventListener("click", toggleLabelButton);
+    document.getElementById("labelOptionsButton").addEventListener("click", toggleLabelButton);
     
     function toggleLabelButton(e){
-        generalToggleButtons("#labelPanel","labelOptions", "Label", labelButtonCount);
+        generalToggleButtons("#labelPanel","labelOptionsButton", "Label", labelButtonCount);
         labelButtonCount++;
     }
     
     var colourButtonCount = 0;
-    document.getElementById("colourOptions").addEventListener("click", toggleColourButton);
+    document.getElementById("colourOptionsButton").addEventListener("click", toggleColourButton);
     
     function toggleColourButton(e){
-        generalToggleButtons("#colourPanel","colourOptions", "Colour", colourButtonCount);
+        generalToggleButtons("#colourPanel","colourOptionsButton", "Colour", colourButtonCount);
         colourButtonCount++;
     }
     
     var fileInputButtonCount = 0;
-    document.getElementById("fileInputOptions").addEventListener("click", toggleFileInputButton);
+    document.getElementById("fileInputOptionsButton").addEventListener("click", toggleFileInputButton);
     
     function toggleFileInputButton(e){
-        generalToggleButtons("#fileInputPanel","fileInputOptions", "File Input", fileInputButtonCount);
+        generalToggleButtons("#fileInputPanel","fileInputOptionsButton", "File Input", fileInputButtonCount);
         fileInputButtonCount++;
     }
     
+    var downloadButtonCount = 0;
+    document.getElementById("downloadOptionsButton").addEventListener("click", toggleDownloadButton);
+    
+    function toggleDownloadButton(e){
+        generalToggleButtons("#downloadPanel","downloadOptionsButton", "Download", downloadButtonCount);
+        downloadButtonCount++;
+    }
     
     
     function generalToggleButtons(panelId, messageId, message, count) {

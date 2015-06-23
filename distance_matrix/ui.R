@@ -7,7 +7,7 @@ shinyUI(fluidPage(
 		sidebarLayout(
 			sidebarPanel(
 				
-				actionButton('fileInputOptions', label = "Hide File Input Options", class = "toggleButton"),
+				actionButton('fileInputOptionsButton', label = "Hide File Input Options", class = "toggleButton"),
 				wellPanel(id = "fileInputPanel", 
 				radioButtons('chooseInput',
     			label = "Choose Input Type",
@@ -19,7 +19,7 @@ shinyUI(fluidPage(
 				conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
     			fileInput("file", label = "Upload Distance Matrix File"))), 
 				
-				actionButton('colourOptions', label = "Hide Colour Options", class = "toggleButton"),
+				actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton"),
 				wellPanel(id = "colourPanel", 
 					selectInput('colour', label = "Colour Scheme", selectize = FALSE,
 						choices = c(
@@ -44,7 +44,7 @@ shinyUI(fluidPage(
 						jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000"))), 
 				
 				
-				actionButton('labelOptions', label = "Hide Label Options", class = "toggleButton"),
+				actionButton('labelOptionsButton', label = "Hide Label Options", class = "toggleButton"),
 				wellPanel(id = "labelPanel", 
 					textInput('title', label = "Title", value = ""),
 				
@@ -53,7 +53,9 @@ shinyUI(fluidPage(
 					textInput('ylab', label = "Y Axis Label", value = "")	
 				),
 				
-				downloadButton('download', label = "Download Plot")
+				actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton"),
+				wellPanel(id = "downloadPanel", 
+					downloadButton('download', label = "Download Plot"))
 				
     	), 
 			mainPanel(
