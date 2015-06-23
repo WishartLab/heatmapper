@@ -17,6 +17,12 @@ $(document).ready(function() {
     }
     
     var fileInputButtonCount = 0;
+    document.getElementById("fileInputOptions").addEventListener("click", toggleFileInputButton);
+    
+    function toggleFileInputButton(e){
+        generalToggleButtons("#fileInputPanel","fileInputOptions", "File Input", fileInputButtonCount);
+        fileInputButtonCount++;
+    }
     
     
     

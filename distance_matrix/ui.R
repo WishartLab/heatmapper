@@ -6,6 +6,9 @@ shinyUI(fluidPage(
 	tags$style(".toggleButton{width:100%;}"),
 		sidebarLayout(
 			sidebarPanel(
+				
+				actionButton('fileInputOptions', label = "Hide File Input Options", class = "toggleButton"),
+				wellPanel(id = "fileInputPanel", 
 				radioButtons('chooseInput',
     			label = "Choose Input Type",
     			choices = c(
@@ -14,31 +17,31 @@ shinyUI(fluidPage(
     			selected = 'example'),
 				
 				conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
-    			fileInput("file", label = "Upload Distance Matrix File")), 
+    			fileInput("file", label = "Upload Distance Matrix File"))), 
 				
 				actionButton('colourOptions', label = "Hide Colour Options", class = "toggleButton"),
 				wellPanel(id = "colourPanel", 
-				selectInput('colour', label = "Colour Scheme", selectize = FALSE,
-					choices = c(
-						"Rainbow" = 'rainbow', 
-						"Topo" = 'topo', 
-						"Custom" = 'custom'), 
-					selected = 'custom'), 
-				
-				tags$div(id = 'colourSection', 
-					radioButtons('customVars', 
-						label = "Number of Colour Variables", 
+					selectInput('colour', label = "Colour Scheme", selectize = FALSE,
 						choices = c(
-							"3 (low, middle, high)" = 'custom3',
-							"2 (low, high)" = 'custom2'), 
-						selected = 'custom3'), 
+							"Rainbow" = 'rainbow', 
+							"Topo" = 'topo', 
+							"Custom" = 'custom'), 
+						selected = 'custom'), 
 					
-					jscolourInput("lowColour", label = "Colour for low numbers", value = "#FF0000"),
-					
-					conditionalPanel(condition = "input.customVars == 'custom3'", 
-						jscolourInput("midColour", label = "Colour for middle numbers")),
-					
-					jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000"))), 
+					tags$div(id = 'colourSection', 
+						radioButtons('customVars', 
+							label = "Number of Colour Variables", 
+							choices = c(
+								"3 (low, middle, high)" = 'custom3',
+								"2 (low, high)" = 'custom2'), 
+							selected = 'custom3'), 
+						
+						jscolourInput("lowColour", label = "Colour for low numbers", value = "#FF0000"),
+						
+						conditionalPanel(condition = "input.customVars == 'custom3'", 
+							jscolourInput("midColour", label = "Colour for middle numbers")),
+						
+						jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000"))), 
 				
 				
 				actionButton('labelOptions', label = "Hide Label Options", class = "toggleButton"),
@@ -60,5 +63,5 @@ shinyUI(fluidPage(
 					tabPanel(title = "Interactive", tags$br(), tags$br(), d3heatmapOutput("d3map")),
 					tabPanel(title = "Table", tags$br(), dataTableOutput("table"))
 					))),	
-	singleton(includeScript("active.js"))
+	singleton(includeScript("www/js/active.js"))
 	))
