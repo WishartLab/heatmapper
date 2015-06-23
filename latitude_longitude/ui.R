@@ -75,6 +75,6 @@ shinyUI(fluidPage(
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot",includeScript("https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image.js"), 
+					tabPanel(title = "Plot",includeScript("http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image.js"), 
 						tags$script("L_PREFER_CANVAS = true;"), leafletOutput("map", height = 600)),
 					tabPanel(title = "Table", dataTableOutput("table")))))))

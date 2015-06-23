@@ -15,9 +15,6 @@ shinyUI(fluidPage(
 				conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
     			fileInput("file", label = "Upload Distance Matrix File")), 
 				
-				textInput('title', label = "Title", value = ""),
-				textInput('xlab', label = "X Axis Label", value = ""),
-				textInput('ylab', label = "Y Axis Label", value = ""),
 				selectInput('colour', label = "Colour Scheme", 
 					choices = c(
 						"Rainbow" = 'rainbow', 
@@ -41,13 +38,37 @@ shinyUI(fluidPage(
 					
 					jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000")), 
 				
+				textInput('title', label = "Title", value = ""),
+				
+				textInput('xlab', label = "X Axis Label", value = ""),
+				textInput('ylab', label = "Y Axis Label", value = ""),
+				#var activeTab = document.getElementById('tabSelections').getElementsByClassName('active')[0].children[0].getAttribute('data-value');				
+				tags$script("
+					$(document).ready(function() {
+						var activeTab = 'Plot';
+						
+						$('#tabSelections').click(function() { 
+								activeTab = $('#tabSelections').find('.active').children().attr('data-value');
+								if(activeTab == 'Plot'){
+									document.getElementById('ylab').readOnly = false;
+									document.getElementById('xlab').readOnly = false;
+									document.getElementById('main').readOnly = false;
+								}
+								else{
+									document.getElementById('ylab').readOnly = true;
+									document.getElementById('xlab').readOnly = true;
+									document.getElementById('main').readOnly = true;
+								}
+						})
+					})
+					
+					"),
+				
 				downloadButton('download', label = "Download Plot")
     	), 
 			mainPanel(
-				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", plotOutput("map", 
-						brush = "brush"), 
-						verbatimTextOutput("info")),
-					tabPanel(title = "D3", d3heatmapOutput("d3map")),
+				tabsetPanel(id = "tabSelections", type = "tabs", 
+					tabPanel(title = "Plot", plotOutput("map")),
+					tabPanel(title = "Interactive", tags$br(), tags$br(), d3heatmapOutput("d3map")),
 					tabPanel(title = "Table", dataTableOutput("table"))
 					)))))

@@ -47,6 +47,7 @@ shinyServer(function(input, output, session){
 		data$cols <- factor(data$cols, levels = data$cols)
 
 		q <- qplot(
+			asp = 1,
 			data = data,
 			x=cols,
 			y=rows,
@@ -92,27 +93,15 @@ shinyServer(function(input, output, session){
 		get_plot()
 	})
 
-	output$info <- renderPrint({
-		file <- get_file()
-		if(!is.null(file)){
-			print(input$brush)
-			brushedPoints(melt(file, id.vars = "cols", variable.name = "rows"), input$brush)
-		}
-  })
-
 	output$table <- renderDataTable({
 		file <- get_file()
 	})
 
 	output$download <- downloadHandler(
-		filename = "distanceMatrix.png",
+		filename = "distanceMatrix.pdf",
 		content = function(file){
-			png(file)
-			file2 <- get_file()
-			row.names(file2)<- file2[,1]
-			file2 <- file2[,-1]
-		
-			d3heatmap(file2,colors = get_colour_palette(), Colv = NULL, Rowv = NULL)
+			pdf(file)
+			plot(get_plot())
 			dev.off()
 		}
 	)
