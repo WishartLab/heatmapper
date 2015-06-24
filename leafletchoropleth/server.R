@@ -10,7 +10,7 @@ shinyServer(function(input, output, session) {
   
   # Draw the given states, with or without highlighting
   drawStates <- function(stateNames, highlight = FALSE) {
-    states <- map("county",  plot=FALSE, fill=TRUE)
+    states <- map("state",  plot=FALSE, fill=TRUE)
     map$addPolygon(I(states$y), I(states$x), I(states$names),
       I(lapply(states$names, function(x) {
         x <- strsplit(x, ":")[[1]][1]
