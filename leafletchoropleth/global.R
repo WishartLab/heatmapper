@@ -1,13 +1,13 @@
-library(maps)
-test <- readRDS("data/counties.rds")
-#name <- map('county', namesonly = TRUE, plot = FALSE)
-test <- test[pmatch(test[[1]],map('county', namesonly = TRUE, plot = FALSE)),]
-name <- test[[1]]
-nums <- test[[2]]#rep(10:11, length(name)/2 + 1) #c(test[[2]])
+data_file <- readRDS("data/counties.rds")
+#data_file <- read.delim("data/statetest2.txt")
+name_col <- data_file[[1]]
+nums_col <- data_file[[2]]
+names(nums_col) <- name_col
+density = c(nums_col)
 
-names(nums) <- name
-density = c(nums)
-print(min(density, na.rm = TRUE))
+print(map("county", namesonly=TRUE, plot=FALSE)[2540:2545])
+
+
 # Breaks we'll use for coloring
 densityBreaks <- c(0, 10, 100, 1000, 10000, 50000, 100000, 1000000, Inf)#c(0, 10, 20, 50, 100, 200, 500, 9000000, Inf)
 # Construct break ranges for displaying in the legend

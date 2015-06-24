@@ -1,6 +1,7 @@
 library(leaflet)
 library(RColorBrewer)
 library(maps)
+
 # source: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
   values <- reactiveValues(highlight = c())
@@ -9,10 +10,10 @@ shinyServer(function(input, output, session) {
   
   # Draw the given states, with or without highlighting
   drawStates <- function(stateNames, highlight = FALSE) {
-    states <- map("county", plot=FALSE, fill=TRUE)
+    states <- map("county",  plot=FALSE, fill=TRUE)
     map$addPolygon(I(states$y), I(states$x), I(states$names),
       I(lapply(states$names, function(x) {
-        #x <- strsplit(x, ":")[[1]][1]
+        x <- strsplit(x, ":")[[1]][1]
       	tryCatch({
       		list(fillColor = colors[[x]])
       	}, 
@@ -53,24 +54,8 @@ shinyServer(function(input, output, session) {
       stateName <- names(density)[getStateName(values$highlight) == tolower(names(density))]
       return(tags$div(
         tags$strong(stateName),
-        tags$div(density[stateName], HTML("people/m<sup>2</sup>"))
+        tags$div(density[stateName], HTML(""))
       ))
     }
-  })
-
-  lastHighlighted <- c()
-  # When values$highlight changes, unhighlight the old state (if any) and
-  # highlight the new state
-  observe({
-    if (length(lastHighlighted) > 0)
-      drawStates(getStateName(lastHighlighted), FALSE)
-    lastHighlighted <<- values$highlight
-    
-    if (is.null(values$highlight))
-      return()
-    
-    isolate({
-      drawStates(getStateName(values$highlight), TRUE)
-    })
   })
 })
