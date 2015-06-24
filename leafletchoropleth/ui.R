@@ -27,6 +27,7 @@ shinyUI(fluidPage(
     uiOutput("stateInfo")
   ),
   
+	# Legend
   absolutePanel(
     right = 30, top = 280, style = "", class = "floater",
     tags$table(
