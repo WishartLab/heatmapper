@@ -49,19 +49,11 @@ sidebarLayout(
 	),
 	mainPanel(
 		tabsetPanel(type = "tabs",
-			tabPanel(title= "sadf"),
+			#tabPanel(title= "sadf"),
 			tabPanel(title = "Interactive", 
 			  
-			  leafletMap(
-			    "map", "100%", 500,
-			    # By default OpenStreetMap tiles are used; we want nothing in this case
-			    #initialTileLayer = NULL,
-			    #initialTileLayerAttribution = NULL,
-			    options=list(
-			      center = c(40, -98.85),
-			      zoom = 4,
-			      maxBounds = list(list(17, -180), list(59, 180))
-			    )
+			  leafletOutput(
+			    "map", "100%", 500
 			  ),
 			  absolutePanel(
 			    right = 30, top = 60, width = 200, class = "floater",
