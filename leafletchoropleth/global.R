@@ -1,9 +1,24 @@
-#data_file <- readRDS("data/counties.rds")
-data_file <- read.delim("data/statetest2.txt")
+data_file <- readRDS("data/counties.rds")
 name_col <- data_file[[1]]
 nums_col <- data_file[[2]]
 names(nums_col) <- name_col
-density = c(nums_col)
+density <- c(nums_col)
+
+	get_file <- function(chooseInput){
+		
+		if(chooseInput == 'example'){
+			path <- "data/counties.rds"
+			counties <- readRDS(path)
+		}
+		else{
+		#	validate(need(input$file$datapath, "Please upload a file"))
+		#	counties <- read.delim(input$file$datapath, header = TRUE)
+			counties <- read.table("data/statetest2.txt", header = TRUE, sep="\t")
+			counties[,1] <- tolower(counties[,1])
+		}
+
+		return(counties)
+	}
 
 # Breaks we'll use for coloring
 densityBreaks <- round(seq(min(density, na.rm = TRUE), max(density, na.rm = TRUE), length.out = 9), 0)

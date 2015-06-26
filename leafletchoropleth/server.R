@@ -4,13 +4,15 @@ library(maps)
 
 # source: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
+	
   values <- reactiveValues(highlight = c())
   
   map <- createLeafletMap(session, "map")
-  
+	
   # Draw the given states, with or without highlighting
   drawStates <- function(stateNames, highlight = FALSE) {
-    states <- map("state",  plot=FALSE, fill=TRUE)
+  	
+    states <- map("county",  plot=FALSE, fill=TRUE)
     map$addPolygon(I(states$y), I(states$x), I(states$names),
       I(lapply(states$names, function(x) {
         x <- strsplit(x, ":")[[1]][1]
@@ -44,6 +46,38 @@ shinyServer(function(input, output, session) {
   observe({
     values$highlight <- input$map_shape_mouseover$id
   })
+	
+	observe({
+		
+		file <- get_file(input$chooseInput)
+		updateSelectInput(session, inputId="colSelect", choices = colnames(file), selected = input$colSelect)		
+		name_col <- file[[1]]
+		#print(name_col)
+		if(input$colSelect != "a"){
+			nums_col <- file[[input$colSelect]]
+		}
+		else{
+			nums_col <- file[[2]]
+		}
+		print(head(name_col, 1))
+		print(head(nums_col,1))
+		if(!is.null(nums_col)){
+			names(nums_col) <- name_col
+			density <<- c(nums_col)
+			densityBreaks <<- round(seq(min(density, na.rm = TRUE), max(density, na.rm = TRUE), length.out = 9), 0)
+			
+		}
+		#names(nums_col) <- name_col
+#		density <<- c(nums_col)
+#		drawStates(names(density))
+#		drawStates(names(density))
+#		print(x)
+		
+	#	if(x == "Interactive"){
+			
+	#	}
+		
+	})
   
   # Dynamically render the box in the upper-right
   output$stateInfo <- renderUI({
