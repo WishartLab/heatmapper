@@ -29,25 +29,24 @@ shinyServer(function(input, output, session) {
 		}
 		return(counties)
 	}
+	
 	observe({
 		values$density <- get_density()
-		print(values$density[[1]])
-		
 		
 		# Breaks we'll use for coloring
-	densityBreaks <- round(seq(min(values$density, na.rm = TRUE), max(values$density, na.rm = TRUE), length.out = 9), 0)
-
-	# Construct break ranges for displaying in the legend
-	# densityRanges <<- data.frame(
-	#  from = head(densityBreaks, length(densityBreaks)-1),
-	#  to = tail(densityBreaks, length(densityBreaks)-1)
-	# )
-
-	# Eight colors for eight buckets
-	palette <- colorRampPalette(c("#FFEDA0", "#800026"))(8)
+		densityBreaks <- round(seq(min(values$density, na.rm = TRUE), max(values$density, na.rm = TRUE), length.out = 9), 0)
 	
-	# Assign colors to states
-	colors <- structure(palette[cut(values$density, densityBreaks)], names = tolower(names(values$density)))
+		# Construct break ranges for displaying in the legend
+		# densityRanges <<- data.frame(
+		#  from = head(densityBreaks, length(densityBreaks)-1),
+		#  to = tail(densityBreaks, length(densityBreaks)-1)
+		# )
+	
+		# Eight colors for eight buckets
+		palette <- colorRampPalette(c("#FFEDA0", "#800026"))(8)
+		
+		# Assign colors to states
+		colors <<- structure(palette[cut(values$density, densityBreaks)], names = tolower(names(values$density)))
 	})
 
 	# The state names that come back from the maps package's state database has
@@ -56,16 +55,13 @@ shinyServer(function(input, output, session) {
 	  strsplit(id, ":")[[1]][1]
 	}
 	
-  # Draw the given states, with or without highlighting
-  output$map <- renderLeaflet({
-  	statesData <- map("county",  plot=FALSE, fill=TRUE)
-  	
-  	get_style <- function(){
+	
+	get_style <- function(statesData){
   		i <- 1
   		sarray <- rep("#000000", length(statesData$names))
-  		
   		for(s in statesData$names){
   			s <- strsplit(s, ":")[[1]][1]
+  			
   			tryCatch({
   				sarray[[i]] <- colors[[s]]
   				}, 
@@ -75,19 +71,37 @@ shinyServer(function(input, output, session) {
   			i <- i + 1
   		}
   		return(sarray)
-  	}
-  	statesData$fillColour <- get_style()
+  }
+	
+	get_statesData <- function(statesData){
+  	statesData$fillColour <- get_style(statesData)
   	statesData$style = list(
   		weight = 0.5,
 		  color = "#000000",
 		  opacity = 1,
 		  fillOpacity = 0.8
 		)
-
-    leafletProxy("map") %>% clearShapes() %>% addTiles() %>% 
+		return(statesData)
+	}
+	
+  # Draw the given states, with or without highlighting
+  output$map <- renderLeaflet({
+  	statesData <- map("state",  plot=FALSE, fill=TRUE)
+		statesData <- get_statesData(statesData)
+    leaflet() %>% addTiles() %>% 
   	addPolygons(statesData$x, statesData$y, statesData$names,weight = 1, color = "#000000", opacity = 1,
     	fillColor = statesData$fillColour, fillOpacity = 0.8)})
   
+	observe({
+		values$density
+		statesData <- map(input$area,  plot=FALSE, fill=TRUE)
+		statesData <- get_statesData(statesData)
+  	
+  	leafletProxy("map") %>% clearShapes() %>%
+			addPolygons(statesData$x, statesData$y, statesData$names,weight = 1, color = "#000000", opacity = 1,
+    	fillColor = statesData$fillColour, fillOpacity = 0.8)
+  })
+	
   # input$map_shape_mouseover gets updated a lot, even if the id doesn't change.
   # We don't want to update the polygons and stateInfo except when the id
   # changes, so use values$highlight to insulate the downstream reactives (as 

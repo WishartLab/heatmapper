@@ -29,7 +29,7 @@ sidebarLayout(
     			"USA: By County" = 'county', 
     			"USA: By State" = 'state', 
    				"Canada: By Province" = 'province'), 
-   			selected = 'county'),
+   			selected = 'state'),
     		
    		selectInput("colSelect", label = "Column to use", choices = c("a"="a"), selected = "a"),
     		
