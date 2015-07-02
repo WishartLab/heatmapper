@@ -1,0 +1,1 @@
+densityRanges <<- data.frame(from = 1, to = 100)

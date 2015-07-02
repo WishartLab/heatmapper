@@ -37,10 +37,10 @@ shinyServer(function(input, output, session) {
 		densityBreaks <- round(seq(min(values$density, na.rm = TRUE), max(values$density, na.rm = TRUE), length.out = 9), 0)
 	
 		# Construct break ranges for displaying in the legend
-		# densityRanges <<- data.frame(
-		#  from = head(densityBreaks, length(densityBreaks)-1),
-		#  to = tail(densityBreaks, length(densityBreaks)-1)
-		# )
+		densityRanges <<- data.frame(
+		  from = head(densityBreaks, length(densityBreaks)-1),
+		  to = tail(densityBreaks, length(densityBreaks)-1)
+		 )
 	
 		# Eight colors for eight buckets
 		palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)
@@ -91,6 +91,7 @@ shinyServer(function(input, output, session) {
 	}
   # Draw the given states, with or without highlighting
   output$map <- renderLeaflet({
+  	
   	map <- map(input$area,  plot=FALSE, fill=TRUE)
   	map <- prepare_fit_bounds(map)
     leaflet(map) %>% addTiles() %>% fitBounds(~min(x), ~min(y), ~max(x), ~max(y))

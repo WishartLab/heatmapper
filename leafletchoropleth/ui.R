@@ -62,7 +62,7 @@ sidebarLayout(
 			    h4("US Population Density"),
 			    uiOutput("stateInfo")
 			  ),
-			  
+			 
 				# Legend
 			  absolutePanel(
 			    right = 30, top = 340, style = "", class = "floater",
