@@ -39,9 +39,9 @@ sidebarLayout(
    			max = 100, 
    			value = c(0, 100)), 
     		
-    	jscolourInput("lowColour", label = "Colour for low numbers", value = "#F2F2FF"),
+    	jscolourInput("lowColour", label = "Colour for low numbers", value = "#FFEDA0"),
     		
-    	jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000"),
+    	jscolourInput("highColour", label = "Colour for high numbers", value = "#800026"),
     		
     	textInput('legend',
     		label = "Custom legend title", 

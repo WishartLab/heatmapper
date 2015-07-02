@@ -43,10 +43,10 @@ shinyServer(function(input, output, session) {
 		# )
 	
 		# Eight colors for eight buckets
-		palette <- colorRampPalette(c("#FFEDA0", "#800026"))(8)
+		palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)
 		
 		# Assign colors to states
-		colors <<- structure(palette[cut(values$density, densityBreaks)], names = tolower(names(values$density)))
+		values$colours <- structure(palette[cut(values$density, densityBreaks)], names = tolower(names(values$density)))
 	})
 
 	# The state names that come back from the maps package's state database has
@@ -63,7 +63,7 @@ shinyServer(function(input, output, session) {
   			s <- strsplit(s, ":")[[1]][1]
   			
   			tryCatch({
-  				sarray[[i]] <- colors[[s]]
+  				sarray[[i]] <- values$colours[[s]]
   				}, 
   				error = function(e){
   					#print("error")
