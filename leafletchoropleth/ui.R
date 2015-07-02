@@ -69,13 +69,14 @@ sidebarLayout(
 			    tags$table(
 			      mapply(function(from, to, color) {
 			        tags$tr(
-			          tags$td(tags$div(
+		          tags$td(tags$div(
 			            style = sprintf("width: 16px; height: 16px; background-color: %s;", color)
 			          )),
-			          tags$td(from, "-", to)
+		          tags$td(from, "-", to)
 			        )
 			      }, densityRanges$from, densityRanges$to, palette, SIMPLIFY=FALSE)
 			    )
-			  )),
+			  )
+			),
 			tabPanel(title = "Table"))))
 ))

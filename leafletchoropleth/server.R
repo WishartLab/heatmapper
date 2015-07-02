@@ -40,10 +40,10 @@ shinyServer(function(input, output, session) {
 		densityRanges <<- data.frame(
 		  from = head(densityBreaks, length(densityBreaks)-1),
 		  to = tail(densityBreaks, length(densityBreaks)-1)
-		 )
+		)
 	
 		# Eight colors for eight buckets
-		palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)
+		palette <<- colorRampPalette(c(input$lowColour, input$highColour))(8)
 		
 		# Assign colors to states
 		values$colours <- structure(palette[cut(values$density, densityBreaks)], names = tolower(names(values$density)))
