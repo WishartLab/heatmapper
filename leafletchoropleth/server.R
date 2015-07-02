@@ -12,8 +12,6 @@ shinyServer(function(input, output, session) {
 		name_col <- data_file[[1]]
 		nums_col <- data_file[[2]]
 		names(nums_col) <- name_col
-		print(nums_col)
-		print(names(nums_col))
 		#density <- c(nums_col)
 		return(nums_col)
 	}
@@ -33,10 +31,11 @@ shinyServer(function(input, output, session) {
 	}
 	observe({
 		values$density <- get_density()
-	})
-	
-	# Breaks we'll use for coloring
-	densityBreaks <- reactive({ round(seq(min(values$density, na.rm = TRUE), max(values$density), na.rm = TRUE, length.out = 9), 0) })
+		print(values$density[[1]])
+		
+		
+		# Breaks we'll use for coloring
+	densityBreaks <- round(seq(min(values$density, na.rm = TRUE), max(values$density, na.rm = TRUE), length.out = 9), 0)
 
 	# Construct break ranges for displaying in the legend
 	# densityRanges <<- data.frame(
@@ -46,12 +45,10 @@ shinyServer(function(input, output, session) {
 
 	# Eight colors for eight buckets
 	palette <- colorRampPalette(c("#FFEDA0", "#800026"))(8)
-		
+	
 	# Assign colors to states
-	colors <- reactive({ structure(
-	  palette[cut(values$density, densityBreaks)],
-	  names = tolower(names(values$density))
-	)})
+	colors <- structure(palette[cut(values$density, densityBreaks)], names = tolower(names(values$density)))
+	})
 
 	# The state names that come back from the maps package's state database has
 	# state:qualifier format. This function strips off the qualifier.
@@ -61,7 +58,7 @@ shinyServer(function(input, output, session) {
 	
   # Draw the given states, with or without highlighting
   output$map <- renderLeaflet({
-  	statesData <- map("state",  plot=FALSE, fill=TRUE)
+  	statesData <- map("county",  plot=FALSE, fill=TRUE)
   	
   	get_style <- function(){
   		i <- 1
@@ -87,7 +84,7 @@ shinyServer(function(input, output, session) {
 		  fillOpacity = 0.8
 		)
 
-    leaflet() %>% addTiles() %>% 
+    leafletProxy("map") %>% clearShapes() %>% addTiles() %>% 
   	addPolygons(statesData$x, statesData$y, statesData$names,weight = 1, color = "#000000", opacity = 1,
     	fillColor = statesData$fillColour, fillOpacity = 0.8)})
   
