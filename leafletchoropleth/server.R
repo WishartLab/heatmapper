@@ -5,7 +5,7 @@ library(maps)
 # source: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
 
-  values <- reactiveValues(highlight = c())
+  values <- reactiveValues(highlight = c(), density = c(), colours = c())
 	
 	get_density <- function() { 
 		data_file <- get_file()
@@ -84,22 +84,27 @@ shinyServer(function(input, output, session) {
 		return(statesData)
 	}
 	
+	prepare_fit_bounds <- function(map){
+		map$x <- na.omit(map$x)
+  	map$y <- na.omit(map$y)
+		return(map)
+	}
   # Draw the given states, with or without highlighting
   output$map <- renderLeaflet({
-  	statesData <- map("state",  plot=FALSE, fill=TRUE)
-		statesData <- get_statesData(statesData)
-    leaflet() %>% addTiles() %>% 
-  	addPolygons(statesData$x, statesData$y, statesData$names,weight = 1, color = "#000000", opacity = 1,
-    	fillColor = statesData$fillColour, fillOpacity = 0.8)})
+  	map <- map(input$area,  plot=FALSE, fill=TRUE)
+  	map <- prepare_fit_bounds(map)
+    leaflet(map) %>% addTiles() %>% fitBounds(~min(x), ~min(y), ~max(x), ~max(y))
+  })
   
 	observe({
 		values$density
-		statesData <- map(input$area,  plot=FALSE, fill=TRUE)
-		statesData <- get_statesData(statesData)
-  	
-  	leafletProxy("map") %>% clearShapes() %>%
-			addPolygons(statesData$x, statesData$y, statesData$names,weight = 1, color = "#000000", opacity = 1,
-    	fillColor = statesData$fillColour, fillOpacity = 0.8)
+		map <- map(input$area,  plot=FALSE, fill=TRUE)
+		
+		statesData <- get_statesData(map)
+  	map <- prepare_fit_bounds(map)
+  	leafletProxy("map", data =  statesData) %>% clearShapes()  %>%
+			addPolygons(~x, ~y, ~names, weight = 1, color = "#000000", opacity = 1, fillColor = ~fillColour, fillOpacity = 0.8) %>%
+			fitBounds(min(map$x), min(map$y), max(map$x), max(map$y))
   })
 	
   # input$map_shape_mouseover gets updated a lot, even if the id doesn't change.
