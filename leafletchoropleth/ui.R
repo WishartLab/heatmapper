@@ -27,12 +27,11 @@ sidebarLayout(
     	selectInput("area", label = "Area to use", 
     		choices = c(
     			"USA: By County" = 'county', 
-    			"USA: By State" = 'state', 
-   				"Canada: By Province" = 'province', 
+    			"USA: By State" = 'state',
     			"France" = 'france'), 
    			selected = 'state'),
     		
-   		selectInput("colSelect", label = "Column to use", choices = c("a"="a"), selected = "a"),
+   		selectInput("colSelect", label = "Column to use", choices = c("loading..."="temp")),
     		
    		sliderInput("range", 
    			label = "Range of interest:", 

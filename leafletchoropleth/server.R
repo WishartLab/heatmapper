@@ -113,7 +113,7 @@ shinyServer(function(input, output, session) {
   output$map <- renderLeaflet({
   	map <- map(input$area,  plot=FALSE, fill=TRUE)
   	map <- prepare_fit_bounds(map)
-    leaflet(map) %>% addTiles() %>% fitBounds(~min(x), ~min(y), ~max(x), ~max(y))
+    leaflet(map) %>% fitBounds(~min(x), ~min(y), ~max(x), ~max(y))
   })
 	
 	# if input$area is updated change map
@@ -122,6 +122,7 @@ shinyServer(function(input, output, session) {
   	map <- prepare_fit_bounds(values$map)
   	leafletProxy("map") %>% clearShapes() %>%
   		fitBounds(min(map$x), min(map$y), max(map$x), max(map$y))
+  	
 	})
 	
 	# if values$density is changed update the colors
@@ -133,6 +134,7 @@ shinyServer(function(input, output, session) {
   })
 	
 	observe({
+		values$map
 		if(input$showTiles){
 			leafletProxy("map") %>% addTiles()
 		}
