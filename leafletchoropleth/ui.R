@@ -43,6 +43,8 @@ sidebarLayout(
     	jscolourInput("lowColour", label = "Colour for low numbers", value = "#FFEDA0"),
     		
     	jscolourInput("highColour", label = "Colour for high numbers", value = "#800026"),
+		
+		checkboxInput("showTiles", label = "Show Tiles", value = TRUE),
     		
     	textInput('legend',
     		label = "Custom legend title", 
@@ -59,7 +61,7 @@ sidebarLayout(
 			  absolutePanel(
 			    right = 30, top = 60, width = 200, class = "floater",
 			    
-			    h4("US Population Density"),
+			    h4("Region Information"),
 			    uiOutput("stateInfo")
 			  ),
 			 

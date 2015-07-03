@@ -73,7 +73,6 @@ shinyServer(function(input, output, session) {
 	  strsplit(id, ":")[[1]][1]
 	}
 	
-	
 	get_style <- function(statesData){
   		i <- 1
   		sarray <- rep("#000000", length(statesData$names))
@@ -121,11 +120,21 @@ shinyServer(function(input, output, session) {
 		
 		statesData <- get_statesData(map)
   	map <- prepare_fit_bounds(map)
-  	leafletProxy("map", data =  statesData) %>% clearShapes()  %>%
+  	proxy <- leafletProxy("map", data =  statesData)
+		proxy %>% clearShapes()  %>% 
 			addPolygons(~x, ~y, ~names, weight = 1, color = "#000000", opacity = 1, fillColor = ~fillColour, fillOpacity = 0.8) %>%
 			fitBounds(min(map$x), min(map$y), max(map$x), max(map$y))
+
   })
 	
+	observe({
+		if(input$showTiles){
+			leafletProxy("map") %>% addTiles()
+		}
+		else{
+			leafletProxy("map") %>% clearTiles()
+		}
+	})
   # input$map_shape_mouseover gets updated a lot, even if the id doesn't change.
   # We don't want to update the polygons and stateInfo except when the id
   # changes, so use values$highlight to insulate the downstream reactives (as 
