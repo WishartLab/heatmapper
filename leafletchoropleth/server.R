@@ -35,19 +35,27 @@ shinyServer(function(input, output, session) {
 		return(nums_col)
 	}
 	
+	# reads file if chooseInput is changed or file is uploaded
 	get_file <- reactive({
 		if(input$chooseInput == 'example'){
 			data_file <- read.table("data/statetest2.txt", header = TRUE, sep="\t")
 		}
 		else{
+			#path <- "data/counties.rds"
+			#data_file <- readRDS(path)
 			#validate(need(input$file$datapath, "Please upload a file"))
 			#data_file <- read.delim(input$file$datapath, header = TRUE)
-			path <- "data/counties.rds"
-			data_file <- readRDS(path)
+				data_file <- read.table("data/statetest.txt", header = TRUE, sep="\t")
 			
+			# remove "%" if they exist
+			data_file[-1] <- lapply(data_file[-1], function(data_file){
+				as.numeric(sub(pattern = "%", replacement = "", data_file))
+			})
+				 
 		}
+		
 		# region names should be in lower case
-		data_file[,1] <- tolower(data_file[,1])
+		data_file[[1]] <- tolower(data_file[[1]])
 		return(data_file)
 	})
 
@@ -55,7 +63,10 @@ shinyServer(function(input, output, session) {
 		values$density <- get_density()
 		
 		# Breaks we'll use for coloring
-		densityBreaks <- round(seq(min(values$density, na.rm = TRUE), max(values$density, na.rm = TRUE), length.out = 9), 0)
+		densityBreaks <- seq(
+			floor(min(values$density, na.rm = TRUE)), 
+			ceiling(max(values$density, na.rm = TRUE)), 
+			length.out = 9)
 	
 		# Construct break ranges for displaying in the legend
 		values$from <- head(densityBreaks, length(densityBreaks)-1)
@@ -65,7 +76,9 @@ shinyServer(function(input, output, session) {
 		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)
 		
 		# Assign colors to states
-		values$colours <- structure(values$palette[cut(values$density, densityBreaks)], names = tolower(names(values$density)))
+		values$colours <- structure(
+			values$palette[cut(values$density, densityBreaks)], 
+			names = tolower(names(values$density)))
 	})
 
 	# The state names that come back from the maps package's state database has
@@ -74,10 +87,12 @@ shinyServer(function(input, output, session) {
 	  strsplit(id, ":")[[1]][1]
 	}
 	
+	# add fillColour column to a map
 	get_map_data <- reactive({
 		mapData <- values$map
 		i <- 1
   	fillArray <- rep("#000000", length(mapData$names))
+		
   	for(region in mapData$names){
   		region <- parseRegionName(region)
   		tryCatch({
