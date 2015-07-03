@@ -7,11 +7,14 @@ shinyServer(function(input, output, session) {
 
   values <- reactiveValues(highlight = c(), density = c(), colours = c())
 	
-	get_nums_col <- function(data_file) {
-		if(input$colSelect != "a"){
-			nums_col <- data_file[[input$colSelect]]
-		}
-		else {
+	observe({
+		data_file <- get_file()
+		updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
+	})
+	
+	get_nums_col <- function(data_file){
+		nums_col <- data_file[[input$colSelect]]
+		if(is.null(nums_col)){
 			nums_col <- data_file[[2]]
 		}
 		return(nums_col)
@@ -29,22 +32,19 @@ shinyServer(function(input, output, session) {
 		if(input$chooseInput == 'example'){
 			path <- "data/counties.rds"
 			data_file <- readRDS(path)
+			
 		}
 		else{
 			#validate(need(input$file$datapath, "Please upload a file"))
 			#data_file <- read.delim(input$file$datapath, header = TRUE)
 			data_file <- read.table("data/statetest2.txt", header = TRUE, sep="\t")
-			updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
 		}
-		
 		# region names should be in lower case
 		data_file[,1] <- tolower(data_file[,1])
 		return(data_file)
 	})
 
 	observe({
-		#values$file <- get_file_name()
-		#print(head(values$file$name))
 
 		values$density <- get_density()
 		
