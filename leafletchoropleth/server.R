@@ -5,7 +5,13 @@ library(maps)
 # source: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
 
-  values <- reactiveValues(highlight = c(), density = c(), colours = c())
+  values <- reactiveValues(
+  	highlight = c(), 
+  	density = c(), 
+  	colours = c(), 
+  	to = c(), 
+  	from = c(), 
+  	palette = c())
 	
 	observe({
 		data_file <- get_file()
@@ -30,14 +36,14 @@ shinyServer(function(input, output, session) {
 	
 	get_file <- reactive({
 		if(input$chooseInput == 'example'){
-			path <- "data/counties.rds"
-			data_file <- readRDS(path)
-			
+			data_file <- read.table("data/statetest2.txt", header = TRUE, sep="\t")
 		}
 		else{
 			#validate(need(input$file$datapath, "Please upload a file"))
 			#data_file <- read.delim(input$file$datapath, header = TRUE)
-			data_file <- read.table("data/statetest2.txt", header = TRUE, sep="\t")
+			path <- "data/counties.rds"
+			data_file <- readRDS(path)
+			
 		}
 		# region names should be in lower case
 		data_file[,1] <- tolower(data_file[,1])
@@ -45,23 +51,20 @@ shinyServer(function(input, output, session) {
 	})
 
 	observe({
-
 		values$density <- get_density()
 		
 		# Breaks we'll use for coloring
 		densityBreaks <- round(seq(min(values$density, na.rm = TRUE), max(values$density, na.rm = TRUE), length.out = 9), 0)
 	
 		# Construct break ranges for displaying in the legend
-		densityRanges <<- data.frame(
-		  from = head(densityBreaks, length(densityBreaks)-1),
-		  to = tail(densityBreaks, length(densityBreaks)-1)
-		)
+		values$from <- head(densityBreaks, length(densityBreaks)-1)
+		values$to <- tail(densityBreaks, length(densityBreaks)-1)
 	
 		# Eight colors for eight buckets
-		palette <<- colorRampPalette(c(input$lowColour, input$highColour))(8)
+		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)
 		
 		# Assign colors to states
-		values$colours <- structure(palette[cut(values$density, densityBreaks)], names = tolower(names(values$density)))
+		values$colours <- structure(values$palette[cut(values$density, densityBreaks)], names = tolower(names(values$density)))
 	})
 
 	# The state names that come back from the maps package's state database has
@@ -146,4 +149,16 @@ shinyServer(function(input, output, session) {
       ))
     }
   })
+	
+	output$legend <- renderUI({
+		tags$table(
+			mapply(function(from, to, color) {
+				tags$tr(
+					tags$td(tags$div(
+						style = sprintf("width: 16px; height: 16px; background-color: %s;", color)
+					)),
+					tags$td(from, "-", to)
+				)
+			}, values$from, values$to, values$palette, SIMPLIFY=FALSE))
+	})
 })
