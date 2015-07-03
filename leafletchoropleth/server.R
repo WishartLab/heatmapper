@@ -11,7 +11,8 @@ shinyServer(function(input, output, session) {
   	colours = c(), 
   	to = c(), 
   	from = c(), 
-  	palette = c())
+  	palette = c(),
+  	map = c())
 	
 	observe({
 		data_file <- get_file()
@@ -90,7 +91,8 @@ shinyServer(function(input, output, session) {
   		return(sarray)
   }
 	
-	get_statesData <- function(statesData){
+	get_statesData <- reactive({
+		statesData <- values$map
   	statesData$fillColour <- get_style(statesData)
   	statesData$style = list(
   		weight = 0.5,
@@ -99,32 +101,35 @@ shinyServer(function(input, output, session) {
 		  fillOpacity = 0.8
 		)
 		return(statesData)
-	}
+	})
 	
 	prepare_fit_bounds <- function(map){
 		map$x <- na.omit(map$x)
   	map$y <- na.omit(map$y)
 		return(map)
 	}
-  # Draw the given states, with or without highlighting
+	
+  # Default map
   output$map <- renderLeaflet({
-  	
   	map <- map(input$area,  plot=FALSE, fill=TRUE)
   	map <- prepare_fit_bounds(map)
     leaflet(map) %>% addTiles() %>% fitBounds(~min(x), ~min(y), ~max(x), ~max(y))
   })
-  
+	
+	# if input$area is updated change map
+  observe({
+  	values$map <- map(input$area,  plot=FALSE, fill=TRUE)
+  	map <- prepare_fit_bounds(values$map)
+  	leafletProxy("map") %>% clearShapes() %>%
+  		fitBounds(min(map$x), min(map$y), max(map$x), max(map$y))
+	})
+	
+	# if values$density is changed update the colors
 	observe({
 		values$density
-		map <- map(input$area,  plot=FALSE, fill=TRUE)
-		
-		statesData <- get_statesData(map)
-  	map <- prepare_fit_bounds(map)
-  	proxy <- leafletProxy("map", data =  statesData)
-		proxy %>% clearShapes()  %>% 
-			addPolygons(~x, ~y, ~names, weight = 1, color = "#000000", opacity = 1, fillColor = ~fillColour, fillOpacity = 0.8) %>%
-			fitBounds(min(map$x), min(map$y), max(map$x), max(map$y))
-
+		statesData <- get_statesData()
+  	leafletProxy("map", data =  statesData) %>% 
+			addPolygons(~x, ~y, ~names, weight = 1, color = "#000000", opacity = 1, fillColor = ~fillColour, fillOpacity = 0.8)
   })
 	
 	observe({
