@@ -57,6 +57,12 @@ sidebarLayout(
 				max = 1, 
 				value = 0.8),
     		
+			sliderInput("binNumber", 
+				label = "Number of bins", 
+				min = 2, 
+				max = 8, 
+				value = 8),
+		
     	textInput('legend',
     		label = "Custom legend title", 
    			value = "")

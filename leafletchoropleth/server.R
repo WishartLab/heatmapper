@@ -2,7 +2,7 @@ library(leaflet)
 library(RColorBrewer)
 library(maps)
 
-# source: https://jcheng.shinyapps.io/choropleth3/
+# reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
 
   values <- reactiveValues(
@@ -14,11 +14,13 @@ shinyServer(function(input, output, session) {
   	palette = c(),
   	map = c())
 	
+	# update the column selection options when a new file is uploaded
 	observe({
 		data_file <- get_file()
 		updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
 	})
 	
+	# get the values from the selected column
 	get_nums_col <- function(data_file){
 		nums_col <- data_file[[input$colSelect]]
 		if(is.null(nums_col)){
@@ -27,6 +29,7 @@ shinyServer(function(input, output, session) {
 		return(nums_col)
 	}
 	
+	# assign density names and values based on the selected column
 	get_density <- function() { 
 		data_file <- get_file()
 		name_col <- data_file[[1]]
@@ -35,7 +38,7 @@ shinyServer(function(input, output, session) {
 		return(nums_col)
 	}
 	
-	# reads file if chooseInput is changed or file is uploaded
+	# read file if chooseInput is changed or file is uploaded
 	get_file <- reactive({
 		if(input$chooseInput == 'example'){
 			data_file <- read.table("data/statetest2.txt", header = TRUE, sep="\t")
@@ -43,15 +46,14 @@ shinyServer(function(input, output, session) {
 		else{
 			#path <- "data/counties.rds"
 			#data_file <- readRDS(path)
-			#validate(need(input$file$datapath, "Please upload a file"))
-			#data_file <- read.delim(input$file$datapath, header = TRUE)
-				data_file <- read.table("data/statetest.txt", header = TRUE, sep="\t")
+			#data_file <- read.table("data/statetest.txt", header = TRUE, sep="\t")
+			validate(need(input$file$datapath, "Please upload a file"))
+			data_file <- read.delim(input$file$datapath, header = TRUE)
 			
 			# remove "%" if they exist
 			data_file[-1] <- lapply(data_file[-1], function(data_file){
 				as.numeric(sub(pattern = "%", replacement = "", data_file))
-			})
-				 
+			})	 
 		}
 		
 		# region names should be in lower case
@@ -59,6 +61,7 @@ shinyServer(function(input, output, session) {
 		return(data_file)
 	})
 
+	# update density information if file or column selection changes
 	observe({
 		values$density <- get_density()
 		
@@ -66,14 +69,14 @@ shinyServer(function(input, output, session) {
 		densityBreaks <- seq(
 			floor(min(values$density, na.rm = TRUE)), 
 			ceiling(max(values$density, na.rm = TRUE)), 
-			length.out = 9)
+			length.out = input$binNumber + 1)
 	
 		# Construct break ranges for displaying in the legend
 		values$from <- head(densityBreaks, length(densityBreaks)-1)
 		values$to <- tail(densityBreaks, length(densityBreaks)-1)
 	
 		# Eight colors for eight buckets
-		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)
+		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(input$binNumber)
 		
 		# Assign colors to states
 		values$colours <- structure(
@@ -181,6 +184,7 @@ shinyServer(function(input, output, session) {
     }
   })
 	
+	# render the legend
 	output$legend <- renderUI({
 		tags$table(
 			mapply(function(from, to, color) {
