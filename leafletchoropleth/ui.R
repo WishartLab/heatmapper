@@ -43,7 +43,19 @@ sidebarLayout(
     		
     	jscolourInput("highColour", label = "Colour for high numbers", value = "#800026"),
 		
-		checkboxInput("showTiles", label = "Show Tiles", value = TRUE),
+			checkboxInput("showTiles", label = "Show Tiles", value = TRUE),
+		
+			sliderInput("lineSize", 
+				label = "Line Width", 
+				min = 0,
+				max = 5,
+				value = 1),
+		
+			sliderInput("fillOpacity", 
+				label = "Fill Opacity", 
+				min = 0, 
+				max = 1, 
+				value = 0.8),
     		
     	textInput('legend',
     		label = "Custom legend title", 
@@ -53,7 +65,6 @@ sidebarLayout(
 		tabsetPanel(type = "tabs",
 			#tabPanel(title= "sadf"),
 			tabPanel(title = "Interactive", 
-			  
 			  leafletOutput(
 			    "map", "100%", 500
 			  ),
@@ -70,5 +81,7 @@ sidebarLayout(
 			    uiOutput("legend")
 			  )
 			),
-			tabPanel(title = "Table"))))
+			tabPanel(title = "Table", 
+				tags$br(),
+				dataTableOutput("table")))))
 ))

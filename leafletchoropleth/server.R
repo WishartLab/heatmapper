@@ -70,69 +70,64 @@ shinyServer(function(input, output, session) {
 
 	# The state names that come back from the maps package's state database has
 	# state:qualifier format. This function strips off the qualifier.
-	getStateName <- function(id) {
+	parseRegionName <- function(id) {
 	  strsplit(id, ":")[[1]][1]
 	}
 	
-	get_style <- function(statesData){
-  		i <- 1
-  		sarray <- rep("#000000", length(statesData$names))
-  		for(s in statesData$names){
-  			s <- strsplit(s, ":")[[1]][1]
-  			
-  			tryCatch({
-  				sarray[[i]] <- values$colours[[s]]
-  				}, 
-  				error = function(e){
-  					#print("error")
-  				})
-  			i <- i + 1
-  		}
-  		return(sarray)
-  }
-	
-	get_statesData <- reactive({
-		statesData <- values$map
-  	statesData$fillColour <- get_style(statesData)
-  	statesData$style = list(
-  		weight = 0.5,
-		  color = "#000000",
-		  opacity = 1,
-		  fillOpacity = 0.8
-		)
-		return(statesData)
+	get_map_data <- reactive({
+		mapData <- values$map
+		i <- 1
+  	fillArray <- rep("#000000", length(mapData$names))
+  	for(region in mapData$names){
+  		region <- parseRegionName(region)
+  		tryCatch({
+  			fillArray[[i]] <- values$colours[[region]]
+ 				}, 
+ 				error = function(e){
+ 				})
+  		i <- i + 1
+  	}
+  	mapData$fillColour <- fillArray
+		return(mapData)
 	})
 	
+	# remove NA values from x and y columns
 	prepare_fit_bounds <- function(map){
 		map$x <- na.omit(map$x)
   	map$y <- na.omit(map$y)
 		return(map)
 	}
 	
-  # Default map
+  # default map
   output$map <- renderLeaflet({
-  	map <- map(input$area,  plot=FALSE, fill=TRUE)
+  	map <- map(input$area, plot=FALSE, fill=TRUE)
   	map <- prepare_fit_bounds(map)
     leaflet(map) %>% fitBounds(~min(x), ~min(y), ~max(x), ~max(y))
   })
 	
 	# if input$area is updated change map
   observe({
-  	values$map <- map(input$area,  plot=FALSE, fill=TRUE)
+  	values$map <- map(input$area, plot=FALSE, fill=TRUE)
   	map <- prepare_fit_bounds(values$map)
-  	leafletProxy("map") %>% clearShapes() %>%
+  	leafletProxy("map") %>% 
+  		clearShapes() %>%
   		fitBounds(min(map$x), min(map$y), max(map$x), max(map$y))
-  	
 	})
 	
 	# if values$density is changed update the colors
 	observe({
 		values$density
-		statesData <- get_statesData()
-  	leafletProxy("map", data =  statesData) %>% 
-			addPolygons(~x, ~y, ~names, weight = 1, color = "#000000", opacity = 1, fillColor = ~fillColour, fillOpacity = 0.8)
+		mapData <- get_map_data()
+  	leafletProxy("map", data =  mapData) %>% 
+			addPolygons(~x, ~y, ~names, 
+				weight = input$lineSize, 
+				color = ~fillColour, 
+				opacity = 1, 
+				fillColor = ~fillColour, 
+				fillOpacity = input$fillOpacity)
   })
 	
+	# if values$map is updated or showTiles checkbox input is changed
 	observe({
 		values$map
 		if(input$showTiles){
@@ -142,6 +137,7 @@ shinyServer(function(input, output, session) {
 			leafletProxy("map") %>% clearTiles()
 		}
 	})
+	
   # input$map_shape_mouseover gets updated a lot, even if the id doesn't change.
   # We don't want to update the polygons and stateInfo except when the id
   # changes, so use values$highlight to insulate the downstream reactives (as 
@@ -150,15 +146,19 @@ shinyServer(function(input, output, session) {
   observe({
     values$highlight <- input$map_shape_mouseover$id
   })
+	
+	output$table <- renderDataTable({
+		get_file()
+	})
   
   # Dynamically render the box in the upper-right
   output$stateInfo <- renderUI({
     if (is.null(values$highlight)) {
-      return(tags$div("Hover over a state"))
+      return(tags$div("Hover over a region"))
     } 
   	else {
       # Get a properly formatted state name
-      stateName <- names(values$density)[getStateName(values$highlight) == tolower(names(values$density))]
+      stateName <- names(values$density)[parseRegionName(values$highlight) == tolower(names(values$density))]
       return(tags$div(
         tags$strong(stateName),
         tags$div(values$density[stateName], HTML(""))
