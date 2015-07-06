@@ -38,7 +38,6 @@ shinyServer(function(input, output, session) {
 	# assign density names and values based on the selected column
 	get_density <- reactive({ 
 		data_file <- get_file()
-		print("GET_DENSITY")
 		name_col <- tolower(data_file[[1]])
 		name_col <- fix_names(name_col)
 		nums_col <- get_nums_col(data_file)
@@ -196,7 +195,7 @@ shinyServer(function(input, output, session) {
 	
 	# render the legend
 	output$legend <- renderUI({
-		tags$table(
+		tags$table(tags$strong(input$legend), 
 			mapply(function(from, to, color) {
 				tags$tr(
 					tags$td(tags$div(

@@ -65,7 +65,7 @@ sidebarLayout(
 		
     	textInput('legend',
     		label = "Custom legend title", 
-   			value = "")
+   			value = "Legend")
 	),
 	mainPanel(
 		tabsetPanel(type = "tabs",
@@ -83,7 +83,7 @@ sidebarLayout(
 			 
 				# Legend
 			  absolutePanel(
-			    right = 30, top = 340, style = "", class = "floater",
+			    right = 30, top = 320, style = "", class = "floater",
 			    uiOutput("legend")
 			  )
 			),
