@@ -15,7 +15,7 @@ sidebarLayout(
     		choices = c(
     			"Upload File" = 'fileUpload',
 					"Example File" = 'example'),
-    		selected = 'fileUpload'),
+    		selected = 'example'),
     		
     	conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
     		fileInput("file", label = h3("Choropleth File input"))), 
