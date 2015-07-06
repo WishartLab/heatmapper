@@ -29,19 +29,29 @@ shinyServer(function(input, output, session) {
 		return(nums_col)
 	}
 	
+	# add spaces between distinct words if they don't exist
+	fix_names <- function(x){
+		state_pattern <- "(north|south|west|district|new|rhode)(\\S)"
+		x <- sub(pattern = state_pattern, replacement = "\\1 \\2", x = x)
+		return(x)
+	}
 	# assign density names and values based on the selected column
-	get_density <- function() { 
+	get_density <- reactive({ 
 		data_file <- get_file()
-		name_col <- data_file[[1]]
+		print("GET_DENSITY")
+		name_col <- tolower(data_file[[1]])
+		name_col <- fix_names(name_col)
 		nums_col <- get_nums_col(data_file)
 		names(nums_col) <- name_col
 		return(nums_col)
-	}
+	})
 	
 	# read file if chooseInput is changed or file is uploaded
 	get_file <- reactive({
 		if(input$chooseInput == 'example'){
-			data_file <- read.table("data/statetest2.txt", header = TRUE, sep="\t")
+			path <- "data/counties.rds"
+			data_file <- readRDS(path)
+			#data_file <- read.table("data/statetest2.txt", header = TRUE, sep="\t")
 		}
 		else{
 			#path <- "data/counties.rds"
