@@ -2,15 +2,14 @@ library(leaflet)
 library(jscolourR)
 shinyUI(fluidPage(
   includeHTML("www/navbar.html"),
-	
   # Add a little CSS to make the map background pure white
-  tags$head(tags$style("
-    .toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
+  tags$head(
+  	HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
+		tags$style("
+		.toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
 		#showcase-code-position-toggle, #showcase-sxs-code { display: none; }
     .floater { background-color: white; padding: 8px; opacity: 0.7; border-radius: 6px; 
-			box-shadow: 0 0 15px rgba(0,0,0,0.2); }
-  	
-  ")),
+			box-shadow: 0 0 15px rgba(0,0,0,0.2); }")),
 sidebarLayout(
 	sidebarPanel(
 		actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
@@ -39,7 +38,7 @@ sidebarLayout(
    		selectInput("colSelect", label = "Column to use", choices = c("loading..."="temp")),
 		
    		sliderInput("range", 
-   			label = "Range of interest:", 
+   			label = "Range of interest", 
    			min = 0, 
    			max = 100, 
    			value = c(0, 100))
