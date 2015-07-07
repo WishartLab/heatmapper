@@ -73,13 +73,14 @@ shinyServer(function(input, output, session){
 		}
 		
 		if(input$showPoints){
-			m <- addCircles(m, opacity = input$pointOpacity,radius =  input$pointSize,  weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude: ", df$Longitude)))
+			m <-	addCircles(m, opacity = input$pointOpacity,radius =  input$pointSize,  weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude: ", df$Longitude)))
 		}
-		return(m)
 		
+		return(m)
 	})
 
 	observe({
+		get_file()
 		m <- leafletProxy("map", session)
 		if(input$showMap){
 			m %>% addTiles()
