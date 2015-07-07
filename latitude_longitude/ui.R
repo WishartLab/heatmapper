@@ -14,7 +14,7 @@ shinyUI(fluidPage(
     			selected = 'example'),
     		
     		conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
-    			fileInput("file", label = h3("File input"))), 
+    			fileInput("file", label = strong("File input"))), 
     		
     		strong("Background"),
     		checkboxInput('showMap', label = "Show Map", value = TRUE),

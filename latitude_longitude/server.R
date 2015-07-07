@@ -9,7 +9,7 @@ library(KernSmooth)
 
 shinyServer(function(input, output, session){
 
-	get_file <- function(){
+	get_file <- reactive({
 		if(input$chooseInput == 'example'){
 			points <- data.frame(
 				Longitude = c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
@@ -17,8 +17,6 @@ shinyServer(function(input, output, session){
 				)
 		}
 		else{
-			#file <- read.table("data/latlong.txt", header = TRUE, sep="\t")
-			
 			validate(need(input$file$datapath, "Please upload a file"))
 			
 			fileType <- tail(unlist(strsplit(x = input$file$name, split = "[.]")), n=1)
@@ -37,15 +35,19 @@ shinyServer(function(input, output, session){
 				Latitude = c(file$Latitude))
 		}
 		return(points)
-	}
+	})
 	
-	get_plot <- function() {
-		df <- get_file() 
-		
-		# source: http://www.r-bloggers.com/interactive-maps-for-john-snows-cholera-data/
+	# source: http://www.r-bloggers.com/interactive-maps-for-john-snows-cholera-data/
+	get_density <- reactive({
+		df <- get_file()
 		dens <- bkde2D(df, bandwidth=c(bw.ucv(df[,1]),bw.ucv(df[,2])))
-		CL <- contourLines(x = dens$x1, y = dens$x2, z = dens$fhat)
+		return(contourLines(x = dens$x1, y = dens$x2, z = dens$fhat))
+	})
 	
+	get_plot <- reactive({
+		df <- get_file() 
+		CL <- get_density()
+		
 		max_CL <- length(CL)
 		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
 		fill_op <- input$fillOpacity
@@ -61,15 +63,14 @@ shinyServer(function(input, output, session){
 		}
 		
 		if(input$showPoints){
-			m <- addCircles(m, opacity = input$pointOpacity, weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude: ", df$Longitude)))
+			m <- addCircles(m, opacity = input$pointOpacity,radius =  input$pointSize, weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude: ", df$Longitude)))
 		}
-		
 		return(m)
-	}
+	})
+	
 	output$map <- renderLeaflet({
 		get_plot()
 	})
-	
 	
 	output$table <- renderDataTable({
 		get_file()
@@ -81,7 +82,6 @@ shinyServer(function(input, output, session){
 		},
 		content = function(file) {
 			png(file)
-			
 			get_plot()
 			dev.off()
 		}
