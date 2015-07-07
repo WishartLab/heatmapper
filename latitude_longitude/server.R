@@ -45,27 +45,52 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_plot <- reactive({
+		CL <- get_density()
+		max_CL <- length(CL)
+
+		m <- leaflet()
+		
+		for(i in 1:max_CL){	
+			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y)
+		}
+		m %>% clearShapes()
+		return(m)
+	})
+	
+	get_shapes <- reactive({
+		
 		df <- get_file() 
 		CL <- get_density()
-		
 		max_CL <- length(CL)
 		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
 		fill_op <- input$fillOpacity
 		
-		m <- leaflet(df)
-		
-		if(input$showMap){
-			m <- addTiles(m)
-		}
+		m <- leafletProxy("map", session, df)
+		m %>% clearShapes()
 		
 		for(i in 1:max_CL){	
 			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = input$contourSize) 
 		}
 		
 		if(input$showPoints){
-			m <- addCircles(m, opacity = input$pointOpacity,radius =  input$pointSize, weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude: ", df$Longitude)))
+			m <- addCircles(m, opacity = input$pointOpacity,radius =  input$pointSize,  weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude: ", df$Longitude)))
 		}
 		return(m)
+		
+	})
+
+	observe({
+		m <- leafletProxy("map", session)
+		if(input$showMap){
+			m %>% addTiles()
+		}
+		else{
+			m %>% clearTiles()
+		}
+	})
+	
+	observe({
+		get_shapes()
 	})
 	
 	output$map <- renderLeaflet({
