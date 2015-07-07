@@ -2,10 +2,12 @@ library(jscolourR)
 library(leaflet)
 
 shinyUI(fluidPage(
-	includeHTML("navbar.html"),
+	includeHTML("www/navbar.html"),
+	tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}"),
 		sidebarLayout(
     	sidebarPanel(
-    		
+    		actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
+				wellPanel(id = "fileInputPanel",
     		radioButtons('chooseInput',
     			label = "Choose Input Type",
     			choices = c(
@@ -14,15 +16,19 @@ shinyUI(fluidPage(
     			selected = 'example'),
     		
     		conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
-    			fileInput("file", label = strong("File input"))), 
+    			fileInput("file", label = strong("File input")))
+					), 
     		
-    		strong("Background"),
-    		checkboxInput('showMap', label = "Show Map", value = TRUE),
-    		
+  actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
+	wellPanel(id = "colourPanel", 
     		jscolourInput("lowColour", label = "Colour for low numbers", value = "#FFFA00"),
     		
-    		jscolourInput("highColour", label = "Colour for high numbers", value = "#FF0000"),
-    		
+    		jscolourInput("highColour", label = "Colour for high numbers", value = "#FF0000")
+	),
+		actionButton('mapOptionsButton', label = "Hide Map Options", class = "toggleButton fa fa-angle-up"),
+		wellPanel(id = "mapPanel", 	 		
+    		strong("Background"),
+    		checkboxInput('showMap', label = "Show Map", value = TRUE),
     		
     		sliderInput('contourSize', 
     			label = "Contour Line Width (in pixels)", 
@@ -30,6 +36,7 @@ shinyUI(fluidPage(
     			max = 4,
     			value = 1), 
     		
+			strong("Points"),
     		checkboxInput('showPoints', label = "Show Points", value = TRUE),
     		
     		conditionalPanel(condition = "input.showPoints == true", 
@@ -62,8 +69,10 @@ shinyUI(fluidPage(
     				"hybrid" = 'hybrid', 
     				"toner" = 'toner',
     				"watercolor" = 'watercolor'), 
-    			selected = 'terrain'),
-    		
+    			selected = 'terrain')
+			),
+	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
+	wellPanel(id = "downloadPanel", 		
     		radioButtons('downloadType', 
     			label = "Downlaod file format", 
     			choices = c(
@@ -72,9 +81,12 @@ shinyUI(fluidPage(
     			selected = 'pdf'),
     		
     		downloadButton('download', "Download image")
+    		)
     		),
 			mainPanel(
 				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot",includeScript("http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image.js"), 
-						tags$script("L_PREFER_CANVAS = true;"), leafletOutput("map", height = 600)),
-					tabPanel(title = "Table", dataTableOutput("table")))))))
+					tabPanel(title = "Plot", leafletOutput("map", height = 600)),
+					tabPanel(title = "Table", dataTableOutput("table"))))
+			), 
+	singleton(includeScript("www/js/active.js"))
+	))
