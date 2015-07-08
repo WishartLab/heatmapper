@@ -103,13 +103,12 @@ shinyServer(function(input, output, session){
 			finally = {return(y)}
 		)
 	}
-
-
+	
 	################# Display Heatmap ################# 
 	output$map <- renderPlot({
 		x <- get_data_matrix()
-		hr <- NA#as.dendrogram(get_hclust(x))
-		hc <- NA#as.dendrogram(get_hclust(t(x)))
+		ifelse(input$rowv, hr<-as.dendrogram(values$rowHclust), hr<-NA)
+		ifelse(input$colv, hc<-as.dendrogram(values$colHclust), hc<-NA)
 		
 		heatmap(x, 
 			Rowv = hr, 

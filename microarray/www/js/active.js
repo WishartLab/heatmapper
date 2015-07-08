@@ -8,6 +8,14 @@ $(document).ready(function() {
         fileInputButtonCount++;
     } 
        
+    var clusterButtonCount = 0;
+    document.getElementById("clusterOptionsButton").addEventListener("click", toggleClusterButton);
+    
+    function toggleClusterButton(e){
+        generalToggleButtons("#clusterPanel","clusterOptionsButton", "Cluster", clusterButtonCount);
+        clusterButtonCount++;
+    }   
+       
     var colourButtonCount = 0;
     document.getElementById("colourOptionsButton").addEventListener("click", toggleColourButton);
     
