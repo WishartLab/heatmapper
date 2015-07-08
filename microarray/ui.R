@@ -8,17 +8,35 @@ shinyUI(fluidPage(
 	sidebarLayout(
     sidebarPanel(
     	actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
-				wellPanel(id = "fileInputPanel",
+			wellPanel(id = "fileInputPanel",
     		radioButtons('chooseInput',
     			label = "Choose Input Type",
     			choices = c(
     				"Upload File" = 'fileUpload',
-						"Example File" = 'example'),
-    			selected = 'example'),
-    		
-    		conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
-    			fileInput("file", label = strong("File input")))
-					), 
+    				"Example File" = 'examples'),
+    			selected = 'fileUpload'),
+				
+				conditionalPanel(condition = "input.chooseInput == \'examples\'",
+					selectInput('exampleFiles',
+						label = "Choose Example File",
+						choices = c(
+							"Example 1" = 'example_input/example1.txt',
+							"Example 2" = 'example_input/example2.txt',
+							"Example 3" = 'example_input/example3.txt'),
+						selected = 1),
+					tags$div(class="exampleInfo",
+						wellPanel(
+							conditionalPanel(condition = "input.exampleFiles == \'example_input/example1.txt\'", includeHTML("www/example1info.html")),
+							conditionalPanel(condition = "input.exampleFiles == \'example_input/example2.txt\'", includeHTML("www/example2info.html")),
+							conditionalPanel(condition = "input.exampleFiles == \'example_input/example3.txt\'", includeHTML("www/example3info.html"))
+						)
+					),
+					
+					downloadButton(class = "btn-info", outputId = 'downloadExample', label = "Download Example Text File")),
+				
+    		conditionalPanel(condition = "input.chooseInput == \'fileUpload\'",
+    			fileInput('file', label = "Upload File (4MB maximum file size)"))
+    	), 
     		
   		actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "colourPanel", 
