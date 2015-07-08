@@ -1,4 +1,5 @@
 library(jscolourR)
+
 shinyUI(fluidPage(
 	includeHTML("www/navbar.html"),
 	tags$head(
@@ -14,7 +15,7 @@ shinyUI(fluidPage(
     			choices = c(
     				"Upload File" = 'fileUpload',
     				"Example File" = 'examples'),
-    			selected = 'fileUpload'),
+    			selected = 'examples'),
 				
 				conditionalPanel(condition = "input.chooseInput == \'examples\'",
 					selectInput('exampleFiles',
