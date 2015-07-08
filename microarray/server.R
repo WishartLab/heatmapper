@@ -57,7 +57,7 @@ shinyServer(function(input, output, session){
 		x <- get_data_matrix()
 		validate(need(length(x)<10000, 
 			"File is too large for this feature. Please select a smaller file with no more than 10,000 cells."))
-		d3heatmap(x, Rowv = NULL, Colv = NULL, colors = get_colours())
+		d3heatmap(x, Rowv = NULL, Colv = NULL, colors = get_colours(), scale = "row")
 	})
 	
 	################# Display Table ################# 
