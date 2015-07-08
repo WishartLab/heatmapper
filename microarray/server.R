@@ -20,6 +20,12 @@ shinyServer(function(input, output, session){
 		return(data.matrix(data))
 	})
 	
+	get_colours <- reactive({
+		palette <- colorRampPalette(c(input$lowColour, "black", input$highColour))
+		colours <- palette(input$binNumber)
+		return(colours)
+	})
+	
 	################# remove_strings ################# 
 	# removes strings from file content and assigns the 'NAME' column as the row labels
 	remove_strings <- function(x){
@@ -39,15 +45,22 @@ shinyServer(function(input, output, session){
 	################# Display Heatmap ################# 
 	output$map <- renderPlot({
 		x <- get_data_matrix()
-		heatmap(x)
+		heatmap(x, 
+			Rowv = NA, 
+			Colv = NA, 
+			col = get_colours()
+			)
 	})
 	
+	################# Display D3Heatmap ################# 
 	output$d3map <- renderD3heatmap({
 		x <- get_data_matrix()
-		validate(need(length(x)<10000, "File is too large for this feature. Please select a smaller file with no more than 10,000 cells."))
-		d3heatmap(x, Rowv = FALSE, Colv = FALSE)
+		validate(need(length(x)<10000, 
+			"File is too large for this feature. Please select a smaller file with no more than 10,000 cells."))
+		d3heatmap(x, Rowv = NULL, Colv = NULL, colors = get_colours())
 	})
 	
+	################# Display Table ################# 
 	output$table <- renderDataTable({
 		get_file()
 	})

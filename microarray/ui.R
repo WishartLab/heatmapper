@@ -41,15 +41,21 @@ shinyUI(fluidPage(
     		
   		actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "colourPanel", 
-    		jscolourInput("lowColour", label = "Colour for low numbers", value = "#FFFA00"),
+    		jscolourInput('lowColour', label = "Colour for low numbers", value = "#FFFA00"),
     		
-    		jscolourInput("highColour", label = "Colour for high numbers", value = "#FF0000")
+    		jscolourInput('highColour', label = "Colour for high numbers", value = "#FF0000"), 
+				
+				sliderInput('binNumber', label = "Number of bins", 
+					min = 3, 
+					max = 299, 
+					value = 160)
+							
 			)),
 		
 		mainPanel(
 			tabsetPanel(id = "tabSelections", type = "tabs",
-				tabPanel("Plot", tags$br(), plotOutput("map")), 
-				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map")),
+				tabPanel("Plot", tags$br(), plotOutput("map", height = 500)), 
+				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 500)),
 				tabPanel("Table", tags$br(), dataTableOutput("table"))
 			)
 		)
