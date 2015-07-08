@@ -1,5 +1,10 @@
 library(shiny)
 library(d3heatmap)
+library(gplots)
+library(ggdendro)
+# memory testing
+library(pryr)
+
 shinyServer(function(input, output, session){
 	values <- reactiveValues(
 		rowMatrix = c(), 
@@ -54,7 +59,12 @@ shinyServer(function(input, output, session){
 	# uses hclust to cluster data using get_dist distance matrix
 	get_hclust <- function(x){
 		print("hclust")
-		x <- hclust(x, method = input$clusterMethod)
+		if(input$clusterMethod != 'none'){
+			x <- hclust(x, method = input$clusterMethod)
+		}
+		else{
+			x <- NULL
+		}
 		return(x)
 	}
 
@@ -104,13 +114,52 @@ shinyServer(function(input, output, session){
 		)
 	}
 	
+	get_dendrogram <- function(){
+		if(input$dendRow && input$dendCol){
+			if(input$rowv && input$colv){
+				return("both")
+			}
+			else if(input$rowv){
+				return("row")
+			}
+			else if(input$colv){
+				return("column")
+			}
+			else{
+				return("none")
+			}	
+		}
+		else if(input$dendRow){
+			return("row")
+		}
+		else if(input$dendCol){
+			return("column")
+		}
+		else{
+			return("none")
+		}
+	}
+	
 	################# Display Heatmap ################# 
 	output$map <- renderPlot({
 		x <- get_data_matrix()
-		ifelse(input$rowv, hr<-as.dendrogram(values$rowHclust), hr<-NA)
-		ifelse(input$colv, hc<-as.dendrogram(values$colHclust), hc<-NA)
+		ifelse(input$rowv && input$clusterMethod != 'none', hr<-as.dendrogram(values$rowHclust), hr<-NA)
+		ifelse(input$colv && input$clusterMethod != 'none', hc<-as.dendrogram(values$colHclust), hc<-NA)
 		
-		heatmap(x, 
+		print(mem_used())
+		print(object_size(hr))
+		heatmap.2(x,
+			na.color = input$missingColour, 
+			key=FALSE, 
+			symkey=FALSE, 
+			density.info="none", 
+			trace="none",
+			
+			keysize=0.6, 
+			offsetCol = 0, 
+			offsetRow = 0,
+			
+			dendrogram = get_dendrogram(),
 			Rowv = hr, 
 			Colv = hc, 
 			col = get_colour_palette()(input$binNumber), 
@@ -138,6 +187,12 @@ shinyServer(function(input, output, session){
 			scale = input$scale, 
 			show_grid = FALSE, 
 			anim_duration = 0)
+	})
+	
+	output$dendrogram <- renderPlot({
+		# add validate
+		hc <- values$rowHclust
+		ggdendrogram(hc, rotate = TRUE)
 	})
 	
 	################# Display Table ################# 

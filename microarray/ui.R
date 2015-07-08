@@ -63,9 +63,14 @@ shinyUI(fluidPage(
 										"spearman rank correlation" = 'spearman',
 										"manhattan" = 'manhattan'),
 									selected = 'euclidean'),
-	    	strong("Apply Clustering To"),
+	    	
+				strong("Apply Clustering To"),
 				checkboxInput('rowv', label = "Rows", value = TRUE),
-				checkboxInput('colv', label = "Columns", value = FALSE)
+				checkboxInput('colv', label = "Columns", value = FALSE),
+				
+				strong("Show Dendrogram"),
+				checkboxInput('dendRow',	label = "Rows", value = TRUE),
+				checkboxInput('dendCol', label = "Columns", value = FALSE)
 			),
     		
   		actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
@@ -73,6 +78,8 @@ shinyUI(fluidPage(
     		jscolourInput('lowColour', label = "Colour for low numbers", value = "#66CD00"),
     		
     		jscolourInput('highColour', label = "Colour for high numbers", value = "#FF0000"), 
+				
+				jscolourInput('missingColour', label = "Colour for missing values", value = "#000000"),
 				
 				sliderInput('binNumber', label = "Number of bins", 
 					min = 3, 
@@ -98,6 +105,7 @@ shinyUI(fluidPage(
 			tabsetPanel(id = "tabSelections", type = "tabs",
 				tabPanel("Plot", tags$br(), plotOutput("map", height = 500)), 
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 500)),
+				tabPanel("Dendrogram", plotOutput("dendrogram", height = 600)), 
 				tabPanel("Table", tags$br(), dataTableOutput("table"))
 			)
 		)
