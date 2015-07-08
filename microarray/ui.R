@@ -41,14 +41,21 @@ shinyUI(fluidPage(
     		
   		actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "colourPanel", 
-    		jscolourInput('lowColour', label = "Colour for low numbers", value = "#FFFA00"),
+    		jscolourInput('lowColour', label = "Colour for low numbers", value = "#66CD00"),
     		
     		jscolourInput('highColour', label = "Colour for high numbers", value = "#FF0000"), 
 				
 				sliderInput('binNumber', label = "Number of bins", 
 					min = 3, 
 					max = 299, 
-					value = 160)
+					value = 160), 
+				
+				selectInput('scale', label = "Scale Type",
+					choices = c(
+						"row" = 'row',
+						"column" = 'column',
+						"none" = 'none'),
+					selected = 'row')
 							
 			)),
 		
