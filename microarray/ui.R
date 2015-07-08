@@ -38,6 +38,27 @@ shinyUI(fluidPage(
     		conditionalPanel(condition = "input.chooseInput == \'fileUpload\'",
     			fileInput('file', label = "Upload File (4MB maximum file size)"))
     	), 
+    	selectInput('clusterMethod', 
+								label = "Clustering Method",
+								choices = c(
+									"none" = 'none',
+									"single linkage" = 'single',
+									"complete linkage" = 'complete',
+									"average linkage" = 'average',
+									"centroid linkage" = 'centroid'),
+								selected = 'single'),
+    	selectInput('distanceMethod', 
+								label = "Distance Measurement Method",
+								choices = c(
+									"euclidean" = 'euclidean',
+									"pearson" = 'pearson',
+									"kendall's tau" = 'kendall',
+									"spearman rank correlation" = 'spearman',
+									"manhattan" = 'manhattan'),
+								selected = 'euclidean'),
+    	strong("Apply Clustering To"),
+			checkboxInput('rowv', label = "Rows", value = TRUE),
+			checkboxInput('colv', label = "Columns", value = FALSE),
     		
   		actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "colourPanel", 
@@ -56,8 +77,14 @@ shinyUI(fluidPage(
 						"column" = 'column',
 						"none" = 'none'),
 					selected = 'row')
-							
-			)),
+			), 
+    	actionButton('labelOptionsButton', label = "Hide Label Options", class = "toggleButton fa fa-angle-up"),
+			wellPanel(id = "labelPanel", 
+    		textInput('title', label = "Title", value = ""),
+				textInput('xlab', label = "X Axis Label", value = ""),
+				textInput('ylab', label = "Y Axis Label",	value = "")
+			)
+    ),
 		
 		mainPanel(
 			tabsetPanel(id = "tabSelections", type = "tabs",
