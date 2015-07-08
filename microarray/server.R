@@ -124,11 +124,16 @@ shinyServer(function(input, output, session){
 	################# Display D3Heatmap ################# 
 	output$d3map <- renderD3heatmap({
 		x <- get_data_matrix()
+		
 		validate(need(length(x)<20000, 
 			"File is too large for this feature. Please select a smaller file with no more than 20,000 cells."))
+		
+		ifelse(input$rowv, hr<-as.dendrogram(values$rowHclust), hr<-FALSE)
+		ifelse(input$colv, hc<-as.dendrogram(values$colHclust), hc<-FALSE)
+		
 		d3heatmap(x, 
-			Rowv = NULL, 
-			Colv = NULL, 
+			Rowv = hr, 
+			Colv = hc, 
 			colors = get_colour_palette()(3), 
 			scale = input$scale, 
 			show_grid = FALSE, 
