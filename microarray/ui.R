@@ -1,5 +1,5 @@
 library(jscolourR)
-
+library(d3heatmap)
 shinyUI(fluidPage(
 	includeHTML("www/navbar.html"),
 	tags$head(
@@ -45,8 +45,15 @@ shinyUI(fluidPage(
     		
     		jscolourInput("highColour", label = "Colour for high numbers", value = "#FF0000")
 			)),
+		
 		mainPanel(
-			plotOutput("map")
-			)), 
+			tabsetPanel(id = "tabSelections", type = "tabs",
+				tabPanel("Plot", tags$br(), plotOutput("map")), 
+				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map")),
+				tabPanel("Table", tags$br(), dataTableOutput("table"))
+			)
+		)
+	), 
+	
 	singleton(includeScript("www/js/active.js"))
 	))
