@@ -173,7 +173,15 @@ shinyServer(function(input, output, session){
 			xlab = input$xlab, 
 			ylab = input$ylab
 			)
-	}, height = reactive({input$mapHeight}) )
+	},width =  reactive({input$mapWidth}),
+		height = reactive({
+			if(input$fullSize){
+				input$mapWidth / ncol(values$rowMatrix) * nrow(values$rowMatrix)
+			}
+			else{
+				input$mapHeight
+			}
+		}) )
 	
 	################# Display D3Heatmap ################# 
 	output$d3map <- renderD3heatmap({

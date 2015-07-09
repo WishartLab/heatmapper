@@ -100,28 +100,37 @@ shinyUI(fluidPage(
 					selected = 'row')
 			), 
     	
-    	sliderInput('mapHeight', label = "Plot Height", 
-    		min = 500,
-    		max = 50000, 
-    		value = 500),
-    	
     	actionButton('labelOptionsButton', label = "Hide Label Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "labelPanel", 
     		textInput('title', label = "Title", value = ""),
 				textInput('xlab', label = "X Axis Label", value = ""),
 				textInput('ylab', label = "Y Axis Label",	value = "")
-			)
-    ),
+			), 
+    	
+    	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
+			wellPanel(id = "downloadPanel", 
+    	checkboxInput('fullSize', label = "Preview Full Height (not recomended for large files)", value = FALSE),
+    	
+    	sliderInput('mapHeight', label = "Plot Height", 
+    		min = 500,
+    		max = 2000, 
+    		value = 600),
+    	
+    	sliderInput('mapWidth', label = "Plot Width", 
+    		min = 500,
+    		max = 2000, 
+    		value = 600)
+    )),
 		
 		mainPanel(
 			tabsetPanel(id = "tabSelections", type = "tabs",
 				tabPanel("Plot", tags$br(), plotOutput("map")), 
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 600)),
-				tabPanel("RowDendrogram", 
+				tabPanel("Row Dendrogram", 
 					uiOutput("rowInfo"),
 					h3("Row Dendrogram"), 
 					plotOutput("rowDendrogram")), 
-				tabPanel("ColDendrogram",
+				tabPanel("Column Dendrogram",
 					h3("Column Dendrogram"), 
 					plotOutput("colDendrogram")), 
 				tabPanel("Table", tags$br(), dataTableOutput("table"))
