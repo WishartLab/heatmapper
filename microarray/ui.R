@@ -10,8 +10,11 @@ shinyUI(fluidPage(
 	tags$head(
 		HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
 		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}")),
-	div(class = "busy", absolutePanel(spin())),
 
+	div(class = "busy", absolutePanel(width = "50px", height = "100px",
+		fixed = TRUE, left = "65%", top = "45%", 
+		h5("Loading"), tags$br(), spin())),
+	
 	sidebarLayout(
     sidebarPanel(
     	actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
