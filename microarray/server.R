@@ -8,8 +8,8 @@ library(pryr)
 shinyServer(function(input, output, session){
 	
 	# source: http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels
-	#output$activeTab <- reactive({return(input$tabSelections)})
-  #outputOptions(output, 'activeTab', suspendWhenHidden=FALSE)
+	output$activeTab <- reactive({return(input$tabSelections)})
+  outputOptions(output, 'activeTab', suspendWhenHidden=FALSE)
 	
 	values <- reactiveValues(
 		rowMatrix = c(), 
