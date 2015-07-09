@@ -168,7 +168,7 @@ shinyServer(function(input, output, session){
 			xlab = input$xlab, 
 			ylab = input$ylab
 			)
-	})
+	}, height = reactive({input$mapHeight}) )
 	
 	################# Display D3Heatmap ################# 
 	output$d3map <- renderD3heatmap({
@@ -177,13 +177,13 @@ shinyServer(function(input, output, session){
 		validate(need(length(x)<20000, 
 			"File is too large for this feature. Please select a smaller file with no more than 20,000 cells."))
 		
-		ifelse(input$rowv, hr<-as.dendrogram(values$rowHclust), hr<-FALSE)
-		ifelse(input$colv, hc<-as.dendrogram(values$colHclust), hc<-FALSE)
+		ifelse(input$rowv && input$clusterMethod != 'none', hr<-as.dendrogram(values$rowHclust), hr<-FALSE)
+		ifelse(input$colv && input$clusterMethod != 'none', hc<-as.dendrogram(values$colHclust), hc<-FALSE)
 		
 		d3heatmap(x, 
 			Rowv = hr, 
 			Colv = hc, 
-			colors = get_colour_palette()(3), 
+			colors = get_colour_palette()(3),
 			scale = input$scale, 
 			show_grid = FALSE, 
 			anim_duration = 0)
@@ -193,9 +193,6 @@ shinyServer(function(input, output, session){
 		validate(need(!is.null(x), paste0("Select a clusting method and apply clustering to ", message, " to view this dendrogram")))
 		x$labels <- strtrim(x$labels, 60)
 		ggdendrogram(x, rotate = TRUE)
-		#hcd <- as.dendrogram(x)
-		#plot(cut(hcd, h = 5)$lower[[2]], main = "Upper tree of cut at h=75")
-		#plot(as.dendrogram(x), hang=-1, cex=0.5)
 	}
 
 	output$rowDendrogram <- renderPlot({

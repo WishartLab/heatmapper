@@ -1,5 +1,6 @@
 library(jscolourR)
 library(d3heatmap)
+library(spin)
 
 # maximum number of nested expressions to be evaluated
 options(expressions = 500000)
@@ -9,6 +10,7 @@ shinyUI(fluidPage(
 	tags$head(
 		HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
 		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}")),
+	div(class = "busy", absolutePanel(spin())),
 
 	sidebarLayout(
     sidebarPanel(
@@ -94,6 +96,12 @@ shinyUI(fluidPage(
 						"none" = 'none'),
 					selected = 'row')
 			), 
+    	
+    	sliderInput('mapHeight', label = "Plot Height", 
+    		min = 500,
+    		max = 50000, 
+    		value = 500),
+    	
     	actionButton('labelOptionsButton', label = "Hide Label Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "labelPanel", 
     		textInput('title', label = "Title", value = ""),
@@ -104,9 +112,10 @@ shinyUI(fluidPage(
 		
 		mainPanel(
 			tabsetPanel(id = "tabSelections", type = "tabs",
-				tabPanel("Plot", tags$br(), plotOutput("map", height = 500)), 
-				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 500)),
+				tabPanel("Plot", tags$br(), plotOutput("map")), 
+				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 600)),
 				tabPanel("RowDendrogram", 
+					uiOutput("rowInfo"),
 					h3("Row Dendrogram"), 
 					plotOutput("rowDendrogram")), 
 				tabPanel("ColDendrogram",
