@@ -105,7 +105,11 @@ shinyUI(fluidPage(
 			tabsetPanel(id = "tabSelections", type = "tabs",
 				tabPanel("Plot", tags$br(), plotOutput("map", height = 500)), 
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 500)),
-				tabPanel("Dendrogram", plotOutput("dendrogram", height = 600)), 
+				tabPanel("Dendrogram", 
+					h3("Row Dendrogram"), 
+					plotOutput("rowDendrogram", height = 500), 
+					h3("Column Dendrogram"), 
+					plotOutput("colDendrogram", height = 500)), 
 				tabPanel("Table", tags$br(), dataTableOutput("table"))
 			)
 		)
