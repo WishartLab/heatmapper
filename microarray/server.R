@@ -6,6 +6,11 @@ library(ggdendro)
 library(pryr)
 
 shinyServer(function(input, output, session){
+	
+	# source: http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels
+	#output$activeTab <- reactive({return(input$tabSelections)})
+  #outputOptions(output, 'activeTab', suspendWhenHidden=FALSE)
+	
 	values <- reactiveValues(
 		rowMatrix = c(), 
 		colMatrix = c(), 
@@ -194,7 +199,7 @@ shinyServer(function(input, output, session){
 		x$labels <- strtrim(x$labels, 60)
 		ggdendrogram(x, rotate = TRUE)
 	}
-
+	
 	output$rowDendrogram <- renderPlot({
 		validate(need(input$rowv, "Apply clustering to rows to view this dendrogram"))
 		get_dendrogram_plot(values$rowHclust, "row")
