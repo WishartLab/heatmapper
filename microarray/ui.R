@@ -49,11 +49,12 @@ shinyUI(fluidPage(
 									label = "Clustering Method",
 									choices = c(
 										"none" = 'none',
-										"single linkage" = 'single',
-										"complete linkage" = 'complete',
 										"average linkage" = 'average',
-										"centroid linkage" = 'centroid'),
-									selected = 'single'),
+										"centroid linkage" = 'centroid',
+										"complete linkage" = 'complete',
+										"single linkage" = 'single'
+									),
+									selected = 'average'),
 	    	selectInput('distanceMethod', 
 									label = "Distance Measurement Method",
 									choices = c(
@@ -105,11 +106,12 @@ shinyUI(fluidPage(
 			tabsetPanel(id = "tabSelections", type = "tabs",
 				tabPanel("Plot", tags$br(), plotOutput("map", height = 500)), 
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 500)),
-				tabPanel("Dendrogram", 
+				tabPanel("RowDendrogram", 
 					h3("Row Dendrogram"), 
-					plotOutput("rowDendrogram", height = 500), 
+					plotOutput("rowDendrogram")), 
+				tabPanel("ColDendrogram",
 					h3("Column Dendrogram"), 
-					plotOutput("colDendrogram", height = 500)), 
+					plotOutput("colDendrogram")), 
 				tabPanel("Table", tags$br(), dataTableOutput("table"))
 			)
 		)

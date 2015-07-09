@@ -191,17 +191,22 @@ shinyServer(function(input, output, session){
 
 	get_dendrogram_plot <- function(x, message){
 		validate(need(!is.null(x), paste0("Select a clusting method and apply clustering to ", message, " to view this dendrogram")))
-		ggdendrogram(data = x, rotate = TRUE)
+		x$labels <- strtrim(x$labels, 60)
+		ggdendrogram(x, rotate = TRUE)
+		#hcd <- as.dendrogram(x)
+		#plot(cut(hcd, h = 5)$lower[[2]], main = "Upper tree of cut at h=75")
+		#plot(as.dendrogram(x), hang=-1, cex=0.5)
 	}
-	
+
 	output$rowDendrogram <- renderPlot({
+		validate(need(input$rowv, "Apply clustering to rows to view this dendrogram"))
 		get_dendrogram_plot(values$rowHclust, "row")
-		
-	})
+	}, height = reactive({ifelse(is.null(values$rowHclust), 100, length(values$rowHclust$labels)*12)}) )
 	
 	output$colDendrogram <- renderPlot({
+		validate(need(input$colv, "Apply clustering to columns to view this dendrogram"))
 		get_dendrogram_plot(values$colHclust, "column")
-	})
+	}, height = reactive({ifelse(is.null(values$colHclust), 100, length(values$colHclust$labels)*12)}) )
 	
 	################# Display Table ################# 
 	output$table <- renderDataTable({
