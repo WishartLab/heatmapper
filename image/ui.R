@@ -1,5 +1,4 @@
 library(leaflet)
-library(googleVis)
 
 shinyUI(fluidPage(
 	includeHTML("navbar.html"),

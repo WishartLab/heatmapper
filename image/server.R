@@ -1,9 +1,9 @@
 library(shiny)
 library(leaflet)
-library(raster)
 library(jpeg)
-library(googleVis)
 library(ggplot2)
+library(grid)
+
 shinyServer(function(input, output, session){
 	
 	values <- reactiveValues(
