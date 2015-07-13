@@ -1,8 +1,10 @@
 library(leaflet)
+library(googleVis)
 
 shinyUI(fluidPage(
-	
-  leafletOutput("map", width = 600, height = 600),
+	plotOutput("ggplotMap", width = 400, height = 600),
+	#htmlOutput("gvisMap"),
+  #leafletOutput("map", width = 600, height = 600),
 	tags$br(),
 	uiOutput("info"),
 	

@@ -2,18 +2,38 @@ library(shiny)
 library(leaflet)
 library(raster)
 library(jpeg)
-
+library(googleVis)
+library(ggplot2)
 shinyServer(function(input, output, session){
 	
 	values <- reactiveValues(
-  	data = data.frame("x" = c(1,1,1,2,2,2,3,3,3), "y" = c(1,2,3,1,2,3,1,2,3), "value" = seq(1,9)), 
+  	data = data.frame("value" = seq(1,9), "x" = c(1,1,1,2,2,2,3,3,3), "y" = c(1,2,3,1,2,3,1,2,3)), 
   	index = NULL, 
   	num = NULL)
 	
+	
+	output$ggplotMap <- renderPlot({
+		require("grid")
+		img <- readJPEG("small.jpg")
+		g <- rasterGrob(img, interpolate=TRUE)
+
+		mdat <- values$data
+		plot1 <- ggplot(mdat, aes(x = x, y = y)) + annotation_custom(g) 
+ 		plot1 <- plot1 + geom_point(size = 5, color = "red")	 + theme_bw()
+		plot1
+	})
 	output$map <- renderLeaflet({
 		r <- raster("small.jpg")
+		print(r)
 		crs(r) <- CRS("+init=epsg:4326")
-		leaflet() %>% addRasterImage(r) %>% setView(2,2,8) 
+		leaflet() %>% addRasterImage(r) %>% setView(2,2,8) %>% removeControl("leaflet-control-zoom")
+	})
+	
+	output$gvisMap <- renderGvis({
+		#gvisComboChart(values$data)
+		image <- as.raster(readJPEG("small.jpg"))
+		gvisBubbleChart(values$data, options = list(backgroundColor = image))
+		#gvisScatterChart(values$data)
 	})
 
 	output$info <- renderUI({
@@ -24,7 +44,6 @@ shinyServer(function(input, output, session){
 	})
 	
 	print_marker <- reactive({
-		#updateNumericInput(session, "numInput", value = 10)
 		if(!is.null(values$index)){
 			x <- values$data$value[values$index]
 			paste0("Current Value at Index ", values$index, ": ", x)
