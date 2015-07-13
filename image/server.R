@@ -1,5 +1,7 @@
 library(shiny)
 library(leaflet)
+library(raster)
+library(jpeg)
 
 shinyServer(function(input, output, session){
 	
@@ -8,8 +10,10 @@ shinyServer(function(input, output, session){
   	index = NULL, 
   	num = NULL)
 	
-	output$plot <- renderLeaflet({
-		leaflet() 
+	output$map <- renderLeaflet({
+		r <- raster("small.jpg")
+		crs(r) <- CRS("+init=epsg:4326")
+		leaflet() %>% addRasterImage(r) %>% setView(2,2,8) 
 	})
 
 	output$info <- renderUI({
@@ -37,7 +41,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	observe({
-		values$index <- as.numeric(input$plot_marker_click$id)
+		values$index <- as.numeric(input$map_marker_click$id)
 		updateNumericInput(session, "numInput", value = values$data$value[values$index])
 		#print("set values$index")
 		#print(values$index)
@@ -51,8 +55,8 @@ shinyServer(function(input, output, session){
 	observe({
 		#print("leafletProxy")
 		col <- colorRampPalette(c("red", "yellow"))(length(values$data$value))
-		x <- leafletProxy("plot", session, data = values$data) %>% clearMarkers() %>%
-			addCircleMarkers(lng = ~x, lat = ~y, color = col, layerId = rownames(values$data), popup = paste("Current Value:", values$data$value)) %>% 
-			fitBounds(1, 1, 3, 3) 
+		x <- leafletProxy("map", session, data = values$data) %>% clearMarkers() %>% 
+			addCircleMarkers(lng = ~x, lat = ~y, color = col, layerId = rownames(values$data), 
+				popup = paste("Current Value:", values$data$value))
 		})
 })

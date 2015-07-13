@@ -1,7 +1,8 @@
 library(leaflet)
 
 shinyUI(fluidPage(
-  leafletOutput("plot"),
+	
+  leafletOutput("map", width = 600, height = 600),
 	tags$br(),
 	uiOutput("info"),
 	
