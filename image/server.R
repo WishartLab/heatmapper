@@ -22,19 +22,6 @@ shinyServer(function(input, output, session){
  		plot1 <- plot1 + geom_point(size = 5, color = "red")	 + theme_bw()
 		plot1
 	})
-	output$map <- renderLeaflet({
-		r <- raster("small.jpg")
-		print(r)
-		crs(r) <- CRS("+init=epsg:4326")
-		leaflet() %>% addRasterImage(r) %>% setView(2,2,8) %>% removeControl("leaflet-control-zoom")
-	})
-	
-	output$gvisMap <- renderGvis({
-		#gvisComboChart(values$data)
-		image <- as.raster(readJPEG("small.jpg"))
-		gvisBubbleChart(values$data, options = list(backgroundColor = image))
-		#gvisScatterChart(values$data)
-	})
 
 	output$info <- renderUI({
 		wellPanel(print_marker())
@@ -55,27 +42,23 @@ shinyServer(function(input, output, session){
 	
 	observe({
 		values$num <- input$numInput 
-		#print("set values$num")
-		#print(values$num)
+		print("set values$num")
+		print(values$num)
 	})
 	
 	observe({
-		values$index <- as.numeric(input$map_marker_click$id)
-		updateNumericInput(session, "numInput", value = values$data$value[values$index])
-		#print("set values$index")
-		#print(values$index)
+		point <- nearPoints(values$data, input$plot_click, addDist = TRUE)
+    if(length(rownames(point))>0){
+    	values$index <- as.numeric(rownames(point))
+			updateNumericInput(session, "numInput", value = values$data$value[values$index])
+    	print("set values$index")
+			print(values$index)
+    }
 	})
 	
 	observe({
 		input$submit
-		values$data$value[isolate(values$index)] <- isolate(values$num)
+		isolate(values$data$value[values$index] <- values$num)
 	})
-	
-	observe({
-		#print("leafletProxy")
-		col <- colorRampPalette(c("red", "yellow"))(length(values$data$value))
-		x <- leafletProxy("map", session, data = values$data) %>% clearMarkers() %>% 
-			addCircleMarkers(lng = ~x, lat = ~y, color = col, layerId = rownames(values$data), 
-				popup = paste("Current Value:", values$data$value))
-		})
+
 })
