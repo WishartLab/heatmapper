@@ -14,12 +14,12 @@ shinyServer(function(input, output, session){
 	
 	output$ggplotMap <- renderPlot({
 		require("grid")
-		img <- readJPEG("small.jpg")
+		img <- readJPEG("jasper.jpg")
 		g <- rasterGrob(img, interpolate=TRUE)
 
 		mdat <- values$data
-		plot1 <- ggplot(mdat, aes(x = x, y = y)) + annotation_custom(g) 
- 		plot1 <- plot1 + geom_point(size = 5, color = "red")	 + theme_bw()
+		plot1 <- ggplot(mdat, aes(x = x, y = y, color = value)) + annotation_custom(g,1,3,1,3)
+ 		plot1 <- plot1 + geom_point(size = 5)	 + theme_bw() + scale_color_gradientn(colours = rainbow(7))
 		plot1
 	})
 

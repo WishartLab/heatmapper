@@ -2,6 +2,7 @@ library(leaflet)
 library(googleVis)
 
 shinyUI(fluidPage(
+	includeHTML("navbar.html"),
 	plotOutput("ggplotMap", click = "plot_click", width = 400, height = 600),
 	tags$br(),
 	uiOutput("info"),
