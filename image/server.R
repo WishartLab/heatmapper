@@ -3,6 +3,7 @@ library(leaflet)
 library(jpeg)
 library(ggplot2)
 library(grid)
+library(ggtern)
 
 shinyServer(function(input, output, session){
 	
