@@ -9,15 +9,15 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
   sidebarPanel(
+  	sliderInput('numGridRows', label = "Number of rows", min = 3, max = 40, step = 1, value = 3),  
+  	checkboxInput('showPoints', label = strong("Show points"), value = TRUE),
   	uiOutput("info"),
-  	numericInput("numInput", label = "Edit value here", value = "", min = 0, max = 1000), 
-  	actionButton("submit", label = "Submit"),
+  	numericInput('numInput', label = "Edit value here", value = "", min = 0, max = 1000), 
+  	actionButton('submit', label = "Submit"),
 		tags$br(), tags$br(),
   	tableOutput("all")
 	),
 	mainPanel(
 		plotOutput("ggplotMap", click = "plot_click", width = 500, height = 500)
-		)	
-	
-	))
+	)))
 )

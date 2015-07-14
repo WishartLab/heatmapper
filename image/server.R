@@ -7,14 +7,20 @@ library(grid)
 shinyServer(function(input, output, session){
 	
 	values <- reactiveValues(
-  	data = data.frame("value" = seq(1,9), "x" = c(1,1,1,2,2,2,3,3,3), "y" = c(1,2,3,1,2,3,1,2,3)), 
+  	data = data.frame("value" = c(), "x" = c(), "y" = c()), 
   	index = NULL, 
   	num = NULL)
 		
+	observe({
+		max <- input$numGridRows
+		newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
+		newy <- rep(seq(1, max), max)
+		values$data <- data.frame("value" = seq(1,max), "x" = newx, "y" = newy)
+	})
 	get_background <- reactive({
 		img <- readJPEG("jasper.jpg")
 		g <- rasterGrob(img, interpolate=TRUE)
-		annotation_custom(g,1,3,1,3)	
+		annotation_custom(g,1,input$numGridRows,1,input$numGridRows)	
 	})
 	
 	get_theme <- reactive({
@@ -22,13 +28,19 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_breaks <- reactive({
-		1:10
+		1:input$numGridRows
+	})
+	
+	get_points <- reactive({
+		if(input$showPoints){
+			geom_point(size = 5)
+		}
 	})
 	
 	output$ggplotMap <- renderPlot({
 		plot1 <- ggplot(values$data, aes(x = x, y = y, color = value)) 
 		plot1 <- plot1 + get_background() + scale_x_continuous(breaks=get_breaks()) + scale_y_continuous(breaks=get_breaks())
- 		plot1 <- plot1 + geom_point(size = 5) + get_theme() + scale_color_gradientn(colours = rainbow(7))
+ 		plot1 <- plot1 + get_points() + get_theme() + scale_color_gradientn(colours = rainbow(7))
 		plot1
 	})
 
