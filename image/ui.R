@@ -9,8 +9,10 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
   sidebarPanel(
-  	sliderInput('numGridRows', label = "Number of rows", min = 3, max = 40, step = 1, value = 3),  
+  	sliderInput('numGridRows', label = "Number of rows", min = 3, max = 40, step = 1, value = 3),
+  	helpText("Warning: any changes to values will be lost after changing the number of rows"),
   	checkboxInput('showPoints', label = strong("Show points"), value = TRUE),
+  	checkboxInput('showImage', label = strong("Show background image"), value = TRUE),
   	uiOutput("info"),
   	numericInput('numInput', label = "Edit value here", value = "", min = 0, max = 1000), 
   	actionButton('submit', label = "Submit"),
