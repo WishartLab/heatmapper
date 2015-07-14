@@ -10,16 +10,16 @@ shinyServer(function(input, output, session){
   	data = data.frame("value" = seq(1,9), "x" = c(1,1,1,2,2,2,3,3,3), "y" = c(1,2,3,1,2,3,1,2,3)), 
   	index = NULL, 
   	num = NULL)
-	
-	
-	output$ggplotMap <- renderPlot({
-		require("grid")
+		
+	get_background <- reactive({
 		img <- readJPEG("jasper.jpg")
 		g <- rasterGrob(img, interpolate=TRUE)
-
-		mdat <- values$data
-		plot1 <- ggplot(mdat, aes(x = x, y = y, color = value)) + annotation_custom(g,1,3,1,3)
- 		plot1 <- plot1 + geom_point(size = 5)	 + theme_bw() + scale_color_gradientn(colours = rainbow(7))
+		annotation_custom(g,1,3,1,3)	
+	})
+	
+	output$ggplotMap <- renderPlot({
+		plot1 <- ggplot(values$data, aes(x = x, y = y, color = value)) 
+ 		plot1 <- plot1 + get_background() + geom_point(size = 5) + theme_bw() + scale_color_gradientn(colours = rainbow(7))
 		plot1
 	})
 
