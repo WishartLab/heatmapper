@@ -17,9 +17,18 @@ shinyServer(function(input, output, session){
 		annotation_custom(g,1,3,1,3)	
 	})
 	
+	get_theme <- reactive({
+		theme(panel.grid.minor = element_line(color = "black"))
+	})
+	
+	get_breaks <- reactive({
+		1:10
+	})
+	
 	output$ggplotMap <- renderPlot({
 		plot1 <- ggplot(values$data, aes(x = x, y = y, color = value)) 
- 		plot1 <- plot1 + get_background() + geom_point(size = 5) + theme_bw() + scale_color_gradientn(colours = rainbow(7))
+		plot1 <- plot1 + get_background() + scale_x_continuous(breaks=get_breaks()) + scale_y_continuous(breaks=get_breaks())
+ 		plot1 <- plot1 + geom_point(size = 5) + get_theme() + scale_color_gradientn(colours = rainbow(7))
 		plot1
 	})
 

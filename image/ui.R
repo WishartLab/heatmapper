@@ -16,7 +16,7 @@ shinyUI(fluidPage(
   	tableOutput("all")
 	),
 	mainPanel(
-		plotOutput("ggplotMap", click = "plot_click", width = 400, height = 600)
+		plotOutput("ggplotMap", click = "plot_click", width = 500, height = 500)
 		)	
 	
 	))
