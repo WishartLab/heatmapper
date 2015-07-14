@@ -15,7 +15,7 @@ shinyServer(function(input, output, session){
 		max <- input$numGridRows
 		newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
 		newy <- rep(seq(1, max), max)
-		values$data <- data.frame("value" = seq(1,max), "x" = newx, "y" = newy)
+		values$data <- data.frame("value" = rep(1,max), "x" = newx, "y" = newy)
 	})
 	get_background <- reactive({
 		if(input$showImage){
@@ -35,11 +35,14 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_points <- reactive({
+		# hollow square = 0, filled square = 15
+		# hollow circle = 1, filled circle = 16
 		if(input$showPoints){
-			geom_point(size = 5)
+			geom_point(size = 5, shape = as.numeric(input$pointType))
 		}
 	})
 	
+
 	output$ggplotMap <- renderPlot({
 		
 		# calculate weighted density, source: http://bit.ly/1JfZQYQ
@@ -57,12 +60,19 @@ shinyServer(function(input, output, session){
 		# scale x and y axis values
 		plot1 <- plot1 + scale_x_continuous(breaks=get_breaks()) + scale_y_continuous(breaks=get_breaks())
 		
-		# add points and contour
-		plot1 <- plot1 + get_points() + geom_contour(data= dfdens, aes(x=x, y=y, z=z)) 
-		plot1 <- plot1 + stat_contour(data = dfdens, geom="polygon", aes(x = x, y = y, z = z,  fill=..level.., alpha = 0.2))
+		# add contour and fill
+		if(input$showContour){
+			plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens)
+		}
 		
+		if(input$showFill){
+			plot1 <- plot1 +  stat_contour(aes(z = z,  fill=..level.., alpha = ..level..), data = dfdens, geom="polygon")
+			plot1 <- plot1 + scale_fill_gradient(low = "yellow", high = "red")
+		}
+		
+		# add points	
+		plot1 <- plot1 + get_points() 
 
-		
 		plot1
 	})
 
