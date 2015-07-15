@@ -10,10 +10,14 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
 	  sidebarPanel(
+	  	fileInput('imageFile', label = "Upload image here"),
+	  	
 	  	sliderInput('numGridRows', label = "Number of rows", min = 3, max = 40, step = 1, value = 10),
 	  	bsTooltip(id = "numGridRows", 
 				title = "Warning: any changes to values will be lost after changing the number of rows",
 				placement = "bottom"),
+	  	
+	  	checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE),
 	  	
 	  	checkboxInput('showImage', label = strong("Show background image"), value = TRUE),
 	  	checkboxInput('showContour', label = strong("Show contour lines"), value = TRUE),
@@ -41,7 +45,7 @@ shinyUI(fluidPage(
 		mainPanel(
 			tabsetPanel(
 				tabPanel("Plot",
-					plotOutput("ggplotMap", click = "plot_click", width = 500, height = 500)
+					plotOutput("ggplotMap", click = "plot_click", width = 600, height = 500)
 				),
 				tabPanel("Table", 
 					tags$br(),

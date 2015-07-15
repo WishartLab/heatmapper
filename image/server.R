@@ -42,11 +42,24 @@ shinyServer(function(input, output, session){
 	})
 	
 	#################### GGPLOT HELPER FUNCTIONS ####################
+	get_file <- reactive({
+		if(!is.null(input$imageFile)){
+			readJPEG(input$imageFile$datapath)
+		}
+		else{
+			NULL
+		}
+	})
+	
 	get_background <- reactive({
-		if(input$showImage){
-			img <- readJPEG("jasper.jpg")
-			g <- rasterGrob(img, interpolate=TRUE)
-			annotation_custom(g,1,input$numGridRows,1,input$numGridRows)	
+		if(input$showImage && !is.null(get_file())){
+			if(input$stretchImage){
+				g <- rasterGrob(get_file(), width=unit(1,"npc"), height=unit(1,"npc"), interpolate=TRUE)
+			}
+			else{
+				g <- rasterGrob(get_file(), interpolate = TRUE)
+			}
+			annotation_custom(g, -Inf, Inf, -Inf, Inf)	
 		}
 	})
 	
