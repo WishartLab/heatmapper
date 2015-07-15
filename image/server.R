@@ -43,8 +43,21 @@ shinyServer(function(input, output, session){
 	
 	#################### GGPLOT HELPER FUNCTIONS ####################
 	get_file <- reactive({
+		
 		if(!is.null(input$imageFile)){
-			readJPEG(input$imageFile$datapath)
+
+			name <- input$imageFile$name
+			extension <- tolower(substr(name, nchar(name)-3, nchar(name)))
+
+			if(extension == ".jpg" || extension == "jpeg"){
+				readJPEG(input$imageFile$datapath)
+			}
+			else if(extension == ".png"){
+				readPNG(input$imageFile$datapath)
+			}
+			else{
+				validate(txt = "Unfortunately the type of file you uploaded is not supported. Please upload a PNG or JPEG image file.")
+			}
 		}
 		else{
 			NULL
