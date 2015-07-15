@@ -86,7 +86,18 @@ shinyServer(function(input, output, session){
 	})
 	output$hoverInfo <- renderTable({
 		points <- nearPoints(values$data, input$plot_hover)
-		data.frame("index" = rownames(points), "value" = points$value)
+		if(length(rownames(points))>0){
+			data.frame("x" = points$x, 
+				"y" = points$y, 
+				"index" = rownames(points), 
+				"value" = points$value)
+		}
+		else{
+			data.frame("x" = "", 
+				"y" = "", 
+				"index" = "", 
+				"value" = "")
+		}
 	}, include.rownames = FALSE)
 
 	output$info <- renderUI({
