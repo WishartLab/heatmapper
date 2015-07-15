@@ -3,26 +3,49 @@ library(jpeg)
 library(ggplot2)
 library(grid)
 library(ggtern)
-library(shinyBS)
+
 shinyServer(function(input, output, session){
 	
+	#################### GLOBAL REACTIVE VALUES ####################
 	values <- reactiveValues(
   	data = data.frame("value" = c(), "x" = c(), "y" = c()), 
   	index = NULL, 
-  	num = NULL, 
-		dfdens = NULL)
-		
+  	num = NULL)
+
+	#################### OBSERVERS ####################
+	# reset values$data if grid changes
 	observe({
 		max <- input$numGridRows
 		newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
 		newy <- rep(seq(1, max), max)
 		values$data <- data.frame("value" = rep(0,max), "x" = newx, "y" = newy)
 	})
+	
+	# set values$num when numeric input is changed
+	observe({
+		values$num <- input$numInput 
+	})
+	
+	# set values$index of marker when clicked and update numeric input value
+	observe({
+		point <- nearPoints(values$data, input$plot_click, addDist = TRUE)
+    if(length(rownames(point))>0){
+    	values$index <- as.numeric(rownames(point))
+			updateNumericInput(session, "numInput", value = values$data$value[values$index])
+    }
+	})
+	
+	# click submit button to change value
+	observe({
+		input$submit
+		isolate(values$data$value[values$index] <- values$num)
+	})
+	
+	#################### GGPLOT HELPER FUNCTIONS ####################
 	get_background <- reactive({
 		if(input$showImage){
 			img <- readJPEG("jasper.jpg")
 			g <- rasterGrob(img, interpolate=TRUE)
-			# remove
 			annotation_custom(g,1,input$numGridRows,1,input$numGridRows)	
 		}
 	})
@@ -36,8 +59,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_points <- reactive({
-		# hollow square = 0, filled square = 15
-		# hollow circle = 1, filled circle = 16
+		# hollow square = 0, filled square = 15, hollow circle = 1, filled circle = 16
 		if(input$showPoints){
 			geom_point(size = 5, shape = as.numeric(input$pointType))
 		}
@@ -84,8 +106,10 @@ shinyServer(function(input, output, session){
 		
 		plot1
 	})
-	output$hoverInfo <- renderTable({
-		points <- nearPoints(values$data, input$plot_hover)
+	
+	#################### SIDEBAR HELPER FUNCTIONS ####################
+	output$clickTable <- renderTable({
+		points <- nearPoints(values$data, input$plot_click)
 		if(length(rownames(points))>0){
 			data.frame("x" = points$x, 
 				"y" = points$y, 
@@ -93,21 +117,19 @@ shinyServer(function(input, output, session){
 				"value" = points$value)
 		}
 		else{
-			data.frame("x" = "", 
-				"y" = "", 
-				"index" = "", 
-				"value" = "")
+			data.frame("x" = " ", 
+				"y" = " ", 
+				"index" = " ", 
+				"value" = " ")
 		}
 	}, include.rownames = FALSE)
-
-	output$info <- renderUI({
-		wellPanel(print_marker())
-	})
-	output$all <- renderTable({
-		values$data
+	
+	output$clickInfo <- renderUI({
+		wellPanel(clickInfo_text())
 	})
 	
-	print_marker <- reactive({
+	# change format of text for printing
+	clickInfo_text <- reactive({
 		if(!is.null(values$index)){
 			x <- values$data$value[values$index]
 			paste0("Current Value at Index ", values$index, ": ", x)
@@ -117,25 +139,9 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
-	observe({
-		values$num <- input$numInput 
-		print("set values$num")
-		print(values$num)
-	})
-	
-	observe({
-		point <- nearPoints(values$data, input$plot_click, addDist = TRUE)
-    if(length(rownames(point))>0){
-    	values$index <- as.numeric(rownames(point))
-			updateNumericInput(session, "numInput", value = values$data$value[values$index])
-    	print("set values$index")
-			print(values$index)
-    }
-	})
-	
-	observe({
-		input$submit
-		isolate(values$data$value[values$index] <- values$num)
+	#################### TABLE HELPER FUNCTIONS ####################
+	output$table <- renderDataTable({
+		values$data
 	})
 
 })
