@@ -1,5 +1,5 @@
-library(leaflet)
 library(spin)
+library(shinyBS)
 shinyUI(fluidPage(
 	includeHTML("navbar.html"),
 	
@@ -10,8 +10,9 @@ shinyUI(fluidPage(
 	sidebarLayout(
   sidebarPanel(
   	sliderInput('numGridRows', label = "Number of rows", min = 3, max = 40, step = 1, value = 10),
-  	helpText("Warning: any changes to values will be lost after changing the number of rows"),
-  	
+  	 bsTooltip(id = "numGridRows", 
+			title = "Warning: any changes to values will be lost after changing the number of rows",
+			placement = "bottom"),
   	checkboxInput('showImage', label = strong("Show background image"), value = TRUE),
   	checkboxInput('showContour', label = strong("Show contour lines"), value = TRUE),
   	checkboxInput('showFill', label = strong("Show contour fill"), value = TRUE),
@@ -27,12 +28,13 @@ shinyUI(fluidPage(
   		selected = 1),
   	
   	uiOutput("info"),
+  	tableOutput("hoverInfo"),
   	numericInput('numInput', label = "Edit value here", value = "", min = 0, max = 1000), 
   	actionButton('submit', label = "Submit"),
 		tags$br(), tags$br(),
   	tableOutput("all")
 	),
 	mainPanel(
-		plotOutput("ggplotMap", click = "plot_click", width = 500, height = 500)
+		plotOutput("ggplotMap", click = "plot_click", hover = "plot_hover", width = 500, height = 500)
 	)))
 )

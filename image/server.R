@@ -1,10 +1,9 @@
 library(shiny)
-library(leaflet)
 library(jpeg)
 library(ggplot2)
 library(grid)
 library(ggtern)
-
+library(shinyBS)
 shinyServer(function(input, output, session){
 	
 	values <- reactiveValues(
@@ -85,6 +84,10 @@ shinyServer(function(input, output, session){
 		
 		plot1
 	})
+	output$hoverInfo <- renderTable({
+		points <- nearPoints(values$data, input$plot_hover)
+		data.frame("index" = rownames(points), "value" = points$value)
+	}, include.rownames = FALSE)
 
 	output$info <- renderUI({
 		wellPanel(print_marker())
