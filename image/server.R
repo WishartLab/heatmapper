@@ -96,7 +96,9 @@ shinyServer(function(input, output, session){
 		plot1 <- 	ggplot(data = values$data, aes(x = x, y = y))  + get_background() + get_theme()
 		
 		# scale x and y axis values
-		plot1 <- plot1 + scale_x_continuous(breaks=get_breaks()) + scale_y_continuous(breaks=get_breaks())
+		plot1 <- plot1 + 
+			scale_x_continuous(breaks=get_breaks(), expand = c(0, 0)) + 
+			scale_y_continuous(breaks=get_breaks(), expand = c(0, 0))
 	
 		# avoid contour/fill errors
 		if(var(dfdens$z) != 0){
