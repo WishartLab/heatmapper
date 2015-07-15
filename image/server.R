@@ -1,5 +1,6 @@
 library(shiny)
 library(jpeg)
+library(png)
 library(ggplot2)
 library(grid)
 library(ggtern)
