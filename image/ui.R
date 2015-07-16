@@ -29,7 +29,11 @@ shinyUI(fluidPage(
 				conditionalPanel(condition = "input.chooseInput == \'fileUpload\'",
 	  			fileInput('imageFile', label = "Upload image here")
 				),
-				checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE), 
+				span(id = "fullStretchImage", 
+					checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE)), 
+	  		bsTooltip(id = "fullStretchImage", 
+					title = "Warning: changing this feature may cause misalignment of the heatmap layer",
+					placement = "top"),
 				
 				sliderInput('plotWidth', label = "Plot width", min = 400, max = 2000, value = 600),
 				sliderInput('plotHeight', label = "Plot height", min = 400, max = 2000, value = 500)
@@ -48,7 +52,7 @@ shinyUI(fluidPage(
 				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 100, step = 1, value = 50),
 		  	bsTooltip(id = "numGridRows", 
 					title = "Warning: any changes to values will be lost after changing the number of rows",
-					placement = "bottom"),
+					placement = "top"),
 
 		  	checkboxInput('showImage', label = strong("Show background image"), value = TRUE),
 		  	checkboxInput('showContour', label = strong("Show contour lines"), value = TRUE),
@@ -81,14 +85,18 @@ shinyUI(fluidPage(
 	  	
 	  	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "downloadPanel", 
-				selectInput('downloadFormat', label = "Select file type of download", 
+				selectInput('downloadPlotFormat', label = "Plot download file type", 
 					choices = c(
 						"JPEG" = 'jpg', 
 						"PNG" = 'png', 
 						"PDF" = 'pdf'
 					), 
 					selected = 'jpg'),
-				downloadButton('plotDownload', label = "Download plot")
+				downloadButton('plotDownload', label = "Download plot"),
+				tags$br(), 
+				tags$br(),
+				
+				downloadButton('tableDownload', label = "Download table")
 			)	  	
 		),
 		mainPanel(

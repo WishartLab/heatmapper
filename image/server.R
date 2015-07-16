@@ -190,16 +190,21 @@ shinyServer(function(input, output, session){
 		}
 	}, include.rownames = FALSE)
 	
-	get_download_name <- function(){
-		paste0("plot.", input$downloadFormat)
+	get_plot_download_name <- function(){
+		paste0("plot.", input$downloadPlotFormat)
 	}
 	output$plotDownload <- downloadHandler(
-		filename = reactive({get_download_name()}),
+		filename = reactive({get_plot_download_name()}),
 		content = function(file){
 			ggsave(file, get_plot(), width = input$plotWidth/72, height = input$plotHeight/72)
 		}
 	)
 	
+	output$tableDownload <- downloadHandler(
+		filename = "table.txt", 
+		content = function(file){
+			write.table(values$data, file, quote = FALSE, sep = "\t")
+		})
 	#################### TABLE HELPER FUNCTIONS ####################
 	output$table <- renderDataTable({
 		values$data
