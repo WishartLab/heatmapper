@@ -17,8 +17,18 @@ shinyUI(fluidPage(
 	  sidebarPanel(
 	  	
 	  	actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "fileInputPanel",
-	  		fileInput('imageFile', label = "Upload image here"),
+			
+	  	wellPanel(id = "fileInputPanel",
+				radioButtons('chooseInput',
+    			label = "Choose Input Type",
+    			choices = c(
+    				"Upload Image" = 'fileUpload',
+    				"Example Image" = 'example'),
+    			selected = 'fileUpload'),
+				
+				conditionalPanel(condition = "input.chooseInput == \'fileUpload\'",
+	  			fileInput('imageFile', label = "Upload image here")
+				),
 				checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE)
 			),
 	  	
@@ -32,7 +42,7 @@ shinyUI(fluidPage(
 	  	
 	  	actionButton('plotOptionsButton', label = "Hide Plot Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "plotPanel", 
-				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 40, step = 1, value = 10),
+				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 100, step = 1, value = 10),
 		  	bsTooltip(id = "numGridRows", 
 					title = "Warning: any changes to values will be lost after changing the number of rows",
 					placement = "bottom"),
@@ -59,7 +69,7 @@ shinyUI(fluidPage(
 		mainPanel(
 			tabsetPanel(
 				tabPanel("Plot",
-					plotOutput("ggplotMap", click = "plot_click", width = 600, height = 500)
+						plotOutput("ggplotMap", click = "plot_click", width = 600, height = 500)
 				),
 				tabPanel("Table", 
 					tags$br(),

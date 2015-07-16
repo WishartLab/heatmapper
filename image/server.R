@@ -29,7 +29,7 @@ shinyServer(function(input, output, session){
 	
 	# set values$index of marker when clicked and update numeric input value
 	observe({
-		point <- nearPoints(values$data, input$plot_click, addDist = TRUE)
+		point <- nearPoints(values$data, input$plot_click, addDist = TRUE, maxpoints = 1)
     if(length(rownames(point))>0){
     	values$index <- as.numeric(rownames(point))
 			updateNumericInput(session, "numInput", value = values$data$value[values$index])
@@ -44,8 +44,10 @@ shinyServer(function(input, output, session){
 	
 	#################### GGPLOT HELPER FUNCTIONS ####################
 	get_file <- reactive({
-		
-		if(!is.null(input$imageFile)){
+		if(input$chooseInput == "example"){
+			readJPEG("example_input/jasper.jpg")
+		}
+		else if(!is.null(input$imageFile)){
 
 			name <- input$imageFile$name
 			extension <- tolower(substr(name, nchar(name)-3, nchar(name)))
@@ -78,7 +80,8 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_theme <- reactive({
-		theme(panel.grid.minor = element_line(color = "black"))
+		theme_bw()
+		#theme(panel.grid.minor = element_line(color = "black"))
 	})
 	
 	get_breaks <- reactive({
@@ -88,7 +91,7 @@ shinyServer(function(input, output, session){
 	get_points <- reactive({
 		# hollow square = 0, filled square = 15, hollow circle = 1, filled circle = 16
 		if(input$showPoints){
-			geom_point(size = 5, shape = as.numeric(input$pointType))
+			geom_point( shape = as.numeric(input$pointType))
 		}
 	})
 
@@ -117,28 +120,30 @@ shinyServer(function(input, output, session){
 		# avoid contour/fill errors
 		if(var(dfdens$z) != 0){
 			
-			# add contour
-			if(input$showContour){
-				plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens)
-			}
-			
 			#add fill
 			if(input$showFill){
 				plot1 <- plot1 + 
 					stat_contour(aes(z = z,  fill=..level.., alpha = ..level..), data = dfdens, geom="polygon")  +
-					scale_fill_gradient(low = "yellow", high = "red")
+					scale_fill_gradientn(colours = rev(rainbow(7)))
+			}
+			
+			# add contour
+			if(input$showContour){
+				plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens)
 			}
 		}
 		
-		# add points
-		plot1 <- plot1 + get_points() 
+		# prevent "no layers in plot" error
+		plot1 <- plot1 + geom_blank()
 		
-		plot1
+		# add points
+		plot1 + get_points() 
+		
 	})
 	
 	#################### SIDEBAR HELPER FUNCTIONS ####################
 	output$clickTable <- renderTable({
-		points <- nearPoints(values$data, input$plot_click)
+		points <- nearPoints(values$data, input$plot_click, maxpoints = 1)
 		if(length(rownames(points))>0){
 			data.frame("x" = points$x, 
 				"y" = points$y, 
