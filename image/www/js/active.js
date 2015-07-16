@@ -26,7 +26,15 @@ $(document).ready(function() {
     function toggleEditButton(e){
         generalToggleButtons("#editPanel","editOptionsButton", "Editing", editButtonCount);
         editButtonCount++;
-    }   
+    }  
+     
+    var colourButtonCount = 0;
+    document.getElementById("colourOptionsButton").addEventListener("click", toggleColourButton);
+    
+    function toggleColourButton(e){
+        generalToggleButtons("#colourPanel","colourOptionsButton", "Colour", colourButtonCount);
+        colourButtonCount++;
+    }
        
     var plotButtonCount = 0;
     document.getElementById("plotOptionsButton").addEventListener("click", togglePlotButton);

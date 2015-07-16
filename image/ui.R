@@ -65,6 +65,20 @@ shinyUI(fluidPage(
 		  		selected = 0)
 				),
 	  	
+	  	actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
+			wellPanel(id = "colourPanel", 
+				selectInput('colour', label = "Colour Scheme", selectize = FALSE,
+						choices = c(
+							"Rainbow" = 'rainbow', 
+							"Topo" = 'topo', 
+							"Custom" = 'custom'), 
+						selected = 'custom'), 
+				conditionalPanel(condition = "input.colour == 'custom'",
+					tags$div(id = 'colourSection', 
+						jscolourInput("lowColour", label = "Colour for low numbers", value = "#FFFF00"),
+						jscolourInput("highColour", label = "Colour for high numbers", value = "#EE00FF")))
+			),
+	  	
 	  	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "downloadPanel", 
 				selectInput('downloadFormat', label = "Select file type of download", 

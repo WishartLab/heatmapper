@@ -120,7 +120,19 @@ shinyServer(function(input, output, session){
 		data.frame(expand.grid(x=dens$x, y=dens$y), z=as.vector(dens$z))
 	})
 	
-	get_plot <- function(){
+	get_colours <- reactive({
+		if(input$colour == 'rainbow'){
+			scale_fill_gradientn(colours = rev(rainbow(7)))
+		}
+		else if(input$colour == 'custom'){
+			scale_fill_gradient(low = input$lowColour, high = input$highColour)
+		}
+		else{
+			scale_fill_gradientn(colours = rev(topo.colors(7)))
+		}
+	})
+	
+	get_plot <- reactive({
 		
 		dfdens <- get_density()
 		
@@ -139,7 +151,7 @@ shinyServer(function(input, output, session){
 			if(input$showFill){
 				plot1 <- plot1 + 
 					stat_contour(aes(z = z,  fill=..level.., alpha = ..level..), data = dfdens, geom="polygon")  +
-					scale_fill_gradientn(colours = rev(rainbow(7)))
+					get_colours()
 			}
 			
 			# add contour
@@ -153,7 +165,7 @@ shinyServer(function(input, output, session){
 		
 		# add points
 		plot1 + get_points() 
-	}
+	})
 	
 	output$ggplotMap <- renderPlot({
 		get_plot()
