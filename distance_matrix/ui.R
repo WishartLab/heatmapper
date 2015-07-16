@@ -2,7 +2,7 @@ library(jscolourR)
 library(d3heatmap)
 
 shinyUI(fluidPage(
-	includeHTML("navbar.html"),
+	includeHTML("www/navbar.html"),
 	tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}"),
 		sidebarLayout(
 			sidebarPanel(
