@@ -58,6 +58,7 @@ shinyUI(fluidPage(
 		  	checkboxInput('showContour', label = strong("Show contour lines"), value = TRUE),
 		  	checkboxInput('showFill', label = strong("Show contour fill"), value = TRUE),
 		  	checkboxInput('showPoints', label = strong("Show points"), value = TRUE),
+				checkboxInput('showSelectedPoint', label = strong("Highlight selected point"), value = FALSE),
 		  	
 		  	selectInput('pointType', label = "Select point type", 
 		  		choices = c(

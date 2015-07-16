@@ -106,7 +106,7 @@ shinyServer(function(input, output, session){
 	get_points <- reactive({
 		# hollow square = 0, filled square = 15, hollow circle = 1, filled circle = 16
 		if(input$showPoints){
-			geom_point( shape = as.numeric(input$pointType))
+			geom_point( shape = as.numeric(input$pointType)) 
 		}
 	})
 
@@ -129,6 +129,14 @@ shinyServer(function(input, output, session){
 		}
 		else{
 			scale_fill_gradientn(colours = rev(topo.colors(7)))
+		}
+	})
+	
+	get_selected_point <- reactive({
+		if(!is.null(values$index)){
+			x_val <- values$data$x[[values$index]]
+			y_val <- values$data$y[[values$index]]
+			geom_point(x = x_val, y = y_val, colour = "yellow", size = 4)
 		}
 	})
 	
@@ -161,14 +169,19 @@ shinyServer(function(input, output, session){
 		}
 		
 		# prevent "no layers in plot" error
-		plot1 <- plot1 + geom_blank()
+		plot1 <- plot1 + geom_blank() 
 		
 		# add points
-		plot1 + get_points() 
+		plot1 + get_points()
 	})
 	
 	output$ggplotMap <- renderPlot({
-		get_plot()
+		if(input$showSelectedPoint){
+			get_plot() + get_selected_point()
+		}
+		else{
+			get_plot()
+		}
 	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
 	
 	#################### SIDEBAR HELPER FUNCTIONS ####################
