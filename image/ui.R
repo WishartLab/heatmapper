@@ -35,6 +35,7 @@ shinyUI(fluidPage(
 	  	actionButton('editOptionsButton', label = "Hide Editing Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "editPanel",
 	  		uiOutput("clickInfo"),
+				strong("Selected Point"),
 	  		tableOutput("clickTable"),
 				numericInput('numInput', label = "Edit value here", value = "", min = 0, max = 1000), 
 				actionButton('submit', label = "Submit")

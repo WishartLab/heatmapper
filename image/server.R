@@ -163,7 +163,8 @@ shinyServer(function(input, output, session){
 	}, include.rownames = FALSE)
 	
 	output$clickInfo <- renderUI({
-		wellPanel(clickInfo_text())
+		tags$p(clickInfo_text(),
+		tags$br())
 	})
 	
 	# change format of text for printing
