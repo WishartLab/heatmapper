@@ -29,7 +29,10 @@ shinyUI(fluidPage(
 				conditionalPanel(condition = "input.chooseInput == \'fileUpload\'",
 	  			fileInput('imageFile', label = "Upload image here")
 				),
-				checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE)
+				checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE), 
+				
+				sliderInput('plotWidth', label = "Plot width", min = 400, max = 2000, value = 600),
+				sliderInput('plotHeight', label = "Plot height", min = 400, max = 2000, value = 500)
 			),
 	  	
 	  	actionButton('editOptionsButton', label = "Hide Editing Options", class = "toggleButton fa fa-angle-up"),
@@ -46,8 +49,7 @@ shinyUI(fluidPage(
 		  	bsTooltip(id = "numGridRows", 
 					title = "Warning: any changes to values will be lost after changing the number of rows",
 					placement = "bottom"),
-		  	
-		  	
+
 		  	checkboxInput('showImage', label = strong("Show background image"), value = TRUE),
 		  	checkboxInput('showContour', label = strong("Show contour lines"), value = TRUE),
 		  	checkboxInput('showFill', label = strong("Show contour fill"), value = TRUE),
@@ -64,12 +66,21 @@ shinyUI(fluidPage(
 				),
 	  	
 	  	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "downloadPanel")	  	
+			wellPanel(id = "downloadPanel", 
+				selectInput('downloadFormat', label = "Select file type of download", 
+					choices = c(
+						"JPEG" = 'jpg', 
+						"PNG" = 'png', 
+						"PDF" = 'pdf'
+					), 
+					selected = 'jpg'),
+				downloadButton('plotDownload', label = "Download plot")
+			)	  	
 		),
 		mainPanel(
 			tabsetPanel(
 				tabPanel("Plot",
-						plotOutput("ggplotMap", click = "plot_click", width = 600, height = 500)
+						plotOutput("ggplotMap", click = "plot_click")
 				),
 				tabPanel("Table", 
 					tags$br(),

@@ -120,8 +120,8 @@ shinyServer(function(input, output, session){
 		data.frame(expand.grid(x=dens$x, y=dens$y), z=as.vector(dens$z))
 	})
 	
-	output$ggplotMap <- renderPlot({
-
+	get_plot <- function(){
+		
 		dfdens <- get_density()
 		
 		# add background and theme
@@ -153,8 +153,11 @@ shinyServer(function(input, output, session){
 		
 		# add points
 		plot1 + get_points() 
-		
-	})
+	}
+	
+	output$ggplotMap <- renderPlot({
+		get_plot()
+	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
 	
 	#################### SIDEBAR HELPER FUNCTIONS ####################
 	output$clickTable <- renderTable({
@@ -174,6 +177,16 @@ shinyServer(function(input, output, session){
 				"Value" = " ")
 		}
 	}, include.rownames = FALSE)
+	
+	get_download_name <- function(){
+		paste0("plot.", input$downloadFormat)
+	}
+	output$plotDownload <- downloadHandler(
+		filename = reactive({get_download_name()}),
+		content = function(file){
+			ggsave(file, get_plot(), width = input$plotWidth/72, height = input$plotHeight/72)
+		}
+	)
 	
 	#################### TABLE HELPER FUNCTIONS ####################
 	output$table <- renderDataTable({
