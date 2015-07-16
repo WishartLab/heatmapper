@@ -24,7 +24,7 @@ shinyServer(function(input, output, session){
 	
 	# set values$num when numeric input is changed
 	observe({
-		values$num <- input$numInput 
+		values$num <- input$numInput
 	})
 	
 	# set values$index of marker when clicked and update numeric input value
@@ -39,7 +39,11 @@ shinyServer(function(input, output, session){
 	# click submit button to change value
 	observe({
 		input$submit
-		isolate(values$data$value[values$index] <- values$num)
+		isolate({
+			if(!is.null(values$num) && !is.na(values$num)){
+				values$data$value[values$index] <- values$num
+			}
+		})
 	})
 	
 	#################### GGPLOT HELPER FUNCTIONS ####################
