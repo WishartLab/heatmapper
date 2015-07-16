@@ -34,16 +34,15 @@ shinyUI(fluidPage(
 	  	
 	  	actionButton('editOptionsButton', label = "Hide Editing Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "editPanel",
-	  		uiOutput("clickInfo"),
-				strong("Selected Point"),
+				strong("Selected point"),
 	  		tableOutput("clickTable"),
-				numericInput('numInput', label = "Edit value here", value = "", min = 0, max = 1000), 
+				numericInput('numInput', label = "Edit selected point value", value = "", min = 0, max = 1000), 
 				actionButton('submit', label = "Submit")
 			),
 	  	
 	  	actionButton('plotOptionsButton', label = "Hide Plot Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "plotPanel", 
-				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 100, step = 1, value = 10),
+				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 100, step = 1, value = 50),
 		  	bsTooltip(id = "numGridRows", 
 					title = "Warning: any changes to values will be lost after changing the number of rows",
 					placement = "bottom"),
@@ -61,7 +60,7 @@ shinyUI(fluidPage(
 		  			"square - hollow" = 0, 
 		  			"square - filled" = 15
 		  			), 
-		  		selected = 1)
+		  		selected = 0)
 				),
 	  	
 	  	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),

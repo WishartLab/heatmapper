@@ -29,8 +29,8 @@ shinyServer(function(input, output, session){
 	
 	# set values$index of marker when clicked and update numeric input value
 	observe({
-		point <- nearPoints(values$data, input$plot_click, addDist = TRUE, maxpoints = 1)
-    if(length(rownames(point))>0){
+		point <- get_nearPoints()
+    if(!is.null(point)){
     	values$index <- as.numeric(rownames(point))
 			updateNumericInput(session, "numInput", value = values$data$value[values$index])
     }
@@ -65,6 +65,17 @@ shinyServer(function(input, output, session){
 			else{
 				validate(txt = "Unfortunately the type of file you uploaded is not supported. Please upload a PNG or JPEG image file.")
 			}
+		}
+		else{
+			NULL
+		}
+	})
+	
+	# value of clicked point
+	get_nearPoints <- reactive({
+		point <- nearPoints(values$data, input$plot_click, maxpoints = 1)
+		if(length(rownames(point))>0){
+			point
 		}
 		else{
 			NULL
@@ -147,36 +158,22 @@ shinyServer(function(input, output, session){
 	
 	#################### SIDEBAR HELPER FUNCTIONS ####################
 	output$clickTable <- renderTable({
-		points <- nearPoints(values$data, input$plot_click, maxpoints = 1)
-		if(length(rownames(points))>0){
-			data.frame("x" = points$x, 
-				"y" = points$y, 
-				"index" = rownames(points), 
-				"value" = points$value)
+		point <- values$data[values$index,]
+		if(length(rownames(point))>0){
+			x <- data.frame(
+				"Index" = rownames(point), 
+				"X" = point$x, 
+				"Y" = point$y, 
+				"Value" = point$value)
 		}
 		else{
-			data.frame("x" = " ", 
-				"y" = " ", 
-				"index" = " ", 
-				"value" = " ")
+			x <- data.frame(
+				"Index" = " ", 
+				"X" = " ", 
+				"Y" = " ", 
+				"Value" = " ")
 		}
 	}, include.rownames = FALSE)
-	
-	output$clickInfo <- renderUI({
-		tags$p(clickInfo_text(),
-		tags$br())
-	})
-	
-	# change format of text for printing
-	clickInfo_text <- reactive({
-		if(!is.null(values$index)){
-			x <- values$data$value[values$index]
-			paste0("Current Value at Index ", values$index, ": ", x)
-		}
-		else{
-			paste("Click a point")
-		}
-	})
 	
 	#################### TABLE HELPER FUNCTIONS ####################
 	output$table <- renderDataTable({
