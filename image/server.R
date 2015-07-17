@@ -110,12 +110,16 @@ shinyServer(function(input, output, session){
 		}
 	})
 
+	get_n <- reactive({
+		input$numGridRows*4
+	})
+	
 	get_density <- reactive({
 		# calculate weighted density, source: http://bit.ly/1JfZQYQ
 		data <- values$data
-		dens <- kde2d.weighted(data$x, data$y, data$value)
+		dens <<- kde2d.weighted(data$x, data$y, data$value, n = get_n())
 		
-		# set NaNs to 0
+		# set NAs to 0
 		dens$z[is.na(dens$z)] <- 0
 		data.frame(expand.grid(x=dens$x, y=dens$y), z=as.vector(dens$z))
 	})

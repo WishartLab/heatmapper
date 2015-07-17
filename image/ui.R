@@ -72,7 +72,7 @@ shinyUI(fluidPage(
 	  	
 	  	actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "colourPanel", 
-				sliderInput('fillOpacity', label = "Fill opactiy", min = 0, max = 1, value = 0.25, step = 0.05),
+				sliderInput('fillOpacity', label = "Fill opactiy", min = 0, max = 1, value = 0.5, step = 0.05),
 				selectInput('colour', label = "Colour Scheme", selectize = FALSE,
 						choices = c(
 							"Rainbow" = 'rainbow', 
