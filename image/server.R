@@ -111,7 +111,7 @@ shinyServer(function(input, output, session){
 	get_points <- reactive({
 		# hollow square = 0, filled square = 15, hollow circle = 1, filled circle = 16
 		if(input$showPoints){
-			geom_point( shape = as.numeric(input$pointType)) 
+			geom_point(shape = as.numeric(input$pointType), size = 4.5) 
 		}
 	})
 
@@ -119,7 +119,7 @@ shinyServer(function(input, output, session){
 		
 		# calculate weighted density, source: http://bit.ly/1JfZQYQ
 		data <- values$data
-		dens <<- kde2d.weighted(data$x, data$y, data$value, n = input$nKde2d)
+		dens <- kde2d.weighted(data$x, data$y, data$value, n = input$nKde2d)
 		
 		# set NAs to 0
 		dens$z[is.na(dens$z)] <- 0
@@ -164,13 +164,13 @@ shinyServer(function(input, output, session){
 			#add fill
 			if(input$showFill){
 				plot1 <- plot1 + 
-					stat_contour(aes(z = z,  fill=..level..), alpha = input$fillOpacity, data = dfdens, geom="polygon")  +
+					stat_contour(aes(z = z,  fill=..level..), bins = input$contourBins, alpha = input$fillOpacity, data = dfdens, geom="polygon")  +
 					get_colours()
 			}
 			
 			# add contour
 			if(input$showContour){
-				plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens)
+				plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens, bins = input$contourBins)
 			}
 		}
 		

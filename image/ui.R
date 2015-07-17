@@ -35,8 +35,8 @@ shinyUI(fluidPage(
 					title = "Warning: changing this feature may cause misalignment of the heatmap layer",
 					placement = "top"),
 				
-				sliderInput('plotWidth', label = "Plot width", min = 400, max = 2000, value = 600),
-				sliderInput('plotHeight', label = "Plot height", min = 400, max = 2000, value = 500)
+				sliderInput('plotWidth', label = "Plot width (in px)", min = 400, max = 2000, value = 600),
+				sliderInput('plotHeight', label = "Plot height (in px)", min = 400, max = 2000, value = 500)
 			),
 	  	
 	  	actionButton('editOptionsButton', label = "Hide Editing Options", class = "toggleButton fa fa-angle-up"),
@@ -49,18 +49,23 @@ shinyUI(fluidPage(
 	  	
 	  	actionButton('plotOptionsButton', label = "Hide Plot Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "plotPanel", 
-				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 100, step = 1, value = 100),
+				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 200, step = 1, value = 50),
 		  	bsTooltip(id = "numGridRows", 
 					title = "Warning: any changes to values will be lost after changing the number of rows",
 					placement = "top"),
 				
-				#Number of grid points in each direction for kernel density estimation
+				
 				sliderInput('nKde2d', label = "Contour detail", 
 					min = 10, max = 400, value = 200, step = 10),
-
-		  	checkboxInput('showImage', label = strong("Show background image"), value = TRUE),
+				bsTooltip(id = "nKde2d", 
+					title = "This feature sets the number of grid points in each direction for kernel density estimation",
+					placement = "top"),
+				
 		  	checkboxInput('showContour', label = strong("Show contour lines"), value = TRUE),
 		  	checkboxInput('showFill', label = strong("Show contour fill"), value = TRUE),
+				
+				checkboxInput('showImage', label = strong("Show background image"), value = TRUE),
+				
 		  	checkboxInput('showPoints', label = strong("Show points"), value = TRUE),
 				checkboxInput('showSelectedPoint', label = strong("Highlight selected point"), value = FALSE),
 		  	
@@ -76,7 +81,10 @@ shinyUI(fluidPage(
 	  	
 	  	actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "colourPanel", 
-				sliderInput('fillOpacity', label = "Fill opactiy", min = 0, max = 1, value = 0.5, step = 0.05),
+				
+				sliderInput('contourBins', label = "Number of bins for contours", min = 2, max = 50, value = 10), 
+				
+				sliderInput('fillOpacity', label = "Fill opacity", min = 0, max = 1, value = 0.5, step = 0.05),
 				selectInput('colour', label = "Colour Scheme", selectize = FALSE,
 						choices = c(
 							"Rainbow" = 'rainbow', 
