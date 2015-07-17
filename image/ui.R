@@ -49,10 +49,14 @@ shinyUI(fluidPage(
 	  	
 	  	actionButton('plotOptionsButton', label = "Hide Plot Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "plotPanel", 
-				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 100, step = 1, value = 50),
+				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 100, step = 1, value = 100),
 		  	bsTooltip(id = "numGridRows", 
 					title = "Warning: any changes to values will be lost after changing the number of rows",
 					placement = "top"),
+				
+				#Number of grid points in each direction for kernel density estimation
+				sliderInput('nKde2d', label = "Contour detail", 
+					min = 10, max = 400, value = 200, step = 10),
 
 		  	checkboxInput('showImage', label = strong("Show background image"), value = TRUE),
 		  	checkboxInput('showContour', label = strong("Show contour lines"), value = TRUE),

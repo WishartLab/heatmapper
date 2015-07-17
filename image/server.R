@@ -46,6 +46,11 @@ shinyServer(function(input, output, session){
 		})
 	})
 	
+	# update input$nKde2d when input$numGridRows is changed
+	observe({
+		updateSliderInput(session, 'nKde2d', step = input$numGridRows, min = input$numGridRows)
+	})
+	
 	#################### GGPLOT HELPER FUNCTIONS ####################
 	get_file <- reactive({
 		if(input$chooseInput == "example"){
@@ -110,14 +115,11 @@ shinyServer(function(input, output, session){
 		}
 	})
 
-	get_n <- reactive({
-		input$numGridRows*4
-	})
-	
 	get_density <- reactive({
+		
 		# calculate weighted density, source: http://bit.ly/1JfZQYQ
 		data <- values$data
-		dens <<- kde2d.weighted(data$x, data$y, data$value, n = get_n())
+		dens <<- kde2d.weighted(data$x, data$y, data$value, n = input$nKde2d)
 		
 		# set NAs to 0
 		dens$z[is.na(dens$z)] <- 0
