@@ -158,7 +158,7 @@ shinyServer(function(input, output, session){
 			#add fill
 			if(input$showFill){
 				plot1 <- plot1 + 
-					stat_contour(aes(z = z,  fill=..level.., alpha = ..level..), data = dfdens, geom="polygon")  +
+					stat_contour(aes(z = z,  fill=..level..), alpha = input$fillOpacity, data = dfdens, geom="polygon")  +
 					get_colours()
 			}
 			
