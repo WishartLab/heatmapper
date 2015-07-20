@@ -24,7 +24,7 @@ shinyServer(function(input, output, session){
 	
 	# set values$num when numeric input is changed
 	observe({
-		values$num <- input$numInput
+		values$num <- input$selectedValue
 	})
 	
 	# set values$index of marker when clicked and update numeric input value
@@ -32,7 +32,9 @@ shinyServer(function(input, output, session){
 		point <- get_nearPoints()
     if(!is.null(point)){
     	values$index <- as.numeric(rownames(point))
-			updateNumericInput(session, "numInput", value = values$data$value[values$index])
+    	updateNumericInput(session, "selectedX", value = point$x, max = tail(values$data$x, 1))
+			updateNumericInput(session, "selectedY", value = point$y, max = tail(values$data$y, 1))
+			updateNumericInput(session, "selectedValue", value = point$value)
     }
 	})
 	
@@ -191,26 +193,6 @@ shinyServer(function(input, output, session){
 	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
 	
 	#################### SIDEBAR HELPER FUNCTIONS ####################
-	output$clickTable <- renderTable({
-		point <- values$data[values$index,]
-		if(length(rownames(point))>0){
-			updateNumericInput(session, "selectedX", value = point$x)
-			updateNumericInput(session, "selectedY", value = point$y)
-			updateNumericInput(session, "selectedValue", value = point$value)
-			x <- data.frame(
-				"Index" = rownames(point), 
-				"X" = point$x, 
-				"Y" = point$y, 
-				"Value" = point$value)
-		}
-		else{
-			x <- data.frame(
-				"Index" = " ", 
-				"X" = " ", 
-				"Y" = " ", 
-				"Value" = " ")
-		}
-	}, include.rownames = FALSE)
 	
 	get_plot_download_name <- function(){
 		paste0("plot.", input$downloadPlotFormat)

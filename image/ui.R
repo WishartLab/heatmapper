@@ -50,16 +50,13 @@ shinyUI(fluidPage(
 							<th>value</th>
 						</tr>
 						<tr>
-							<td><input type=number id=selectedX style='width:5em;'/></td>
-							<td><input type=number id=selectedY style='width:5em;'/>	</td>
+							<td><input type=number id=selectedX min=1 style='width:5em;'/></td>
+							<td><input type=number id=selectedY min=1 style='width:5em;'/>	</td>
 							<td><input type=number id=selectedValue style='width:100%;'/></td>
 						</tr>
 					</tbody>
 				</table>
 				"),
-				
-	  		tableOutput("clickTable"),
-				numericInput('numInput', label = "Edit selected point value", value = "", min = 0, max = 1000), 
 				actionButton('submit', label = "Submit")
 			),
 	  	
