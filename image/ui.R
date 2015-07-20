@@ -40,6 +40,8 @@ shinyUI(fluidPage(
 	  	
 	  	actionButton('editOptionsButton', label = "Hide Editing Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "editPanel",
+				
+				textOutput('test'),
 				strong("Selected point"),
 				HTML("
 				<table class = 'data table table-bordered table-condensed'>
@@ -67,7 +69,6 @@ shinyUI(fluidPage(
 				</table>
 				")
 			),
-	  	
 	  	actionButton('plotOptionsButton', label = "Hide Plot Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "plotPanel", 
 				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 200, step = 1, value = 50),

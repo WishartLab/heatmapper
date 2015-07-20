@@ -45,9 +45,17 @@ shinyServer(function(input, output, session){
 		x <- input$selectedX
 		y <- input$selectedY
 		rows <-input$numGridRows
-		z <- seq((x-1)*rows+1, x*rows)[[y]]
-		values$index <- z
-		updateNumericInput(session, 'selectedValue', value = values$data$value[[z]])
+		tryCatch({
+			z <- seq((x-1)*rows+1, x*rows)[[y]]
+			values$index <- z
+			updateNumericInput(session, 'selectedValue', value = values$data$value[[z]])
+		}, error = function(err){
+			updateNumericInput(session, 'selectedValue', value = "")
+		})
+	})
+	
+	output$test <- renderText({
+		validate(need(!is.na(input$selectedValue), message="Please select valid x and y coordinates"))
 	})
 	
 	observe({
@@ -102,7 +110,6 @@ shinyServer(function(input, output, session){
 	# value of clicked point
 	get_nearPoints <- reactive({
 		point <- nearPoints(isolate(values$data), input$plot_click, maxpoints = 1)
-		print(point)
 		if(length(rownames(point))>0){
 			point
 		}
