@@ -47,17 +47,25 @@ shinyUI(fluidPage(
 						<tr>
 							<th>x</th>
 							<th>y</th>
-							<th>value</th>
+							<th>Select</th>
 						</tr>
 						<tr>
-							<td><input type=number id=selectedX min=1 style='width:5em;'/></td>
-							<td><input type=number id=selectedY min=1 style='width:5em;'/>	</td>
-							<td><input type=number id=selectedValue style='width:100%;'/></td>
+							<td><input type=number id=selectedX min=1 style='width:100%;'/></td>
+							<td><input type=number id=selectedY min=1 style='width:100%;'/></td>
+							<td><button id=submitCoords type=button class='action-button'>Submit</button></td>
+						</tr>
+						<tr>
+							<th colspan='2'>value</th>
+							<th>Update</th>
+						</tr>
+						<tr>			
+							<td colspan='2'><input type=number id=selectedValue min=0 style='width:100%;'/></td>
+							<td><button id=submitValue type=button class='action-button'>Submit</button></td>
+							
 						</tr>
 					</tbody>
 				</table>
-				"),
-				actionButton('submit', label = "Submit")
+				")
 			),
 	  	
 	  	actionButton('plotOptionsButton', label = "Hide Plot Options", class = "toggleButton fa fa-angle-up"),
@@ -66,7 +74,6 @@ shinyUI(fluidPage(
 		  	bsTooltip(id = "numGridRows", 
 					title = "Warning: any changes to values will be lost after changing the number of rows",
 					placement = "top"),
-				
 				
 				sliderInput('nKde2d', label = "Contour detail", 
 					min = 10, max = 400, value = 200, step = 10),

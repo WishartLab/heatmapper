@@ -38,11 +38,29 @@ shinyServer(function(input, output, session){
     }
 	})
 	
+	find_index <- reactive({
+		x <- input$selectedX
+		y <- input$selectedY
+		rows <-input$numGridRows
+		z <- seq((x-1)*rows+1, x*rows)[[y]]
+		values$index <- z
+		updateNumericInput(session, 'selectedValue', value = values$data$value[[z]])
+	})
+	
+	observe({
+		input$submitCoords
+		isolate({
+			if(!is.na(input$selectedX) && !is.na(input$selectedY)){
+				find_index()
+			}
+		})
+	})
+	
 	# click submit button to change value
 	observe({
-		input$submit
+		input$submitValue
 		isolate({
-			if(!is.null(values$num) && !is.na(values$num)){
+			if(!is.null(values$num) && !is.na(values$num) && values$num >= 0){
 				values$data$value[values$index] <- values$num
 			}
 		})
