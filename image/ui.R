@@ -16,6 +16,38 @@ shinyUI(fluidPage(
 	sidebarLayout(
 	  sidebarPanel(
 	  	
+	  	## design changes as of July 17 ##
+	  	
+	  	fileInput('imageFile2', label =  "Select Image"), # or select example image
+	  	fileInput('gridFile', label = "Select Grid File"), # or select grid ____ x ____,  grid radius ___
+	  	radioButtons('displayType', label = "Display", 
+	  		choices = c(
+	  			'square' = "square", 
+	  			'gaussian' = "gaussian"
+	  		), 
+	  		selected = 'gaussian'), 
+	  	# contours
+	  	numericInput('gaussianRadius', label = "Gaussian Radius", min = 2, max = 40, value = 10), 
+	  	sliderInput('opacity', label = "Opacity", min = 0, max = 1, value = 0.25), 
+	  	sliderInput('colourIntensity', label = "Colour Intensity", min = 1, max = 100, value = 50), 
+	  	sliderInput('contourSmoothness', label = "Contour Smoothness", min = 1, max = 100, value = 50), 
+	  	selectInput('colourScheme', label = "Colour Scheme", 
+	  		choices = c(
+	  			'rainbow' = "rainbow", 
+	  			'custom' = "custom"
+	  		), 
+	  		selected = 'custom'
+	  	),
+	  	# conditional if custom
+	  	jscolourInput('lowColour2', label = "Low Colour"), 
+	  	jscolourInput('highColour2', label = "High Colour"), 
+	  	
+	  	# show/hide checkboxes
+	  	
+	  	downloadButton('downloadPlot2', label = "Download Plot"), 
+	  	downloadButton('downloadTable2', label = "Download Table"), 
+	  	
+	  	
 	  	actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
 			
 	  	wellPanel(id = "fileInputPanel",
