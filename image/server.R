@@ -30,14 +30,17 @@ shinyServer(function(input, output, session){
 	# set values$index of marker when clicked and update numeric input value
 	observe({
 		point <- get_nearPoints()
-    if(!is.null(point)){
-    	values$index <- as.numeric(rownames(point))
-    	updateNumericInput(session, "selectedX", value = point$x, max = tail(values$data$x, 1))
-			updateNumericInput(session, "selectedY", value = point$y, max = tail(values$data$y, 1))
-			updateNumericInput(session, "selectedValue", value = point$value)
-    }
+		isolate({
+	    if(!is.null(point)){
+	    	values$index <- as.numeric(rownames(point))
+	    	updateNumericInput(session, "selectedX", value = point$x, max = tail(values$data$x, 1))
+				updateNumericInput(session, "selectedY", value = point$y, max = tail(values$data$y, 1))
+				updateNumericInput(session, "selectedValue", value = point$value)
+	    }
+		})
 	})
 	
+	# calculate index from x and y coordinates
 	find_index <- reactive({
 		x <- input$selectedX
 		y <- input$selectedY
@@ -98,7 +101,8 @@ shinyServer(function(input, output, session){
 	
 	# value of clicked point
 	get_nearPoints <- reactive({
-		point <- nearPoints(values$data, input$plot_click, maxpoints = 1)
+		point <- nearPoints(isolate(values$data), input$plot_click, maxpoints = 1)
+		print(point)
 		if(length(rownames(point))>0){
 			point
 		}
