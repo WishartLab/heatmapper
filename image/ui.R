@@ -15,39 +15,6 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
 	  sidebarPanel(
-	  	
-	  	## design changes as of July 17 ##
-	  	
-	  	fileInput('imageFile2', label =  "Select Image"), # or select example image
-	  	fileInput('gridFile', label = "Select Grid File"), # or select grid ____ x ____,  grid radius ___
-	  	radioButtons('displayType', label = "Display", 
-	  		choices = c(
-	  			'square' = "square", 
-	  			'gaussian' = "gaussian"
-	  		), 
-	  		selected = 'gaussian'), 
-	  	# contours
-	  	numericInput('gaussianRadius', label = "Gaussian Radius", min = 2, max = 40, value = 10), 
-	  	sliderInput('opacity', label = "Opacity", min = 0, max = 1, value = 0.25), 
-	  	sliderInput('colourIntensity', label = "Colour Intensity", min = 1, max = 100, value = 50), 
-	  	sliderInput('contourSmoothness', label = "Contour Smoothness", min = 1, max = 100, value = 50), 
-	  	selectInput('colourScheme', label = "Colour Scheme", 
-	  		choices = c(
-	  			'rainbow' = "rainbow", 
-	  			'custom' = "custom"
-	  		), 
-	  		selected = 'custom'
-	  	),
-	  	# conditional if custom
-	  	jscolourInput('lowColour2', label = "Low Colour"), 
-	  	jscolourInput('highColour2', label = "High Colour"), 
-	  	
-	  	# show/hide checkboxes
-	  	
-	  	downloadButton('downloadPlot2', label = "Download Plot"), 
-	  	downloadButton('downloadTable2', label = "Download Table"), 
-	  	
-	  	
 	  	actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
 			
 	  	wellPanel(id = "fileInputPanel",
@@ -143,7 +110,58 @@ shinyUI(fluidPage(
 				tags$br(),
 				
 				downloadButton('tableDownload', label = "Download table")
-			)	  	
+			), 
+	  	## design changes as of July 17 ##
+	  	
+	  	fileInput('imageFile2', label =  "Select Image"), # or select example image
+	  	fileInput('gridFile', label = "Select Grid File"), # or select grid ____ x ____,  grid radius ___
+	  	tags$head(tags$style("input[type=file]{display:inline;}")),
+			HTML("
+				<label>Select Grid File</label>
+				<input type=file name=test2 style='display:inline !important;'/>
+				<br />
+				<label>x</label>
+	  		<input type=number name=x value=500 min=0 max=100000 />
+	  		<label>y</label>
+	  		<input type=number name=y value=500 min=0 max=100000 />
+				<br />
+	  		<label>value</label>
+	  		<input type=number name=value value=500 min=0 max=100000 />"),
+	  	radioButtons('displayType', label = "Display", 
+	  		choices = c(
+	  			"square" = 'square', 
+	  			"gaussian" = 'gaussian'
+	  		), 
+	  		selected = 'gaussian', 
+	  		inline = TRUE), 
+	  	# contours
+	  	numericInput('gaussianRadius', label = "Gaussian Radius", min = 2, max = 40, value = 10), 
+	  	sliderInput('opacity', label = "Opacity", min = 0, max = 1, value = 0.25), 
+	  	sliderInput('colourIntensity', label = "Colour Intensity", min = 1, max = 100, value = 50), 
+	  	sliderInput('contourSmoothness', label = "Contour Smoothness", min = 1, max = 100, value = 50), 
+	  	selectInput('colourScheme', label = "Colour Scheme", 
+	  		choices = c(
+	  			'rainbow' = "rainbow", 
+	  			'custom' = "custom"
+	  		), 
+	  		selected = 'custom'
+	  	),
+	  	# conditional if custom
+	  	jscolourInput('lowColour2', label = "Low Colour"), 
+	  	jscolourInput('highColour2', label = "High Colour"), 
+	  	
+	  	# show/hide checkboxes
+	  	checkboxGroupInput('layers', label = "Show/Hide Layers", 
+	  		choices = c(
+	  			"show image" = 'showImage2', 
+	  			"show grid" = 'showGrid2', 
+	  			"show heatmap" = 'showHeatmap2', 
+	  			"show contour lines" = 'showContours2'
+ 	  		),
+	  		selected = c('showImage2', 'showGrid2', 'showHeatmap2')
+	  	),
+	  	downloadButton('downloadPlot2', label = "Download Plot"), 
+	  	downloadButton('downloadTable2', label = "Download Table")
 		),
 		mainPanel(
 			tabsetPanel(
