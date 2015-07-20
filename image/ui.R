@@ -41,6 +41,23 @@ shinyUI(fluidPage(
 	  	actionButton('editOptionsButton', label = "Hide Editing Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "editPanel",
 				strong("Selected point"),
+				HTML("
+				<table class = 'data table table-bordered table-condensed'>
+					<tbody>
+						<tr>
+							<th>x</th>
+							<th>y</th>
+							<th>value</th>
+						</tr>
+						<tr>
+							<td><input type=number id=selectedX style='width:5em;'/></td>
+							<td><input type=number id=selectedY style='width:5em;'/>	</td>
+							<td><input type=number id=selectedValue style='width:100%;'/></td>
+						</tr>
+					</tbody>
+				</table>
+				"),
+				
 	  		tableOutput("clickTable"),
 				numericInput('numInput', label = "Edit selected point value", value = "", min = 0, max = 1000), 
 				actionButton('submit', label = "Submit")
@@ -116,17 +133,7 @@ shinyUI(fluidPage(
 	  	fileInput('imageFile2', label =  "Select Image"), # or select example image
 	  	fileInput('gridFile', label = "Select Grid File"), # or select grid ____ x ____,  grid radius ___
 	  	tags$head(tags$style("input[type=file]{display:inline;}")),
-			HTML("
-				<label>Select Grid File</label>
-				<input type=file name=test2 style='display:inline !important;'/>
-				<br />
-				<label>x</label>
-	  		<input type=number name=x value=500 min=0 max=100000 />
-	  		<label>y</label>
-	  		<input type=number name=y value=500 min=0 max=100000 />
-				<br />
-	  		<label>value</label>
-	  		<input type=number name=value value=500 min=0 max=100000 />"),
+
 	  	radioButtons('displayType', label = "Display", 
 	  		choices = c(
 	  			"square" = 'square', 

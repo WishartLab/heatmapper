@@ -194,6 +194,9 @@ shinyServer(function(input, output, session){
 	output$clickTable <- renderTable({
 		point <- values$data[values$index,]
 		if(length(rownames(point))>0){
+			updateNumericInput(session, "selectedX", value = point$x)
+			updateNumericInput(session, "selectedY", value = point$y)
+			updateNumericInput(session, "selectedValue", value = point$value)
 			x <- data.frame(
 				"Index" = rownames(point), 
 				"X" = point$x, 
