@@ -15,33 +15,32 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
 	  sidebarPanel(
-	  	actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
-			
-	  	wellPanel(id = "fileInputPanel",
-				radioButtons('chooseInput',
-    			label = "Choose Input Type",
-    			choices = c(
-    				"Upload Image" = 'fileUpload',
-    				"Example Image" = 'example'),
-    			selected = 'fileUpload'),
-				
-				conditionalPanel(condition = "input.chooseInput == \'fileUpload\'",
-	  			fileInput('imageFile', label = "Upload image here")
-				),
-				span(id = "fullStretchImage", 
-					checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE)), 
-	  		bsTooltip(id = "fullStretchImage", 
-					title = "Warning: changing this feature may cause misalignment of the heatmap layer",
-					placement = "top"),
-				
-				sliderInput('plotWidth', label = "Plot width (in px)", min = 400, max = 2000, value = 600),
-				sliderInput('plotHeight', label = "Plot height (in px)", min = 400, max = 2000, value = 500)
-			),
+
 	  	
-	  	actionButton('editOptionsButton', label = "Hide Editing Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "editPanel",
-				
-				textOutput('test'),
+	  	## design changes as of July 17 ##
+	  	
+	  	radioButtons('imageSelect', label = "Select Image File", 
+	  		inline=TRUE, 
+	  		choices = c(
+	  		"Upload Image" = 'imageUpload', 
+	  		"Example Image" = 'imageExample'), 
+	  		selected = 'imageExample'
+	  	),
+	  	conditionalPanel(condition = "input.imageSelect == 'imageUpload'",
+	  		fileInput('imageFile2', label = NULL)),
+	  		
+	  	radioButtons('gridSelect', label = "Select Grid File", 
+	  		inline=TRUE, 
+	  		choices = c(
+	  		"Upload Grid" = 'gridUpload', 
+	  		"Example Grid" = 'gridExample'), 
+	  		selected = 'gridExample'
+	  	),
+	  	conditionalPanel(condition = "input.gridSelect == 'gridUpload'",
+	  		fileInput('gridFile', label = NULL)),
+	  	
+	  	# or select grid ____ x ____,  grid radius ___
+	  	textOutput('xyCoordsError'),
 				strong("Selected point"),
 				HTML("
 				<table class = 'data table table-bordered table-condensed'>
@@ -67,7 +66,84 @@ shinyUI(fluidPage(
 						</tr>
 					</tbody>
 				</table>
-				")
+				"),
+	  	
+	  	tags$head(tags$style("input[type=file]{display:inline;}")),
+
+	  	radioButtons('displayType', label = "Display", 
+	  		choices = c(
+	  			"square" = 'square', 
+	  			"gaussian" = 'gaussian'
+	  		), 
+	  		selected = 'gaussian', 
+	  		inline = TRUE), 
+	  	# contours
+	  	numericInput('gaussianRadius', label = "Gaussian Radius", min = 2, max = 40, value = 10), 
+	  	sliderInput('opacity', label = "Opacity", min = 0, max = 1, value = 0.25), 
+	  	sliderInput('colourIntensity', label = "Colour Intensity", min = 1, max = 100, value = 50), 
+	  	sliderInput('contourSmoothness', label = "Contour Smoothness", min = 1, max = 100, value = 50), 
+	  	selectInput('colourScheme', label = "Colour Scheme", 
+	  		choices = c(
+	  			'rainbow' = "rainbow", 
+	  			'custom' = "custom"
+	  		), 
+	  		selected = 'custom'
+	  	),
+	  	# conditional if custom
+	  	jscolourInput('lowColour2', label = "Low Colour"), 
+	  	jscolourInput('highColour2', label = "High Colour"), 
+	  	
+	  	# show/hide checkboxes
+	  	checkboxGroupInput('layers', label = "Show/Hide Layers", 
+	  		choices = c(
+	  			"show image" = 'showImage2', 
+	  			"show grid" = 'showGrid2', 
+	  			"show heatmap" = 'showHeatmap2', 
+	  			"show contour lines" = 'showContours2'
+ 	  		),
+	  		selected = c('showImage2', 'showGrid2', 'showHeatmap2')
+	  	),
+	  	downloadButton('downloadPlot2', label = "Download Plot"), 
+	  	downloadButton('downloadTable2', label = "Download Table"),
+	  	
+	  	
+	  	
+	  	tags$br(), 
+	  	tags$br(),
+	  	tags$br(),
+	  	tags$br(),
+	  	
+	  	
+	  	#### old design ####
+	  	
+	  	
+	  	actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
+			
+	  	wellPanel(id = "fileInputPanel",
+				radioButtons('chooseInput',
+    			label = "Choose Input Type",
+    			choices = c(
+    				"Upload Image" = 'fileUpload',
+    				"Example Image" = 'example'),
+    			selected = 'fileUpload'),
+				
+				conditionalPanel(condition = "input.chooseInput == \'fileUpload\'",
+	  			fileInput('imageFile', label = "Upload image here")
+				),
+				span(id = "fullStretchImage", 
+					checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE)), 
+	  		bsTooltip(id = "fullStretchImage", 
+					title = "Warning: changing this feature may cause misalignment of the heatmap layer",
+					placement = "top"),
+				
+				sliderInput('plotWidth', label = "Plot width (in px)", min = 400, max = 2000, value = 600),
+				sliderInput('plotHeight', label = "Plot height (in px)", min = 400, max = 2000, value = 500)
+			),
+	  	
+	  	actionButton('editOptionsButton', label = "Hide Editing Options", class = "toggleButton fa fa-angle-up"),
+			wellPanel(id = "editPanel"
+				
+				
 			),
 	  	actionButton('plotOptionsButton', label = "Hide Plot Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "plotPanel", 
@@ -132,48 +208,7 @@ shinyUI(fluidPage(
 				tags$br(),
 				
 				downloadButton('tableDownload', label = "Download table")
-			), 
-	  	## design changes as of July 17 ##
-	  	
-	  	fileInput('imageFile2', label =  "Select Image"), # or select example image
-	  	fileInput('gridFile', label = "Select Grid File"), # or select grid ____ x ____,  grid radius ___
-	  	tags$head(tags$style("input[type=file]{display:inline;}")),
-
-	  	radioButtons('displayType', label = "Display", 
-	  		choices = c(
-	  			"square" = 'square', 
-	  			"gaussian" = 'gaussian'
-	  		), 
-	  		selected = 'gaussian', 
-	  		inline = TRUE), 
-	  	# contours
-	  	numericInput('gaussianRadius', label = "Gaussian Radius", min = 2, max = 40, value = 10), 
-	  	sliderInput('opacity', label = "Opacity", min = 0, max = 1, value = 0.25), 
-	  	sliderInput('colourIntensity', label = "Colour Intensity", min = 1, max = 100, value = 50), 
-	  	sliderInput('contourSmoothness', label = "Contour Smoothness", min = 1, max = 100, value = 50), 
-	  	selectInput('colourScheme', label = "Colour Scheme", 
-	  		choices = c(
-	  			'rainbow' = "rainbow", 
-	  			'custom' = "custom"
-	  		), 
-	  		selected = 'custom'
-	  	),
-	  	# conditional if custom
-	  	jscolourInput('lowColour2', label = "Low Colour"), 
-	  	jscolourInput('highColour2', label = "High Colour"), 
-	  	
-	  	# show/hide checkboxes
-	  	checkboxGroupInput('layers', label = "Show/Hide Layers", 
-	  		choices = c(
-	  			"show image" = 'showImage2', 
-	  			"show grid" = 'showGrid2', 
-	  			"show heatmap" = 'showHeatmap2', 
-	  			"show contour lines" = 'showContours2'
- 	  		),
-	  		selected = c('showImage2', 'showGrid2', 'showHeatmap2')
-	  	),
-	  	downloadButton('downloadPlot2', label = "Download Plot"), 
-	  	downloadButton('downloadTable2', label = "Download Table")
+			)
 		),
 		mainPanel(
 			tabsetPanel(

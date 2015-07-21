@@ -54,7 +54,7 @@ shinyServer(function(input, output, session){
 		})
 	})
 	
-	output$test <- renderText({
+	output$xyCoordsError <- renderText({
 		validate(need(!is.na(input$selectedValue), message="Please select valid x and y coordinates"))
 	})
 	
