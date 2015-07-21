@@ -12,57 +12,25 @@ $(document).ready(function() {
       }
     }, 100)
     
-    var fileInputButtonCount = 0;
-    document.getElementById("fileInputOptionsButton").addEventListener("click", toggleFileInputButton);
+    var advancedOptionsButtonCount = 1;
+    document.getElementById("advancedOptionsButton").addEventListener("click", toggleAdvancedOptionsButton);
     
-    function toggleFileInputButton(e){
-        generalToggleButtons("#fileInputPanel","fileInputOptionsButton", "File Input", fileInputButtonCount);
-        fileInputButtonCount++;
+    function toggleAdvancedOptionsButton(e){
+        generalToggleButtons("#advancedPanel","advancedOptionsButton", "Advanced", advancedOptionsButtonCount);
+        advancedOptionsButtonCount++;
     } 
-       
-    var editButtonCount = 0;
-    document.getElementById("editOptionsButton").addEventListener("click", toggleEditButton);
-    
-    function toggleEditButton(e){
-        generalToggleButtons("#editPanel","editOptionsButton", "Editing", editButtonCount);
-        editButtonCount++;
-    }  
-     
-    var colourButtonCount = 0;
-    document.getElementById("colourOptionsButton").addEventListener("click", toggleColourButton);
-    
-    function toggleColourButton(e){
-        generalToggleButtons("#colourPanel","colourOptionsButton", "Colour", colourButtonCount);
-        colourButtonCount++;
-    }
-       
-    var plotButtonCount = 0;
-    document.getElementById("plotOptionsButton").addEventListener("click", togglePlotButton);
-    
-    function togglePlotButton(e){
-        generalToggleButtons("#plotPanel","plotOptionsButton", "Plot", plotButtonCount);
-        plotButtonCount++;
-    }
-    
-    var downloadButtonCount = 0;
-    document.getElementById("downloadOptionsButton").addEventListener("click", toggleDownloadButton);
-    
-    function toggleDownloadButton(e){
-        generalToggleButtons("#downloadPanel","downloadOptionsButton", "Download", downloadButtonCount);
-        downloadButtonCount++;
-    }
     
     
     function generalToggleButtons(panelId, messageId, message, count) {
         if(count%2){
             $("#"+messageId).removeClass("fa fa-angle-down").addClass("fa fa-angle-up");
             /* current state is hidden */
-            $(panelId).show();
+            /*$(panelId).show(); */
             document.getElementById(messageId).innerHTML = "Hide " + message + " Options";
         }
         else{
             $("#"+messageId).removeClass("fa fa-angle-up").addClass("fa fa-angle-down");
-            $(panelId).hide();
+            /*$(panelId).hide();*/
             document.getElementById(messageId).innerHTML = "Show " + message + " Options";
         }
     }

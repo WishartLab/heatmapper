@@ -136,95 +136,46 @@ shinyUI(fluidPage(
 	  	downloadButton('plotDownload', label = "Download Plot"), 
 	  	downloadButton('tableDownload', label = "Download Table"),
 	  	
-	  	
-	  	
 	  	tags$br(), 
 	  	tags$br(),
-	  	tags$br(),
-	  	tags$br(),
 	  	
-	  	actionButton('advancedOptionsButton', label = "Hide Advanced Options", class = "toggleButton fa fa-angle-up"),
+	  	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-up"),
+	  	conditionalPanel(condition = "input.advancedOptionsButton%2",
 	  	wellPanel(id = "advancedPanel", 
+	  		
 	  		span(id = "fullStretchImage", 
 					checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE)), 
 	  		bsTooltip(id = "fullStretchImage", 
 					title = "Warning: changing this feature may cause misalignment of the heatmap layer",
-					placement = "top")
-	  	),
+					placement = "top"), 
+	  		
+	  		sliderInput('plotWidth', label = "Plot width (in px)", min = 400, max = 2000, value = 600),
+				sliderInput('plotHeight', label = "Plot height (in px)", min = 400, max = 2000, value = 500), 
 	  	
-	  	
-	  	#### old design ####
-	  	
-	  	
-	  	actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
-			
-	  
-	  	wellPanel(id = "fileInputPanel",
-				radioButtons('chooseInput',
-    			label = "Choose Input Type",
-    			choices = c(
-    				"Upload Image" = 'fileUpload',
-    				"Example Image" = 'example'),
-    			selected = 'fileUpload'),
-				
-				conditionalPanel(condition = "input.chooseInput == \'fileUpload\'",
-	  			fileInput('imageFile', label = "Upload image here")
-				),
-
-				
-				sliderInput('plotWidth', label = "Plot width (in px)", min = 400, max = 2000, value = 600),
-				sliderInput('plotHeight', label = "Plot height (in px)", min = 400, max = 2000, value = 500)
-			),
-	  	
-	  	actionButton('editOptionsButton', label = "Hide Editing Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "editPanel"
-				
-				
-			),
-	  	actionButton('plotOptionsButton', label = "Hide Plot Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "plotPanel", 
-				sliderInput('numGridRows', label = "Number of rows", min = 3, max = 200, step = 1, value = 50),
+	  		sliderInput('numGridRows', label = "Number of rows", min = 3, max = 200, step = 1, value = 50),
 		  	bsTooltip(id = "numGridRows", 
 					title = "Warning: any changes to values will be lost after changing the number of rows",
 					placement = "top"),
-				
-				sliderInput('nKde2d', label = "Contour detail", 
-					min = 10, max = 400, value = 200, step = 10),
-				bsTooltip(id = "nKde2d", 
-					title = "This feature sets the number of grid points in each direction for kernel density estimation",
-					placement = "top"),
-				
-				checkboxInput('showSelectedPoint', label = strong("Highlight selected point"), value = FALSE),
+	  		
+	  		checkboxInput('showSelectedPoint', label = strong("Highlight selected point"), value = FALSE),
 		  	
-		  	selectInput('pointType', label = "Select point type", 
+	  		selectInput('pointType', label = "Select point type", 
 		  		choices = c(
 		  			"circle - hollow" = 1, 
 		  			"circle - filled" = 16, 
 		  			"square - hollow" = 0, 
 		  			"square - filled" = 15
 		  			), 
-		  		selected = 0)
-				),
-	  	
-	  	actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "colourPanel"
-			),
-	  	
-	  	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "downloadPanel", 
-				selectInput('downloadPlotFormat', label = "Plot download file type", 
+		  		selected = 0),
+				
+	  		selectInput('downloadPlotFormat', label = "Plot download file type", 
 					choices = c(
 						"JPEG" = 'jpg', 
 						"PNG" = 'png', 
 						"PDF" = 'pdf'
 					), 
-					selected = 'jpg')#,
-			#	downloadButton('plotDownload', label = "Download plot"),
-			#	tags$br(), 
-			#	tags$br(),
-			#	
-			#	downloadButton('tableDownload', label = "Download table")
-			)
+					selected = 'jpg')	
+	  	))
 		),
 		mainPanel(
 			tabsetPanel(
