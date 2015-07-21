@@ -10,7 +10,8 @@ shinyUI(fluidPage(
 		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
 			input[type=file]{display:inline;}
 			#selectedX, #selectedY, #selectedValue {width:100%;}
-			#lowColour, #highColour {width:100%;}")),
+			#lowColour, #highColour {width:100%;}
+			#imageFile_progress, #gridFile_progress {height:0;}")),
 	
 	div(class = "busy", absolutePanel(width = "50px", height = "100px",
 		fixed = TRUE, left = "50%", top = "40%", 
@@ -29,8 +30,8 @@ shinyUI(fluidPage(
 	  		selected = 'imageUpload'
 	  	),
 	  	conditionalPanel(condition = "input.imageSelect == 'imageUpload'",
-	  		fileInput('imageFile', label = NULL)),
-	  		
+	  		fileInput('imageFile', label = NULL)
+	  	),
 	  	radioButtons('gridSelect', label = "Select Grid File", 
 	  		inline=TRUE, 
 	  		choices = c(
@@ -95,7 +96,6 @@ shinyUI(fluidPage(
 		  		bsTooltip(id = "contourSmoothness", 
 						title = "This feature sets the number of grid points in each direction for kernel density estimation",
 						placement = "top"))
-		  	
 		  	)
 	  	),
 	  	
@@ -123,16 +123,27 @@ shinyUI(fluidPage(
 	  		)
 	  	), 
 	  	
-	  	# show/hide checkboxes
-	  	checkboxGroupInput('layers', label = "Show/Hide Layers",
+	  	selectInput('layers', label = "Show/Hide Layers", multiple = TRUE,# width = "50%", 
 	  		choices = c(
-	  			"show image" = 'showImage', 
-	  			"show grid" = 'showGrid', 
-	  			"show heatmap" = 'showHeatmap', 
-	  			"show contour lines" = 'showContour'
- 	  		),
+	  			"image" = 'showImage', 
+	  			"grid" = 'showGrid', 
+	  			"heatmap" = 'showHeatmap', 
+	  			"contour lines" = 'showContour'
+	  		), 
 	  		selected = c('showImage', 'showGrid', 'showHeatmap')
 	  	),
+	  	
+	  	# code for checkboxes instead of select
+	  	#checkboxGroupInput('layers', label = "Show/Hide Layers",
+	  	#	choices = c(
+	  	#		"show image" = 'showImage', 
+	  	#		"show grid" = 'showGrid', 
+	  	#		"show heatmap" = 'showHeatmap', 
+	  	#		"show contour lines" = 'showContour'
+ 	  	#	),
+	  	#	selected = c('showImage', 'showGrid', 'showHeatmap')
+	  	#),
+	  	
 	  	downloadButton('plotDownload', label = "Download Plot"), 
 	  	downloadButton('tableDownload', label = "Download Table"),
 	  	

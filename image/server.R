@@ -88,7 +88,6 @@ shinyServer(function(input, output, session){
 			readJPEG("example_input/jasper.jpg")
 		}
 		else if(!is.null(input$imageFile)){
-
 			name <- input$imageFile$name
 			extension <- tolower(substr(name, nchar(name)-3, nchar(name)))
 

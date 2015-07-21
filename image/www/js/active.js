@@ -12,6 +12,15 @@ $(document).ready(function() {
       }
     }, 100)
     
+
+    $( "#imageFile" ).change(function() {
+      document.getElementById("imageFile_progress").setAttribute('style', "height:20px; margin-top:5px;");
+    });
+    $( "#gridFile" ).change(function() {
+      document.getElementById("gridFile_progress").setAttribute('style', "height:20px; margin-top:5px;");
+    });
+    
+    
     var advancedOptionsButtonCount = 1;
     document.getElementById("advancedOptionsButton").addEventListener("click", toggleAdvancedOptionsButton);
     
