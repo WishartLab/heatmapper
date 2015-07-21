@@ -149,7 +149,7 @@ shinyUI(fluidPage(
 	  	tags$br(), 
 	  	tags$br(),
 	  	
-	  	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-up"),
+	  	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
 	  	conditionalPanel(condition = "input.advancedOptionsButton%2",
 	  	wellPanel(id = "advancedPanel", 
 	  		
@@ -158,9 +158,6 @@ shinyUI(fluidPage(
 	  		bsTooltip(id = "fullStretchImage", 
 					title = "Warning: changing this feature may cause misalignment of the heatmap layer",
 					placement = "top"), 
-	  		
-	  		sliderInput('plotWidth', label = "Plot width (in px)", min = 400, max = 2000, value = 600),
-				sliderInput('plotHeight', label = "Plot height (in px)", min = 400, max = 2000, value = 500), 
 	  	
 	  		sliderInput('numGridRows', label = "Number of rows", min = 3, max = 200, step = 1, value = 50),
 		  	bsTooltip(id = "numGridRows", 
@@ -169,22 +166,17 @@ shinyUI(fluidPage(
 	  		
 	  		checkboxInput('showSelectedPoint', label = strong("Highlight selected point"), value = FALSE),
 		  	
-	  		selectInput('pointType', label = "Select point type", 
-		  		choices = c(
-		  			"circle - hollow" = 1, 
-		  			"circle - filled" = 16, 
-		  			"square - hollow" = 0, 
-		  			"square - filled" = 15
-		  			), 
-		  		selected = 0),
-				
 	  		selectInput('downloadPlotFormat', label = "Plot download file type", 
 					choices = c(
 						"JPEG" = 'jpg', 
 						"PNG" = 'png', 
 						"PDF" = 'pdf'
 					), 
-					selected = 'jpg')	
+					selected = 'jpg')	,
+	  			
+	  		sliderInput('plotWidth', label = "Plot width (in px)", min = 400, max = 2000, value = 600),
+				sliderInput('plotHeight', label = "Plot height (in px)", min = 400, max = 2000, value = 500) 
+	  	
 	  	))
 		),
 		mainPanel(

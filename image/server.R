@@ -108,7 +108,7 @@ shinyServer(function(input, output, session){
 	
 	# value of clicked point
 	get_nearPoints <- reactive({
-		point <- nearPoints(isolate(values$data), input$plot_click, maxpoints = 1, threshold = 150)
+		point <- nearPoints(isolate(values$data), input$plot_click, maxpoints = 1, threshold = 1000)
 		if(length(rownames(point))>0){
 			point
 		}
@@ -150,13 +150,6 @@ shinyServer(function(input, output, session){
 	
 	get_limits <- reactive({
 		c(0.5, input$numGridRows+0.5)
-	})
-	
-	get_points <- reactive({
-		# hollow square = 0, filled square = 15, hollow circle = 1, filled circle = 16
-		if(layer_selected("showGrid")){
-			geom_point(shape = as.numeric(input$pointType)) 
-		}
 	})
 
 	get_density <- reactive({
@@ -221,8 +214,12 @@ shinyServer(function(input, output, session){
 		# prevent "no layers in plot" error
 		plot1 <- plot1 + geom_blank() 
 		
-		# add points
-		plot1 + geom_vline(xintercept = 0.5:(input$numGridRows-0.5)) + geom_hline(yintercept = 0.5:(input$numGridRows-0.5)) + get_points()
+		# add grid
+		if(layer_selected("showGrid")){
+			plot1 <- plot1 + geom_vline(xintercept = 0.5:(input$numGridRows-0.5)) + geom_hline(yintercept = 0.5:(input$numGridRows-0.5))
+		}
+		
+		plot1
 	})
 	
 	output$ggplotMap <- renderPlot({
