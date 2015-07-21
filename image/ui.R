@@ -40,9 +40,10 @@ shinyUI(fluidPage(
 	  		fileInput('gridFile', label = NULL)),
 	  	
 	  	# or select grid ____ x ____,  grid radius ___
+	  	
+			tags$label("Selected point"),
 	  	textOutput('xyCoordsError'),
-				strong("Selected point"),
-				HTML("
+			HTML("
 				<table class = 'data table table-bordered table-condensed'>
 					<tbody>
 						<tr>
@@ -66,22 +67,44 @@ shinyUI(fluidPage(
 						</tr>
 					</tbody>
 				</table>
-				"),
+			"),
 	  	
 	  	tags$head(tags$style("input[type=file]{display:inline;}")),
 
-	  	radioButtons('displayType', label = "Display", 
-	  		choices = c(
-	  			"square" = 'square', 
-	  			"gaussian" = 'gaussian'
-	  		), 
-	  		selected = 'gaussian', 
-	  		inline = TRUE), 
+	  	fluidRow(
+	  		column(3, tags$label("Display")), 
+	  		column(9, 
+	  			radioButtons('displayType', label =NULL, 
+	  				choices = c(
+	  					"square" = 'square', 
+	  					"gaussian" = 'gaussian'
+	  				), 
+	  				selected = 'gaussian', 
+	  				inline = TRUE))
+	  	), 
+	  	
+	  	conditionalPanel(condition = "input.displayType == 'gaussian'",
 	  	# contours
-	  	numericInput('gaussianRadius', label = "Gaussian Radius", min = 2, max = 40, value = 10), 
-	  	sliderInput('opacity', label = "Opacity", min = 0, max = 1, value = 0.25), 
-	  	sliderInput('colourIntensity', label = "Colour Intensity", min = 1, max = 100, value = 50), 
-	  	sliderInput('contourSmoothness', label = "Contour Smoothness", min = 1, max = 100, value = 50), 
+	  	fluidRow(
+	  		column(3, tags$label("Gaussian Radius")), 
+	  		column(9, sliderInput('gaussianRadius', label = NULL, min = 2, max = 40, value = 10))
+	  	), 
+	  	
+	  	fluidRow(
+	  		column(4, tags$label("Contour Smoothness")), 
+	  		column(8, sliderInput('contourSmoothness', label = NULL, min = 1, max = 100, value = 50))
+	  	)
+	  	),
+	  	
+	  	fluidRow(
+	  		column(3, tags$br(), tags$label("Opacity")), 
+	  		column(9, sliderInput('opacity', label = NULL, min = 0, max = 1, value = 0.25))
+	  	), 
+	  	fluidRow(
+	  		column(3, tags$label("Colour Intensity")), 
+	  		column(9, sliderInput('colourIntensity', label = NULL, min = 1, max = 100, value = 50))
+	  	),
+	  	 
 	  	selectInput('colourScheme', label = "Colour Scheme", 
 	  		choices = c(
 	  			'rainbow' = "rainbow", 
@@ -89,9 +112,10 @@ shinyUI(fluidPage(
 	  		), 
 	  		selected = 'custom'
 	  	),
-	  	# conditional if custom
-	  	jscolourInput('lowColour2', label = "Low Colour"), 
-	  	jscolourInput('highColour2', label = "High Colour"), 
+	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
+	  		jscolourInput('lowColour2', label = "Low Colour"), 
+	  		jscolourInput('highColour2', label = "High Colour")
+	  	), 
 	  	
 	  	# show/hide checkboxes
 	  	checkboxGroupInput('layers', label = "Show/Hide Layers", 
