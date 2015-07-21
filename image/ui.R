@@ -4,10 +4,12 @@ library(jscolourR)
 
 shinyUI(fluidPage(
 	includeHTML("www/navbar.html"),
-	
+
 	tags$head(
 		HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
-		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}")),
+		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
+			input[type=file]{display:inline;}
+			#lowColour2, #highColour2 {width:100px;}")),
 	
 	div(class = "busy", absolutePanel(width = "50px", height = "100px",
 		fixed = TRUE, left = "50%", top = "40%", 
@@ -16,7 +18,6 @@ shinyUI(fluidPage(
 	sidebarLayout(
 	  sidebarPanel(
 
-	  	
 	  	## design changes as of July 17 ##
 	  	
 	  	radioButtons('imageSelect', label = "Select Image File", 
@@ -40,8 +41,7 @@ shinyUI(fluidPage(
 	  		fileInput('gridFile', label = NULL)),
 	  	
 	  	# or select grid ____ x ____,  grid radius ___
-	  	
-			tags$label("Selected point"),
+	  	tags$label("Selected point"),
 	  	textOutput('xyCoordsError'),
 			HTML("
 				<table class = 'data table table-bordered table-condensed'>
@@ -68,8 +68,6 @@ shinyUI(fluidPage(
 					</tbody>
 				</table>
 			"),
-	  	
-	  	tags$head(tags$style("input[type=file]{display:inline;}")),
 
 	  	fluidRow(
 	  		column(3, tags$label("Display")), 
@@ -112,13 +110,16 @@ shinyUI(fluidPage(
 	  		), 
 	  		selected = 'custom'
 	  	),
+	  	
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
-	  		jscolourInput('lowColour2', label = "Low Colour"), 
-	  		jscolourInput('highColour2', label = "High Colour")
+	  		fluidRow(
+	  			column(6, jscolourInput('lowColour2', label = "Low Colour")), 
+	  			column(6, jscolourInput('highColour2', label = "High Colour"))
+	  		)
 	  	), 
 	  	
 	  	# show/hide checkboxes
-	  	checkboxGroupInput('layers', label = "Show/Hide Layers", 
+	  	checkboxGroupInput('layers', label = "Show/Hide Layers",
 	  		choices = c(
 	  			"show image" = 'showImage2', 
 	  			"show grid" = 'showGrid2', 
