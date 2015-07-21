@@ -108,7 +108,7 @@ shinyServer(function(input, output, session){
 	
 	# value of clicked point
 	get_nearPoints <- reactive({
-		point <- nearPoints(isolate(values$data), input$plot_click, maxpoints = 1)
+		point <- nearPoints(isolate(values$data), input$plot_click, maxpoints = 1, threshold = 150)
 		if(length(rownames(point))>0){
 			point
 		}
@@ -143,14 +143,19 @@ shinyServer(function(input, output, session){
 		#theme(panel.grid.minor = element_line(color = "black"))
 	})
 	
+	# number labels for axis
 	get_breaks <- reactive({
 		1:input$numGridRows
+	})
+	
+	get_limits <- reactive({
+		c(0.5, input$numGridRows+0.5)
 	})
 	
 	get_points <- reactive({
 		# hollow square = 0, filled square = 15, hollow circle = 1, filled circle = 16
 		if(layer_selected("showGrid")){
-			geom_point(shape = as.numeric(input$pointType), size = 4.5) 
+			geom_point(shape = as.numeric(input$pointType)) 
 		}
 	})
 
@@ -194,8 +199,8 @@ shinyServer(function(input, output, session){
 		
 		# scale x and y axis values
 		plot1 <- plot1 + 
-			scale_x_continuous(breaks=get_breaks(), expand = c(0, 0)) + 
-			scale_y_continuous(breaks=get_breaks(), expand = c(0, 0))
+			scale_x_continuous(limits = get_limits(),breaks=get_breaks(), expand = c(0, 0)) + 
+			scale_y_continuous(limits = get_limits(), breaks=get_breaks(), expand = c(0, 0)) 
 	
 		# avoid contour/fill errors
 		if(var(dfdens$z) != 0){
@@ -217,7 +222,7 @@ shinyServer(function(input, output, session){
 		plot1 <- plot1 + geom_blank() 
 		
 		# add points
-		plot1 + get_points()
+		plot1 + geom_vline(xintercept = 0.5:(input$numGridRows-0.5)) + geom_hline(yintercept = 0.5:(input$numGridRows-0.5)) + get_points()
 	})
 	
 	output$ggplotMap <- renderPlot({

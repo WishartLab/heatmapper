@@ -19,8 +19,6 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
 	  sidebarPanel(
-
-	  	## design changes as of July 17 ##
 	  	
 	  	radioButtons('imageSelect', label = "Select Image File", 
 	  		inline=TRUE, 
@@ -32,6 +30,7 @@ shinyUI(fluidPage(
 	  	conditionalPanel(condition = "input.imageSelect == 'imageUpload'",
 	  		fileInput('imageFile', label = NULL)
 	  	),
+	  	
 	  	radioButtons('gridSelect', label = "Select Grid File", 
 	  		inline=TRUE, 
 	  		choices = c(
