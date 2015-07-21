@@ -77,14 +77,14 @@ shinyServer(function(input, output, session){
 		})
 	})
 	
-	# update input$nKde2d when input$numGridRows is changed
+	# update input$contourSmoothness when input$numGridRows is changed
 	observe({
 		updateSliderInput(session, 'nKde2d', step = input$numGridRows, min = input$numGridRows)
 	})
 	
 	#################### GGPLOT HELPER FUNCTIONS ####################
 	get_file <- reactive({
-		if(input$chooseInput == "example"){
+		if(input$imageSelect == "imageExample"){
 			readJPEG("example_input/jasper.jpg")
 		}
 		else if(!is.null(input$imageFile)){
@@ -118,8 +118,17 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
+	layer_selected <- function(name){
+		if(length(grep(name, input$layers))>0){
+			TRUE
+		}
+		else{
+			FALSE
+		}
+	}
+	
 	get_background <- reactive({
-		if(input$showImage && !is.null(get_file())){
+		if(layer_selected("showImage") && !is.null(get_file())){
 			if(input$stretchImage){
 				g <- rasterGrob(get_file(), width=unit(1,"npc"), height=unit(1,"npc"), interpolate=TRUE)
 			}
@@ -141,7 +150,7 @@ shinyServer(function(input, output, session){
 	
 	get_points <- reactive({
 		# hollow square = 0, filled square = 15, hollow circle = 1, filled circle = 16
-		if(input$showPoints){
+		if(layer_selected("showGrid")){
 			geom_point(shape = as.numeric(input$pointType), size = 4.5) 
 		}
 	})
@@ -150,7 +159,7 @@ shinyServer(function(input, output, session){
 		
 		# calculate weighted density, source: http://bit.ly/1JfZQYQ
 		data <- values$data
-		dens <- kde2d.weighted(data$x, data$y, data$value, n = input$nKde2d)
+		dens <- kde2d.weighted(data$x, data$y, data$value, n = input$contourSmoothness)
 		
 		# set NAs to 0
 		dens$z[is.na(dens$z)] <- 0
@@ -158,10 +167,10 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_colours <- reactive({
-		if(input$colour == 'rainbow'){
+		if(input$colourScheme == 'rainbow'){
 			scale_fill_gradientn(colours = rev(rainbow(7)))
 		}
-		else if(input$colour == 'custom'){
+		else if(input$colourScheme == 'custom'){
 			scale_fill_gradient(low = input$lowColour, high = input$highColour)
 		}
 		else{
@@ -193,15 +202,15 @@ shinyServer(function(input, output, session){
 		if(var(dfdens$z) != 0){
 			
 			#add fill
-			if(input$showFill){
+			if(layer_selected("showHeatmap")){
 				plot1 <- plot1 + 
-					stat_contour(aes(z = z,  fill=..level..), bins = input$contourBins, alpha = input$fillOpacity, data = dfdens, geom="polygon")  +
+					stat_contour(aes(z = z,  fill=..level..), bins = input$numShades, alpha = input$fillOpacity, data = dfdens, geom="polygon")  +
 					get_colours()
 			}
 			
 			# add contour
-			if(input$showContour){
-				plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens, bins = input$contourBins)
+			if(layer_selected("showContour")){
+				plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens, bins = input$numShades)
 			}
 		}
 		
