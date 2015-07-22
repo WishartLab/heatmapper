@@ -19,8 +19,11 @@ shinyServer(function(input, output, session){
 
 	# update values$data andupdate the record of number of rows when data changes
 	observe({
-		values$data <- get_grid_file()
-		values$numRows <- sqrt(nrow(values$data))
+		grid_data <- get_grid_file()
+		isolate({
+			values$data <- grid_data
+			values$numRows <- sqrt(nrow(grid_data))
+		})
 	})
 	
 	# set values$num when numeric input is changed
@@ -81,6 +84,31 @@ shinyServer(function(input, output, session){
 	# update input$contourSmoothness when values$numRows is changed
 	observe({
 		updateSliderInput(session, 'contourSmoothness', step = values$numRows, min = values$numRows)
+	})
+	
+	# update layer show/hide options when display type changes
+	observe({
+		displayChange <- input$displayType 
+		currentSelected <- isolate(input$layers)
+		
+		if(displayChange == 'square'){
+			updateSelectInput(session, 'layers', 
+				choices = c(
+					"image" = 'showImage', 
+	  			"grid lines" = 'showGrid', 
+	  			"heatmap" = 'showHeatmap'), 
+				selected = currentSelected)
+		}
+		if(displayChange == 'gaussian'){
+			updateSelectInput(session, 'layers', 
+				choices = c(
+					"image" = 'showImage', 
+	  			"grid lines" = 'showGrid', 
+	  			"heatmap" = 'showHeatmap', 
+					"contour lines" = 'showContour'), 
+				selected = currentSelected)
+		}
+		print("here")
 	})
 	
 	#################### GGPLOT HELPER FUNCTIONS ####################
@@ -228,7 +256,9 @@ shinyServer(function(input, output, session){
 			scale_y_continuous(limits = get_limits(), breaks=get_breaks(), expand = c(0, 0)) 
 		
 		if(input$displayType == 'square'){
-			plot1 <- plot1 + geom_raster(aes(fill = value), alpha = input$fillOpacity) + get_colours()
+			if(layer_selected("showHeatmap")){
+				plot1 <- plot1 + geom_raster(aes(fill = value), alpha = input$fillOpacity, bins = input$numShades) + get_colours()
+			}
 		}
 		
 		else if(input$displayType == 'gaussian'){
