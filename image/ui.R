@@ -130,7 +130,7 @@ shinyUI(fluidPage(
 	  			"heatmap" = 'showHeatmap', 
 	  			"contour lines" = 'showContour'
 	  		), 
-	  		selected = c('showImage', 'showGrid', 'showHeatmap')
+	  		selected = c('showImage', 'showHeatmap')
 	  	),
 	  	
 	  	# code for checkboxes instead of select

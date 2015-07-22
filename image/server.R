@@ -16,27 +16,11 @@ shinyServer(function(input, output, session){
 		numRows = NULL)
 
 	#################### OBSERVERS ####################
-	# reset values$data if grid changes
+
+	# update values$data andupdate the record of number of rows when data changes
 	observe({
-		max <- input$numGridRows
-		newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
-		newy <- rep(seq(1, max), max)
-		values$data <- data.frame("value" = rep(0,max), "x" = newx, "y" = newy)
-	})
-	
-	# update the record of number of rows when data is changes
-	observe({
+		values$data <- get_grid_file()
 		values$numRows <- sqrt(nrow(values$data))
-	})
-	
-	# update values$data if grid is uploaded	
-	observe({
-		if(input$gridSelect == 'gridUpload'){
-			if(!is.null(get_grid_file())){
-				#print(get_grid_file())
-				values$data <- get_grid_file()
-			}
-		}
 	})
 	
 	# set values$num when numeric input is changed
@@ -124,14 +108,24 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_grid_file <- reactive({
+		
+		# reset values$data if grid changes
 		if(input$gridSelect == 'gridExample'){
-			
+			max <- input$numGridRows
+			newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
+			newy <- rep(seq(1, max), max)
+			data.frame("value" = sample(x = c(0, 20), size = max*max, prob = c(0.99, 0.01), replace = TRUE), 
+				"x" = newx, "y" = newy)
 		}
 		else if(!is.null(input$gridFile)){
 			read.delim(input$gridFile$datapath)
+			#read.delim("example_input/grid.txt")
 		}
 		else{
-			read.delim("example_input/grid.txt")
+			max <- input$numGridRows
+			newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
+			newy <- rep(seq(1, max), max)
+			data.frame("value" = rep(0, max*max), "x" = newx, "y" = newy)
 		}
 	})
 	
