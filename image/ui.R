@@ -126,7 +126,7 @@ shinyUI(fluidPage(
 	  	selectInput('layers', label = "Show/Hide Layers", multiple = TRUE,# width = "50%", 
 	  		choices = c(
 	  			"image" = 'showImage', 
-	  			"grid" = 'showGrid', 
+	  			"grid lines" = 'showGrid', 
 	  			"heatmap" = 'showHeatmap', 
 	  			"contour lines" = 'showContour'
 	  		), 

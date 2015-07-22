@@ -12,7 +12,8 @@ shinyServer(function(input, output, session){
 	values <- reactiveValues(
   	data = data.frame("value" = c(), "x" = c(), "y" = c()), 
   	index = NULL, 
-  	num = NULL)
+  	num = NULL, 
+		numRows = NULL)
 
 	#################### OBSERVERS ####################
 	# reset values$data if grid changes
@@ -23,15 +24,19 @@ shinyServer(function(input, output, session){
 		values$data <- data.frame("value" = rep(0,max), "x" = newx, "y" = newy)
 	})
 	
+	# update the record of number of rows when data is changes
+	observe({
+		values$numRows <- sqrt(nrow(values$data))
+	})
+	
 	# update values$data if grid is uploaded	
 	observe({
 		if(input$gridSelect == 'gridUpload'){
 			if(!is.null(get_grid_file())){
-				print(get_grid_file())
+				#print(get_grid_file())
 				values$data <- get_grid_file()
 			}
 		}
-		
 	})
 	
 	# set values$num when numeric input is changed
@@ -56,7 +61,7 @@ shinyServer(function(input, output, session){
 	find_index <- reactive({
 		x <- input$selectedX
 		y <- input$selectedY
-		rows <-input$numGridRows
+		rows <- values$numRows
 		tryCatch({
 			z <- seq((x-1)*rows+1, x*rows)[[y]]
 			values$index <- z
@@ -89,9 +94,9 @@ shinyServer(function(input, output, session){
 		})
 	})
 	
-	# update input$contourSmoothness when input$numGridRows is changed
+	# update input$contourSmoothness when values$numRows is changed
 	observe({
-		updateSliderInput(session, 'contourSmoothness', step = input$numGridRows, min = input$numGridRows)
+		updateSliderInput(session, 'contourSmoothness', step = values$numRows, min = values$numRows)
 	})
 	
 	#################### GGPLOT HELPER FUNCTIONS ####################
@@ -169,11 +174,11 @@ shinyServer(function(input, output, session){
 	
 	# number labels for axis
 	get_breaks <- reactive({
-		1:input$numGridRows
+		1:values$numRows
 	})
 	
 	get_limits <- reactive({
-		c(0.5, input$numGridRows+0.5)
+		c(0.5, values$numRows+0.5)
 	})
 	
 	get_bandwidth <- reactive({
@@ -225,8 +230,8 @@ shinyServer(function(input, output, session){
 			get_background() +
 			
 			# scale x and y axis values
-			scale_x_continuous(breaks=get_breaks(), expand = c(0, 0)) + 
-			scale_y_continuous(breaks=get_breaks(), expand = c(0, 0)) 
+			scale_x_continuous(limits = get_limits(), breaks=get_breaks(), expand = c(0, 0)) + 
+			scale_y_continuous(limits = get_limits(), breaks=get_breaks(), expand = c(0, 0)) 
 		
 		if(input$displayType == 'square'){
 			plot1 <- plot1 + geom_raster(aes(fill = value), alpha = input$fillOpacity) + get_colours()
@@ -255,8 +260,8 @@ shinyServer(function(input, output, session){
 		# add grid
 		if(layer_selected("showGrid")){
 			plot1 <- plot1 + 
-				geom_vline(xintercept = 0.5:(input$numGridRows-0.5)) + 
-				geom_hline(yintercept = 0.5:(input$numGridRows-0.5))
+				geom_vline(xintercept = 0.5:(values$numRows-0.5)) + 
+				geom_hline(yintercept = 0.5:(values$numRows-0.5))
 		}
 		
 		plot1
