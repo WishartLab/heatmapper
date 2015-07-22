@@ -23,6 +23,17 @@ shinyServer(function(input, output, session){
 		values$data <- data.frame("value" = rep(0,max), "x" = newx, "y" = newy)
 	})
 	
+	# update values$data if grid is uploaded	
+	observe({
+		if(input$gridSelect == 'gridUpload'){
+			if(!is.null(get_grid_file())){
+				print(get_grid_file())
+				values$data <- get_grid_file()
+			}
+		}
+		
+	})
+	
 	# set values$num when numeric input is changed
 	observe({
 		values$num <- input$selectedValue
@@ -80,12 +91,12 @@ shinyServer(function(input, output, session){
 	
 	# update input$contourSmoothness when input$numGridRows is changed
 	observe({
-		updateSliderInput(session, 'nKde2d', step = input$numGridRows, min = input$numGridRows)
+		updateSliderInput(session, 'contourSmoothness', step = input$numGridRows, min = input$numGridRows)
 	})
 	
 	#################### GGPLOT HELPER FUNCTIONS ####################
-	get_file <- reactive({
-		if(input$imageSelect == "imageExample"){
+	get_image_file <- reactive({
+		if(input$imageSelect == 'imageExample'){
 			readJPEG("example_input/jasper.jpg")
 		}
 		else if(!is.null(input$imageFile)){
@@ -104,6 +115,18 @@ shinyServer(function(input, output, session){
 		}
 		else{
 			NULL
+		}
+	})
+	
+	get_grid_file <- reactive({
+		if(input$gridSelect == 'gridExample'){
+			
+		}
+		else if(!is.null(input$gridFile)){
+			read.delim(input$gridFile$datapath)
+		}
+		else{
+			read.delim("example_input/grid.txt")
 		}
 	})
 	
@@ -128,17 +151,17 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_background <- reactive({
-		if(layer_selected("showImage") && !is.null(get_file())){
+		if(layer_selected("showImage") && !is.null(get_image_file())){
 			if(input$stretchImage){
-				g <- rasterGrob(get_file(), width=unit(1,"npc"), height=unit(1,"npc"), interpolate=TRUE)
+				g <- rasterGrob(get_image_file(), width=unit(1,"npc"), height=unit(1,"npc"), interpolate=TRUE)
 			}
 			else{
-				g <- rasterGrob(get_file(), interpolate = TRUE)
+				g <- rasterGrob(get_image_file(), interpolate = TRUE)
 			}
 			annotation_custom(g, -Inf, Inf, -Inf, Inf)	
 		}
 	})
-	
+
 	get_theme <- reactive({
 		theme_bw()
 		#theme(panel.grid.minor = element_line(color = "black"))
@@ -173,7 +196,7 @@ shinyServer(function(input, output, session){
 			scale_fill_gradientn(colours = rev(rainbow(7)))
 		}
 		else if(input$colourScheme == 'custom'){
-			scale_fill_gradient(low = input$lowColour, high = input$highColour)#, na.value = "white", limits = c(3, 10))
+			scale_fill_gradient(low = input$lowColour, high = input$highColour)
 		}
 		else{
 			scale_fill_gradientn(colours = rev(topo.colors(7)))
@@ -188,10 +211,7 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
-	
-	
 	get_plot <- reactive({
-		
 		
 		plot1 <- 	ggplot(data = values$data, aes(x = x, y = y))  + 
 			
@@ -205,11 +225,11 @@ shinyServer(function(input, output, session){
 			get_background() +
 			
 			# scale x and y axis values
-			scale_x_continuous(limits = get_limits(), breaks=get_breaks(), expand = c(0, 0)) + 
-			scale_y_continuous(limits = get_limits(), breaks=get_breaks(), expand = c(0, 0)) 
+			scale_x_continuous(breaks=get_breaks(), expand = c(0, 0)) + 
+			scale_y_continuous(breaks=get_breaks(), expand = c(0, 0)) 
 		
 		if(input$displayType == 'square'){
-			plot1 <- plot1 + geom_raster(aes(fill = value)) + get_colours()
+			plot1 <- plot1 + geom_raster(aes(fill = value), alpha = input$fillOpacity) + get_colours()
 		}
 		
 		else if(input$displayType == 'gaussian'){

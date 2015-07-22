@@ -99,18 +99,19 @@ shinyUI(fluidPage(
 	  	),
 	  	
 	  	fluidRow(
-	  		column(3, tags$br(), tags$label("Opacity")), 
-	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.5, step = 0.05))
+	  		column(3, tags$label("Heatmap Opacity")), 
+	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.1, step = 0.05))
 	  	), 
 	  	fluidRow(
 	  		column(3, tags$label("Number of Shades")), 
-	  		column(9, sliderInput('numShades', label = NULL, min = 2, max = 50, value = 10))
+	  		column(9, sliderInput('numShades', label = NULL, min = 2, max = 50, value = 40))
 	  	),
 	  	 
 	  	selectInput('colourScheme', label = "Colour Scheme", 
 	  		choices = c(
+	  			'custom' = "custom",
 	  			'rainbow' = "rainbow", 
-	  			'custom' = "custom"
+	  			'topo' = "topo"
 	  		), 
 	  		selected = 'custom'
 	  	),
@@ -165,14 +166,14 @@ shinyUI(fluidPage(
 					placement = "top"),
 	  		
 	  		checkboxInput('showSelectedPoint', label = strong("Highlight selected point"), value = FALSE),
-		  	
+	  		
 	  		selectInput('downloadPlotFormat', label = "Plot download file type", 
 					choices = c(
-						"JPEG" = 'jpg', 
-						"PNG" = 'png', 
-						"PDF" = 'pdf'
+						"JPEG" = 'jpg',
+						"PDF" = 'pdf',
+						"PNG" = 'png'
 					), 
-					selected = 'jpg')	,
+					selected = 'png')	,
 	  			
 	  		sliderInput('plotWidth', label = "Plot width (in px)", min = 400, max = 2000, value = 600),
 				sliderInput('plotHeight', label = "Plot height (in px)", min = 400, max = 2000, value = 500) 
