@@ -85,8 +85,8 @@ shinyUI(fluidPage(
 	  	conditionalPanel(condition = "input.displayType == 'gaussian'",
 		  	# contours
 		  	fluidRow(
-		  		column(3, tags$label("Gaussian Radius")), 
-		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 2, max = 40, value = 10))
+		  		column(3, tags$label("Gaussian Radius Multiplier")), 
+		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 0.05, max = 2, value = 0.5, step=0.05))
 		  	), 
 		  	
 		  	fluidRow(

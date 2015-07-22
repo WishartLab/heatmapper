@@ -4,6 +4,7 @@ library(png)
 library(ggplot2)
 library(grid)
 library(ggtern)
+library(MASS)
 
 shinyServer(function(input, output, session){
 	
@@ -151,12 +152,16 @@ shinyServer(function(input, output, session){
 	get_limits <- reactive({
 		c(0.5, input$numGridRows+0.5)
 	})
+	
+	get_bandwidth <- reactive({
+		c(bandwidth.nrd(values$data$x)*input$gaussianRadius, bandwidth.nrd(values$data$y)*input$gaussianRadius)
+	})
 
 	get_density <- reactive({
 		
 		# calculate weighted density, source: http://bit.ly/1JfZQYQ
 		data <- values$data
-		dens <- kde2d.weighted(data$x, data$y, data$value, n = input$contourSmoothness)
+		dens <- kde2d.weighted(data$x, data$y, data$value, n = input$contourSmoothness, h = get_bandwidth())
 		
 		# set NAs to 0
 		dens$z[is.na(dens$z)] <- 0
@@ -168,7 +173,7 @@ shinyServer(function(input, output, session){
 			scale_fill_gradientn(colours = rev(rainbow(7)))
 		}
 		else if(input$colourScheme == 'custom'){
-			scale_fill_gradient(low = input$lowColour, high = input$highColour)
+			scale_fill_gradient(low = input$lowColour, high = input$highColour)#, na.value = "white", limits = c(3, 10))
 		}
 		else{
 			scale_fill_gradientn(colours = rev(topo.colors(7)))
@@ -183,45 +188,57 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
+	
+	
 	get_plot <- reactive({
 		
-		dfdens <- get_density()
 		
-		# add background and theme
-		plot1 <- 	ggplot(data = values$data, aes(x = x, y = y))  + get_background() + get_theme()
-		
-		# scale x and y axis values
-		plot1 <- plot1 + 
-			scale_x_continuous(limits = get_limits(),breaks=get_breaks(), expand = c(0, 0)) + 
+		plot1 <- 	ggplot(data = values$data, aes(x = x, y = y))  + 
+			
+			# prevent "no layers in plot" error
+			geom_blank() +
+			
+			# add theme
+			get_theme() +
+			
+			# add background 
+			get_background() +
+			
+			# scale x and y axis values
+			scale_x_continuous(limits = get_limits(), breaks=get_breaks(), expand = c(0, 0)) + 
 			scale_y_continuous(limits = get_limits(), breaks=get_breaks(), expand = c(0, 0)) 
-	
-		# avoid contour/fill errors
-		if(var(dfdens$z) != 0){
-			
-			#add fill
-			if(layer_selected("showHeatmap")){
-				plot1 <- plot1 + 
-					stat_contour(aes(z = z,  fill=..level..), bins = input$numShades, alpha = input$fillOpacity, data = dfdens, geom="polygon")  +
-					get_colours()
-			}
-			
-			# add contour
-			if(layer_selected("showContour")){
-				plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens, bins = input$numShades)
-			}
-		}
-		
-		# prevent "no layers in plot" error
-		plot1 <- plot1 + geom_blank() 
-		
-		# add grid
-		if(layer_selected("showGrid")){
-			plot1 <- plot1 + geom_vline(xintercept = 0.5:(input$numGridRows-0.5)) + geom_hline(yintercept = 0.5:(input$numGridRows-0.5))
-		}
 		
 		if(input$displayType == 'square'){
-			plot1 <- plot1 <- 	ggplot(data = values$data, aes(x = x, y = y)) + geom_raster(aes(fill = value))
+			plot1 <- plot1 + geom_raster(aes(fill = value)) + get_colours()
 		}
+		
+		else if(input$displayType == 'gaussian'){
+			dfdens <- get_density()
+			
+			# avoid contour/fill errors
+			if(var(dfdens$z) != 0){
+				#add fill
+				if(layer_selected("showHeatmap")){
+					plot1 <- plot1 + 
+					stat_contour(aes(z = z,  fill=..level..), bins = input$numShades, 
+						alpha = input$fillOpacity, data = dfdens, geom="polygon")  +
+					get_colours() 
+				}
+					
+				# add contour
+				if(layer_selected("showContour")){
+					plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens, bins = input$numShades)
+				}
+			}
+		}
+
+		# add grid
+		if(layer_selected("showGrid")){
+			plot1 <- plot1 + 
+				geom_vline(xintercept = 0.5:(input$numGridRows-0.5)) + 
+				geom_hline(yintercept = 0.5:(input$numGridRows-0.5))
+		}
+		
 		plot1
 	})
 	
