@@ -219,6 +219,9 @@ shinyServer(function(input, output, session){
 			plot1 <- plot1 + geom_vline(xintercept = 0.5:(input$numGridRows-0.5)) + geom_hline(yintercept = 0.5:(input$numGridRows-0.5))
 		}
 		
+		if(input$displayType == 'square'){
+			plot1 <- plot1 <- 	ggplot(data = values$data, aes(x = x, y = y)) + geom_raster(aes(fill = value))
+		}
 		plot1
 	})
 	
