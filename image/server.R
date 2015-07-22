@@ -108,7 +108,6 @@ shinyServer(function(input, output, session){
 					"contour lines" = 'showContour'), 
 				selected = currentSelected)
 		}
-		print("here")
 	})
 	
 	#################### GGPLOT HELPER FUNCTIONS ####################
@@ -139,7 +138,7 @@ shinyServer(function(input, output, session){
 		
 		# reset values$data if grid changes
 		if(input$gridSelect == 'gridExample'){
-			max <- input$numGridRows
+			max <- input$numGridRows 
 			newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
 			newy <- rep(seq(1, max), max)
 			data.frame("value" = sample(x = c(0, 20), size = max*max, prob = c(0.99, 0.01), replace = TRUE), 
@@ -191,6 +190,7 @@ shinyServer(function(input, output, session){
 
 	get_theme <- reactive({
 		theme_bw()
+		#theme(panel.grid=element_blank())
 		#theme(panel.grid.minor = element_line(color = "black"))
 	})
 	
@@ -211,10 +211,14 @@ shinyServer(function(input, output, session){
 		
 		# calculate weighted density, source: http://bit.ly/1JfZQYQ
 		data <- values$data
-		dens <- kde2d.weighted(data$x, data$y, data$value, n = input$contourSmoothness, h = get_bandwidth())
+		x <- data$x
+		y <- data$y
+		val <- data$value
+		dens <- kde2d.weighted(x, y, val, n = input$contourSmoothness, h = get_bandwidth())
 		
 		# set NAs to 0
 		dens$z[is.na(dens$z)] <- 0
+		
 		data.frame(expand.grid(x=dens$x, y=dens$y), z=as.vector(dens$z))
 	})
 	
