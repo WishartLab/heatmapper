@@ -86,7 +86,7 @@ shinyUI(fluidPage(
 		  	# contours
 		  	fluidRow(
 		  		column(3, tags$label("Gaussian Radius Multiplier")), 
-		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 0.05, max = 2, value = 0.5, step=0.05))
+		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 0.05, max = 2, value = 0.4, step=0.05))
 		  	), 
 		  	
 		  	fluidRow(
@@ -100,11 +100,11 @@ shinyUI(fluidPage(
 	  	
 	  	fluidRow(
 	  		column(3, tags$label("Heatmap Opacity")), 
-	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.1, step = 0.05))
+	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.5, step = 0.05))
 	  	), 
 	  	fluidRow(
 	  		column(3, tags$label("Number of Shades")), 
-	  		column(9, sliderInput('numShades', label = NULL, min = 2, max = 50, value = 40))
+	  		column(9, sliderInput('numShades', label = NULL, min = 2, max = 50, value = 8))
 	  	),
 	  	 
 	  	selectInput('colourScheme', label = "Colour Scheme", 
@@ -113,7 +113,7 @@ shinyUI(fluidPage(
 	  			'rainbow' = "rainbow", 
 	  			'topo' = "topo"
 	  		), 
-	  		selected = 'custom'
+	  		selected = 'rainbow'
 	  	),
 	  	
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 

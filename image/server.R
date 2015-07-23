@@ -212,14 +212,19 @@ shinyServer(function(input, output, session){
 		
 		oldRange <- seq(1, max, length = n)
 		
-		newSplit <- seq(0, max + 1, length = n+2)
+		newSplit <- seq(0, max + 1, length = n + 2)
 		minSplit <- newSplit[newSplit<1]
 		maxSplit <- newSplit[newSplit>max]
-
-		row1 <- data.frame(expand.grid(x = minSplit, y = oldRange), z = 0)
-		row2 <- data.frame(expand.grid(x = maxSplit, y = oldRange), z = 0)
-		col1 <- data.frame(expand.grid(x = oldRange, y = minSplit), z = 0)
-		col2 <- data.frame(expand.grid(x = oldRange, y = maxSplit), z = 0)
+		
+		minSplit <- 0
+		maxSplit <- max + 1
+		z <- min(x$z)
+		
+		#print(maxSplit)
+		row1 <- data.frame(expand.grid(x = minSplit, y = oldRange), z = z)
+		row2 <- data.frame(expand.grid(x = maxSplit, y = oldRange), z = z)
+		col1 <- data.frame(expand.grid(x = oldRange, y = minSplit), z = z)
+		col2 <- data.frame(expand.grid(x = oldRange, y = maxSplit), z = z)
 		
 		rbind(x,row1,row2,col1,col2)
 	}
@@ -228,7 +233,7 @@ shinyServer(function(input, output, session){
 		
 		# calculate weighted density, source: http://bit.ly/1JfZQYQ
 		data <- values$data
-
+		#data <- add_padding(data, input$contourSmoothness, values$numRows)
 		x <- data$x
 		y <- data$y
 		val <- data$value
@@ -237,7 +242,7 @@ shinyServer(function(input, output, session){
 		
 		# set NAs to 0
 		dens$z[is.na(dens$z)] <- 0
-		
+		#data.frame(expand.grid(x=dens$x, y=dens$y), z=as.vector(dens$z))
 		# close polygons at corners
 		add_padding(data.frame(expand.grid(x=dens$x, y=dens$y), z=as.vector(dens$z)), 
 			input$contourSmoothness, values$numRows)
