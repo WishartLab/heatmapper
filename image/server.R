@@ -13,22 +13,35 @@ shinyServer(function(input, output, session){
   	data = data.frame("value" = c(), "x" = c(), "y" = c()), 
   	index = NULL, 
   	num = NULL, 
-		numRows = NULL)
+		numRows = NULL, 
+		gridFile = NULL)
 
 	#################### OBSERVERS ####################
 
 	# update values$data andupdate the record of number of rows when data changes
 	observe({
 		grid_data <- get_grid_file()
-		isolate({
-			values$data <- grid_data
-			values$numRows <- sqrt(nrow(grid_data))
-		})
+		
+		if(!is.null(grid_data)){
+			isolate({
+				values$data <- grid_data
+				values$numRows <- sqrt(nrow(grid_data))
+			})
+		}
 	})
 	
 	# set values$num when numeric input is changed
 	observe({
 		values$num <- input$selectedValue
+	})
+	
+	observe({
+		input$clearGrid
+		values$gridFile <- NULL
+	})
+	
+	observe({
+		values$gridFile <- input$gridFile
 	})
 	
 	# set values$index of marker when clicked and update numeric input value
@@ -144,9 +157,11 @@ shinyServer(function(input, output, session){
 			data.frame("value" = sample(x = c(0, 20), size = max*max, prob = c(0.9, 0.1), replace = TRUE), 
 				"x" = newx, "y" = newy)
 		}
-		else if(!is.null(input$gridFile)){
-			read.delim(input$gridFile$datapath)
-			#read.delim("example_input/grid.txt")
+		else if(!is.null(values$gridFile)){
+			tryCatch({
+				read.delim(values$gridFile$datapath)
+			}, error = function(err){NULL})
+				
 		}
 		else{
 			max <- input$numGridRows
@@ -212,19 +227,23 @@ shinyServer(function(input, output, session){
 		
 		oldRange <- seq(1, max, length = n)
 		
-		newSplit <- seq(0, max + 1, length = n + 2)
-		minSplit <- newSplit[newSplit<1]
-		maxSplit <- newSplit[newSplit>max]
-		
 		minSplit <- 0
 		maxSplit <- max + 1
 		z <- min(x$z)
 		
-		#print(maxSplit)
-		row1 <- data.frame(expand.grid(x = minSplit, y = oldRange), z = z)
-		row2 <- data.frame(expand.grid(x = maxSplit, y = oldRange), z = z)
-		col1 <- data.frame(expand.grid(x = oldRange, y = minSplit), z = z)
-		col2 <- data.frame(expand.grid(x = oldRange, y = maxSplit), z = z)
+		row1 <- data.frame(x = minSplit, y = oldRange, z = z)
+		row2 <- data.frame(x = maxSplit, y = oldRange, z = z)
+		col1 <- data.frame(x = oldRange, y = minSplit, z = z)
+		col2 <- data.frame(x = oldRange, y = maxSplit, z = z)
+		
+		#newSplit <- seq(0, max + 1, length = n + 2)
+		#minSplit <- newSplit[newSplit<1]
+		#maxSplit <- newSplit[newSplit>max]
+		#z <- 0
+		#row1 <- data.frame(expand.grid(x = minSplit, y = oldRange), value = z)
+		#row2 <- data.frame(expand.grid(x = maxSplit, y = oldRange), value = z)
+		#col1 <- data.frame(expand.grid(x = oldRange, y = minSplit), value = z)
+		#col2 <- data.frame(expand.grid(x = oldRange, y = maxSplit), value = z)
 		
 		rbind(x,row1,row2,col1,col2)
 	}
@@ -352,7 +371,8 @@ shinyServer(function(input, output, session){
 		filename = "table.txt", 
 		content = function(file){
 			write.table(values$data, file, quote = FALSE, sep = "\t")
-		})
+	})
+	
 	#################### TABLE HELPER FUNCTIONS ####################
 	output$table <- renderDataTable({
 		values$data

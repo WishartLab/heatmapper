@@ -11,8 +11,14 @@ $(document).ready(function() {
         $('div.busy').hide()
       }
     }, 100)
-    
 
+    var gridControl = $("#gridFile");
+
+    $("#clearGrid").on("click", function () {
+        gridControl.replaceWith( gridControl = gridControl.clone( true ) );
+        $("#gridFile_progress").hide();
+    });
+    
     $( "#imageFile" ).change(function() {
       document.getElementById("imageFile_progress").setAttribute('style', "height:20px; margin-top:5px;");
     });

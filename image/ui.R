@@ -38,8 +38,13 @@ shinyUI(fluidPage(
 	  		"Example Grid" = 'gridExample'), 
 	  		selected = 'gridExample'
 	  	),
+	  	
 	  	conditionalPanel(condition = "input.gridSelect == 'gridUpload'",
-	  		fileInput('gridFile', label = NULL)),
+	  		fluidRow(
+	  			column(8, fileInput('gridFile', label = NULL)), 
+	  			column(4, HTML("<button id='clearGrid' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
+	  		)
+	  	),
 	  	
 	  	# or select grid ____ x ____,  grid radius ___
 	  	tags$label("Selected point"),
