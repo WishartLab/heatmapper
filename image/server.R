@@ -208,77 +208,20 @@ shinyServer(function(input, output, session){
 	})
 
 	# extend the data frame in each direction to connect the polygons at the edges of the grid
-	add_padding <- function(x, n){
+	add_padding <- function(x, n, max){
 		
+		oldRange <- seq(1, max, length = n)
 		
-		max <-  values$numRows
-		#max1 <- max + 1
+		newSplit <- seq(0, max + 1, length = n+2)
+		minSplit <- newSplit[newSplit<1]
+		maxSplit <- newSplit[newSplit>max]
+
+		row1 <- data.frame(expand.grid(x = minSplit, y = oldRange), z = 0)
+		row2 <- data.frame(expand.grid(x = maxSplit, y = oldRange), z = 0)
+		col1 <- data.frame(expand.grid(x = oldRange, y = minSplit), z = 0)
+		col2 <- data.frame(expand.grid(x = oldRange, y = maxSplit), z = 0)
 		
-		#n <- 50
-		splitAll <- seq(0, max + 1, length = n+2)
-		split0 <- splitAll[splitAll<1]
-		splitMax <- splitAll[splitAll>max]
-		oldRange <- seq(1,max, length=n)
-		#split <- seq(0, max, length = n + 1)
-		#split0 <- split[split<1]
-		#splitAll <- c(split0, seq(1, max, length = n))
-		
-		#splitMax <- seq(1, max+1, length = n + 1)
-		#splitMax <- splitMax[splitMax>max]
-		
-		
-	
-		#row1 <- data.frame(x = unlist(lapply(split0, function(x){x:max1})), y = 0, z = 0)
-		#row2 <- data.frame(x = unlist(lapply(split0, function(x){x:max1})), y = max1, z = 0)
-		#col1 <- data.frame(expand.grid(x = split0, y = 1:max), z = 0)
-		#col2 <- data.frame(x = max1, y = 1:max, z = 0)
-		
-		
-		#row1 <- data.frame(x = 0:max1, y = 0, z = 0)
-		#row2 <- data.frame(x = 0:max1, y = max1, z = 0)
-		#col1 <- data.frame(x = 0, y = 1:max, z = 0)
-		#col2 <- data.frame(x = max1, y = 1:max, z = 0)
-		
-		#gx <- seq(0, max-1, length = input$contourSmoothness) # gridpoints x
-  	#gx <- gx[gx[] < 1]
-		#gy <- seq(1, max, length = input$contourSmoothness) # gridpoints y
-		#print(gx)
-		#gx <- seq(0, 1, length = nSplit)
-		#gx <- split0
-		#print(gx)
-		
-		#gx <- seq(0, 50, length = input$contourSmoothness)
-		#print(gx[ gx <2])
-		
-		#gx <- gx[gx<1]
-		
-		#extra <- data.frame(expand.grid(x = split0, y = split0), z = 0)
-		#print(extra)
-		
-		row1 <- data.frame(expand.grid(x = split0, y = oldRange), z = 0)
-		row2 <- data.frame(expand.grid(x = oldRange, y = split0), z = 0)
-		col1 <- data.frame(expand.grid(x = splitMax, y = oldRange), z = 0)
-		col2 <- data.frame(expand.grid(x = oldRange, y = splitMax), z = 0)
-		
-		all <- rbind(row1,row2,col1,col2)
-		#print(all)
-		#all <- data.frame(expand.grid(x = split0, y = split0), z = 0)
-		
-		
-		
-		
-		
-		#one <- data.frame(expand.grid(x=split0, y=splitAll), z = 0)
-		#two <- data.frame(expand.grid(x=splitAll, y=split0), z = 0)
-		#three <- 
-		#four <- 
-		#all <- rbind(one, two, three, four)
-		#print(all)
-		#print(all)
-		rbind(x, all)
-		#print(rbind(x, data.frame(expand.grid(x = gx, y = gx), z = 0)))
-		#rbind(x, extra)
-		
+		rbind(x,row1,row2,col1,col2)
 	}
 	
 	get_density <- reactive({
@@ -289,17 +232,15 @@ shinyServer(function(input, output, session){
 		x <- data$x
 		y <- data$y
 		val <- data$value
-		max <- values$numRows
-		
 		
 		dens <- kde2d.weighted(x, y, val, n = input$contourSmoothness, h = get_bandwidth())
 		
 		# set NAs to 0
 		dens$z[is.na(dens$z)] <- 0
 		
-		
-		
-		add_padding(data.frame(expand.grid(x=dens$x, y=dens$y), z=as.vector(dens$z)), input$contourSmoothness)
+		# close polygons at corners
+		add_padding(data.frame(expand.grid(x=dens$x, y=dens$y), z=as.vector(dens$z)), 
+			input$contourSmoothness, values$numRows)
 	})
 	
 	get_colours <- reactive({
