@@ -83,7 +83,7 @@ shinyServer(function(input, output, session){
 	
 	# update input$contourSmoothness when values$numRows is changed
 	observe({
-		updateSliderInput(session, 'contourSmoothness', step = values$numRows, min = values$numRows)
+		updateSliderInput(session, 'contourSmoothness', step = values$numRows+2, min = values$numRows+2)
 	})
 	
 	# update layer show/hide options when display type changes
@@ -207,13 +207,29 @@ shinyServer(function(input, output, session){
 		c(bandwidth.nrd(values$data$x)*input$gaussianRadius, bandwidth.nrd(values$data$y)*input$gaussianRadius)
 	})
 
+	# extend the data frame in each direction to connect the polygons at the edges of the grid
+	add_padding <- function(x){
+		
+		max <-  values$numRows
+		max1 <- max + 1
+		row1 <- data.frame(x = 0:max1, y = 0, value = 0)
+		row2 <- data.frame(x = 0:max1, y = max1, value = 0)
+		col1 <- data.frame(x = 0, y = 1:max, value = 0)
+		col2 <- data.frame(x = max1, y = 1:max, value = 0)
+		
+		rbind(x, rbind(row1,row2,col1,col2))
+	}
+	
 	get_density <- reactive({
 		
 		# calculate weighted density, source: http://bit.ly/1JfZQYQ
 		data <- values$data
+		data <- add_padding(values$data)
+
 		x <- data$x
 		y <- data$y
 		val <- data$value
+		
 		dens <- kde2d.weighted(x, y, val, n = input$contourSmoothness, h = get_bandwidth())
 		
 		# set NAs to 0
@@ -243,7 +259,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_plot <- reactive({
-		
+
 		plot1 <- 	ggplot(data = values$data, aes(x = x, y = y))  + 
 			
 			# prevent "no layers in plot" error
@@ -258,6 +274,7 @@ shinyServer(function(input, output, session){
 			# scale x and y axis values
 			scale_x_continuous(limits = get_limits(), breaks=get_breaks(), expand = c(0, 0)) + 
 			scale_y_continuous(limits = get_limits(), breaks=get_breaks(), expand = c(0, 0)) 
+			
 		
 		if(input$displayType == 'square'){
 			if(layer_selected("showHeatmap")){
@@ -267,6 +284,8 @@ shinyServer(function(input, output, session){
 		
 		else if(input$displayType == 'gaussian'){
 			dfdens <- get_density()
+			
+			#dfdens <- add_extra(dfdens)
 			
 			# avoid contour/fill errors
 			if(var(dfdens$z) != 0){
