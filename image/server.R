@@ -15,7 +15,8 @@ shinyServer(function(input, output, session){
   	num = NULL, 
 		numRows = NULL,
 		imageFile = NULL,
-		gridFile = NULL)
+		gridFile = NULL, 
+		highlightPoint = NULL)
 
 	#################### OBSERVERS ####################
 
@@ -54,18 +55,43 @@ shinyServer(function(input, output, session){
 		values$gridFile <- input$gridFile
 	})
 	
+		
+	# update point when showSelected point is first turned on or off
+	observe({
+		if(input$showSelectedPoint){
+			isolate(values$highlightPoint <- get_selected_point())
+		}
+		else{
+			isolate(values$highlightPoint <- NULL)
+		}
+	})
+	
 	# set values$index of marker when clicked and update numeric input value
 	observe({
 		point <- get_nearPoints()
 		isolate({
 	    if(!is.null(point)){
-	    	values$index <- as.numeric(rownames(point))
-	    	updateNumericInput(session, "selectedX", value = point$x, max = tail(values$data$x, 1))
-				updateNumericInput(session, "selectedY", value = point$y, max = tail(values$data$y, 1))
-				updateNumericInput(session, "selectedValue", value = point$value)
+	    	
+	    	if(is.null(values$index) || as.numeric(rownames(point)) != values$index){
+	    		values$index <- as.numeric(rownames(point))
+	    		
+	    		# update highlight point when index is changed
+	    		if(input$showSelectedPoint){
+	  				values$highlightPoint <- get_selected_point()
+	   			}
+	    	}
+	    	#if(is.na(input$selectedX) || input$selectedX != point$x)
+	    			updateNumericInput(session, "selectedX", value = point$x, max = tail(values$data$x, 1))
+	    		
+				#if(is.na(input$selectedY) || input$selectedX != point$y)
+					updateNumericInput(session, "selectedY", value = point$y, max = tail(values$data$y, 1))
+	    		
+				#if(is.na(input$selectedValue) || input$selectedValue != point$value)
+					updateNumericInput(session, "selectedValue", value = point$value)
 	    }
 		})
 	})
+
 	
 	# calculate index from x and y coordinates
 	find_index <- reactive({
@@ -84,14 +110,14 @@ shinyServer(function(input, output, session){
 	output$xyCoordsError <- renderText({
 		validate(need(!is.na(input$selectedValue), message="Please select valid x and y coordinates"))
 	})
-	
+
 	observe({
-		input$submitCoords
-		isolate({
+		#input$submitCoords
+		#isolate({
 			if(!is.na(input$selectedX) && !is.na(input$selectedY)){
 				find_index()
 			}
-		})
+		#})
 	})
 	
 	# click submit button to change value
@@ -164,7 +190,7 @@ shinyServer(function(input, output, session){
 			max <- input$numGridRows 
 			newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
 			newy <- rep(seq(1, max), max)
-			data.frame("value" = sample(x = c(0, 20), size = max*max, prob = c(0.9, 0.1), replace = TRUE), 
+			data.frame("value" = sample(x = c(0, round(seq(20,200, length=8),0)), size = max*max, prob = c(0.8, rep(0.025,8)), replace = TRUE), 
 				"x" = newx, "y" = newy)
 		}
 		else if(!is.null(values$gridFile)){
@@ -289,13 +315,19 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
-	get_selected_point <- reactive({
+	get_selected_point <- function(){
+		print(" update get_selected")
+
 		if(!is.null(values$index)){
 			x_val <- values$data$x[[values$index]]
 			y_val <- values$data$y[[values$index]]
+			
 			geom_point(x = x_val, y = y_val, colour = "yellow", size = 4)
 		}
-	})
+		else{
+			NULL
+		}	
+	}
 	
 	get_plot <- reactive({
 
@@ -352,17 +384,12 @@ shinyServer(function(input, output, session){
 				geom_vline(xintercept = 0.5:(values$numRows-0.5)) + 
 				geom_hline(yintercept = 0.5:(values$numRows-0.5))
 		}
-		
+		print("PLOT")
 		plot1
 	})
 	
 	output$ggplotMap <- renderPlot({
-		if(input$showSelectedPoint){
-			get_plot() + get_selected_point()
-		}
-		else{
-			get_plot()
-		}
+		get_plot()  + values$highlightPoint
 	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
 	
 	#################### SIDEBAR HELPER FUNCTIONS ####################
