@@ -20,7 +20,7 @@ shinyServer(function(input, output, session){
 
 	#################### OBSERVERS ####################
 
-	# update values$data andupdate the record of number of rows when data changes
+	# update values$data and update the record of number of rows when data changes
 	observe({
 		grid_data <- get_grid_file()
 		
@@ -59,12 +59,10 @@ shinyServer(function(input, output, session){
 	# update numeric input value when plot is clicked
 	observe({
 		point <- get_nearPoints()
-		isolate({
-	    if(!is.null(point)){
-	    	updateNumericInput(session, "selectedX", value = point$x, max = tail(values$data$x, 1))
-	    	updateNumericInput(session, "selectedY", value = point$y, max = tail(values$data$y, 1))	
-	    }
-		})
+		if(!is.null(point)){
+			updateNumericInput(session, "selectedX", value = point$x, max = tail(values$data$x, 1))
+			updateNumericInput(session, "selectedY", value = point$y, max = tail(values$data$y, 1))	
+		}
 	})
 	
 	# check if coords are in the proper range
@@ -80,6 +78,7 @@ shinyServer(function(input, output, session){
 			valid <- FALSE
 		}
 		
+		# set selectedValue to NA and values$index to NULL if coords not valid
 		if(!valid){
 			updateNumericInput(session, 'selectedValue', value = "")
 			values$index <- NULL
@@ -90,36 +89,32 @@ shinyServer(function(input, output, session){
 
 	# calculate index from x and y coordinates
 	find_index <- reactive({
+		
 		x <- input$selectedX
 		y <- input$selectedY
 		rows <- values$numRows
 		
 		valid <- validate_coords(x, y, rows)
 		
+		# update values$index and numeric input for selectedValue if coords are valid
 		if(valid){
 			z <- seq((x-1)*rows+1, x*rows)[[y]]
 			values$index <- z
 			updateNumericInput(session, 'selectedValue', value = values$data$value[[z]])
 		}
 	})
-	
-	output$xyCoordsError <- renderText({
-		validate(need(!is.na(input$selectedValue), message="Please select valid x and y coordinates"))
-	})
 		
 	# update values$index when a new valid x and y coord is selected
 	observe({
-			#if(!is.na(input$selectedX) && !is.na(input$selectedY)){
-				find_index()
-				
-				# update highlighted point if values$index changes
-				if(input$showSelectedPoint){
-		  		values$highlightPoint <- get_selected_point()
-				}
-				else{
-					values$highlightPoint <- NULL
-				}
-		#}
+		find_index()
+		
+		# update highlighted point if values$index changes
+		if(input$showSelectedPoint){
+		  values$highlightPoint <- get_selected_point()
+		}
+		else{
+			values$highlightPoint <- NULL
+		}
 	})
 	
 	# click submit button to change value
@@ -161,7 +156,9 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
-	#################### GGPLOT HELPER FUNCTIONS ####################
+	#################### FILE INPUT FUNCTIONS ####################
+	
+	# read and return background image file
 	get_image_file <- reactive({
 		if(input$imageSelect == 'imageExample'){
 			readJPEG("example_input/jasper.jpg")
@@ -185,6 +182,7 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
+	# read and return grid file
 	get_grid_file <- reactive({
 		
 		# reset values$data if grid changes
@@ -209,53 +207,10 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
-	# value of clicked point
-	get_nearPoints <- reactive({
-		point <- nearPoints(isolate(values$data), input$plot_click, maxpoints = 1, threshold = 1000)
-		if(length(rownames(point))>0){
-			point
-		}
-		else{
-			NULL
-		}
-	})
 	
-	layer_selected <- function(name){
-		if(length(grep(name, input$layers))>0){
-			TRUE
-		}
-		else{
-			FALSE
-		}
-	}
+	#################### KDE2D HELPER FUNCTIONS ####################
 	
-	get_background <- reactive({
-		if(layer_selected("showImage") && !is.null(get_image_file())){
-			if(input$stretchImage){
-				g <- rasterGrob(get_image_file(), width=unit(1,"npc"), height=unit(1,"npc"), interpolate=TRUE)
-			}
-			else{
-				g <- rasterGrob(get_image_file(), interpolate = TRUE)
-			}
-			annotation_custom(g, -Inf, Inf, -Inf, Inf)	
-		}
-	})
-
-	get_theme <- reactive({
-		theme_bw()
-		#theme(panel.grid=element_blank())
-		#theme(panel.grid.minor = element_line(color = "black"))
-	})
-	
-	# number labels for axis
-	get_breaks <- reactive({
-		1:values$numRows
-	})
-	
-	get_limits <- reactive({
-		c(0.5, values$numRows+0.5)
-	})
-	
+	# calculate bandwidth for kde2d given input$gaussianRadius setting
 	get_bandwidth <- reactive({
 		c(bandwidth.nrd(values$data$x)*input$gaussianRadius, bandwidth.nrd(values$data$y)*input$gaussianRadius)
 	})
@@ -286,11 +241,13 @@ shinyServer(function(input, output, session){
 		rbind(x,row1,row2,col1,col2)
 	}
 	
+	# kernel density estimation of values$data
 	get_density <- reactive({
 		
 		# calculate weighted density, source: http://bit.ly/1JfZQYQ
 		data <- values$data
 		#data <- add_padding(data, input$contourSmoothness, values$numRows)
+		
 		x <- data$x
 		y <- data$y
 		val <- data$value
@@ -299,12 +256,65 @@ shinyServer(function(input, output, session){
 		
 		# set NAs to 0
 		dens$z[is.na(dens$z)] <- 0
-		#data.frame(expand.grid(x=dens$x, y=dens$y), z=as.vector(dens$z))
+		
 		# close polygons at corners
 		add_padding(data.frame(expand.grid(x=dens$x, y=dens$y), z=as.vector(dens$z)), 
 			input$contourSmoothness, values$numRows)
 	})
 	
+	#################### GGPLOT HELPER FUNCTIONS ####################
+
+	# value of clicked point
+	get_nearPoints <- reactive({
+		point <- nearPoints(isolate(values$data), input$plot_click, maxpoints = 1, threshold = 1000)
+		if(length(rownames(point))>0){
+			point
+		}
+		else{
+			NULL
+		}
+	})
+	
+	# see if a given layer name is shown or hidden by user
+	layer_selected <- function(name){
+		if(length(grep(name, input$layers))>0){
+			TRUE
+		}
+		else{
+			FALSE
+		}
+	}
+	
+	# get background image
+	get_background <- reactive({
+		if(layer_selected("showImage") && !is.null(get_image_file())){
+			if(input$stretchImage){
+				g <- rasterGrob(get_image_file(), width=unit(1,"npc"), height=unit(1,"npc"), interpolate=TRUE)
+			}
+			else{
+				g <- rasterGrob(get_image_file(), interpolate = TRUE)
+			}
+			annotation_custom(g, -Inf, Inf, -Inf, Inf)	
+		}
+	})
+
+	get_theme <- reactive({
+		theme_bw()
+		#theme(panel.grid=element_blank())
+		#theme(panel.grid.minor = element_line(color = "black"))
+	})
+	
+	# number labels for axis
+	get_breaks <- reactive({
+		1:values$numRows
+	})
+	
+	# return range for plot axis
+	get_limits <- reactive({
+		c(0.5, values$numRows+0.5)
+	})
+	
+	# return colour scheme 
 	get_colours <- reactive({
 		if(input$colourScheme == 'rainbow'){
 			scale_fill_gradientn(colours = rev(rainbow(7)))
@@ -317,6 +327,7 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
+	# returns geom_point of selected point if valid selection is made
 	get_selected_point <- function(){
 
 		if(!is.null(values$index)){
@@ -360,10 +371,9 @@ shinyServer(function(input, output, session){
 		else if(input$displayType == 'gaussian'){
 			dfdens <- get_density()
 			
-			#dfdens <- add_extra(dfdens)
-			
 			# avoid contour/fill errors
 			if(var(dfdens$z) != 0){
+				
 				#add fill
 				if(layer_selected("showHeatmap")){
 					plot1 <- plot1 + 
@@ -385,7 +395,13 @@ shinyServer(function(input, output, session){
 				geom_vline(xintercept = 0.5:(values$numRows-0.5)) + 
 				geom_hline(yintercept = 0.5:(values$numRows-0.5))
 		}
+		
 		plot1
+	})
+	
+	# error message for invalid coordinates
+	output$xyCoordsError <- renderText({
+		validate(need(!is.na(input$selectedValue), message="Please select valid x and y coordinates"))
 	})
 	
 	output$ggplotMap <- renderPlot({
@@ -397,6 +413,7 @@ shinyServer(function(input, output, session){
 	get_plot_download_name <- function(){
 		paste0("plot.", input$downloadPlotFormat)
 	}
+	
 	output$plotDownload <- downloadHandler(
 		filename = reactive({get_plot_download_name()}),
 		content = function(file){
