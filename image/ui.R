@@ -8,8 +8,8 @@ shinyUI(fluidPage(
 	tags$head(
 		HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
 		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
-			input[type=file]{display:inline;}
-			#selectedX, #selectedY, #selectedValue {width:100%;}
+			input[type=file], #xyCoordsError {display:inline;}
+			#selectedX, #selectedY, #selectedValue, #pointsTable {width:100%;}
 			#lowColour, #highColour {width:100%;}
 			#imageFile_progress, #gridFile_progress {height:0;}")),
 	
@@ -48,35 +48,28 @@ shinyUI(fluidPage(
 	  			column(4, HTML("<button id='clearGrid' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
 	  		)
 	  	),
+	  		  	
+	  	selectInput('layers', label = "Show/Hide Layers", multiple = TRUE,# width = "50%", 
+	  		choices = c(
+	  			"image" = 'showImage', 
+	  			"grid lines" = 'showGrid', 
+	  			"heatmap" = 'showHeatmap', 
+	  			"contour lines" = 'showContour'
+	  		), 
+	  		selected = c('showImage', 'showHeatmap')
+	  	),
 	  	
-	  	# or select grid ____ x ____,  grid radius ___
-	  	tags$label("Selected point"),
-	  	textOutput('xyCoordsError'),
-			HTML("
-				<table class = 'data table table-bordered table-condensed'>
-					<tbody>
-						<tr>
-							<th>x</th>
-							<th>y</th>
-							<th>Select</th>
-						</tr>
-						<tr>
-							<td><input type=number id=selectedX min=1 /></td>
-							<td><input type=number id=selectedY min=1 /></td>
-							<td><button id=submitCoords type=button class='action-button'>Submit</button></td>
-						</tr>
-						<tr>
-							<th colspan='2'>value</th>
-							<th>Update</th>
-						</tr>
-						<tr>			
-							<td colspan='2'><input type=number id=selectedValue min=0 /></td>
-							<td><button id=submitValue type=button class='action-button'>Submit</button></td>
-							
-						</tr>
-					</tbody>
-				</table>
-			"),
+	  	# code for checkboxes instead of select
+	  	#checkboxGroupInput('layers', label = "Show/Hide Layers",
+	  	#	choices = c(
+	  	#		"show image" = 'showImage', 
+	  	#		"show grid" = 'showGrid', 
+	  	#		"show heatmap" = 'showHeatmap', 
+	  	#		"show contour lines" = 'showContour'
+ 	  	#	),
+	  	#	selected = c('showImage', 'showGrid', 'showHeatmap')
+	  	#),
+	  	
 
 	  	fluidRow(
 	  		column(3, tags$label("Display")), 
@@ -130,28 +123,7 @@ shinyUI(fluidPage(
 	  			column(6, jscolourInput('highColour', label = "High Colour", value = "#EE00FF"))
 	  		)
 	  	), 
-	  	
-	  	selectInput('layers', label = "Show/Hide Layers", multiple = TRUE,# width = "50%", 
-	  		choices = c(
-	  			"image" = 'showImage', 
-	  			"grid lines" = 'showGrid', 
-	  			"heatmap" = 'showHeatmap', 
-	  			"contour lines" = 'showContour'
-	  		), 
-	  		selected = c('showImage', 'showHeatmap')
-	  	),
-	  	
-	  	# code for checkboxes instead of select
-	  	#checkboxGroupInput('layers', label = "Show/Hide Layers",
-	  	#	choices = c(
-	  	#		"show image" = 'showImage', 
-	  	#		"show grid" = 'showGrid', 
-	  	#		"show heatmap" = 'showHeatmap', 
-	  	#		"show contour lines" = 'showContour'
- 	  	#	),
-	  	#	selected = c('showImage', 'showGrid', 'showHeatmap')
-	  	#),
-	  	
+
 	  	downloadButton('plotDownload', label = "Download Plot"), 
 	  	downloadButton('tableDownload', label = "Download Table"),
 	  	
@@ -191,7 +163,33 @@ shinyUI(fluidPage(
 		mainPanel(
 			tabsetPanel(
 				tabPanel("Plot",
-						plotOutput("ggplotMap", click = "plot_click")
+					wellPanel(
+				  	tags$label("Selected point"), textOutput('xyCoordsError'),
+						HTML("
+							<table id = 'pointsTable' class = 'data table table-bordered table-condensed'>
+								<tbody>
+									<tr>
+										<th>x</th>
+										<th>y</th>
+										<th>Select</th>
+			
+										<th colspan='2'>value</th>
+										<th>Update</th>
+									</tr>
+									<tr>
+										<td><input type=number id=selectedX min=1 /></td>
+										<td><input type=number id=selectedY min=1 /></td>
+										<td><button id=submitCoords type=button class='action-button'>Submit</button></td>
+			
+										<td colspan='2'><input type=number id=selectedValue min=0 /></td>
+										<td><button id=submitValue type=button class='action-button'>Submit</button></td>
+									</tr>
+								</tbody>
+							</table>
+						")
+				  	
+					),
+					plotOutput("ggplotMap", click = "plot_click")
 				),
 				tabPanel("Table", 
 					tags$br(),
