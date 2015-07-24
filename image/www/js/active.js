@@ -12,6 +12,18 @@ $(document).ready(function() {
       }
     }, 100)
 
+    var imageControl = $("#imageFile");
+
+    $("#clearImage").on("click", function () {
+        imageControl.replaceWith( imageControl = imageControl.clone( true ) );
+        $("#imageFile_progress").hide();
+    });
+    
+    $( "#imageFile" ).change(function() {
+      document.getElementById("imageFile_progress").setAttribute('style', "height:20px; margin-top:5px;");
+    });
+
+
     var gridControl = $("#gridFile");
 
     $("#clearGrid").on("click", function () {
@@ -19,9 +31,6 @@ $(document).ready(function() {
         $("#gridFile_progress").hide();
     });
     
-    $( "#imageFile" ).change(function() {
-      document.getElementById("imageFile_progress").setAttribute('style', "height:20px; margin-top:5px;");
-    });
     $( "#gridFile" ).change(function() {
       document.getElementById("gridFile_progress").setAttribute('style', "height:20px; margin-top:5px;");
     });

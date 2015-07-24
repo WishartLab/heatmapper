@@ -28,7 +28,10 @@ shinyUI(fluidPage(
 	  		selected = 'imageUpload'
 	  	),
 	  	conditionalPanel(condition = "input.imageSelect == 'imageUpload'",
-	  		fileInput('imageFile', label = NULL)
+	  		fluidRow(
+	  			column(8, fileInput('imageFile', label = NULL)), 
+	  			column(4, HTML("<button id='clearImage' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
+	  		)
 	  	),
 	  	
 	  	radioButtons('gridSelect', label = "Select Grid File", 

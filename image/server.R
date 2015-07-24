@@ -13,7 +13,8 @@ shinyServer(function(input, output, session){
   	data = data.frame("value" = c(), "x" = c(), "y" = c()), 
   	index = NULL, 
   	num = NULL, 
-		numRows = NULL, 
+		numRows = NULL,
+		imageFile = NULL,
 		gridFile = NULL)
 
 	#################### OBSERVERS ####################
@@ -36,8 +37,17 @@ shinyServer(function(input, output, session){
 	})
 	
 	observe({
+		input$clearImage
+		values$imageFile <- NULL
+	})
+	
+	observe({
 		input$clearGrid
 		values$gridFile <- NULL
+	})
+	
+	observe({
+		values$imageFile <- input$imageFile
 	})
 	
 	observe({
@@ -98,7 +108,7 @@ shinyServer(function(input, output, session){
 	observe({
 		updateSliderInput(session, 'contourSmoothness', step = values$numRows, min = values$numRows)
 	})
-	
+
 	# update layer show/hide options when display type changes
 	observe({
 		displayChange <- input$displayType 
@@ -128,15 +138,15 @@ shinyServer(function(input, output, session){
 		if(input$imageSelect == 'imageExample'){
 			readJPEG("example_input/jasper.jpg")
 		}
-		else if(!is.null(input$imageFile)){
-			name <- input$imageFile$name
+		else if(!is.null(values$imageFile)){
+			name <- values$imageFile$name
 			extension <- tolower(substr(name, nchar(name)-3, nchar(name)))
 
 			if(extension == ".jpg" || extension == "jpeg"){
-				readJPEG(input$imageFile$datapath)
+				readJPEG(values$imageFile$datapath)
 			}
 			else if(extension == ".png"){
-				readPNG(input$imageFile$datapath)
+				readPNG(values$imageFile$datapath)
 			}
 			else{
 				validate(txt = "Unfortunately the type of file you uploaded is not supported. Please upload a PNG or JPEG image file.")
