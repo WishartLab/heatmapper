@@ -86,8 +86,6 @@ shinyServer(function(input, output, session){
 				#if(is.na(input$selectedY) || input$selectedX != point$y)
 					updateNumericInput(session, "selectedY", value = point$y, max = tail(values$data$y, 1))
 	    		
-				#if(is.na(input$selectedValue) || input$selectedValue != point$value)
-					updateNumericInput(session, "selectedValue", value = point$value)
 	    }
 		})
 	})
@@ -111,6 +109,17 @@ shinyServer(function(input, output, session){
 		validate(need(!is.na(input$selectedValue), message="Please select valid x and y coordinates"))
 	})
 
+	observe({
+		if(input$submitCoords%%2 == 1){
+			isolate(values$highlightPoint <- get_selected_point())
+			updateButton(session, 'submitCoords', label = "Hide")
+		}
+		else{
+			values$highlightPoint <- NULL
+			updateButton(session, 'submitCoords', label = "Show")
+		}
+	})
+	
 	observe({
 		#input$submitCoords
 		#isolate({
@@ -316,7 +325,6 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_selected_point <- function(){
-		print(" update get_selected")
 
 		if(!is.null(values$index)){
 			x_val <- values$data$x[[values$index]]
@@ -384,7 +392,6 @@ shinyServer(function(input, output, session){
 				geom_vline(xintercept = 0.5:(values$numRows-0.5)) + 
 				geom_hline(yintercept = 0.5:(values$numRows-0.5))
 		}
-		print("PLOT")
 		plot1
 	})
 	

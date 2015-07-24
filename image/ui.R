@@ -179,7 +179,7 @@ shinyUI(fluidPage(
 									<tr>
 										<td><input type=number id=selectedX min=1 /></td>
 										<td><input type=number id=selectedY min=1 /></td>
-										<td><button id=submitCoords type=button class='action-button'>Submit</button></td>
+										<td><button id=submitCoords type=button class='action-button'>Show</button></td>
 			
 										<td colspan='2'><input type=number id=selectedValue min=0 /></td>
 										<td><button id=submitValue type=button class='action-button'>Submit</button></td>
