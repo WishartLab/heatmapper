@@ -54,79 +54,72 @@ shinyServer(function(input, output, session){
 	observe({
 		values$gridFile <- input$gridFile
 	})
+
 	
-		
-	# update point when showSelected point is first turned on or off
-	observe({
-		if(input$showSelectedPoint){
-			isolate(values$highlightPoint <- get_selected_point())
-		}
-		else{
-			isolate(values$highlightPoint <- NULL)
-		}
-	})
-	
-	# set values$index of marker when clicked and update numeric input value
+	# update numeric input value when plot is clicked
 	observe({
 		point <- get_nearPoints()
 		isolate({
 	    if(!is.null(point)){
-	    	
-	    	if(is.null(values$index) || as.numeric(rownames(point)) != values$index){
-	    		values$index <- as.numeric(rownames(point))
-	    		
-	    		# update highlight point when index is changed
-	    		if(input$showSelectedPoint){
-	  				values$highlightPoint <- get_selected_point()
-	   			}
-	    	}
-	    	#if(is.na(input$selectedX) || input$selectedX != point$x)
-	    			updateNumericInput(session, "selectedX", value = point$x, max = tail(values$data$x, 1))
-	    		
-				#if(is.na(input$selectedY) || input$selectedX != point$y)
-					updateNumericInput(session, "selectedY", value = point$y, max = tail(values$data$y, 1))
-	    		
+	    	updateNumericInput(session, "selectedX", value = point$x, max = tail(values$data$x, 1))
+	    	updateNumericInput(session, "selectedY", value = point$y, max = tail(values$data$y, 1))	
 	    }
 		})
 	})
-
 	
+	# check if coords are in the proper range
+	validate_coords <- function(x, y, rows){
+		valid <- TRUE
+		
+		if(is.na(x) || x < 1 || x > rows){
+			updateNumericInput(session, 'selectedX', value = "")
+			valid <- FALSE
+		}
+		if(is.na(y) || y < 1 || y > rows){
+			updateNumericInput(session, 'selectedY', value = "")
+			valid <- FALSE
+		}
+		
+		if(!valid){
+			updateNumericInput(session, 'selectedValue', value = "")
+			values$index <- NULL
+		}
+		
+		return(valid)
+	}
+
 	# calculate index from x and y coordinates
 	find_index <- reactive({
 		x <- input$selectedX
 		y <- input$selectedY
 		rows <- values$numRows
-		tryCatch({
+		
+		valid <- validate_coords(x, y, rows)
+		
+		if(valid){
 			z <- seq((x-1)*rows+1, x*rows)[[y]]
 			values$index <- z
 			updateNumericInput(session, 'selectedValue', value = values$data$value[[z]])
-		}, error = function(err){
-			updateNumericInput(session, 'selectedValue', value = "")
-		})
+		}
 	})
 	
 	output$xyCoordsError <- renderText({
 		validate(need(!is.na(input$selectedValue), message="Please select valid x and y coordinates"))
 	})
-
-#	observe({
-#		if(input$submitCoords%%2 == 1){
-#			isolate(values$highlightPoint <- get_selected_point())
-#			updateButton(session, 'submitCoords', label = "Hide")
-#		}
-#		else{
-#			values$highlightPoint <- NULL
-#			updateButton(session, 'submitCoords', label = "Show")
-#		}
-#	})
-	
+		
+	# update values$index when a new valid x and y coord is selected
 	observe({
-		#input$submitCoords
-		#isolate({
-			if(!is.na(input$selectedX) && !is.na(input$selectedY)){
+			#if(!is.na(input$selectedX) && !is.na(input$selectedY)){
 				find_index()
-			}
-		#})
+				
+				# update highlighted point if values$index changes
+				if(input$showSelectedPoint){
+		  		values$highlightPoint <- get_selected_point()
+				}
+				else{
+					values$highlightPoint <- NULL
+				}
+		#}
 	})
 	
 	# click submit button to change value
