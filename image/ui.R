@@ -145,7 +145,7 @@ shinyUI(fluidPage(
 					title = "Warning: any changes to values will be lost after changing the number of rows",
 					placement = "top"),
 	  		
-	  		checkboxInput('showSelectedPoint', label = strong("Highlight selected point"), value = FALSE),
+	  		#checkboxInput('showSelectedPoint', label = strong("Highlight selected point"), value = FALSE),
 	  		
 	  		selectInput('downloadPlotFormat', label = "Plot download file type", 
 					choices = c(
@@ -169,17 +169,17 @@ shinyUI(fluidPage(
 							<table id = 'pointsTable' class = 'data table table-bordered table-condensed'>
 								<tbody>
 									<tr>
-										<th>x</th>
-										<th>y</th>
-										<th>Select</th>
+										<th>X</th>
+										<th>Y</th>
+										<th>Show</th>
 			
-										<th colspan='2'>value</th>
+										<th colspan='2'>Value</th>
 										<th>Update</th>
 									</tr>
 									<tr>
 										<td><input type=number id=selectedX min=1 /></td>
 										<td><input type=number id=selectedY min=1 /></td>
-										<td><button id=submitCoords type=button class='action-button'>Show</button></td>
+										<td style='text-align:center;'><input type=checkbox id=showSelectedPoint /></td>
 			
 										<td colspan='2'><input type=number id=selectedValue min=0 /></td>
 										<td><button id=submitValue type=button class='action-button'>Submit</button></td>

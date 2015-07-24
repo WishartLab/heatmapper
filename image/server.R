@@ -109,16 +109,16 @@ shinyServer(function(input, output, session){
 		validate(need(!is.na(input$selectedValue), message="Please select valid x and y coordinates"))
 	})
 
-	observe({
-		if(input$submitCoords%%2 == 1){
-			isolate(values$highlightPoint <- get_selected_point())
-			updateButton(session, 'submitCoords', label = "Hide")
-		}
-		else{
-			values$highlightPoint <- NULL
-			updateButton(session, 'submitCoords', label = "Show")
-		}
-	})
+#	observe({
+#		if(input$submitCoords%%2 == 1){
+#			isolate(values$highlightPoint <- get_selected_point())
+#			updateButton(session, 'submitCoords', label = "Hide")
+#		}
+#		else{
+#			values$highlightPoint <- NULL
+#			updateButton(session, 'submitCoords', label = "Show")
+#		}
+#	})
 	
 	observe({
 		#input$submitCoords
