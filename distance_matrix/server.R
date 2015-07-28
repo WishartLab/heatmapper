@@ -61,6 +61,7 @@ shinyServer(function(input, output, session){
 	melt_file <- reactive({
 		file <- get_file()
 		if(!is.null(file)){
+			
 			data <- melt(file, id.vars = "cols", variable.name = "rows")
 			data$cols <- factor(data$cols, levels = data$cols)
 			return(data)
@@ -77,7 +78,7 @@ shinyServer(function(input, output, session){
 			return(rainbow(7))
 		}
 		else if(input$colourScheme == 'custom'){
-			return(colorRampPalette(c(input$lowColour, input$midColour, input$highColour))(7))
+			return(colorRampPalette(c(input$lowColour, input$midColour, input$highColour))(3))
 		}
 		else{
 			return(topo.colors(7))
@@ -94,6 +95,20 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
+	get_scale_fill_gradientn <- function(min, max, length){
+		shades <- input$numShades
+		
+		if(length > shades){
+			length <- shades
+		}
+		
+		legend_breaks <- rev(seq.int(1, shades, length.out = length))
+		legend_labels <- rev(seq.int(min, max, length.out = length))
+
+		scale_fill_gradientn(colours = get_colour_palette(), breaks = legend_breaks, labels = legend_labels, name = "Values")
+
+	}
+	
 	# plot using ggplot
 	get_plot <- reactive({
 		
@@ -102,21 +117,20 @@ shinyServer(function(input, output, session){
 		if(is.null(data)){
 			return(NULL)
 		}
-
-		q <- qplot(
-			data = data,
-			x=cols,
-			y=rows,
-			fill=as.numeric(value),
-			geom="tile",
-			xlab = input$xlab,
-			ylab = input$ylab,
-			margins = FALSE,
-			main = input$title)
-
-		q <- q + scale_x_discrete(expand = c(0,0)) + scale_y_discrete(expand = c(0,0))
-		q <- q + scale_fill_gradientn(colours = get_colour_palette(), name = "Values")
-		q <- q + get_asp()
+		
+		q <- ggplot(aes(x=cols, y=rows), 
+			data = transform(data, binned = cut(value, breaks = input$numShades, include.lowest = TRUE))) + 
+			geom_tile(aes(fill = as.numeric(binned))) +
+			get_scale_fill_gradientn(min(data$value), max(data$value), 5)
+		
+		q <- q + 
+			xlab(input$xlab) + 
+			ylab(input$ylab) + 
+			ggtitle(input$title) + 
+			scale_x_discrete(expand = c(0,0)) + 
+			scale_y_discrete(expand = c(0,0)) + 
+			get_asp()
+		
 		return(q)
 	})
 	

@@ -36,6 +36,7 @@ shinyUI(fluidPage(
 							"Topo" = 'topo', 
 							"Custom" = 'custom'), 
 						selected = 'custom'), 
+			sliderInput('numShades', label = "Number of Shades", min = 3, max = 299, value = 160),
 			conditionalPanel(condition = "input.colourScheme == 'custom'",	
 				fluidRow(
 	  			column(4,jscolourInput("lowColour", label = "Low Colour", value = "#FF0000")), 
