@@ -51,10 +51,10 @@ shinyUI(fluidPage(
 	  		  	
 	  	selectInput('layers', label = "Show/Hide Layers", multiple = TRUE,# width = "50%", 
 	  		choices = c(
-	  			"image" = 'showImage', 
-	  			"grid lines" = 'showGrid', 
-	  			"heatmap" = 'showHeatmap', 
-	  			"contour lines" = 'showContour'
+	  			"Image" = 'showImage', 
+	  			"Grid Lines" = 'showGrid', 
+	  			"Heatmap" = 'showHeatmap', 
+	  			"Contour Lines" = 'showContour'
 	  		), 
 	  		selected = c('showImage', 'showHeatmap')
 	  	),
@@ -76,8 +76,8 @@ shinyUI(fluidPage(
 	  		column(9, 
 	  			radioButtons('displayType', label =NULL, 
 	  				choices = c(
-	  					"square" = 'square', 
-	  					"gaussian" = 'gaussian'
+	  					"Square" = 'square', 
+	  					"Gaussian" = 'gaussian'
 	  				), 
 	  				selected = 'gaussian', 
 	  				inline = TRUE))
@@ -110,9 +110,9 @@ shinyUI(fluidPage(
 	  	 
 	  	selectInput('colourScheme', label = "Colour Scheme", 
 	  		choices = c(
-	  			'custom' = "custom",
-	  			'rainbow' = "rainbow", 
-	  			'topo' = "topo"
+	  			'Custom' = "custom",
+	  			'Rainbow' = "rainbow", 
+	  			'Topo' = "topo"
 	  		), 
 	  		selected = 'rainbow'
 	  	),

@@ -140,18 +140,18 @@ shinyServer(function(input, output, session){
 		if(displayChange == 'square'){
 			updateSelectInput(session, 'layers', 
 				choices = c(
-					"image" = 'showImage', 
-	  			"grid lines" = 'showGrid', 
-	  			"heatmap" = 'showHeatmap'), 
+					"Image" = 'showImage', 
+	  			"Grid Lines" = 'showGrid', 
+	  			"Heatmap" = 'showHeatmap'), 
 				selected = currentSelected)
 		}
 		if(displayChange == 'gaussian'){
 			updateSelectInput(session, 'layers', 
 				choices = c(
-					"image" = 'showImage', 
-	  			"grid lines" = 'showGrid', 
-	  			"heatmap" = 'showHeatmap', 
-					"contour lines" = 'showContour'), 
+					"Image" = 'showImage', 
+	  			"Grid Lines" = 'showGrid', 
+	  			"Heatmap" = 'showHeatmap', 
+					"Contour Lines" = 'showContour'), 
 				selected = currentSelected)
 		}
 	})
@@ -429,7 +429,7 @@ shinyServer(function(input, output, session){
 	
 	#################### TABLE HELPER FUNCTIONS ####################
 	output$table <- renderDataTable({
-		values$data
+		data.frame("X" = values$data$x, "Y" = values$data$y, "Value" = values$data$value)
 	})
 
 })
