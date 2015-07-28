@@ -62,18 +62,13 @@ shinyServer(function(input, output, session){
 
 		return(q)
 	}
-	
+
 	get_colour_palette <- function() {
-		if(input$colour == 'rainbow'){
+		if(input$colourScheme == 'rainbow'){
 			return(rainbow(7))
 		}
-		else if(input$colour == 'custom'){
-			if(input$customVars == 'custom2'){
-				return(colorRampPalette(c(input$lowColour, input$highColour))(7))
-			}
-			else{
-				return(colorRampPalette(c(input$lowColour, input$midColour, input$highColour))(7))
-			}
+		else if(input$colourScheme == 'custom'){
+			return(colorRampPalette(c(input$lowColour, input$midColour, input$highColour))(7))
 		}
 		else{
 			return(topo.colors(7))

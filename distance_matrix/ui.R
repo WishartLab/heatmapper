@@ -3,12 +3,11 @@ library(d3heatmap)
 
 shinyUI(fluidPage(
 	includeHTML("www/navbar.html"),
-	tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}"),
+	tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
+		#lowColour, #midColour, #highColour {width:100%;}"),
 		sidebarLayout(
 			sidebarPanel(
 				
-				actionButton('fileInputOptionsButton', label = "Hide File Input Options", class = "toggleButton fa fa-angle-up"),
-				wellPanel(id = "fileInputPanel", 
 				radioButtons('chooseInput',
     			label = "Choose Input Type",
     			choices = c(
@@ -17,46 +16,37 @@ shinyUI(fluidPage(
     			selected = 'example'),
 				
 				conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
-    			fileInput("file", label = "Upload Distance Matrix File"))), 
+    			fileInput("file", label = "Upload Distance Matrix File")), 
 				
-				actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
-				wellPanel(id = "colourPanel", 
-					selectInput('colour', label = "Colour Scheme", selectize = FALSE,
+				
+					selectInput('colourScheme', label = "Colour Scheme", selectize = FALSE,
 						choices = c(
 							"Rainbow" = 'rainbow', 
 							"Topo" = 'topo', 
 							"Custom" = 'custom'), 
 						selected = 'custom'), 
-					
-					tags$div(id = 'colourSection', 
-						radioButtons('customVars', 
-							label = "Number of Colour Variables", 
-							choices = c(
-								"3 (low, middle, high)" = 'custom3',
-								"2 (low, high)" = 'custom2'), 
-							selected = 'custom3'), 
-						
-						jscolourInput("lowColour", label = "Colour for low numbers", value = "#FF0000"),
-						
-						conditionalPanel(condition = "input.customVars == 'custom3'", 
-							jscolourInput("midColour", label = "Colour for middle numbers")),
-						
-						jscolourInput("highColour", label = "Colour for high numbers", value = "#23B000"))), 
+			conditionalPanel(condition = "input.colourScheme == 'custom'",	
+				fluidRow(
+	  			column(4,jscolourInput("lowColour", label = "Low Colour", value = "#FF0000")), 
+	  			column(4, jscolourInput("midColour", label = "Mid Colour")),
+	  			column(4, jscolourInput("highColour", label = "High Colour", value = "#23B000")))
+	 		),
+				
+			downloadButton('download', label = "Download Plot"),
 				
 				
-				actionButton('labelOptionsButton', label = "Hide Label Options", class = "toggleButton fa fa-angle-up"),
-				wellPanel(id = "labelPanel", 
+				tags$br(), tags$br(),
+				actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
+	  		conditionalPanel(condition = "input.advancedOptionsButton%2",
+				wellPanel(id = "advancedPanel", 
 					textInput('title', label = "Title", value = ""),
 				
 					textInput('xlab', label = "X Axis Label", value = ""),
 				
-					textInput('ylab', label = "Y Axis Label", value = "")	
-				),
+					textInput('ylab', label = "Y Axis Label", value = "")
 				
-				actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
-				wellPanel(id = "downloadPanel", 
-					tags$strong("Download Image of Plot"), tags$br(),
-					downloadButton('download', label = "Download Plot"))
+				
+				))
 				
     	), 
 			mainPanel(
