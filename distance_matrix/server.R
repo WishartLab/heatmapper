@@ -5,6 +5,24 @@ library(d3heatmap)
 
 shinyServer(function(input, output, session){
 
+	#################### GLOBAL REACTIVE VALUES ####################
+	values <- reactiveValues(
+		file = NULL
+	)
+	
+	#################### OBSERVERS ####################
+	observe({
+		input$clearFile
+		values$file <- NULL
+	})
+	
+	observe({
+		values$file <- input$file
+	})
+	
+	
+	#################### FILE INPUT FUNCTIONS ####################
+	# read a file given a file name
 	read_file <- function(fileName) {
 		tryCatch({
 				scan(fileName,  nlines = 1)
@@ -16,16 +34,17 @@ shinyServer(function(input, output, session){
 		file <- read.table(fileName, header = header, sep = "\t")
 		return(file)
 	}
-
-	get_file <- function() {
+	
+	# retrieve original data
+	get_file <- reactive({
 		if(input$chooseInput == 'example'){
 			file <- read_file("data/dist.txt")
 		}
 		else {
-			if(is.null(input$file$datapath)){
+			if(is.null(values$file$datapath)){
 				return(NULL)
 			}
-			file <- read_file(input$file$datapath)
+			file <- read_file(values$file$datapath)
 		}
 
 		# if no row names are specified use the column names
@@ -36,33 +55,23 @@ shinyServer(function(input, output, session){
 		colnames(file)[1] <- "cols"
 
 		return(file)
-	}
+	})
 
-	get_plot <- function(){
+	# melt data
+	melt_file <- reactive({
 		file <- get_file()
-		if(is.null(file)){
+		if(!is.null(file)){
+			data <- melt(file, id.vars = "cols", variable.name = "rows")
+			data$cols <- factor(data$cols, levels = data$cols)
+			return(data)
+		}
+		else{
 			return(NULL)
 		}
-		data <- melt(file, id.vars = "cols", variable.name = "rows")
-		data$cols <- factor(data$cols, levels = data$cols)
-
-		q <- qplot(
-			asp = 1,
-			data = data,
-			x=cols,
-			y=rows,
-			fill=as.numeric(value),
-			geom="tile",
-			xlab = input$xlab,
-			ylab = input$ylab,
-			margins = FALSE,
-			main = input$title)
-
-		q <- q + scale_fill_gradientn(colours = get_colour_palette(), name = "Values")
-
-		return(q)
-	}
-
+	})
+	
+	#################### GGPLOT HELPER FUNCTIONS ####################
+	# get colour palette based on input$colourScheme selection
 	get_colour_palette <- function() {
 		if(input$colourScheme == 'rainbow'){
 			return(rainbow(7))
@@ -75,8 +84,45 @@ shinyServer(function(input, output, session){
 		}
 	}
 	
+	# set aspect ratio
+	get_asp <- reactive({
+		if(input$asp){
+			coord_fixed(ratio = 1)
+		}
+		else{
+			NULL
+		}
+	})
+	
+	# plot using ggplot
+	get_plot <- reactive({
+		
+		data <- melt_file()
+		
+		if(is.null(data)){
+			return(NULL)
+		}
+
+		q <- qplot(
+			data = data,
+			x=cols,
+			y=rows,
+			fill=as.numeric(value),
+			geom="tile",
+			xlab = input$xlab,
+			ylab = input$ylab,
+			margins = FALSE,
+			main = input$title)
+
+		q <- q + scale_x_discrete(expand = c(0,0)) + scale_y_discrete(expand = c(0,0))
+		q <- q + scale_fill_gradientn(colours = get_colour_palette(), name = "Values")
+		q <- q + get_asp()
+		return(q)
+	})
+	
+	#################### OUTPUT FUNCTIONS ####################
 	output$d3map <- renderD3heatmap({
-	file <- get_file()
+		file <- get_file()
 		if(is.null(file)){
 			return(NULL)
 		}
@@ -87,18 +133,20 @@ shinyServer(function(input, output, session){
 	
 	output$map <- renderPlot({
 		get_plot()
-	})
+	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
 
 	output$table <- renderDataTable({
 		file <- get_file()
 	})
 
+	get_plot_download_name <- function(){
+		paste0("distanceMatrix.", input$downloadPlotFormat)
+	}
+	
 	output$download <- downloadHandler(
-		filename = "distanceMatrix.pdf",
+		filename = reactive({get_plot_download_name()}),
 		content = function(file){
-			pdf(file)
-			plot(get_plot())
-			dev.off()
+			ggsave(file, get_plot(), width = input$plotWidth/72, height = input$plotHeight/72)
 		}
 	)
 })
