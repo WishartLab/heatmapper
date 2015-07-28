@@ -63,7 +63,8 @@ shinyServer(function(input, output, session){
 		if(!is.null(file)){
 			
 			data <- melt(file, id.vars = "cols", variable.name = "rows")
-			data$cols <- factor(data$cols, levels = data$cols)
+			data$cols <- factor(data$cols, levels = unique(data$cols))
+			
 			return(data)
 		}
 		else{
@@ -118,8 +119,8 @@ shinyServer(function(input, output, session){
 			return(NULL)
 		}
 		
-		q <- ggplot(aes(x=cols, y=rows), 
-			data = transform(data, binned = cut(value, breaks = input$numShades, include.lowest = TRUE))) + 
+		q <- ggplot(aes(x=cols, y=rows), data = 
+				transform(data, binned = cut(value, breaks = input$numShades, include.lowest = TRUE))) + 
 			geom_tile(aes(fill = as.numeric(binned))) +
 			get_scale_fill_gradientn(min(data$value), max(data$value), 5)
 		
