@@ -12,14 +12,17 @@ shinyUI(fluidPage(
 		HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
 		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
 			#lowColour, #highColour, #missingColour {width:100%}
-			#file_progress {height:0;}")),
+			#file_progress {height:0;}
+			#sidebarPanel {width:23.45em;}
+			#mainPanel {left:24.45em; position:absolute;}
+			#tableDownload {float:right;}")),
 
 	div(class = "busy", absolutePanel(width = "50px", height = "100px",
 		fixed = TRUE, left = "65%", top = "45%", 
 		h5("Loading"), tags$br(), spin())),
 	
 	sidebarLayout(
-    sidebarPanel(
+    sidebarPanel(id = "sidebarPanel",
 			radioButtons('chooseInput', label = "Select Microarray Data File", 
 	  		inline=TRUE, 
 	  		choices = c(
@@ -48,6 +51,7 @@ shinyUI(fluidPage(
 	  		
 	  		conditionalPanel(condition = "input.exampleButton>0",
 	  			wellPanel(id = "exampleInfo",
+	  				tags$label("Example File Information"),
 	  				HTML("<button id='closeExampleButton' class='action-button' style='float:right;'><i class='fa fa-times'></i></button>"),
 						conditionalPanel(condition = "input.exampleFiles == \'example_input/example1.txt\'", includeHTML("www/example1info.html")),
 						conditionalPanel(condition = "input.exampleFiles == \'example_input/example2.txt\'", includeHTML("www/example2info.html")),
@@ -110,30 +114,32 @@ shinyUI(fluidPage(
 										"spearman rank correlation" = 'spearman',
 										"manhattan" = 'manhattan'),
 									selected = 'euclidean'),
-	    	
-				fluidRow(
-	column(6,			selectInput('clusterSelectRC', label = "Apply Clustering To", 
+	    			
+		selectInput('clusterSelectRC', label = "Apply Clustering To", 
 					multiple = TRUE, 
 					choices = c(
 						"Rows" = 'row', 
 						"Columns" = 'col'
 					), 
-					selected = 'row')
-		),
-		column(6,	
-			conditionalPanel(condition = "input.tabSelections == 'Plot'",
+					selected = 'row'),
+	
+    	conditionalPanel(condition = "input.tabSelections == 'Plot'",
 					selectInput('dendSelectRC', label = "Show Dendrogram", 
 					multiple = TRUE,
 					choices = c(
 						"Rows" = 'row', 
 						"Columns" = 'col'
 					), 
-					selected = 'row')
-			)))
-    		),
+					selected = 'row'))),
+    	
+    	downloadButton('plotDownload', label = "Download Plot", class = "btn-info"),
+	  	downloadButton('tableDownload', label = "Download Table", class = "btn-info"),
+    	
+	  	tags$br(), 
+	  	tags$br(),
     	
     	
-    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "btn-info toggleButton fa fa-angle-down"),
+    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
 			conditionalPanel(condition = "input.advancedOptionsButton%2", 
 			wellPanel(
 				
@@ -155,7 +161,7 @@ shinyUI(fluidPage(
     		value = 600)
     ))),
 		
-		mainPanel(
+		mainPanel(id = "mainPanel",
 			tabsetPanel(id = "tabSelections", type = "tabs",
 				tabPanel("Plot", tags$br(), plotOutput("map")), 
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 600)),
