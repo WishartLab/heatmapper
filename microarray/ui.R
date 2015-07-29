@@ -70,13 +70,22 @@ shinyUI(fluidPage(
 										"manhattan" = 'manhattan'),
 									selected = 'euclidean'),
 	    	
-				strong("Apply Clustering To"),
-				checkboxInput('rowv', label = "Rows", value = TRUE),
-				checkboxInput('colv', label = "Columns", value = FALSE),
 				
-				strong("Show Dendrogram"),
-				checkboxInput('dendRow',	label = "Rows", value = TRUE),
-				checkboxInput('dendCol', label = "Columns", value = FALSE)
+				selectInput('clusterSelectRC', label = "Apply Clustering To", 
+					multiple = TRUE, 
+					choices = c(
+						"Rows" = 'row', 
+						"Columns" = 'col'
+					), 
+					selected = 'row'),
+			
+				selectInput('dendSelectRC', label = "Show Dendrogram", 
+					multiple = TRUE, 
+					choices = c(
+						"Rows" = 'row', 
+						"Columns" = 'col'
+					), 
+					selected = 'row')
 			),
     		
   		actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),

@@ -18,6 +18,7 @@ shinyServer(function(input, output, session){
 		colDist = c(), 
 		rowHclust = c(), 
 		colHclust = c())
+	
 	################# get_file ################# 
 	get_file <- reactive({
 		if(input$chooseInput == 'fileUpload'){
@@ -91,12 +92,12 @@ shinyServer(function(input, output, session){
 	})
 	
 	observe({
-		if(input$rowv){
+		if(clust_select("row")){
 			values$rowMatrix <- get_data_matrix()
 			get_row_dist()
 			get_row_hclust()
 		}
-		if(input$colv){
+		if(clust_select("col")){
 			values$colMatrix <- t(get_data_matrix())
 			get_col_dist()
 			get_col_hclust()
@@ -119,37 +120,50 @@ shinyServer(function(input, output, session){
 		)
 	}
 	
-	get_dendrogram <- function(){
-		if(input$dendRow && input$dendCol){
-			if(input$rowv && input$colv){
-				return("both")
-			}
-			else if(input$rowv){
-				return("row")
-			}
-			else if(input$colv){
-				return("column")
-			}
-			else{
-				return("none")
-			}	
-		}
-		else if(input$dendRow){
-			return("row")
-		}
-		else if(input$dendCol){
-			return("column")
+	clust_select <- function(rc){
+		if(length(grep(rc, input$clusterSelectRC))>0){
+			TRUE
 		}
 		else{
-			return("none")
+			FALSE
+		}
+	}
+	# check which of "row" and "col" is selected
+	dend_select <- function(){
+	
+		if(clust_select("row")){
+			rowCheck <- length(grep("row", input$dendSelectRC))>0
+		}
+		else{
+			rowCheck <- FALSE
+		}
+		
+		if(clust_select("col")){
+			colCheck <- length(grep("col", input$dendSelectRC))>0
+		}
+		else{
+			colCheck <- FALSE
+		}
+		
+		if(rowCheck && colCheck){
+			"both"
+		}
+		else if(rowCheck){
+			"row"
+		}
+		else if(colCheck){
+			"col"
+		}
+		else{
+			"none"
 		}
 	}
 	
 	################# Display Heatmap ################# 
 	output$map <- renderPlot({
 		x <- get_data_matrix()
-		ifelse(input$rowv && input$clusterMethod != 'none', hr<-as.dendrogram(values$rowHclust), hr<-NA)
-		ifelse(input$colv && input$clusterMethod != 'none', hc<-as.dendrogram(values$colHclust), hc<-NA)
+		ifelse(clust_select("row") && input$clusterMethod != 'none', hr<-as.dendrogram(values$rowHclust), hr<-NA)
+		ifelse(clust_select("col") && input$clusterMethod != 'none', hc<-as.dendrogram(values$colHclust), hc<-NA)
 		
 		print(mem_used())
 		print(object_size(hr))
@@ -164,7 +178,7 @@ shinyServer(function(input, output, session){
 			offsetCol = 0, 
 			offsetRow = 0,
 			
-			dendrogram = get_dendrogram(),
+			dendrogram = dend_select(),
 			Rowv = hr, 
 			Colv = hc, 
 			col = get_colour_palette()(input$binNumber), 
@@ -190,8 +204,8 @@ shinyServer(function(input, output, session){
 		validate(need(length(x)<20000, 
 			"File is too large for this feature. Please select a smaller file with no more than 20,000 cells."))
 		
-		ifelse(input$rowv && input$clusterMethod != 'none', hr<-as.dendrogram(values$rowHclust), hr<-FALSE)
-		ifelse(input$colv && input$clusterMethod != 'none', hc<-as.dendrogram(values$colHclust), hc<-FALSE)
+		ifelse(clust_select("row") && input$clusterMethod != 'none', hr<-as.dendrogram(values$rowHclust), hr<-FALSE)
+		ifelse(clust_select("col") && input$clusterMethod != 'none', hc<-as.dendrogram(values$colHclust), hc<-FALSE)
 		
 		d3heatmap(x, 
 			Rowv = hr, 
@@ -209,12 +223,12 @@ shinyServer(function(input, output, session){
 	}
 	
 	output$rowDendrogram <- renderPlot({
-		validate(need(input$rowv, "Apply clustering to rows to view this dendrogram"))
+		validate(need(clust_select("row"), "Apply clustering to rows to view this dendrogram"))
 		get_dendrogram_plot(values$rowHclust, "row")
 	}, height = reactive({ifelse(is.null(values$rowHclust), 100, length(values$rowHclust$labels)*12)}) )
 	
 	output$colDendrogram <- renderPlot({
-		validate(need(input$colv, "Apply clustering to columns to view this dendrogram"))
+		validate(need(clust_select("col"), "Apply clustering to columns to view this dendrogram"))
 		get_dendrogram_plot(values$colHclust, "column")
 	}, height = reactive({ifelse(is.null(values$colHclust), 100, length(values$colHclust$labels)*12)}) )
 	
