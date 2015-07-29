@@ -64,73 +64,70 @@ shinyUI(fluidPage(
 					column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
 				)
 	  	),
-    	
-   
-    	
+
     	fluidRow(
     		column(6,jscolourInput("lowColour", label = "Low Colour", value = "#66CD00")), 
     		column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
     	),
-    		jscolourInput("missingColour", label = "Missing Data Colour"),
-
-				fluidRow(
-					column(3, tags$label("Scale Type") ),
-		column(9,		selectInput('scale', label = NULL,
+    	jscolourInput("missingColour", label = "Missing Data Colour"),
+    	
+    	fluidRow(
+    		column(3, tags$label("Scale Type")),
+				column(9,	
+					selectInput('scale', label = NULL,
 					choices = c(
 						"row" = 'row',
 						"column" = 'column',
 						"none" = 'none'),
-					selected = 'row') ))
-			, 
+					selected = 'row'))
+    	), 
     	
-    					
     	fluidRow(
     		column(3, tags$label("Number of Shades")),
-			column(9,
-    		sliderInput('binNumber', label = NULL, 
-					min = 3, 
-					max = 299, 
-					value = 160))), 
+				column(9,
+					sliderInput('binNumber', label = NULL, 
+						min = 3, 
+						max = 299, 
+						value = 160))
+    	), 
     	
-    	 
-	    	selectInput('clusterMethod', 
-									label = "Clustering Method",
-									choices = c(
-										"none" = 'none',
-										"average linkage" = 'average',
-										"centroid linkage" = 'centroid',
-										"complete linkage" = 'complete',
-										"single linkage" = 'single'
-									),
-									selected = 'average'),
+    	selectInput('clusterMethod', 
+    		label = "Clustering Method",	
+    		choices = c(
+					"none" = 'none',
+					"average linkage" = 'average',
+					"centroid linkage" = 'centroid',
+					"complete linkage" = 'complete',
+					"single linkage" = 'single'
+				),	
+    		selected = 'average'),
     	
     	conditionalPanel(condition = "input.clusterMethod != 'none'",
 	    	selectInput('distanceMethod', 
-									label = "Distance Measurement Method",
-									choices = c(
-										"euclidean" = 'euclidean',
-										"pearson" = 'pearson',
-										"kendall's tau" = 'kendall',
-										"spearman rank correlation" = 'spearman',
-										"manhattan" = 'manhattan'),
-									selected = 'euclidean'),
-	    			
-		selectInput('clusterSelectRC', label = "Apply Clustering To", 
+					label = "Distance Measurement Method",
+					choices = c(
+						"euclidean" = 'euclidean',
+						"pearson" = 'pearson',
+						"kendall's tau" = 'kendall',
+						"spearman rank correlation" = 'spearman',
+						"manhattan" = 'manhattan'),
+					selected = 'euclidean'),
+    		
+    		selectInput('clusterSelectRC', label = "Apply Clustering To", 
 					multiple = TRUE, 
 					choices = c(
 						"Rows" = 'row', 
-						"Columns" = 'col'
-					), 
+						"Columns" = 'col'), 
 					selected = 'row'),
-	
-    	conditionalPanel(condition = "input.tabSelections == 'Plot'",
+    		
+    		conditionalPanel(condition = "input.tabSelections == 'Plot'",
 					selectInput('dendSelectRC', label = "Show Dendrogram", 
-					multiple = TRUE,
-					choices = c(
-						"Rows" = 'row', 
-						"Columns" = 'col'
-					), 
-					selected = 'row'))),
+						multiple = TRUE,
+						choices = c(
+							"Rows" = 'row', 
+							"Columns" = 'col'), 
+					selected = 'row'))
+    	),
     	
     	downloadButton('plotDownload', label = "Download Plot", class = "btn-info"),
 	  	downloadButton('tableDownload', label = "Download Table", class = "btn-info"),
@@ -138,44 +135,54 @@ shinyUI(fluidPage(
 	  	tags$br(), 
 	  	tags$br(),
     	
-    	
     	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
 			conditionalPanel(condition = "input.advancedOptionsButton%2", 
-			wellPanel(
-				
-    	
-    		textInput('title', label = "Title", value = ""),
-				textInput('xlab', label = "X Axis Label", value = ""),
-				textInput('ylab', label = "Y Axis Label",	value = "")
-			, 
-    	checkboxInput('fullSize', label = "Preview Full Height (not recomended for large files)", value = FALSE),
-    	
-    	sliderInput('mapHeight', label = "Plot Height", 
-    		min = 500,
-    		max = 2000, 
-    		value = 600),
-    	
-    	sliderInput('mapWidth', label = "Plot Width", 
-    		min = 500,
-    		max = 2000, 
-    		value = 600)
-    ))),
+				wellPanel(
+	    		textInput('title', label = "Title", value = ""),
+					textInput('xlab', label = "X Axis Label", value = ""),
+					textInput('ylab', label = "Y Axis Label",	value = ""),
+					
+					checkboxInput('fullSize', label = "Preview Full Height (not recomended for large files)", value = FALSE),
+					
+					selectInput('downloadFormat', label = "Plot Download Format", 
+						choices = c(
+							"PNG" = 'png', 
+							"PDF" = 'pdf'),
+						selected = 'png'),
+					
+		    	sliderInput('plotHeight', label = "Plot Height", 
+		    		min = 500,
+		    		max = 2000, 
+		    		value = 600),
+		    	
+		    	sliderInput('plotWidth', label = "Plot Width", 
+		    		min = 500,
+		    		max = 2000, 
+		    		value = 600)
+				)
+			)
+    ),
 		
 		mainPanel(id = "mainPanel",
 			tabsetPanel(id = "tabSelections", type = "tabs",
 				tabPanel("Plot", tags$br(), plotOutput("map")), 
+				
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 600)),
+				
 				tabPanel("Row Dendrogram", 
 					uiOutput("rowInfo"),
 					h3("Row Dendrogram"), 
 					plotOutput("rowDendrogram")), 
+				
 				tabPanel("Column Dendrogram",
 					h3("Column Dendrogram"), 
 					plotOutput("colDendrogram")), 
+				
 				tabPanel("Table", tags$br(), dataTableOutput("table"))
 			)
 		)
 	), 
 	
 	singleton(includeScript("www/js/active.js"))
-	))
+	)
+)

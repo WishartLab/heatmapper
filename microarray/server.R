@@ -170,14 +170,13 @@ shinyServer(function(input, output, session){
 		}
 	}
 	
-	################# Display Heatmap ################# 
-	output$map <- renderPlot({
+	get_plot <- reactive({
 		x <- get_data_matrix()
 		ifelse(clust_select("row") && input$clusterMethod != 'none', hr<-as.dendrogram(values$rowHclust), hr<-NA)
 		ifelse(clust_select("col") && input$clusterMethod != 'none', hc<-as.dendrogram(values$colHclust), hc<-NA)
 		
-		print(mem_used())
-		print(object_size(hr))
+		#print(mem_used())
+		#print(object_size(hr))
 		heatmap.2(x,
 			na.color = input$missingColour, 
 			key=FALSE, 
@@ -197,14 +196,20 @@ shinyServer(function(input, output, session){
 			main = input$title, 
 			xlab = input$xlab, 
 			ylab = input$ylab
-			)
-	},width =  reactive({input$mapWidth}),
+		)
+		graphics.off()
+	})
+	
+	################# Display Heatmap ################# 
+	output$map <- renderPlot(
+		get_plot(),
+		width =  reactive({input$plotWidth}),
 		height = reactive({
 			if(input$fullSize){
-				input$mapWidth / ncol(values$rowMatrix) * nrow(values$rowMatrix)
+				input$plotWidth / ncol(values$rowMatrix) * nrow(values$rowMatrix)
 			}
 			else{
-				input$mapHeight
+				input$plotHeight
 			}
 		}) )
 	
@@ -255,4 +260,36 @@ shinyServer(function(input, output, session){
 			write.table(read.delim(input$exampleFiles, header=TRUE, sep="\t"), sep = "\t",  file)
 		}
 	)
+		
+	################# Save Plot ################# 
+
+	output$plotDownload <- downloadHandler(
+		
+		filename = reactive({paste("heatmap.", input$downloadFormat, sep="")}),
+		
+		content = function(file) {
+			if(input$downloadFormat == "pdf"){
+				pdf(file)
+				get_plot()
+			}
+			else{
+				tryCatch({
+					png(file)	
+					get_plot()
+				}, 
+				error = function(err){
+					validate(need(FALSE,"PNG image too large. Please decrease the dimensions or resolution of the image."))
+					return(NULL)
+				})
+			}
+		}
+	)
+	################# Save Current File ################# 
+	output$tableDownload <- downloadHandler(
+		filename = "table.txt",
+		content = function(file){
+			write.table(get_file(), file)
+		}
+	)
+
 })
