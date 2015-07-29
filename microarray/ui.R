@@ -1,6 +1,7 @@
 library(jscolourR)
 library(d3heatmap)
 library(spin)
+library(shinyBS)
 
 # maximum number of nested expressions to be evaluated
 options(expressions = 500000)
@@ -17,36 +18,47 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
     sidebarPanel(
-    	actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "fileInputPanel",
-    		radioButtons('chooseInput',
-    			label = "Choose Input Type",
-    			choices = c(
-    				"Upload File" = 'fileUpload',
-    				"Example File" = 'examples'),
-    			selected = 'examples'),
+			radioButtons('chooseInput', label = "Select Microarray Data File", 
+	  		inline=TRUE, 
+	  		choices = c(
+	  			"Upload File" = 'fileUpload',
+    			"Example File" = 'examples'), 
+	  		selected = 'examples'
+	  	),
+	  	conditionalPanel(condition = "input.chooseInput == 'examples'",
+				tags$label("Choose Example File"),
+	  		fluidRow(
+	  	column(9,	
+	  		
+	  		selectInput('exampleFiles',
+					label = NULL,
+					choices = c(
+						"Example 1" = 'example_input/example1.txt',
+						"Example 2" = 'example_input/example2.txt',
+						"Example 3" = 'example_input/example3.txt'),
+					selected = 1)),
+	  			
+			column(2,	downloadButton(class = "btn-info", outputId = 'downloadExample', label = NULL),
+				bsTooltip(id = "downloadExample", 
+						title = "Download Example Text File",
+						placement = "right")
+				)	),
 				
-				conditionalPanel(condition = "input.chooseInput == \'examples\'",
-					selectInput('exampleFiles',
-						label = "Choose Example File",
-						choices = c(
-							"Example 1" = 'example_input/example1.txt',
-							"Example 2" = 'example_input/example2.txt',
-							"Example 3" = 'example_input/example3.txt'),
-						selected = 1),
-					tags$div(class="exampleInfo",
-						wellPanel(
-							conditionalPanel(condition = "input.exampleFiles == \'example_input/example1.txt\'", includeHTML("www/example1info.html")),
-							conditionalPanel(condition = "input.exampleFiles == \'example_input/example2.txt\'", includeHTML("www/example2info.html")),
-							conditionalPanel(condition = "input.exampleFiles == \'example_input/example3.txt\'", includeHTML("www/example3info.html"))
-						)
-					),
-					
-					downloadButton(class = "btn-info", outputId = 'downloadExample', label = "Download Example Text File")),
+	  		wellPanel(
+					conditionalPanel(condition = "input.exampleFiles == \'example_input/example1.txt\'", includeHTML("www/example1info.html")),
+					conditionalPanel(condition = "input.exampleFiles == \'example_input/example2.txt\'", includeHTML("www/example2info.html")),
+					conditionalPanel(condition = "input.exampleFiles == \'example_input/example3.txt\'", includeHTML("www/example3info.html"))
+			)),
+				#	tags$div(class="exampleInfo"
+						
+				#	),
 				
-    		conditionalPanel(condition = "input.chooseInput == \'fileUpload\'",
-    			fileInput('file', label = "Upload File (4MB maximum file size)"))
-    	),
+    	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
+	  		fluidRow(
+	  			column(8, fileInput('imageFile', label = NULL)), 
+	  			column(4, HTML("<button id='clearImage' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
+	  		)
+	  	),
     	
     	actionButton('clusterOptionsButton', label = "Hide Cluster Options", class = "toggleButton fa fa-angle-up"),
 			wellPanel(id = "clusterPanel",
@@ -79,13 +91,16 @@ shinyUI(fluidPage(
 					), 
 					selected = 'row'),
 			
-				selectInput('dendSelectRC', label = "Show Dendrogram", 
-					multiple = TRUE, 
+			conditionalPanel(condition = "input.tabSelections == 'Plot'",
+					selectInput('dendSelectRC', label = "Show Dendrogram", 
+					multiple = TRUE,
 					choices = c(
 						"Rows" = 'row', 
 						"Columns" = 'col'
 					), 
 					selected = 'row')
+			)
+				
 			),
     		
   		actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
