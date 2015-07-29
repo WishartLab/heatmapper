@@ -25,15 +25,16 @@ $(document).ready(function() {
     $( "#file" ).change(function() {
       document.getElementById("file_progress").setAttribute('style', "height:20px; margin-top:5px;");
     });    
+
+    /* example file info close button */
+    $( "#closeExampleButton" ).on("click", function(){
+        $("#exampleInfo").hide();
+    });
     
-    /* example details section */
-    var exampleButtonCount = 1;
-    document.getElementById("exampleButton").addEventListener("click", toggleExampleButton);
-    
-    function toggleExampleButton(e){
-        generalToggleButtons("exampleButton", "Example File Details", exampleButtonCount);
-        exampleButtonCount++;
-    } 
+    /* example file info open button */
+    $( "#exampleButton" ).on("click", function(){
+        $("#exampleInfo").show();
+    });
     
     /* advanced options section */
     var advancedOptionsButtonCount = 1;

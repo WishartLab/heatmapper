@@ -26,10 +26,9 @@ shinyUI(fluidPage(
 	  		selected = 'examples'
 	  	),
 	  	conditionalPanel(condition = "input.chooseInput == 'examples'",
-				tags$label("Choose Example File"),
-	  		
+				tags$label("Choose Example File"), 
 	  		fluidRow(
-	  			column(9,	
+	  			column(7,	
 	  				selectInput('exampleFiles',
 							label = NULL,
 							choices = c(
@@ -38,16 +37,19 @@ shinyUI(fluidPage(
 								"Example 3" = 'example_input/example3.txt'),
 							selected = 1)),
 	  			column(2,	
+	  				actionButton('exampleButton', label = NULL, class = "btn-info",icon = icon("fa fa-info-circle")), 
+	  				bsTooltip(id = "exampleButton", title = "View Example File Details", placement = "right")),
+	  			column(2,	
 	  				downloadButton(class = "btn-info", outputId = 'downloadExample', label = NULL),
-						bsTooltip(id = "downloadExample", title = "Download Example Text File", placement = "right")
+						bsTooltip(id = "downloadExample", title = "Download Example Text File", placement = "right") 
 	  		)),
 	  		
-	  		actionButton('exampleButton', label = "Show Example File Details", class = "toggleButton fa fa-angle-down"),
-	  		conditionalPanel(condition = "input.exampleButton%2",
-	  			wellPanel(
-					conditionalPanel(condition = "input.exampleFiles == \'example_input/example1.txt\'", includeHTML("www/example1info.html")),
-					conditionalPanel(condition = "input.exampleFiles == \'example_input/example2.txt\'", includeHTML("www/example2info.html")),
-					conditionalPanel(condition = "input.exampleFiles == \'example_input/example3.txt\'", includeHTML("www/example3info.html"))
+	  		conditionalPanel(condition = "input.exampleButton>0",
+	  			wellPanel(id = "exampleInfo",
+	  				HTML("<button id='closeExampleButton' class='action-button' style='float:right;'><i class='fa fa-times'></i></button>"),
+						conditionalPanel(condition = "input.exampleFiles == \'example_input/example1.txt\'", includeHTML("www/example1info.html")),
+						conditionalPanel(condition = "input.exampleFiles == \'example_input/example2.txt\'", includeHTML("www/example2info.html")),
+						conditionalPanel(condition = "input.exampleFiles == \'example_input/example3.txt\'", includeHTML("www/example3info.html"))
 				))),
     	
     	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
@@ -56,7 +58,7 @@ shinyUI(fluidPage(
 					column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
 				)
 	  	),
-    	tags$br(),
+    	
     	wellPanel(
 	    	selectInput('clusterMethod', 
 									label = "Clustering Method",
@@ -118,14 +120,15 @@ shinyUI(fluidPage(
 			, 
     	
     	
+    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
+			conditionalPanel(condition = "input.advancedOptionsButton%2", 
+			wellPanel(
+				
+    	
     		textInput('title', label = "Title", value = ""),
 				textInput('xlab', label = "X Axis Label", value = ""),
 				textInput('ylab', label = "Y Axis Label",	value = "")
 			, 
-    	
-    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
-			conditionalPanel(condition = "input.advancedOptionsButton%2", 
-			wellPanel(
     	checkboxInput('fullSize', label = "Preview Full Height (not recomended for large files)", value = FALSE),
     	
     	sliderInput('mapHeight', label = "Plot Height", 
