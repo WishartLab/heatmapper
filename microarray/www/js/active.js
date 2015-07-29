@@ -17,7 +17,9 @@ $(document).ready(function() {
     var fileControl = $("#file");
 
     $("#clearFile").on("click", function () {
+        
         fileControl.replaceWith( fileControl = fileControl.clone( true ) );
+        
         $("#file_progress").hide();
     });
     

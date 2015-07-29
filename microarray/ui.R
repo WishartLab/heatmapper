@@ -11,7 +11,8 @@ shinyUI(fluidPage(
 	tags$head(
 		HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
 		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
-			#lowColour, #highColour, #missingColour {width:100%}")),
+			#lowColour, #highColour, #missingColour {width:100%}
+			#file_progress {height:0;}")),
 
 	div(class = "busy", absolutePanel(width = "50px", height = "100px",
 		fixed = TRUE, left = "65%", top = "45%", 

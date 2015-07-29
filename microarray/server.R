@@ -12,6 +12,7 @@ shinyServer(function(input, output, session){
   outputOptions(output, 'activeTab', suspendWhenHidden=FALSE)
 	
 	values <- reactiveValues(
+		file = NULL,
 		rowMatrix = c(), 
 		colMatrix = c(), 
 		rowDist = c(), 
@@ -19,11 +20,21 @@ shinyServer(function(input, output, session){
 		rowHclust = c(), 
 		colHclust = c())
 	
+	#################### FILE CLEAR OBSERVERS ####################
+	observe({
+		input$clearFile
+		values$file <- NULL
+	})
+	
+	observe({
+		values$file <- input$file
+	})
+	
 	################# get_file ################# 
 	get_file <- reactive({
 		if(input$chooseInput == 'fileUpload'){
-			validate(need(!is.null(input$file$datapath), "Please upload a file"))
-			data <- read.delim(input$file$datapath)
+			validate(need(!is.null(values$file$datapath), "Please upload a file"))
+			data <- read.delim(values$file$datapath)
 		}
 		else{
 			data <- read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
