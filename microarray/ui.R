@@ -27,41 +27,37 @@ shinyUI(fluidPage(
 	  	),
 	  	conditionalPanel(condition = "input.chooseInput == 'examples'",
 				tags$label("Choose Example File"),
-	  		fluidRow(
-	  	column(9,	
 	  		
-	  		selectInput('exampleFiles',
-					label = NULL,
-					choices = c(
-						"Example 1" = 'example_input/example1.txt',
-						"Example 2" = 'example_input/example2.txt',
-						"Example 3" = 'example_input/example3.txt'),
-					selected = 1)),
-	  			
-			column(2,	downloadButton(class = "btn-info", outputId = 'downloadExample', label = NULL),
-				bsTooltip(id = "downloadExample", 
-						title = "Download Example Text File",
-						placement = "right")
-				)	),
-				
-	  		wellPanel(
+	  		fluidRow(
+	  			column(9,	
+	  				selectInput('exampleFiles',
+							label = NULL,
+							choices = c(
+								"Example 1" = 'example_input/example1.txt',
+								"Example 2" = 'example_input/example2.txt',
+								"Example 3" = 'example_input/example3.txt'),
+							selected = 1)),
+	  			column(2,	
+	  				downloadButton(class = "btn-info", outputId = 'downloadExample', label = NULL),
+						bsTooltip(id = "downloadExample", title = "Download Example Text File", placement = "right")
+	  		)),
+	  		
+	  		actionButton('exampleButton', label = "Show Example File Details", class = "toggleButton fa fa-angle-down"),
+	  		conditionalPanel(condition = "input.exampleButton%2",
+	  			wellPanel(
 					conditionalPanel(condition = "input.exampleFiles == \'example_input/example1.txt\'", includeHTML("www/example1info.html")),
 					conditionalPanel(condition = "input.exampleFiles == \'example_input/example2.txt\'", includeHTML("www/example2info.html")),
 					conditionalPanel(condition = "input.exampleFiles == \'example_input/example3.txt\'", includeHTML("www/example3info.html"))
-			)),
-				#	tags$div(class="exampleInfo"
-						
-				#	),
-				
-    	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
-	  		fluidRow(
-	  			column(8, fileInput('imageFile', label = NULL)), 
-	  			column(4, HTML("<button id='clearImage' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
-	  		)
-	  	),
+				))),
     	
-    	actionButton('clusterOptionsButton', label = "Hide Cluster Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "clusterPanel",
+    	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
+				fluidRow(
+					column(8, fileInput('file', label = NULL)), 
+					column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
+				)
+	  	),
+    	tags$br(),
+    	wellPanel(
 	    	selectInput('clusterMethod', 
 									label = "Clustering Method",
 									choices = c(
@@ -99,12 +95,9 @@ shinyUI(fluidPage(
 						"Columns" = 'col'
 					), 
 					selected = 'row')
-			)
-				
-			),
+			)),
     		
-  		actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "colourPanel", 
+  		
     		jscolourInput('lowColour', label = "Colour for low numbers", value = "#66CD00"),
     		
     		jscolourInput('highColour', label = "Colour for high numbers", value = "#FF0000"), 
@@ -122,17 +115,17 @@ shinyUI(fluidPage(
 						"column" = 'column',
 						"none" = 'none'),
 					selected = 'row')
-			), 
+			, 
     	
-    	actionButton('labelOptionsButton', label = "Hide Label Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "labelPanel", 
+    	
     		textInput('title', label = "Title", value = ""),
 				textInput('xlab', label = "X Axis Label", value = ""),
 				textInput('ylab', label = "Y Axis Label",	value = "")
-			), 
+			, 
     	
-    	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
-			wellPanel(id = "downloadPanel", 
+    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
+			conditionalPanel(condition = "input.advancedOptionsButton%2", 
+			wellPanel(
     	checkboxInput('fullSize', label = "Preview Full Height (not recomended for large files)", value = FALSE),
     	
     	sliderInput('mapHeight', label = "Plot Height", 
@@ -144,7 +137,7 @@ shinyUI(fluidPage(
     		min = 500,
     		max = 2000, 
     		value = 600)
-    )),
+    ))),
 		
 		mainPanel(
 			tabsetPanel(id = "tabSelections", type = "tabs",
