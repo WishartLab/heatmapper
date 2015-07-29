@@ -10,7 +10,8 @@ shinyUI(fluidPage(
 	includeHTML("www/navbar.html"),
 	tags$head(
 		HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
-		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}")),
+		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
+			#lowColour, #highColour, #missingColour {width:100%}")),
 
 	div(class = "busy", absolutePanel(width = "50px", height = "100px",
 		fixed = TRUE, left = "65%", top = "45%", 
@@ -59,7 +60,34 @@ shinyUI(fluidPage(
 				)
 	  	),
     	
-    	wellPanel(
+   
+    	
+    	fluidRow(
+    		column(6,jscolourInput("lowColour", label = "Low Colour", value = "#66CD00")), 
+    		column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
+    	),
+    		jscolourInput("missingColour", label = "Missing Data Colour"),
+
+				fluidRow(
+					column(3, tags$label("Scale Type") ),
+		column(9,		selectInput('scale', label = NULL,
+					choices = c(
+						"row" = 'row',
+						"column" = 'column',
+						"none" = 'none'),
+					selected = 'row') ))
+			, 
+    	
+    					
+    	fluidRow(
+    		column(3, tags$label("Number of Shades")),
+			column(9,
+    		sliderInput('binNumber', label = NULL, 
+					min = 3, 
+					max = 299, 
+					value = 160))), 
+    	
+    	 
 	    	selectInput('clusterMethod', 
 									label = "Clustering Method",
 									choices = c(
@@ -70,6 +98,8 @@ shinyUI(fluidPage(
 										"single linkage" = 'single'
 									),
 									selected = 'average'),
+    	
+    	conditionalPanel(condition = "input.clusterMethod != 'none'",
 	    	selectInput('distanceMethod', 
 									label = "Distance Measurement Method",
 									choices = c(
@@ -80,15 +110,16 @@ shinyUI(fluidPage(
 										"manhattan" = 'manhattan'),
 									selected = 'euclidean'),
 	    	
-				
-				selectInput('clusterSelectRC', label = "Apply Clustering To", 
+				fluidRow(
+	column(6,			selectInput('clusterSelectRC', label = "Apply Clustering To", 
 					multiple = TRUE, 
 					choices = c(
 						"Rows" = 'row', 
 						"Columns" = 'col'
 					), 
-					selected = 'row'),
-			
+					selected = 'row')
+		),
+		column(6,	
 			conditionalPanel(condition = "input.tabSelections == 'Plot'",
 					selectInput('dendSelectRC', label = "Show Dendrogram", 
 					multiple = TRUE,
@@ -97,30 +128,11 @@ shinyUI(fluidPage(
 						"Columns" = 'col'
 					), 
 					selected = 'row')
-			)),
-    		
-  		
-    		jscolourInput('lowColour', label = "Colour for low numbers", value = "#66CD00"),
-    		
-    		jscolourInput('highColour', label = "Colour for high numbers", value = "#FF0000"), 
-				
-				jscolourInput('missingColour', label = "Colour for missing values", value = "#000000"),
-				
-				sliderInput('binNumber', label = "Number of bins", 
-					min = 3, 
-					max = 299, 
-					value = 160), 
-				
-				selectInput('scale', label = "Scale Type",
-					choices = c(
-						"row" = 'row',
-						"column" = 'column',
-						"none" = 'none'),
-					selected = 'row')
-			, 
+			)))
+    		),
     	
     	
-    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
+    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "btn-info toggleButton fa fa-angle-down"),
 			conditionalPanel(condition = "input.advancedOptionsButton%2", 
 			wellPanel(
 				
