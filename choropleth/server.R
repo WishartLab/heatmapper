@@ -84,29 +84,59 @@ shinyServer(function(input, output, session) {
 		return(data_file)
 	})
 
+	
+	update_range <- function(min,max){
+			
+			
+	}
+	
 	# update density information if file or column selection changes
 	observe({
+		rangeMin <- input$range[[1]]
+		rangeMax <- input$range[[2]]
+		
 		values$density <- get_density()
 
 		min <- floor(min(values$density, na.rm = TRUE))
 		max <- ceiling(max(values$density, na.rm = TRUE))
-		update_range <- reactive({updateSliderInput(session, inputId = "range", min = min, max = max)})
-		update_range()
+
+		if(rangeMin < min || rangeMax > max){
+			print("UPDATE RANGE")
+			updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
+		}
 		
 		# Breaks we'll use for coloring		
 		minadd <- FALSE
 		maxadd <- FALSE
 		bins <- input$binNumber + 1
+		
+		# adjust selected range if difference between max and min is < # of bins
+		if(rangeMax - rangeMin < bins){
+			
+			if(rangeMax - bins > min){
+				rangeMin <- rangeMax - bins
+			}
+			else if(rangeMin + bins < max){
+				rangeMax <- rangeMin + bins
+			}
+			# error handling for when range is < #bins, this should be improved upon
+			else{
+				rangeMin <- min
+				rangeMax <- max
+				bins <- max - min
+			}
+			updateSliderInput(session, inputId = "range", value = c(rangeMin,rangeMax))
+		}
 
-		if(min < input$range[[1]]){
+		if(min < rangeMin){
 			bins <- bins - 1
 			minadd <- TRUE
 		}
-		if(max > input$range[[2]]){
+		if(max > rangeMax){
 			bins <- bins - 1
 			maxadd <- TRUE
 		}
-		densityBreaks <- round(seq(input$range[[1]], input$range[[2]], length.out = bins), 0)
+		densityBreaks <- round(seq(rangeMin, rangeMax, length.out = bins), 0)
 		if(minadd){
 			densityBreaks <- c(min, densityBreaks)
 		}
@@ -233,6 +263,9 @@ shinyServer(function(input, output, session) {
 	
 	# render the legend
 	output$legend <- renderUI({
+		if(is.null(get_file())){
+			return(NULL)
+		}
 		tags$table(
 			tags$strong(input$legend), 
 			mapply(function(from, to, color) {
