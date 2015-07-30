@@ -213,19 +213,46 @@ shinyServer(function(input, output, session) {
 			mapData <- get_map_data()
   		leafletProxy("map", data =  mapData) %>% 
 				addPolygons(~x, ~y, ~names, 
-					weight = input$lineSize, 
-					color = ~fillColour, 
+					weight = get_lines(), 
+					color = "black", 
 					opacity = 1, 
 					fillColor = ~fillColour, 
-					fillOpacity = input$fillOpacity)
+					fillOpacity = get_opacity())
 		}
 
   })
 	
+	get_lines <- reactive({
+		if(layer_selected("showContours")){
+			input$lineSize
+		}
+		else{
+			0
+		}
+	})
+	get_opacity <- reactive({
+		if(layer_selected("showHeatmap")){
+			input$fillOpacity
+		}
+		else{
+			0
+		}
+	})
+	
+	# see if a given layer name is shown or hidden by user
+	layer_selected <- function(name){
+		if(length(grep(name, input$layers))>0){
+			TRUE
+		}
+		else{
+			FALSE
+		}
+	}
+	
 	# if values$map is updated or showTiles checkbox input is changed
 	observe({
 		values$map
-		if(input$showTiles){
+		if(layer_selected("showTiles")){
 			leafletProxy("map") %>% addTiles()
 		}
 		else{

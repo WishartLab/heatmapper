@@ -77,39 +77,47 @@ shinyUI(fluidPage(
    			max = 100, 
    			value = c(0, 100)), 
 			
-				
-    	jscolourInput("lowColour", label = "Colour for low numbers", value = "#FFEDA0"),
-    		
-    	jscolourInput("highColour", label = "Colour for high numbers", value = "#800026"),
-		
-			sliderInput("binNumber", 
-				label = "Number of bins", 
-				min = 2, 
-				max = 8, 
-				value = 8),
-		
-			sliderInput("fillOpacity", 
-				label = "Fill Opacity", 
-				min = 0, 
-				max = 1, 
-				value = 0.8), 
-		
+			selectInput('layers', label = "Show/Hide Layers", 
+				multiple = TRUE,
+				choices = c(
+					"Map" = 'showTiles', 
+					"Contour Lines" = 'showContours', 
+					"Heatmap" = 'showHeatmap'
+				), 
+				selected = c('showTiles', 'showContours', 'showHeatmap')),
 			
-		strong("Map background"), 
-			checkboxInput("showTiles", label = "Show Tiles", value = TRUE), 
-		
-			sliderInput("lineSize", 
-				label = "Line Width", 
-				min = 0,
-				max = 5,
-				value = 1),
+			fluidRow(
+    		column(6,jscolourInput("lowColour", label = "Low Colour", value = "#FFEDA0")), 
+    		column(6, jscolourInput("highColour", label = "High Colour", value = "#800026"))
+    	),
+			
+			fluidRow(
+	  		column(3, tags$label("Heatmap Opacity")), 
+	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.8, step = 0.05))
+	  	), 
+			    	
+    	fluidRow(
+    		column(3, tags$label("Number of Shades")),
+				column(9,
+					sliderInput("binNumber", 
+						label = NULL, 
+						min = 2, 
+						max = 8, 
+						value = 8))
+    	), 
     			
-		actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-up"),
+		actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
 		conditionalPanel(condition = "input.advancedOptionsButton%2", 
 			wellPanel(
 				textInput('legend',
 	    		label = "Custom legend title", 
-	   			value = "Legend")
+	   			value = "Legend"), 
+		
+				sliderInput("lineSize", 
+					label = "Contour Line Width", 
+					min = 0,
+					max = 5,
+					value = 1)
 		))
 	),
 	mainPanel(id = "mainPanel",
