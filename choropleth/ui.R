@@ -1,26 +1,67 @@
 library(leaflet)
 library(jscolourR)
+library(spin)
+
 shinyUI(fluidPage(
   includeHTML("www/navbar.html"),
-  # Add a little CSS to make the map background pure white
+  
+	# Add a little CSS to make the map background pure white
   tags$head(
   	HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
 		tags$style("
-		.toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
-		#showcase-code-position-toggle, #showcase-sxs-code { display: none; }
-    .floater { background-color: white; padding: 8px; opacity: 0.7; border-radius: 6px; 
-			box-shadow: 0 0 15px rgba(0,0,0,0.2); }")),
-sidebarLayout(
-	sidebarPanel(
-		actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
-		wellPanel(id = "fileInputPanel", 
-		radioButtons('chooseInput',
-				label = "Choose Input Type",
-    		choices = c(
-    			"Upload File" = 'fileUpload',
-					"Example File" = 'example'),
-    		selected = 'example'),
-    		
+			.toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
+			#showcase-code-position-toggle, #showcase-sxs-code { display: none; }
+    	.floater { background-color: white; padding: 8px; opacity: 0.7; border-radius: 6px; 
+			box-shadow: 0 0 15px rgba(0,0,0,0.2); }
+			#lowColour, #highColour, #missingColour {width:100%}
+			#file_progress {height:0;}
+			#sidebarPanel {width:23.45em;}
+			#mainPanel {left:24.45em; position:absolute;}")),
+	
+	sidebarLayout(
+		sidebarPanel(id = "sidebarPanel",
+			radioButtons('chooseInput', label = "Select Choropleth Data File", 
+	  		inline=TRUE, 
+	  		choices = c(
+	  			"Upload File" = 'fileUpload',
+    			"Example File" = 'example'), 
+	  		selected = 'example'
+	  	),
+
+	  	conditionalPanel(condition = "input.chooseInput == 'example'",
+				tags$label("Choose Example File"), 
+	  		fluidRow(
+	  			column(7,	
+	  				selectInput('exampleFiles',
+							label = NULL,
+							choices = c(
+								"Example 1" = 'example_input/example1.txt',
+								"Example 2" = 'example_input/example2.txt'),
+							selected = 1)),
+	  			column(2,	
+	  				actionButton('exampleButton', label = NULL, class = "btn-info",icon = icon("fa fa-info-circle")), 
+	  				bsTooltip(id = "exampleButton", title = "View Example File Details", placement = "right")),
+	  			column(2,	
+	  				downloadButton(class = "btn-info", outputId = 'downloadExample', label = NULL),
+						bsTooltip(id = "downloadExample", title = "Download Example Text File", placement = "right") 
+	  		)),
+	  		
+	  		conditionalPanel(condition = "input.exampleButton>0",
+	  			wellPanel(id = "exampleInfo",
+	  				tags$label("Example File Information"),
+	  				HTML("<button id='closeExampleButton' class='action-button' style='float:right;'><i class='fa fa-times'></i></button>"),
+						conditionalPanel(condition = "input.exampleFiles == \'example_input/example1.txt\'", includeHTML("www/example1info.html")),
+						conditionalPanel(condition = "input.exampleFiles == \'example_input/example2.txt\'", includeHTML("www/example2info.html")),
+						tags$br()#conditionalPanel(condition = "input.exampleFiles == \'example_input/example3.txt\'", includeHTML("www/example3info.html"))
+				))),
+    	
+    	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
+				fluidRow(
+					column(8, fileInput('file', label = NULL)), 
+					column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
+				)
+	  	),
+			
     	conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
     		fileInput("file", label = strong("Choropleth File input"))), 
     		
@@ -41,11 +82,9 @@ sidebarLayout(
    			label = "Range of interest", 
    			min = 0, 
    			max = 100, 
-   			value = c(0, 100))
-			), 
+   			value = c(0, 100)), 
 			
-		actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
-		wellPanel(id = "colourPanel", 		
+				
     	jscolourInput("lowColour", label = "Colour for low numbers", value = "#FFEDA0"),
     		
     	jscolourInput("highColour", label = "Colour for high numbers", value = "#800026"),
@@ -60,12 +99,9 @@ sidebarLayout(
 				label = "Fill Opacity", 
 				min = 0, 
 				max = 1, 
-				value = 0.8)
-			
-		), 
+				value = 0.8), 
 		
-		actionButton('mapOptionsButton', label = "Hide Map Options", class = "toggleButton fa fa-angle-up"),
-		wellPanel(id = "mapPanel", 	
+			
 		strong("Map background"), 
 			checkboxInput("showTiles", label = "Show Tiles", value = TRUE), 
 		
@@ -73,21 +109,17 @@ sidebarLayout(
 				label = "Line Width", 
 				min = 0,
 				max = 5,
-				value = 1)
-			),
-    		
-
-		
-	actionButton('labelOptionsButton', label = "Hide Label Options", class = "toggleButton fa fa-angle-up"),
-	wellPanel(id = "labelPanel", 	
-    	textInput('legend',
-    		label = "Custom legend title", 
-   			value = "Legend")
-	), 
-	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
-	wellPanel(id = "downloadPanel")
+				value = 1),
+    			
+		actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-up"),
+		conditionalPanel(condition = "input.advancedOptionsButton%2", 
+			wellPanel(
+				textInput('legend',
+	    		label = "Custom legend title", 
+	   			value = "Legend")
+		))
 	),
-	mainPanel(
+	mainPanel(id = "mainPanel",
 		tabsetPanel(id = "tabSelections", type = "tabs",
 			#tabPanel(title= "sadf"),
 			tabPanel(title = "Interactive", 
