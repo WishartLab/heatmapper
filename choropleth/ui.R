@@ -26,7 +26,7 @@ shinyUI(fluidPage(
 	  		choices = c(
 	  			"Upload File" = 'fileUpload',
     			"Example File" = 'example'), 
-	  		selected = 'example'
+	  		selected = 'fileUpload'
 	  	),
 
 	  	conditionalPanel(condition = "input.chooseInput == 'example'",

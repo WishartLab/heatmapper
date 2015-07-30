@@ -188,7 +188,6 @@ shinyServer(function(input, output, session) {
 					opacity = 1, 
 					fillColor = ~fillColour, 
 					fillOpacity = input$fillOpacity)
-			
 		}
 
   })
