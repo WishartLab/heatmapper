@@ -32,8 +32,9 @@ shinyServer(function(input, output, session) {
 	})
 	
 	# get the values from the selected column
-	get_nums_col <- function(data_file){
-		nums_col <- data_file[[input$colSelect]]
+	get_nums_col <- function(data_file, col){
+		print(col)
+		nums_col <- data_file[[col]]
 		if(is.null(nums_col)){
 			nums_col <- data_file[[2]]
 		}
@@ -48,28 +49,32 @@ shinyServer(function(input, output, session) {
 	}
 	# assign density names and values based on the selected column
 	get_density <- reactive({ 
+		print("GET DENSITY")
 		data_file <- get_file()
 		name_col <- tolower(data_file[[1]])
 		name_col <- fix_names(name_col)
-		nums_col <- get_nums_col(data_file)
+		nums_col <- get_nums_col(data_file, input$colSelect)
 		names(nums_col) <- name_col
+		
 		return(nums_col)
 	})
 	
 	# read file if chooseInput is changed or file is uploaded
 	get_file <- reactive({
+		print("GET FILE")
 		if(input$chooseInput == 'example'){
 			#path <- "data/counties.rds"
 			#data_file <- readRDS(path)
 			data_file <- read.table(input$exampleFiles, header = TRUE, sep="\t")
 		}
 		else{
-			#path <- "data/counties.rds"
-			#data_file <- readRDS(path)
-			#data_file <- read.table("data/statetest.txt", header = TRUE, sep="\t")
+			if(is.null(values$file$datapath)){
+				leafletProxy("map") %>% clearShapes()
+				updateSelectInput(session, inputId="colSelect", choices = c(" " = " "))
+			}
 			validate(need(values$file$datapath, "Please upload a file"))
-			data_file <- read.delim(values$file$datapath, header = TRUE)
 			
+			data_file <- read.delim(values$file$datapath, header = TRUE)
 			# remove "%" if they exist
 			data_file[-1] <- lapply(data_file[-1], function(data_file){
 				as.numeric(sub(pattern = "%", replacement = "", data_file))
@@ -84,6 +89,7 @@ shinyServer(function(input, output, session) {
 	# update density information if file or column selection changes
 	observe({
 		values$density <- get_density()
+
 		min <- floor(min(values$density, na.rm = TRUE))
 		max <- ceiling(max(values$density, na.rm = TRUE))
 		update_range <- reactive({updateSliderInput(session, inputId = "range", min = min, max = max)})
@@ -173,15 +179,20 @@ shinyServer(function(input, output, session) {
 	
 	# if values$density is changed update the colors
 	observe({
-		values$density
-		mapData <- get_map_data()
-  	leafletProxy("map", data =  mapData) %>% 
-			addPolygons(~x, ~y, ~names, 
-				weight = input$lineSize, 
-				color = ~fillColour, 
-				opacity = 1, 
-				fillColor = ~fillColour, 
-				fillOpacity = input$fillOpacity)
+
+		if(!is.null(get_file())){
+			values$density
+			mapData <- get_map_data()
+  		leafletProxy("map", data =  mapData) %>% 
+				addPolygons(~x, ~y, ~names, 
+					weight = input$lineSize, 
+					color = ~fillColour, 
+					opacity = 1, 
+					fillColor = ~fillColour, 
+					fillOpacity = input$fillOpacity)
+			
+		}
+
   })
 	
 	# if values$map is updated or showTiles checkbox input is changed
@@ -241,7 +252,7 @@ shinyServer(function(input, output, session) {
 	output$downloadExample <- downloadHandler(
 		filename = "example.txt",
 		content = function(file){
-			write.table(read.delim(input$exampleFiles, header=TRUE, sep="\t"), sep = "\t", quote = FALSE, file = file)
+			write.table(isolate(get_file()), sep = "\t", quote = FALSE, file = file)
 		}
 	)
 })
