@@ -6,6 +6,7 @@ library(maps)
 shinyServer(function(input, output, session) {
 	
   values <- reactiveValues(
+  	file = NULL,
   	highlight = c(), 
   	density = c(), 
   	colours = c(), 
@@ -13,6 +14,16 @@ shinyServer(function(input, output, session) {
   	from = c(), 
   	palette = c(),
   	map = c())
+	
+	#################### FILE CLEAR OBSERVERS ####################
+	observe({
+		input$clearFile
+		values$file <- NULL
+	})
+	
+	observe({
+		values$file <- input$file
+	})
 	
 	# update the column selection options when a new file is uploaded
 	observe({
@@ -50,14 +61,14 @@ shinyServer(function(input, output, session) {
 		if(input$chooseInput == 'example'){
 			#path <- "data/counties.rds"
 			#data_file <- readRDS(path)
-			data_file <- read.table("data/statetest2.txt", header = TRUE, sep="\t")
+			data_file <- read.table(input$exampleFiles, header = TRUE, sep="\t")
 		}
 		else{
 			#path <- "data/counties.rds"
 			#data_file <- readRDS(path)
 			#data_file <- read.table("data/statetest.txt", header = TRUE, sep="\t")
-			validate(need(input$file$datapath, "Please upload a file"))
-			data_file <- read.delim(input$file$datapath, header = TRUE)
+			validate(need(values$file$datapath, "Please upload a file"))
+			data_file <- read.delim(values$file$datapath, header = TRUE)
 			
 			# remove "%" if they exist
 			data_file[-1] <- lapply(data_file[-1], function(data_file){
@@ -225,4 +236,12 @@ shinyServer(function(input, output, session) {
 				)
 			}, values$from, values$to, values$palette, SIMPLIFY=FALSE))
 	})
+	
+	################# Save Example File ################# 
+	output$downloadExample <- downloadHandler(
+		filename = "example.txt",
+		content = function(file){
+			write.table(read.delim(input$exampleFiles, header=TRUE, sep="\t"), sep = "\t", quote = FALSE, file = file)
+		}
+	)
 })

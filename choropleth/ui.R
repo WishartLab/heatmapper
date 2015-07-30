@@ -1,6 +1,7 @@
 library(leaflet)
 library(jscolourR)
 library(spin)
+library(shinyBS)
 
 shinyUI(fluidPage(
   includeHTML("www/navbar.html"),
@@ -51,8 +52,7 @@ shinyUI(fluidPage(
 	  				tags$label("Example File Information"),
 	  				HTML("<button id='closeExampleButton' class='action-button' style='float:right;'><i class='fa fa-times'></i></button>"),
 						conditionalPanel(condition = "input.exampleFiles == \'example_input/example1.txt\'", includeHTML("www/example1info.html")),
-						conditionalPanel(condition = "input.exampleFiles == \'example_input/example2.txt\'", includeHTML("www/example2info.html")),
-						tags$br()#conditionalPanel(condition = "input.exampleFiles == \'example_input/example3.txt\'", includeHTML("www/example3info.html"))
+						conditionalPanel(condition = "input.exampleFiles == \'example_input/example2.txt\'", includeHTML("www/example2info.html"))
 				))),
     	
     	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
@@ -61,14 +61,7 @@ shinyUI(fluidPage(
 					column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
 				)
 	  	),
-			
-    	conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
-    		fileInput("file", label = strong("Choropleth File input"))), 
-    		
-    	conditionalPanel(condition = "input.chooseInput == 'example'", 
-    		wellPanel(
-    			HTML("This example file is from the <a href=\"http://shiny.rstudio.com/tutorial/lesson5/\">RStudio Shiny tutorial</a>"))), 
-    		
+
     	selectInput("area", label = "Area to use", 
     		choices = c(
     			"USA: By County" = 'county', 
