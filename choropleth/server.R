@@ -25,12 +25,6 @@ shinyServer(function(input, output, session) {
 		values$file <- input$file
 	})
 	
-	# update the column selection options when a new file is uploaded
-	observe({
-		data_file <- get_file()
-		updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
-	})
-	
 	# get the values from the selected column
 	get_nums_col <- function(data_file, col){
 		print(col)
@@ -55,7 +49,7 @@ shinyServer(function(input, output, session) {
 		name_col <- fix_names(name_col)
 		nums_col <- get_nums_col(data_file, input$colSelect)
 		names(nums_col) <- name_col
-		
+	
 		return(nums_col)
 	})
 	
@@ -83,6 +77,10 @@ shinyServer(function(input, output, session) {
 		
 		# region names should be in lower case
 		data_file[[1]] <- tolower(data_file[[1]])
+		
+		# update the column selection options when a new file is uploaded
+		updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
+		
 		return(data_file)
 	})
 
