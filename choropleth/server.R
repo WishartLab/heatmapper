@@ -218,7 +218,7 @@ shinyServer(function(input, output, session) {
 	
 	# if input$area is updated change map
   observe({
-  	values$map <- readRDS("data/USA_1.rds") 
+  	values$map <- readRDS(input$area) 
   	
   	# get the max and min coords
   	coords <- extent(values$map)
@@ -336,7 +336,7 @@ shinyServer(function(input, output, session) {
 	
 	output$regionNames <- renderDataTable({
 		data.frame("Regions" = levels(values$map$NAME))
-	}, options = c(pageLength = 10))
+	}, options = list(pageLength = 10))
 	
 	################# Save Example File ################# 
 	output$downloadExample <- downloadHandler(

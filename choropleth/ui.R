@@ -64,10 +64,10 @@ shinyUI(fluidPage(
 
     	selectInput("area", label = "Area to use", 
     		choices = c(
-    			"USA: By County" = 'county', 
-    			"USA: By State" = 'state',
-    			"France" = 'france'), 
-   			selected = 'state'),
+    			"Canada: By Province" = 'data/CAN_1.rds',  
+    			"USA: By State" = 'data/USA_1.rds',
+    			"UK" = 'data/GBR_1.rds'), 
+   			selected = 'data/USA_1.rds'),
     		
    		selectInput("colSelect", label = "Column to use", choices = c(" " = 0)),
 		
@@ -144,7 +144,7 @@ shinyUI(fluidPage(
 				tags$br(),
 				dataTableOutput("table")), 
 			tabPanel(title = "Region Names", 
-				tags$br(), 
+				tags$br(),
 				dataTableOutput("regionNames"))
 			))),
 	singleton(includeScript("www/js/active.js"))
