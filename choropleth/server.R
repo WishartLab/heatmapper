@@ -94,51 +94,46 @@ shinyServer(function(input, output, session) {
 	
 	# update density information if file or column selection changes
 	observe({
-if(!is.null(values$density)){
-		rangeMin <- input$range[[1]]
-		rangeMax <- input$range[[2]]
-		
-		min <- floor(min(values$density, na.rm = TRUE))
-		max <- ceiling(max(values$density, na.rm = TRUE))
-
-		# update range slider if different col is selected
-		if(rangeMin < min || rangeMax > max){
-			updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
-		}
-		
-		bins <- input$binNumber + 1
-		
-		adjust_range(rangeMin, rangeMax, min, max, bins)
-		
-		densityBreaks <- get_breaks(rangeMin, rangeMax, min, max, bins)
-		
-		update_colours(densityBreaks)
-}
-	})
-	
-	# adjusts the range slider if the number of bins is larger than max - min
-	adjust_range <- function(rangeMin, rangeMax, min, max, bins){
-		
-		# adjust selected range if difference between max and min is < # of bins
-		if(rangeMax - rangeMin < bins){
+		if(!is.null(values$density)){
+			rangeMin <- input$range[[1]]
+			rangeMax <- input$range[[2]]
 			
-			if(rangeMax - bins > min){
-				rangeMin <- rangeMax - bins
-			}
-			else if(rangeMin + bins < max){
-				rangeMax <- rangeMin + bins
-			}
-			# error handling for when range is < #bins, this should be improved upon
-			else{
+			min <- floor(min(values$density, na.rm = TRUE))
+			max <- ceiling(max(values$density, na.rm = TRUE))
+	
+			# update range slider if different col is selected
+			if(rangeMin < min || rangeMax > max){
+				updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
 				rangeMin <- min
 				rangeMax <- max
-				bins <- max - min
 			}
-			updateSliderInput(session, inputId = "range", value = c(rangeMin,rangeMax))
+			
+			bins <- input$binNumber + 1
+			
+			# adjust selected range if difference between max and min is < # of bins
+			if(rangeMax - rangeMin < bins){
+				
+				if(rangeMax - bins > min){
+					rangeMin <- rangeMax - bins
+				}
+				else if(rangeMin + bins < max){
+					rangeMax <- rangeMin + bins
+				}
+				# error handling for when range is < #bins, this should be improved upon
+				else{
+					rangeMin <- min
+					rangeMax <- max
+					bins <- max - min
+				}
+				updateSliderInput(session, inputId = "range", value = c(rangeMin,rangeMax))
+			}
+			
+			densityBreaks <- get_breaks(rangeMin, rangeMax, min, max, bins)
+			update_colours(densityBreaks)
+			
 		}
+	})
 
-	}
-	
 	get_breaks <- function(rangeMin, rangeMax, min, max, bins){
 		minadd <- FALSE
 		maxadd <- FALSE
@@ -165,7 +160,7 @@ if(!is.null(values$density)){
 	}
 	
 	update_colours <- function(densityBreaks){
-		
+
 		# Construct break ranges for displaying in the legend
 		values$from <- head(densityBreaks, length(densityBreaks)-1)
 		values$to <- tail(densityBreaks, length(densityBreaks)-1)
@@ -186,12 +181,12 @@ if(!is.null(values$density)){
 	  strsplit(id, ":")[[1]][1]
 	}
 	
-	# add fillColour column to a map
+	# add fillColour column to a map, depends on values$map and values$colours
 	get_map_data <- reactive({
-		print("get map data")
+		
+		print("get_map_data")
 		mapData <- values$map
 		
-		#mapData <- readOGR("cb_2013_us_state_20m/cb_2013_us_state_20m.shp",layer = "cb_2013_us_state_20m", verbose = FALSE)
 		i <- 1
   	fillArray <- rep("#000000", length(mapData$NAME))
 	
@@ -205,10 +200,12 @@ if(!is.null(values$density)){
  				})
   		i <- i + 1
   	}
+		
   	mapData$fillColour <- fillArray
 		
 		return(mapData)
 	})
+	
 	observe({
 		values$map
 		print("map valu updated")
@@ -236,23 +233,20 @@ if(!is.null(values$density)){
   	leafletProxy("map") %>% clearShapes() %>% fitBounds(xmin, ymin, xmax, ymax) 
 	})
 	
-	# if values$density is changed update the colors
+	# if values$density, values$colours, or values$map is changed update the polygons
 	observe({
 
 		if(!is.null(values$density)){
-			print(values$density)
-			
-			isolate({
+
 			mapData <- get_map_data()
-			print("forth leaflet")
+				
   		leafletProxy("map", data =  mapData) %>% clearShapes() %>%
-				addPolygons(layerId = ~NAME, #~x, ~y, ~names, 
+				addPolygons(layerId = ~NAME,
 					weight = get_lines(), 
 					color = "black", 
 					opacity = 1, 
-					fillColor = ~fillColour,#fillArray, 
+					fillColor = ~fillColour,
 					fillOpacity = get_opacity()) 
-			})
 		}
 
   })
