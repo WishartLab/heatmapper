@@ -142,6 +142,10 @@ shinyUI(fluidPage(
 			),
 			tabPanel(title = "Table", 
 				tags$br(),
-				dataTableOutput("table"))))),
+				dataTableOutput("table")), 
+			tabPanel(title = "Region Names", 
+				tags$br(), 
+				dataTableOutput("regionNames"))
+			))),
 	singleton(includeScript("www/js/active.js"))
 ))

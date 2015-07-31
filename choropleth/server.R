@@ -334,6 +334,10 @@ shinyServer(function(input, output, session) {
 			}, values$from, values$to, values$palette, SIMPLIFY=FALSE))
 	})
 	
+	output$regionNames <- renderDataTable({
+		data.frame("Regions" = levels(values$map$NAME))
+	}, options = c(pageLength = 10))
+	
 	################# Save Example File ################# 
 	output$downloadExample <- downloadHandler(
 		filename = "example.txt",
