@@ -1,6 +1,7 @@
 library(leaflet)
 library(RColorBrewer)
 library(maps)
+library(rgdal)
 
 # reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
@@ -49,7 +50,7 @@ shinyServer(function(input, output, session) {
 		name_col <- fix_names(name_col)
 		nums_col <- get_nums_col(data_file, input$colSelect)
 		names(nums_col) <- name_col
-	
+		
 		return(nums_col)
 	})
 	
@@ -63,8 +64,9 @@ shinyServer(function(input, output, session) {
 		}
 		else{
 			if(is.null(values$file$datapath)){
+				print("first leaflet")
 				leafletProxy("map") %>% clearShapes()
-				updateSelectInput(session, inputId="colSelect", choices = c(" " = " "))
+				updateSelectInput(session, inputId="colSelect", choices = c(" " = 0))
 			}
 			validate(need(values$file$datapath, "Please upload a file"))
 			
@@ -84,19 +86,18 @@ shinyServer(function(input, output, session) {
 		return(data_file)
 	})
 
-	
-	update_range <- function(min,max){
-			
-			
-	}
+	observe({
+		if(input$colSelect != 0){
+			values$density <- get_density()
+		}
+	})
 	
 	# update density information if file or column selection changes
 	observe({
+if(!is.null(values$density)){
 		rangeMin <- input$range[[1]]
 		rangeMax <- input$range[[2]]
 		
-		values$density <- get_density()
-
 		min <- floor(min(values$density, na.rm = TRUE))
 		max <- ceiling(max(values$density, na.rm = TRUE))
 
@@ -155,6 +156,7 @@ shinyServer(function(input, output, session) {
 		values$colours <- structure(
 			values$palette[as.integer(cut(values$density, densityBreaks, include.lowest = TRUE, ordered = TRUE))], 
 			names = names(values$density))
+}
 	})
 
 	# The state names that come back from the maps package's state database has
@@ -165,12 +167,16 @@ shinyServer(function(input, output, session) {
 	
 	# add fillColour column to a map
 	get_map_data <- reactive({
+		print("get map data")
 		mapData <- values$map
-		i <- 1
-  	fillArray <- rep("#000000", length(mapData$names))
 		
-  	for(region in mapData$names){
-  		region <- parseRegionName(region)
+		#mapData <- readOGR("cb_2013_us_state_20m/cb_2013_us_state_20m.shp",layer = "cb_2013_us_state_20m", verbose = FALSE)
+		i <- 1
+  	fillArray <- rep("#000000", length(mapData$NAME))
+	
+  	for(region in mapData$NAME){
+  		region <- tolower(parseRegionName(region))
+  		
   		tryCatch({
   			fillArray[[i]] <- values$colours[[region]]
  				}, 
@@ -179,44 +185,49 @@ shinyServer(function(input, output, session) {
   		i <- i + 1
   	}
   	mapData$fillColour <- fillArray
+		
 		return(mapData)
 	})
-	
-	# remove NA values from x and y columns
-	prepare_fit_bounds <- function(map){
-		map$x <- na.omit(map$x)
-  	map$y <- na.omit(map$y)
-		return(map)
-	}
-	
+	observe({
+		values$map
+		print("map valu updated")
+	})
+
   # default map
   output$map <- renderLeaflet({
-  	map <- map(input$area, plot=FALSE, fill=TRUE)
-  	map <- prepare_fit_bounds(map)
-    leaflet(map) %>% fitBounds(~min(x), ~min(y), ~max(x), ~max(y))
+  	print("second leaflet")
+  	leaflet()
   })
 	
 	# if input$area is updated change map
   observe({
-  	values$map <- map(input$area, plot=FALSE, fill=TRUE)
-  	map <- prepare_fit_bounds(values$map)
-  	leafletProxy("map") %>% 
-  		clearShapes() %>%
-  		fitBounds(min(map$x), min(map$y), max(map$x), max(map$y))
+  	values$map <- readRDS("data/USA_1.rds") 
+  	
+  	# get the max and min coords
+  	coords <- extent(values$map)
+  	xmin <- coords[1]
+  	xmax <- coords[2]
+  	ymin <- coords[3]
+  	ymax <- coords[4]
+  	print(values$map)
+  	
+  	# remove old shapes when map is changed
+  	leafletProxy("map") %>% clearShapes() %>% fitBounds(xmin, ymin, xmax, ymax) 
 	})
 	
 	# if values$density is changed update the colors
 	observe({
 
-		if(!is.null(get_file())){
+		if(!is.null(values$density)){
 			values$density
 			mapData <- get_map_data()
-  		leafletProxy("map", data =  mapData) %>% 
-				addPolygons(~x, ~y, ~names, 
+			print("forth leaflet")
+  		leafletProxy("map", data =  mapData) %>% clearShapes() %>%
+				addPolygons(layerId = ~NAME, #~x, ~y, ~names, 
 					weight = get_lines(), 
 					color = "black", 
 					opacity = 1, 
-					fillColor = ~fillColour, 
+					fillColor = ~fillColour,#fillArray, 
 					fillOpacity = get_opacity())
 		}
 
@@ -252,6 +263,7 @@ shinyServer(function(input, output, session) {
 	# if values$map is updated or showTiles checkbox input is changed
 	observe({
 		values$map
+		print("fifth leaflet")
 		if(layer_selected("showTiles")){
 			leafletProxy("map") %>% addTiles()
 		}
@@ -280,7 +292,7 @@ shinyServer(function(input, output, session) {
     } 
   	else {
       # Get a properly formatted state name
-      stateName <- names(values$density)[parseRegionName(values$highlight) == tolower(names(values$density))]
+      stateName <- names(values$density)[tolower(parseRegionName(values$highlight)) == tolower(names(values$density))]
       return(tags$div(
         tags$strong(stateName),
         tags$div(values$density[stateName], HTML(""))

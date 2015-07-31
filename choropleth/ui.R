@@ -69,7 +69,7 @@ shinyUI(fluidPage(
     			"France" = 'france'), 
    			selected = 'state'),
     		
-   		selectInput("colSelect", label = "Column to use", choices = c(" " = " ")),
+   		selectInput("colSelect", label = "Column to use", choices = c(" " = 0)),
 		
    		sliderInput("range", 
    			label = "Range of interest", 
