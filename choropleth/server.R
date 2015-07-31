@@ -101,15 +101,23 @@ if(!is.null(values$density)){
 		min <- floor(min(values$density, na.rm = TRUE))
 		max <- ceiling(max(values$density, na.rm = TRUE))
 
+		# update range slider if different col is selected
 		if(rangeMin < min || rangeMax > max){
-			print("UPDATE RANGE")
 			updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
 		}
 		
-		# Breaks we'll use for coloring		
-		minadd <- FALSE
-		maxadd <- FALSE
 		bins <- input$binNumber + 1
+		
+		adjust_range(rangeMin, rangeMax, min, max, bins)
+		
+		densityBreaks <- get_breaks(rangeMin, rangeMax, min, max, bins)
+		
+		update_colours(densityBreaks)
+}
+	})
+	
+	# adjusts the range slider if the number of bins is larger than max - min
+	adjust_range <- function(rangeMin, rangeMax, min, max, bins){
 		
 		# adjust selected range if difference between max and min is < # of bins
 		if(rangeMax - rangeMin < bins){
@@ -129,6 +137,12 @@ if(!is.null(values$density)){
 			updateSliderInput(session, inputId = "range", value = c(rangeMin,rangeMax))
 		}
 
+	}
+	
+	get_breaks <- function(rangeMin, rangeMax, min, max, bins){
+		minadd <- FALSE
+		maxadd <- FALSE
+	
 		if(min < rangeMin){
 			bins <- bins - 1
 			minadd <- TRUE
@@ -137,13 +151,20 @@ if(!is.null(values$density)){
 			bins <- bins - 1
 			maxadd <- TRUE
 		}
+		
 		densityBreaks <- round(seq(rangeMin, rangeMax, length.out = bins), 0)
+		
 		if(minadd){
 			densityBreaks <- c(min, densityBreaks)
 		}
 		if(maxadd){
 			densityBreaks <- c(densityBreaks, max)
 		}
+	
+		densityBreaks
+	}
+	
+	update_colours <- function(densityBreaks){
 		
 		# Construct break ranges for displaying in the legend
 		values$from <- head(densityBreaks, length(densityBreaks)-1)
@@ -155,9 +176,9 @@ if(!is.null(values$density)){
 		# Assign colors to states
 		values$colours <- structure(
 			values$palette[as.integer(cut(values$density, densityBreaks, include.lowest = TRUE, ordered = TRUE))], 
-			names = names(values$density))
-}
-	})
+			names = names(values$density)
+		)
+	}
 
 	# The state names that come back from the maps package's state database has
 	# state:qualifier format. This function strips off the qualifier.
@@ -219,7 +240,9 @@ if(!is.null(values$density)){
 	observe({
 
 		if(!is.null(values$density)){
-			values$density
+			print(values$density)
+			
+			isolate({
 			mapData <- get_map_data()
 			print("forth leaflet")
   		leafletProxy("map", data =  mapData) %>% clearShapes() %>%
@@ -228,7 +251,8 @@ if(!is.null(values$density)){
 					color = "black", 
 					opacity = 1, 
 					fillColor = ~fillColour,#fillArray, 
-					fillOpacity = get_opacity())
+					fillOpacity = get_opacity()) 
+			})
 		}
 
   })
