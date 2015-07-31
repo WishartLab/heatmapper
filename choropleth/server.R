@@ -1,7 +1,6 @@
 library(leaflet)
 library(RColorBrewer)
-library(maps)
-library(rgdal)
+library(raster)
 
 # reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
