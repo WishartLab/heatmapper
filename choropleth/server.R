@@ -226,8 +226,9 @@ shinyServer(function(input, output, session) {
   	xmax <- coords[2]
   	ymin <- coords[3]
   	ymax <- coords[4]
-  	print(values$map)
   	
+  	print(coords)
+  	print(values$map@bbox)
   	# remove old shapes when map is changed
   	leafletProxy("map") %>% clearShapes() %>% fitBounds(xmin, ymin, xmax, ymax) 
 	})
@@ -309,10 +310,10 @@ shinyServer(function(input, output, session) {
     } 
   	else {
       # Get a properly formatted state name
-      stateName <- names(values$density)[tolower(parseRegionName(values$highlight)) == tolower(names(values$density))]
+      stateName <- values$highlight
       return(tags$div(
         tags$strong(stateName),
-        tags$div(values$density[stateName], HTML(""))
+        tags$div(values$density[tolower(parseRegionName(stateName))], HTML(""))
       ))
     }
   })

@@ -64,9 +64,9 @@ shinyUI(fluidPage(
 
     	selectInput("area", label = "Area to use", 
     		choices = c(
-    			"Canada: By Province" = 'data/CAN_1.rds',  
+    			"Canada: By Province" = 'data/CAN_1.rds', 
     			"USA: By State" = 'data/USA_1.rds',
-    			"UK" = 'data/GBR_1.rds'), 
+    			"United Kingdom" = 'data/GBR_1.rds'), 
    			selected = 'data/USA_1.rds'),
     		
    		selectInput("colSelect", label = "Column to use", choices = c(" " = 0)),
