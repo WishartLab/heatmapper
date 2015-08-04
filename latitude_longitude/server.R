@@ -36,11 +36,18 @@ shinyServer(function(input, output, session){
 		}
 		return(points)
 	})
+	get_bandwidth <- function(df){
+		c(bw.ucv(df[,1]),bw.ucv(df[,2]))*input$gaussianRadius
+	}
+	
+	get_gridsize <- function(){
+		c(51,51) * input$contourSmoothness
+	}
 	
 	# source: http://www.r-bloggers.com/interactive-maps-for-john-snows-cholera-data/
 	get_density <- reactive({
 		df <- get_file()
-		dens <- bkde2D(df, bandwidth=c(bw.ucv(df[,1]),bw.ucv(df[,2])))
+		dens <- bkde2D(df, bandwidth = get_bandwidth(df), gridsize = get_gridsize())
 		return(contourLines(x = dens$x1, y = dens$x2, z = dens$fhat))
 	})
 	
@@ -96,7 +103,7 @@ shinyServer(function(input, output, session){
 			
 		m <- leafletProxy("map", session, df)
 		m %>% clearShapes()
-		
+
 		for(i in 1:max_CL){	
 			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = contours) 
 		}
@@ -109,18 +116,14 @@ shinyServer(function(input, output, session){
 	})
 
 	observe({
-		get_file()
-		m <- leafletProxy("map", session)
+		m <- get_shapes()
+		
 		if(layer_selected("showMap")){
 			m %>% addTiles()
 		}
 		else{
 			m %>% clearTiles()
 		}
-	})
-	
-	observe({
-		get_shapes()
 	})
 	
 	output$map <- renderLeaflet({

@@ -43,6 +43,13 @@ shinyUI(fluidPage(
 			), 
 			
 			fluidRow(
+		  		column(3, tags$label("Gaussian Radius Multiplier")), 
+		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 0.2, max = 4, value = 1, step=0.05))
+		  	), 
+			fluidRow(
+		  		column(4, tags$label("Contour Smoothness")), 
+		  		column(8, sliderInput('contourSmoothness', label = NULL, min = 1, max = 15, value = 1, step = 1))),
+			fluidRow(
 	  		column(3, tags$label("Heatmap Opacity")), 
 	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.8, step = 0.05))
 	  	), 
