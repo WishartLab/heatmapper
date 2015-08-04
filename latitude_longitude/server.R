@@ -57,22 +57,51 @@ shinyServer(function(input, output, session){
 		return(m)
 	})
 	
+	# see if a given layer name is shown or hidden by user
+	layer_selected <- function(name){
+		if(length(grep(name, input$layers))>0){
+			TRUE
+		}
+		else{
+			FALSE
+		}
+	}
+	
+	get_fill_opacity <- reactive({
+		if(layer_selected("showHeatmap")){
+			input$fillOpacity
+		}
+		else{
+			0
+		}
+	})
+	
+	get_contour_lines <- reactive({
+		if(layer_selected("showContours")){
+			input$contourSize
+		}
+		else{
+			0
+		}
+	})
+	
 	get_shapes <- reactive({
 		
 		df <- get_file() 
 		CL <- get_density()
 		max_CL <- length(CL)
 		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
-		fill_op <- input$fillOpacity
-		
+		fill_op <- get_fill_opacity()
+		contours <- get_contour_lines()
+			
 		m <- leafletProxy("map", session, df)
 		m %>% clearShapes()
 		
 		for(i in 1:max_CL){	
-			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = input$contourSize) 
+			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = contours) 
 		}
 		
-		if(input$showPoints){
+		if(layer_selected("showPoints")){
 			m <-	addCircles(m, opacity = input$pointOpacity,radius =  input$pointSize,  weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude: ", df$Longitude)))
 		}
 		
@@ -82,7 +111,7 @@ shinyServer(function(input, output, session){
 	observe({
 		get_file()
 		m <- leafletProxy("map", session)
-		if(input$showMap){
+		if(layer_selected("showMap")){
 			m %>% addTiles()
 		}
 		else{

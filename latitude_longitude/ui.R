@@ -26,10 +26,23 @@ shinyUI(fluidPage(
 					column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
 				)
 	  	),
+						
+			selectInput('layers', label = "Show/Hide Layers", 
+				multiple = TRUE,
+				choices = c(
+					"Map" = 'showMap', 
+					"Contour Lines" = 'showContours', 
+					"Heatmap" = 'showHeatmap', 
+					"Points" = 'showPoints'
+				), 
+				selected = c('showMap', 'showContours', 'showHeatmap', 'showPoints')),
 			
-  	column(6, jscolourInput("lowColour", label = "Low Colour", value = "#FFFA00")),
-    column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000")), 
-		 		
+			fluidRow(
+  			column(6, jscolourInput("lowColour", label = "Low Colour", value = "#FFFA00")),
+    		column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
+			), 
+		 	
+			
     		strong("Background"),
     		checkboxInput('showMap', label = "Show Map", value = TRUE),
     		
