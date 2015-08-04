@@ -108,7 +108,8 @@ shinyServer(function(input, output, session){
 		m %>% clearShapes()
 
 		for(i in 1:max_CL){	
-			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = contours) 
+			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = contours, 
+				popup = paste("level:", CL[[i]]$level)) # for testing, remove later
 		}
 		
 		if(layer_selected("showPoints")){
@@ -143,13 +144,18 @@ shinyServer(function(input, output, session){
 		CL <- get_density()
 		max_CL <- length(CL)
 		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
-		fill_op <- get_fill_opacity()
-		contours <- get_contour_lines()
-
-		for(i in 1:max_CL){	
-		#	m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = contours) 
-		}
 		
+		d <- data.frame(x = CL[[1]]$x, y = CL[[1]]$y, z = CL[[1]]$level)
+		d2 <- data.frame(x = CL[[4]]$x, y = CL[[4]]$y, z = CL[[4]]$level)
+		d <- rbind(d, d2)
+		print(d)
+		print(str(d))
+		plot1 <- ggplot(data = df, aes(x = Latitude, y = Longitude)) + geom_blank() + geom_contour(aes(x = x, y = y, z = z), data = d)
+		#for(i in 1:max_CL){	
+		#	d <- data.frame(x = CL[[i]]$x, y = CL[[i]]$y, z = CL[[i]]$level) 
+			
+		#}
+		plot1
 	})
 	
 	output$download <- downloadHandler(

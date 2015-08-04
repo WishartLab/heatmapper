@@ -48,10 +48,10 @@ shinyUI(fluidPage(
 		  	), 
 			fluidRow(
 		  		column(4, tags$label("Contour Smoothness")), 
-		  		column(8, sliderInput('contourSmoothness', label = NULL, min = 1, max = 15, value = 1, step = 1))),
+		  		column(8, sliderInput('contourSmoothness', label = NULL, min = 1, max = 15, value = 5, step = 1))),
 			fluidRow(
 	  		column(3, tags$label("Heatmap Opacity")), 
-	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.8, step = 0.05))
+	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.5, step = 0.05))
 	  	), 
 			
 			fluidRow(
@@ -61,7 +61,7 @@ shinyUI(fluidPage(
 						label = NULL, 
 						min = 3, 
 						max = 50, 
-						value = 20))
+						value = 10))
     	), 
 		 	
     	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
@@ -98,9 +98,10 @@ shinyUI(fluidPage(
     		),
 			mainPanel(id = "mainPanel",
 				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", leafletOutput("map", height = 600)),
-					tabPanel(title = "Table", dataTableOutput("table")), 
-					tabPanel(title = "gog", plotOutput("ggplot"))))
+					tabPanel(title = "Plot", plotOutput("ggplot")),
+					tabPanel(title = "Interactive", leafletOutput("map", height = 600)),
+					tabPanel(title = "Table", dataTableOutput("table")) 
+				))
 			), 
 	singleton(includeScript("www/js/active.js"))
 	))
