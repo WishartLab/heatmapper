@@ -3,30 +3,33 @@ library(leaflet)
 
 shinyUI(fluidPage(
 	includeHTML("www/navbar.html"),
-	tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}"),
-		sidebarLayout(
-    	sidebarPanel(
-    		actionButton('fileInputOptionsButton', label = "Hide File Options", class = "toggleButton fa fa-angle-up"),
-				wellPanel(id = "fileInputPanel",
-    		radioButtons('chooseInput',
-    			label = "Choose Input Type",
-    			choices = c(
-    				"Upload File" = 'fileUpload',
-						"Example File" = 'example'),
-    			selected = 'example'),
-    		
-    		conditionalPanel(condition = "input.chooseInput == 'fileUpload'", 
-    			fileInput("file", label = strong("File input")))
-					), 
-    		
-  actionButton('colourOptionsButton', label = "Hide Colour Options", class = "toggleButton fa fa-angle-up"),
-	wellPanel(id = "colourPanel", 
-    		jscolourInput("lowColour", label = "Colour for low numbers", value = "#FFFA00"),
-    		
-    		jscolourInput("highColour", label = "Colour for high numbers", value = "#FF0000")
-	),
-		actionButton('mapOptionsButton', label = "Hide Map Options", class = "toggleButton fa fa-angle-up"),
-		wellPanel(id = "mapPanel", 	 		
+	tags$head(
+		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
+			#lowColour, #highColour, #missingColour {width:100%}
+			#file_progress {height:0;}
+			#sidebarPanel {width:23.45em;}
+			#mainPanel {left:24.45em; position:absolute;}")),
+	
+	sidebarLayout(
+		sidebarPanel(id = "sidebarPanel",
+			radioButtons('chooseInput', label = "Select Choropleth Data File", 
+	  		inline=TRUE, 
+	  		choices = c(
+	  			"Upload File" = 'fileUpload',
+    			"Example File" = 'example'), 
+	  		selected = 'fileUpload'
+	  	),
+
+    	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
+				fluidRow(
+					column(8, fileInput('file', label = NULL)), 
+					column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
+				)
+	  	),
+			
+  	column(6, jscolourInput("lowColour", label = "Low Colour", value = "#FFFA00")),
+    column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000")), 
+		 		
     		strong("Background"),
     		checkboxInput('showMap', label = "Show Map", value = TRUE),
     		
@@ -52,11 +55,10 @@ shinyUI(fluidPage(
 	    			max = 1, 
 	    			value = 0.8)),
     		
-    		sliderInput('fillOpacity', 
-    			label = "Fill Opacity", 
-    			min = 0, 
-    			max = 1, 
-    			value = 0.5), 
+			fluidRow(
+	  		column(3, tags$label("Heatmap Opacity")), 
+	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.8, step = 0.05))
+	  	), 
     		
     		
     		selectInput('type', 
@@ -69,8 +71,8 @@ shinyUI(fluidPage(
     				"hybrid" = 'hybrid', 
     				"toner" = 'toner',
     				"watercolor" = 'watercolor'), 
-    			selected = 'terrain')
-			),
+    			selected = 'terrain'),
+			
 	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
 	wellPanel(id = "downloadPanel", 		
     		radioButtons('downloadType', 
@@ -83,7 +85,7 @@ shinyUI(fluidPage(
     		downloadButton('download', "Download image")
     		)
     		),
-			mainPanel(
+			mainPanel(id = "mainPanel",
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Plot", leafletOutput("map", height = 600)),
 					tabPanel(title = "Table", dataTableOutput("table"))))
