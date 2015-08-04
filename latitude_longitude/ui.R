@@ -41,53 +41,46 @@ shinyUI(fluidPage(
   			column(6, jscolourInput("lowColour", label = "Low Colour", value = "#FFFA00")),
     		column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
 			), 
-		 	
 			
-    		strong("Background"),
-    		checkboxInput('showMap', label = "Show Map", value = TRUE),
-    		
-    		sliderInput('contourSize', 
-    			label = "Contour Line Width (in pixels)", 
-    			min = 0, 
-    			max = 4,
-    			value = 1), 
-    		
-			strong("Points"),
-    		checkboxInput('showPoints', label = "Show Points", value = TRUE),
-    		
-    		conditionalPanel(condition = "input.showPoints == true", 
-	    		sliderInput('pointSize', 
-	    			label = "Point Width (in pixels)", 
-	    			min = 0, 
-	    			max = 10, 
-	    			value = 2), 
-	    		
-	    		sliderInput('pointOpacity', 
-	    			label = "Point Opacity", 
-	    			min = 0, 
-	    			max = 1, 
-	    			value = 0.8)),
-    		
 			fluidRow(
 	  		column(3, tags$label("Heatmap Opacity")), 
 	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.8, step = 0.05))
 	  	), 
-    		
-    		
-    		selectInput('type', 
-    			label = "Map type", 
-    			choices = c(
-    				"terrain" = 'terrain', 
-    				"terrain background" = 'terrain-background', 
-    				"satellite" = 'satellite',
-    				"roadmap" = 'roadmap', 
-    				"hybrid" = 'hybrid', 
-    				"toner" = 'toner',
-    				"watercolor" = 'watercolor'), 
-    			selected = 'terrain'),
 			
-	actionButton('downloadOptionsButton', label = "Hide Download Options", class = "toggleButton fa fa-angle-up"),
-	wellPanel(id = "downloadPanel", 		
+			fluidRow(
+    		column(3, tags$label("Number of Shades")),
+				column(9,
+					sliderInput("binNumber", 
+						label = NULL, 
+						min = 3, 
+						max = 50, 
+						value = 20))
+    	), 
+		 	
+    		
+			
+    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
+			conditionalPanel(condition = "input.advancedOptionsButton%2",
+				wellPanel(
+	    		sliderInput('contourSize', 
+	    			label = "Contour Line Width (in pixels)", 
+	    			min = 0, 
+	    			max = 4,
+	    			value = 1), 
+					
+					sliderInput('pointSize', 
+		    			label = "Point Width (in pixels)", 
+		    			min = 0, 
+		    			max = 10, 
+		    			value = 2), 
+		    		
+		    	sliderInput('pointOpacity', 
+		    			label = "Point Opacity", 
+		    			min = 0, 
+		    			max = 1, 
+		    			value = 0.8)
+				),
+				
     		radioButtons('downloadType', 
     			label = "Downlaod file format", 
     			choices = c(
