@@ -17,7 +17,7 @@ shinyUI(fluidPage(
 	  		choices = c(
 	  			"Upload File" = 'fileUpload',
     			"Example File" = 'example'), 
-	  		selected = 'fileUpload'
+	  		selected = 'example'
 	  	),
 
     	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
@@ -64,8 +64,6 @@ shinyUI(fluidPage(
 						value = 20))
     	), 
 		 	
-    		
-			
     	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
 			conditionalPanel(condition = "input.advancedOptionsButton%2",
 				wellPanel(
@@ -101,7 +99,8 @@ shinyUI(fluidPage(
 			mainPanel(id = "mainPanel",
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Plot", leafletOutput("map", height = 600)),
-					tabPanel(title = "Table", dataTableOutput("table"))))
+					tabPanel(title = "Table", dataTableOutput("table")), 
+					tabPanel(title = "gog", plotOutput("ggplot"))))
 			), 
 	singleton(includeScript("www/js/active.js"))
 	))

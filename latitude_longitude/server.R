@@ -36,19 +36,23 @@ shinyServer(function(input, output, session){
 		}
 		return(points)
 	})
-	get_bandwidth <- function(df){
-		c(bw.ucv(df[,1]),bw.ucv(df[,2]))*input$gaussianRadius
-	}
-	
-	get_gridsize <- function(){
-		c(51,51) * input$contourSmoothness
-	}
-	
+
 	# source: http://www.r-bloggers.com/interactive-maps-for-john-snows-cholera-data/
 	get_density <- reactive({
 		df <- get_file()
-		dens <- bkde2D(df, bandwidth = get_bandwidth(df), gridsize = get_gridsize())
-		return(contourLines(x = dens$x1, y = dens$x2, z = dens$fhat))
+		bandwidth <- c(bw.ucv(df[,1]),bw.ucv(df[,2]))*input$gaussianRadius
+		nlevels <- input$binNumber
+		
+		xmin <- min(df$Longitude) - bandwidth[[1]]*nlevels
+		xmax <- max(df$Longitude) + bandwidth[[1]]*nlevels
+		
+		ymin <- min(df$Latitude) - bandwidth[[2]]*nlevels
+		ymax <- max(df$Latitude) + bandwidth[[2]]*nlevels
+
+		dens <- bkde2D(df, range.x = list(c(xmin,xmax), c(ymin,ymax)),
+			bandwidth = bandwidth, 
+			gridsize =c(51,51)*input$contourSmoothness)
+		return(contourLines(x = dens$x1, y = dens$x2, z = dens$fhat, nlevels = nlevels))
 	})
 	
 	get_plot <- reactive({
@@ -100,7 +104,6 @@ shinyServer(function(input, output, session){
 		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
 		fill_op <- get_fill_opacity()
 		contours <- get_contour_lines()
-			
 		m <- leafletProxy("map", session, df)
 		m %>% clearShapes()
 
@@ -132,6 +135,21 @@ shinyServer(function(input, output, session){
 	
 	output$table <- renderDataTable({
 		get_file()
+	})
+	
+	library(ggplot2)
+	output$ggplot <- renderPlot({
+		df <- get_file() 
+		CL <- get_density()
+		max_CL <- length(CL)
+		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
+		fill_op <- get_fill_opacity()
+		contours <- get_contour_lines()
+
+		for(i in 1:max_CL){	
+		#	m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = contours) 
+		}
+		
 	})
 	
 	output$download <- downloadHandler(
