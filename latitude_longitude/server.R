@@ -154,27 +154,7 @@ shinyServer(function(input, output, session){
 	output$table <- renderDataTable({
 		get_file()
 	})
-	
-	library(ggplot2)
-	output$ggplot <- renderPlot({
-		df <- get_file() 
-		CL <- get_density()
-		max_CL <- length(CL)
-		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
-		
-		d <- data.frame(x = CL[[1]]$x, y = CL[[1]]$y, z = CL[[1]]$level)
-		d2 <- data.frame(x = CL[[4]]$x, y = CL[[4]]$y, z = CL[[4]]$level)
-		d <- rbind(d, d2)
-		print(d)
-		print(str(d))
-		plot1 <- ggplot(data = df, aes(x = Latitude, y = Longitude)) + geom_blank() + geom_contour(aes(x = x, y = y, z = z), data = d)
-		#for(i in 1:max_CL){	
-		#	d <- data.frame(x = CL[[i]]$x, y = CL[[i]]$y, z = CL[[i]]$level) 
-			
-		#}
-		plot1
-	})
-	
+
 	output$download <- downloadHandler(
 		filename = function(){
 			"geoHeatmap.png"

@@ -108,7 +108,6 @@ shinyUI(fluidPage(
     		),
 			mainPanel(id = "mainPanel",
 				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Plot", plotOutput("ggplot")),
 					tabPanel(title = "Interactive", leafletOutput("map", height = 600)),
 					tabPanel(title = "Table", dataTableOutput("table")) 
 				))
