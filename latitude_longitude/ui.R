@@ -89,7 +89,9 @@ shinyUI(fluidPage(
 	    			choices = c(
 	    				"default" = 'default',
 	    				"positron" = 'positron', 
-	    				"toner" = 'toner'
+	    				"temperature" = 'temperature',
+	    				"toner" = 'toner',
+	    				"watercolour" = 'watercolour'
 	    			), 
 	    			selected = 'default')
 				),

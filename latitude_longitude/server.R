@@ -119,12 +119,19 @@ shinyServer(function(input, output, session){
 		return(m)
 	})
 
+	# http://leaflet-extras.github.io/leaflet-providers/preview/index.html
 	get_tiles <- function(m){
 		if(input$mapType == 'toner'){
 			m %>% addProviderTiles("Stamen.Toner")
 		}
 		else if(input$mapType == 'positron'){
 			m %>% addProviderTiles("CartoDB.Positron")
+		}
+		else if(input$mapType == 'watercolour'){
+			m %>% addProviderTiles("Stamen.Watercolor")
+		}
+		else if(input$mapType == 'temperature'){
+			m %>% addTiles() %>% addProviderTiles("OpenWeatherMap.Temperature")
 		}
 		else{
 			m %>% addTiles()
@@ -134,11 +141,9 @@ shinyServer(function(input, output, session){
 	observe({
 		m <- get_shapes()
 		
+		m %>% clearTiles()
 		if(layer_selected("showMap")){
 			get_tiles(m)
-		}
-		else{
-			m %>% clearTiles()
 		}
 	})
 	
