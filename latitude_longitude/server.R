@@ -134,7 +134,7 @@ shinyServer(function(input, output, session){
 			m %>% addTiles() %>% addProviderTiles("OpenWeatherMap.Temperature")
 		}
 		else{
-			m %>% addTiles()
+			m %>% addTiles(options = tileOptions(minZoom = 2))
 		}	
 	}
 	
@@ -154,6 +154,7 @@ shinyServer(function(input, output, session){
 	output$table <- renderDataTable({
 		get_file()
 	})
+	
 
 	output$download <- downloadHandler(
 		filename = function(){

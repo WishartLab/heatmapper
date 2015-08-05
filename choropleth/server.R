@@ -220,17 +220,20 @@ shinyServer(function(input, output, session) {
   observe({
   	values$map <- readRDS(input$area) 
   	
-  	# get the max and min coords
-  	coords <- extent(values$map)
-  	xmin <- coords[1]
-  	xmax <- coords[2]
-  	ymin <- coords[3]
-  	ymax <- coords[4]
+  	# calculate average lat and long for the selected area
+  	lat <- c()
+  	lon <- c()
   	
-  	print(coords)
-  	print(values$map@bbox)
+  	lapply(values$map@polygons, function(x){
+  		lat <<- c(lat, x@labpt[[1]])
+  		lon <<- c(lon, x@labpt[[2]])
+  	})
+  	
+		lat <- mean(lat)
+  	lon <- mean(lon)
+  	
   	# remove old shapes when map is changed
-  	leafletProxy("map") %>% clearShapes() %>% fitBounds(xmin, ymin, xmax, ymax) 
+  	leafletProxy("map") %>% clearShapes() %>% setView(lat, lon, zoom = 3) 
 	})
 	
 	# if values$density, values$colours, or values$map is changed update the polygons
@@ -283,7 +286,7 @@ shinyServer(function(input, output, session) {
 		values$map
 		print("fifth leaflet")
 		if(layer_selected("showTiles")){
-			leafletProxy("map") %>% addTiles()
+			leafletProxy("map") %>% addTiles(options = tileOptions(minZoom = 2))
 		}
 		else{
 			leafletProxy("map") %>% clearTiles()
