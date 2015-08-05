@@ -55,19 +55,6 @@ shinyServer(function(input, output, session){
 		return(contourLines(x = dens$x1, y = dens$x2, z = dens$fhat, nlevels = nlevels))
 	})
 	
-	get_plot <- reactive({
-		CL <- get_density()
-		max_CL <- length(CL)
-
-		m <- leaflet()
-		
-		for(i in 1:max_CL){	
-			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y)
-		}
-		m %>% clearShapes()
-		return(m)
-	})
-	
 	# see if a given layer name is shown or hidden by user
 	layer_selected <- function(name){
 		if(length(grep(name, input$layers))>0){
@@ -87,7 +74,7 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
-	get_contour_lines <- reactive({
+	get_contour_size <- reactive({
 		if(layer_selected("showContours")){
 			input$contourSize
 		}
@@ -96,74 +83,97 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
-	get_shapes <- reactive({
+	
+	get_point_shapes <- function(m){
 		
-		df <- get_file() 
+		if(layer_selected("showPoints")){
+			print("GETPOINTS")
+			df <- get_file()
+			m <- addCircles(m, opacity = input$pointOpacity, 
+				radius =  input$pointSize,  
+				weight = input$pointSize, 
+				popup = as.character(paste0("Latitude: ", df$Latitude, "<br/>Longitude: ", df$Longitude)))
+		}
+		
+		return(m)
+	}
+	
+	get_contour_shapes <- function(m){
+		print("GETCONTOURS")
 		CL <- get_density()
 		max_CL <- length(CL)
 		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
 		fill_op <- get_fill_opacity()
-		contours <- get_contour_lines()
-		m <- leafletProxy("map", session, df)
-		m %>% clearShapes()
-
+		contours <- get_contour_size()
+		
 		for(i in 1:max_CL){	
-			m	<- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = contours, 
+			m <- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = contours, 
 				popup = paste("level:", CL[[i]]$level)) # for testing, remove later
 		}
 		
-		if(layer_selected("showPoints")){
-			m <-	addCircles(m, opacity = input$pointOpacity,radius =  input$pointSize,  weight = input$pointSize, popup = as.character(paste0("Latitude: ",df$Latitude, "<br/>Longitude: ", df$Longitude)))
-		}
-		
 		return(m)
-	})
+	}
 
 	# http://leaflet-extras.github.io/leaflet-providers/preview/index.html
 	get_tiles <- function(m){
-		if(input$mapType == 'toner'){
-			m %>% addProviderTiles("Stamen.Toner")
+		
+		m %>% clearTiles()
+		
+		if(layer_selected("showMap")){
+			
+			if(input$mapType == 'toner'){
+				m %>% addProviderTiles("Stamen.Toner")
+			}
+			else if(input$mapType == 'positron'){
+				m %>% addProviderTiles("CartoDB.Positron")
+			}
+			else if(input$mapType == 'watercolour'){
+				m %>% addProviderTiles("Stamen.Watercolor")
+			}
+			else if(input$mapType == 'temperature'){
+				m %>% addTiles() %>% addProviderTiles("OpenWeatherMap.Temperature") 
+			}
+			else{
+				m %>% addTiles()
+			}	
 		}
-		else if(input$mapType == 'positron'){
-			m %>% addProviderTiles("CartoDB.Positron")
-		}
-		else if(input$mapType == 'watercolour'){
-			m %>% addProviderTiles("Stamen.Watercolor")
-		}
-		else if(input$mapType == 'temperature'){
-			m %>% addTiles() %>% addProviderTiles("OpenWeatherMap.Temperature")
-		}
-		else{
-			m %>% addTiles(options = tileOptions(minZoom = 2))
-		}	
+	}
+	
+	get_shapes <- function(m){
+	
+		m <- get_contour_shapes(m)
+		
+		m <- get_point_shapes(m)
+		
+		m <- get_tiles(m)
+		
+		m
 	}
 	
 	observe({
-		m <- get_shapes()
-		
-		m %>% clearTiles()
-		if(layer_selected("showMap")){
-			get_tiles(m)
-		}
+		m <- leafletProxy("map", session, get_file())
+		m %>% clearShapes()
+		get_shapes(m)
 	})
 	
 	output$map <- renderLeaflet({
-		get_plot()
+		leaflet(get_file()) %>% fitBounds(~min(Longitude, na.rm = TRUE), ~min(Latitude, na.rm = TRUE), ~max(Longitude, na.rm = TRUE), ~max(Latitude, na.rm = TRUE))
 	})
 	
 	output$table <- renderDataTable({
 		get_file()
 	})
 	
-
+	library(htmlwidgets)
 	output$download <- downloadHandler(
 		filename = function(){
-			"geoHeatmap.png"
+			"geoHeatmap.html"
 		},
 		content = function(file) {
-			png(file)
-			get_plot()
-			dev.off()
+			
+			m <- get_shapes(leaflet(get_file()))
+		
+			saveWidget(m, file=file)
 		}
 	)
 })

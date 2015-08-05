@@ -28,7 +28,7 @@ getSmallPolys <- function(poly, minarea) {
 country <- "CAN"
 level <- 1
 gSimplifyTol <- 0.05
-minarea <- 0.001
+minarea <- 0.005
 fileName <- paste0(country, "_", level, ".rds")
 filePath <- paste0("heatmapper/choropleth/data/", fileName)
 

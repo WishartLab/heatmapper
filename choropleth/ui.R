@@ -102,7 +102,7 @@ shinyUI(fluidPage(
 					sliderInput("binNumber", 
 						label = NULL, 
 						min = 2, 
-						max = 8, 
+						max = 12, 
 						value = 8))
     	), 
     			
@@ -125,7 +125,7 @@ shinyUI(fluidPage(
 			#tabPanel(title= "sadf"),
 			tabPanel(title = "Interactive", 
 			  leafletOutput(
-			    "map", "100%", 500
+			    "map", "100%", 600
 			  ),
 			  absolutePanel(
 			    right = 30, top = 60, width = 200, class = "floater",

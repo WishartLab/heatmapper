@@ -26,6 +26,16 @@ shinyUI(fluidPage(
 					column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
 				)
 	  	),
+			selectInput('mapType', 
+				label = "Map Type", 
+				choices = c(
+					"default" = 'default',
+					"positron" = 'positron', 
+					"temperature" = 'temperature',
+					"toner" = 'toner',
+					"watercolour" = 'watercolour'
+					), 
+				selected = 'default'),
 						
 			selectInput('layers', label = "Show/Hide Layers", 
 				multiple = TRUE,
@@ -64,7 +74,7 @@ shinyUI(fluidPage(
 						value = 10))
     	), 
 		 	
-    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
+    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-up"),
 			conditionalPanel(condition = "input.advancedOptionsButton%2",
 				wellPanel(
 	    		sliderInput('contourSize', 
@@ -83,17 +93,7 @@ shinyUI(fluidPage(
 		    			label = "Point Opacity", 
 		    			min = 0, 
 		    			max = 1, 
-		    			value = 0.8),
-					selectInput('mapType', 
-	    			label = "Map Type", 
-	    			choices = c(
-	    				"default" = 'default',
-	    				"positron" = 'positron', 
-	    				"temperature" = 'temperature',
-	    				"toner" = 'toner',
-	    				"watercolour" = 'watercolour'
-	    			), 
-	    			selected = 'default')
+		    			value = 0.8)
 				),
 				
     		radioButtons('downloadType', 
@@ -106,10 +106,11 @@ shinyUI(fluidPage(
     		downloadButton('download', "Download image")
     		)
     		),
+		
 			mainPanel(id = "mainPanel",
 				tabsetPanel(type = "tabs", 
 					tabPanel(title = "Interactive", leafletOutput("map", height = 600)),
-					tabPanel(title = "Table", dataTableOutput("table")) 
+					tabPanel(title = "Table", dataTableOutput("table"))
 				))
 			), 
 	singleton(includeScript("www/js/active.js"))
