@@ -83,7 +83,15 @@ shinyUI(fluidPage(
 		    			label = "Point Opacity", 
 		    			min = 0, 
 		    			max = 1, 
-		    			value = 0.8)
+		    			value = 0.8),
+					selectInput('mapType', 
+	    			label = "Map Type", 
+	    			choices = c(
+	    				"default" = 'default',
+	    				"positron" = 'positron', 
+	    				"toner" = 'toner'
+	    			), 
+	    			selected = 'default')
 				),
 				
     		radioButtons('downloadType', 

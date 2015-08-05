@@ -119,11 +119,23 @@ shinyServer(function(input, output, session){
 		return(m)
 	})
 
+	get_tiles <- function(m){
+		if(input$mapType == 'toner'){
+			m %>% addProviderTiles("Stamen.Toner")
+		}
+		else if(input$mapType == 'positron'){
+			m %>% addProviderTiles("CartoDB.Positron")
+		}
+		else{
+			m %>% addTiles()
+		}	
+	}
+	
 	observe({
 		m <- get_shapes()
 		
 		if(layer_selected("showMap")){
-			m %>% addTiles()
+			get_tiles(m)
 		}
 		else{
 			m %>% clearTiles()
