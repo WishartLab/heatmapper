@@ -29,13 +29,12 @@ shinyUI(fluidPage(
 			selectInput('mapType', 
 				label = "Map Type", 
 				choices = c(
-					"Default" = 'default',
-					"Positron" = 'positron', 
-					"Temperature" = 'temperature',
-					"Toner" = 'toner',
-					"Watercolour" = 'watercolour'
+					"Default" = 'OpenStreetMap.Mapnik',
+					"Positron" = 'CartoDB.Positron', 
+					"Toner" = 'Stamen.Toner',
+					"Watercolour" = 'Stamen.Watercolor'
 					), 
-				selected = 'default'),
+				selected = 'OpenStreetMap.Mapnik'),
 						
 			selectInput('layers', label = "Show/Hide Layers", 
 				multiple = TRUE,

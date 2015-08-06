@@ -130,22 +130,12 @@ shinyServer(function(input, output, session){
 		m %>% clearTiles()
 		
 		if(layer_selected("showMap")){
+			m %>% addProviderTiles(input$mapType, options = providerTileOptions(noWrap = TRUE))
 			
-			if(input$mapType == 'toner'){
-				m %>% addProviderTiles("Stamen.Toner", options = providerTileOptions(noWrap = TRUE))
+			# prevent zooming out further than provider tile allows
+			if(!is.null(input$map_zoom) && input$map_zoom <1){
+				m %>% setView(0,0,1)
 			}
-			else if(input$mapType == 'positron'){
-				m %>% addProviderTiles("CartoDB.Positron", options = providerTileOptions(noWrap = TRUE))
-			}
-			else if(input$mapType == 'watercolour'){
-				m %>% addProviderTiles("Stamen.Watercolor", options = providerTileOptions(noWrap = TRUE))
-			}
-			else if(input$mapType == 'temperature'){
-				m %>% addTiles(options = tileOptions(noWrap = TRUE)) %>% addProviderTiles("OpenWeatherMap.Temperature", options = providerTileOptions(noWrap = TRUE)) 
-			}
-			else{
-				m %>% addTiles(options = tileOptions(noWrap = TRUE))
-			}	
 		}
 	}
 	
