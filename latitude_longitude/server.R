@@ -155,8 +155,6 @@ shinyServer(function(input, output, session){
 		
 		m <- get_point_shapes(m)
 		
-		m <- get_tiles(m)
-		
 		m
 	}
 	
@@ -164,6 +162,11 @@ shinyServer(function(input, output, session){
 		m <- leafletProxy("map", session, get_file()) 
 		m %>% clearShapes()
 		get_shapes(m)
+	})
+	
+	observe({
+		m <- leafletProxy("map", session) 
+		get_tiles(m)
 	})
 	
 	output$map <- renderLeaflet({
@@ -180,7 +183,8 @@ shinyServer(function(input, output, session){
 		},
 		content = function(file) {
 			m <- get_shapes(leaflet(get_file()))
-		
+			m <- get_tiles(m)
+			
 			saveWidget(m, file=file)
 		}
 	)
