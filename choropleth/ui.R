@@ -32,7 +32,7 @@ shinyUI(fluidPage(
 	  	conditionalPanel(condition = "input.chooseInput == 'example'",
 				tags$label("Choose Example File"), 
 	  		fluidRow(
-	  			column(7,	
+	  			column(9,	
 	  				selectInput('exampleFiles',
 							label = NULL,
 							choices = c(
@@ -41,11 +41,8 @@ shinyUI(fluidPage(
 							selected = 1)),
 	  			column(2,	
 	  				actionButton('exampleButton', label = NULL, class = "btn-info",icon = icon("fa fa-info-circle")), 
-	  				bsTooltip(id = "exampleButton", title = "View Example File Details", placement = "right")),
-	  			column(2,	
-	  				downloadButton(class = "btn-info", outputId = 'downloadExample', label = NULL),
-						bsTooltip(id = "downloadExample", title = "Download Example Text File", placement = "right") 
-	  		)),
+	  				bsTooltip(id = "exampleButton", title = "View Example File Details", placement = "right")
+	  			)),
 	  		
 	  		conditionalPanel(condition = "input.exampleButton>0",
 	  			wellPanel(id = "exampleInfo",
@@ -109,7 +106,11 @@ shinyUI(fluidPage(
 						max = 12, 
 						value = 8))
     	), 
-    			
+    	
+			downloadButton('plotDownload', "Download Plot", class = "btn-info"),
+			downloadButton('downloadExample', "Download Table", class = "btn-info"),
+			tags$br(), tags$br(),
+		 		
 		actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
 		conditionalPanel(condition = "input.advancedOptionsButton%2", 
 			wellPanel(

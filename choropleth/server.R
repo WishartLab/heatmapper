@@ -1,6 +1,7 @@
 library(leaflet)
 library(RColorBrewer)
 library(raster)
+library(htmlwidgets)
 
 # reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
@@ -207,7 +208,7 @@ shinyServer(function(input, output, session) {
 	
 	observe({
 		values$map
-		print("map valu updated")
+		print("map value updated")
 	})
 
   # default map
@@ -243,16 +244,20 @@ shinyServer(function(input, output, session) {
 
 			mapData <- get_map_data()
 				
-  		leafletProxy("map", data =  mapData) %>% clearShapes() %>%
-				addPolygons(layerId = ~NAME,
+  		leafletProxy("map", data =  mapData) %>% clearShapes() %>% get_shapes()
+				
+		}
+
+  })
+	
+	get_shapes <- function(m){
+		addPolygons(m, layerId = ~NAME,
 					weight = get_lines(), 
 					color = "black", 
 					opacity = 1, 
 					fillColor = ~fillColour,
 					fillOpacity = get_opacity()) 
-		}
-
-  })
+	}
 	
 	get_lines <- reactive({
 		if(layer_selected("showContours")){
@@ -281,19 +286,22 @@ shinyServer(function(input, output, session) {
 		}
 	}
 	
+	get_tiles <- function(m){
+		if(layer_selected("showTiles")){
+			addTiles(m, options = tileOptions(noWrap = TRUE))
+		}
+		else{
+			clearTiles(m)
+		}
+	}  
 	# if values$map is updated or showTiles checkbox input is changed
 	observe({
 		values$map
 		print("fifth leaflet")
-		if(layer_selected("showTiles")){
-			leafletProxy("map") %>% addTiles(options = tileOptions(noWrap = TRUE))
-		}
-		else{
-			leafletProxy("map") %>% clearTiles()
-		}
+		get_tiles(leafletProxy("map"))
 	})
-	
-  # input$map_shape_mouseover gets updated a lot, even if the id doesn't change.
+
+	# input$map_shape_mouseover gets updated a lot, even if the id doesn't change.
   # We don't want to update the polygons and stateInfo except when the id
   # changes, so use values$highlight to insulate the downstream reactives (as 
   # writing to values$highlight doesn't trigger reactivity unless the new value 
@@ -344,9 +352,21 @@ shinyServer(function(input, output, session) {
 	
 	################# Save Example File ################# 
 	output$downloadExample <- downloadHandler(
-		filename = "example.txt",
+		filename = "table.txt",
 		content = function(file){
-			write.table(isolate(get_file()), sep = "\t", quote = FALSE, file = file)
+			write.table(isolate(get_file()), sep = "\t", quote = FALSE, file = file, row.names = FALSE)
+		}
+	)
+	
+	################# Save Leaflet HTML Page ################# 
+	output$plotDownload <- downloadHandler(
+		filename = function(){
+			"choropleth.html"
+		},
+		content = function(file) {
+			#m <- get_shapes(leaflet(data = get_map_data())) # %>% get_tiles()
+			m <- leaflet()
+			saveWidget(m, file=file)
 		}
 	)
 })

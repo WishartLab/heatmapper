@@ -1,6 +1,5 @@
 library(shiny)
 library(xlsx)
-library(jscolourR)
 library(leaflet)
 library(KernSmooth)
 library(htmlwidgets)
