@@ -161,8 +161,8 @@ shinyServer(function(input, output, session){
 	}
 	
 	observe({
-		m <- leafletProxy("map", session, get_file())
-		m %>% clearShapes()
+		m <- leafletProxy("map", session, get_file()) 
+		m %>% clearShapes() %>% fitBounds(~min(Longitude, na.rm = TRUE), ~min(Latitude, na.rm = TRUE), ~max(Longitude, na.rm = TRUE), ~max(Latitude, na.rm = TRUE))
 		get_shapes(m)
 	})
 	
