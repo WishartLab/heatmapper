@@ -112,20 +112,29 @@ shinyUI(fluidPage(
 						"manhattan" = 'manhattan'),
 					selected = 'euclidean'),
     		
-    		selectInput('clusterSelectRC', label = "Apply Clustering To", 
-					multiple = TRUE, 
-					choices = c(
-						"Rows" = 'row', 
-						"Columns" = 'col'), 
-					selected = 'row'),
+    		fluidRow(
+    			column(5, tags$label("Apply Clustering To")),
+    			column(7,
+		    		selectInput('clusterSelectRC', label = NULL, 
+							multiple = TRUE, 
+							choices = c(
+								"Rows" = 'row', 
+								"Columns" = 'col'), 
+							selected = 'row'))
+    		),
     		
     		conditionalPanel(condition = "input.tabSelections == 'Plot'",
-					selectInput('dendSelectRC', label = "Show Dendrogram", 
-						multiple = TRUE,
-						choices = c(
-							"Rows" = 'row', 
-							"Columns" = 'col'), 
-					selected = 'row'))
+	    		fluidRow(
+	    			column(5, tags$label("Show Dendrogram")),
+	    			column(7,
+	    				selectInput('dendSelectRC', label = NULL, 
+								multiple = TRUE,
+								choices = c(
+									"Rows" = 'row', 
+									"Columns" = 'col'), 
+							selected = 'row'))
+	    		)
+    		)
     	),
     	
     	downloadButton('plotDownload', label = "Download Plot", class = "btn-info"),
