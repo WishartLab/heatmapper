@@ -69,7 +69,6 @@ shinyUI(fluidPage(
     		column(6,jscolourInput("lowColour", label = "Low Colour", value = "#66CD00")), 
     		column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
     	),
-    	jscolourInput("missingColour", label = "Missing Data Colour"),
     	
     	fluidRow(
     		column(3, tags$label("Scale Type")),
@@ -138,6 +137,7 @@ shinyUI(fluidPage(
     	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
 			conditionalPanel(condition = "input.advancedOptionsButton%2", 
 				wellPanel(
+					jscolourInput("missingColour", label = "Missing Data Colour"),
 	    		textInput('title', label = "Title", value = ""),
 					textInput('xlab', label = "X Axis Label", value = ""),
 					textInput('ylab', label = "Y Axis Label",	value = ""),

@@ -8,7 +8,8 @@ shinyUI(fluidPage(
 			#lowColour, #highColour, #missingColour {width:100%}
 			#file_progress {height:0;}
 			#sidebarPanel {width:23.45em;}
-			#mainPanel {left:24.45em; position:absolute;}")),
+			#mainPanel {left:24.45em; position:absolute;}
+			#tableDownload {float:right;}")),
 	
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
@@ -26,16 +27,8 @@ shinyUI(fluidPage(
 					column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
 				)
 	  	),
-			selectInput('mapType', 
-				label = "Map Type", 
-				choices = c(
-					"Default" = 'OpenStreetMap.Mapnik',
-					"Positron" = 'CartoDB.Positron', 
-					"Toner" = 'Stamen.Toner',
-					"Watercolour" = 'Stamen.Watercolor'
-					), 
-				selected = 'OpenStreetMap.Mapnik'),
-						
+
+			
 			selectInput('layers', label = "Show/Hide Layers", 
 				multiple = TRUE,
 				choices = c(
@@ -44,16 +37,33 @@ shinyUI(fluidPage(
 					"Heatmap" = 'showHeatmap', 
 					"Points" = 'showPoints'
 				), 
-				selected = c('showMap', 'showContours', 'showHeatmap', 'showPoints')),
+				selected = c('showMap', 'showContours', 'showHeatmap')),
+
+			fluidRow(
+    		column(3, tags$label("Map Type")),
+				column(9,	
+					selectInput('mapType', 
+						label = NULL, 
+						choices = c(
+							"Default" = 'OpenStreetMap.Mapnik',
+							"Positron" = 'CartoDB.Positron', 
+							"Toner" = 'Stamen.Toner',
+							"Watercolour" = 'Stamen.Watercolor'
+							), 
+						selected = 'OpenStreetMap.Mapnik'))
+			),
 			
-			selectInput('colourScheme', label = "Colour Scheme", 
+					fluidRow(
+    		column(3, tags$label("Colour Scheme")),
+				column(9,					
+			selectInput('colourScheme', label = NULL, 
 	  		choices = c(
 	  			'Custom' = "custom",
 	  			'Rainbow' = "rainbow", 
 	  			'Topo' = "topo"
 	  		), 
 	  		selected = 'custom'
-	  	),
+	  	))),
 	  	
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
 				fluidRow(
@@ -61,19 +71,7 @@ shinyUI(fluidPage(
 	    		column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
 				)
 	  	), 
-			
-			fluidRow(
-		  		column(3, tags$label("Gaussian Radius Multiplier")), 
-		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 0.2, max = 4, value = 1, step=0.05))
-		  	), 
-			fluidRow(
-		  		column(4, tags$label("Contour Smoothness")), 
-		  		column(8, sliderInput('contourSmoothness', label = NULL, min = 1, max = 15, value = 5, step = 1))),
-			fluidRow(
-	  		column(3, tags$label("Heatmap Opacity")), 
-	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.5, step = 0.05))
-	  	), 
-			
+						
 			fluidRow(
     		column(3, tags$label("Number of Shades")),
 				column(9,
@@ -84,7 +82,23 @@ shinyUI(fluidPage(
 						value = 10))
     	), 
 			
-			downloadButton('download', "Download Image", class = "btn-info"),
+			fluidRow(
+	  		column(3, tags$label("Heatmap Opacity")), 
+	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.5, step = 0.05))
+	  	), 
+			
+			fluidRow(
+		  		column(3, tags$label("Gaussian Radius Multiplier")), 
+		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 0.2, max = 4, value = 1, step=0.05))
+		  	), 
+			
+			fluidRow(
+		  		column(4, tags$label("Contour Smoothness")), 
+		  		column(8, sliderInput('contourSmoothness', label = NULL, min = 1, max = 15, value = 5, step = 1))
+			),
+			
+			downloadButton('plotDownload', "Download Plot", class = "btn-info"),
+			downloadButton('tableDownload', "Download Table", class = "btn-info"),
 			tags$br(), tags$br(),
 		 	
     	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),

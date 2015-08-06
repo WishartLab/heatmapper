@@ -115,14 +115,12 @@ shinyServer(function(input, output, session){
 			palette <- colorRampPalette(c(input$lowColour, input$highColour))(n)
 		}
 		else if(input$colourScheme == 'rainbow'){
-			palette <- rev(rainbow(n, end = 5/6))
+			palette <- substr(rev(rainbow(n, end = 5/6)), 0, 7)
 		}
 		else{
-			palette <- rev(topo.colors(n))
+			palette <- substr(topo.colors(n), 0, 7)
 		}
 		
-		# trim colours to #______ format
-		palette <- substr(palette, 0, 7)
 		names(palette) <- level_list
 		
 		return(palette)
@@ -194,7 +192,7 @@ shinyServer(function(input, output, session){
 		get_file()
 	})
 	
-	output$download <- downloadHandler(
+	output$plotDownload <- downloadHandler(
 		filename = function(){
 			"geoHeatmap.html"
 		},
@@ -202,6 +200,15 @@ shinyServer(function(input, output, session){
 			m <- get_shapes(leaflet(get_file())) %>% get_tiles()
 			
 			saveWidget(m, file=file)
+		}
+	)
+	
+	output$tableDownload <- downloadHandler(
+		filename = function(){
+			"table.txt"
+		},
+		content = function(file) {
+			write.table(get_file(), file, row.names = FALSE)
 		}
 	)
 })
