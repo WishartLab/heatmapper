@@ -62,20 +62,24 @@ shinyUI(fluidPage(
 				)
 	  	),
 
-    	selectInput("area", label = "Area to use", 
-    		choices = c(
-    			"Canada: By Province" = 'data/CAN_1.rds', 
-    			"USA: By State" = 'data/USA_1.rds',
-    			"United Kingdom" = 'data/GBR_1.rds'), 
-   			selected = 'data/USA_1.rds'),
-    		
-   		selectInput("colSelect", label = "Column to use", choices = c(" " = 0)),
+			fluidRow(
+				column(3, tags$label("Area to use")),
+				column(9, 
+		    	selectInput("area", label = NULL, 
+		    		choices = c(
+		    			"Canada: By Province" = 'data/CAN_1.rds', 
+		    			"USA: By State" = 'data/USA_1.rds',
+		    			"United Kingdom" = 'data/GBR_1.rds'), 
+		   			selected = 'data/USA_1.rds'))
+				),
 		
    		sliderInput("range", 
    			label = "Range of interest", 
    			min = 0, 
    			max = 100, 
-   			value = c(0, 100)), 
+   			value = c(0, 100)),
+			selectInput("colSelect", label = "Column to use", choices = c(" " = 0)),
+			
 			
 			selectInput('layers', label = "Show/Hide Layers", 
 				multiple = TRUE,

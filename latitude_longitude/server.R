@@ -149,6 +149,7 @@ shinyServer(function(input, output, session){
 
 	# http://leaflet-extras.github.io/leaflet-providers/preview/index.html
 	get_tiles <- function(m){
+		get_file()
 		
 		m <- clearTiles(m)
 		
