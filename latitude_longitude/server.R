@@ -132,19 +132,19 @@ shinyServer(function(input, output, session){
 		if(layer_selected("showMap")){
 			
 			if(input$mapType == 'toner'){
-				m %>% addProviderTiles("Stamen.Toner")
+				m %>% addProviderTiles("Stamen.Toner", options = providerTileOptions(noWrap = TRUE))
 			}
 			else if(input$mapType == 'positron'){
-				m %>% addProviderTiles("CartoDB.Positron")
+				m %>% addProviderTiles("CartoDB.Positron", options = providerTileOptions(noWrap = TRUE))
 			}
 			else if(input$mapType == 'watercolour'){
-				m %>% addProviderTiles("Stamen.Watercolor")
+				m %>% addProviderTiles("Stamen.Watercolor", options = providerTileOptions(noWrap = TRUE))
 			}
 			else if(input$mapType == 'temperature'){
-				m %>% addTiles() %>% addProviderTiles("OpenWeatherMap.Temperature") 
+				m %>% addTiles(options = tileOptions(noWrap = TRUE)) %>% addProviderTiles("OpenWeatherMap.Temperature", options = providerTileOptions(noWrap = TRUE)) 
 			}
 			else{
-				m %>% addTiles()
+				m %>% addTiles(options = tileOptions(noWrap = TRUE))
 			}	
 		}
 	}
@@ -162,7 +162,7 @@ shinyServer(function(input, output, session){
 	
 	observe({
 		m <- leafletProxy("map", session, get_file()) 
-		m %>% clearShapes() %>% fitBounds(~min(Longitude, na.rm = TRUE), ~min(Latitude, na.rm = TRUE), ~max(Longitude, na.rm = TRUE), ~max(Latitude, na.rm = TRUE))
+		m %>% clearShapes()
 		get_shapes(m)
 	})
 	

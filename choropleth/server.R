@@ -286,7 +286,7 @@ shinyServer(function(input, output, session) {
 		values$map
 		print("fifth leaflet")
 		if(layer_selected("showTiles")){
-			leafletProxy("map") %>% addTiles(options = tileOptions(minZoom = 2))
+			leafletProxy("map") %>% addTiles(options = tileOptions(noWrap = TRUE))
 		}
 		else{
 			leafletProxy("map") %>% clearTiles()
