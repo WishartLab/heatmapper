@@ -127,16 +127,18 @@ shinyServer(function(input, output, session){
 	# http://leaflet-extras.github.io/leaflet-providers/preview/index.html
 	get_tiles <- function(m){
 		
-		m %>% clearTiles()
+		m <- clearTiles(m)
 		
 		if(layer_selected("showMap")){
-			m %>% addProviderTiles(input$mapType, options = providerTileOptions(noWrap = TRUE))
+			m <- addProviderTiles(m, input$mapType, options = providerTileOptions(noWrap = TRUE))
 			
 			# prevent zooming out further than provider tile allows
 			if(!is.null(input$map_zoom) && input$map_zoom <1){
 				m %>% setView(0,0,1)
 			}
 		}
+		
+		return(m)
 	}
 	
 	get_shapes <- function(m){
@@ -172,8 +174,7 @@ shinyServer(function(input, output, session){
 			"geoHeatmap.html"
 		},
 		content = function(file) {
-			m <- get_shapes(leaflet(get_file()))
-			m <- get_tiles(m)
+			m <- get_shapes(leaflet(get_file())) %>% get_tiles()
 			
 			saveWidget(m, file=file)
 		}
