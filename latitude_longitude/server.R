@@ -51,7 +51,7 @@ shinyServer(function(input, output, session){
 	get_density <- reactive({
 		df <- get_file()
 		bandwidth <- c(bw.ucv(df[,1]),bw.ucv(df[,2]))*input$gaussianRadius
-		nlevels <- input$binNumber
+		nlevels <- input$binNumber 
 		
 		xmin <- min(df$Longitude) - bandwidth[[1]]*nlevels
 		xmax <- max(df$Longitude) + bandwidth[[1]]*nlevels
@@ -108,17 +108,42 @@ shinyServer(function(input, output, session){
 		return(m)
 	}
 	
+	get_colours <- function(level_list){
+		n <- length(level_list)
+		
+		if(input$colourScheme == 'custom'){
+			palette <- colorRampPalette(c(input$lowColour, input$highColour))(n)
+		}
+		else if(input$colourScheme == 'rainbow'){
+			palette <- rev(rainbow(n, end = 5/6))
+		}
+		else{
+			palette <- rev(topo.colors(n))
+		}
+		
+		# trim colours to #______ format
+		palette <- substr(palette, 0, 7)
+		names(palette) <- level_list
+		
+		return(palette)
+	}
+	
 	get_contour_shapes <- function(m){
 		print("GETCONTOURS")
+		
 		CL <- get_density()
 		max_CL <- length(CL)
-		colours <- colorRampPalette(c(input$lowColour, input$highColour))(max_CL)
+		
+		CL_levels <- as.character(unique(unlist(lapply(CL, function(x){x$level}))))
+
+		colours <- get_colours(CL_levels)
 		fill_op <- get_fill_opacity()
 		contours <- get_contour_size()
 		
 		for(i in 1:max_CL){	
-			m <- addPolygons(m, CL[[i]]$x,CL[[i]]$y, fillColor  = substr(x = colours[i], start=0, stop=7), fillOpacity = fill_op, weight = contours, 
-				popup = paste("level:", CL[[i]]$level)) # for testing, remove later
+			m <- addPolygons(m, CL[[i]]$x,CL[[i]]$y, 
+				fillColor = colours[[as.character(CL[[i]]$level)]], 
+				fillOpacity = fill_op, weight = contours)
 		}
 		
 		return(m)

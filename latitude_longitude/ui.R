@@ -46,10 +46,21 @@ shinyUI(fluidPage(
 				), 
 				selected = c('showMap', 'showContours', 'showHeatmap', 'showPoints')),
 			
-			fluidRow(
-  			column(6, jscolourInput("lowColour", label = "Low Colour", value = "#FFFA00")),
-    		column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
-			), 
+			selectInput('colourScheme', label = "Colour Scheme", 
+	  		choices = c(
+	  			'Custom' = "custom",
+	  			'Rainbow' = "rainbow", 
+	  			'Topo' = "topo"
+	  		), 
+	  		selected = 'custom'
+	  	),
+	  	
+	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
+				fluidRow(
+	  			column(6, jscolourInput("lowColour", label = "Low Colour", value = "#FFFA00")),
+	    		column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
+				)
+	  	), 
 			
 			fluidRow(
 		  		column(3, tags$label("Gaussian Radius Multiplier")), 
