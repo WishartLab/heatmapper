@@ -12,7 +12,7 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
-			radioButtons('chooseInput', label = "Select Choropleth Data File", 
+			radioButtons('chooseInput', label = "Select Data File", 
 	  		inline=TRUE, 
 	  		choices = c(
 	  			"Upload File" = 'fileUpload',
@@ -29,11 +29,11 @@ shinyUI(fluidPage(
 			selectInput('mapType', 
 				label = "Map Type", 
 				choices = c(
-					"default" = 'default',
-					"positron" = 'positron', 
-					"temperature" = 'temperature',
-					"toner" = 'toner',
-					"watercolour" = 'watercolour'
+					"Default" = 'default',
+					"Positron" = 'positron', 
+					"Temperature" = 'temperature',
+					"Toner" = 'toner',
+					"Watercolour" = 'watercolour'
 					), 
 				selected = 'default'),
 						
@@ -73,8 +73,11 @@ shinyUI(fluidPage(
 						max = 50, 
 						value = 10))
     	), 
+			
+			downloadButton('download', "Download Image", class = "btn-info"),
+			tags$br(), tags$br(),
 		 	
-    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-up"),
+    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
 			conditionalPanel(condition = "input.advancedOptionsButton%2",
 				wellPanel(
 	    		sliderInput('contourSize', 
@@ -94,18 +97,9 @@ shinyUI(fluidPage(
 		    			min = 0, 
 		    			max = 1, 
 		    			value = 0.8)
-				),
-				
-    		radioButtons('downloadType', 
-    			label = "Downlaod file format", 
-    			choices = c(
-    				"PDF" = 'pdf', 
-    				"PNG" = 'png'), 
-    			selected = 'pdf'),
-    		
-    		downloadButton('download', "Download image")
+					)
     		)
-    		),
+    	),
 		
 			mainPanel(id = "mainPanel",
 				tabsetPanel(type = "tabs", 

@@ -1,34 +1,44 @@
 library(shiny)
-#library(ctc)
-#library(ggmap)
-#library(ggplot2)
 library(xlsx)
 library(jscolourR)
 library(leaflet)
 library(KernSmooth)
+library(htmlwidgets)
 
 shinyServer(function(input, output, session){
 
+	values <- reactiveValues(file = NULL)
+		
+	observe({
+		input$clearFile
+		values$file <- NULL
+	})
+	
+	observe({
+		values$file <- input$file
+	})
+	
+	
 	get_file <- reactive({
 		if(input$chooseInput == 'example'){
 			points <- data.frame(
 				Longitude = c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
 				Latitude = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))
-				)
+			)
 		}
 		else{
-			validate(need(input$file$datapath, "Please upload a file"))
+			validate(need(values$file$datapath, "Please upload a file"))
 			
-			fileType <- tail(unlist(strsplit(x = input$file$name, split = "[.]")), n=1)
+			fileType <- tail(unlist(strsplit(x = values$file$name, split = "[.]")), n=1)
 			
 			if(fileType == "xls" || fileType == "xlsx"){
-				file <- read.xlsx(input$file$datapath, 1)
+				file <- read.xlsx(values$file$datapath, 1)
 			}
 			else if(fileType == "csv"){
-				file <- read.csv(input$file$datapath, header = TRUE)
+				file <- read.csv(values$file$datapath, header = TRUE)
 			}
 			else{
-				file <- read.delim(input$file$datapath, header = TRUE, sep="\t", row.names = NULL)
+				file <- read.delim(values$file$datapath, header = TRUE, sep="\t", row.names = NULL)
 			}
 			points <- data.frame(
 				Longitude = c(file$Longitude), 
@@ -164,13 +174,11 @@ shinyServer(function(input, output, session){
 		get_file()
 	})
 	
-	library(htmlwidgets)
 	output$download <- downloadHandler(
 		filename = function(){
 			"geoHeatmap.html"
 		},
 		content = function(file) {
-			
 			m <- get_shapes(leaflet(get_file()))
 		
 			saveWidget(m, file=file)
