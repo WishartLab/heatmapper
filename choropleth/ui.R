@@ -2,6 +2,7 @@ library(leaflet)
 library(jscolourR)
 library(spin)
 library(shinyBS)
+source("../strings.R")
 
 shinyUI(fluidPage(
   includeHTML("www/navbar.html"),
@@ -21,7 +22,7 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
-			radioButtons('chooseInput', label = "Select Choropleth Data File", 
+			radioButtons('chooseInput', label = FILE_UPLOAD, 
 	  		inline=TRUE, 
 	  		choices = c(
 	  			"Upload File" = 'fileUpload',
