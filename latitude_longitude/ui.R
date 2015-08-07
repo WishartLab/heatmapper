@@ -14,22 +14,8 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
-			radioButtons('chooseInput', label = FILE_UPLOAD, 
-	  		inline=TRUE, 
-	  		choices = c(
-	  			"Upload File" = 'fileUpload',
-    			"Example File" = 'example'), 
-	  		selected = 'example'
-	  	),
-
-    	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
-				fluidRow(
-					column(8, fileInput('file', label = NULL)), 
-					column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
-				)
-	  	),
-
-			
+			FILE_UPLOAD_PANEL(),
+		
 			selectInput('layers', label = LAYERS, 
 				multiple = TRUE,
 				choices = c(
@@ -54,17 +40,7 @@ shinyUI(fluidPage(
 						selected = 'OpenStreetMap.Mapnik'))
 			),
 			
-					fluidRow(
-    		column(3, tags$label("Colour Scheme")),
-				column(9,					
-			selectInput('colourScheme', label = NULL, 
-	  		choices = c(
-	  			'Custom' = "custom",
-	  			'Rainbow' = "rainbow", 
-	  			'Topo' = "topo"
-	  		), 
-	  		selected = 'custom'
-	  	))),
+			COLOUR_SCHEME_SELECT(),
 	  	
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
 				fluidRow(
@@ -73,34 +49,15 @@ shinyUI(fluidPage(
 				)
 	  	), 
 						
-			fluidRow(
-    		column(3, tags$label(BIN_NUMBER)),
-				column(9,
-					sliderInput("binNumber", 
-						label = NULL, 
-						min = 3, 
-						max = 50, 
-						value = 10))
-    	), 
+			BIN_SLIDER(3, 50, 10), 
 			
-			fluidRow(
-	  		column(3, tags$label(FILL_OPACITY)), 
-	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.5, step = 0.05))
-	  	), 
+			FILL_OPACITY_SLIDER(), 
 			
-			fluidRow(
-		  		column(3, tags$label(BANDWIDTH)), 
-		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 0.2, max = 4, value = 1, step=0.05))
-		  	), 
+			BANDWIDTH_SLIDER(0.2, 4, 1, 0.05), 
 			
-			fluidRow(
-		  		column(4, tags$label(GRID_POINTS)), 
-		  		column(8, sliderInput('contourSmoothness', label = NULL, min = 1, max = 15, value = 5, step = 1))
-			),
+			GRID_POINTS_SLIDER(1, 15, 5, 1),
 			
-			downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"),
-			downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"),
-			tags$br(), tags$br(),
+			DOWNLOAD_BUTTONS(),
 		 	
     	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
 			conditionalPanel(condition = "input.advancedOptionsButton%2",

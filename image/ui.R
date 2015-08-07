@@ -156,8 +156,8 @@ shinyUI(fluidPage(
 					), 
 					selected = 'png')	,
 	  			
-	  		sliderInput('plotWidth', label = "Plot width (in px)", min = 400, max = 2000, value = 600),
-				sliderInput('plotHeight', label = "Plot height (in px)", min = 400, max = 2000, value = 500) 
+	  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
+				sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 500) 
 	  	
 	  	))
 		),

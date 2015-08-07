@@ -139,7 +139,7 @@ shinyUI(fluidPage(
     	),
     	
     	downloadButton('plotDownload', label = DOWNLOAD_PLOT, class = "btn-info"),
-	  	downloadButton('tableDownload', label = DOWNLOAD_PLOT, class = "btn-info"),
+	  	downloadButton('tableDownload', label = DOWNLOAD_TABLE, class = "btn-info"),
     	
 	  	tags$br(), 
 	  	tags$br(),
@@ -160,12 +160,12 @@ shinyUI(fluidPage(
 							"PDF" = 'pdf'),
 						selected = 'png'),
 					
-		    	sliderInput('plotHeight', label = "Plot Height", 
+		    	sliderInput('plotHeight', label = WIDTH, 
 		    		min = 500,
 		    		max = 2000, 
 		    		value = 600),
 		    	
-		    	sliderInput('plotWidth', label = "Plot Width", 
+		    	sliderInput('plotWidth', label = HEIGHT, 
 		    		min = 500,
 		    		max = 2000, 
 		    		value = 600)

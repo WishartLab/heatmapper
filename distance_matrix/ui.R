@@ -59,8 +59,8 @@ shinyUI(fluidPage(
 				wellPanel(id = "advancedPanel", 
 	  			
 				checkboxInput('asp', label = "Set Aspect Ratio = 1", value = TRUE),
-	  		sliderInput('plotWidth', label = "Plot width (in px)", min = 400, max = 2000, value = 600),
-				sliderInput('plotHeight', label = "Plot height (in px)", min = 400, max = 2000, value = 500),
+	  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
+				sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 500),
 					
 				selectInput('downloadPlotFormat', label = "Plot download file type", 
 					choices = c(
