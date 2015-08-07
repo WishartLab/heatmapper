@@ -4,19 +4,14 @@ source("../strings.R")
 
 shinyUI(fluidPage(
 	HEAD_TASKS("#latlongTab"),
-		
+	
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
-			FILE_UPLOAD_PANEL(),
-		
-			selectInput('layers', label = LAYERS, 
-				multiple = TRUE,
-				choices = c(
-					"Map" = 'showMap', 
-					"Contour Lines" = 'showContours', 
-					"Heatmap" = 'showHeatmap', 
-					"Points" = 'showPoints'), 
-				selected = c('showMap', 'showContours', 'showHeatmap')
+			FILE_UPLOAD_PANEL('example'),
+			
+			LAYERS_SELECT(
+				c("Map" = 'showMap', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap', "Points" = 'showPoints'), 
+				c('showMap', 'showContours', 'showHeatmap')
 			),
 
 			fluidRow(
@@ -48,10 +43,9 @@ shinyUI(fluidPage(
 			
 			DOWNLOAD_BUTTONS(),
 		 	
-			ADVANCED_OPTIONS_BUTTON(),
-			conditionalPanel(condition = "input.advancedOptionsButton%2",
-				wellPanel(
-	    		sliderInput('contourSize', 
+			ADVANCED_OPTIONS_PANEL(
+				list(
+					sliderInput('contourSize', 
 	    			label = CONTOUR_WIDTH, 
 	    			min = 0, 
 	    			max = 4,
@@ -68,15 +62,16 @@ shinyUI(fluidPage(
 		    			min = 0, 
 		    			max = 1, 
 		    			value = 0.8)
-					)
-    		)
-    	),
+				)
+			)
+		),
 		
-			mainPanel(id = "mainPanel",
-				tabsetPanel(type = "tabs", 
-					tabPanel(title = "Interactive", leafletOutput("map", height = 600)),
-					tabPanel(title = "Table", dataTableOutput("table"))
-				))
-			), 
-	singleton(includeScript("../www/js/active.js"))
-	))
+		mainPanel(id = "mainPanel",
+			tabsetPanel(type = "tabs", 
+				tabPanel(title = "Interactive", leafletOutput("map", height = 600)),
+				tabPanel(title = "Table", dataTableOutput("table"))
+			)
+		)
+	), 
+	INCLUDE_JS
+))
