@@ -31,7 +31,7 @@ shinyUI(fluidPage(
 	  	),
 
 	  	conditionalPanel(condition = "input.chooseInput == 'example'",
-				tags$label("Choose Example File"), 
+				tags$label(SELECT_EXAMPLE), 
 	  		fluidRow(
 	  			column(9,	
 	  				selectInput('exampleFiles',
@@ -79,7 +79,7 @@ shinyUI(fluidPage(
 			selectInput("colSelect", label = "Column to use", choices = c(" " = 0)),
 			
 			
-			selectInput('layers', label = "Show/Hide Layers", 
+			selectInput('layers', label = LAYERS, 
 				multiple = TRUE,
 				choices = c(
 					"Map" = 'showTiles', 
@@ -94,12 +94,12 @@ shinyUI(fluidPage(
     	),
 			
 			fluidRow(
-	  		column(3, tags$label("Heatmap Opacity")), 
+	  		column(3, tags$label(FILL_OPACITY)), 
 	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.8, step = 0.05))
 	  	), 
 			    	
     	fluidRow(
-    		column(3, tags$label("Number of Shades")),
+    		column(3, tags$label(BIN_NUMBER)),
 				column(9,
 					sliderInput("binNumber", 
 						label = NULL, 
@@ -108,8 +108,8 @@ shinyUI(fluidPage(
 						value = 8))
     	), 
     	
-			downloadButton('plotDownload', "Download Plot", class = "btn-info"),
-			downloadButton('downloadExample', "Download Table", class = "btn-info"),
+			downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"),
+			downloadButton('downloadExample', DOWNLOAD_TABLE, class = "btn-info"),
 			tags$br(), tags$br(),
 		 		
 		actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),

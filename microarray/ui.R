@@ -2,6 +2,7 @@ library(jscolourR)
 library(d3heatmap)
 library(spin)
 library(shinyBS)
+source("../strings.R")
 
 # maximum number of nested expressions to be evaluated
 options(expressions = 500000)
@@ -23,7 +24,7 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
     sidebarPanel(id = "sidebarPanel",
-			radioButtons('chooseInput', label = "Select Microarray Data File", 
+			radioButtons('chooseInput', label = FILE_UPLOAD, 
 	  		inline=TRUE, 
 	  		choices = c(
 	  			"Upload File" = 'fileUpload',
@@ -31,7 +32,7 @@ shinyUI(fluidPage(
 	  		selected = 'examples'
 	  	),
 	  	conditionalPanel(condition = "input.chooseInput == 'examples'",
-				tags$label("Choose Example File"), 
+				tags$label(SELECT_EXAMPLE), 
 	  		fluidRow(
 	  			column(7,	
 	  				selectInput('exampleFiles',
@@ -82,7 +83,7 @@ shinyUI(fluidPage(
     	), 
     	
     	fluidRow(
-    		column(3, tags$label("Number of Shades")),
+    		column(3, tags$label(BIN_NUMBER)),
 				column(9,
 					sliderInput('binNumber', label = NULL, 
 						min = 3, 
@@ -137,8 +138,8 @@ shinyUI(fluidPage(
     		)
     	),
     	
-    	downloadButton('plotDownload', label = "Download Plot", class = "btn-info"),
-	  	downloadButton('tableDownload', label = "Download Table", class = "btn-info"),
+    	downloadButton('plotDownload', label = DOWNLOAD_PLOT, class = "btn-info"),
+	  	downloadButton('tableDownload', label = DOWNLOAD_PLOT, class = "btn-info"),
     	
 	  	tags$br(), 
 	  	tags$br(),

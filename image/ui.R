@@ -1,6 +1,7 @@
 library(spin)
 library(shinyBS)
 library(jscolourR)
+source("../strings.R")
 
 shinyUI(fluidPage(
 	includeHTML("www/navbar.html"),
@@ -49,7 +50,7 @@ shinyUI(fluidPage(
 	  		)
 	  	),
 	  		  	
-	  	selectInput('layers', label = "Show/Hide Layers", multiple = TRUE,# width = "50%", 
+	  	selectInput('layers', label = LAYERS, multiple = TRUE,# width = "50%", 
 	  		choices = c(
 	  			"Image" = 'showImage', 
 	  			"Grid Lines" = 'showGrid', 
@@ -86,12 +87,12 @@ shinyUI(fluidPage(
 	  	conditionalPanel(condition = "input.displayType == 'gaussian'",
 		  	# contours
 		  	fluidRow(
-		  		column(3, tags$label("Gaussian Radius Multiplier")), 
+		  		column(3, tags$label(BANDWIDTH)), 
 		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 0.05, max = 2, value = 0.4, step=0.05))
 		  	), 
 		  	
 		  	fluidRow(
-		  		column(4, tags$label("Contour Smoothness")), 
+		  		column(4, tags$label(GRID_POINTS)), 
 		  		column(8, sliderInput('contourSmoothness', label = NULL, min = 10, max = 400, value = 200, step = 10),
 		  		bsTooltip(id = "contourSmoothness", 
 						title = "This feature sets the number of grid points in each direction for kernel density estimation",
@@ -100,11 +101,11 @@ shinyUI(fluidPage(
 	  	),
 	  	
 	  	fluidRow(
-	  		column(3, tags$label("Heatmap Opacity")), 
+	  		column(3, tags$label(FILL_OPACITY)), 
 	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.5, step = 0.05))
 	  	), 
 	  	fluidRow(
-	  		column(3, tags$label("Number of Shades")), 
+	  		column(3, tags$label(BIN_NUMBER)), 
 	  		column(9, sliderInput('numShades', label = NULL, min = 2, max = 50, value = 8))
 	  	),
 	  	 
@@ -124,8 +125,8 @@ shinyUI(fluidPage(
 	  		)
 	  	), 
 
-	  	downloadButton('plotDownload', label = "Download Plot"), 
-	  	downloadButton('tableDownload', label = "Download Table"),
+	  	downloadButton('plotDownload', label = DOWNLOAD_PLOT), 
+	  	downloadButton('tableDownload', label = DOWNLOAD_TABLE),
 	  	
 	  	tags$br(), 
 	  	tags$br(),

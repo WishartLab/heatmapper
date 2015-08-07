@@ -1,5 +1,6 @@
 library(jscolourR)
 library(leaflet)
+source("../strings.R")
 
 shinyUI(fluidPage(
 	includeHTML("www/navbar.html"),
@@ -13,7 +14,7 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
-			radioButtons('chooseInput', label = "Select Data File", 
+			radioButtons('chooseInput', label = FILE_UPLOAD, 
 	  		inline=TRUE, 
 	  		choices = c(
 	  			"Upload File" = 'fileUpload',
@@ -29,7 +30,7 @@ shinyUI(fluidPage(
 	  	),
 
 			
-			selectInput('layers', label = "Show/Hide Layers", 
+			selectInput('layers', label = LAYERS, 
 				multiple = TRUE,
 				choices = c(
 					"Map" = 'showMap', 
@@ -73,7 +74,7 @@ shinyUI(fluidPage(
 	  	), 
 						
 			fluidRow(
-    		column(3, tags$label("Number of Shades")),
+    		column(3, tags$label(BIN_NUMBER)),
 				column(9,
 					sliderInput("binNumber", 
 						label = NULL, 
@@ -83,22 +84,22 @@ shinyUI(fluidPage(
     	), 
 			
 			fluidRow(
-	  		column(3, tags$label("Heatmap Opacity")), 
+	  		column(3, tags$label(FILL_OPACITY)), 
 	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.5, step = 0.05))
 	  	), 
 			
 			fluidRow(
-		  		column(3, tags$label("Gaussian Radius Multiplier")), 
+		  		column(3, tags$label(BANDWIDTH)), 
 		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 0.2, max = 4, value = 1, step=0.05))
 		  	), 
 			
 			fluidRow(
-		  		column(4, tags$label("Contour Smoothness")), 
+		  		column(4, tags$label(GRID_POINTS)), 
 		  		column(8, sliderInput('contourSmoothness', label = NULL, min = 1, max = 15, value = 5, step = 1))
 			),
 			
-			downloadButton('plotDownload', "Download Plot", class = "btn-info"),
-			downloadButton('tableDownload', "Download Table", class = "btn-info"),
+			downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"),
+			downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"),
 			tags$br(), tags$br(),
 		 	
     	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),

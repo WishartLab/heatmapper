@@ -2,6 +2,7 @@ library(spin)
 library(shinyBS)
 library(jscolourR)
 library(d3heatmap)
+source("../strings.R")
 
 shinyUI(fluidPage(
 	includeHTML("www/navbar.html"),
@@ -17,7 +18,7 @@ shinyUI(fluidPage(
 			sidebarPanel(
 				radioButtons('chooseInput',
 					inline = TRUE,
-    			label = "Choose Input Type",
+    			label = FILE_UPLOAD,
     			choices = c(
     				"Upload File" = 'fileUpload',
 						"Example File" = 'example'),
@@ -36,7 +37,7 @@ shinyUI(fluidPage(
 							"Topo" = 'topo', 
 							"Custom" = 'custom'), 
 						selected = 'custom'), 
-			sliderInput('numShades', label = "Number of Shades", min = 3, max = 299, value = 160),
+			sliderInput('numShades', label = BIN_NUMBER, min = 3, max = 299, value = 160),
 			conditionalPanel(condition = "input.colourScheme == 'custom'",	
 				fluidRow(
 	  			column(4,jscolourInput("lowColour", label = "Low Colour", value = "#FF0000")), 
@@ -49,7 +50,7 @@ shinyUI(fluidPage(
 				
 			textInput('ylab', label = "Y Axis Label", value = ""),
 				
-			downloadButton('download', label = "Download Plot"),
+			downloadButton('download', label = DOWNLOAD_PLOT),
 				
 				
 				tags$br(), tags$br(),
