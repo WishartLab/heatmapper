@@ -58,7 +58,7 @@ FILE_UPLOAD_PANEL <- function(selected){
 	  	choices = c(
 	  		"Upload File" = 'fileUpload',
 				"Example File" = 'example'), 
-    	selected = 'example'),
+    	selected = selected),
     	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
         fluidRow(
             column(8, fileInput('file', label = NULL)), 
@@ -137,10 +137,10 @@ COLOUR_SCHEME_SELECT <- function(){
 }
 
 # heatmap opacity slider
-FILL_OPACITY_SLIDER <- function(){
+FILL_OPACITY_SLIDER <- function(value = 0.5){
 		fluidRow(
 	  	column(3, tags$label(FILL_OPACITY)), 
-	  	column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.5, step = 0.05))
+	  	column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = value, step = 0.05))
 	  )
 }
 

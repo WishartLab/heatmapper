@@ -13,7 +13,7 @@ shinyUI(fluidPage(
 	
 	sidebarLayout(
     sidebarPanel(id = "sidebarPanel",
-			FILE_UPLOAD_PANEL(),
+			FILE_UPLOAD_PANEL('example'),
     	EXAMPLE_FILE_SELECT(),
 
     	JSCOLOUR_ROW("#66CD00", "#FF0000"), 
