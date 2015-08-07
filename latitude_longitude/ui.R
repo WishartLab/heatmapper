@@ -3,15 +3,8 @@ library(leaflet)
 source("../strings.R")
 
 shinyUI(fluidPage(
-	includeHTML("www/navbar.html"),
-	tags$head(
-		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
-			#lowColour, #highColour, #missingColour {width:100%}
-			#file_progress {height:0;}
-			#sidebarPanel {width:23.45em;}
-			#mainPanel {left:24.45em; position:absolute;}
-			#tableDownload {float:right;}")),
-	
+	HEAD_TASKS("#latlongTab"),
+		
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
 			FILE_UPLOAD_PANEL(),
@@ -22,9 +15,9 @@ shinyUI(fluidPage(
 					"Map" = 'showMap', 
 					"Contour Lines" = 'showContours', 
 					"Heatmap" = 'showHeatmap', 
-					"Points" = 'showPoints'
-				), 
-				selected = c('showMap', 'showContours', 'showHeatmap')),
+					"Points" = 'showPoints'), 
+				selected = c('showMap', 'showContours', 'showHeatmap')
+			),
 
 			fluidRow(
     		column(3, tags$label("Map Type")),
@@ -35,18 +28,14 @@ shinyUI(fluidPage(
 							"Default" = 'OpenStreetMap.Mapnik',
 							"Positron" = 'CartoDB.Positron', 
 							"Toner" = 'Stamen.Toner',
-							"Watercolour" = 'Stamen.Watercolor'
-							), 
+							"Watercolour" = 'Stamen.Watercolor'), 
 						selected = 'OpenStreetMap.Mapnik'))
 			),
 			
 			COLOUR_SCHEME_SELECT(),
-	  	
+			
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
-				fluidRow(
-	  			column(6, jscolourInput("lowColour", label = "Low Colour", value = "#FFFA00")),
-	    		column(6, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
-				)
+				JSCOLOUR_ROW("#FFFA00", "#FF0000")
 	  	), 
 						
 			BIN_SLIDER(3, 50, 10), 
@@ -59,17 +48,17 @@ shinyUI(fluidPage(
 			
 			DOWNLOAD_BUTTONS(),
 		 	
-    	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
+			ADVANCED_OPTIONS_BUTTON(),
 			conditionalPanel(condition = "input.advancedOptionsButton%2",
 				wellPanel(
 	    		sliderInput('contourSize', 
-	    			label = "Contour Line Width (in pixels)", 
+	    			label = CONTOUR_WIDTH, 
 	    			min = 0, 
 	    			max = 4,
 	    			value = 1), 
 					
 					sliderInput('pointSize', 
-		    			label = "Point Width (in pixels)", 
+		    			label = "Point Width (in px)", 
 		    			min = 0, 
 		    			max = 10, 
 		    			value = 2), 
@@ -89,5 +78,5 @@ shinyUI(fluidPage(
 					tabPanel(title = "Table", dataTableOutput("table"))
 				))
 			), 
-	singleton(includeScript("www/js/active.js"))
+	singleton(includeScript("../www/js/active.js"))
 	))

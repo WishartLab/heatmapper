@@ -9,9 +9,28 @@ DOWNLOAD_PLOT <- "Download Plot"
 DOWNLOAD_TABLE <- "Download Table"
 WIDTH <- "Plot Width (in px)"
 HEIGHT <- "Plot Height (in px)"
+CONTOUR_WIDTH <- "Contour Line Width (in px)"
+
+HEAD_TASKS <- function(activeTab){
+	list(
+		includeHTML("../www/navbar.html"),
+		tags$script(paste0("$('", activeTab, "').addClass('active');")), 
+		
+		tags$head(
+			tags$style("
+				.toggleButton {width:100%;} 
+				.fa-angle-down:before, .fa-angle-up:before {float:right;}
+				#lowColour, #highColour, #missingColour {width:100%}
+				#file_progress {height:0;}
+				#sidebarPanel {width:23.45em;}
+				#mainPanel {left:24.45em; position:absolute;}
+				#tableDownload {float:right;}")
+		)
+	)
+}
 
 FILE_UPLOAD_PANEL <- function(){
-  tags$span(  
+  list(  
 		radioButtons('chooseInput', label = FILE_UPLOAD, 
     	inline=TRUE, 
 	  	choices = c(
@@ -76,9 +95,20 @@ GRID_POINTS_SLIDER <- function(min, max, value, step){
 }
 
 DOWNLOAD_BUTTONS <- function(){
-	tags$span(
+	list(
 		downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"),
 		downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"),
 		tags$br(), tags$br()
 	)
+}
+
+JSCOLOUR_ROW <- function(low, high){
+	fluidRow(
+		column(6, jscolourInput("lowColour", label = "Low Colour", value = low)),
+		column(6, jscolourInput("highColour", label = "High Colour", value = high))
+	)
+}
+
+ADVANCED_OPTIONS_BUTTON <- function(){
+	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down")
 }
