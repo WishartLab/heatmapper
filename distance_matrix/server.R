@@ -97,14 +97,14 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_scale_fill_gradientn <- function(min, max, length){
-		shades <- input$numShades
+		shades <- input$binNumber
 		
 		if(length > shades){
 			length <- shades
 		}
 		
 		legend_breaks <- rev(seq.int(1, shades, length.out = length))
-		legend_labels <- rev(seq.int(min, max, length.out = length))
+		legend_labels <- round(rev(seq.int(min, max, length.out = length)), 4)
 
 		scale_fill_gradientn(colours = get_colour_palette(), breaks = legend_breaks, labels = legend_labels, name = "Values")
 
@@ -120,7 +120,7 @@ shinyServer(function(input, output, session){
 		}
 		
 		q <- ggplot(aes(x=cols, y=rows), data = 
-				transform(data, binned = cut(value, breaks = input$numShades, include.lowest = TRUE))) + 
+				transform(data, binned = cut(value, breaks = input$binNumber, include.lowest = TRUE))) + 
 			geom_tile(aes(fill = as.numeric(binned))) +
 			get_scale_fill_gradientn(min(data$value), max(data$value), 5)
 		

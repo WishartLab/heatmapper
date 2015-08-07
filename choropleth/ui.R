@@ -1,8 +1,8 @@
-library(leaflet)
 library(jscolourR)
 library(spin)
 library(shinyBS)
 source("../strings.R")
+library(leaflet)
 
 shinyUI(fluidPage(
 	HEAD_TASKS("#choroplethTab"),

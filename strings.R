@@ -28,7 +28,7 @@ HEIGHT <- "Plot Height (in px)"
 CONTOUR_WIDTH <- "Contour Line Width (in px)"
 
 # imports navbar, sets active tab, adds CSS
-HEAD_TASKS <- function(activeTab){
+HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 	list(
 		includeHTML("../www/navbar.html"),
 		tags$script(paste0("$('", activeTab, "').addClass('active');")), 
@@ -38,20 +38,20 @@ HEAD_TASKS <- function(activeTab){
 			tags$style("
 				.toggleButton {width:100%;} 
 				.fa-angle-down:before, .fa-angle-up:before {float:right;}
-				#lowColour, #highColour, #missingColour {width:100%}
+				#lowColour, #highColour, #missingColour, #midColour {width:100%}
 				#file_progress {height:0;}
 				#sidebarPanel {width:23.45em;}
 				#mainPanel {left:24.45em; position:absolute;}
 				#tableDownload {float:right;}")
 		),
 		div(class = "busy", absolutePanel(width = "50px", height = "100px",
-			fixed = TRUE, left = "65%", top = "45%", 
+			fixed = TRUE, left = left, top = top, 
 			h5("Loading"), tags$br(), spin()))
 	)
 }
 
 # file upload vs example selection, file upload button when fileUpload is selected
-FILE_UPLOAD_PANEL <- function(selected){
+FILE_UPLOAD_PANEL <- function(selected = 'fileUpload'){
   list(  
 		radioButtons('chooseInput', label = FILE_UPLOAD, 
     	inline=TRUE, 
