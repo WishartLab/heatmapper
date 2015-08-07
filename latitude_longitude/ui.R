@@ -1,6 +1,8 @@
 library(jscolourR)
-library(leaflet)
+library(spin)
+library(shinyBS)
 source("../strings.R")
+library(leaflet)
 
 shinyUI(fluidPage(
 	HEAD_TASKS("#latlongTab"),
@@ -73,5 +75,5 @@ shinyUI(fluidPage(
 			)
 		)
 	), 
-	INCLUDE_JS
+	INCLUDE_JS()
 ))

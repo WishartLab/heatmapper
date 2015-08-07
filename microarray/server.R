@@ -252,14 +252,6 @@ shinyServer(function(input, output, session){
 	output$table <- renderDataTable({
 		get_file()
 	})
-	
-	################# Save Example File ################# 
-	output$downloadExample <- downloadHandler(
-		filename = "example.txt",
-		content = function(file){
-			write.table(read.delim(input$exampleFiles, header=TRUE, sep="\t"), sep = "\t",  file)
-		}
-	)
 		
 	################# Save Plot ################# 
 

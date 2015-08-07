@@ -26,7 +26,6 @@ DOWNLOAD_TABLE <- "Download Table"
 WIDTH <- "Plot Width (in px)"
 HEIGHT <- "Plot Height (in px)"
 CONTOUR_WIDTH <- "Contour Line Width (in px)"
-INCLUDE_JS <- singleton(includeScript("../www/js/active.js"))
 
 # imports navbar, sets active tab, adds CSS
 HEAD_TASKS <- function(activeTab){
@@ -35,6 +34,7 @@ HEAD_TASKS <- function(activeTab){
 		tags$script(paste0("$('", activeTab, "').addClass('active');")), 
 		
 		tags$head(
+			# HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
 			tags$style("
 				.toggleButton {width:100%;} 
 				.fa-angle-down:before, .fa-angle-up:before {float:right;}
@@ -43,7 +43,10 @@ HEAD_TASKS <- function(activeTab){
 				#sidebarPanel {width:23.45em;}
 				#mainPanel {left:24.45em; position:absolute;}
 				#tableDownload {float:right;}")
-		)
+		),
+		div(class = "busy", absolutePanel(width = "50px", height = "100px",
+			fixed = TRUE, left = "65%", top = "45%", 
+			h5("Loading"), tags$br(), spin()))
 	)
 }
 
@@ -66,8 +69,34 @@ FILE_UPLOAD_PANEL <- function(selected){
 }
 
 # example file dropdown selection
-EXAMPLE_FILE_SELECT <- function(choices){
-	
+EXAMPLE_FILE_SELECT <- function(){
+	list(
+		conditionalPanel(condition = "input.chooseInput == 'example'",
+			tags$label(SELECT_EXAMPLE), 
+			fluidRow(
+				column(9,
+					selectInput('exampleFiles',
+						label = NULL,
+						choices = c(
+							"Example 1" = 'example_input/example1.txt',
+							"Example 2" = 'example_input/example2.txt',
+							"Example 3" = 'example_input/example3.txt'),
+						selected = 1)),
+	  			column(2,	
+	  				actionButton('exampleButton', label = NULL, class = "btn-info",icon = icon("fa fa-info-circle")), 
+	  				bsTooltip(id = "exampleButton", title = "View Example File Details", placement = "right"))
+				),
+	  		
+	  		conditionalPanel(condition = "input.exampleButton>0",
+	  			wellPanel(id = "exampleInfo",
+	  				tags$label("Example File Information"),
+	  				HTML("<button id='closeExampleButton' class='action-button' style='float:right;'><i class='fa fa-times'></i></button>"),
+						conditionalPanel(condition = "input.exampleFiles == 'example_input/example1.txt'", includeHTML("www/example1info.html")),
+						conditionalPanel(condition = "input.exampleFiles == 'example_input/example2.txt'", includeHTML("www/example2info.html")),
+						conditionalPanel(condition = "input.exampleFiles == 'example_input/example3.txt'", includeHTML("www/example3info.html"))
+				))
+		)
+	)
 }
 
 # multiple selection for hide/show layers
@@ -156,5 +185,9 @@ ADVANCED_OPTIONS_PANEL <- function(options_list){
 			wellPanel(options_list)
 		)
 	)
+}
+
+INCLUDE_JS <- function(){
+	singleton(includeScript("../www/js/active.js"))
 }
 
