@@ -18,7 +18,7 @@ shinyUI(fluidPage(
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
 			
-			FILE_UPLOAD_PANEL('example'),
+			FILE_UPLOAD_PANEL(),
 			EXAMPLE_FILE_SELECT(),
 	  	
 			fluidRow(

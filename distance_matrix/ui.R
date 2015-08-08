@@ -55,5 +55,5 @@ shinyUI(fluidPage(
 				tabPanel(title = "Interactive", tags$br(), tags$br(), d3heatmapOutput("d3map", height = 500)),
 				tabPanel(title = "Table", tags$br(), dataTableOutput("table"))
 				))),	
-	singleton(includeScript("www/js/active.js"))
+	INCLUDE_JS()
 	))
