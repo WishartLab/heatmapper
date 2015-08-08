@@ -122,18 +122,19 @@ BIN_SLIDER <- function(min, max, value){
 }
 
 # colour scheme dropdown selection
-COLOUR_SCHEME_SELECT <- function(){
+COLOUR_SCHEME_SELECT <- function(selected = 'custom'){
 	fluidRow(
-    		column(3, tags$label("Colour Scheme")),
-				column(9,					
+    column(3, tags$label("Colour Scheme")),
+		column(9,					
 			selectInput('colourScheme', label = NULL, 
 	  		choices = c(
 	  			'Custom' = "custom",
 	  			'Rainbow' = "rainbow", 
 	  			'Topo' = "topo"
 	  		), 
-	  		selected = 'custom'
-	  	)))
+	  		selected = selected)
+		)
+	)
 }
 
 # heatmap opacity slider
@@ -156,7 +157,10 @@ BANDWIDTH_SLIDER <- function(min, max, value, step){
 GRID_POINTS_SLIDER <- function(min, max, value, step){
 	fluidRow(
 		column(4, tags$label(GRID_POINTS)),
-		column(8, sliderInput('contourSmoothness', label = NULL, min = min, max = max, value = value, step = step))
+		column(8, sliderInput('contourSmoothness', label = NULL, min = min, max = max, value = value, step = step)), 
+		bsTooltip(id = "contourSmoothness", 
+			title = "This feature sets the number of grid points in each direction for kernel density estimation",
+			placement = "top")
 	)
 }
 

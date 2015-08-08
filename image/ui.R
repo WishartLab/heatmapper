@@ -4,22 +4,16 @@ library(jscolourR)
 source("../strings.R")
 
 shinyUI(fluidPage(
-	includeHTML("www/navbar.html"),
-
+	HEAD_TASKS("#imageTab", "65%", "50%"),
 	tags$head(
-		HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
-		tags$style(".toggleButton{width:100%;} .fa-angle-down:before{float:right;} .fa-angle-up:before{float:right;}
-			input[type=file], #xyCoordsError {display:inline;}
+		tags$style("
+			#xyCoordsError {display:inline;}
 			#selectedX, #selectedY, #selectedValue, #pointsTable {width:100%;}
-			#lowColour, #highColour {width:100%;}
-			#imageFile_progress, #gridFile_progress {height:0;}")),
-	
-	div(class = "busy", absolutePanel(width = "50px", height = "100px",
-		fixed = TRUE, left = "50%", top = "40%", 
-		h5("Loading"), tags$br(), spin())),
+			#imageFile_progress, #gridFile_progress {height:0;}")
+	),
 	
 	sidebarLayout(
-	  sidebarPanel(
+	  sidebarPanel(id = "sidebarPanel",
 	  	
 	  	radioButtons('imageSelect', label = "Select Image File", 
 	  		inline=TRUE, 
@@ -40,7 +34,7 @@ shinyUI(fluidPage(
 	  		choices = c(
 	  		"Upload Grid" = 'gridUpload', 
 	  		"Example Grid" = 'gridExample'), 
-	  		selected = 'gridExample'
+	  		selected = 'gridUpload'
 	  	),
 	  	
 	  	conditionalPanel(condition = "input.gridSelect == 'gridUpload'",
@@ -49,28 +43,16 @@ shinyUI(fluidPage(
 	  			column(4, HTML("<button id='clearGrid' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
 	  		)
 	  	),
-	  		  	
-	  	selectInput('layers', label = LAYERS, multiple = TRUE,# width = "50%", 
-	  		choices = c(
+	  	
+	  	LAYERS_SELECT(
+	  		c(
 	  			"Image" = 'showImage', 
 	  			"Grid Lines" = 'showGrid', 
 	  			"Heatmap" = 'showHeatmap', 
 	  			"Contour Lines" = 'showContour'
 	  		), 
-	  		selected = c('showImage', 'showHeatmap')
+	  		c('showImage', 'showHeatmap', 'showContour')
 	  	),
-	  	
-	  	# code for checkboxes instead of select
-	  	#checkboxGroupInput('layers', label = "Show/Hide Layers",
-	  	#	choices = c(
-	  	#		"show image" = 'showImage', 
-	  	#		"show grid" = 'showGrid', 
-	  	#		"show heatmap" = 'showHeatmap', 
-	  	#		"show contour lines" = 'showContour'
- 	  	#	),
-	  	#	selected = c('showImage', 'showGrid', 'showHeatmap')
-	  	#),
-	  	
 
 	  	fluidRow(
 	  		column(3, tags$label("Display")), 
@@ -85,83 +67,49 @@ shinyUI(fluidPage(
 	  	), 
 	  	
 	  	conditionalPanel(condition = "input.displayType == 'gaussian'",
-		  	# contours
-		  	fluidRow(
-		  		column(3, tags$label(BANDWIDTH)), 
-		  		column(9, sliderInput('gaussianRadius', label = NULL, min = 0.05, max = 2, value = 0.4, step=0.05))
-		  	), 
-		  	
-		  	fluidRow(
-		  		column(4, tags$label(GRID_POINTS)), 
-		  		column(8, sliderInput('contourSmoothness', label = NULL, min = 10, max = 400, value = 200, step = 10),
-		  		bsTooltip(id = "contourSmoothness", 
-						title = "This feature sets the number of grid points in each direction for kernel density estimation",
-						placement = "top"))
-		  	)
+		  	BANDWIDTH_SLIDER(0.05, 2, 0.4, 0.05),
+		  	GRID_POINTS_SLIDER(10, 400, 200, 10)
 	  	),
 	  	
-	  	fluidRow(
-	  		column(3, tags$label(FILL_OPACITY)), 
-	  		column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = 0.5, step = 0.05))
-	  	), 
-	  	fluidRow(
-	  		column(3, tags$label(BIN_NUMBER)), 
-	  		column(9, sliderInput('numShades', label = NULL, min = 2, max = 50, value = 8))
-	  	),
-	  	 
-	  	selectInput('colourScheme', label = "Colour Scheme", 
-	  		choices = c(
-	  			'Custom' = "custom",
-	  			'Rainbow' = "rainbow", 
-	  			'Topo' = "topo"
-	  		), 
-	  		selected = 'rainbow'
-	  	),
+	  	FILL_OPACITY_SLIDER(),
+	  	BIN_SLIDER(2, 50, 8),
+	  	
+	  	COLOUR_SCHEME_SELECT('rainbow'),
 	  	
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
-	  		fluidRow(
-	  			column(6, jscolourInput('lowColour', label = "Low Colour", "#FFFF00")), 
-	  			column(6, jscolourInput('highColour', label = "High Colour", value = "#EE00FF"))
-	  		)
+	  		JSCOLOUR_ROW("#FFFF00", "#EE00FF")
 	  	), 
-
-	  	downloadButton('plotDownload', label = DOWNLOAD_PLOT), 
-	  	downloadButton('tableDownload', label = DOWNLOAD_TABLE),
 	  	
-	  	tags$br(), 
-	  	tags$br(),
+	  	DOWNLOAD_BUTTONS(),
 	  	
-	  	actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
-	  	conditionalPanel(condition = "input.advancedOptionsButton%2",
-	  	wellPanel(id = "advancedPanel", 
-	  		
-	  		span(id = "fullStretchImage", 
-					checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE)), 
-	  		bsTooltip(id = "fullStretchImage", 
-					title = "Warning: changing this feature may cause misalignment of the heatmap layer",
-					placement = "top"), 
-	  	
-	  		sliderInput('numGridRows', label = "Number of rows", min = 3, max = 200, step = 1, value = 50),
-		  	bsTooltip(id = "numGridRows", 
-					title = "Warning: any changes to values will be lost after changing the number of rows",
-					placement = "top"),
-	  		
-	  		#checkboxInput('showSelectedPoint', label = strong("Highlight selected point"), value = FALSE),
-	  		
-	  		selectInput('downloadPlotFormat', label = "Plot download file type", 
-					choices = c(
-						"JPEG" = 'jpg',
-						"PDF" = 'pdf',
-						"PNG" = 'png'
-					), 
-					selected = 'png')	,
-	  			
-	  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
-				sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 500) 
-	  	
-	  	))
+	  	ADVANCED_OPTIONS_PANEL(
+	  		list(
+		  		span(id = "fullStretchImage", 
+						checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE)), 
+		  		bsTooltip(id = "fullStretchImage", 
+						title = "Warning: changing this feature may cause misalignment of the heatmap layer",
+						placement = "top"), 
+		  	
+		  		sliderInput('numGridRows', label = "Number of rows", min = 3, max = 200, step = 1, value = 50),
+			  	bsTooltip(id = "numGridRows", 
+						title = "Warning: any changes to values will be lost after changing the number of rows",
+						placement = "top"),
+		  		
+		  		selectInput('downloadPlotFormat', label = "Plot download file type", 
+						choices = c(
+							"JPEG" = 'jpg',
+							"PDF" = 'pdf',
+							"PNG" = 'png'
+						), 
+						selected = 'png')	,
+		  			
+		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
+					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 500) 
+	  		)
+	  	)
 		),
-		mainPanel(
+		
+		mainPanel(id = "mainPanel",
 			tabsetPanel(
 				tabPanel("Plot",
 					wellPanel(
@@ -199,5 +147,5 @@ shinyUI(fluidPage(
 			)
 		)
 	),
-	singleton(includeScript("www/js/active.js"))
+	INCLUDE_JS()
 ))

@@ -364,7 +364,7 @@ shinyServer(function(input, output, session){
 		
 		if(input$displayType == 'square'){
 			if(layer_selected("showHeatmap")){
-				plot1 <- plot1 + geom_raster(aes(fill = value), alpha = input$fillOpacity, bins = input$numShades) + get_colours()
+				plot1 <- plot1 + geom_raster(aes(fill = value), alpha = input$fillOpacity, bins = input$binNumber) + get_colours()
 			}
 		}
 		
@@ -377,14 +377,14 @@ shinyServer(function(input, output, session){
 				#add fill
 				if(layer_selected("showHeatmap")){
 					plot1 <- plot1 + 
-					stat_contour(aes(z = z,  fill=..level..), bins = input$numShades, 
+					stat_contour(aes(z = z,  fill=..level..), bins = input$binNumber, 
 						alpha = input$fillOpacity, data = dfdens, geom="polygon")  +
 					get_colours() 
 				}
 					
 				# add contour
 				if(layer_selected("showContour")){
-					plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens, bins = input$numShades)
+					plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens, bins = input$binNumber)
 				}
 			}
 		}
