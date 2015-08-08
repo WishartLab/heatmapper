@@ -1,7 +1,7 @@
 library(jscolourR)
 library(spin)
 library(shinyBS)
-source("../strings.R")
+source("../global_ui.R")
 library(d3heatmap)
 
 shinyUI(fluidPage(

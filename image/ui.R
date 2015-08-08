@@ -1,7 +1,7 @@
 library(spin)
 library(shinyBS)
 library(jscolourR)
-source("../strings.R")
+source("../global_ui.R")
 
 shinyUI(fluidPage(
 	HEAD_TASKS("#imageTab", "65%", "50%"),
@@ -34,7 +34,7 @@ shinyUI(fluidPage(
 	  		choices = c(
 	  		"Upload Grid" = 'gridUpload', 
 	  		"Example Grid" = 'gridExample'), 
-	  		selected = 'gridUpload'
+	  		selected = 'gridExample'
 	  	),
 	  	
 	  	conditionalPanel(condition = "input.gridSelect == 'gridUpload'",
