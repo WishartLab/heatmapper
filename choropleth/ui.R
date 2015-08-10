@@ -34,7 +34,8 @@ shinyUI(fluidPage(
 		    			"Australia" = 'data/AUS_1.rds', 
 		    			"Europe: By Country" = 'data/Europe.rds', 
 		    			"North America: By Country" = 'data/North_America.rds', 
-		    			"South America: By Country" = 'data/South_America.rds'), 
+		    			"South America: By Country" = 'data/South_America.rds', 
+		    			"World: By Country" = 'data/World_Countries.rds'), 
 		    		selected = 'data/USA_1.rds'))
 			),
 		
