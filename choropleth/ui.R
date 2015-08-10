@@ -19,8 +19,6 @@ shinyUI(fluidPage(
 		sidebarPanel(id = "sidebarPanel",
 			
 			FILE_UPLOAD_PANEL(),
-			
-			fileInput('shp', "Upload Shape File"), 
 			EXAMPLE_FILE_SELECT(),
 	  	
 			fluidRow(
