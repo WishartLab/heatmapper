@@ -364,8 +364,8 @@ shinyServer(function(input, output, session) {
 			"choropleth.html"
 		},
 		content = function(file) {
-			#m <- get_shapes(leaflet(data = get_map_data())) # %>% get_tiles()
-			m <- leaflet()
+			m <- get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
+			#m <- leaflet()
 			saveWidget(m, file=file)
 		}
 	)

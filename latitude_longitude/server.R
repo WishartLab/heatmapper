@@ -3,7 +3,7 @@ library(xlsx)
 library(leaflet)
 library(KernSmooth)
 library(htmlwidgets)
-
+library(ggtern)
 shinyServer(function(input, output, session){
 
 	values <- reactiveValues(file = NULL)
@@ -39,9 +39,17 @@ shinyServer(function(input, output, session){
 			else{
 				file <- read.delim(values$file$datapath, header = TRUE, sep="\t", row.names = NULL)
 			}
-			points <- data.frame(
+			if(!is.null(file$Value)){
+				points <- data.frame(
+				Longitude = c(file$Longitude), 
+				Latitude = c(file$Latitude), 
+				Value = c(file$Value))
+			}
+			else{
+				points <- data.frame(
 				Longitude = c(file$Longitude), 
 				Latitude = c(file$Latitude))
+			}
 		}
 		return(points)
 	})
@@ -62,6 +70,17 @@ shinyServer(function(input, output, session){
 			bandwidth = bandwidth, 
 			gridsize =c(51,51)*input$contourSmoothness)
 		return(contourLines(x = dens$x1, y = dens$x2, z = dens$fhat, nlevels = nlevels))
+	})
+	
+	get_weighted_density <- reactive({
+		
+		df <- get_file()
+		nlevels <- input$binNumber 
+		
+		dens <- kde2d.weighted(df$Longitude, df$Latitude, df$Value)
+		
+		return(contourLines(x = dens$x, y = dens$y, z = dens$z, nlevels = nlevels))
+		
 	})
 	
 	# see if a given layer name is shown or hidden by user
@@ -127,19 +146,24 @@ shinyServer(function(input, output, session){
 	
 	get_contour_shapes <- function(m){
 		print("GETCONTOURS")
+		if(is.null(get_file()$Value)){
+			cl <- get_density()
+		}
+		else{
+			cl <- get_weighted_density()
+		}
+		max_cl <- length(cl)
 		
-		CL <- get_density()
-		max_CL <- length(CL)
-		
-		CL_levels <- as.character(unique(unlist(lapply(CL, function(x){x$level}))))
+		cl_levels <- as.character(unique(unlist(lapply(cl, function(x){x$level}))))
 
-		colours <- get_colours(CL_levels)
+		colours <- get_colours(cl_levels)
+
 		fill_op <- get_fill_opacity()
 		contours <- get_contour_size()
 		
-		for(i in 1:max_CL){	
-			m <- addPolygons(m, CL[[i]]$x,CL[[i]]$y, 
-				fillColor = colours[[as.character(CL[[i]]$level)]], 
+		for(i in 1:max_cl){	
+			m <- addPolygons(m, cl[[i]]$x,cl[[i]]$y, 
+				fillColor = colours[[as.character(cl[[i]]$level)]], 
 				fillOpacity = fill_op, weight = contours)
 		}
 		
@@ -165,7 +189,7 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_shapes <- function(m){
-	
+		
 		m <- get_contour_shapes(m)
 		
 		m <- get_point_shapes(m)
