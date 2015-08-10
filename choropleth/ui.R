@@ -19,6 +19,8 @@ shinyUI(fluidPage(
 		sidebarPanel(id = "sidebarPanel",
 			
 			FILE_UPLOAD_PANEL(),
+			
+			fileInput('shp', "Upload Shape File"), 
 			EXAMPLE_FILE_SELECT(),
 	  	
 			fluidRow(
@@ -28,7 +30,13 @@ shinyUI(fluidPage(
 		    		choices = c(
 		    			"Canada: By Province" = 'data/CAN_1.rds', 
 		    			"USA: By State" = 'data/USA_1.rds',
-		    			"United Kingdom" = 'data/GBR_1.rds'), 
+		    			"United Kingdom" = 'data/GBR_1.rds', 
+		    			"Africa: By Country" = 'data/Africa.rds', 
+		    			"Asia: By Country" = 'data/Asia.rds', 
+		    			"Australia" = 'data/AUS_1.rds', 
+		    			"Europe: By Country" = 'data/Europe.rds', 
+		    			"North America: By Country" = 'data/North_America.rds', 
+		    			"South America: By Country" = 'data/South_America.rds'), 
 		    		selected = 'data/USA_1.rds'))
 			),
 		

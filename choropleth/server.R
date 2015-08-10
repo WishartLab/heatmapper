@@ -3,6 +3,8 @@ library(RColorBrewer)
 library(raster)
 library(htmlwidgets)
 
+library(rgdal)
+options(shiny.maxRequestSize=30*1024^2)
 # reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
 	
@@ -369,4 +371,13 @@ shinyServer(function(input, output, session) {
 			saveWidget(m, file=file)
 		}
 	)
+	
+	observe({
+		if(!is.null(input$shp)){
+			print(input$shp$datapath)
+			y <- strsplit(input$shp$name, ".", fixed = TRUE)[[1]][1]
+			readOGR(input$shp$datapath, verbose = FALSE)
+			print("shp") 
+		}
+	})
 })
