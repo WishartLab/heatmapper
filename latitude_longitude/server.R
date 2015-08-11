@@ -4,6 +4,8 @@ library(leaflet)
 library(KernSmooth)
 library(htmlwidgets)
 library(ggtern)
+library(MASS)
+
 shinyServer(function(input, output, session){
 
 	values <- reactiveValues(file = NULL)
@@ -22,7 +24,8 @@ shinyServer(function(input, output, session){
 		if(input$chooseInput == 'example'){
 			points <- data.frame(
 				Longitude = c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
-				Latitude = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))
+				Latitude = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))#, 
+				#Value = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))
 			)
 		}
 		else{
@@ -57,7 +60,8 @@ shinyServer(function(input, output, session){
 	# source: http://www.r-bloggers.com/interactive-maps-for-john-snows-cholera-data/
 	get_density <- reactive({
 		df <- get_file()
-		bandwidth <- c(bw.ucv(df[,1]),bw.ucv(df[,2]))*input$gaussianRadius
+		bandwidth <- c(bandwidth.nrd(df[[1]]), bandwidth.nrd(df[[2]]))*input$gaussianRadius#
+		#c(bw.ucv(df[,1]),bw.ucv(df[,2]))*input$gaussianRadius
 		nlevels <- input$binNumber 
 		
 		xmin <- min(df$Longitude) - bandwidth[[1]]*nlevels
@@ -66,18 +70,29 @@ shinyServer(function(input, output, session){
 		ymin <- min(df$Latitude) - bandwidth[[2]]*nlevels
 		ymax <- max(df$Latitude) + bandwidth[[2]]*nlevels
 
-		dens <- bkde2D(df, range.x = list(c(xmin,xmax), c(ymin,ymax)),
-			bandwidth = bandwidth, 
-			gridsize =c(51,51)*input$contourSmoothness)
-		return(contourLines(x = dens$x1, y = dens$x2, z = dens$fhat, nlevels = nlevels))
+		dens <- kde2d(df$Longitude, df$Latitude, h = bandwidth, n = input$contourSmoothness, lims = c(xmin,xmax, ymin,ymax))
+		#dens <- bkde2D(df, range.x = list(c(xmin,xmax), c(ymin,ymax)),
+		#	bandwidth = bandwidth, 
+		#	gridsize =c(51,51)*input$contourSmoothness)
+
+		return(contourLines(x = dens$x, y = dens$y, z = dens$z, nlevels = nlevels))
 	})
-	
+
 	get_weighted_density <- reactive({
-		
 		df <- get_file()
+		x <- df[[1]]
+		y <- df[[2]]
+		val <- df[[3]]
+
 		nlevels <- input$binNumber 
+		bandwidth <- c(bandwidth.nrd(x), bandwidth.nrd(y))*input$gaussianRadius #c(bw.ucv(x),bw.ucv(y))*input$gaussianRadius
+		xmin <- min(x) - bandwidth[[1]]*nlevels
+		xmax <- max(x) + bandwidth[[1]]*nlevels
 		
-		dens <- kde2d.weighted(df$Longitude, df$Latitude, df$Value)
+		ymin <- min(y) - bandwidth[[2]]*nlevels
+		ymax <- max(y) + bandwidth[[2]]*nlevels
+		
+		dens <- kde2d.weighted(x, y, val, h = bandwidth, n = input$contourSmoothness, lims = c(xmin,xmax, ymin,ymax))
 		
 		return(contourLines(x = dens$x, y = dens$y, z = dens$z, nlevels = nlevels))
 		
