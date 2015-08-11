@@ -11,21 +11,19 @@ shinyUI(fluidPage(
 				tabPanel("Latitude/Longitude", value = "latitude_longitude"),
 				tabPanel("Choropleth", value = "choropleth"),
 				tabPanel("Distance Matirx", value = "distance_matrix"),
-				tabPanel("Image Overlay", value = "image")
+				tabPanel("Image Overlay", value = "image")	
 			)
 		),
 		mainPanel(id = "mainPanel",
-			tabsetPanel(
+			tabsetPanel(id = "tabsetPanel", 
 				tabPanel("Instructions", 
 					tags$br(),
 					uiOutput("instructions")), 
-				tabPanel("Gallery", 
+				tabPanel("Gallery",
 					tags$br(),
-					uiOutput("gallery")), 
-				tabPanel("Contact", 
-					tags$br(),
-					uiOutput("contact"))
+					uiOutput("gallery"))
 			)
 		)
-	)
+	), 
+	INCLUDE_JS()
 ))

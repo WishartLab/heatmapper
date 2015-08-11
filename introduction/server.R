@@ -8,7 +8,4 @@ shinyServer(function(input, output, session){
 		includeHTML(paste0("www/gallery/", input$navlistPanel, ".html"))
 	})
 	
-	output$contact <- renderUI({
-		includeHTML(paste0("www/contact/", input$navlistPanel, ".html"))
-	})
 })
