@@ -1,3 +1,7 @@
+library(jscolourR)
+library(spin)
+library(shinyBS)
+
 # FILE_UPLOAD_PANEL()
 FILE_UPLOAD <- "Select Data File" 
 
@@ -44,9 +48,12 @@ HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 				#mainPanel {left:24.45em; position:absolute;}
 				#tableDownload {float:right;}")
 		),
-		div(class = "busy", absolutePanel(width = "50px", height = "100px",
-			fixed = TRUE, left = left, top = top, 
-			h5("Loading"), tags$br(), spin()))
+		div(class = "busy", 
+			absolutePanel(width = "50px", height = "100px",
+				fixed = TRUE, left = left, top = top, 
+				h5("Loading"), tags$br(), spin()
+			)
+		)
 	)
 }
 
@@ -194,4 +201,3 @@ ADVANCED_OPTIONS_PANEL <- function(options_list){
 INCLUDE_JS <- function(){
 	singleton(includeScript("../www/js/active.js"))
 }
-

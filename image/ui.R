@@ -49,7 +49,8 @@ shinyUI(fluidPage(
 	  			"Image" = 'showImage', 
 	  			"Grid Lines" = 'showGrid', 
 	  			"Heatmap" = 'showHeatmap', 
-	  			"Contour Lines" = 'showContour'
+	  			"Contour Lines" = 'showContour', 
+	  			"Axis Labels" = 'showAxisLabels'
 	  		), 
 	  		c('showImage', 'showHeatmap', 'showContour')
 	  	),
@@ -104,7 +105,7 @@ shinyUI(fluidPage(
 						selected = 'png')	,
 		  			
 		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
-					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 500) 
+					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 520) 
 	  		)
 	  	)
 		),

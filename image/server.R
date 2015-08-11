@@ -142,7 +142,8 @@ shinyServer(function(input, output, session){
 				choices = c(
 					"Image" = 'showImage', 
 	  			"Grid Lines" = 'showGrid', 
-	  			"Heatmap" = 'showHeatmap'), 
+	  			"Heatmap" = 'showHeatmap', 
+					"Axis Labels" = 'showAxisLabels'), 
 				selected = currentSelected)
 		}
 		if(displayChange == 'gaussian'){
@@ -151,7 +152,8 @@ shinyServer(function(input, output, session){
 					"Image" = 'showImage', 
 	  			"Grid Lines" = 'showGrid', 
 	  			"Heatmap" = 'showHeatmap', 
-					"Contour Lines" = 'showContour'), 
+					"Contour Lines" = 'showContour', 
+					"Axis Labels" = 'showAxisLabels'), 
 				selected = currentSelected)
 		}
 	})
@@ -212,7 +214,7 @@ shinyServer(function(input, output, session){
 	
 	# calculate bandwidth for kde2d given input$gaussianRadius setting
 	get_bandwidth <- reactive({
-		c(bandwidth.nrd(values$data$x)*input$gaussianRadius, bandwidth.nrd(values$data$y)*input$gaussianRadius)
+		c(bandwidth.nrd(values$data$x), bandwidth.nrd(values$data$y))*input$gaussianRadius
 	})
 
 	# extend the data frame in each direction to connect the polygons at the edges of the grid
@@ -355,12 +357,25 @@ shinyServer(function(input, output, session){
 			get_background() +
 			
 			# crop edges 
-			coord_cartesian(xlim = get_limits(), ylim = get_limits()) +
+			coord_cartesian(xlim = get_limits(), ylim = get_limits())
 			
+		if(layer_selected("showAxisLabels")){
 			# scale x and y axis values
-			scale_x_continuous(breaks=get_breaks()) + 
-			scale_y_continuous(breaks=get_breaks()) 
-			
+			plot1 <- plot1 + 
+				scale_x_continuous(breaks=get_breaks()) + 
+				scale_y_continuous(breaks=get_breaks())
+		}
+		else{
+			plot1 <- plot1 + 	
+				theme(
+					axis.line=element_blank(),
+		      axis.text.x=element_blank(),
+		      axis.text.y=element_blank(),
+		      axis.ticks=element_blank(),
+		      axis.title.x=element_blank(),
+		      axis.title.y=element_blank()
+				) 
+		}
 		
 		if(input$displayType == 'square'){
 			if(layer_selected("showHeatmap")){
@@ -378,7 +393,7 @@ shinyServer(function(input, output, session){
 				if(layer_selected("showHeatmap")){
 					plot1 <- plot1 + 
 					stat_contour(aes(z = z,  fill=..level..), bins = input$binNumber, 
-						alpha = input$fillOpacity, data = dfdens, geom="polygon")  +
+						alpha = input$fillOpacity, data = dfdens, geom="polygon") + guides(fill=FALSE) +
 					get_colours() 
 				}
 					
