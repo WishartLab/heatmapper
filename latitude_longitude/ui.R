@@ -39,9 +39,9 @@ shinyUI(fluidPage(
 			
 			FILL_OPACITY_SLIDER(), 
 			
-			BANDWIDTH_SLIDER(0.2, 4, 1, 0.05), 
+			BANDWIDTH_SLIDER(0.05, 2, 0.4, 0.05), 
 			
-			GRID_POINTS_SLIDER(1, 15, 5, 1),
+			GRID_POINTS_SLIDER(10, 1000, 400, 10),
 			
 			DOWNLOAD_BUTTONS(),
 		 	

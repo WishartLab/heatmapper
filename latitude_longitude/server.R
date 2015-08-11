@@ -1,7 +1,6 @@
 library(shiny)
 library(xlsx)
 library(leaflet)
-library(KernSmooth)
 library(htmlwidgets)
 library(ggtern)
 library(MASS)
@@ -24,8 +23,8 @@ shinyServer(function(input, output, session){
 		if(input$chooseInput == 'example'){
 			points <- data.frame(
 				Longitude = c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
-				Latitude = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))#, 
-				#Value = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))
+				Latitude = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5)), 
+				Value = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))
 			)
 		}
 		else{
@@ -60,43 +59,28 @@ shinyServer(function(input, output, session){
 	# source: http://www.r-bloggers.com/interactive-maps-for-john-snows-cholera-data/
 	get_density <- reactive({
 		df <- get_file()
-		bandwidth <- c(bandwidth.nrd(df[[1]]), bandwidth.nrd(df[[2]]))*input$gaussianRadius#
-		#c(bw.ucv(df[,1]),bw.ucv(df[,2]))*input$gaussianRadius
-		nlevels <- input$binNumber 
-		
-		xmin <- min(df$Longitude) - bandwidth[[1]]*nlevels
-		xmax <- max(df$Longitude) + bandwidth[[1]]*nlevels
-		
-		ymin <- min(df$Latitude) - bandwidth[[2]]*nlevels
-		ymax <- max(df$Latitude) + bandwidth[[2]]*nlevels
-
-		dens <- kde2d(df$Longitude, df$Latitude, h = bandwidth, n = input$contourSmoothness, lims = c(xmin,xmax, ymin,ymax))
-		#dens <- bkde2D(df, range.x = list(c(xmin,xmax), c(ymin,ymax)),
-		#	bandwidth = bandwidth, 
-		#	gridsize =c(51,51)*input$contourSmoothness)
-
-		return(contourLines(x = dens$x, y = dens$y, z = dens$z, nlevels = nlevels))
-	})
-
-	get_weighted_density <- reactive({
-		df <- get_file()
 		x <- df[[1]]
 		y <- df[[2]]
-		val <- df[[3]]
 
 		nlevels <- input$binNumber 
-		bandwidth <- c(bandwidth.nrd(x), bandwidth.nrd(y))*input$gaussianRadius #c(bw.ucv(x),bw.ucv(y))*input$gaussianRadius
+		bandwidth <- c(bandwidth.nrd(x), bandwidth.nrd(y))*input$gaussianRadius 
+		
 		xmin <- min(x) - bandwidth[[1]]*nlevels
 		xmax <- max(x) + bandwidth[[1]]*nlevels
 		
 		ymin <- min(y) - bandwidth[[2]]*nlevels
 		ymax <- max(y) + bandwidth[[2]]*nlevels
 		
-		dens <- kde2d.weighted(x, y, val, h = bandwidth, n = input$contourSmoothness, lims = c(xmin,xmax, ymin,ymax))
-		
+		if(is.null(df$Value)){
+			dens <- kde2d(x, y, h = bandwidth, n = input$contourSmoothness, lims = c(xmin,xmax, ymin,ymax))
+		}
+		else{
+			dens <- kde2d.weighted(x, y, df$Value, h = bandwidth, n = input$contourSmoothness, lims = c(xmin,xmax, ymin,ymax))
+		}
+
 		return(contourLines(x = dens$x, y = dens$y, z = dens$z, nlevels = nlevels))
-		
 	})
+
 	
 	# see if a given layer name is shown or hidden by user
 	layer_selected <- function(name){
@@ -131,11 +115,19 @@ shinyServer(function(input, output, session){
 		
 		if(layer_selected("showPoints")){
 			print("GETPOINTS")
+			
 			df <- get_file()
+			
+			popup_message <- paste0("Latitude: ", df$Latitude, "<br/>Longitude: ", df$Longitude)
+			if(!is.null(df$Value)){
+				popup_message <- paste0(popup_message, "<br/>Value: ", df$Value)
+			}
+			
 			m <- addCircles(m, opacity = input$pointOpacity, 
-				radius =  input$pointSize,  
-				weight = input$pointSize, 
-				popup = as.character(paste0("Latitude: ", df$Latitude, "<br/>Longitude: ", df$Longitude)))
+			radius =  input$pointSize,  
+			weight = input$pointSize, 
+			popup = as.character(popup_message))
+			
 		}
 		
 		return(m)
@@ -161,12 +153,8 @@ shinyServer(function(input, output, session){
 	
 	get_contour_shapes <- function(m){
 		print("GETCONTOURS")
-		if(is.null(get_file()$Value)){
-			cl <- get_density()
-		}
-		else{
-			cl <- get_weighted_density()
-		}
+	
+		cl <- get_density()
 		max_cl <- length(cl)
 		
 		cl_levels <- as.character(unique(unlist(lapply(cl, function(x){x$level}))))
