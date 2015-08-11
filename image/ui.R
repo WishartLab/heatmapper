@@ -34,7 +34,7 @@ shinyUI(fluidPage(
 	  		choices = c(
 	  		"Upload Grid" = 'gridUpload', 
 	  		"Example Grid" = 'gridExample'), 
-	  		selected = 'gridExample'
+	  		selected = 'gridUpload'
 	  	),
 	  	
 	  	conditionalPanel(condition = "input.gridSelect == 'gridUpload'",

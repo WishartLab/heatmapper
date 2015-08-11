@@ -336,7 +336,7 @@ shinyServer(function(input, output, session){
 			x_val <- values$data$x[[values$index]]
 			y_val <- values$data$y[[values$index]]
 			
-			geom_point(x = x_val, y = y_val, colour = "yellow", size = 4)
+			geom_point(x = x_val, y = y_val, fill = "yellow", size = 5, colour="black", pch=22)
 		}
 		else{
 			NULL
