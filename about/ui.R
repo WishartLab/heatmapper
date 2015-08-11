@@ -1,7 +1,7 @@
 source("../global_ui.R")
 
 shinyUI(fluidPage(
-	HEAD_TASKS("#introductionTab"),
+	HEAD_TASKS("#aboutTab"),
 	
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
