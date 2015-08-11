@@ -1,6 +1,3 @@
-library(jscolourR)
-library(spin)
-library(shinyBS)
 source("../global_ui.R")
 library(leaflet)
 

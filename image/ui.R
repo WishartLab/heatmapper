@@ -1,6 +1,3 @@
-library(spin)
-library(shinyBS)
-library(jscolourR)
 source("../global_ui.R")
 
 shinyUI(fluidPage(
