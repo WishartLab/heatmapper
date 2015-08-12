@@ -1,11 +1,17 @@
 library(shiny)
 shinyServer(function(input, output, session){
 	output$instructions <- renderUI({
-		includeHTML(paste0("www/instructions/", input$navlistPanel, ".html"))
+		list(
+			tags$script(paste0("$('instructionsTab').addClass('active');")), 
+			includeHTML(paste0("www/instructions/", input$navlistPanel, ".html"))
+		)
 	})
 	
 	output$gallery <- renderUI({
-		includeHTML(paste0("www/gallery/", input$navlistPanel, ".html"))
+		list(
+			tags$script(paste0("$('galleryTab').addClass('active');")), 
+			includeHTML(paste0("www/gallery/", input$navlistPanel, ".html"))
+		)
 	})
 	
 })
