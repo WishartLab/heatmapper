@@ -13,6 +13,11 @@ $(document).ready(function() {
       }
     }, 100)
     
+    /* redirect to home page when navbar-brand is clicked */
+    $("#heatmapper-logo").on("click", function(){
+            window.location.href = "/";
+    });
+    
     /* clear file button control */
     var fileControl = $("#file");
 
