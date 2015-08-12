@@ -1,6 +1,12 @@
+library(shiny)
 source("../global_about.R")
+server <- function(input, output) {
+	output$gallery <- renderUI({
+		includeHTML(paste0("www/", input$navlistPanel, ".html"))
+	})
+}
 
-shinyUI(fluidPage(
+ui <- fluidPage(
 	NAVBAR("#aboutTab"),
 
 	sidebarLayout(
@@ -13,4 +19,6 @@ shinyUI(fluidPage(
 			uiOutput("gallery")
 		)
 	)
-))
+)
+
+shinyApp(ui = ui, server = server)

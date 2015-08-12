@@ -1,16 +1,9 @@
-server <- function(input, output) {
-  output$distPlot <- renderPlot({
-    hist(rnorm(input$obs), col = 'darkgray', border = 'white')
-  })
-}
+library(shiny)
+server <- function(input, output) {}
 
 ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("obs", "Number of observations:", min = 10, max = 500, value = 100)
-    ),
-    mainPanel(plotOutput("distPlot"))
-  )
+	includeHTML("www/navbar.html"),
+	includeHTML("www/index.html")
 )
 
 shinyApp(ui = ui, server = server)

@@ -1,8 +1,11 @@
+library(shiny)
 source("../global_about.R")
+server <- function(input, output) {}
 
-shinyUI(fluidPage(
+ui <- fluidPage(
 	NAVBAR("#aboutTab"),
 	titlePanel("Contact"),
-	tags$br(),
 	includeHTML("www/contact.html")
-))
+)
+
+shinyApp(ui = ui, server = server)
