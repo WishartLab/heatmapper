@@ -7,7 +7,7 @@ shinyUI(fluidPage(
 			NAVLIST_PANEL()
 		),
 		mainPanel(id = "mainPanel",
-			titlePanel("Instruction"),
+			titlePanel("Instructions"),
 			tags$br(),
 			uiOutput("instructions")
 		)
