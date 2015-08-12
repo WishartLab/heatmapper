@@ -12,6 +12,10 @@ NAVLIST_PANEL <- function(){
 NAVBAR <- function(activeTab){
     list(
         includeHTML("../../www/navbar.html"),
-        tags$script(paste0("$('", activeTab, "').addClass('active');"))
+        tags$script(
+            paste0("$('", activeTab, "').addClass('active');
+            $('#heatmapper-logo').on('click', function(){ window.location.href = '/'; });")
+        )
+        
     )
 }
