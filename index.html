@@ -1,38 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+		<meta charset="UTF-8">
+		
+		<title>Heatmapper</title>
+        
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+		
+		<script> $(function(){ $("#navbar").load("www/navbar.html"); }); </script>
     </head>  
+	
     <body>
 		<div class="container-fluid">
-			<nav class="navbar navbar-default navbar-static-top" role="navigation">
-				<div class="navbar-header">
-					<span class = "navbar-brand">Heatmapper</span>
-				</div>
-				<ul class="nav navbar-nav">
-					<li id="microarrayTab"><a href="/microarray">Microarray</a></li>
-					<li id="latlongTab"><a href="/latitude_longitude">Latitude/Longitude</a></li>
-					<li id="choroplethTab"><a href="/choropleth">Choropleth</a></li>
-					<li id="distanceMatrixTab"><a href="/distance_matrix">Distance Matrix</a></li>
-					<li id="imageTab"><a href="/image">Image Overlay</a></li>
-					<li id="aboutTab" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							About<b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li id="instructionsTab"><a href="/about/instructions">Instructions</a></li>
-							<li id="galleryTab"><a href="/about/gallery">Gallery</a></li>
-							<li id="contactTab"><a href="/about/contact">Contact</a></li>
-							<li><a href="http://www.github.com/sbabicki/heatmapper">GitHub</a></li>
-			        	</ul>
-					</li>
-				</ul>
-			</nav>
+			<div id="navbar"></div>
 			
-			Coming Soon!
+			<h2>Coming Soon!</h2>
 		</div>
     </body>
 </html>	
