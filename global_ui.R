@@ -69,7 +69,7 @@ FILE_UPLOAD_PANEL <- function(selected = 'fileUpload'){
     	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
         fluidRow(
             column(8, fileInput('file', label = NULL)), 
-            column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;'>Clear File</button>"))  
+            column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;font-size:12px;'>Clear File</button>"))  
         )
     )
 	)

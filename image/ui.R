@@ -22,7 +22,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  	conditionalPanel(condition = "input.imageSelect == 'imageUpload'",
 	  		fluidRow(
 	  			column(8, fileInput('imageFile', label = NULL)), 
-	  			column(4, HTML("<button id='clearImage' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
+	  			column(4, HTML("<button id='clearImage' class='action-button' style='display:inline;float:right;font-size:12px;'>Clear File</button>"))
 	  		)
 	  	),
 	  	
@@ -37,7 +37,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  	conditionalPanel(condition = "input.gridSelect == 'gridUpload'",
 	  		fluidRow(
 	  			column(8, fileInput('gridFile', label = NULL)), 
-	  			column(4, HTML("<button id='clearGrid' class='action-button' style='display:inline;float:right;'>Clear File</button>"))
+	  			column(4, HTML("<button id='clearGrid' class='action-button' style='display:inline;float:right;font-size:12px;'>Clear File</button>"))
 	  		)
 	  	),
 	  	
