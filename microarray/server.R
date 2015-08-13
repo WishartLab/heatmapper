@@ -103,16 +103,19 @@ shinyServer(function(input, output, session){
 	})
 	
 	observe({
-		if(clust_select("row")){
-			values$rowMatrix <- get_data_matrix()
-			get_row_dist()
-			get_row_hclust()
-		}
-		if(clust_select("col")){
-			values$colMatrix <- t(get_data_matrix())
-			get_col_dist()
-			get_col_hclust()
-		}
+		tryCatch({
+			if(clust_select("row")){
+				values$rowMatrix <- get_data_matrix()
+				get_row_dist()
+				get_row_hclust()
+			}
+			if(clust_select("col")){
+				values$colMatrix <- t(get_data_matrix())
+				get_col_dist()
+				get_col_hclust()
+			}
+		}, 
+		error = function(err){})
 	})
 	
 	################# remove_strings ################# 
@@ -177,27 +180,32 @@ shinyServer(function(input, output, session){
 		
 		#print(mem_used())
 		#print(object_size(hr))
-		heatmap.2(x,
-			na.color = input$missingColour, 
-			key=FALSE, 
-			symkey=FALSE, 
-			density.info="none", 
-			trace="none",
-			
-			keysize=0.6, 
-			offsetCol = 0, 
-			offsetRow = 0,
-			
-			dendrogram = dend_select(),
-			Rowv = hr, 
-			Colv = hc, 
-			col = get_colour_palette()(input$binNumber), 
-			scale = input$scale,
-			main = input$title, 
-			xlab = input$xlab, 
-			ylab = input$ylab
-		)
-		graphics.off()
+		tryCatch({
+			heatmap.2(x,
+				na.color = input$missingColour, 
+				key=FALSE, 
+				symkey=FALSE, 
+				density.info="none", 
+				trace="none",
+				
+				keysize=0.6, 
+				offsetCol = 0, 
+				offsetRow = 0,
+				
+				dendrogram = dend_select(),
+				Rowv = hr, 
+				Colv = hc, 
+				col = get_colour_palette()(input$binNumber), 
+				scale = input$scale,
+				main = input$title, 
+				xlab = input$xlab, 
+				ylab = input$ylab
+			)
+			graphics.off()
+		},
+		error = function(err){
+			validate(txt="Heatmap could not be displayed.\nPlease ensure that the file you uploaded is valid.")
+		})
 	})
 	
 	################# Display Heatmap ################# 
