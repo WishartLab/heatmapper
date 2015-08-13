@@ -40,7 +40,9 @@ HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 		tags$head(
 			# HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),
 			tags$style("
+                input[type='file'] {width:15em;}
 				.toggleButton {width:100%;} 
+                .clearButton {float:right; font-size:12px;}
 				.fa-angle-down:before, .fa-angle-up:before {float:right;}
 				#lowColour, #highColour, #midColour {width:100%}
 				#file_progress {height:0;}
@@ -67,11 +69,9 @@ FILE_UPLOAD_PANEL <- function(selected = 'fileUpload'){
 				"Example File" = 'example'), 
     	selected = selected),
     	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
-        fluidRow(
-            column(8, fileInput('file', label = NULL)), 
-            column(4, HTML("<button id='clearFile' class='action-button' style='display:inline;float:right;font-size:12px;'>Clear File</button>"))  
+            HTML("<button id='clearFile' class='action-button clearButton'>Clear File</button>"), 
+            fileInput('file', label = NULL)
         )
-    )
 	)
 }
 

@@ -16,7 +16,7 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 			
 			FILE_UPLOAD_PANEL(),
 			EXAMPLE_FILE_SELECT(),
-	  	
+		
 			fluidRow(
 				column(3, tags$label("Area to use")),
 				column(9, 
