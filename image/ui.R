@@ -1,7 +1,7 @@
 source("../global_ui.R")
 
-shinyUI(fluidPage(
-	HEAD_TASKS("#imageTab", "65%", "50%"),
+shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Overlay", 
+	
 	tags$head(
 		tags$style("
 			#xyCoordsError {display:inline;}
@@ -146,4 +146,4 @@ shinyUI(fluidPage(
 		)
 	),
 	INCLUDE_JS()
-))
+)))

@@ -1,8 +1,8 @@
 source("../global_ui.R")
 library(d3heatmap)
 
-shinyUI(fluidPage(
-	HEAD_TASKS("#distanceMatrixTab", "50%", "40%"),
+shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "Distance Matrix", 
+	
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
 			
@@ -53,4 +53,4 @@ shinyUI(fluidPage(
 				tabPanel(title = "Table", tags$br(), dataTableOutput("table"))
 				))),	
 	INCLUDE_JS()
-	))
+)))

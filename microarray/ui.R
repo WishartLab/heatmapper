@@ -5,8 +5,7 @@ library(d3heatmap)
 # maximum number of nested expressions to be evaluated
 options(expressions = 500000)
 
-shinyUI(fluidPage(
-	HEAD_TASKS("#microarrayTab"),
+shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
 	
 	sidebarLayout(
     sidebarPanel(id = "sidebarPanel",
@@ -126,5 +125,4 @@ shinyUI(fluidPage(
 	), 
 	
 	INCLUDE_JS()
-	)
-)
+)))

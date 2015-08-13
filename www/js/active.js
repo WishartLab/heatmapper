@@ -63,25 +63,4 @@ $(document).ready(function() {
         }
     }
     
-    
-    /* readonly */ 
-    var tabSelections = document.getElementById("tabSelections"); 
-    tabSelections.addEventListener("click", modifyTabs);
-    
-    function modifyTabs(e) {
-
-        var activeTab = e.target.innerHTML;
-        
-        if(activeTab == 'Plot'){
-        	document.getElementById('ylab').readOnly = false;
-        	document.getElementById('xlab').readOnly = false;
-        	document.getElementById('title').readOnly = false;
-        }
-        else{
-        	document.getElementById('ylab').readOnly = true;
-        	document.getElementById('xlab').readOnly = true;
-        	document.getElementById('title').readOnly = true;
-        }
-    }
-    
 })	

@@ -1,8 +1,7 @@
 source("../global_ui.R")
 library(leaflet)
 
-shinyUI(fluidPage(
-	HEAD_TASKS("#choroplethTab"),
+shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
   
 	# Add a little CSS to make the map background pure white
   tags$head(
@@ -96,4 +95,4 @@ shinyUI(fluidPage(
 				dataTableOutput("regionNames"))
 			))),
 	INCLUDE_JS()
-))
+)))

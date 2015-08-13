@@ -1,8 +1,8 @@
 source("../global_ui.R")
 library(leaflet)
 
-shinyUI(fluidPage(
-	HEAD_TASKS("#latlongTab"),
+shinyUI(list(HEAD_TASKS("#latlongTab"), fluidPage(title = "Latitude/Longitude",
+	
 	
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
@@ -73,4 +73,4 @@ shinyUI(fluidPage(
 		)
 	), 
 	INCLUDE_JS()
-))
+)))
