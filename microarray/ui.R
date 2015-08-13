@@ -7,7 +7,7 @@ options(expressions = 500000)
 
 shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
 	
-	sidebarLayout(
+	sidebarLayout(position = "right",
     sidebarPanel(id = "sidebarPanel",
 			FILE_UPLOAD_PANEL('example'),
     	EXAMPLE_FILE_SELECT(),

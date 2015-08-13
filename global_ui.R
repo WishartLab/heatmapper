@@ -42,10 +42,10 @@ HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 			tags$style("
 				.toggleButton {width:100%;} 
 				.fa-angle-down:before, .fa-angle-up:before {float:right;}
-				#lowColour, #highColour, #missingColour, #midColour {width:100%}
+				#lowColour, #highColour, #midColour {width:100%}
 				#file_progress {height:0;}
 				#sidebarPanel {width:23.45em;}
-				#mainPanel {left:24.45em; position:absolute;}
+				#mainPanel {left:24.45em; position:absolute; min-width:25em;}
 				#tableDownload {float:right;}")
 		),
 		div(class = "busy", 

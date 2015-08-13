@@ -11,7 +11,7 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 			box-shadow: 0 0 15px rgba(0,0,0,0.2); }")
   ),
 	
-	sidebarLayout(
+	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel",
 			
 			FILE_UPLOAD_PANEL(),

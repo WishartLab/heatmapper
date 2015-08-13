@@ -3,8 +3,7 @@ library(leaflet)
 
 shinyUI(list(HEAD_TASKS("#latlongTab"), fluidPage(title = "Latitude/Longitude",
 	
-	
-	sidebarLayout(
+	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel",
 			FILE_UPLOAD_PANEL('example'),
 			
