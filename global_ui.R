@@ -48,7 +48,7 @@ HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 				#file_progress {height:0;}
 				#sidebarPanel {width:23.45em;}
 				#mainPanel {left:24.45em; position:absolute; min-width:25em;}
-				#tableDownload {float:right;}")
+				#tableDownload, #exampleButton {float:right;}")
 		),
 		div(class = "busy", 
 			absolutePanel(width = "50px", height = "100px",
@@ -80,20 +80,19 @@ EXAMPLE_FILE_SELECT <- function(){
 	list(
 		conditionalPanel(condition = "input.chooseInput == 'example'",
 			tags$label(SELECT_EXAMPLE), 
-			fluidRow(
-				column(9,
-					selectInput('exampleFiles',
-						label = NULL,
-						choices = c(
-							"Example 1" = 'example_input/example1.txt',
-							"Example 2" = 'example_input/example2.txt',
-							"Example 3" = 'example_input/example3.txt'),
-						selected = 1)),
-	  			column(2,	
-	  				actionButton('exampleButton', label = NULL, class = "btn-info",icon = icon("fa fa-info-circle")), 
-	  				bsTooltip(id = "exampleButton", title = "View Example File Details", placement = "right"))
-				),
-	  		
+            tags$br(),
+            
+            actionButton('exampleButton', label = NULL, class = "btn-info", icon = icon("fa fa-info-circle")),
+            bsTooltip(id = "exampleButton", title = "View Example File Details", placement = "right"), 
+             
+            selectInput('exampleFiles', width="16.5em",
+				label = NULL,
+				choices = c(
+					"Example 1" = 'example_input/example1.txt',
+					"Example 2" = 'example_input/example2.txt',
+					"Example 3" = 'example_input/example3.txt'),
+				selected = 1),
+            
 	  		conditionalPanel(condition = "input.exampleButton>0",
 	  			wellPanel(id = "exampleInfo",
 	  				tags$label("Example File Information"),

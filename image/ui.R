@@ -20,10 +20,8 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  		selected = 'imageUpload'
 	  	),
 	  	conditionalPanel(condition = "input.imageSelect == 'imageUpload'",
-	  		fluidRow(
-	  			column(8, fileInput('imageFile', label = NULL)), 
-	  			column(4, HTML("<button id='clearImage' class='action-button clearButton'>Clear File</button>"))
-	  		)
+	  		HTML("<button id='clearImage' class='action-button clearButton'>Clear File</button>"),
+	  		fileInput('imageFile', label = NULL)
 	  	),
 	  	
 	  	radioButtons('gridSelect', label = "Select Grid File", 
@@ -35,10 +33,8 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  	),
 	  	
 	  	conditionalPanel(condition = "input.gridSelect == 'gridUpload'",
-	  		fluidRow(
-	  			column(8, fileInput('gridFile', label = NULL)), 
-	  			column(4, HTML("<button id='clearGrid' class='action-button clearButton'>Clear File</button>"))
-	  		)
+	  		HTML("<button id='clearGrid' class='action-button clearButton'>Clear File</button>"), 
+	  		fileInput('gridFile', label = NULL)
 	  	),
 	  	
 	  	LAYERS_SELECT(
