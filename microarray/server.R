@@ -5,6 +5,10 @@ library(ggdendro)
 # memory testing
 library(pryr)
 
+ERR_file_upload <- "Please upload a file"
+ERR_file_read <- "File could not be read. Please ensure that the file you uploaded is valid."
+ERR_plot_display <- "Heatmap could not be displayed. Please ensure that the file you uploaded is valid."
+
 shinyServer(function(input, output, session){
 	
 	# source: http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels
@@ -24,8 +28,16 @@ shinyServer(function(input, output, session){
 		values$file <- NULL
 	})
 	
+	# update values$file when a file is uploaded, set to NA if file cannot be read
 	observe({
-		values$file <- input$file
+		if(!is.null(input$file$datapath)){
+			tryCatch({
+				values$file <- read.delim(input$file$datapath)
+			}, 
+			error = function(err){
+				values$file <- NA
+			})
+		}
 	})
 	
 	# try to update reactive values when row and/or col clustering is selected
@@ -40,7 +52,7 @@ shinyServer(function(input, output, session){
 			if(clust_selected("col")){
 				update_col_clust()
 			}
-		}, TRUE)
+		})
 	})
 	
 	################################## HELPER FUNCTIONS ##################################
@@ -48,24 +60,23 @@ shinyServer(function(input, output, session){
 	# returns raw data from file input or selected example file
 	get_file <- reactive({
 		if(input$chooseInput == 'fileUpload'){
-			validate(need(!is.null(values$file$datapath), "Please upload a file"))
-			data <- read.delim(values$file$datapath)
+			values$file
 		}
 		else{
-			data <- read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
+			read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
 		}
-		return(data)
 	})
 	
 	# converts file from data.frame to data.matrix
 	# returns data matrix or NULL if non valid input
 	get_data_matrix <- reactive({
+		validate(need(!is.null(get_file()), ERR_file_upload))
 		tryCatch({
 			data <- remove_strings(get_file())
 			return(data.matrix(data))
 		}, 
 		error = function(err){
-			return(NULL)
+			validate(txt = ERR_file_read)
 		})
 	})
 	
@@ -77,17 +88,21 @@ shinyServer(function(input, output, session){
 	# calculates and returns a distance matrix
 	# param: data matrix
 	get_dist <- function(x){
-
-		# replace all non-finite values with 0
-		x[!rowSums(!is.finite(x)),]
-		x[!is.finite(x)] <- 0
-		
-		if(input$distanceMethod == 'euclidean' || input$distanceMethod == 'manhattan'){
-			dist(x, method = input$distanceMethod)
-		}
-		else{
-			as.dist(1-cor(t(data.matrix(x)), method=input$distanceMethod))
-		}
+		tryCatch({
+			# replace all non-finite values with 0
+			x[!rowSums(!is.finite(x)),]
+			x[!is.finite(x)] <- 0
+			
+			if(input$distanceMethod == 'euclidean' || input$distanceMethod == 'manhattan'){
+				dist(x, method = input$distanceMethod)
+			}
+			else{
+				as.dist(1-cor(t(data.matrix(x)), method=input$distanceMethod))
+			}
+		}, 
+		error = function(err){
+			NULL
+		})
 	}
 	
 	# calculates and returns an hclust object using get_dist() distance matrix
@@ -95,7 +110,12 @@ shinyServer(function(input, output, session){
 	get_hclust <- function(x){
 
 		if(input$clusterMethod != 'none'){
-			hclust(x, method = input$clusterMethod)
+			tryCatch({
+				hclust(x, method = input$clusterMethod)
+			}, 
+			error = function(err){
+				NA
+			})
 		}
 		else{
 			NULL
@@ -105,15 +125,19 @@ shinyServer(function(input, output, session){
 	# updated when change in file, dist method, or hclust method
 	# sets values$rowMatrix and values$rowHclust
 	update_row_clust <- reactive({
-		values$rowMatrix <- get_data_matrix()
-		values$rowHclust <- get_hclust( get_dist(values$rowMatrix) )
+		if(!is.null(get_file())){
+			values$rowMatrix <- get_data_matrix()
+			values$rowHclust <- get_hclust( get_dist(values$rowMatrix) )
+		}
 	})
 	
 	# updated when change in file, dist method, or hclust method
 	# sets values$colMatrix and values$colHclust
 	update_col_clust <- reactive({
-		values$colMatrix <- t(get_data_matrix())
-		values$colHclust <- get_hclust( get_dist(values$colMatrix) )
+		if(!is.null(get_file())){
+			values$colMatrix <- t(get_data_matrix())
+			values$colHclust <- get_hclust( get_dist(values$colMatrix) )
+		}
 	})
 
 	# removes strings from file content and assigns the 'NAME' column as the row labels
@@ -128,7 +152,7 @@ shinyServer(function(input, output, session){
 		try({
 			nameRow <- x[,name]
 			rownames(nums) <- make.names(nameRow, unique=TRUE)
-		}, TRUE)
+		})
 		
 		return(nums)
 	}
@@ -199,8 +223,7 @@ shinyServer(function(input, output, session){
 	get_plot <- reactive({
 		
 		x <- get_data_matrix()
-		validate(need(!is.null(x), "File could not be read. Please ensure that the file you uploaded is valid."))
-
+		
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
@@ -225,14 +248,19 @@ shinyServer(function(input, output, session){
 			graphics.off()
 		},
 		error = function(err){
-			validate(txt="Heatmap could not be displayed. Please ensure that the file you uploaded is valid.")
+			validate(txt=ERR_plot_display)
 		})
 	})
 	
+	# returns the result of ggdendrogram() on param x
 	get_dendrogram_plot <- function(x, message){
+		validate(need(!is.null(get_file()), ERR_file_upload))
 		validate(need(!is.null(x), paste0("Select a clusting method and apply clustering to ", message, " to view this dendrogram")))
+		validate(need(!is.na(x), ERR_file_read))
+		
 		x$labels <- strtrim(x$labels, 60)
 		ggdendrogram(x, rotate = TRUE)
+
 	}
 	
 	################################## OUTPUT FUNCTIONS ##################################
@@ -257,26 +285,31 @@ shinyServer(function(input, output, session){
 		validate(need(length(x) < 10000, 
 			"File is too large for this feature. Please select a smaller file with no more than 10,000 cells."))
 		
-		d3heatmap(x, 
-			Rowv = get_dendrograms()[[1]], 
-			Colv = get_dendrograms()[[2]],  
-			colors = get_colour_palette()(3),
-			scale = input$scale, 
-			show_grid = FALSE, 
-			anim_duration = 0)
+		tryCatch({
+			d3heatmap(x, 
+				Rowv = get_dendrograms()[[1]], 
+				Colv = get_dendrograms()[[2]],  
+				colors = get_colour_palette()(3),
+				scale = input$scale, 
+				show_grid = FALSE, 
+				anim_duration = 0)
+		}, 
+		error = function(err){
+			validate(txt=ERR_plot_display)
+		})
 	})
 	
 	# row dendrogram plot
 	output$rowDendrogram <- renderPlot({
 		validate(need(clust_selected("row"), "Apply clustering to rows to view this dendrogram"))
 		get_dendrogram_plot(values$rowHclust, "row")
-	}, height = reactive({ifelse(is.null(values$rowHclust), 100, length(values$rowHclust$labels)*12)}) )
+	}, height = reactive({ifelse(is.null(values$rowHclust) || is.na(values$rowHclust), 100, length(values$rowHclust$labels)*12)}) )
 	
 	# col dendrogram plot
 	output$colDendrogram <- renderPlot({
 		validate(need(clust_selected("col"), "Apply clustering to columns to view this dendrogram"))
 		get_dendrogram_plot(values$colHclust, "column")
-	}, height = reactive({ifelse(is.null(values$colHclust), 100, length(values$colHclust$labels)*12)}) )
+	}, height = reactive({ifelse(is.null(values$colHclust) || is.na(values$colHclust), 100, length(values$colHclust$labels)*12)}) )
 	
 	# display table
 	output$table <- renderDataTable({
