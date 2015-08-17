@@ -11,7 +11,7 @@ ERR_plot_display <- "Heatmap could not be displayed. Please ensure that the file
 
 shinyServer(function(input, output, session){
 	
-	# source: http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels
+	# http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels
 	output$activeTab <- reactive({return(input$tabSelections)})
   outputOptions(output, 'activeTab', suspendWhenHidden=FALSE)
 	
@@ -89,6 +89,7 @@ shinyServer(function(input, output, session){
 	# param: data matrix
 	get_dist <- function(x){
 		tryCatch({
+			# http://stackoverflow.com/questions/15773189/remove-na-nan-inf-in-a-matrix
 			# replace all non-finite values with 0
 			x[!rowSums(!is.finite(x)),]
 			x[!is.finite(x)] <- 0

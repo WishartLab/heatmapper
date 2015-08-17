@@ -4,7 +4,7 @@ library(d3heatmap)
 shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "Distance Matrix", 
 	
 	sidebarLayout(position = "right",
-		sidebarPanel(id = "sidebarPanel",
+		sidebarPanel(id = "sidebarPanel", width = 1,
 			
 			FILE_UPLOAD_PANEL('example'), 
 			

@@ -10,7 +10,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	),
 	
 	sidebarLayout(position = "right",
-	  sidebarPanel(id = "sidebarPanel",
+	  sidebarPanel(id = "sidebarPanel", width = 1,
 	  	
 	  	radioButtons('imageSelect', label = "Select Image File", 
 	  		inline=TRUE, 
