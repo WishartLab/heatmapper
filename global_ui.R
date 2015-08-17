@@ -2,6 +2,11 @@ library(jscolourR)
 library(spin)
 library(shinyBS)
 
+# error messages
+ERR_file_upload <- "Please upload a file"
+ERR_file_read <- "File could not be read. Please ensure that the file you uploaded is valid."
+ERR_plot_display <- "Heatmap could not be displayed. Please ensure that the file you uploaded is valid."
+
 # FILE_UPLOAD_PANEL()
 FILE_UPLOAD <- "Select Data File" 
 

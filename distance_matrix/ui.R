@@ -31,7 +31,9 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 			
 			ADVANCED_OPTIONS_PANEL(
 				list(
-					checkboxInput('asp', label = "Set Aspect Ratio = 1", value = TRUE),
+					checkboxInput('reverseOrder', label = tags$strong("Reverse Data Order"), TRUE), 
+					
+					checkboxInput('asp', label = tags$strong("Set Aspect Ratio = 1"), value = TRUE),
 					
 		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
 					

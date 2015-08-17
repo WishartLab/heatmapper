@@ -64,6 +64,9 @@ shinyServer(function(input, output, session){
 	# melt data
 	melt_file <- reactive({
 		file <- get_file()
+		if(input$reverseOrder){
+			file <- rev(file)
+		}
 
 		if(!is.null(file)){
 			
@@ -129,10 +132,7 @@ shinyServer(function(input, output, session){
 	get_plot <- reactive({
 		
 		data <- melt_file()
-		
-		if(is.null(data)){
-			return(NULL)
-		}
+		validate(need(!is.null(data), ERR_file_upload))
 		
 		q <- ggplot(aes(x=cols, y=rows), 
 			data = transform(data, binned = cut(value, breaks = input$binNumber, include.lowest = TRUE))) + 

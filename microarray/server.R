@@ -5,10 +5,6 @@ library(ggdendro)
 # memory testing
 library(pryr)
 
-ERR_file_upload <- "Please upload a file"
-ERR_file_read <- "File could not be read. Please ensure that the file you uploaded is valid."
-ERR_plot_display <- "Heatmap could not be displayed. Please ensure that the file you uploaded is valid."
-
 shinyServer(function(input, output, session){
 	
 	# http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels
