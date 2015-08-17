@@ -38,7 +38,7 @@ shinyServer(function(input, output, session){
 	# retrieve original data
 	get_file <- reactive({
 		if(input$chooseInput == 'example'){
-			file <- read_file("data/dist.txt")
+			file <- read_file(input$exampleFiles)
 		}
 		else {
 			if(is.null(values$file$datapath)){

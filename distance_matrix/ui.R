@@ -7,7 +7,7 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 		sidebarPanel(id = "sidebarPanel", width = 1,
 			
 			FILE_UPLOAD_PANEL('example'), 
-			
+			EXAMPLE_FILE_SELECT(),
 			COLOUR_SCHEME_SELECT(), 
 			
 			conditionalPanel(condition = "input.colourScheme == 'custom'",	
