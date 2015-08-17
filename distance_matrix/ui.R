@@ -52,8 +52,8 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 		mainPanel(id = "mainPanel",
 			tabsetPanel(id = "tabSelections", type = "tabs", 
 				tabPanel(title = "Plot", tags$br(), 
-					plotOutput("map", height = 500)),
-				tabPanel(title = "Interactive", tags$br(), tags$br(), d3heatmapOutput("d3map", height = 500)),
+					plotOutput("map")),
+				tabPanel(title = "Interactive", tags$br(), d3heatmapOutput("d3map", height = 500)),
 				tabPanel(title = "Table", tags$br(), dataTableOutput("table"))
 				))),	
 	INCLUDE_JS()

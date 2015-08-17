@@ -142,7 +142,7 @@ shinyServer(function(input, output, session){
 		
 		# subset of numeric values
 		nums <- x[,sapply(x, is.numeric)]
-		
+
 		# try to find a column with title name
 		name = 'NAME'
 		
@@ -254,7 +254,7 @@ shinyServer(function(input, output, session){
 		validate(need(!is.null(get_file()), ERR_file_upload))
 		validate(need(!is.null(x), paste0("Select a clusting method and apply clustering to ", message, " to view this dendrogram")))
 		validate(need(!is.na(x), ERR_file_read))
-		
+
 		x$labels <- strtrim(x$labels, 60)
 		ggdendrogram(x, rotate = TRUE)
 
@@ -279,7 +279,7 @@ shinyServer(function(input, output, session){
 	output$d3map <- renderD3heatmap({
 		x <- get_data_matrix()
 		
-		validate(need(length(x) < 10000, 
+		validate(need(length(x) <= 10000, 
 			"File is too large for this feature. Please select a smaller file with no more than 10,000 cells."))
 		
 		tryCatch({
@@ -300,13 +300,13 @@ shinyServer(function(input, output, session){
 	output$rowDendrogram <- renderPlot({
 		validate(need(clust_selected("row"), "Apply clustering to rows to view this dendrogram"))
 		get_dendrogram_plot(values$rowHclust, "row")
-	}, height = reactive({ifelse(is.null(values$rowHclust) || is.na(values$rowHclust), 100, length(values$rowHclust$labels)*12)}) )
+	}, height = reactive({ifelse(is.null(values$rowHclust) || is.na(values$rowHclust), 100, length(values$rowHclust[[1]])*12)}) )
 	
 	# col dendrogram plot
 	output$colDendrogram <- renderPlot({
 		validate(need(clust_selected("col"), "Apply clustering to columns to view this dendrogram"))
 		get_dendrogram_plot(values$colHclust, "column")
-	}, height = reactive({ifelse(is.null(values$colHclust) || is.na(values$colHclust), 100, length(values$colHclust$labels)*12)}) )
+	}, height = reactive({ifelse(is.null(values$colHclust) || is.na(values$colHclust), 100, length(values$colHclust[[1]])*12)}) )
 	
 	# display table
 	output$table <- renderDataTable({

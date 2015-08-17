@@ -164,6 +164,10 @@ shinyServer(function(input, output, session){
 	#################### OUTPUT FUNCTIONS ####################
 	output$d3map <- renderD3heatmap({
 		file <- get_file()
+		print(length(file))
+		validate(need(length(file)^2 <= 50000, 
+			"File is too large for this feature. Please select a smaller file with no more than 50,000 cells."))
+		
 		if(is.null(file)){
 			return(NULL)
 		}
