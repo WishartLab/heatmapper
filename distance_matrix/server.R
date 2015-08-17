@@ -60,6 +60,7 @@ shinyServer(function(input, output, session){
 	# melt data
 	melt_file <- reactive({
 		file <- get_file()
+
 		if(!is.null(file)){
 			
 			data <- melt(file, id.vars = "cols", variable.name = "rows")

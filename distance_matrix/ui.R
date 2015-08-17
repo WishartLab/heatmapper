@@ -8,6 +8,8 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 			
 			FILE_UPLOAD_PANEL('example'), 
 			EXAMPLE_FILE_SELECT(),
+			
+			LAYERS_SELECT(c("Legend" = 'showLegend', "Axis Labels" = 'showAxisLabels'), c('showLegend', 'showAxisLabels')),
 			COLOUR_SCHEME_SELECT(), 
 			
 			conditionalPanel(condition = "input.colourScheme == 'custom'",	
