@@ -111,6 +111,16 @@ shinyServer(function(input, output, session){
 
 	}
 	
+	# finds if a string is a current selected item in input$layers
+	layer_selected <- function(layer){
+		if(length(grep(layer, input$layers))>0){
+			TRUE
+		}
+		else{
+			FALSE
+		}
+	}
+	
 	# plot using ggplot
 	get_plot <- reactive({
 		
@@ -120,8 +130,8 @@ shinyServer(function(input, output, session){
 			return(NULL)
 		}
 		
-		q <- ggplot(aes(x=cols, y=rows), data = 
-				transform(data, binned = cut(value, breaks = input$binNumber, include.lowest = TRUE))) + 
+		q <- ggplot(aes(x=cols, y=rows), 
+			data = transform(data, binned = cut(value, breaks = input$binNumber, include.lowest = TRUE))) + 
 			geom_tile(aes(fill = as.numeric(binned))) +
 			get_scale_fill_gradientn(min(data$value), max(data$value), 5)
 		
@@ -132,6 +142,17 @@ shinyServer(function(input, output, session){
 			scale_x_discrete(expand = c(0,0)) + 
 			scale_y_discrete(expand = c(0,0)) + 
 			get_asp()
+		
+		if(!layer_selected('showAxisLabels')){
+			q <- q + theme(
+		      axis.text.x=element_blank(),
+		      axis.text.y=element_blank(),
+		      axis.ticks=element_blank()) 
+		}
+		if(!layer_selected('showLegend')){
+			q <- q + guides(fill=FALSE)
+		}
+		
 		
 		return(q)
 	})
