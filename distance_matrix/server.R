@@ -23,16 +23,20 @@ shinyServer(function(input, output, session){
 	
 	#################### FILE INPUT FUNCTIONS ####################
 	# read a file given a file name
-	read_file <- function(fileName) {
+	read_file <- function(filePath, fileName = "txt") {
+		sep <- "\t"
+		if(tolower(substr(fileName, nchar(fileName)-2, nchar(fileName))) == "csv"){
+			sep <- ","
+		}
 		tryCatch({
-				scan(fileName,  nlines = 1)
+				scan(filePath,  nlines = 1, sep=sep)
 				header <<- FALSE
 			},
 			error = function(e){
 				header <<- TRUE
 			})
-		file <- read.table(fileName, header = header, sep = "\t")
-		return(file)
+
+		read.table(filePath, header = header, sep = sep)
 	}
 	
 	# retrieve original data
@@ -44,7 +48,7 @@ shinyServer(function(input, output, session){
 			if(is.null(values$file$datapath)){
 				return(NULL)
 			}
-			file <- read_file(values$file$datapath)
+			file <- read_file(values$file$datapath, values$file$name)
 		}
 
 		# if no row names are specified use the column names
