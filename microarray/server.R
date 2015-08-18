@@ -51,6 +51,13 @@ shinyServer(function(input, output, session){
 		})
 	})
 	
+	observe({
+		if(input$chooseInput == 'fileUpload'){
+			values$rowHclust <- NA
+			values$colHclust <- NA
+		}
+	})
+	
 	################################## HELPER FUNCTIONS ##################################
 
 	# returns raw data from file input or selected example file
@@ -300,13 +307,13 @@ shinyServer(function(input, output, session){
 	output$rowDendrogram <- renderPlot({
 		validate(need(clust_selected("row"), "Apply clustering to rows to view this dendrogram"))
 		get_dendrogram_plot(values$rowHclust, "row")
-	}, height = reactive({ifelse(is.null(values$rowHclust) || is.na(values$rowHclust), 100, length(values$rowHclust[[1]])*12)}) )
+	}, height = reactive({ifelse(is.null(values$rowHclust) || is.na(values$rowHclust), 100, length(values$rowHclust$labels)*10)}) )
 	
 	# col dendrogram plot
 	output$colDendrogram <- renderPlot({
 		validate(need(clust_selected("col"), "Apply clustering to columns to view this dendrogram"))
 		get_dendrogram_plot(values$colHclust, "column")
-	}, height = reactive({ifelse(is.null(values$colHclust) || is.na(values$colHclust), 100, length(values$colHclust[[1]])*12)}) )
+	}, height = reactive({ifelse(is.null(values$colHclust) || is.na(values$colHclust), 100, length(values$colHclust[[1]])*10)}) )
 	
 	# display table
 	output$table <- renderDataTable({
