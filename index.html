@@ -20,6 +20,7 @@
 			
 			figcaption {
 				text-align:center;
+				
 			}
 			th, td {
 				padding:0.2em; 
@@ -29,6 +30,17 @@
 				width:100%; 
 				margin-top:0.5em;
 			}
+			.myRow {
+				display:table-row;
+			}
+			.myCol {
+				display:table-cell;
+				width:33%;
+			}
+			.myTable {
+				border-spacing:1em;
+			}
+			
 
 		</style>
 		
@@ -50,11 +62,12 @@
 	
     <body>
 		<div id="navbar"></div>
-		<div class="container-fluid">
-			<h2>Coming Soon!</h2>
-			<div class="row">
-				<div class="col-md-4">
-					<figure class="well">
+		<div class="myTable">
+			<h2 style="margin-left:15px;">Coming Soon!</h2>
+			<div class="myRow">
+				
+				<div class="well myCol">
+					<figure>
 						<a href="/microarray">
 							<img src="www/images/microarray.png" alt="microarray" class="border-img">
 						</a>
@@ -82,8 +95,8 @@
 					 </figure>
 				</div>
 				
-				<div class="col-md-4">
-					<figure class="well">
+				<div class="well myCol">
+					<figure>
 						<a href="/distance_matrix">
 							<img src="www/images/distance_matrix.png" alt="distance matrix" class="border-img">
 						</a>
@@ -112,8 +125,8 @@
 						</figcaption>
 					 </figure>
 				</div>
-				<div class="col-md-4">
-					<figure class="well">
+				<div class="well myCol">
+					<figure>
 						<a href="/image">
 							<img src="www/images/image.png" alt="image overlay" class="border-img">
 						</a>
@@ -144,9 +157,9 @@
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="col-md-4">
-					<figure class="well">
+			<div class="myRow">
+				<div class="well myCol">
+					<figure>
 						<a href="/choropleth">
 							<img src="www/images/choropleth.png" alt="choropleth" class="border-img">
 						</a>
@@ -165,7 +178,7 @@
 										Tab Delimited Text (.txt, .dat, .tsv, .tab) or Comma Separated Values (.csv)
 									</td>
 									<td>
-										Visualize disease prevelance by country
+										Visualize disease prevalence by country
 									</td> 
 									<td>#</td>
 								</tr>
@@ -174,8 +187,8 @@
 					 </figure>
 				</div>
 				
-				<div class="col-md-4">
-					<figure class="well">
+				<div class="well myCol">
+					<figure>
 						
 						<a href="/latitude_longitude">
 							<img src="www/images/latitude_longitude.png" alt="latitude/longitude" class="border-img">
@@ -203,8 +216,8 @@
 						</figcaption>
 					 </figure>
 				</div>
-				<div class="col-md-4">
-					<figure class="well">
+				<div class="well myCol">
+					<figure>
 						
 						<a href="/about/instructions">
 							<img src="www/images/about.png" alt="about" class="border-img">
