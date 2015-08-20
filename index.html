@@ -20,16 +20,13 @@
 			
 			figcaption {
 				text-align:center;
-				
+				margin-bottom:0.5em;
 			}
-			th, td {
-				padding:0.2em; 
-				text-align:center;
+			
+			sectionStats {
+				text-align:left;
 			}
-			table {
-				width:100%; 
-				margin-top:0.5em;
-			}
+
 			.myRow {
 				display:table-row;
 			}
@@ -40,7 +37,6 @@
 			.myTable {
 				border-spacing:1em;
 			}
-			
 
 		</style>
 		
@@ -71,27 +67,23 @@
 						<a href="/microarray">
 							<img src="www/images/microarray.png" alt="microarray" class="border-img">
 						</a>
+						
 						<figcaption>
 							<h4>Microarray</h4>
-							Displays unclustered data from <a href="https://en.wikipedia.org/wiki/Microarray">microarray</a> experiments as a heatmap. 
-							Hierarchical clustering can also be performed on the data and the resulting dendrogram can be viewed. 
-							<table border="1">
-								<tr>
-									<th>Input Formats</th>
-									<th>Example Usage</th> 
-									<th>Features</th>
-								</tr>
-								<tr>
-									<td>
-										Tab Delimited Text (.txt, .dat, .tsv, .tab)
-									</td>
-									<td>
-										Cluster and visualize the results of a DNA microarray experiment to analyze gene expression levels
-									</td> 
-									<td>#</td>
-								</tr>
-							</table>
+							<em>
+								Displays unclustered data from <a href="https://en.wikipedia.org/wiki/Microarray">microarray</a> experiments as a heatmap. 
+								Hierarchical clustering can also be performed on the data and the resulting dendrogram can be viewed. 				
+							</em>
 						</figcaption>
+						
+						<div class = "sectionStats">
+							<strong>Input Formats:</strong> Tab Delimited Text (.txt, .dat, .tsv, .tab)
+							<br />
+							<strong>Example Usage:</strong> Cluster and visualize the results of a DNA microarray experiment to analyze gene expression levels
+							<br />
+							<strong>Number of Features:</strong> #
+							<br />	
+						</div>
 					 </figure>
 				</div>
 				
@@ -102,27 +94,19 @@
 						</a>
 						<figcaption>
 							<h4>Distance Matrix</h4>
-							
-							Displays a <a href=" https://en.wikipedia.org/wiki/Distance_matrix
-							">distance matrix</a> as a heatmap. 
-							
-							<table border="1">
-								<tr>
-									<th>Input Formats</th>
-									<th>Example Usage</th> 
-									<th>Features</th>
-								</tr>
-								<tr>
-									<td>
-										Tab Delimited Text (.txt, .dat, .tsv, .tab) or Comma Separated Values (.csv)
-									</td>
-									<td>
-										Visualize pairwise distances for predicting protein structure 
-									</td> 
-									<td>#</td>
-								</tr>
-							</table> 
+							<em>
+								Displays a <a href=" https://en.wikipedia.org/wiki/Distance_matrix">distance matrix</a> as a heatmap. 
+							</em>
 						</figcaption>
+						
+						<div class = "sectionStats">
+							<strong>Input Formats:</strong> Tab Delimited Text (.txt, .dat, .tsv, .tab) or Comma Separated Values (.csv)
+							<br />
+							<strong>Example Usage:</strong> Visualize pairwise distances for predicting protein structure 
+							<br />
+							<strong>Number of Features:</strong> #
+							<br />	
+						</div>
 					 </figure>
 				</div>
 				<div class="well myCol">
@@ -130,29 +114,24 @@
 						<a href="/image">
 							<img src="www/images/image.png" alt="image overlay" class="border-img">
 						</a>
+						
 						<figcaption>
 							<h4>Image Overlay</h4>
-							
-							Displays a heatmap of densities based on values at plot coordinates corresponding to an image.
-							
-							<table border="1">
-								<tr>
-									<th>Input Formats</th>
-									<th>Example Usage</th> 
-									<th>Features</th>
-								</tr>
-								<tr>
-									<td>
-										.jpeg or .png for Image, 
-										Tab Delimited Text (.txt, .dat, .tsv, .tab) for Grid
-									</td>
-									<td>
-										Create a custom heatmap of measured bacterial presence and abundance on different parts of the body  
-									</td> 
-									<td>#</td>
-								</tr>
-							</table>
+							<em>
+								Displays a heatmap of densities based on values at plot coordinates corresponding to an image.
+							</em>
 						</figcaption>
+						
+						<div class = "sectionStats">
+							<strong>Input Formats:</strong> 
+							.jpeg or .png for Image, 
+							Tab Delimited Text (.txt, .dat, .tsv, .tab) for Grid
+							<br />
+							<strong>Example Usage:</strong> Create a custom heatmap of measured bacterial presence and abundance on different parts of the body  
+							<br />
+							<strong>Number of Features:</strong> #
+							<br />	
+						</div>
 					 </figure>
 				</div>
 			</div>
@@ -163,27 +142,23 @@
 						<a href="/choropleth">
 							<img src="www/images/choropleth.png" alt="choropleth" class="border-img">
 						</a>
+						
 						<figcaption>
 							<h4>Geomap</h4>
-							Displays a <a href="https://en.wikipedia.org/wiki/Choropleth_map">choropleth</a> 
-							heatmap specified by values assigned to locations based on political boundaries. 
-							<table border="1">
-								<tr>
-									<th>Input Formats</th>
-									<th>Example Usage</th> 
-									<th>Features</th>
-								</tr>
-								<tr>
-									<td>
-										Tab Delimited Text (.txt, .dat, .tsv, .tab) or Comma Separated Values (.csv)
-									</td>
-									<td>
-										Visualize disease prevalence by country
-									</td> 
-									<td>#</td>
-								</tr>
-							</table>
+							<em>
+								Displays a <a href="https://en.wikipedia.org/wiki/Choropleth_map">choropleth</a> 
+								heatmap specified by values assigned to locations based on political boundaries. 
+							</em>
 						</figcaption>
+						
+						<div class = "sectionStats">
+							<strong>Input Formats:</strong> Tab Delimited Text (.txt, .dat, .tsv, .tab) or Comma Separated Values (.csv)
+							<br />
+							<strong>Example Usage:</strong> Visualize disease prevalence by country
+							<br />
+							<strong>Number of Features:</strong> #
+							<br />	
+						</div>
 					 </figure>
 				</div>
 				
@@ -193,27 +168,23 @@
 						<a href="/latitude_longitude">
 							<img src="www/images/latitude_longitude.png" alt="latitude/longitude" class="border-img">
 						</a>
+						
 						<figcaption>
 							<h4>Geodensity</h4>
-							Displays a heatmap of densities based on values assigned to locations specified by latitude and longitude coordinates. 
-							Density estimation calculation can be performed based on density of points or weighted by values specified for each coordinate.
-							<table border="1">
-								<tr>
-									<th>Input Formats</th>
-									<th>Example Usage</th> 
-									<th>Features</th>
-								</tr>
-								<tr>
-									<td>
-										Tab Delimited Text (.txt, .dat, .tsv, .tab) or Comma Separated Values (.csv)
-									</td>
-									<td>
-										Visualize observed animal population densities in a region
-									</td> 
-									<td>#</td>
-								</tr>
-							</table>
+							<em>
+								Displays a heatmap of densities based on values assigned to locations specified by latitude and longitude coordinates. 
+								Density estimation calculation can be performed based on density of points or weighted by values specified for each coordinate.
+							</em>
 						</figcaption>
+						
+						<div class = "sectionStats">
+							<strong>Input Formats:</strong> Tab Delimited Text (.txt, .dat, .tsv, .tab) or Comma Separated Values (.csv)
+							<br />
+							<strong>Example Usage:</strong> Visualize observed animal population densities in a region
+							<br />
+							<strong>Number of Features:</strong> #
+							<br />	
+						</div>
 					 </figure>
 				</div>
 				<div class="well myCol">
@@ -224,6 +195,10 @@
 						</a>
 						<figcaption>
 							<h4>About</h4>	
+							<em>	
+								Provides information about heatmapper.ca. 
+								The about section contains four subsections: Instructions, Gallery, Contact, and GitHub.
+							</em>
 						</figcaption>
 						<strong>Instructions:</strong>
 						View instructions on how to use each section
