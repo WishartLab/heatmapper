@@ -180,7 +180,7 @@ shinyServer(function(input, output, session){
 		m <- clearTiles(m)
 		
 		if(layer_selected("showMap")){
-			m <- addProviderTiles(m, input$mapType, options = providerTileOptions(noWrap = TRUE))
+			m <- addProviderTiles(m, input$mapType)
 			
 			# prevent zooming out further than provider tile allows
 			if(!is.null(input$map_zoom) && input$map_zoom <1){

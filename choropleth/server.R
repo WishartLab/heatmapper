@@ -288,7 +288,7 @@ shinyServer(function(input, output, session) {
 	
 	get_tiles <- function(m){
 		if(layer_selected("showTiles")){
-			addTiles(m, options = tileOptions(noWrap = TRUE))
+			addTiles(m)
 		}
 		else{
 			clearTiles(m)

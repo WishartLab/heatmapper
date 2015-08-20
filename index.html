@@ -21,6 +21,15 @@
 			figcaption {
 				text-align:center;
 			}
+			th, td {
+				padding:0.2em; 
+				text-align:center;
+			}
+			table {
+				width:100%; 
+				margin-top:0.5em;
+			}
+
 		</style>
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -51,13 +60,24 @@
 						</a>
 						<figcaption>
 							<h4>Microarray</h4>
-							
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-							Vestibulum auctor a nulla accumsan porttitor. 
-							Vivamus venenatis ligula libero, non faucibus justo venenatis ut. 
-							Quisque egestas ligula et ipsum placerat pulvinar. 
-							Cras lectus nisl, auctor quis dui ut, posuere ullamcorper ante. 
-							Nullam non arcu rhoncus, facilisis justo sed, varius mauris. 
+							Displays unclustered data from <a href="https://en.wikipedia.org/wiki/Microarray">microarray experiments</a> as a heatmap. 
+							Hierarchical clustering can also be performed on the data and the resulting dendrogram can be viewed. 
+							<table border="1">
+								<tr>
+									<th>Input Formats</th>
+									<th>Example Usage</th> 
+									<th>Features</th>
+								</tr>
+								<tr>
+									<td>
+										Tab Delimited Text (.txt, .dat, .tsv, .tab) or Comma Separated Values (.csv)
+									</td>
+									<td>
+										Cluster and visualize results of a microarray experiment
+									</td> 
+									<td>#</td>
+								</tr>
+							</table>
 						</figcaption>
 					 </figure>
 				</div>
