@@ -215,6 +215,7 @@ shinyServer(function(input, output, session) {
   output$map <- renderLeaflet({
   	print("second leaflet")
   	leaflet()
+  	
   })
 	
 	# if input$area is updated change map
@@ -243,12 +244,22 @@ shinyServer(function(input, output, session) {
 		if(!is.null(values$density)){
 
 			mapData <- get_map_data()
-				
-  		leafletProxy("map", data =  mapData) %>% clearShapes() %>% get_shapes()
-				
+			print(values$to)
+  		leafletProxy("map", data =  mapData) %>% clearShapes() %>% get_shapes() 
 		}
 
   })
+	
+	# update legend when needed
+	observe({
+		get_file()
+		if(!is.null(values$density)){
+			leafletProxy("map", data = get_map_data()) %>%	
+				addLegend(layerId = "legendLayer", position = "bottomright", 
+						opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
+						title = input$legend)
+		}
+	})
 	
 	get_shapes <- function(m){
 		addPolygons(m, layerId = ~NAME,
@@ -328,23 +339,6 @@ shinyServer(function(input, output, session) {
       ))
     }
   })
-	
-	# render the legend
-	output$legend <- renderUI({
-		if(is.null(get_file())){
-			return(NULL)
-		}
-		tags$table(
-			tags$strong(input$legend), 
-			mapply(function(from, to, color) {
-				tags$tr(
-					tags$td(tags$div(
-						style = sprintf("width: 16px; height: 16px; background-color: %s;", color)
-					)),
-					tags$td(from, "-", to)
-				)
-			}, values$from, values$to, values$palette, SIMPLIFY=FALSE))
-	})
 	
 	output$regionNames <- renderDataTable({
 		data.frame("Regions" = levels(values$map$NAME))

@@ -73,18 +73,13 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 	mainPanel(id = "mainPanel",
 		tabsetPanel(id = "tabSelections", type = "tabs",
 			tabPanel(title = "Interactive", 
+				tags$br(),
 			  leafletOutput("map", "100%", 600),
 				
 			  absolutePanel(
-			    right = 30, top = 60, width = 200, class = "floater",
+			    right = 30, top = 70, width = 200, class = "floater",
 			    h4("Region Information"),
 			    uiOutput("stateInfo")
-			  ),
-			 
-				# Legend
-			  absolutePanel(
-			    right = 30, top = 320, style = "", class = "floater",
-			    uiOutput("legend")
 			  )
 			),
 			tabPanel(title = "Table", 
