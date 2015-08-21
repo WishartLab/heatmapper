@@ -83,20 +83,22 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
 					textInput('xlab', label = "X Axis Label", value = ""),
 					textInput('ylab', label = "Y Axis Label",	value = ""),
 					
-					checkboxInput('fullSize', label = "Preview Full Height (not recomended for large files)", value = FALSE),
-					
 					selectInput('downloadFormat', label = "Plot Download Format", 
 						choices = c(
 							"PNG" = 'png', 
 							"PDF" = 'pdf'),
 						selected = 'png'),
 					
-		    	sliderInput('plotHeight', label = WIDTH, 
+					tipify(
+						checkboxInput('fullSize', label = "Preview Full Height", value = FALSE), 
+						"Not Recomended for Large Files", placement = "top"
+					), 
+		    	sliderInput('plotHeight', label = HEIGHT, 
 		    		min = 500,
 		    		max = 2000, 
 		    		value = 600),
 		    	
-		    	sliderInput('plotWidth', label = HEIGHT, 
+		    	sliderInput('plotWidth', label = WIDTH, 
 		    		min = 500,
 		    		max = 2000, 
 		    		value = 600)
@@ -106,7 +108,7 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
 		
 		mainPanel(id = "mainPanel",
 			tabsetPanel(id = "tabSelections", type = "tabs",
-				tabPanel("Plot", tags$br(), plotOutput("map")), 
+				tabPanel("Plot", tags$br(), plotOutput("heatmap")), 
 				
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 600)),
 				

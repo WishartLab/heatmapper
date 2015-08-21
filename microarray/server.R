@@ -3,7 +3,7 @@ library(d3heatmap)
 library(gplots)
 library(ggdendro)
 # memory testing
-library(pryr)
+# library(pryr)
 
 shinyServer(function(input, output, session){
 	
@@ -204,30 +204,22 @@ shinyServer(function(input, output, session){
 	
 	# return a list of dendrogram objects, first row then column
 	get_dendrograms <- reactive({
+		hr <- NA
+		hc <- NA
 		if(input$clusterMethod != 'none'){
 			if(clust_selected("row")){
 				hr <- as.dendrogram(values$rowHclust)
 			}
-			else{
-				hr <- NA
-			}
-			
 			if(clust_selected("col")){
 				hc <- as.dendrogram(values$colHclust)
 			}
-			else{
-				hc <- NA
-			}
 		}
-		
 		list(hr,hc)
 	})
 	
 	# returns a heatmap.2 image based on get_data_matrix()
-	get_plot <- reactive({
-		
+	get_plot <- function(){
 		x <- get_data_matrix()
-		
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
@@ -254,7 +246,7 @@ shinyServer(function(input, output, session){
 		error = function(err){
 			validate(txt=ERR_plot_display)
 		})
-	})
+	}
 	
 	# returns the result of ggdendrogram() on param x
 	get_dendrogram_plot <- function(x, message){
@@ -270,17 +262,24 @@ shinyServer(function(input, output, session){
 	################################## OUTPUT FUNCTIONS ##################################
 	
 	# heatmap.2 plot
-	output$map <- renderPlot(
+	output$heatmap <- renderPlot(
 		get_plot(),
 		width =  reactive({input$plotWidth}),
 		height = reactive({
 			if(input$fullSize){
-				input$plotWidth / ncol(values$rowMatrix) * nrow(values$rowMatrix)
+				if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
+					input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
+				}
+				else{
+					input$plotHeight
+				}
 			}
 			else{
 				input$plotHeight
 			}
-		}) )
+		})
+	)
+	
 	
 	# d3heatmap plot
 	output$d3map <- renderD3heatmap({
