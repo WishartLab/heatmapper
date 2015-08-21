@@ -49,7 +49,7 @@ HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 				.toggleButton {width:100%;} 
                 .clearButton {float:right; font-size:12px;}
 				.fa-angle-down:before, .fa-angle-up:before {float:right;}
-				#lowColour, #highColour, #midColour {width:100%}
+				#lowColour, #highColour, #midColour, #missingColour {width:100%}
 				#file_progress {height:0;}
 				#sidebarPanel {width:23.45em;}
 				#mainPanel {left:24.45em; position:absolute; min-width:25em;}

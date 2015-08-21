@@ -9,7 +9,7 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
 	
 	sidebarLayout(position = "right",
     sidebarPanel(id = "sidebarPanel", width = 1,
-			FILE_UPLOAD_PANEL('example'),
+			FILE_UPLOAD_PANEL(),
     	EXAMPLE_FILE_SELECT(),
 
     	JSCOLOUR_ROW("#66CD00", "#FF0000"), 
@@ -78,30 +78,33 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
     	
     	ADVANCED_OPTIONS_PANEL( 
 				list(
-					jscolourInput("missingColour", label = "Missing Data Colour"),
-	    		textInput('title', label = "Title", value = ""),
-					textInput('xlab', label = "X Axis Label", value = ""),
-					textInput('ylab', label = "Y Axis Label",	value = ""),
 					
+					sliderInput('plotWidth', label = WIDTH, 
+		    		min = 500,
+		    		max = 2000, 
+		    		value = 600),
+					
+					tipify(
+						checkboxInput('fullSize', label = "Preview Full Height", value = FALSE), 
+						"Not Recomended for Large Files", placement = "top"), 
+					
+					conditionalPanel(condition = "input.fullSize == false", 
+			    	sliderInput('plotHeight', label = HEIGHT, 
+			    		min = 500,
+			    		max = 2000, 
+			    		value = 600)),
+					
+					textInput('title', label = "Title", value = ""),
+					textInput('xlab', label = "X Axis Label", value = ""),
+					textInput('ylab', label = "Y Axis Label",	value = ""), 
+						
+					jscolourInput("missingColour", label = "Missing Data Colour"),
+						
 					selectInput('downloadFormat', label = "Plot Download Format", 
 						choices = c(
 							"PNG" = 'png', 
 							"PDF" = 'pdf'),
-						selected = 'png'),
-					
-					tipify(
-						checkboxInput('fullSize', label = "Preview Full Height", value = FALSE), 
-						"Not Recomended for Large Files", placement = "top"
-					), 
-		    	sliderInput('plotHeight', label = HEIGHT, 
-		    		min = 500,
-		    		max = 2000, 
-		    		value = 600),
-		    	
-		    	sliderInput('plotWidth', label = WIDTH, 
-		    		min = 500,
-		    		max = 2000, 
-		    		value = 600)
+						selected = 'png')
 				)
 			)
     ),
