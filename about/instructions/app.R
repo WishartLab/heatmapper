@@ -8,6 +8,7 @@ server <- function(input, output) {
 }
 
 ui <- list(NAVBAR("#aboutTab"), fluidPage(
+	tags$head(tags$style("table, th, td { border: 1px solid black;} th {text-align:center;} ul {margin:0.5em;}")),
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
 			NAVLIST_PANEL()

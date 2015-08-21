@@ -30,7 +30,7 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
     	selectInput('clusterMethod', 
     		label = "Clustering Method",	
     		choices = c(
-					"none" = 'none',
+					"None" = 'none',
 					"Average Linkage" = 'average',
 					"Centroid Linkage" = 'centroid',
 					"Complete Linkage" = 'complete',
