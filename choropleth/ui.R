@@ -48,11 +48,11 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 				c('showTiles', 'showContours', 'showHeatmap')
 			),
 			
-			JSCOLOUR_ROW("#FFEDA0", "#800026"),
-			
 			FILL_OPACITY_SLIDER(0.8),
 			
 			BIN_SLIDER(2, 12, 8),
+			
+			JSCOLOUR_ROW("#FFEDA0", "#800026"),
 
     	DOWNLOAD_BUTTONS(),
 		 		

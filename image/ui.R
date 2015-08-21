@@ -88,6 +88,9 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 			  	bsTooltip(id = "numGridRows", 
 						title = "Warning: any changes to values will be lost after changing the number of rows",
 						placement = "top"),
+		  			
+		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
+					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 520),
 		  		
 		  		selectInput('downloadPlotFormat', label = "Plot download file type", 
 						choices = c(
@@ -95,10 +98,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 							"PDF" = 'pdf',
 							"PNG" = 'png'
 						), 
-						selected = 'png')	,
-		  			
-		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
-					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 520) 
+						selected = 'png')	
 	  		)
 	  	)
 		),

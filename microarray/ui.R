@@ -11,8 +11,6 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
     sidebarPanel(id = "sidebarPanel", width = 1,
 			FILE_UPLOAD_PANEL(),
     	EXAMPLE_FILE_SELECT(),
-
-    	JSCOLOUR_ROW("#66CD00", "#FF0000"), 
     	
     	fluidRow(
     		column(3, tags$label("Scale Type")),
@@ -26,6 +24,8 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
     	), 
     	
     	BIN_SLIDER(3, 299, 160),
+    	
+    	JSCOLOUR_ROW("#66CD00", "#FF0000"), 
     	
     	selectInput('clusterMethod', 
     		label = "Clustering Method",	

@@ -6,10 +6,13 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel", width = 1,
 			
-			FILE_UPLOAD_PANEL('example'), 
+			FILE_UPLOAD_PANEL(), 
 			EXAMPLE_FILE_SELECT(),
 			
 			LAYERS_SELECT(c("Legend" = 'showLegend', "Axis Labels" = 'showAxisLabels'), c('showLegend', 'showAxisLabels')),
+			
+			BIN_SLIDER(3, 299, 160), 
+			
 			COLOUR_SCHEME_SELECT(), 
 			
 			conditionalPanel(condition = "input.colourScheme == 'custom'",	
@@ -19,27 +22,26 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 	  			column(4, jscolourInput("highColour", label = "High Colour", value = "#23B000")))
 	 		),
 			
-			BIN_SLIDER(3, 299, 160), 
+			checkboxInput('reverseOrder', label = tags$strong("Reverse Data Order"), TRUE), 
 			
-			textInput('title', label = "Title", value = ""),
-				
-			textInput('xlab', label = "X Axis Label", value = ""),
-				
-			textInput('ylab', label = "Y Axis Label", value = ""),
+			checkboxInput('asp', label = tags$strong("Set Aspect Ratio = 1"), value = TRUE),
 			
 			DOWNLOAD_BUTTONS(),
 			
 			ADVANCED_OPTIONS_PANEL(
 				list(
-					checkboxInput('reverseOrder', label = tags$strong("Reverse Data Order"), TRUE), 
-					
-					checkboxInput('asp', label = tags$strong("Set Aspect Ratio = 1"), value = TRUE),
 					
 		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
 					
 					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 500),
+							
+					textInput('title', label = "Title", value = ""),
 						
-					selectInput('downloadPlotFormat', label = "Plot download file type", 
+					textInput('xlab', label = "X Axis Label", value = ""),
+						
+					textInput('ylab', label = "Y Axis Label", value = ""),
+					
+					selectInput('downloadPlotFormat', label = "Plot Download Format", 
 						choices = c(
 							"JPEG" = 'jpg',
 							"PDF" = 'pdf',

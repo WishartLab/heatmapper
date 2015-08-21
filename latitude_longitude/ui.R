@@ -5,7 +5,7 @@ shinyUI(list(HEAD_TASKS("#latlongTab"), fluidPage(title = "Latitude/Longitude",
 	
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel",  width = 1,
-			FILE_UPLOAD_PANEL('example'),
+			FILE_UPLOAD_PANEL(),
 			
 			LAYERS_SELECT(
 				c("Map" = 'showMap', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap', "Points" = 'showPoints'), 
@@ -25,19 +25,19 @@ shinyUI(list(HEAD_TASKS("#latlongTab"), fluidPage(title = "Latitude/Longitude",
 						selected = 'OpenStreetMap.Mapnik'))
 			),
 			
+			BANDWIDTH_SLIDER(0.05, 2, 0.4, 0.05), 
+			
+			GRID_POINTS_SLIDER(10, 1000, 400, 10),
+			
+			FILL_OPACITY_SLIDER(), 
+			
+			BIN_SLIDER(3, 50, 10), 
+			
 			COLOUR_SCHEME_SELECT(),
 			
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
 				JSCOLOUR_ROW("#FFFA00", "#FF0000")
 	  	), 
-						
-			BIN_SLIDER(3, 50, 10), 
-			
-			FILL_OPACITY_SLIDER(), 
-			
-			BANDWIDTH_SLIDER(0.05, 2, 0.4, 0.05), 
-			
-			GRID_POINTS_SLIDER(10, 1000, 400, 10),
 			
 			DOWNLOAD_BUTTONS(),
 		 	
@@ -66,8 +66,8 @@ shinyUI(list(HEAD_TASKS("#latlongTab"), fluidPage(title = "Latitude/Longitude",
 		
 		mainPanel(id = "mainPanel",
 			tabsetPanel(type = "tabs", 
-				tabPanel(title = "Interactive", leafletOutput("map", height = 600)),
-				tabPanel(title = "Table", dataTableOutput("table"))
+				tabPanel(title = "Interactive", tags$br(), leafletOutput("map", height = 600)),
+				tabPanel(title = "Table", tags$br(), dataTableOutput("table"))
 			)
 		)
 	), 
