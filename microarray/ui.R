@@ -31,10 +31,10 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
     		label = "Clustering Method",	
     		choices = c(
 					"none" = 'none',
-					"average linkage" = 'average',
-					"centroid linkage" = 'centroid',
-					"complete linkage" = 'complete',
-					"single linkage" = 'single'
+					"Average Linkage" = 'average',
+					"Centroid Linkage" = 'centroid',
+					"Complete Linkage" = 'complete',
+					"Single Linkage" = 'single'
 				),	
     		selected = 'average'),
     	
@@ -42,11 +42,11 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
 	    	selectInput('distanceMethod', 
 					label = "Distance Measurement Method",
 					choices = c(
-						"euclidean" = 'euclidean',
-						"pearson" = 'pearson',
-						"kendall's tau" = 'kendall',
-						"spearman rank correlation" = 'spearman',
-						"manhattan" = 'manhattan'),
+						"Euclidean" = 'euclidean',
+						"Pearson" = 'pearson',
+						"Kendall's Tau" = 'kendall',
+						"Spearman Rank Correlation" = 'spearman',
+						"Manhattan" = 'manhattan'),
 					selected = 'euclidean'),
     		
     		fluidRow(

@@ -84,7 +84,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 						title = "Warning: changing this feature may cause misalignment of the heatmap layer",
 						placement = "top"), 
 		  	
-		  		sliderInput('numGridRows', label = "Number of rows", min = 3, max = 200, step = 1, value = 50),
+		  		sliderInput('numGridRows', label = "Number of Rows", min = 3, max = 200, step = 1, value = 50),
 			  	bsTooltip(id = "numGridRows", 
 						title = "Warning: any changes to values will be lost after changing the number of rows",
 						placement = "top"),
@@ -92,7 +92,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
 					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 520),
 		  		
-		  		selectInput('downloadPlotFormat', label = "Plot download file type", 
+		  		selectInput('downloadPlotFormat', label = "Plot Download Format", 
 						choices = c(
 							"JPEG" = 'jpg',
 							"PDF" = 'pdf',
