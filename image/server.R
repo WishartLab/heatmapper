@@ -176,7 +176,7 @@ shinyServer(function(input, output, session){
 			else if(extension == ".png"){
 				readPNG(values$imageFile$datapath)
 			}
-			else if(extension == ".tif" || "tiff"){
+			else if(extension == ".tif" || extension == "tiff"){
 				readTIFF(values$imageFile$datapath)
 			}
 			else{
