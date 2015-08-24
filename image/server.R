@@ -1,6 +1,7 @@
 library(shiny)
 library(jpeg)
 library(png)
+library(tiff)
 library(ggplot2)
 library(grid)
 library(ggtern)
@@ -174,6 +175,9 @@ shinyServer(function(input, output, session){
 			}
 			else if(extension == ".png"){
 				readPNG(values$imageFile$datapath)
+			}
+			else if(extension == ".tif" || "tiff"){
+				readTIFF(values$imageFile$datapath)
 			}
 			else{
 				validate(txt = "Unfortunately the type of file you uploaded is not supported. Please upload a PNG or JPEG image file.")
