@@ -2,14 +2,6 @@ source("../global_ui.R")
 library(leaflet)
 
 shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
-  
-	# Add a little CSS to make the map background pure white
-  tags$head(
-		tags$style("
-			#showcase-code-position-toggle, #showcase-sxs-code { display: none; }
-    	.floater { background-color: white; padding: 8px; opacity: 0.7; border-radius: 6px; 
-			box-shadow: 0 0 15px rgba(0,0,0,0.2); }")
-  ),
 	
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel", width = 1,
@@ -74,13 +66,11 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 		tabsetPanel(id = "tabSelections", type = "tabs",
 			tabPanel(title = "Interactive", 
 				tags$br(),
-			  leafletOutput("map", "100%", 600),
-				
-			  absolutePanel(
-			    right = 30, top = 70, width = 200, class = "floater",
+			  wellPanel(
 			    h4("Region Information"),
 			    uiOutput("stateInfo")
-			  )
+			  ),
+			  leafletOutput("map", "100%", 500)
 			),
 			tabPanel(title = "Table", 
 				tags$br(),

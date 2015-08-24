@@ -8,15 +8,15 @@ shinyServer(function(input, output, session) {
 	
   values <- reactiveValues(
   	file = NULL,
-  	highlight = c(), 
-  	density = c(), 
-  	colours = c(), 
-  	to = c(), 
-  	from = c(), 
-  	palette = c(),
-  	map = c())
+  	highlight = NULL, 
+  	density = NULL, 
+  	colours = NULL, 
+  	to = NULL, 
+  	from = NULL, 
+  	palette = NULL,
+  	map = NULL)
 	
-	#################### FILE CLEAR OBSERVERS ####################
+	#################### OBSERVERS ####################
 	observe({
 		input$clearFile
 		values$file <- NULL
@@ -26,87 +26,27 @@ shinyServer(function(input, output, session) {
 		values$file <- input$file
 	})
 	
-	# get the values from the selected column
-	get_nums_col <- function(data_file, col){
-		print(col)
-		nums_col <- data_file[[col]]
-		if(is.null(nums_col)){
-			nums_col <- data_file[[2]]
-		}
-		return(nums_col)
-	}
-	
-	# add spaces between distinct words if they don't exist
-	fix_names <- function(x){
-		state_pattern <- "(north|south|west|new|rhode)(\\S)"
-		x <- sub(pattern = state_pattern, replacement = "\\1 \\2", x = x)
-		return(x)
-	}
-	# assign density names and values based on the selected column
-	get_density <- reactive({ 
-		print("GET DENSITY")
-		data_file <- get_file()
-		name_col <- tolower(data_file[[1]])
-		name_col <- fix_names(name_col)
-		nums_col <- get_nums_col(data_file, input$colSelect)
-		names(nums_col) <- name_col
-		
-		return(nums_col)
-	})
-	
-	# read file if chooseInput is changed or file is uploaded
-	get_file <- reactive({
-		print("GET FILE")
-		if(input$chooseInput == 'example'){
-			#path <- "data/counties.rds"
-			#data_file <- readRDS(path)
-			data_file <- read.table(input$exampleFiles, header = TRUE, sep="\t")
-		}
-		else{
-			if(is.null(values$file$datapath)){
-				print("first leaflet")
-				leafletProxy("map") %>% clearShapes()
-				updateSelectInput(session, inputId="colSelect", choices = c(" " = 0))
-			}
-			validate(need(values$file$datapath, "Please upload a file"))
-			
-			data_file <- read.delim(values$file$datapath, header = TRUE)
-			# remove "%" if they exist
-			data_file[-1] <- lapply(data_file[-1], function(data_file){
-				as.numeric(sub(pattern = "%", replacement = "", data_file))
-			})	 
-		}
-		
-		# region names should be in lower case
-		data_file[[1]] <- tolower(data_file[[1]])
-		
-		# update the column selection options when a new file is uploaded
-		updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
-		
-		return(data_file)
-	})
-
+	# when a valid column is selected set values$density
 	observe({
 		if(input$colSelect != 0){
 			values$density <- get_density()
+			
+			# update the slider with the new max and min from that column
+			min <- floor(min(values$density, na.rm = TRUE))
+			max <- ceiling(max(values$density, na.rm = TRUE))
+			updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
 		}
 	})
 	
-	# update density information if file or column selection changes
+	# update colours when range of interest is changed or new file is selected
 	observe({
 		if(!is.null(values$density)){
+			
 			rangeMin <- input$range[[1]]
 			rangeMax <- input$range[[2]]
 			
 			min <- floor(min(values$density, na.rm = TRUE))
 			max <- ceiling(max(values$density, na.rm = TRUE))
-	
-			# update range slider if different col is selected
-			if(rangeMin < min || rangeMax > max){
-				updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
-				rangeMin <- min
-				rangeMax <- max
-			}
 			
 			bins <- input$binNumber + 1
 			
@@ -130,10 +70,111 @@ shinyServer(function(input, output, session) {
 			
 			densityBreaks <- get_breaks(rangeMin, rangeMax, min, max, bins)
 			update_colours(densityBreaks)
-			
 		}
 	})
+	
+		# if input$area is updated change map
+  observe({
+  	values$map <- readRDS(input$area) 
+	})
+	
+	# if values$density, values$colours, or values$map is changed update the polygons
+	observe({
+		get_file()
+		
+		if(is.null(values$density)){
+			# remove old shapes when map is changed
+  		leafletProxy("map") %>% clearShapes() %>% get_tiles() %>% get_view() 
+  		print("dens == null")
+		}
+		else{
+			mapData <- get_map_data()
+  		leafletProxy("map", data =  mapData) %>% clearShapes() %>% get_shapes() %>% get_tiles() %>% get_view() 
+			print("dens != null")
+		}
+		
+		print("observe || input$area, get_file() || clearShapes, get_tiles, get_view")
 
+  })
+	
+	# update legend when needed
+	observe({
+		if(!is.null(values$density)){
+			leafletProxy("map", data = isolate({get_map_data()})) %>% 	
+				addLegend(layerId = "legendLayer", position = "bottomright", 
+						opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
+						title = input$legend)
+		}
+	})
+	
+	# get hover location over region
+  observe({
+    values$highlight <- input$map_shape_mouseover$id
+  })
+	
+	
+	#################### HELPER FUNCTIONS ####################
+
+	# add spaces between distinct words if they don't exist
+	fix_names <- function(x){
+		state_pattern <- "(north|south|west|new|rhode)(\\S)"
+		x <- sub(pattern = state_pattern, replacement = "\\1 \\2", x = x)
+		return(x)
+	}
+	
+	# return the values from the selected column
+	get_nums_col <- function(data_file, col){
+		nums_col <- data_file[[col]]
+		if(is.null(nums_col)){
+			nums_col <- data_file[[2]]
+		}
+		return(nums_col)
+	}
+	
+	# assign density names and values based on the selected column
+	get_density <- reactive({ 
+		data_file <- get_file()
+		name_col <- tolower(data_file[[1]])
+		name_col <- fix_names(name_col)
+		nums_col <- get_nums_col(data_file, input$colSelect)
+		names(nums_col) <- name_col
+		
+		return(nums_col)
+	})
+	
+	# read file if chooseInput is changed or file is uploaded
+	get_file <- reactive({
+		if(input$chooseInput == 'example'){
+			data_file <- read.table(input$exampleFiles, header = TRUE, sep="\t")
+		}
+		else{
+			
+			# reset column selection to empty
+			if(is.null(values$file$datapath)){
+				updateSelectInput(session, inputId="colSelect", choices = c(" " = 0))
+			}
+			
+			# return message if no file uploaded
+			validate(need(values$file$datapath, "Please upload a file"))
+			
+			data_file <- read.delim(values$file$datapath, header = TRUE)
+			
+			# remove "%" if they exist
+			data_file[-1] <- lapply(data_file[-1], function(data_file){
+				as.numeric(sub(pattern = "%", replacement = "", data_file))
+			})	 
+		}
+		
+		# region names should be in lower case
+		data_file[[1]] <- tolower(data_file[[1]])
+		
+		# update the column selection options when a new file is uploaded
+		updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
+		
+		return(data_file)
+	})
+	
+	# returns a list of break points given local min/max, global min/max, and # of bins
 	get_breaks <- function(rangeMin, rangeMax, min, max, bins){
 		minadd <- FALSE
 		maxadd <- FALSE
@@ -159,20 +200,35 @@ shinyServer(function(input, output, session) {
 		densityBreaks
 	}
 	
+	# update colours based on density breaks when value changes
 	update_colours <- function(densityBreaks){
+		
+		test1 <- is.null(values$from) || values$from != head(densityBreaks, length(densityBreaks)-1)
+		test2 <- is.null(values$to) || values$to != tail(densityBreaks, length(densityBreaks)-1)
+		print(values$from)
+		print(head(densityBreaks, length(densityBreaks)-1))
+		print(values$to)
+		print(tail(densityBreaks, length(densityBreaks)-1))
+		
+		if(test1 || test2){
+			print("update")
 
-		# Construct break ranges for displaying in the legend
-		values$from <- head(densityBreaks, length(densityBreaks)-1)
-		values$to <- tail(densityBreaks, length(densityBreaks)-1)
-
-		# Eight colors for eight buckets
-		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(input$binNumber)
-
-		# Assign colors to states
-		values$colours <- structure(
-			values$palette[as.integer(cut(values$density, densityBreaks, include.lowest = TRUE, ordered = TRUE))], 
-			names = names(values$density)
-		)
+			# Construct break ranges for displaying in the legend
+			values$from <- head(densityBreaks, length(densityBreaks)-1)
+			values$to <- tail(densityBreaks, length(densityBreaks)-1)
+	
+			# Eight colors for eight buckets
+			values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(input$binNumber)
+	
+			# Assign colors to states
+			values$colours <- structure(
+				values$palette[as.integer(cut(values$density, densityBreaks, include.lowest = TRUE, ordered = TRUE))], 
+				names = names(values$density)
+			)
+		}
+		else{
+			print("no update")
+		}
 	}
 
 	# The state names that come back from the maps package's state database has
@@ -184,7 +240,6 @@ shinyServer(function(input, output, session) {
 	# add fillColour column to a map, depends on values$map and values$colours
 	get_map_data <- reactive({
 		
-		print("get_map_data")
 		mapData <- values$map
 		
 		i <- 1
@@ -205,23 +260,16 @@ shinyServer(function(input, output, session) {
 		
 		return(mapData)
 	})
-	
-	observe({
-		values$map
-		print("map value updated")
-	})
 
   # default map
   output$map <- renderLeaflet({
-  	print("second leaflet")
+  	get_file()
   	leaflet()
-  	
   })
 	
-	# if input$area is updated change map
-  observe({
-  	values$map <- readRDS(input$area) 
-  	
+
+	get_view <- function(m){
+		
   	# calculate average lat and long for the selected area
   	lat <- c()
   	lon <- c()
@@ -230,36 +278,9 @@ shinyServer(function(input, output, session) {
   		lat <<- c(lat, x@labpt[[1]])
   		lon <<- c(lon, x@labpt[[2]])
   	})
-  	
-		lat <- mean(lat)
-  	lon <- mean(lon)
-  	
-  	# remove old shapes when map is changed
-  	leafletProxy("map") %>% clearShapes() %>% setView(lat, lon, zoom = 3) 
-	})
-	
-	# if values$density, values$colours, or values$map is changed update the polygons
-	observe({
-
-		if(!is.null(values$density)){
-
-			mapData <- get_map_data()
-			print(values$to)
-  		leafletProxy("map", data =  mapData) %>% clearShapes() %>% get_shapes() 
-		}
-
-  })
-	
-	# update legend when needed
-	observe({
-		get_file()
-		if(!is.null(values$density)){
-			leafletProxy("map", data = get_map_data()) %>%	
-				addLegend(layerId = "legendLayer", position = "bottomright", 
-						opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
-						title = input$legend)
-		}
-	})
+		
+		setView(m, mean(lat), mean(lon), zoom = 3) 
+	}
 	
 	get_shapes <- function(m){
 		addPolygons(m, layerId = ~NAME,
@@ -305,22 +326,8 @@ shinyServer(function(input, output, session) {
 			clearTiles(m)
 		}
 	}  
-	# if values$map is updated or showTiles checkbox input is changed
-	observe({
-		values$map
-		print("fifth leaflet")
-		get_tiles(leafletProxy("map"))
-	})
 
-	# input$map_shape_mouseover gets updated a lot, even if the id doesn't change.
-  # We don't want to update the polygons and stateInfo except when the id
-  # changes, so use values$highlight to insulate the downstream reactives (as 
-  # writing to values$highlight doesn't trigger reactivity unless the new value 
-  # is different than the previous value).
-  observe({
-    values$highlight <- input$map_shape_mouseover$id
-  })
-	
+	################# OUTPUT FUNCTIONS ################# 
 	output$table <- renderDataTable({
 		get_file()
 	})
@@ -344,7 +351,7 @@ shinyServer(function(input, output, session) {
 		data.frame("Regions" = levels(values$map$NAME))
 	}, options = list(pageLength = 10))
 	
-	################# Save Example File ################# 
+	# save example file
 	output$downloadExample <- downloadHandler(
 		filename = "table.txt",
 		content = function(file){
@@ -352,7 +359,7 @@ shinyServer(function(input, output, session) {
 		}
 	)
 	
-	################# Save Leaflet HTML Page ################# 
+	# save leaflet html page
 	output$plotDownload <- downloadHandler(
 		filename = function(){
 			"choropleth.html"
