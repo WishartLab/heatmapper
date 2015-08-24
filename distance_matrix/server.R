@@ -181,17 +181,24 @@ shinyServer(function(input, output, session){
 	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
 
 	output$table <- renderDataTable({
-		file <- get_file()
+		get_file()	
 	})
 
 	get_plot_download_name <- function(){
 		paste0("distanceMatrix.", input$downloadPlotFormat)
 	}
-	
-	output$download <- downloadHandler(
+
+	output$plotDownload <- downloadHandler(
 		filename = reactive({get_plot_download_name()}),
 		content = function(file){
 			ggsave(file, get_plot(), width = input$plotWidth/72, height = input$plotHeight/72)
 		}
 	)
+	
+	output$tableDownload <- downloadHandler(
+		filename = "table.txt", 
+		content = function(file){
+			write.table(get_file(), file, quote = FALSE, sep = "\t")
+	})
+	
 })
