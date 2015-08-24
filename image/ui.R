@@ -6,7 +6,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 		tags$style("
 			#xyCoordsError {display:inline;}
 			#selectedX, #selectedY, #selectedValue, #pointsTable {width:100%;}
-			#imageFile_progress, #gridFile_progress {height:0;}")
+			#imageFile_progress, #file_progress {height:0;}")
 	),
 	
 	sidebarLayout(position = "right",
@@ -27,14 +27,14 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  	radioButtons('gridSelect', label = "Select Grid File", 
 	  		inline=TRUE, 
 	  		choices = c(
-	  		"Upload Grid" = 'gridUpload', 
-	  		"Example Grid" = 'gridExample'), 
-	  		selected = 'gridUpload'
+	  		"Upload Grid" = 'fileUpload', 
+	  		"Example Grid" = 'fileExample'), 
+	  		selected = 'fileUpload'
 	  	),
 	  	
-	  	conditionalPanel(condition = "input.gridSelect == 'gridUpload'",
-	  		HTML("<button id='clearGrid' class='action-button clearButton'>Clear File</button>"), 
-	  		fileInput('gridFile', label = NULL)
+	  	conditionalPanel(condition = "input.gridSelect == 'fileUpload'",
+	  		HTML("<button id='clearFile' class='action-button clearButton'>Clear File</button>"), 
+	  		fileInput('file', label = NULL)
 	  	),
 	  	
 	  	LAYERS_SELECT(
@@ -141,5 +141,18 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 			)
 		)
 	),
-	INCLUDE_JS()
+	INCLUDE_JS(), 
+	tags$script("
+    var fileControl = $('#imageFile');
+
+    $('#clearImage').on('click', function () {
+        
+        fileControl.replaceWith( fileControl = fileControl.clone( true ) );
+        
+        $('#imageFile_progress').hide();
+    });
+    $( '#imageFile' ).change(function() {
+      document.getElementById('imageFile_progress').setAttribute('style', 'height:20px; margin-top:5px;');
+    });    
+	")
 )))

@@ -44,7 +44,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	observe({
-		input$clearGrid
+		input$clearFile
 		values$gridFile <- NULL
 	})
 	
@@ -53,7 +53,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	observe({
-		values$gridFile <- input$gridFile
+		values$gridFile <- input$file
 	})
 
 	
@@ -192,7 +192,7 @@ shinyServer(function(input, output, session){
 	get_grid_file <- reactive({
 		
 		# reset values$data if grid changes
-		if(input$gridSelect == 'gridExample'){
+		if(input$gridSelect == 'fileExample'){
 			max <- input$numGridRows 
 			newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
 			newy <- rep(seq(1, max), max)
