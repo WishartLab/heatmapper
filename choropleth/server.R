@@ -40,6 +40,9 @@ shinyServer(function(input, output, session) {
 	
 	# update colours when range of interest is changed or new file is selected
 	observe({
+		input$test
+		values$density
+		isolate({
 		if(!is.null(values$density)){
 			
 			rangeMin <- input$range[[1]]
@@ -71,6 +74,7 @@ shinyServer(function(input, output, session) {
 			densityBreaks <- get_breaks(rangeMin, rangeMax, min, max, bins)
 			update_colours(densityBreaks)
 		}
+		})
 	})
 	
 		# if input$area is updated change map

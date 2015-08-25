@@ -26,14 +26,17 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 		    			"World: By Country" = 'data/World_Countries.rds'), 
 		    		selected = 'data/USA_1.rds'))
 			),
-		
-   		sliderInput("range", 
-   			label = "Range of interest", 
-   			min = 0, 
-   			max = 100, 
-   			value = c(0, 100)),
-			selectInput("colSelect", label = "Column to use", choices = c(" " = 0)),
 			
+			tags$label("Range of Interest "),
+			HTML("<button id='test' class='action-button clearButton'>Submit Range</button>"), 
+	   	
+			sliderInput("range", 	   			
+				label = NULL, 
+		   	min = 0, 
+		   	max = 100, 
+		 		value = c(0, 100)),
+			
+			selectInput("colSelect", label = "Column to Use", choices = c(" " = 0)),
 			
 			LAYERS_SELECT(
 				c("Map" = 'showTiles', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap'), 
@@ -66,11 +69,11 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 		tabsetPanel(id = "tabSelections", type = "tabs",
 			tabPanel(title = "Interactive", 
 				tags$br(),
-			  wellPanel(
-			    h4("Region Information"),
-			    uiOutput("stateInfo")
-			  ),
-			  leafletOutput("map", "100%", 500)
+			  leafletOutput("map", "100%", 600),
+				absolutePanel(id = "controls", class = "info legend leaflet-control", right = 30, top = 70, width=200,
+			  	h4(strong("Region Information")),
+			  	uiOutput("stateInfo")
+				)
 			),
 			tabPanel(title = "Table", 
 				tags$br(),
