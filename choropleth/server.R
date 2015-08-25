@@ -2,6 +2,7 @@ library(leaflet)
 library(RColorBrewer)
 library(raster)
 library(htmlwidgets)
+library(xlsx)
 
 # reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
@@ -120,8 +121,9 @@ shinyServer(function(input, output, session) {
 
 	# add spaces between distinct words if they don't exist
 	fix_names <- function(x){
-		state_pattern <- "(north|south|west|new|rhode)(\\S)"
+		state_pattern <- "(north|south|west|rhode)(\\S)"
 		x <- sub(pattern = state_pattern, replacement = "\\1 \\2", x = x)
+		x <- iconv(x, to='ASCII//TRANSLIT')
 		return(x)
 	}
 	
@@ -136,13 +138,19 @@ shinyServer(function(input, output, session) {
 	
 	# assign density names and values based on the selected column
 	get_density <- reactive({ 
-		data_file <- get_file()
-		name_col <- tolower(data_file[[1]])
-		name_col <- fix_names(name_col)
-		nums_col <- get_nums_col(data_file, input$colSelect)
-		names(nums_col) <- name_col
+		tryCatch({
+			data_file <- get_file()
+			name_col <- tolower(data_file[[1]])
+			name_col <- fix_names(name_col)
+			nums_col <- get_nums_col(data_file, input$colSelect)
+			names(nums_col) <- name_col
 		
-		return(nums_col)
+			return(nums_col)
+		}, 
+		error = function(err){
+			validate(txt = ERR_file_read)
+		})
+		
 	})
 	
 	# read file if chooseInput is changed or file is uploaded
@@ -160,12 +168,30 @@ shinyServer(function(input, output, session) {
 			# return message if no file uploaded
 			validate(need(values$file$datapath, "Please upload a file"))
 			
-			data_file <- read.delim(values$file$datapath, header = TRUE)
-			
-			# remove "%" if they exist
-			data_file[-1] <- lapply(data_file[-1], function(data_file){
-				as.numeric(sub(pattern = "%", replacement = "", data_file))
-			})	 
+			tryCatch({
+				
+				fileType <- tail(unlist(strsplit(x = values$file$name, split = "[.]")), n=1)
+				
+				if(fileType == "xls" || fileType == "xlsx"){
+					data_file <- read.xlsx(values$file$datapath, 1)
+				}
+				else if(fileType == "csv"){
+					data_file <- read.csv(values$file$datapath, header = TRUE)
+				}
+				else{
+					data_file <- read.delim(values$file$datapath, header = TRUE, sep="\t", row.names = NULL)
+				}
+					
+				# remove "%" if they exist
+				data_file[-1] <- lapply(data_file[-1], function(data_file){
+					as.numeric(sub(pattern = "%", replacement = "", data_file))
+				})
+				
+				return(data_file)
+			}, 
+			error = function(err){
+				validate(txt = ERR_file_read)
+			})
 		}
 		
 		# region names should be in lower case
@@ -173,7 +199,6 @@ shinyServer(function(input, output, session) {
 		
 		# update the column selection options when a new file is uploaded
 		updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
-		
 		return(data_file)
 	})
 	
@@ -233,7 +258,7 @@ shinyServer(function(input, output, session) {
 		
 		i <- 1
   	fillArray <- rep("#000000", length(mapData$NAME))
-	
+		
   	for(region in mapData$NAME){
   		region <- tolower(parseRegionName(region))
   		

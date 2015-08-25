@@ -24,7 +24,7 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 		    			"North America: By Country" = 'data/North_America.rds', 
 		    			"South America: By Country" = 'data/South_America.rds', 
 		    			"World: By Country" = 'data/World_Countries.rds'), 
-		    		selected = 'data/USA_1.rds'))
+		    		selected = 'data/CAN_1.rds'))
 			),
 			
 			HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"), 
