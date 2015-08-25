@@ -6,7 +6,8 @@ library(ggtern)
 library(MASS)
 
 shinyServer(function(input, output, session){
-
+	
+	
 	values <- reactiveValues(file = NULL)
 		
 	observe({
@@ -55,6 +56,7 @@ shinyServer(function(input, output, session){
 
 	# source: http://www.r-bloggers.com/interactive-maps-for-john-snows-cholera-data/
 	get_density <- reactive({
+		
 		df <- get_file()
 		x <- df[[1]]
 		y <- df[[2]]
@@ -111,8 +113,6 @@ shinyServer(function(input, output, session){
 	get_point_shapes <- function(m){
 		
 		if(layer_selected("showPoints")){
-			print("GETPOINTS")
-			
 			df <- get_file()
 			
 			popup_message <- paste0("Latitude: ", df$Latitude, "<br/>Longitude: ", df$Longitude)
@@ -149,7 +149,6 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_contour_shapes <- function(m){
-		print("GETCONTOURS")
 	
 		cl <- get_density()
 		max_cl <- length(cl)
@@ -198,14 +197,18 @@ shinyServer(function(input, output, session){
 	}
 	
 	observe({
-		m <- leafletProxy("map", session, get_file()) 
-		m %>% clearShapes()
-		get_shapes(m)
+		if(input$tabSelected == 'Interactive'){
+			m <- leafletProxy("map", session, get_file()) 
+			m %>% clearShapes()
+			get_shapes(m)
+		}
 	})
 	
 	observe({
-		m <- leafletProxy("map", session) 
-		get_tiles(m)
+		if(input$tabSelected == 'Interactive'){
+			m <- leafletProxy("map", session) 
+			get_tiles(m)
+		}
 	})
 	
 	output$map <- renderLeaflet({
