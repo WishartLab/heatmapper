@@ -27,9 +27,8 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 		    		selected = 'data/USA_1.rds'))
 			),
 			
-			tags$label("Range of Interest "),
-			HTML("<button id='test' class='action-button clearButton'>Submit Range</button>"), 
-	   	
+			HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"), 
+			tags$label("Range of Interest"),
 			sliderInput("range", 	   			
 				label = NULL, 
 		   	min = 0, 

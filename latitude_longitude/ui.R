@@ -6,7 +6,7 @@ shinyUI(list(HEAD_TASKS("#latlongTab"), fluidPage(title = "Latitude/Longitude",
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel",  width = 1,
 			FILE_UPLOAD_PANEL(),
-			
+			EXAMPLE_FILE_SELECT(),
 			LAYERS_SELECT(
 				c("Map" = 'showMap', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap', "Points" = 'showPoints'), 
 				c('showMap', 'showContours', 'showHeatmap')

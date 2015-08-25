@@ -43,7 +43,7 @@ shinyServer(function(input, output, session) {
 	
 	# update colours when range of interest is changed or new file is selected
 	observe({
-		input$test
+		input$rangeSubmit
 		input$binNumber
 			isolate({
 				if(!is.null(values$density)){
@@ -91,15 +91,11 @@ shinyServer(function(input, output, session) {
 		if(is.null(values$density)){
 			# remove old shapes when map is changed
   		leafletProxy("map") %>% clearShapes() %>% get_tiles() %>% get_view() 
-  		print("dens == null")
 		}
 		else{
 			mapData <- get_map_data()
   		leafletProxy("map", data =  mapData) %>% clearShapes() %>% get_shapes() %>% get_tiles() %>% get_view() 
-			print("dens != null")
 		}
-		
-		print("observe || input$area, get_file() || clearShapes, get_tiles, get_view")
 
   })
 	

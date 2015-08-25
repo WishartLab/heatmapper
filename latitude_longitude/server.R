@@ -21,11 +21,7 @@ shinyServer(function(input, output, session){
 	
 	get_file <- reactive({
 		if(input$chooseInput == 'example'){
-			points <- data.frame(
-				Longitude = c(-1+rnorm(50,0,.5),-2+rnorm(50,0,0.5),-4.5+rnorm(50,0,.5)),
-				Latitude = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5)), 
-				Value = c(52+rnorm(50,0,.5),54+rnorm(50,0,0.5),56+rnorm(50,0,.5))
-			)
+			file <- read.delim(input$exampleFiles, header = TRUE, sep="\t", row.names = NULL)
 		}
 		else{
 			validate(need(values$file$datapath, "Please upload a file"))
@@ -41,17 +37,18 @@ shinyServer(function(input, output, session){
 			else{
 				file <- read.delim(values$file$datapath, header = TRUE, sep="\t", row.names = NULL)
 			}
-			if(!is.null(file$Value)){
+		}
+		
+		if(!is.null(file$Value)){
 				points <- data.frame(
 				Longitude = c(file$Longitude), 
 				Latitude = c(file$Latitude), 
 				Value = c(file$Value))
-			}
-			else{
-				points <- data.frame(
-				Longitude = c(file$Longitude), 
-				Latitude = c(file$Latitude))
-			}
+		}
+		else{
+			points <- data.frame(
+			Longitude = c(file$Longitude), 
+			Latitude = c(file$Latitude))
 		}
 		return(points)
 	})
@@ -235,7 +232,7 @@ shinyServer(function(input, output, session){
 			"table.txt"
 		},
 		content = function(file) {
-			write.table(get_file(), file, row.names = FALSE)
+			write.table(get_file(), file, sep = "\t", row.names = FALSE, quote = FALSE)
 		}
 	)
 })
