@@ -35,45 +35,47 @@ shinyServer(function(input, output, session) {
 			min <- floor(min(values$density, na.rm = TRUE))
 			max <- ceiling(max(values$density, na.rm = TRUE))
 			updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
+			isolate({
+				update_colours(round(seq(min, max, length.out = input$binNumber+1), 0))
+			})
 		}
 	})
 	
 	# update colours when range of interest is changed or new file is selected
 	observe({
 		input$test
-		values$density
-		isolate({
-		if(!is.null(values$density)){
-			
-			rangeMin <- input$range[[1]]
-			rangeMax <- input$range[[2]]
-			
-			min <- floor(min(values$density, na.rm = TRUE))
-			max <- ceiling(max(values$density, na.rm = TRUE))
-			
-			bins <- input$binNumber + 1
-			
-			# adjust selected range if difference between max and min is < # of bins
-			if(rangeMax - rangeMin < bins){
+		input$binNumber
+			isolate({
+				if(!is.null(values$density)){
+				rangeMin <- input$range[[1]]
+				rangeMax <- input$range[[2]]
 				
-				if(rangeMax - bins > min){
-					rangeMin <- rangeMax - bins
+				min <- floor(min(values$density, na.rm = TRUE))
+				max <- ceiling(max(values$density, na.rm = TRUE))
+				
+				bins <- input$binNumber + 1
+				
+				# adjust selected range if difference between max and min is < # of bins
+				if(rangeMax - rangeMin < bins){
+					
+					if(rangeMax - bins > min){
+						rangeMin <- rangeMax - bins
+					}
+					else if(rangeMin + bins < max){
+						rangeMax <- rangeMin + bins
+					}
+					# error handling for when range is < #bins, this should be improved upon
+					else{
+						rangeMin <- min
+						rangeMax <- max
+						bins <- max - min
+					}
+					updateSliderInput(session, inputId = "range", value = c(rangeMin,rangeMax))
 				}
-				else if(rangeMin + bins < max){
-					rangeMax <- rangeMin + bins
-				}
-				# error handling for when range is < #bins, this should be improved upon
-				else{
-					rangeMin <- min
-					rangeMax <- max
-					bins <- max - min
-				}
-				updateSliderInput(session, inputId = "range", value = c(rangeMin,rangeMax))
+				
+				densityBreaks <- get_breaks(rangeMin, rangeMax, min, max, bins)
+				update_colours(densityBreaks)
 			}
-			
-			densityBreaks <- get_breaks(rangeMin, rangeMax, min, max, bins)
-			update_colours(densityBreaks)
-		}
 		})
 	})
 	
@@ -206,33 +208,19 @@ shinyServer(function(input, output, session) {
 	
 	# update colours based on density breaks when value changes
 	update_colours <- function(densityBreaks){
-		
-		test1 <- is.null(values$from) || values$from != head(densityBreaks, length(densityBreaks)-1)
-		test2 <- is.null(values$to) || values$to != tail(densityBreaks, length(densityBreaks)-1)
-		print(values$from)
-		print(head(densityBreaks, length(densityBreaks)-1))
-		print(values$to)
-		print(tail(densityBreaks, length(densityBreaks)-1))
-		
-		if(test1 || test2){
-			print("update")
 
-			# Construct break ranges for displaying in the legend
-			values$from <- head(densityBreaks, length(densityBreaks)-1)
-			values$to <- tail(densityBreaks, length(densityBreaks)-1)
-	
-			# Eight colors for eight buckets
-			values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(input$binNumber)
-	
-			# Assign colors to states
-			values$colours <- structure(
-				values$palette[as.integer(cut(values$density, densityBreaks, include.lowest = TRUE, ordered = TRUE))], 
-				names = names(values$density)
-			)
-		}
-		else{
-			print("no update")
-		}
+		# Construct break ranges for displaying in the legend
+		values$from <- head(densityBreaks, length(densityBreaks)-1)
+		values$to <- tail(densityBreaks, length(densityBreaks)-1)
+
+		# Eight colors for eight buckets
+		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(input$binNumber)
+
+		# Assign colors to states
+		values$colours <- structure(
+			values$palette[as.integer(cut(values$density, densityBreaks, include.lowest = TRUE, ordered = TRUE))], 
+			names = names(values$density)
+		)
 	}
 
 	# The state names that come back from the maps package's state database has
