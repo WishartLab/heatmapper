@@ -31,6 +31,20 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  		"Example Grid" = 'fileExample'), 
 	  		selected = 'fileUpload'
 	  	),
+	  	conditionalPanel(condition = "input.gridSelect == 'fileExample'", 
+  			selectInput('exampleSelect', label = "Select Type of File", 
+	  			choices = c(
+	  				"Example Grid" = 'example', 
+	  				"Empty Grid" = 'empty'), 
+	  			selected = 'example'
+	  		), 
+	  		conditionalPanel(condition = "input.exampleSelect == 'empty'", 
+	  			sliderInput('numGridRows', label = "Number of Rows", min = 3, max = 200, step = 1, value = 50),
+			  	bsTooltip(id = "numGridRows", 
+						title = "Warning: any changes to values will be lost after changing the number of rows",
+						placement = "right")
+	  		)
+	  	),
 	  	
 	  	conditionalPanel(condition = "input.gridSelect == 'fileUpload'",
 	  		HTML("<button id='clearFile' class='action-button clearButton'>Clear File</button>"), 
@@ -83,11 +97,6 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 		  		bsTooltip(id = "fullStretchImage", 
 						title = "Warning: changing this feature may cause misalignment of the heatmap layer",
 						placement = "top"), 
-		  	
-		  		sliderInput('numGridRows', label = "Number of Rows", min = 3, max = 200, step = 1, value = 50),
-			  	bsTooltip(id = "numGridRows", 
-						title = "Warning: any changes to values will be lost after changing the number of rows",
-						placement = "top"),
 		  			
 		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
 					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 520),

@@ -204,11 +204,15 @@ shinyServer(function(input, output, session){
 		
 		# reset values$data if grid changes
 		if(input$gridSelect == 'fileExample'){
-			max <- input$numGridRows 
-			newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
-			newy <- rep(seq(1, max), max)
-			data.frame("value" = sample(x = c(0, round(seq(20,200, length=8),0)), size = max*max, prob = c(0.8, rep(0.025,8)), replace = TRUE), 
-				"x" = newx, "y" = newy)
+			if(input$exampleSelect == 'example'){
+				read.delim("example_input/example.txt")
+			}
+			else{
+				max <- input$numGridRows 
+				newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
+				newy <- rep(seq(1, max), max)
+				data.frame("value" = 0, "x" = newx, "y" = newy)
+			}
 		}
 		else if(!is.null(values$gridFile)){
 			tryCatch({
