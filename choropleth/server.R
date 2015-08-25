@@ -87,21 +87,22 @@ shinyServer(function(input, output, session) {
 	# if values$density, values$colours, or values$map is changed update the polygons
 	observe({
 		get_file()
-		
-		if(is.null(values$density)){
-			# remove old shapes when map is changed
-  		leafletProxy("map") %>% clearShapes() %>% get_tiles() %>% get_view() 
+		if(input$tabSelections == "Interactive"){
+			if(is.null(values$density)){
+				# remove old shapes when map is changed
+	  		leafletProxy("map") %>% clearShapes() %>% get_tiles() %>% get_view() 
+			}
+			else{
+				mapData <- get_map_data()
+	  		leafletProxy("map", data =  mapData) %>% clearShapes() %>% get_shapes() %>% get_tiles() %>% get_view() 
+			}
 		}
-		else{
-			mapData <- get_map_data()
-  		leafletProxy("map", data =  mapData) %>% clearShapes() %>% get_shapes() %>% get_tiles() %>% get_view() 
-		}
-
   })
 	
 	# update legend when needed
 	observe({
-		if(!is.null(values$density)){
+		get_file()
+		if(!is.null(values$density) && input$tabSelections == "Interactive"){
 			leafletProxy("map", data = isolate({get_map_data()})) %>% 	
 				addLegend(layerId = "legendLayer", position = "bottomright", 
 						opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
@@ -340,7 +341,7 @@ shinyServer(function(input, output, session) {
 	}, options = list(pageLength = 10))
 	
 	# save example file
-	output$downloadExample <- downloadHandler(
+	output$tableDownload <- downloadHandler(
 		filename = "table.txt",
 		content = function(file){
 			write.table(isolate(get_file()), sep = "\t", quote = FALSE, file = file, row.names = FALSE)

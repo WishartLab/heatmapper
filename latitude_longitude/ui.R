@@ -65,7 +65,7 @@ shinyUI(list(HEAD_TASKS("#latlongTab"), fluidPage(title = "Latitude/Longitude",
 		),
 		
 		mainPanel(id = "mainPanel",
-			tabsetPanel(type = "tabs", id = "tabSelected", 
+			tabsetPanel(type = "tabs", id = "tabSelections", 
 				tabPanel(title = "Interactive", tags$br(), leafletOutput("map", height = 600)),
 				tabPanel(title = "Table", tags$br(), dataTableOutput("table"))
 			)

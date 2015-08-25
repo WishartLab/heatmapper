@@ -25,7 +25,7 @@ shinyServer(function(input, output, session){
 			file <- read.delim(input$exampleFiles, header = TRUE, sep="\t", row.names = NULL)
 		}
 		else{
-			validate(need(values$file$datapath, "Please upload a file"))
+			validate(need(values$file$datapath, ERR_file_upload))
 			
 			fileType <- tail(unlist(strsplit(x = values$file$name, split = "[.]")), n=1)
 			
@@ -197,7 +197,7 @@ shinyServer(function(input, output, session){
 	}
 	
 	observe({
-		if(input$tabSelected == 'Interactive'){
+		if(input$tabSelections == 'Interactive'){
 			m <- leafletProxy("map", session, get_file()) 
 			m %>% clearShapes()
 			get_shapes(m)
@@ -205,7 +205,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	observe({
-		if(input$tabSelected == 'Interactive'){
+		if(input$tabSelections == 'Interactive'){
 			m <- leafletProxy("map", session) 
 			get_tiles(m)
 		}

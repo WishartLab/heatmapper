@@ -161,6 +161,17 @@ shinyServer(function(input, output, session){
 	
 	#################### FILE INPUT FUNCTIONS ####################
 	
+	# prints error message if file has not been uploaded
+	selected_file_validate <- function(message = ERR_file_upload){
+		validate(
+			need(
+				!is.null(values$imageFile) || input$imageSelect == 'imageExample' ||
+				!is.null(values$gridFile) || input$gridSelect == 'fileExample', 
+				message
+			)
+		)
+	}
+	
 	# read and return background image file
 	get_image_file <- reactive({
 		if(input$imageSelect == 'imageExample'){
@@ -418,20 +429,22 @@ shinyServer(function(input, output, session){
 		plot1
 	})
 	
+	get_plot_download_name <- function(){
+		paste0("plot.", input$downloadPlotFormat)
+	}
+		
+	#################### OUTPUT FUNCTIONS ####################
+	
 	# error message for invalid coordinates
 	output$xyCoordsError <- renderText({
+		selected_file_validate("")
 		validate(need(!is.na(input$selectedValue), message="Please select valid x and y coordinates"))
 	})
 	
 	output$ggplotMap <- renderPlot({
+		selected_file_validate()
 		get_plot()  + values$highlightPoint
 	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
-	
-	#################### SIDEBAR HELPER FUNCTIONS ####################
-	
-	get_plot_download_name <- function(){
-		paste0("plot.", input$downloadPlotFormat)
-	}
 	
 	output$plotDownload <- downloadHandler(
 		filename = reactive({get_plot_download_name()}),
@@ -446,8 +459,8 @@ shinyServer(function(input, output, session){
 			write.table(values$data, file, quote = FALSE, sep = "\t")
 	})
 	
-	#################### TABLE HELPER FUNCTIONS ####################
 	output$table <- renderDataTable({
+		selected_file_validate()
 		data.frame("X" = values$data$x, "Y" = values$data$y, "Value" = values$data$value)
 	})
 
