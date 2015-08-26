@@ -7,7 +7,6 @@ library(MASS)
 
 shinyServer(function(input, output, session){
 	
-	
 	values <- reactiveValues(file = NULL)
 		
 	observe({
@@ -18,7 +17,6 @@ shinyServer(function(input, output, session){
 	observe({
 		values$file <- input$file
 	})
-	
 	
 	get_file <- reactive({
 		if(input$chooseInput == 'example'){
@@ -120,10 +118,13 @@ shinyServer(function(input, output, session){
 				popup_message <- paste0(popup_message, "<br/>Value: ", df$Value)
 			}
 			
-			m <- addCircles(m, opacity = input$pointOpacity, 
-			radius =  input$pointSize,  
-			weight = input$pointSize, 
-			popup = as.character(popup_message))
+			m <- addCircles(m, 
+				stroke = FALSE,
+				fill = TRUE,
+				fillOpacity = input$pointOpacity,
+				radius = input$pointSize,
+				popup = as.character(popup_message)
+			)
 			
 		}
 		

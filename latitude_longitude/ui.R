@@ -9,7 +9,7 @@ shinyUI(list(HEAD_TASKS("#latlongTab"), fluidPage(title = "Latitude/Longitude",
 			EXAMPLE_FILE_SELECT(),
 			LAYERS_SELECT(
 				c("Map" = 'showMap', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap', "Points" = 'showPoints'), 
-				c('showMap', 'showContours', 'showHeatmap')
+				c('showMap', 'showContours', 'showHeatmap', 'showPoints')
 			),
 
 			fluidRow(
