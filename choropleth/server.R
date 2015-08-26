@@ -3,6 +3,7 @@ library(RColorBrewer)
 library(raster)
 library(htmlwidgets)
 library(xlsx)
+library(DT)
 
 # reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
@@ -116,16 +117,32 @@ shinyServer(function(input, output, session) {
     values$highlight <- input$map_shape_mouseover$id
   })
 	
+	# use values$file to store file info instead of get_file() for editing table
+	observe({
+		values$file <- get_file()
+	})
+			
+	# populate select input with region names for that map
+	observe({
+		updateSelectInput(session,'tableNames', choices = tolower(levels(values$map$NAME)), selected = " ")
+	})
+	
+	# if selected row has name that matches a region name make that the default selection for select input
+	observe({
+		updateSelectInput(session, 'tableNames', selected = values$file[input$table_cell_clicked$row, 1])
+	})
+	
+	# update name in values$file when user clicks submit
+	observe({
+		input$submitName
+		isolate({
+			if(!is.null(values$file)){
+				values$file[input$table_cell_clicked$row, 1] <- input$tableNames
+			}
+		})
+	})
 	
 	#################### HELPER FUNCTIONS ####################
-
-	# add spaces between distinct words if they don't exist
-	fix_names <- function(x){
-		state_pattern <- "(north|south|west|rhode)(\\S)"
-		x <- sub(pattern = state_pattern, replacement = "\\1 \\2", x = x)
-		x <- iconv(x, to='ASCII//TRANSLIT')
-		return(x)
-	}
 	
 	# return the values from the selected column
 	get_nums_col <- function(data_file, col){
@@ -139,9 +156,8 @@ shinyServer(function(input, output, session) {
 	# assign density names and values based on the selected column
 	get_density <- reactive({ 
 		tryCatch({
-			data_file <- get_file()
+			data_file <- values$file
 			name_col <- tolower(data_file[[1]])
-			name_col <- fix_names(name_col)
 			nums_col <- get_nums_col(data_file, input$colSelect)
 			names(nums_col) <- name_col
 		
@@ -199,6 +215,7 @@ shinyServer(function(input, output, session) {
 		
 		# update the column selection options when a new file is uploaded
 		updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
+		
 		return(data_file)
 	})
 	
@@ -342,10 +359,13 @@ shinyServer(function(input, output, session) {
 	}  
 
 	################# OUTPUT FUNCTIONS ################# 
-	output$table <- renderDataTable({
-		get_file()
+	output$table <- DT::renderDataTable({
+		datatable(rownames = FALSE,
+			values$file, selection = 'single', 
+			class = 'row-border strip hover'
+    ) 
 	})
-  
+	
   # Dynamically render the box in the upper-right
   output$stateInfo <- renderUI({
     if (is.null(values$highlight)) {
@@ -360,7 +380,7 @@ shinyServer(function(input, output, session) {
       ))
     }
   })
-	
+
 	output$regionNames <- renderDataTable({
 		data.frame("Regions" = levels(values$map$NAME))
 	}, options = list(pageLength = 10))
@@ -369,7 +389,7 @@ shinyServer(function(input, output, session) {
 	output$tableDownload <- downloadHandler(
 		filename = "table.txt",
 		content = function(file){
-			write.table(isolate(get_file()), sep = "\t", quote = FALSE, file = file, row.names = FALSE)
+			write.table(values$file, sep = "\t", quote = FALSE, file = file, row.names = FALSE)
 		}
 	)
 	

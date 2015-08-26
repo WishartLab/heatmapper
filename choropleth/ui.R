@@ -78,6 +78,12 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 			),
 			tabPanel(title = "Table", 
 				tags$br(),
+				wellPanel(
+					tags$label("Update Region Name"), 
+					HTML("<button id='submitName' class='action-button clearButton'>Submit Name</button>"), 
+					selectInput('tableNames', label = NULL, choices = c(" " = 0))		
+				),
+				
 				dataTableOutput("table")), 
 			tabPanel(title = "Region Names", 
 				tags$br(),
