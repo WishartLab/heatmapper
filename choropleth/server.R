@@ -360,11 +360,27 @@ shinyServer(function(input, output, session) {
 
 	################# OUTPUT FUNCTIONS ################# 
 	output$table <- DT::renderDataTable({
-		datatable(rownames = FALSE,
+		x <- datatable(rownames = FALSE,
 			values$file, selection = 'single', 
 			class = 'row-border strip hover'
     ) 
+		# colour text red if name doesn't have a match
+		if(!is.null(get_unmatched_names())){
+			x <- formatStyle(x, 1, color = get_unmatched_names())
+		}
+		x
 	})
+	
+	# return list of names in values$file that don't match any region name
+	get_unmatched_names <- function(){
+		x <- values$file[[1]][!values$file[[1]] %in% tolower(levels(values$map$NAME))]
+		if(length(x)>0){
+			styleEqual(x, rep("red", length(x)))
+		}
+		else{
+			NULL
+		}
+	}
 	
   # Dynamically render the box in the upper-right
   output$stateInfo <- renderUI({

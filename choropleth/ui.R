@@ -83,11 +83,10 @@ shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
 					HTML("<button id='submitName' class='action-button clearButton'>Submit Name</button>"), 
 					selectInput('tableNames', label = NULL, choices = c(" " = 0))		
 				),
-				
-				dataTableOutput("table")), 
+				DT::dataTableOutput("table")), 
 			tabPanel(title = "Region Names", 
 				tags$br(),
-				dataTableOutput("regionNames"))
+				DT::dataTableOutput("regionNames"))
 			))),
 	INCLUDE_JS()
 )))
