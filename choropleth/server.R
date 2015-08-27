@@ -47,8 +47,10 @@ shinyServer(function(input, output, session) {
 	observe({
 		input$rangeSubmit
 		input$binNumber
-			isolate({
-				if(!is.null(values$density)){
+		input$lowColour
+		input$highColour
+		isolate({
+			if(!is.null(values$density)){
 				rangeMin <- input$range[[1]]
 				rangeMax <- input$range[[2]]
 				
