@@ -28,7 +28,7 @@ shinyServer(function(input, output, session){
 			fileType <- tail(unlist(strsplit(x = values$file$name, split = "[.]")), n=1)
 			
 			tryCatch({
-				if(fileType == "xls" || fileType == "xlsx"){
+				if(fileType == "xlsx"){
 					file <- read.xlsx(values$file$datapath, 1)
 				}
 				else if(fileType == "csv"){
@@ -37,14 +37,20 @@ shinyServer(function(input, output, session){
 				else{
 					file <- read.delim(values$file$datapath, header = TRUE, sep="\t", row.names = NULL)
 				}
+				
 			},
 			error = function(err){
 				validate(txt = ERR_file_read)
 			})
 		}
 		
+		# get rid of NAs
+		file <- na.omit(file)
+		
 		lat <- get_column(file, c("Latitude", "latitude", "Lat", "lat"))
 		lon <- get_column(file, c("Longitude", "longitude", "Long", "long", "Lon", "lon"))
+		
+		validate(need(length(lat)>1, "File could not be read. Please ensure the file contains more than 1 row."))
 		
 		if(!is.null(lat) && !is.null(lon)){
 			if(!is.null(file$Value)){
@@ -76,14 +82,19 @@ shinyServer(function(input, output, session){
 
 	# source: http://www.r-bloggers.com/interactive-maps-for-john-snows-cholera-data/
 	get_density <- reactive({
-		
+
 		df <- get_file()
 		x <- df[[1]]
 		y <- df[[2]]
 
 		nlevels <- input$binNumber 
 		bandwidth <- c(bandwidth.nrd(x), bandwidth.nrd(y))*input$gaussianRadius 
-		
+		if(bandwidth[[1]] == 0){
+			bandwidth[[1]] <- 0.00001
+		}
+		if(bandwidth[[2]] == 0){
+			bandwidth[[2]] <- 0.00001
+		}
 		xmin <- min(x) - bandwidth[[1]]*nlevels
 		xmax <- max(x) + bandwidth[[1]]*nlevels
 		
@@ -98,6 +109,7 @@ shinyServer(function(input, output, session){
 		}
 
 		return(contourLines(x = dens$x, y = dens$y, z = dens$z, nlevels = nlevels))
+
 	})
 
 	
@@ -172,7 +184,6 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_contour_shapes <- function(m){
-	
 		cl <- get_density()
 		max_cl <- length(cl)
 		
