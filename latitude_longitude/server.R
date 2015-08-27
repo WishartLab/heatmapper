@@ -101,7 +101,7 @@ shinyServer(function(input, output, session){
 		ymin <- min(y) - bandwidth[[2]]*nlevels
 		ymax <- max(y) + bandwidth[[2]]*nlevels
 		
-		if(is.null(df$Value)){
+		if(is.null(df$Value) || var(df$Value) == 0){
 			dens <- kde2d(x, y, h = bandwidth, n = input$contourSmoothness, lims = c(xmin,xmax, ymin,ymax))
 		}
 		else{
