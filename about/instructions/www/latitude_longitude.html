@@ -2,38 +2,78 @@
 <html>
     <head>
         <meta charset="UTF-8">
+		<style>
+			td {padding:0.5em;}
+		</style>
     </head>  
     <body>
 		<div class = "well">
-			<h4>Features Overview</h4>
-			
+			<h4>Accepted File Formats</h4>
+			<ul>
+				<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
+				<li>Comma separated with extension <em>.csv</em></li>
+				<li>First sheet of an Excel workbook with extension <em>.xlsx</em></li>
+			</ul>
+			<h4>Data Structure</h4>
+			The data input must contain at least 2 columns with valid latitude and longitude coordinates. 
+			An optional 3rd column containing values can be included for calculating a weighted denisty estimation instead of basing the estimation on density of points. 
+			At least one value must be strictly greater than 0 if the value column is used. 
+			The first row must contain the names for each column, "Latitude", "Longitude", and (when applicable) "Value".
+			<h4>Range</h4>
+			Latitude: any number between -180 and +180 <br />
+			Longitude: any number between -90 and +90 <br />
+			Value: any positive number
+			<h4>Examples of Valid Input</h4>
 			<table>
 				<tr>
-					<th>Main Panel</th>
-					<th>Advanced Panel</th> 
+					<td>Latitude</td>
+					<td>Longitude</td>
+					<td>Value</td> 
 				</tr>
 				<tr>
 					<td>
-						<ul>
-							<li>Upload file or use example file</li>
-							<li>Show/hide layers (map, heat map, contour lines, points)</li>
-							<li>Map type</li>
-							<li>Gaussian radius multiplier</li>
-							<li>Contour smoothness</li>
-							<li>Heat map opacity</li>
-							<li>Number of shades</li>
-							<li>Colour scheme</li>
-							<li>Download plot</li>
-							<li>Download table</li>
-						</ul>
+						-90
 					</td>
 					<td>
-						<ul>
-							<li>Contour line width</li>
-							<li>Point width</li>
-							<li>Point opacity</li>
-						</ul>
-					</td> 
+						-180
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+				<tr>
+					<td>
+						90
+					</td>
+					<td>
+						180
+					</td>
+					<td>
+						0.5
+					</td>
+				</tr>
+			</table>
+			<br />
+			<table>
+				<tr>
+					<td>Longitude</td>
+					<td>Latitude</td>
+				</tr>
+				<tr>
+					<td>
+						0
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+				<tr>
+					<td>
+						1.234
+					</td>
+					<td>
+						4.321
+					</td>
 				</tr>
 			</table>
 		</div>

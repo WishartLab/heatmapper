@@ -27,30 +27,52 @@ shinyServer(function(input, output, session){
 			
 			fileType <- tail(unlist(strsplit(x = values$file$name, split = "[.]")), n=1)
 			
-			if(fileType == "xls" || fileType == "xlsx"){
-				file <- read.xlsx(values$file$datapath, 1)
-			}
-			else if(fileType == "csv"){
-				file <- read.csv(values$file$datapath, header = TRUE)
-			}
-			else{
-				file <- read.delim(values$file$datapath, header = TRUE, sep="\t", row.names = NULL)
-			}
+			tryCatch({
+				if(fileType == "xls" || fileType == "xlsx"){
+					file <- read.xlsx(values$file$datapath, 1)
+				}
+				else if(fileType == "csv"){
+					file <- read.csv(values$file$datapath, header = TRUE)
+				}
+				else{
+					file <- read.delim(values$file$datapath, header = TRUE, sep="\t", row.names = NULL)
+				}
+			},
+			error = function(err){
+				validate(txt = ERR_file_read)
+			})
 		}
 		
-		if(!is.null(file$Value)){
+		lat <- get_column(file, c("Latitude", "latitude", "Lat", "lat"))
+		lon <- get_column(file, c("Longitude", "longitude", "Long", "long", "Lon", "lon"))
+		
+		if(!is.null(lat) && !is.null(lon)){
+			if(!is.null(file$Value)){
 				points <- data.frame(
-				Longitude = c(file$Longitude), 
-				Latitude = c(file$Latitude), 
+				Longitude = c(lon), 
+				Latitude = c(lat), 
 				Value = c(file$Value))
+			}
+			else{
+				points <- data.frame(
+				Longitude = c(lon), 
+				Latitude = c(lat))
+			}
 		}
 		else{
-			points <- data.frame(
-			Longitude = c(file$Longitude), 
-			Latitude = c(file$Latitude))
+			validate(txt = "File could not be read. Please ensure the columns are correctly labeled.")
 		}
 		return(points)
 	})
+	
+	get_column <- function(file, names_list){
+		for(i in names_list){
+			if(i %in% names(file)){
+				return(file[[i]])
+			}
+		}
+		NULL
+	}
 
 	# source: http://www.r-bloggers.com/interactive-maps-for-john-snows-cholera-data/
 	get_density <- reactive({

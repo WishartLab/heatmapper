@@ -2,8 +2,11 @@ library(shiny)
 source("../global_about.R")
 
 server <- function(input, output) {
-	output$instructions <- renderUI({
+	output$fileInputTab <- renderUI({
 		includeHTML(paste0("www/", input$navlistPanel, ".html"))
+	})
+	output$featuresTab <- renderUI({
+		includeHTML(paste0("www/features/", input$navlistPanel, ".html"))
 	})
 }
 
@@ -11,12 +14,21 @@ ui <- list(NAVBAR("#aboutTab"), fluidPage(
 	tags$head(tags$style("table, th, td { border: 1px solid black;} th {text-align:center;} ul {margin:0.5em;}")),
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
+			titlePanel("Instructions"),
 			NAVLIST_PANEL()
 		),
 		mainPanel(id = "mainPanel",
-			titlePanel("Instructions"),
-			tags$br(),
-			uiOutput("instructions")
+			
+			tabsetPanel(
+				tabPanel("File Input", 
+					tags$br(),
+					uiOutput("fileInputTab")
+				),
+				tabPanel("Features",
+					tags$br(),
+					uiOutput("featuresTab")
+				)
+			)
 		)
 	)
 ))
