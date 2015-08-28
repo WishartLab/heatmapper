@@ -25,7 +25,12 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
     	
     	BIN_SLIDER(3, 299, 160),
     	
-    	JSCOLOUR_ROW("#66CD00", "#FF0000"), 
+    	fluidRow(
+				column(4, jscolourInput("lowColour", label = "Low Colour", value = "#33FF00")),
+    		column(4, jscolourInput("midColour", label = "Middle Colour")),
+				column(4, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
+			),
+    	#JSCOLOUR_ROW("#66CD00", "#FF0000"), 
     	
     	selectInput('clusterMethod', 
     		label = "Clustering Method",	

@@ -85,7 +85,7 @@ shinyServer(function(input, output, session){
 	
 	# returns colorRampPalette of input$lowColour and input$highColour
 	get_colour_palette <- reactive({
-		colorRampPalette(c(input$lowColour, "black", input$highColour))
+		colorRampPalette(c(input$lowColour, input$midColour, input$highColour))
 	})
 	
 	# calculates and returns a distance matrix
