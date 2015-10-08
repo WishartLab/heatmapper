@@ -85,8 +85,158 @@ shinyServer(function(input, output, session){
 	
 	# returns colorRampPalette of input$lowColour and input$highColour
 	get_colour_palette <- reactive({
-		colorRampPalette(c(input$lowColour, input$midColour, input$highColour))
+		
+		# Modify the user-specified low, middle, and high colors based on
+		# the value of the brightness slider. The brightness slider ranges
+		# from -50 to +50. If it is < 0, darken the colors. If it is > 0,
+		# brighten the colors by shifting them closer to the low and high
+		# colors.
+		brightness_adj = as.integer(input$plotBrightness)
+		
+		if (brightness_adj == 0) {
+			lowCol = input$lowColour
+			midCol = input$midColour
+			highCol = input$highColour
+			colorRampPalette(c(lowCol, midCol, highCol))
+		} else if (brightness_adj < 0) {
+			lowCol = darken(input$lowColour, brightness_adj)
+			midCol = darken(input$midColour, brightness_adj)
+			highCol = darken(input$highColour, brightness_adj)
+			colorRampPalette(c(lowCol, midCol, highCol))
+		} else {
+			lowCol = input$lowColour
+			midCol = input$midColour
+			highCol = input$highColour
+			colorRampPalette(get_brightness_adjusted_color_set(lowCol, midCol, highCol, brightness_adj))
+		}
 	})
+	
+	# Return a set of colors ranging from lowCol to highCol, with midCol in the
+	# middle, adjusted brighter based on the value of adj.
+	get_brightness_adjusted_color_set <- function(lowCol, midCol, highCol, adj) {
+		
+		adj = (adj)/20.0 + 1.0
+		
+		q = 5 # We will use q*2 + 1 colors.
+		
+		r1 = strtoi(paste('0x', substr(lowCol, 2,3), sep=''))
+		g1 = strtoi(paste('0x', substr(lowCol, 4,5), sep=''))
+		b1 = strtoi(paste('0x', substr(lowCol, 6,7), sep=''))
+		
+		r2 = strtoi(paste('0x', substr(midCol, 2,3), sep=''))
+		g2 = strtoi(paste('0x', substr(midCol, 4,5), sep=''))
+		b2 = strtoi(paste('0x', substr(midCol, 6,7), sep=''))
+		
+		r3 = strtoi(paste('0x', substr(highCol, 2,3), sep=''))
+		g3 = strtoi(paste('0x', substr(highCol, 4,5), sep=''))
+		b3 = strtoi(paste('0x', substr(highCol, 6,7), sep=''))
+		
+		# Create a matrix of colors to be used for the colorRampPalette function.
+		# Each row will be 3 integers representing R, G, and B values. The first
+		# row is the low color, and the last is the high color, with a total of
+		# q*2 + 1 colors.
+		arr = matrix(c(
+					subarr(r1, r2, q)[1:q], subarr(r2, r3, q),
+					subarr(g1, g2, q)[1:q], subarr(g2, g3, q),
+					subarr(b1, b2, q)[1:q], subarr(b2, b3, q)
+				),
+				nrow = q*2 + 1
+		)
+		
+		arr = change_brightness(arr, adj)
+		# print (arr)
+		return (apply(arr, 1, tuple2hex))
+	}
+	
+	# Convert array of 3 integers, representing R, G, and B values, to
+	# a hexidecimal-based string representing the color.
+	tuple2hex <- function(c) {
+		return (toupper(sprintf("#%02x%02x%02x",
+			as.integer(c[1]), as.integer(c[2]), as.integer(c[3])
+			)));
+	}
+	
+	# Return an array with values ranging from c1 to c2, with q+1 elements
+	# equally spaced. If c1 == c2, the returned array will have q+1 elements
+	# all with the same value.
+	subarr <-function(c1, c2, q) {
+		if (c1 == c2) {
+			return (rep(c1, q+1));
+		} else {
+			return (seq(c1, c2, (c2-c1)/q));
+		}
+	}
+	
+	# Change brightness of given colors.
+	# c: n x 3 array in which each row consists of 3 decimal values representing
+	#		R, G, and B values.
+	# adj: brightness adjustment value.
+	change_brightness <- function(c, adj) {
+		mid = (dim(c)[1]-1)/2 + 1 # middle index
+		end = dim(c)[1]
+		
+		midcol = c[mid,]
+		minstop = apply(c[1:mid,],2,min)
+		minsbot = apply(c[mid:end,],2,min)
+
+		# adjust top half of color array
+		
+		d = abs(c[1,] - midcol)
+		
+		tmp = apply(c[1:mid,], 1, addtorow, x=-minstop) # substract minimum
+		tmp = apply(tmp, 1, identity) # un-transpose
+		tmp = apply(tmp, 1, divbyd, d=d)
+		tmp = apply(tmp, 1, identity) # un-transpose
+		
+		tmp = apply(tmp^(1/adj), 1, multbyd, d=d) # apply brightness adjustment and begin undoing the other transformations
+		tmp = apply(tmp, 1, identity) # un-transpose
+		tmp = apply(tmp, 1, addtorow, x=minstop)
+		c[1:mid,] = apply(tmp, 1, identity) # un-transpose
+		
+		# adjust bottom half of color array
+		
+		d = abs(c[end,] - midcol)
+		
+		tmp = apply(c[(mid+1):end,], 1, addtorow, x=-minsbot) # substract minimum
+		tmp = apply(tmp, 1, identity) # un-transpose
+		tmp = apply(tmp, 1, divbyd, d=d)
+		tmp = apply(tmp, 1, identity) # un-transpose
+		
+		tmp = apply(tmp^(1/adj), 1, multbyd, d=d) # apply brightness adjustment and begin undoing the other transformations
+		tmp = apply(tmp, 1, identity) # un-transpose
+		tmp = apply(tmp, 1, addtorow, x=minsbot)
+		c[(mid+1):end,] = apply(tmp, 1, identity) # un-transpose
+		
+		return(c)
+	}
+	
+	divbyd <- function(r, d) {
+		return(ifelse(d == 0, r, r/d))
+	}
+	
+	multbyd <- function(r, d) {
+		return(ifelse(d == 0, r, r * d))
+	}
+	
+	addtorow <- function(r, x) {
+		return(r + x)
+	}
+	
+	# Darken the given color based on adj (a negative integer).
+	darken <- function(col, adj){
+		r = strtoi(paste('0x', substr(col, 2,3), sep=''))
+		g = strtoi(paste('0x', substr(col, 4,5), sep=''))
+		b = strtoi(paste('0x', substr(col, 6,7), sep=''))
+		
+		adj = (100.0 + adj)/100.0
+		
+		r = as.integer(r*adj)
+		g = as.integer(g*adj)
+		b = as.integer(b*adj)
+		
+		col = toupper(sprintf("#%02x%02x%02x",r,g,b))
+		return (col)
+	}
 	
 	# calculates and returns a distance matrix
 	# param: data matrix

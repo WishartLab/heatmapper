@@ -89,6 +89,11 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
 		    		max = 2000, 
 		    		value = 600),
 					
+					sliderInput('plotBrightness', label = BRIGHTNESS, 
+					  min = -50,
+					  max = 50, 
+					  value = 0),
+					
 					tipify(
 						checkboxInput('fullSize', label = "Preview Full Height", value = FALSE), 
 						"Not Recomended for Large Files", placement = "top"), 

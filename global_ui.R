@@ -35,6 +35,7 @@ DOWNLOAD_TABLE <- "Download Table"
 WIDTH <- "Plot Width (in px)"
 HEIGHT <- "Plot Height (in px)"
 CONTOUR_WIDTH <- "Contour Line Width (in px)"
+BRIGHTNESS <- "Adjust Brightness"
 
 # imports navbar, sets active tab, adds CSS
 HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
