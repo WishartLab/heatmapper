@@ -5,6 +5,9 @@ library(ggdendro)
 # memory testing
 # library(pryr)
 
+# Constants
+q = 5; # Use q*2 + 1 colors when brightening the microarray heatmap.
+
 shinyServer(function(input, output, session){
 	
 	# http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels
@@ -116,8 +119,6 @@ shinyServer(function(input, output, session){
 	get_brightness_adjusted_color_set <- function(lowCol, midCol, highCol, adj) {
 		
 		adj = (adj)/20.0 + 1.0
-		
-		q = 5 # We will use q*2 + 1 colors.
 		
 		r1 = strtoi(paste('0x', substr(lowCol, 2,3), sep=''))
 		g1 = strtoi(paste('0x', substr(lowCol, 4,5), sep=''))
@@ -439,10 +440,20 @@ shinyServer(function(input, output, session){
 			"File is too large for this feature. Please select a smaller file with no more than 10,000 cells."))
 		
 		tryCatch({
+			
+			# Get number of colors to use in color palette, which depends on whether
+			# or not we are brightening the plot.
+			brightness_adj = as.integer(input$plotBrightness)
+			if (brightness_adj > 0) {
+				num_colors = q*2 + 1
+			} else {
+				num_colors = 3;
+			}
+			
 			d3heatmap(x, 
 				Rowv = get_dendrograms()[[1]], 
 				Colv = get_dendrograms()[[2]],  
-				colors = get_colour_palette()(3),
+				colors = get_colour_palette()(num_colors),
 				scale = input$scale, 
 				show_grid = FALSE, 
 				anim_duration = 0)
