@@ -36,9 +36,18 @@ shinyServer(function(input, output, session) {
 			# update the slider with the new max and min from that column
 			min <- floor(min(values$density, na.rm = TRUE))
 			max <- ceiling(max(values$density, na.rm = TRUE))
+
+			# set number of digit to which to round
+			num_digits = 0
+			if (max < 10) {
+				num_digits = 2
+			} else if (max < 100) {
+				num_digits = 1
+			}
+
 			updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
 			isolate({
-				update_colours(round(seq(min, max, length.out = input$binNumber+1), 0))
+				update_colours(round(seq(min, max, length.out = input$binNumber+1), num_digits))
 			})
 		}
 	})
