@@ -59,7 +59,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  			"Contour Lines" = 'showContour', 
 	  			"Axis Labels" = 'showAxisLabels'
 	  		), 
-	  		c('showImage', 'showHeatmap', 'showContour')
+	  		c('showImage', 'showHeatmap')
 	  	),
 
 	  	fluidRow(
@@ -79,13 +79,13 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 		  	GRID_POINTS_SLIDER(10, 400, 200, 10)
 	  	),
 	  	
-	  	FILL_OPACITY_SLIDER(),
-	  	BIN_SLIDER(2, 50, 8),
+	  	FILL_OPACITY_SLIDER("0.05"),
+	  	BIN_SLIDER(2, 50, 30),
 	  	
-	  	COLOUR_SCHEME_SELECT('rainbow'),
+	  	COLOUR_SCHEME_SELECT(),
 	  	
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
-	  		JSCOLOUR_ROW("#FFFF00", "#EE00FF")
+	  		JSCOLOUR_ROW("#EE00FF", "#FFFF00")
 	  	), 
 	  	
 	  	DOWNLOAD_BUTTONS(),
@@ -93,7 +93,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  	ADVANCED_OPTIONS_PANEL(
 	  		list(
 		  		span(id = "fullStretchImage", 
-						checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = TRUE)), 
+						checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = FALSE)), 
 		  		bsTooltip(id = "fullStretchImage", 
 						title = "Warning: changing this feature may cause misalignment of the heatmap layer",
 						placement = "top"), 

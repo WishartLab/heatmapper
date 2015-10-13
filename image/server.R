@@ -175,7 +175,7 @@ shinyServer(function(input, output, session){
 	# read and return background image file
 	get_image_file <- reactive({
 		if(input$imageSelect == 'imageExample'){
-			readJPEG("example_input/jasper.jpg")
+			readPNG("example_input/background.png")
 		}
 		else if(!is.null(values$imageFile)){
 			name <- values$imageFile$name
@@ -460,7 +460,7 @@ shinyServer(function(input, output, session){
 	output$tableDownload <- downloadHandler(
 		filename = "table.txt", 
 		content = function(file){
-			write.table(values$data, file, quote = FALSE, sep = "\t")
+			write.table(values$data, file, quote = FALSE, sep = "\t", row.names = FALSE)
 	})
 	
 	output$table <- renderDataTable({
