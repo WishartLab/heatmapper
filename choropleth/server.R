@@ -5,6 +5,8 @@ library(htmlwidgets)
 library(xlsx)
 library(DT)
 
+source("../global_ui.R") # so we can see EXAMPLE_FILES
+
 # reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
 	
@@ -44,11 +46,28 @@ shinyServer(function(input, output, session) {
 			} else if (max < 100) {
 				num_digits = 1
 			}
-
+			
 			updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
 			isolate({
 				update_colours(round(seq(min, max, length.out = input$binNumber+1), num_digits))
 			})
+			
+			# When user chooses an example file, automatically set the
+			# appropriate map.
+			map_to_select = ''
+			if (input$exampleFiles == EXAMPLE_FILES[1]) {
+				map_to_select = 'data/CAN_1.rds'
+			} else if (input$exampleFiles == EXAMPLE_FILES[2]) {
+				map_to_select = 'data/CAN_1.rds'
+			} else if (input$exampleFiles == EXAMPLE_FILES[3]) {
+				map_to_select = 'data/USA_1.rds'
+			}
+			if (map_to_select != '') {
+				updateSelectInput(session, inputId = "area", label = NULL, 
+													choices = NULL, 
+													selected = map_to_select)
+			}
+			
 		}
 	})
 	

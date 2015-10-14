@@ -12,6 +12,10 @@ FILE_UPLOAD <- "Select Data File"
 
 # EXAMPLE_FILE_SELECT()
 SELECT_EXAMPLE <- "Select Example File"
+EXAMPLE_FILES <- c(
+					"Example 1" = 'example_input/example1.txt',
+					"Example 2" = 'example_input/example2.txt',
+					"Example 3" = 'example_input/example3.txt')
 
 # LAYERS_SELECT()
 LAYERS <- "Show/Hide Layers"
@@ -93,10 +97,7 @@ EXAMPLE_FILE_SELECT <- function(){
              
             selectInput('exampleFiles', width="16.5em",
 				label = NULL,
-				choices = c(
-					"Example 1" = 'example_input/example1.txt',
-					"Example 2" = 'example_input/example2.txt',
-					"Example 3" = 'example_input/example3.txt'),
+				choices = EXAMPLE_FILES,
 				selected = 1),
             
 	  		conditionalPanel(condition = "input.exampleButton>0",
