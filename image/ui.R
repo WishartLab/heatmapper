@@ -12,18 +12,40 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	sidebarLayout(position = "right",
 	  sidebarPanel(id = "sidebarPanel", width = 1,
 	  	
-	  	radioButtons('imageSelect', label = "Select Image File", 
-	  		inline=TRUE, 
-	  		choices = c(
-	  		"Upload Image" = 'imageUpload', 
-	  		"Example Image" = 'imageExample'), 
-	  		selected = 'imageUpload'
+	  	# Radio buttons to select image to upload or choose example image, plus button for example info.
+	  	fluidRow(
+	  		column(9,
+	  		radioButtons('imageSelect', label = "Select Image File",
+	  													 inline=TRUE,
+	  													 choices = c(
+	  													 	"Upload Image" = 'imageUpload',
+	  													 	"Example" = 'imageExample'),
+	  													 selected = 'imageUpload'),
+	  		inline=TRUE
+	  		),
+	  		column(3,
+	  					 conditionalPanel(condition = "input.imageSelect == 'imageExample'",
+	  					 								 actionButton('exampleButton', label = NULL, class = "btn-info", icon = icon("fa fa-info-circle")),
+	  					 								 bsTooltip(id = "exampleButton", title = "View Example Details", placement = "right")
+	  					 )
+	  		)
 	  	),
+	  	
+	  	# Example info box
+	  	conditionalPanel(condition = "input.exampleButton>0",
+	  									 wellPanel(id = "exampleInfo",
+	  									 					tags$label("Example File Information"),
+	  									 					HTML("<button id='closeExampleButton' class='action-button' style='float:right;'><i class='fa fa-times'></i></button>"),
+	  									 					includeHTML("www/example1info.html")
+	  									 )),
+	  	
+	  	# UI for uploading custom image
 	  	conditionalPanel(condition = "input.imageSelect == 'imageUpload'",
 	  		HTML("<button id='clearImage' class='action-button clearButton'>Clear File</button>"),
 	  		fileInput('imageFile', label = NULL)
 	  	),
 	  	
+	  	# Select to upload custom grid or use example grid
 	  	radioButtons('gridSelect', label = "Select Grid File", 
 	  		inline=TRUE, 
 	  		choices = c(
@@ -31,6 +53,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  		"Example Grid" = 'fileExample'), 
 	  		selected = 'fileUpload'
 	  	),
+	  	# When select "Example Grid", user can choose either the example grid or an empty grid
 	  	conditionalPanel(condition = "input.gridSelect == 'fileExample'", 
   			selectInput('exampleSelect', label = "Select Type of File", 
 	  			choices = c(
@@ -38,6 +61,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  				"Empty Grid" = 'empty'), 
 	  			selected = 'example'
 	  		), 
+	  		# When select "Empty Grid", show slider for choosing the number of rows.
 	  		conditionalPanel(condition = "input.exampleSelect == 'empty'", 
 	  			sliderInput('numGridRows', label = "Number of Rows", min = 3, max = 200, step = 1, value = 50),
 			  	bsTooltip(id = "numGridRows", 
