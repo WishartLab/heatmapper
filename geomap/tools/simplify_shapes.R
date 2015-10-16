@@ -31,7 +31,7 @@ level <- 1
 gSimplifyTol <- 0.05
 minarea <- 0.005
 fileName <- paste0(country, "_", level, ".rds")
-filePath <- paste0("heatmapper/choropleth/data/", fileName)
+filePath <- paste0("heatmapper/geomap/data/", fileName)
 
 # source: http://stackoverflow.com/questions/20495598/replace-accented-characters-in-r-with-non-accented-counterpart-utf-8-encoding
 unwanted_chars = list('Š'='S', 'š'='s', 'Ž'='Z', 'ž'='z', 'À'='A', 'Á'='A', 'Â'='A', 'Ã'='A', 'Ä'='A', 'Å'='A', 'Æ'='A', 'Ç'='C', 'È'='E', 'É'='E',

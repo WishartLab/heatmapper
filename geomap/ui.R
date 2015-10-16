@@ -1,7 +1,7 @@
 source("../global_ui.R")
 library(leaflet)
 
-shinyUI(list(HEAD_TASKS("#choroplethTab"), fluidPage(title = "Choropleth",
+shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 	
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel", width = 1,

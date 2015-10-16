@@ -4,7 +4,7 @@ NAVLIST_PANEL <- function(){
 		tabPanel("Microarray", value = "microarray"),
 		tabPanel("Distance Matrix", value = "distance_matrix"),
 		tabPanel("Image Overlay", value = "image"),
-		tabPanel("Geomap", value = "choropleth"),
+		tabPanel("Geomap", value = "geomap"),
 		tabPanel("Geodensity", value = "latitude_longitude")
 	)
 }

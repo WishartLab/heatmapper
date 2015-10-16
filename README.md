@@ -2,7 +2,7 @@
 * Microarray: www.heatmapper.ca/microarray
 * Distance Matrix: www.heatmapper.ca/distance_matrix
 * Image Overlay: www.heatmapper.ca/image
-* Geomap: www.heatmapper.ca/choropleth
+* Geomap: www.heatmapper.ca/geomap
 * Geodensity: www.heatmapper.ca/latitude_longitude
 
 ## Required R Packages

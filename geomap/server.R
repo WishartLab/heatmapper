@@ -442,7 +442,7 @@ shinyServer(function(input, output, session) {
 	# save leaflet html page
 	output$plotDownload <- downloadHandler(
 		filename = function(){
-			"choropleth.html"
+			"geomap.html"
 		},
 		content = function(file) {
 			m <- get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
