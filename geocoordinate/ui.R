@@ -1,7 +1,7 @@
 source("../global_ui.R")
 library(leaflet)
 
-shinyUI(list(HEAD_TASKS("#latlongTab"), fluidPage(title = "Latitude/Longitude",
+shinyUI(list(HEAD_TASKS("#geocoordTab"), fluidPage(title = "Geocoordinate",
 	
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel",  width = 1,

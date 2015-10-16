@@ -3,7 +3,7 @@
 * Distance Matrix: www.heatmapper.ca/distance_matrix
 * Image Overlay: www.heatmapper.ca/image
 * Geomap: www.heatmapper.ca/geomap
-* Geodensity: www.heatmapper.ca/latitude_longitude
+* Geocoordinate: www.heatmapper.ca/geocoordinate
 
 ## Required R Packages
 <pre><code>

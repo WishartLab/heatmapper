@@ -5,7 +5,7 @@ NAVLIST_PANEL <- function(){
 		tabPanel("Distance Matrix", value = "distance_matrix"),
 		tabPanel("Image Overlay", value = "image"),
 		tabPanel("Geomap", value = "geomap"),
-		tabPanel("Geodensity", value = "latitude_longitude")
+		tabPanel("Geocoordinate", value = "geocoordinate")
 	)
 }
 
