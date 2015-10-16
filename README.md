@@ -1,5 +1,5 @@
 ## Heatmapper is hosted at www.heatmapper.ca
-* Microarray: www.heatmapper.ca/microarray
+* Expression Heat Map: www.heatmapper.ca/expression
 * Distance Matrix: www.heatmapper.ca/distance_matrix
 * Image Overlay: www.heatmapper.ca/image
 * Geomap: www.heatmapper.ca/geomap

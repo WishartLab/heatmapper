@@ -6,7 +6,7 @@ library(ggdendro)
 # library(pryr)
 
 # Constants
-q = 5; # Use q*2 + 1 colors when brightening the microarray heatmap.
+q = 5; # Use q*2 + 1 colors when brightening the expression heat map.
 
 shinyServer(function(input, output, session){
 	
