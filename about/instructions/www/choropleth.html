@@ -2,38 +2,78 @@
 <html>
     <head>
         <meta charset="UTF-8">
+		<style>
+			td {padding:0.5em;}
+		</style>
     </head>  
     <body>
 		<div class = "well">
-			<h4>Features Overview</h4>
+			<h4>Accepted File Formats</h4>
+			<ul>
+				<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
+				<li>Comma separated with extension <em>.csv</em></li>
+				<li>First sheet of an Excel workbook with extension <em>.xlsx</em></li>
+			</ul>
+			<h4>Data Structure</h4>
+			The data input must contain at least 2 columns with region names in the first column and numeric values in the second. 
+			More than one column of numeric values can be included. 
+			The second column is selected by default to generate the heatmap.
+			The selected column can be changed using a dropdown menu, which references different columns by the corresponding entry in the first row. 
 			
+			<h4>Range</h4>
+			Region Names: names of regions which match the selected map region names<br />
+			Other Columns: any positive or negative number
+			<h4>Examples of Valid Input</h4>
 			<table>
 				<tr>
-					<th>Main Panel</th>
-					<th>Advanced Panel</th> 
+					<td>Canadian Provinces</td>
+					<td>Column 1 Values</td>
+					<td>Column 2 Values</td> 
 				</tr>
 				<tr>
 					<td>
-						<ul>
-							<li>Upload file or select one of 3 example files</li>
-							<li>View and edit mismatched region names</li> 
-							<li>Select area to use (>10 choices)</li>
-							<li>Specify range of interest</li>
-							<li>Select column to use</li>
-							<li>Show/hide layers (map, heatmap, contour lines)</li>
-							<li>Heat map opacity</li>
-							<li>Number of shades</li>
-							<li>Low colour and high colour</li>
-							<li>Download plot</li>
-							<li>Download table</li>
-						</ul>
+						Alberta
 					</td>
 					<td>
-						<ul>
-							<li>Legend title</li>
-							<li>Contour line width</li>
-						</ul>
-					</td> 
+						0
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+				<tr>
+					<td>
+						British Columbia
+					</td>
+					<td>
+						5000.5
+					</td>
+					<td>
+						-5000.5
+					</td>
+				</tr>
+			</table>
+			<br />
+			<table>
+				<tr>
+					<td>Region Name</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>
+						North America
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+				<tr>
+					<td>
+						South America
+					</td>
+					<td>
+						0
+					</td>
 				</tr>
 			</table>
 		</div>
