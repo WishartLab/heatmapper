@@ -79,7 +79,32 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
     		)
     	),
     	
-    	DOWNLOAD_BUTTONS(),
+			# Download buttons and options
+			wellPanel(
+				fluidRow(
+					column(4,
+						tags$label("Download:")
+					),
+					column(4,
+						downloadButton('plotDownload', "Plot", class = "btn-info")
+					),
+					column(4,
+						downloadButton('tableDownload', "Table", class = "btn-info")
+					)
+				),
+				br(),
+				fluidRow(
+					column(4, tags$label("Plot File Format")),
+					column(8,
+						 selectInput('downloadFormat', label = NULL,
+									choices = c(
+										"JPEG" = 'jpg',
+										"PNG" = 'png',
+										"PDF" = 'pdf'),
+									selected = 'png')
+					)
+				)
+			),
     	
     	ADVANCED_OPTIONS_PANEL( 
 				list(
@@ -108,13 +133,7 @@ shinyUI(list(HEAD_TASKS("#microarrayTab"), fluidPage(title = "Microarray",
 					textInput('xlab', label = "X Axis Label", value = ""),
 					textInput('ylab', label = "Y Axis Label",	value = ""), 
 						
-					jscolourInput("missingColour", label = "Missing Data Colour"),
-						
-					selectInput('downloadFormat', label = "Plot Download Format", 
-						choices = c(
-							"PNG" = 'png', 
-							"PDF" = 'pdf'),
-						selected = 'png')
+					jscolourInput("missingColour", label = "Missing Data Colour")
 				)
 			)
     ),

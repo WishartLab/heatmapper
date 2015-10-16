@@ -490,6 +490,10 @@ shinyServer(function(input, output, session){
 				pdf(file)
 				get_plot()
 			}
+			else if(input$downloadFormat == "jpg"){
+				jpeg(file)
+				get_plot()
+			}
 			else{
 				tryCatch({
 					png(file)	

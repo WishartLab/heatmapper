@@ -25,8 +25,34 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 			checkboxInput('reverseOrder', label = tags$strong("Reverse Data Order"), TRUE), 
 			
 			checkboxInput('asp', label = tags$strong("Set Aspect Ratio = 1"), value = TRUE),
-			
-			DOWNLOAD_BUTTONS(),
+
+			# Download buttons and options
+			wellPanel(
+				fluidRow(
+					column(4,
+								 tags$label("Download:")
+					),
+					column(4,
+								 downloadButton('plotDownload', "Plot", class = "btn-info")
+					),
+					column(4,
+								 downloadButton('tableDownload', "Table", class = "btn-info")
+					)
+				),
+				br(),
+				fluidRow(
+					column(4, tags$label("Plot File Format")),
+					column(8,
+								 selectInput('downloadPlotFormat', label = NULL, 
+								 						choices = c(
+								 							"JPEG" = 'jpg',
+								 							"PDF" = 'pdf',
+								 							"PNG" = 'png'
+								 						), 
+								 						selected = 'png')
+					)
+				)
+			),
 			
 			ADVANCED_OPTIONS_PANEL(
 				list(
@@ -39,15 +65,7 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 						
 					textInput('xlab', label = "X Axis Label", value = ""),
 						
-					textInput('ylab', label = "Y Axis Label", value = ""),
-					
-					selectInput('downloadPlotFormat', label = "Plot Download Format", 
-						choices = c(
-							"JPEG" = 'jpg',
-							"PDF" = 'pdf',
-							"PNG" = 'png'
-						), 
-						selected = 'png')
+					textInput('ylab', label = "Y Axis Label", value = "")
 				)
 			)
   	), 

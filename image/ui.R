@@ -112,7 +112,33 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  		JSCOLOUR_ROW("#EE00FF", "#FFFF00")
 	  	), 
 	  	
-	  	DOWNLOAD_BUTTONS(),
+	  	# Download buttons and options
+	  	wellPanel(
+	  		fluidRow(
+	  			column(4,
+	  						 tags$label("Download:")
+	  			),
+	  			column(4,
+	  						 downloadButton('plotDownload', "Plot", class = "btn-info")
+	  			),
+	  			column(4,
+	  						 downloadButton('tableDownload', "Table", class = "btn-info")
+	  			)
+	  		),
+	  		br(),
+	  		fluidRow(
+	  			column(4, tags$label("Plot File Format")),
+	  			column(8,
+	  						 selectInput('downloadPlotFormat', label = NULL, 
+	  						 						choices = c(
+	  						 							"JPEG" = 'jpg',
+	  						 							"PDF" = 'pdf',
+	  						 							"PNG" = 'png'
+	  						 						), 
+	  						 						selected = 'png')
+	  			)
+	  		)
+	  	),
 	  	
 	  	ADVANCED_OPTIONS_PANEL(
 	  		list(
@@ -123,15 +149,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 						placement = "top"), 
 		  			
 		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
-					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 520),
-		  		
-		  		selectInput('downloadPlotFormat', label = "Plot Download Format", 
-						choices = c(
-							"JPEG" = 'jpg',
-							"PDF" = 'pdf',
-							"PNG" = 'png'
-						), 
-						selected = 'png')	
+					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 520)
 	  		)
 	  	)
 		),
