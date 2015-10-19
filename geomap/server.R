@@ -12,6 +12,7 @@ shinyServer(function(input, output, session) {
 	
   values <- reactiveValues(
   	file = NULL,
+  	inputFile = NULL, 
   	highlight = NULL, 
   	density = NULL, 
   	colours = NULL, 
@@ -23,11 +24,11 @@ shinyServer(function(input, output, session) {
 	#################### OBSERVERS ####################
 	observe({
 		input$clearFile
-		values$file <- NULL
+		values$inputFile <- NULL
 	})
 	
 	observe({
-		values$file <- input$file
+		values$inputFile <- input$file
 	})
 	
 	# when a valid column is selected set values$density
@@ -207,25 +208,25 @@ shinyServer(function(input, output, session) {
 		else{
 			
 			# reset column selection to empty
-			if(is.null(values$file$datapath)){
+			if(is.null(values$inputFile$datapath)){
 				updateSelectInput(session, inputId="colSelect", choices = c(" " = 0))
 			}
 			
 			# return message if no file uploaded
-			validate(need(values$file$datapath, "Please upload a file"))
+			validate(need(values$inputFile$datapath, "Please upload a file"))
 			
 			tryCatch({
 				
-				fileType <- tail(unlist(strsplit(x = values$file$name, split = "[.]")), n=1)
+				fileType <- tail(unlist(strsplit(x = values$inputFile$name, split = "[.]")), n=1)
 				
 				if(fileType == "xls" || fileType == "xlsx"){
-					data_file <- read.xlsx(values$file$datapath, 1)
+					data_file <- read.xlsx(values$inputFile$datapath, 1)
 				}
 				else if(fileType == "csv"){
-					data_file <- read.csv(values$file$datapath, header = TRUE)
+					data_file <- read.csv(values$inputFile$datapath, header = TRUE)
 				}
 				else{
-					data_file <- read.delim(values$file$datapath, header = TRUE, sep="\t", row.names = NULL)
+					data_file <- read.delim(values$inputFile$datapath, header = TRUE, sep="\t", row.names = NULL)
 				}
 					
 				# remove "%" if they exist
@@ -233,7 +234,7 @@ shinyServer(function(input, output, session) {
 					as.numeric(sub(pattern = "%", replacement = "", data_file))
 				})
 				
-				return(data_file)
+				data_file
 			}, 
 			error = function(err){
 				validate(txt = ERR_file_read)
