@@ -494,6 +494,10 @@ shinyServer(function(input, output, session){
 				jpeg(file)
 				get_plot()
 			}
+			else if(input$downloadFormat == "tiff"){
+				tiff(file)
+				get_plot()
+			}
 			else{
 				tryCatch({
 					png(file)	

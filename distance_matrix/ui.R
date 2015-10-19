@@ -47,8 +47,8 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 								 						choices = c(
 								 							"JPEG" = 'jpg',
 								 							"PDF" = 'pdf',
-								 							"PNG" = 'png'
-								 						), 
+								 							"PNG" = 'png',
+								 							"TIFF" = 'tiff'),
 								 						selected = 'png')
 					)
 				)

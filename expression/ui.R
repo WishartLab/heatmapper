@@ -100,6 +100,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 									choices = c(
 										"JPEG" = 'jpg',
 										"PNG" = 'png',
+										"TIFF" = 'tiff',
 										"PDF" = 'pdf'),
 									selected = 'png')
 					)
