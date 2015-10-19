@@ -133,7 +133,8 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  						 						choices = c(
 	  						 							"JPEG" = 'jpg',
 	  						 							"PDF" = 'pdf',
-	  						 							"PNG" = 'png'
+	  						 							"PNG" = 'png',
+	  						 							"TIFF" = 'tiff'
 	  						 						), 
 	  						 						selected = 'png')
 	  			)
