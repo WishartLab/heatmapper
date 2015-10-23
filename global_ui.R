@@ -95,7 +95,7 @@ EXAMPLE_FILE_SELECT <- function(){
             actionButton('exampleButton', label = NULL, class = "btn-info", icon = icon("fa fa-info-circle")),
             bsTooltip(id = "exampleButton", title = "View Example File Details", placement = "right"), 
              
-            selectInput('exampleFiles', width="16.5em",
+            selectInput('exampleFiles', width="83%",
 				label = NULL,
 				choices = EXAMPLE_FILES,
 				selected = 1),

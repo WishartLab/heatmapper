@@ -22,12 +22,16 @@ $(document).ready(function() {
     var fileControl = $("#file");
 
     $("#clearFile").on("click", function () {
-        
         fileControl.replaceWith( fileControl = fileControl.clone( true ) );
-        
         $("#file_progress").hide();
     });
     
+    /* clear file input when upload format selection changed */
+    $("#uploadFormat").on("change", function () {
+        fileControl.replaceWith( fileControl = fileControl.clone( true ) );
+        $("#file_progress").hide();
+    });
+        
     /* file input progress bar control */
     $( "#file" ).change(function() {
       document.getElementById("file_progress").setAttribute('style', "height:20px; margin-top:5px;");

@@ -2,6 +2,7 @@ library(shiny)
 library(ggplot2)
 library(reshape2)
 library(d3heatmap)
+#library(shinyjs)
 
 shinyServer(function(input, output, session){
 
@@ -13,6 +14,11 @@ shinyServer(function(input, output, session){
 	#################### OBSERVERS ####################
 	observe({
 		input$clearFile
+		values$file <- NULL
+	})
+	
+	observe({
+		input$uploadFormat
 		values$file <- NULL
 	})
 	
@@ -29,14 +35,85 @@ shinyServer(function(input, output, session){
 			sep <- ","
 		}
 		tryCatch({
-				scan(filePath,  nlines = 1, sep=sep)
-				header <<- FALSE
-			},
-			error = function(e){
-				header <<- TRUE
-			})
-
+			scan(filePath,  nlines = 1, sep=sep)
+			header <<- FALSE
+		},
+		error = function(e){
+			header <<- TRUE
+		})
 		read.table(filePath, header = header, sep = sep)
+	}
+	
+	# returns table of 3-D coordinates of the first chain in the given PDB file
+	read.pdb <- function(filePath, fileName = "txt") {
+		
+		# Traverse file and count how many atoms we want to use.
+		con <- file(filePath, "rt")
+		count = 0
+		while(TRUE) {
+			line = readLines(con, 1) # Read one line
+			if (length(line) == 0) {
+				break
+			}
+			if (substr(line, 1,6) == 'ATOM  ' || substr(line, 1,6) == 'HETATM') {
+				if (use_atom(line)) {
+					count = count + 1
+				}
+			} else if (substr(line, 1,3) == 'TER') {
+				break
+			}
+		}
+		
+		# Create data frame to hold atom coordinates
+		coords = as.data.frame(matrix(NA, nrow=count, ncol=3))
+		rownames(coords) = paste("old", rownames(coords)) # set names of rows to ones we will not use
+		
+		# Traverse the file again and parse the atoms.
+		num_atoms_parsed = 0
+		seek(con, where = 0) # jump to start of file again
+		while(TRUE) {
+			line = readLines(con, 1) # Read one line
+			if (length(line) == 0) {
+				break
+			} else if (substr(line, 1,6) == 'ATOM  ' || substr(line, 1,6) == 'HETATM') {
+				
+				if (!use_atom(line)) {
+					next
+				}
+				
+				if (input$atomSelect == 'ca') {
+					id = trim(substr(line, 23, 26)) # use residue id
+				} else {
+					id = trim(substr(line, 7, 11)) # use atom id
+				}
+
+				num_atoms_parsed = num_atoms_parsed + 1
+				coords[num_atoms_parsed,1] = as.numeric(substr(line, 31, 38))
+				coords[num_atoms_parsed,2] = as.numeric(substr(line, 39, 46))
+				coords[num_atoms_parsed,3] = as.numeric(substr(line, 47, 54))
+				rownames(coords)[num_atoms_parsed] <- id
+				
+			} else if (substr(line, 1,3) == 'TER') {
+				break
+			}
+		}
+		close(con)
+		return(coords)
+	}
+	
+	# Given a line from a PDB file, return whether we want to use it.
+	use_atom <- function(line) {
+		if (input$atomSelect == 'ca') {
+			if (!(substr(line, 13, 16) == ' CA ')) {
+				return (FALSE)
+			}
+		} else if (input$atomSelect == 'bb') {
+			atom = substr(line, 13, 16)
+			if (!(atom == ' N  ' || atom == ' CA ' || atom == ' C  ' || atom == ' O  ')) {
+				return (FALSE)
+			}
+		}
+		return (TRUE)
 	}
 	
 	# retrieve original data
@@ -48,16 +125,29 @@ shinyServer(function(input, output, session){
 			if(is.null(values$file$datapath)){
 				return(NULL)
 			}
-			file <- read_file(values$file$datapath, values$file$name)
+			if (input$uploadFormat == "pdb") {
+				file <- read.pdb(values$file$datapath, values$file$name)
+			} else {
+				file <- read_file(values$file$datapath, values$file$name)
+			}
 		}
-
+		
+		# Check whether uploaded file format is raw coordinates or PDB format,
+		# and if so compute a distance matrix for the coordinates.
+		if (input$chooseInput != 'example') {
+			if (input$uploadFormat == "coords" || input$uploadFormat == "pdb") {
+				file <- dist(file, diag = TRUE, upper = TRUE)
+				file <- as.data.frame(as.matrix(file))
+			}
+		}
+		
 		# if no row names are specified use the column names
 		if(is.numeric(file[[1]])){
 			file <- cbind(colnames(file), file)
 		}
 
 		colnames(file)[1] <- "cols"
-
+		
 		return(file)
 	})
 
@@ -200,5 +290,7 @@ shinyServer(function(input, output, session){
 		content = function(file){
 			write.table(get_file(), file, quote = FALSE, sep = "\t")
 	})
+	
+	trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 	
 })

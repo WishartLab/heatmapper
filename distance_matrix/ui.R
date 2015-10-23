@@ -6,8 +6,45 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel", width = 1,
 			
-			FILE_UPLOAD_PANEL(), 
-			EXAMPLE_FILE_SELECT(),
+			# File upload panel with option to select file upload format.
+			wellPanel(
+				radioButtons('chooseInput', label = FILE_UPLOAD, 
+										inline=TRUE, 
+										choices = c(
+											"Upload File" = 'fileUpload',
+											"Example File" = 'example'), 
+										selected = 'fileUpload'),
+				conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
+										HTML("<button id='clearFile' class='action-button clearButton'>Clear</button>"),
+										fileInput('file', label = NULL, width="82%"),
+										
+										fluidRow(
+											column(4, tags$label("Upload Format")),
+											column(8,
+												selectInput('uploadFormat', label = NULL, 
+																choices = c(
+																	"Distance matrix" = 'dm',
+																	"Coordinates list" = 'coords',
+																	"PDB format" = 'pdb'),
+																selected = 'dm')
+											)
+										),
+										conditionalPanel(condition = "input.uploadFormat == 'pdb'",
+																		 fluidRow(
+																		 	column(4, tags$label("Atoms")),
+																		 	column(8,
+																		 				 selectInput('atomSelect', label = NULL, 
+																		 				 						choices = c(
+																		 				 							"C-alpha atoms" = 'ca',
+																		 				 							"Backbone atoms" = 'bb',
+																		 				 							"All atoms" = 'all'),
+																		 				 						selected = 'ca')
+																		 	)
+																		 	)					 
+										)
+				),
+				EXAMPLE_FILE_SELECT()
+			),
 			
 			LAYERS_SELECT(c("Legend" = 'showLegend', "Axis Labels" = 'showAxisLabels'), c('showLegend', 'showAxisLabels')),
 			
