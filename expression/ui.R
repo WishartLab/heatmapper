@@ -79,33 +79,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
     		)
     	),
     	
-			# Download buttons and options
-			wellPanel(
-				fluidRow(
-					column(4,
-						tags$label("Download:")
-					),
-					column(4,
-						downloadButton('plotDownload', "Plot", class = "btn-info")
-					),
-					column(4,
-						downloadButton('tableDownload', "Table", class = "btn-info")
-					)
-				),
-				br(),
-				fluidRow(
-					column(4, tags$label("Plot File Format")),
-					column(8,
-						 selectInput('downloadFormat', label = NULL,
-									choices = c(
-										"JPEG" = 'jpg',
-										"PNG" = 'png',
-										"TIFF" = 'tiff',
-										"PDF" = 'pdf'),
-									selected = 'png')
-					)
-				)
-			),
+    	DOWNLOAD_BUTTONS_WITH_SELECTION(),
     	
     	ADVANCED_OPTIONS_PANEL( 
 				list(

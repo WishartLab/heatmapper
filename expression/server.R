@@ -483,18 +483,18 @@ shinyServer(function(input, output, session){
 	# save plot
 	output$plotDownload <- downloadHandler(
 		
-		filename = reactive({paste("heatmap.", input$downloadFormat, sep="")}),
+		filename = reactive({paste("heatmap.", input$downloadPlotFormat, sep="")}),
 		
 		content = function(file) {
-			if(input$downloadFormat == "pdf"){
+			if(input$downloadPlotFormat == "pdf"){
 				pdf(file)
 				get_plot()
 			}
-			else if(input$downloadFormat == "jpg"){
+			else if(input$downloadPlotFormat == "jpg"){
 				jpeg(file)
 				get_plot()
 			}
-			else if(input$downloadFormat == "tiff"){
+			else if(input$downloadPlotFormat == "tiff"){
 				tiff(file)
 				get_plot()
 			}

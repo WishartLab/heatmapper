@@ -58,7 +58,7 @@ HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 				#file_progress {height:0;}
 				#sidebarPanel {width:23.45em;}
 				#mainPanel {left:24.45em; position:absolute; min-width:25em;}
-				#tableDownload, #exampleButton {float:right;}")
+				#exampleButton {float:right;}")
 		),
 		div(class = "busy", 
 			absolutePanel(width = "50px", height = "100px",
@@ -182,9 +182,44 @@ GRID_POINTS_SLIDER <- function(min, max, value, step){
 # plotdownload and table download buttons
 DOWNLOAD_BUTTONS <- function(){
 	list(
+        tags$style("#tableDownload {float:right;}"),
 		tipify(downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot", placement = "top"),
 		tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download the raw data", placement = "top"),
 		tags$br(), tags$br()
+	)
+}
+
+# plotdownload and table download buttons with file format selection options
+DOWNLOAD_BUTTONS_WITH_SELECTION <- function(plotChoices = c("JPEG" = 'jpg',"PDF" = 'pdf',"PNG" = 'png',"TIFF" = 'tiff'), plotSelected = "png", tableChoices=c("TXT"='txt'), tableSelected = "txt"){
+	list(
+        fluidRow(
+            column(4, tags$label("Download")), 
+            column(8, tags$label("File Format"))
+        ),
+        fluidRow(
+            column(4,
+		        tipify(downloadButton('plotDownload', "Plot ", class = "btn-info"), "Download the heatmap plot", placement = "top")
+            ), 
+            column(8, 
+                tipify(
+                    selectInput('downloadPlotFormat', label = NULL, 
+                        choices = plotChoices, 
+                        selected = plotSelected), 
+                    "Select plot download format", placement = "top")
+            )
+        ),
+        fluidRow(
+            column(4,
+                tipify(downloadButton('tableDownload', "Table", class = "btn-info"), "Download the raw data", placement = "top")
+            ), 
+            column(8, 
+                tipify(
+                    selectInput('downloadTableFormat', label = NULL, 
+                        choices = tableChoices, 
+                        selected = tableSelected), 
+                        "Select table download format", placement = "top")
+            )
+        )
 	)
 }
 

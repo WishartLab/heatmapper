@@ -63,33 +63,7 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 			
 			checkboxInput('asp', label = tags$strong("Set Aspect Ratio = 1"), value = TRUE),
 
-			# Download buttons and options
-			wellPanel(
-				fluidRow(
-					column(4,
-								 tags$label("Download:")
-					),
-					column(4,
-								 downloadButton('plotDownload', "Plot", class = "btn-info")
-					),
-					column(4,
-								 downloadButton('tableDownload', "Table", class = "btn-info")
-					)
-				),
-				br(),
-				fluidRow(
-					column(4, tags$label("Plot File Format")),
-					column(8,
-								 selectInput('downloadPlotFormat', label = NULL, 
-								 						choices = c(
-								 							"JPEG" = 'jpg',
-								 							"PDF" = 'pdf',
-								 							"PNG" = 'png',
-								 							"TIFF" = 'tiff'),
-								 						selected = 'png')
-					)
-				)
-			),
+			DOWNLOAD_BUTTONS_WITH_SELECTION(),
 			
 			ADVANCED_OPTIONS_PANEL(
 				list(
