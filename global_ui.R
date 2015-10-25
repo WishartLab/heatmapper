@@ -71,15 +71,16 @@ HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 
 # file upload vs example selection, file upload button when fileUpload is selected
 FILE_UPLOAD_PANEL <- function(selected = 'fileUpload'){
-  list(  
-		radioButtons('chooseInput', label = FILE_UPLOAD, 
-    	inline=TRUE, 
-	  	choices = c(
-	  		"Upload File" = 'fileUpload',
+    list(  
+		tipify(radioButtons('chooseInput', label = FILE_UPLOAD, 
+    	    inline=TRUE, 
+	  	    choices = c(
+	  		    "Upload File" = 'fileUpload',
 				"Example File" = 'example'), 
-    	selected = selected),
-    	conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
+            selected = selected), "Upload file or select example file", placement = "right"),
+        conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
             HTML("<button id='clearFile' class='action-button clearButton'>Clear File</button>"), 
+            bsTooltip("clearFile", "Clear uploaded file", "right"),
             fileInput('file', label = NULL)
         )
 	)
@@ -92,13 +93,13 @@ EXAMPLE_FILE_SELECT <- function(){
 			tags$label(SELECT_EXAMPLE), 
             tags$br(),
             
-            actionButton('exampleButton', label = NULL, class = "btn-info", icon = icon("fa fa-info-circle")),
-            bsTooltip(id = "exampleButton", title = "View Example File Details", placement = "right"), 
+            tipify(actionButton('exampleButton', label = NULL, class = "btn-info", icon = icon("fa fa-info-circle")), 
+            title = "View Example File Details", placement = "right"), 
              
             selectInput('exampleFiles', width="83%",
 				label = NULL,
 				choices = EXAMPLE_FILES,
-				selected = 1),
+				selected = 1), 
             
 	  		conditionalPanel(condition = "input.exampleButton>0",
 	  			wellPanel(id = "exampleInfo",
@@ -114,15 +115,15 @@ EXAMPLE_FILE_SELECT <- function(){
 
 # multiple selection for hide/show layers
 LAYERS_SELECT <- function(choices, selected){
-	selectInput('layers', label = LAYERS, 
+	tipify(selectInput('layers', label = LAYERS, 
 		multiple = TRUE,
 		choices = choices, 
-		selected = selected)
+		selected = selected), "Add or remove heatmap layers", placement = "right")
 }
 
 # number of shades slider
 BIN_SLIDER <- function(min, max, value){
-	fluidRow(
+	tipify(fluidRow(
 		column(3, tags$label(BIN_NUMBER)),
 		column(9, 
 			sliderInput("binNumber", 
@@ -131,12 +132,12 @@ BIN_SLIDER <- function(min, max, value){
 				max = max, 
 				value = value)
 	    )
-    )
+    ), "Adjust the number of colours", placement = "right")
 }
 
 # colour scheme dropdown selection
 COLOUR_SCHEME_SELECT <- function(selected = 'custom'){
-	fluidRow(
+	tipify(fluidRow(
     column(3, tags$label("Colour Scheme")),
 		column(9,					
 			selectInput('colourScheme', label = NULL, 
@@ -147,15 +148,17 @@ COLOUR_SCHEME_SELECT <- function(selected = 'custom'){
 	  		), 
 	  		selected = selected)
 		)
-	)
+	), "Choose a colour scheme", placement = "right")
 }
 
 # heatmap opacity slider
 FILL_OPACITY_SLIDER <- function(value = 0.5){
-		fluidRow(
-	  	column(3, tags$label(FILL_OPACITY)), 
-	  	column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = value, step = 0.05))
-	  )
+	tipify(
+        fluidRow(
+	  	    column(3, tags$label(FILL_OPACITY)), 
+	  	    column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = value, step = 0.05))
+        ),
+    "Adjust the colour opacity", placement = "right")
 }
 
 # gaussian radius multiplier slider
@@ -168,20 +171,18 @@ BANDWIDTH_SLIDER <- function(min, max, value, step){
 
 # contour smoothness slider
 GRID_POINTS_SLIDER <- function(min, max, value, step){
-	fluidRow(
+	tipify(fluidRow(
 		column(4, tags$label(GRID_POINTS)),
-		column(8, sliderInput('contourSmoothness', label = NULL, min = min, max = max, value = value, step = step)), 
-		bsTooltip(id = "contourSmoothness", 
-			title = "This feature sets the number of grid points in each direction for kernel density estimation",
-			placement = "top")
+		column(8, sliderInput('contourSmoothness', label = NULL, min = min, max = max, value = value, step = step))),
+        title = "This feature sets the number of grid points in each direction for kernel density estimation", placement = "top"
 	)
 }
 
 # plotdownload and table download buttons
 DOWNLOAD_BUTTONS <- function(){
 	list(
-		downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"),
-		downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"),
+		tipify(downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot"),
+		tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download the raw data"),
 		tags$br(), tags$br()
 	)
 }
@@ -189,15 +190,16 @@ DOWNLOAD_BUTTONS <- function(){
 # low and high colour selections
 JSCOLOUR_ROW <- function(low, high){
 	fluidRow(
-		column(6, jscolourInput("lowColour", label = "Low Colour", value = low)),
-		column(6, jscolourInput("highColour", label = "High Colour", value = high))
+		tipify(column(6, jscolourInput("lowColour", label = "Low Colour", value = low)), "Select low value colour", placement = "top"),
+		tipify(column(6, jscolourInput("highColour", label = "High Colour", value = high)), "Select high value colour", placement = "top")
 	)
 }
 
 # advanced options panel
 ADVANCED_OPTIONS_PANEL <- function(options_list){
 	list(
-		actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"), 
+		tipify(actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"), 
+            "View more options", placement = "right"), 
 		conditionalPanel(condition = "input.advancedOptionsButton%2",
 			wellPanel(options_list)
 		)

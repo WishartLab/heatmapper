@@ -9,7 +9,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			FILE_UPLOAD_PANEL(),
 			EXAMPLE_FILE_SELECT(),
 		
-			fluidRow(
+			tipify(fluidRow(
 				column(3, tags$label("Area to use")),
 				column(9, 
 		    	selectInput("area", label = NULL, 
@@ -25,17 +25,23 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		    			"South America: By Country" = 'data/South_America.rds', 
 		    			"World: By Country" = 'data/World_Countries.rds'), 
 		    		selected = 'data/CAN_1.rds'))
-			),
+			), "Select map to display", placement = "right"),
 			
 			HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"), 
 			tags$label("Range of Interest"),
-			sliderInput("range", 	   			
-				label = NULL, 
-		   	min = 0, 
-		   	max = 100, 
-		 		value = c(0, 100)),
+			tipify(
+				sliderInput("range", 	   			
+					label = NULL, 
+			   	min = 0, 
+			   	max = 100, 
+			 		value = c(0, 100)), 
+			"Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap", 
+			placement = "right"),
 			
-			selectInput("colSelect", label = "Column to Use", choices = c(" " = 0)),
+			tipify(
+				selectInput("colSelect", label = "Column to Use", choices = c(" " = 0)), 
+			"Select column from input file", placement = "right", 
+			),
 			
 			LAYERS_SELECT(
 				c("Map" = 'showTiles', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap'), 
