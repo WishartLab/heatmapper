@@ -148,7 +148,7 @@ COLOUR_SCHEME_SELECT <- function(selected = 'custom'){
 	  		), 
 	  		selected = selected)
 		)
-	), "Choose a colour scheme", placement = "right")
+	), "Select custom or preset colour scheme", placement = "right")
 }
 
 # heatmap opacity slider
@@ -158,14 +158,15 @@ FILL_OPACITY_SLIDER <- function(value = 0.5){
 	  	    column(3, tags$label(FILL_OPACITY)), 
 	  	    column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = value, step = 0.05))
         ),
-    "Adjust the colour opacity", placement = "right")
+    "Adjust the heatmap colour opacity", placement = "right")
 }
 
 # gaussian radius multiplier slider
 BANDWIDTH_SLIDER <- function(min, max, value, step){
-	fluidRow(
+	tipify(fluidRow(
 		column(3, tags$label(BANDWIDTH)), 
-		column(9, sliderInput('gaussianRadius', label = NULL, min = min, max = max, value = value, step = step))
+		column(9, sliderInput('gaussianRadius', label = NULL, min = min, max = max, value = value, step = step))),
+        "Adjust the bandwidth for kernel density estimation", placement = "right"
 	)
 }
 
@@ -174,15 +175,15 @@ GRID_POINTS_SLIDER <- function(min, max, value, step){
 	tipify(fluidRow(
 		column(4, tags$label(GRID_POINTS)),
 		column(8, sliderInput('contourSmoothness', label = NULL, min = min, max = max, value = value, step = step))),
-        title = "This feature sets the number of grid points in each direction for kernel density estimation", placement = "top"
+        title = "Adjust the number of grid points in each direction for kernel density estimation", placement = "right"
 	)
 }
 
 # plotdownload and table download buttons
 DOWNLOAD_BUTTONS <- function(){
 	list(
-		tipify(downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot"),
-		tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download the raw data"),
+		tipify(downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot", placement = "top"),
+		tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download the raw data", placement = "top"),
 		tags$br(), tags$br()
 	)
 }
@@ -190,8 +191,8 @@ DOWNLOAD_BUTTONS <- function(){
 # low and high colour selections
 JSCOLOUR_ROW <- function(low, high){
 	fluidRow(
-		tipify(column(6, jscolourInput("lowColour", label = "Low Colour", value = low)), "Select low value colour", placement = "top"),
-		tipify(column(6, jscolourInput("highColour", label = "High Colour", value = high)), "Select high value colour", placement = "top")
+		tipify(column(6, jscolourInput("lowColour", label = "Low Colour", value = low)), "Select colour for low values", placement = "top"),
+		tipify(column(6, jscolourInput("highColour", label = "High Colour", value = high)), "Select colour for high values", placement = "top")
 	)
 }
 

@@ -12,18 +12,20 @@ shinyUI(list(HEAD_TASKS("#geocoordTab"), fluidPage(title = "Geocoordinate",
 				c('showMap', 'showContours', 'showHeatmap', 'showPoints')
 			),
 
-			fluidRow(
-    		column(3, tags$label("Map Type")),
-				column(9,	
-					selectInput('mapType', 
-						label = NULL, 
-						choices = c(
-							"Default" = 'OpenStreetMap.Mapnik',
-							"Positron" = 'CartoDB.Positron', 
-							"Toner" = 'Stamen.Toner',
-							"Watercolour" = 'Stamen.Watercolor'), 
-						selected = 'OpenStreetMap.Mapnik'))
-			),
+			tipify(
+				fluidRow(
+	    		column(3, tags$label("Map Type")),
+					column(9,	
+						selectInput('mapType', 
+							label = NULL, 
+							choices = c(
+								"Default" = 'OpenStreetMap.Mapnik',
+								"Positron" = 'CartoDB.Positron', 
+								"Toner" = 'Stamen.Toner',
+								"Watercolour" = 'Stamen.Watercolor'), 
+							selected = 'OpenStreetMap.Mapnik'))
+				),
+			"Select background map style", placement = "right"),
 			
 			BANDWIDTH_SLIDER(0.05, 2, 0.4, 0.05), 
 			

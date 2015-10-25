@@ -28,6 +28,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			), "Select map to display", placement = "right"),
 			
 			HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"), 
+			bsTooltip(id = "rangeSubmit", "Update heatmap using range of interest", placement = "right"),
 			tags$label("Range of Interest"),
 			tipify(
 				sliderInput("range", 	   			
