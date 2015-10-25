@@ -2,43 +2,136 @@
 <html>
     <head>
         <meta charset="UTF-8">
+		<style>
+			td {padding:0.5em;}
+		</style>
     </head>  
     <body>
 		<div class = "well">
-			<h4>Features Overview</h4>
-			
+			<h4>Accepted File Formats</h4>
+			<ul>
+				Grid:
+				<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
+				<li>Comma separated with extension <em>.csv</em></li>
+			</ul>
+			<ul>
+				Image:
+				<li>A JPEG image with extension <em>.jpg</em> or .<em>jpeg</em></li>
+				<li>A PNG image with extension <em>.png</em></li>
+				<li>A TIFF image with extension <em>.tif</em> or .<em>tiff</em></li>
+			</ul>
+			<h4>Data Structure</h4>
+			The grid data input must contain 3 columns; X, Y, and Value. 
+			The X and Y columns correspond to the X and Y coordinates respectively. 
+			Each combination of X and Y coordinates must be in the data set.
+			The Value column provides the value for the set of coordinates.  
+			The first row must contain the names for each column; "x", "y", and "value". 
+			<h4>Range</h4>
+			X: positive numbers ranging from 1 to the number of grid columns <br />
+			Y: positive numbers ranging from 1 to the number of grid rows <br />
+			Value: any positive number
+			<h4>Examples of Valid Input</h4>
 			<table>
 				<tr>
-					<th>Main Panel</th>
-					<th>Advanced Panel</th> 
+					<td>x</td>
+					<td>y</td>
+					<td>value</td> 
 				</tr>
 				<tr>
 					<td>
-						<ul>
-							<li>Upload image file or use example</li>
-							<li>Upload grid file or use example</li>
-							<li>Update data by selecting and setting points to values</li>
-							<li>Show selected point</li>
-							<li>Show/hide layers (image, heatmap, contour lines, grid lines, axis labels)</li>
-							<li>Display as square or gaussian</li>
-							<li>Gaussian radius multiplier</li>
-							<li>Contour smoothness</li>
-							<li>Heatmap opacity</li>
-							<li>Number of shades</li>
-							<li>Colour scheme</li>
-							<li>Download plot</li>
-							<li>Download table</li>
-						</ul>
+						1
 					</td>
 					<td>
-						<ul>
-							<li>Stretch image</li>
-							<li>Number of rows</li>
-							<li>Plot width</li>
-							<li>Plot height</li>
-							<li>Plot download format (jpg, png, or pdf)</li>
-						</ul>
-					</td> 
+						1
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+				<tr>
+					<td>
+						1
+					</td>
+					<td>
+						2
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+				<tr>
+					<td>
+						2
+					</td>
+					<td>
+						1
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+				<tr>
+					<td>
+						2
+					</td>
+					<td>
+						2
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+			</table>
+			<br />
+			<table>
+				<tr>
+					<td>value</td>
+					<td>y</td>
+					<td>x</td> 
+				</tr>
+				<tr>
+					<td>
+						0.5
+					</td>
+					<td>
+						1
+					</td>
+					<td>
+						1
+					</td>
+				</tr>
+				<tr>
+					<td>
+						1
+					</td>
+					<td>
+						1
+					</td>
+					<td>
+						2
+					</td>
+				</tr>
+				<tr>
+					<td>
+						1.5
+					</td>
+					<td>
+						2
+					</td>
+					<td>
+						1
+					</td>
+				</tr>
+				<tr>
+					<td>
+						2
+					</td>
+					<td>
+						2
+					</td>
+					<td>
+						2
+					</td>
 				</tr>
 			</table>
 		</div>
