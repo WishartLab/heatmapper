@@ -10,11 +10,10 @@ server <- function(input, output) {
 ui <- list(NAVBAR("#aboutTab"), fluidPage(
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
+            titlePanel("Gallery"),
 			NAVLIST_PANEL()
 		),
 		mainPanel(id = "mainPanel",
-			titlePanel("Gallery"),
-			tags$br(),
 			uiOutput("gallery")
 		)
 	)
