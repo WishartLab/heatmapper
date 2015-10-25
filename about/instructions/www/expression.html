@@ -2,41 +2,79 @@
 <html>
     <head>
         <meta charset="UTF-8">
+		<style>
+			td {padding:0.5em;}
+		</style>
     </head>  
     <body>
 		<div class = "well">
-			<h4>Features Overview</h4>
+			<h4>Accepted File Formats</h4>
+			<ul>
+				<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
+				<li>First sheet of an Excel workbook with extension <em>.xlsx</em></li>
+			</ul>
+			<h4>Data Structure</h4>
+			The first row is used to assign column names. 
+			The data input must contain at least 2 columns and 2 rows with numeric data. 
+			If a column labeled "NAME" exists it will be used to assign row names. 
+			If a NAME column is not specified rows will be labeled by numbers based on the order they are listed in. 
+			Any additional columns containing strings will be ignored. 
 			
+			<h4>Range</h4>
+			First row: column names<br />
+			NAME column: row names<br />
+			Other Columns: any positive or negative number
+			<h4>Examples of Valid Input</h4>
 			<table>
 				<tr>
-					<th>Main Panel</th>
-					<th>Advanced Panel</th> 
+					<td>NAME</td>
+					<td>C1</td>
+					<td>C2</td> 
 				</tr>
 				<tr>
 					<td>
-						<ul>
-							<li>Upload file or select one of 3 example files</li>
-							<li>Scale type (row, column, or none)</li>
-							<li>Number of shades</li>
-							<li>Low colour and high colour</li>
-							<li>Clustering method (none, average, centroid, complete, or single)</li>
-							<li>Distance method (euclidean, pearson, kendall’s tau, spearman rank correlation, or manhattan)</li>
-							<li>Apply clustering to rows and/or columns</li>
-							<li>Show row and/or column dendrogram</li>
-							<li>Download plot</li>
-							<li>Download table</li>
-						</ul>
+						R1
 					</td>
 					<td>
-						<ul>
-							<li>Plot width</li>
-							<li>Plot height</li>
-							<li>Title</li>
-							<li>X axis label</li>
-							<li>Y axis label</li>
-							<li>Plot download format (jpg, png, or pdf)</li>
-						</ul>
-					</td> 
+						0
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+				<tr>
+					<td>
+						R2
+					</td>
+					<td>
+						0
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+			</table>
+			<br />
+			<table>
+				<tr>
+					<td>col 1</td>
+					<td>col 2</td> 
+				</tr>
+				<tr>
+					<td>
+						-0.5
+					</td>
+					<td>
+						0
+					</td>
+				</tr>
+				<tr>
+					<td>
+						0.5
+					</td>
+					<td>
+						1
+					</td>
 				</tr>
 			</table>
 		</div>
