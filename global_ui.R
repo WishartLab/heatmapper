@@ -231,6 +231,14 @@ JSCOLOUR_ROW <- function(low, high){
 	)
 }
 
+JSCOLOUR_3_ROW <- function(low = "#33FF00", mid = "#000000", high = "#FF0000"){
+    fluidRow(
+        tipify(column(4, jscolourInput("lowColour", label = "Low Colour", value = low)), "Select colour for low values", placement = "top"),
+        tipify(column(4, jscolourInput("midColour", label = "Middle Colour", value = mid)), "Select colour for middle values", placement = "top"),
+    	tipify(column(4, jscolourInput("highColour", label = "High Colour", value = high)), "Select colour for low values", placement = "top")
+    )
+}
+
 # advanced options panel
 ADVANCED_OPTIONS_PANEL <- function(options_list){
 	list(

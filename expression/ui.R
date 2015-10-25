@@ -12,27 +12,22 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 			FILE_UPLOAD_PANEL(),
     	EXAMPLE_FILE_SELECT(),
     	
-    	fluidRow(
+    	tipify(fluidRow(
     		column(3, tags$label("Scale Type")),
 				column(9,	
-					selectInput('scale', label = NULL,
-					choices = c(
-						"Row" = 'row',
-						"Column" = 'column',
-						"None" = 'none'),
-					selected = 'row'))
-    	), 
+						selectInput('scale', label = NULL,
+							choices = c(
+								"Row" = 'row',
+								"Column" = 'column',
+								"None" = 'none'),
+						selected = 'row')) 
+    	),"Select direction to scale values in", placement ="right"),
     	
     	BIN_SLIDER(3, 299, 160),
+    
+    	JSCOLOUR_3_ROW(),
     	
-    	fluidRow(
-				column(4, jscolourInput("lowColour", label = "Low Colour", value = "#33FF00")),
-    		column(4, jscolourInput("midColour", label = "Middle Colour")),
-				column(4, jscolourInput("highColour", label = "High Colour", value = "#FF0000"))
-			),
-    	#JSCOLOUR_ROW("#66CD00", "#FF0000"), 
-    	
-    	selectInput('clusterMethod', 
+    	tipify(selectInput('clusterMethod', 
     		label = "Clustering Method",	
     		choices = c(
 					"None" = 'none',
@@ -41,10 +36,10 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 					"Complete Linkage" = 'complete',
 					"Single Linkage" = 'single'
 				),	
-    		selected = 'average'),
+    		selected = 'average'), "Select method for computing hierarchical clustering", placement = "right"),
     	
     	conditionalPanel(condition = "input.clusterMethod != 'none'",
-	    	selectInput('distanceMethod', 
+	    	tipify(selectInput('distanceMethod', 
 					label = "Distance Measurement Method",
 					choices = c(
 						"Euclidean" = 'euclidean',
@@ -52,9 +47,9 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 						"Kendall's Tau" = 'kendall',
 						"Spearman Rank Correlation" = 'spearman',
 						"Manhattan" = 'manhattan'),
-					selected = 'euclidean'),
+					selected = 'euclidean'), "Select method for computing distance between rows and columns", placement = "right"),
     		
-    		fluidRow(
+    		tipify(fluidRow(
     			column(5, tags$label("Apply Clustering To")),
     			column(7,
 		    		selectInput('clusterSelectRC', label = NULL, 
@@ -63,10 +58,10 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 								"Rows" = 'row', 
 								"Columns" = 'col'), 
 							selected = 'row'))
-    		),
+    		),"Apply clustering to rows and/or columns", "right"),
     		
     		conditionalPanel(condition = "input.tabSelections == 'Plot'",
-	    		fluidRow(
+	    		tipify(fluidRow(
 	    			column(5, tags$label("Show Dendrogram")),
 	    			column(7,
 	    				selectInput('dendSelectRC', label = NULL, 
@@ -75,7 +70,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 									"Rows" = 'row', 
 									"Columns" = 'col'), 
 							selected = 'row'))
-	    		)
+	    		), "Show or hide dendrograms", "right")
     		)
     	),
     	
