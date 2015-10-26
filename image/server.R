@@ -24,8 +24,7 @@ shinyServer(function(input, output, session){
 	# update values$data and update the record of number of rows when data changes
 	observe({
 		grid_data <- get_grid_file()
-		
-		if(!is.null(grid_data)){
+		if(!is.null(grid_data) && !is.na(grid_data)){
 			isolate({
 				values$data <- grid_data
 				values$numRows <- sqrt(nrow(grid_data))
@@ -199,9 +198,19 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
+	# get column based on list of names
+	get_column <- function(file, names_list){
+		for(i in names_list){
+			if(i %in% names(file)){
+				return(file[[i]])
+			}
+		}
+		NULL
+	}
+	
 	# read and return grid file
 	get_grid_file <- reactive({
-		
+
 		# reset values$data if grid changes
 		if(input$gridSelect == 'fileExample'){
 			if(input$exampleSelect == 'example'){
@@ -216,8 +225,36 @@ shinyServer(function(input, output, session){
 		}
 		else if(!is.null(values$gridFile)){
 			tryCatch({
-				read.delim(values$gridFile$datapath)
-			}, error = function(err){NULL})
+				# if the first row is values instead of strings assume the data is in matrix form
+				scan(values$gridFile$datapath,  nlines = 1)
+				data_file <- read.delim(values$gridFile$datapath, header = FALSE)
+				colnames(data_file) <- NULL
+				x <- as.matrix(data_file)
+				
+				# flip the data
+				x <- x[nrow(x):1,]
+				melt(x, varnames  = c("x","y"))
+			},
+			error = function(e){
+				
+				# if the first row contains strings assume 3 columns for x y and value
+				data_file <- read.delim(values$gridFile$datapath, header = TRUE)
+				
+				# check alternative names
+				x <- get_column(data_file, c("x", "X","col", "Col", "COL", "cols", "Cols", "COLS", "columns", "Columns", "COLUMNS"))
+				y <- get_column(data_file, c("y", "Y", "row", "Row", "ROW", "rows", "Rows", "ROWS"))
+				val <- get_column(data_file, c("value", "Value", "VALUE", "val", "Val", "VAL"))
+				
+				# if names couldn't be matched
+				if(is.null(x) || is.null(y) || is.null(val)){
+					NA
+				}
+				
+				# if all names were matched
+				else{
+					data.frame(x = c(x), y = c(y), value = c(val))
+				}
+			})
 				
 		}
 		else{
@@ -225,9 +262,8 @@ shinyServer(function(input, output, session){
 			newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
 			newy <- rep(seq(1, max), max)
 			data.frame("value" = rep(0, max*max), "x" = newx, "y" = newy)
-		}
+		}	
 	})
-	
 	
 	#################### KDE2D HELPER FUNCTIONS ####################
 	
@@ -447,6 +483,7 @@ shinyServer(function(input, output, session){
 	
 	output$ggplotMap <- renderPlot({
 		selected_file_validate()
+		validate(need(!is.na(get_grid_file()),ERR_file_read))
 		get_plot()  + values$highlightPoint
 	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
 	
