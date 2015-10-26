@@ -39,7 +39,7 @@ DOWNLOAD_TABLE <- "Download Table"
 WIDTH <- "Plot Width (in px)"
 HEIGHT <- "Plot Height (in px)"
 CONTOUR_WIDTH <- "Contour Line Width (in px)"
-BRIGHTNESS <- "Adjust Brightness"
+BRIGHTNESS <- "Colour Brightness"
 
 # imports navbar, sets active tab, adds CSS
 HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
@@ -133,6 +133,18 @@ BIN_SLIDER <- function(min, max, value){
 				value = value)
 	    )
     ), "Adjust the number of colours", placement = "right")
+}
+
+BRIGHTNESS_SLIDER <- function(){
+	tipify(fluidRow(
+		column(3, tags$label(BRIGHTNESS)),
+		column(9, 
+            sliderInput('plotBrightness', label = NULL, 
+                min = -50,
+                max = 50, 
+                value = 0)
+	    )
+    ), "Adjust the brightness of colours", placement = "right")
 }
 
 # colour scheme dropdown selection

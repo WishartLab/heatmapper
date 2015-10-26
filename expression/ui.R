@@ -23,6 +23,8 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 						selected = 'row')) 
     	),"Select direction to scale values in", placement ="right"),
     	
+			BRIGHTNESS_SLIDER(),
+    	
     	BIN_SLIDER(3, 299, 160),
     
     	JSCOLOUR_3_ROW(),
@@ -83,11 +85,6 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 		    		min = 500,
 		    		max = 2000, 
 		    		value = 600),
-					
-					sliderInput('plotBrightness', label = BRIGHTNESS, 
-					  min = -50,
-					  max = 50, 
-					  value = 0),
 					
 					tipify(
 						checkboxInput('fullSize', label = "Preview Full Height", value = FALSE), 
