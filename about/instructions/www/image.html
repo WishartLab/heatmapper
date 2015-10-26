@@ -12,7 +12,6 @@
 			<ul>
 				Grid:
 				<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
-				<li>Comma separated with extension <em>.csv</em></li>
 			</ul>
 			<ul>
 				Image:
@@ -20,16 +19,33 @@
 				<li>A PNG image with extension <em>.png</em></li>
 				<li>A TIFF image with extension <em>.tif</em> or .<em>tiff</em></li>
 			</ul>
+			
 			<h4>Data Structure</h4>
-			The grid data input must contain 3 columns; X, Y, and Value. 
+			There are two acceptable formats for the grid data, long-format or wide-format: 
+			<br />
+			
+			<em>Long-Format</em>
+			<br />
+			Grid input with strings in the first row are assumed to be in long-format.
+			The data must contain 3 columns; X, Y, and Value. 
 			The X and Y columns correspond to the X and Y coordinates respectively. 
 			Each combination of X and Y coordinates must be in the data set.
 			The Value column provides the value for the set of coordinates.  
 			The first row must contain the names for each column; "x", "y", and "value". 
+			<br />
+			
+			<em>Wide-Format</em>
+			<br />
+			Grid input with numbers in the first row are assumed to be in wide-format.
+			Values are expressed as a matrix instead of explicitly stating each x and y coordinate combination. 
+			The data must contain at least 2 rows and 2 columns.
+			All data corresponds to implied grid coordinates, with (1,1) as the bottom left corner of the matrix.
+			
 			<h4>Range</h4>
 			X: positive numbers ranging from 1 to the number of grid columns <br />
 			Y: positive numbers ranging from 1 to the number of grid rows <br />
 			Value: any positive number
+			
 			<h4>Examples of Valid Input</h4>
 			<table>
 				<tr>
@@ -45,7 +61,7 @@
 						1
 					</td>
 					<td>
-						0
+						3.5
 					</td>
 				</tr>
 				<tr>
@@ -56,7 +72,7 @@
 						2
 					</td>
 					<td>
-						0
+						1.5
 					</td>
 				</tr>
 				<tr>
@@ -67,7 +83,7 @@
 						1
 					</td>
 					<td>
-						0
+						4
 					</td>
 				</tr>
 				<tr>
@@ -78,60 +94,19 @@
 						2
 					</td>
 					<td>
-						0
+						2
 					</td>
 				</tr>
 			</table>
 			<br />
 			<table>
 				<tr>
-					<td>value</td>
-					<td>y</td>
-					<td>x</td> 
+					<td>1.5</td>
+					<td>2</td>
 				</tr>
 				<tr>
-					<td>
-						0.5
-					</td>
-					<td>
-						1
-					</td>
-					<td>
-						1
-					</td>
-				</tr>
-				<tr>
-					<td>
-						1
-					</td>
-					<td>
-						1
-					</td>
-					<td>
-						2
-					</td>
-				</tr>
-				<tr>
-					<td>
-						1.5
-					</td>
-					<td>
-						2
-					</td>
-					<td>
-						1
-					</td>
-				</tr>
-				<tr>
-					<td>
-						2
-					</td>
-					<td>
-						2
-					</td>
-					<td>
-						2
-					</td>
+					<td>3.5</td>
+					<td>4</td>
 				</tr>
 			</table>
 		</div>

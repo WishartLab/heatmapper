@@ -6,6 +6,7 @@ library(ggplot2)
 library(grid)
 library(ggtern)
 library(MASS)
+library(reshape2)
 
 shinyServer(function(input, output, session){
 	
@@ -233,7 +234,7 @@ shinyServer(function(input, output, session){
 				
 				# flip the data
 				x <- x[nrow(x):1,]
-				melt(x, varnames  = c("x","y"))
+				melt(x, varnames  = c("y","x"))
 			},
 			error = function(e){
 				
