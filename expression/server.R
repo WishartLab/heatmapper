@@ -513,9 +513,14 @@ shinyServer(function(input, output, session){
 	
 	# save current file 
 	output$tableDownload <- downloadHandler(
-		filename = "table.txt",
+		filename = reactive({paste0("table.", input$downloadTableFormat)}),
 		content = function(file){
-			write.table(get_file(), file)
+			if(input$downloadTableFormat == "csv"){
+				write.csv(get_file(), quote = FALSE, file = file, row.names = FALSE)
+			}
+			else{
+				write.table(get_file(), sep = "\t", quote = FALSE, file = file, row.names = FALSE)
+			}
 		}
 	)
 

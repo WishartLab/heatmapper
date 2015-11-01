@@ -202,7 +202,7 @@ DOWNLOAD_BUTTONS <- function(){
 }
 
 # plotdownload and table download buttons with file format selection options
-DOWNLOAD_BUTTONS_WITH_SELECTION <- function(plotChoices = c("JPEG" = 'jpg',"PDF" = 'pdf',"PNG" = 'png',"TIFF" = 'tiff'), plotSelected = "png", tableChoices=c("TXT"='txt'), tableSelected = "txt"){
+DOWNLOAD_BUTTONS_WITH_SELECTION <- function(plotChoices = c("JPEG" = 'jpg',"PDF" = 'pdf',"PNG" = 'png',"TIFF" = 'tiff'), plotSelected = "png", tableChoices=c("TXT"='txt', "CSV" = 'csv'), tableSelected = "txt"){
 	list(
         fluidRow(
             column(4, tags$label("Download")), 

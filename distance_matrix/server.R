@@ -286,10 +286,16 @@ shinyServer(function(input, output, session){
 	)
 	
 	output$tableDownload <- downloadHandler(
-		filename = "table.txt", 
+		filename = reactive({paste0("table.", input$downloadTableFormat)}),
 		content = function(file){
-			write.table(get_file(), file, quote = FALSE, sep = "\t")
-	})
+			if(input$downloadTableFormat == "csv"){
+				write.csv(get_file(), quote = FALSE, file = file, row.names = FALSE)
+			}
+			else{
+				write.table(get_file(), sep = "\t", quote = FALSE, file = file, row.names = FALSE)
+			}
+		}
+	)
 	
 	trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 	
