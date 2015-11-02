@@ -4,74 +4,54 @@
         <meta charset="UTF-8">
 		<style>
 			td {padding:0.5em;}
+			code { white-space: pre; }
 		</style>
     </head>  
     <body>
 		<div class = "well">
 			<h4>Accepted File Formats</h4>
+			
 			<ul>
-				<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
-				<li>Comma separated with extension <em>.csv</em></li>
-				<li>First sheet of an Excel workbook with extension <em>.xlsx</em></li>
+				<li>Distance matrix or coordinates list upload</li>
+					<ul>
+						<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
+						<li>Comma separated with extension <em>.csv</em></li>
+						<li>First sheet of an Excel workbook with extension <em>.xlsx</em></li>
+					</ul>
+				<li>PDB file upload</li>
+					<ul>
+						<li>Protein Data Bank file, as used by the <a href="http://www.rcsb.org" target="_blank">RCSB Protein Data Bank</a>. The atom coordinates from the first chain are used.</li>
+					</ul>
 			</ul>
 			
-			<h4>Data Structure</h4>
+			<h4>Data Structure Examples</h4>
 			
-			<h4>Range</h4>
+			<ul>
+				<li>Distance matrix upload</li>
+					<ul>
+						<li>Coordinates for a square distance matrix should be given. E.g.:</li>
+						<code>
+0.000000000	3.804452129	6.576169934	10.24746749	13.11268645
+3.804452129	0.000000000	3.795575714	6.897659748	10.0781539
+6.576169934	3.795575714	0.000000000	3.819588067	6.778022204
+10.24746749	6.897659748	3.819588067	0.000000000	3.816983888
+13.11268645	10.0781539	6.778022204	3.816983888	0.000000000
+
+</code>
+					</ul>
+				<li>Coordinates list upload</li>
+					<ul>
+						<li>File should consist of n columns, where n > 1, with each row representing a point in n-dimensional space. E.g.:</li>
+						<code>
+27.340	24.430	2.614
+26.266	25.413	2.842
+26.913	26.639	3.531
+27.886	26.463	4.263
+25.112	24.880	3.649
+
+</code>
+					</ul>
 			
-			<h4>Examples of Valid Input</h4>
-			<table>
-				<tr>
-					<td>NAME</td>
-					<td>C1</td>
-					<td>C2</td> 
-				</tr>
-				<tr>
-					<td>
-						R1
-					</td>
-					<td>
-						1
-					</td>
-					<td>
-						0
-					</td>
-				</tr>
-				<tr>
-					<td>
-						R2
-					</td>
-					<td>
-						0
-					</td>
-					<td>
-						0
-					</td>
-				</tr>
-			</table>
-			<br />
-			<table>
-				<tr>
-					<td>col 1</td>
-					<td>col 2</td> 
-				</tr>
-				<tr>
-					<td>
-						-0.5
-					</td>
-					<td>
-						0
-					</td>
-				</tr>
-				<tr>
-					<td>
-						0.5
-					</td>
-					<td>
-						1
-					</td>
-				</tr>
-			</table>
 		</div>
     </body>
 </html>	
