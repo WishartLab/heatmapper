@@ -29,6 +29,14 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 																selected = 'dm')
 											)
 										),
+										conditionalPanel(condition = "input.uploadFormat == 'coords'",
+																		 fluidRow(
+																		 	column(1),
+																		 	column(11,
+																		 		checkboxInput('useRowLabels', label = tags$strong("Labels in first column"), FALSE)
+																		 	)
+																		 )
+										),
 										conditionalPanel(condition = "input.uploadFormat == 'pdb'",
 																		 fluidRow(
 																		 	column(4, tags$label("Atoms")),
@@ -40,7 +48,7 @@ shinyUI(list(HEAD_TASKS("#distanceMatrixTab", "50%", "40%"), fluidPage(title = "
 																		 				 							"All atoms" = 'all'),
 																		 				 						selected = 'ca')
 																		 	)
-																		 	)					 
+																		 	)
 										)
 				),
 				EXAMPLE_FILE_SELECT()

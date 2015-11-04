@@ -44,6 +44,31 @@ shinyServer(function(input, output, session){
 		read.table(filePath, header = header, sep = sep)
 	}
 	
+	read.coords <- function(filePath,	fileName = "txt") {
+		sep <- "\t"
+		if(tolower(substr(fileName, nchar(fileName)-2, nchar(fileName))) == "csv"){
+			sep <- ","
+		}
+		
+		tryCatch({
+			scan(filePath,  nlines = 1, sep=sep)
+			use_row_labels <<- FALSE
+		},
+		error = function(e){
+			use_row_labels <<- TRUE # assume row labels present
+		})
+		
+		if (input$useRowLabels) {
+			use_row_labels = TRUE
+		}
+		
+		if (use_row_labels) {
+			read.table(filePath, header = FALSE, sep = sep, row.names = 1)
+		} else {
+			read.table(filePath, header = FALSE, sep = sep)
+		}
+	}
+	
 	# returns table of 3-D coordinates of the first chain in the given PDB file
 	read.pdb <- function(filePath, fileName = "txt") {
 		
@@ -127,6 +152,8 @@ shinyServer(function(input, output, session){
 			}
 			if (input$uploadFormat == "pdb") {
 				file <- read.pdb(values$file$datapath, values$file$name)
+			} else if (input$uploadFormat == "coords") {
+				file <- read.coords(values$file$datapath, values$file$name)
 			} else {
 				file <- read_file(values$file$datapath, values$file$name)
 			}
