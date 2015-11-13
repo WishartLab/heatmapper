@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<style>
+			td {padding:0.5em;}
+			code { white-space: pre; }
+		</style>
+    </head>  
+    <body>
+		<div class = "well">
+			<h4>Accepted File Formats</h4>
+			
+			<ul>
+				<li>Generic data table</li>
+					<ul>
+						<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
+						<li>Comma separated with extension <em>.csv</em></li>
+						<li>First sheet of an Excel workbook with extension <em>.xlsx</em></li>
+					</ul>
+				<li>PDB file upload</li>
+					<ul>
+						<li>Protein Data Bank file, as used by the <a href="http://www.rcsb.org" target="_blank">RCSB Protein Data Bank</a>. The atom coordinates from the first chain are used.</li>
+					</ul>
+			</ul>
+			
+			<h4>Data Structure</h4>
+			
+			<ul>
+				<li>For distance matrix calculation: File should contain n data columns, where n &ge; 1, with each row representing a point in n-dimensional space.</li>
+				<li>For correlation matrix calculation: File should contain n data columns, where n &gt; 1, with columns representing variables whose correlations to one another will be calculated.</li>
+				<li>Note on labels: Optionally, the first row and/or first column may consist of data labels. If both contain data labels, a label of some sort (which will not be displayed) must also be present in the upper-left cell.
+				If any non-numeric values are present in the first row or column, data labels are assumed to be present. If only numeric data labels are present, select the appropriate check box so that they are treated as labels.
+				</li>
+			</ul>
+			
+			<h4>Range</h4>
+			
+			<ul>
+				<li>Any real numbers.</li>
+			</ul>
+			
+			<h4>Examples of Valid Input</h4>
+			
+Example 1:<br />
+						<code>
+27.340	24.430	2.614
+26.266	25.413	2.842
+26.913	26.639	3.531
+27.886	26.463	4.263
+25.112	24.880	3.649
+
+</code>
+Example 2:<br />
+						<code>
+dummyLabel	colLabel1	colLabel2	colLabel3
+rowLabel1	27.340	24.430	2.614
+rowLabel2	26.266	25.413	2.842
+rowLabel3	26.913	26.639	3.531
+rowLabel4	27.886	26.463	4.263
+rowLabel5	25.112	24.880	3.649
+
+
+</code>
+			
+		</div>
+    </body>
+</html>	

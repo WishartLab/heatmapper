@@ -1,6 +1,6 @@
 ## Heatmapper is hosted at www.heatmapper.ca
 * Expression Heat Map: www.heatmapper.ca/expression
-* Distance Matrix: www.heatmapper.ca/distance_matrix
+* Pairwise Comparison: www.heatmapper.ca/pairwise
 * Image Overlay: www.heatmapper.ca/image
 * Geomap: www.heatmapper.ca/geomap
 * Geocoordinate: www.heatmapper.ca/geocoordinate

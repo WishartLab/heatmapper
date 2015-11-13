@@ -50,22 +50,47 @@ shinyServer(function(input, output, session){
 			sep <- ","
 		}
 		
-		tryCatch({
-			scan(filePath,  nlines = 1, sep=sep)
-			use_row_labels <<- FALSE
-		},
-		error = function(e){
-			use_row_labels <<- TRUE # assume row labels present
-		})
+		con <- file(filePath, "rt")
+		line = readLines(con, 1) # Read one line
+		elems = unlist(strsplit(line, sep))
+		isNonNumeric = suppressWarnings(is.na(as.numeric(elems)))
 		
-		if (input$useRowLabels) {
-			use_row_labels = TRUE
+		use_col_labels <<- FALSE
+		use_row_labels <<- FALSE
+		
+		if (length(elems) == 1) {
+			if (isNonNumeric == TRUE) {
+				use_col_labels <<- TRUE # Assume first row is header row
+			}
+		} else {
+			# Check elements from the 2nd one to the last one.
+			# If any are not numbers, we assume this is a header row.
+			if (sum(isNonNumeric[2:length(isNonNumeric)]) > 0) {
+				use_col_labels <<- TRUE
+			}
+		}
+		
+		line = readLines(con, 1) # Read one line
+		elems = unlist(strsplit(line, sep))
+		isNonNumeric = suppressWarnings(is.na(as.numeric(elems[1])))
+		
+		if (isNonNumeric == TRUE) {
+			use_row_labels <<- TRUE
+		}
+		
+		
+		if ("useColLabels" %in% input$labels) {
+			use_col_labels <<- TRUE
+		}
+		
+		if ("useRowLabels" %in% input$labels) {
+			use_row_labels <<- TRUE
 		}
 		
 		if (use_row_labels) {
-			read.table(filePath, header = FALSE, sep = sep, row.names = 1)
+			read.table(filePath, header = use_col_labels, sep = sep, row.names = 1)
 		} else {
-			read.table(filePath, header = FALSE, sep = sep)
+			read.table(filePath, header = use_col_labels, sep = sep)
 		}
 	}
 	
@@ -150,29 +175,33 @@ shinyServer(function(input, output, session){
 			if(is.null(values$file$datapath)){
 				return(NULL)
 			}
+			
 			if (input$uploadFormat == "pdb") {
 				file <- read.pdb(values$file$datapath, values$file$name)
-			} else if (input$uploadFormat == "coords") {
-				file <- read.coords(values$file$datapath, values$file$name)
 			} else {
-				file <- read_file(values$file$datapath, values$file$name)
+				file <- read.coords(values$file$datapath, values$file$name)
 			}
 		}
 		
-		# Check whether uploaded file format is raw coordinates or PDB format,
-		# and if so compute a distance matrix for the coordinates.
 		if (input$chooseInput != 'example') {
-			if (input$uploadFormat == "coords" || input$uploadFormat == "pdb") {
+			if (input$matType == "distMat") {
+				# calculate distance matrix
 				file <- dist(file, diag = TRUE, upper = TRUE)
 				file <- as.data.frame(as.matrix(file))
+				file <- cbind(rownames(file), file)
+			} else if (input$matType == "corrMat") {
+				# calculate correlation matrix
+				file <- cor(file, file)
+				file <- as.data.frame(as.matrix(file))
+				file <- cbind(rownames(file), file)
+			} else {
+				# Will display as-is.
+				file <- t(file) # Transpose the data so it will be shown in the same orientation as in the input file.
+				file <- as.data.frame(as.matrix(file))
+				file <- cbind(rownames(file), file)
 			}
 		}
 		
-		# if no row names are specified use the column names
-		if(is.numeric(file[[1]])){
-			file <- cbind(colnames(file), file)
-		}
-
 		colnames(file)[1] <- "cols"
 		
 		return(file)
@@ -302,7 +331,7 @@ shinyServer(function(input, output, session){
 	})
 
 	get_plot_download_name <- function(){
-		paste0("distanceMatrix.", input$downloadPlotFormat)
+		paste0("pairwise.", input$downloadPlotFormat)
 	}
 
 	output$plotDownload <- downloadHandler(

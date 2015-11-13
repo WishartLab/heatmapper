@@ -47,6 +47,16 @@ $(document).ready(function() {
         $("#exampleInfo").show();
     });
     
+    /* matrix type info close button */
+    $( "#closeMatrixInfoButton" ).on("click", function(){
+        $("#matrixInfo").hide();
+    });
+    
+    /* matrix type info open button */
+    $( "#matrixInfoButton" ).on("click", function(){
+        $("#matrixInfo").show();
+    });
+    
     /* advanced options section */
     var advancedOptionsButtonCount = 1;
     document.getElementById("advancedOptionsButton").addEventListener("click", toggleAdvancedOptionsButton);
