@@ -1,4 +1,5 @@
 library(shiny)
+library(xlsx)
 library(d3heatmap)
 library(gplots)
 library(ggdendro)
@@ -31,7 +32,21 @@ shinyServer(function(input, output, session){
 	observe({
 		if(!is.null(input$file$datapath)){
 			tryCatch({
-				values$file <- read.delim(input$file$datapath)
+				
+				fileType <- tail(unlist(strsplit(x = input$file$name, split = "[.]")), n=1)
+				
+				print(fileType)
+				
+				if(fileType == "xls" || fileType == "xlsx"){
+					values$file <- read.xlsx(input$file$datapath, 1)
+				}
+				else if(fileType == "csv"){
+					values$file <- read.csv(input$file$datapath)
+				}
+				else{
+					values$file <- read.delim(input$file$datapath)
+				}
+				
 			}, 
 			error = function(err){
 				values$file <- NA
@@ -68,7 +83,7 @@ shinyServer(function(input, output, session){
 		if(input$chooseInput == 'fileUpload'){
 			values$file
 		}
-		else{
+		else{ # Example
 			read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
 		}
 	})
@@ -436,8 +451,10 @@ shinyServer(function(input, output, session){
 	output$d3map <- renderD3heatmap({
 		x <- get_data_matrix()
 		
-		validate(need(length(x) <= 10000, 
-			"File is too large for this feature. Please select a smaller file with no more than 10,000 cells."))
+		print(length(x))
+		
+		validate(need(length(x) <= 200000, 
+			"File is too large for this feature. Please select a smaller file with no more than 200,000 cells."))
 		
 		tryCatch({
 			
