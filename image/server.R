@@ -1,4 +1,5 @@
 library(shiny)
+library(xlsx)
 library(jpeg)
 library(png)
 library(tiff)
@@ -225,38 +226,66 @@ shinyServer(function(input, output, session){
 			}
 		}
 		else if(!is.null(values$gridFile)){
+			
 			tryCatch({
-				# if the first row is values instead of strings assume the data is in matrix form
-				scan(values$gridFile$datapath,  nlines = 1)
-				data_file <- read.delim(values$gridFile$datapath, header = FALSE)
-				colnames(data_file) <- NULL
-				x <- as.matrix(data_file)
 				
-				# flip the data
-				x <- x[nrow(x):1,]
-				melt(x, varnames  = c("y","x"))
-			},
-			error = function(e){
+				fileType <- tail(unlist(strsplit(x = values$gridFile$name, split = "[.]")), n=1)
 				
-				# if the first row contains strings assume 3 columns for x y and value
-				data_file <- read.delim(values$gridFile$datapath, header = TRUE)
-				
-				# check alternative names
-				x <- get_column(data_file, c("x", "X","col", "Col", "COL", "cols", "Cols", "COLS", "columns", "Columns", "COLUMNS"))
-				y <- get_column(data_file, c("y", "Y", "row", "Row", "ROW", "rows", "Rows", "ROWS"))
-				val <- get_column(data_file, c("value", "Value", "VALUE", "val", "Val", "VAL"))
-				
-				# if names couldn't be matched
-				if(is.null(x) || is.null(y) || is.null(val)){
-					NA
+				if(fileType == "xls" || fileType == "xlsx"){
+					data_file <- read.xlsx(values$gridFile$datapath, 1, header = FALSE)
 				}
-				
-				# if all names were matched
+				else if(fileType == "csv"){
+					data_file <- read.csv(values$gridFile$datapath, header = FALSE)
+				}
 				else{
-					data.frame(x = c(x), y = c(y), value = c(val))
+					data_file <- read.delim(values$gridFile$datapath, header = FALSE, sep="\t", row.names = NULL)
 				}
-			})
 				
+				if (sum(grepl("^[-+]?([0-9]*[.])?[0-9]+([eE][+-]?[0-9]+)?$", lapply(data_file[1,], as.character), perl=TRUE)) < length(data_file[1,])) {
+					# Not all cells in the first row are numbers, so we will assume that the first row is a header row.
+					# We are expecting column headers for x, y, and value ('long format').
+					
+					# Re-read the file, but with header = TRUE
+					if(fileType == "xls" || fileType == "xlsx"){
+						data_file <- read.xlsx(values$gridFile$datapath, 1, header = TRUE)
+					}
+					else if(fileType == "csv"){
+						data_file <- read.csv(values$gridFile$datapath, header = TRUE)
+					}
+					else{
+						data_file <- read.delim(values$gridFile$datapath, header = TRUE, sep="\t", row.names = NULL)
+					}
+					
+					# check alternative names
+					x <- get_column(data_file, c("x", "X","col", "Col", "COL", "cols", "Cols", "COLS", "columns", "Columns", "COLUMNS"))
+					y <- get_column(data_file, c("y", "Y", "row", "Row", "ROW", "rows", "Rows", "ROWS"))
+					val <- get_column(data_file, c("value", "Value", "VALUE", "val", "Val", "VAL"))
+					
+					if(is.null(x) || is.null(y) || is.null(val)){
+						# names couldn't be matched
+						NA
+					} else{
+						# all names were matched
+						data.frame(x = c(as.integer(x)), y = c(as.integer(y)), value = c(val))
+					}
+					
+				} else {
+					# First row contains all numeric values.
+					# Treat data as matrix form ('wide format').
+					
+					colnames(data_file) <- NULL
+					x <- as.matrix(data_file)
+					
+					# flip the data
+					x <- x[nrow(x):1,]
+					melt(x, varnames  = c("y","x"))
+				}
+				
+			}, 
+			error = function(err){
+				validate(txt = ERR_file_read)
+			})
+			
 		}
 		else{
 			max <- input$numGridRows
