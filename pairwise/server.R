@@ -1,4 +1,5 @@
 library(shiny)
+library(xlsx)
 library(ggplot2)
 library(reshape2)
 library(d3heatmap)
@@ -45,20 +46,26 @@ shinyServer(function(input, output, session){
 	}
 	
 	read.coords <- function(filePath,	fileName = "txt") {
-		sep <- "\t"
-		if(tolower(substr(fileName, nchar(fileName)-2, nchar(fileName))) == "csv"){
-			sep <- ","
-		}
+		fileType <- tail(unlist(strsplit(x = fileName, split = "[.]")), n=1)
 		
-		con <- file(filePath, "rt")
-		line = readLines(con, 1) # Read one line
-		elems = unlist(strsplit(line, sep))
-		isNonNumeric = suppressWarnings(is.na(as.numeric(elems)))
+		# Initial read of file.
+		if(fileType == "xls" || fileType == "xlsx"){
+			data_file <- read.xlsx(filePath, 1, header = FALSE, row.names = NULL)
+		}
+		else if(fileType == "csv"){
+			data_file <- read.csv(filePath, header = FALSE, row.names = NULL)
+		}
+		else{
+			data_file <- read.delim(filePath, header = FALSE, row.names = NULL, sep="\t")
+		}
 		
 		use_col_labels <<- FALSE
 		use_row_labels <<- FALSE
 		
-		if (length(elems) == 1) {
+		row1 = as.character(unlist(data_file[1,]))
+		isNonNumeric = suppressWarnings(is.na(as.numeric(row1)))
+		
+		if (length(row1) == 1) {
 			if (isNonNumeric == TRUE) {
 				use_col_labels <<- TRUE # Assume first row is header row
 			}
@@ -70,14 +77,20 @@ shinyServer(function(input, output, session){
 			}
 		}
 		
-		line = readLines(con, 1) # Read one line
-		elems = unlist(strsplit(line, sep))
-		isNonNumeric = suppressWarnings(is.na(as.numeric(elems[1])))
+		col1 = as.character(data_file[,1])
+		isNonNumeric = suppressWarnings(is.na(as.numeric(col1)))
 		
-		if (isNonNumeric == TRUE) {
-			use_row_labels <<- TRUE
+		if (length(col1) == 1) {
+			if (isNonNumeric == TRUE) {
+				use_row_labels <<- TRUE # Assume first column is a labels column.
+			}
+		} else {
+			# Check elements from the 2nd one to the last one.
+			# If any are not numbers, we assume this is a labels column.
+			if (sum(isNonNumeric[2:length(isNonNumeric)]) > 0) {
+				use_row_labels <<- TRUE
+			}
 		}
-		
 		
 		if ("useColLabels" %in% input$labels) {
 			use_col_labels <<- TRUE
@@ -87,15 +100,55 @@ shinyServer(function(input, output, session){
 			use_row_labels <<- TRUE
 		}
 		
-		if (use_row_labels) {
-			read.table(filePath, header = use_col_labels, sep = sep, row.names = 1)
+		row.names.val = -99
+		if (use_row_labels == FALSE) {
+			row.names.val <- NULL
 		} else {
-			read.table(filePath, header = use_col_labels, sep = sep)
+			row.names.val <- 1
 		}
+		
+		# Read the file again, this time with header/row labels specified.
+		if(fileType == "xls" || fileType == "xlsx"){
+			read.xlsx(filePath, 1, header = use_col_labels, row.names = row.names.val)
+		}
+		else if(fileType == "csv"){
+			read.csv(filePath, header = use_col_labels, row.names = row.names.val)
+		}
+		else{
+			read.delim(filePath, header = use_col_labels, row.names = row.names.val, sep="\t")
+		}
+		
+	}
+	
+	# Returns TRUE if the given file looks like a PDB file; otherwise FALSE.
+	is.pdb <- function(filePath) {
+		# Traverse file and look for characteristic lines.
+		con <- file(filePath, "rt")
+		while(TRUE) {
+			line = readLines(con, 1) # Read one line
+			if (length(line) >= 54) {
+				if (substr(line, 1,6) == 'ATOM  ' || substr(line, 1,6) == 'HETATM') {
+					if (substr(line, 13, 16) == ' CA ') { # require at least 1 C-alpha atom
+						if (grepl("^ *[0-9]+ *$", substr(line, 7, 11), perl=TRUE) &&
+								grepl("\\S", substr(line, 22, 22), perl=TRUE) &&
+								grepl("^ *[0-9]+ *$", substr(line, 23, 26), perl=TRUE) &&
+								grepl("^ *[0-9]+\\.[0-9]+ *$", substr(line, 31, 38), perl=TRUE) &&
+								grepl("^ *[0-9]+\\.[0-9]+ *$", substr(line, 39, 46), perl=TRUE) &&
+								grepl("^ *[0-9]+\\.[0-9]+ *$", substr(line, 47, 54), perl=TRUE)
+								) {
+							close(con)
+							return(TRUE)
+						}
+					}
+				}
+			}
+		}
+		close(con)
+		return(FALSE)
 	}
 	
 	# returns table of 3-D coordinates of the first chain in the given PDB file
-	read.pdb <- function(filePath, fileName = "txt") {
+	read.pdb <- function(filePath) {
 		
 		# Traverse file and count how many atoms we want to use.
 		con <- file(filePath, "rt")
@@ -177,7 +230,8 @@ shinyServer(function(input, output, session){
 			}
 			
 			if (input$uploadFormat == "pdb") {
-				file <- read.pdb(values$file$datapath, values$file$name)
+			#if (is.pdb(values$file$datapath)) {
+				file <- read.pdb(values$file$datapath)
 			} else {
 				file <- read.coords(values$file$datapath, values$file$name)
 			}
