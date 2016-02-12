@@ -93,7 +93,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 					conditionalPanel(condition = "input.fullSize == false", 
 			    	sliderInput('plotHeight', label = HEIGHT, 
 			    		min = 500,
-			    		max = 2000, 
+			    		max = 8000,
 			    		value = 600)),
 					
 					textInput('title', label = "Title", value = ""),

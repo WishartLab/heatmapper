@@ -386,6 +386,14 @@ shinyServer(function(input, output, session){
 	# returns a heatmap.2 image based on get_data_matrix()
 	get_plot <- function(){
 		x <- get_data_matrix()
+		
+		if (clust_selected("col") && length(grep("col", input$dendSelectRC))>0) {
+			col_dendrogram_height = 120
+		} else {
+			col_dendrogram_height = 60
+		}
+		heatmap_height = get_plot_height() - col_dendrogram_height
+		
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
@@ -405,7 +413,9 @@ shinyServer(function(input, output, session){
 				scale = input$scale,
 				main = input$title, 
 				xlab = input$xlab, 
-				ylab = input$ylab
+				ylab = input$ylab,
+				
+				lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
 			)
 			graphics.off()
 		},
@@ -432,17 +442,25 @@ shinyServer(function(input, output, session){
 		get_plot(),
 		width =  reactive({input$plotWidth}),
 		height = reactive({
-			if(input$fullSize){
-				if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
-					input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
-				}
-				else{
-					input$plotHeight
-				}
+			get_plot_height()
+		})
+	)
+	
+	get_plot_height <- (
+		
+		reactive({
+		if(input$fullSize){
+			if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
+				print("hey")
+				input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
 			}
 			else{
 				input$plotHeight
 			}
+		}
+		else{
+			input$plotHeight
+		}
 		})
 	)
 	
@@ -453,8 +471,8 @@ shinyServer(function(input, output, session){
 		
 		print(length(x))
 		
-		validate(need(length(x) <= 200000, 
-			"File is too large for this feature. Please select a smaller file with no more than 200,000 cells."))
+		validate(need(length(x) <= 10000, 
+			"File is too large for this feature. Please select a smaller file with no more than 10,000 cells."))
 		
 		tryCatch({
 			
@@ -490,7 +508,8 @@ shinyServer(function(input, output, session){
 	output$colDendrogram <- renderPlot({
 		validate(need(clust_selected("col"), "Apply clustering to columns to view this dendrogram"))
 		get_dendrogram_plot(values$colHclust, "column")
-	}, height = reactive({ifelse(is.null(values$colHclust) || is.na(values$colHclust), 100, length(values$colHclust[[1]])*10)}) )
+	}, height = reactive({ifelse(is.null(values$colHclust) || is.na(values$colHclust), 100, length(values$colHclust[[1]])*10)})
+	)
 	
 	# display table
 	output$table <- renderDataTable({
