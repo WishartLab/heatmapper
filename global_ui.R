@@ -36,9 +36,9 @@ GRID_POINTS <- "Contour Smoothness"
 DOWNLOAD_PLOT <- "Download Plot"
 DOWNLOAD_TABLE <- "Download Table"
 
-WIDTH <- "Plot Width (in px)"
-HEIGHT <- "Plot Height (in px)"
-CONTOUR_WIDTH <- "Contour Line Width (in px)"
+WIDTH <- "Plot Width (pixels)"
+HEIGHT <- "Plot Height (pixels)"
+CONTOUR_WIDTH <- "Contour Line Width (pixels)"
 BRIGHTNESS <- "Colour Brightness"
 
 # imports navbar, sets active tab, adds CSS
