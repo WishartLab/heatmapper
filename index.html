@@ -18,6 +18,17 @@
 				margin-right: auto;
 			}
 			
+			.logo {
+				/* These options are to prevent anti-aliasing */
+				image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+				image-rendering: -moz-crisp-edges;          /* Firefox                        */
+				image-rendering: -o-crisp-edges;            /* Opera                          */
+				image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+				image-rendering: pixelated; /* Chrome */
+				image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+				-ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+			}
+			
 			figcaption {
 				text-align:center;
 				margin-bottom:0.5em;
@@ -55,7 +66,70 @@
     <body>
 		<div id="navbar"></div>
 		<div class="myTable">
-			<h2 style="margin-left:15px;">Welcome to Heatmapper!</h2>
+			<h2 style="margin-left:0px; padding-left:1.9em;">Welcome to Heatmapper!</h2>
+			
+			<div class="myRow" style="width:67%;">
+				
+<!-- 
+				<div style="display:table-cell; width:100%;">
+ -->
+				
+				<div class="myCol" style="display:table-cell; width:67%; padding-left:3em; padding-right:3em;">
+				
+				<img src="www/images/logo.png" class="logo" style="width:240px; padding-left:1em; padding-bottom:1em; float:right;">
+				
+				<p style="text-align:justify; width:100%;">
+				Heatmapper is a freely available web server that allows users to interactively
+				visualize their data in the form of heat maps through an easy-to-use graphical
+				interface. Heatmapper is a versatile tool that allows users to easily create a
+				wide variety of heat maps for many different data types and applications.
+				Heatmapper allows users to generate, cluster and visualize: 1) <b>expression-based
+				heat maps</b> from transcriptomic, proteomic and metabolomic experiments;
+				2) <b>pairwise distance maps</b>; 3) <b>correlation maps</b>; 4) <b>image overlay heat maps</b>;
+				5) <b>latitude and longitude heat maps</b> and 6) <b>geopolitical (choropleth) heat maps</b>.
+				Heatmapper offers a number of simple and intuitive customization options for
+				easy adjustments to each heat map’s appearance and plotting parameters.
+				Heatmapper also allows users to interactively explore their numeric data values
+				by hovering their cursor over each heat map, or by using a searchable/sortable
+				data table view.
+				</p>
+				
+				</div>
+				
+<!-- 
+				</div>
+				
+				<div class="well" style="display:table-cell; width:100%; float:right; ">
+ -->
+				
+				
+				<div class="myCol well" style="display:table-cell; width:33%;">
+				<h5>Please cite:</h5>
+				<p>
+				Sasha Babicki, David Arndt, Adam Maciejewski, and David S. Wishart. Heatmapper: Web-enabled Heat Mapping for All. <i>Nucleic Acids Research</i> (submitted).
+				</p>
+				
+				<br />
+				<h5>Funding</b>
+				
+				<p>
+					<a href="http://www.cihr-irsc.gc.ca" target="_blank">
+						<img src="www/images/cihr.png" style="width:118px; margin-left:0px; margin-right:20px; margin-top:10px;">
+					</a>
+				
+					<a href="http://genomealberta.ca" target="_blank">
+						<img src="www/images/galberta.png" style="width:118px; margin-left:0px; margin-right:20px; margin-top:10px;">
+					</a>
+				</p>
+				
+				</div>
+				
+			</div>
+				
+			
+		</div>
+		<div class="myTable">
+			
 			<div class="myRow">
 				
 				<div class="well myCol">
