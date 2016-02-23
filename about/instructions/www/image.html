@@ -8,107 +8,156 @@
     </head>  
     <body>
 		<div class = "well">
+		
 			<h4>Accepted File Formats</h4>
+			
 			<ul>
-				Grid:
-				<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
-			</ul>
+			<li>For the background image, Heatmapper accepts:
 			<ul>
-				Image:
 				<li>A JPEG image with extension <em>.jpg</em> or .<em>jpeg</em></li>
 				<li>A PNG image with extension <em>.png</em></li>
 				<li>A TIFF image with extension <em>.tif</em> or .<em>tiff</em></li>
 			</ul>
+			</li>
+			
+			<li>For the overlaid grid data, Heatmapper accepts a tab separated file with
+			extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em>.</li>
+			</ul>
+			
+			<br />
 			
 			<h4>Data Structure</h4>
 			There are two acceptable formats for the grid data, long-format or wide-format: 
+			<br /><br />
+			
+			<em>Long-Format:</em>
 			<br />
 			
-			<em>Long-Format</em>
-			<br />
-			Grid input with strings in the first row are assumed to be in long-format.
-			The data must contain 3 columns; X, Y, and Value. 
-			The X and Y columns correspond to the X and Y coordinates respectively. 
-			Each combination of X and Y coordinates must be in the data set.
-			The Value column provides the value for the set of coordinates.  
-			The first row must contain the names for each column; "x", "y", and "value". 
+			<ul>
+				<li>Specifies grid or "temperature" values by <i>x</i> and <i>y</i> coordinate. Each combination of <i>x</i> and <i>y</i> coordinates must be in the data set.</li>
+				<li>Must contain header row with columns "x", "y", and "value".</li>
+			</ul>
+			
+			<em>Wide-Format:</em>
+			
+			<ul>
+				<li>Includes only grid or "temperature" values, with implied <i>x</i> and <i>y</i> coordinates. Values are given as a matrix that is mapped onto the image.</li>
+				<li>Must have no header row.</li>
+			</ul>
+			
 			<br />
 			
-			<em>Wide-Format</em>
-			<br />
-			Grid input with numbers in the first row are assumed to be in wide-format.
-			Values are expressed as a matrix instead of explicitly stating each x and y coordinate combination. 
-			The data must contain at least 2 rows and 2 columns.
-			All data corresponds to implied grid coordinates, with (1,1) as the bottom left corner of the matrix.
+			<h4>Acceptable data values</h4>
 			
-			<h4>Range</h4>
-			X: positive numbers ranging from 1 to the number of grid columns <br />
-			Y: positive numbers ranging from 1 to the number of grid rows <br />
-			Value: any positive number
+			<ul>
+				<li><i>x</i> and <i>y</i>: positive numbers ranging from 1 to the number of grid columns/rows.</li>
+				<li><i>value</i>: any positive number.</li>
+			</ul>
 			
-			<h4>Examples of Valid Input</h4>
-			<table>
-				<tr>
-					<td>x</td>
-					<td>y</td>
-					<td>value</td> 
-				</tr>
-				<tr>
-					<td>
-						1
-					</td>
-					<td>
-						1
-					</td>
-					<td>
-						3.5
-					</td>
-				</tr>
-				<tr>
-					<td>
-						1
-					</td>
-					<td>
-						2
-					</td>
-					<td>
-						1.5
-					</td>
-				</tr>
-				<tr>
-					<td>
-						2
-					</td>
-					<td>
-						1
-					</td>
-					<td>
-						4
-					</td>
-				</tr>
-				<tr>
-					<td>
-						2
-					</td>
-					<td>
-						2
-					</td>
-					<td>
-						2
-					</td>
-				</tr>
-			</table>
 			<br />
-			<table>
-				<tr>
-					<td>1.5</td>
-					<td>2</td>
-				</tr>
-				<tr>
-					<td>3.5</td>
-					<td>4</td>
-				</tr>
-			</table>
+			
+			<h4>Examples</h4>
+			
+			<h5>Long-format</h5>
+			
+			Download an example in long-format <a href="examples/image_example_long.txt" target="_blank">here</a>.
+			<br /><br />
+			
+			Example layout:
+			<br />
+			
+<code style="white-space: pre;">
+value	x	y
+7.0	1	1
+7.0	1	2
+17.8	1	3
+17.8	2	1
+19.5	2	2
+15.7	2	3
+5.0	3	1
+13.5	3	2
+5.2	3	3</code>
+
+<br /><br />
+or<br />
+
+<code style="white-space: pre;">
+x	y	value
+1	1	7.0
+1	2	7.0
+1	3	17.8
+2	1	17.8
+2	2	19.5
+2	3	15.7
+3	1	5.0
+3	2	13.5
+3	3	5.2</code>
+
+<h5>Wide-format</h5>
+
+			Download an example in wide-format <a href="examples/image_example_wide.txt" target="_blank">here</a>.
+			<br /><br />
+
+			Example layout:
+			<br />
+
+<code style="white-space: pre;">
+11.6	3.6	12.9	8.7
+0.9	15.9	0.6	1.4
+8.7	19.8	2.9	10.3
+12.0	10.0	16.9	15.3
+</code>
+
 		</div>
+
+<div>
+<h5>An example of image overlay functionality: X-ray CT scan of a rat treated with polyethylene glycol (PEG)-protected gold nanorods to allow visualization of tumors</h5>
+<p>Data from <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2712876/">Maltzahn et al.</a> Example grid overlay: Temperature heat map example (artifical data, not taken from the paper).
+</p>
+<p>You may use the data files given above for this example.</p>
+<br></br>
+<p>Click on the Image Overlay tab on the main header and select the Upload File radio button for the 'Select Image File' section, followed by the Choose File button (use the "long" example here). Alternatively, you may choose the 'Example File' radio button. Note: details about the example may be viewed by clicking the Information Icon. The following image will display.</p>
+<br></br>
+<center><img src="images/HMI1.png" width="70%" height="70%"</body></img></center>
+<br></br>
+
+<p>Do the same for the "Select Grid File" section to view an overlay(use the "wide" example here). Alternatively, you may choose the 'Example File' radio button. The following image will display. Note that the default display is set to Gausian.</p>
+<br></br>
+<center><img src="images/HMI2.png" width="70%" height="70%"</body></img></center>
+<br></br>
+
+<p>Data points may be added interactively using the box directly above the image. Coordinates are chosen either by clinking a position on the image itself, or by entering the exact x and y values of interest in the box. The Value for the point of interest may be entered in the "Value" field. By clicking the "Submit" button, the value is added directly on the image, as shown below.</p>
+<br></br>
+
+<center><img src="images/HMI7.png" width="70%" height="70%"</body></img></center>
+<br></br>
+
+<p>You may change the color scheme, such as to "Rainbow" under the "Color Scheme" dropdown menu.</p>
+<br></br>
+<center><img src="images/HMI3.png" width="70%" height="70%"</body></img></center>
+<br></br>
+
+<p>The above options are shown in the menu below. You may also select the "Square" display option, versus the default "Gausian" display, in order to overlay the grid directly without emphasis of distribution. To clearly view the data points, increase the color opacity to 1 with the "Heatmap Opacity".</p>
+<br></br>
+
+<center><img src="images/HMI5.png" width="50%" height="50%"</body></img></center>
+<br></br>
+<center><img src="images/HMI6.png" width="70%" height="70%"</body></img></center>
+<br></br>
+<p>A few other options to try in the menu include:</p>
+<p>Show/Hide Layers - Add or remove heatmap layers on the image. For example, adding the 'Contour Lines' layer would result in clearly differentiated kernels on the Gaussian view.</p>
+<p>Gaussian Radius Multiplier - Adjusts the bandwidth for kernel density estimation.</p>
+<p>Contour Smoothness - Adjusts the number of grid points in each direction for kernel density estimation.</p>
+<p>Number of Shades - Increase or decrease the number of shades to use for higher/lower intensity values. For example, by increasing the number of shades, the Gaussian display would appear more gradual.</p>
+<p>Download - You may download at any time an image of the plot, or a text file in table format.</p>
+<p>Advanced Options Tab- You may adjust the plot width or height for a more clear rendition of the grid.</p>
+<br></br>
+<p>You may also view the grid positions displayed in table format by selecting the "Table" grid option.</p>
+<br></br>
+<center><img src="images/HMI4.png" width="70%" height="70%"</body></img></center>
+
+<br></br><br></br>
+</div>
+
     </body>
-</html>	
+</html>

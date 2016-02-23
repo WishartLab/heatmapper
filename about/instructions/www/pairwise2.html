@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<style>
+			td {padding:0.5em;}
+			code { white-space: pre; }
+		</style>
+    </head>  
+    <body>
+		<div class = "well">
+			<h4>Accepted File Formats</h4>
+			
+			<ul>
+				<li>Generic data table</li>
+					<ul>
+						<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
+						<li>Comma separated with extension <em>.csv</em></li>
+						<li>First sheet of an Excel workbook with extension <em>.xlsx</em></li>
+					</ul>
+				<li>PDB file upload</li>
+					<ul>
+						<li>Protein Data Bank file, as used by the <a href="http://www.rcsb.org" target="_blank">RCSB Protein Data Bank</a>. The atom coordinates from the first chain are used.</li>
+					</ul>
+			</ul>
+			
+			<br />
+			<h4>Data Structure</h4>
+			
+			<ul>
+				<li>For distance matrix calculation: File should contain n data columns, where n &ge; 1, with each row representing a point in n-dimensional space.</li>
+				<li>For correlation matrix calculation: File should contain n data columns, where n &gt; 1, with columns representing variables whose correlations to one another will be calculated.</li>
+				<li>Note on labels: Optionally, the first row and/or first column may consist of data labels. If both contain data labels, a label of some sort (which will not be displayed) must also be present in the upper-left cell.
+				If any non-numeric values are present in the first row or column, data labels are assumed to be present. If only numeric data labels are present, select the appropriate check box so that they are treated as labels.
+				</li>
+			</ul>
+			
+			<br />
+			<h4>Acceptable Data Values</h4>
+			
+			<ul>
+				<li>Any real numbers.</li>
+			</ul>
+			
+			<br />
+			<h4>Examples</h4>
+
+			<h5>For Distance Matrix</h5>
+
+			The distance matrix option calculates all pairwise distances between spatial points
+			(in rows) and presents the distances as a matrix.<br /><br />
+
+			Download an example input file <a href="examples/pairwise_dm_example1.txt" target="_blank">here</a>.
+			<br /><br />
+
+			Example 1:<br />
+
+<code style="white-space: pre;">
+27.340	24.430	2.614
+26.266	25.413	2.842
+26.913	26.639	3.531
+27.886	26.463	4.263
+25.112	24.880	3.649
+</code>
+
+			<br />
+			Example 2:<br />
+
+<code style="white-space: pre;">
+placeholderLabel	x	y	z
+point1	27.340	24.430	2.614
+point2	26.266	25.413	2.842
+point3	26.913	26.639	3.531
+point4	27.886	26.463	4.263
+point5	25.112	24.880	3.649
+</code>
+
+			<br />
+			In this second example, we have included labels in both the header and first column, but
+			labels in only the header or only the first column are also acceptable.
+
+			<br /><br />
+			<h5>For Correlation Matrix</h5>
+
+			The correlation matrix option calculates all correlations between pairs of variables
+			(in columns) and presents the correlation values as a matrix.<br /><br />
+
+			Download an example input file <a href="examples/pairwise_corr_example1.txt" target="_blank">here</a>.
+			<br /><br />
+
+			Example 1:<br />
+			
+<code style="white-space: pre;">
+SAMPLE	depth (m)	pH	temp (C)	biomass (ug/kg)
+sample0001	0.500	6.3	5.43	8.1
+sample0002	1.000	6.4	4.29	7.5
+sample0003	2.000	6.5	3.65	6.3
+sample0004	5.000	6.9	3.19	5.6
+sample0005	10.000	7.1	2.80	5.9
+</code>
+
+		</div>
+<div>
+<h5>An example of pairwise functionality can be seen in the screenshot below</h5>
+<center><img src="images/HM1p.png" width="70%" height="70%"</body></img></center>
+<h5>The Pairwise class of Heatmapper features these customizable functions accessible on the left menu bar as shown below</h5>
+<center><img src="images/HM2p.png" width="70%" height="70%"</body></img></center>
+<h5>Selecting the “Show Advanced Options” tab as shown below exposes the following functionality</h5>
+<center><img src="images/HM3p.png" width="70%" height="70%"</body></img></center>
+<h5>Pairwise also allows the user to view the analysis output in different formats by selecting the upper menu options as shown below</h5>
+<center><img src="images/HM4p.png" width="70%" height="70%"</body></img></center>
+</div>
+    </body>
+</html>

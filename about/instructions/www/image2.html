@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<style>
+			td {padding:0.5em;}
+		</style>
+    </head>  
+    <body>
+		<div class = "well">
+		
+			<h4>Accepted File Formats</h4>
+			
+			<ul>
+			<li>For the background image, Heatmapper accepts:
+			<ul>
+				<li>A JPEG image with extension <em>.jpg</em> or .<em>jpeg</em></li>
+				<li>A PNG image with extension <em>.png</em></li>
+				<li>A TIFF image with extension <em>.tif</em> or .<em>tiff</em></li>
+			</ul>
+			</li>
+			
+			<li>For the overlaid grid data, Heatmapper accepts a tab separated file with
+			extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em>.</li>
+			</ul>
+			
+			<br />
+			
+			<h4>Data Structure</h4>
+			There are two acceptable formats for the grid data, long-format or wide-format: 
+			<br /><br />
+			
+			<em>Long-Format:</em>
+			<br />
+			
+			<ul>
+				<li>Specifies grid or "temperature" values by <i>x</i> and <i>y</i> coordinate. Each combination of <i>x</i> and <i>y</i> coordinates must be in the data set.</li>
+				<li>Must contain header row with columns "x", "y", and "value".</li>
+			</ul>
+			
+			<em>Wide-Format:</em>
+			
+			<ul>
+				<li>Includes only grid or "temperature" values, with implied <i>x</i> and <i>y</i> coordinates. Values are given as a matrix that is mapped onto the image.</li>
+				<li>Must have no header row.</li>
+			</ul>
+			
+			<br />
+			
+			<h4>Acceptable data values</h4>
+			
+			<ul>
+				<li><i>x</i> and <i>y</i>: positive numbers ranging from 1 to the number of grid columns/rows.</li>
+				<li><i>value</i>: any positive number.</li>
+			</ul>
+			
+			<br />
+			
+			<h4>Examples</h4>
+			
+			<h5>Long-format</h5>
+			
+			Download an example in long-format <a href="examples/image_example_long.txt" target="_blank">here</a>.
+			<br /><br />
+			
+			Example layout:
+			<br />
+			
+<code style="white-space: pre;">
+value	x	y
+7.0	1	1
+7.0	1	2
+17.8	1	3
+17.8	2	1
+19.5	2	2
+15.7	2	3
+5.0	3	1
+13.5	3	2
+5.2	3	3</code>
+
+<br /><br />
+or<br />
+
+<code style="white-space: pre;">
+x	y	value
+1	1	7.0
+1	2	7.0
+1	3	17.8
+2	1	17.8
+2	2	19.5
+2	3	15.7
+3	1	5.0
+3	2	13.5
+3	3	5.2</code>
+
+<h5>Wide-format</h5>
+
+			Download an example in wide-format <a href="examples/image_example_wide.txt" target="_blank">here</a>.
+			<br /><br />
+
+			Example layout:
+			<br />
+
+<code style="white-space: pre;">
+11.6	3.6	12.9	8.7
+0.9	15.9	0.6	1.4
+8.7	19.8	2.9	10.3
+12.0	10.0	16.9	15.3
+</code>
+
+		</div>
+
+<div>
+<h5>An example of Image Overlay functionality can be seen in the screenshot below</h5>
+<center><img src="images/HM1i.png" width="70%" height="70%"</body></img></center>
+<h5>The Image Overlay class of Heatmapper features these customizable functions accessible on the left menu bar as shown below</h5>
+<center><img src="images/HM2i.png" width="70%" height="70%"</body></img></center>
+<h5>Selecting the “Show Advanced Options” tab as shown below exposes the following functionality</h5>
+<center><img src="images/HM3i.png" width="70%" height="70%"</body></img></center>
+</div>
+
+    </body>
+</html>

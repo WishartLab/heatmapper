@@ -2,8 +2,115 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		<style>
+			.border-img {
+				border:0.2em solid black;
+				width:100%;
+				height:15em;
+				border-radius:0.4em;
+				max-width:20em;
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			
+			
+			figcaption {
+				text-align:center;
+				margin-bottom:0.5em;
+			}
+
+			.myRow {
+				display:table-row;
+			}
+			.myCol {
+				display:table-cell;
+				width:33%;
+			}
+			.myTable {
+				border-spacing:1em;
+			}
+
+		</style>
     </head>  
     <body>
-				<img src="../../www/images/geocoordinate.png" alt="image overlay" class="border-img">
+
+		<div class="myTable">
+			
+			<div class="myRow">
+				
+				<div class="well myCol">
+					<figure>
+						
+						<a href="images/HMC1.png">
+							<img src="images/HMC1_low.png" alt="Example 1" class="border-img">
+						</a>
+						
+						<figcaption>
+							<h5>Example 1</h5>
+							<em>
+							Deaths from a 
+							<a href="https://en.wikipedia.org/wiki/1854_Broad_Street_cholera_outbreak">cholera outbreak</a>
+							 in 1854. 
+							<a href="https://en.wikipedia.org/wiki/John_Snow_(physician)">John Snow</a>  
+							 used this data in conjunction with local pump locations as evidence that cholera is spread by contaminated water. A 
+							<a href="https://www.google.com/fusiontables/DataSource?docid=147wlDisDp6NnpNxHQpbnjAQ-iW4dR2MAmFdQxYc#map:id=3">digitised version</a>
+							 of the data is available online, courtesy of Robin Wilson.
+							</em>
+						</figcaption>
+						
+						
+					 </figure>
+				</div>
+				
+				<div class="well myCol">
+					<figure>
+						
+						<a href="images/HMC2.png">
+							<img src="images/HMC2_low.png" alt="Example 2" class="border-img">
+						</a>
+						
+						<figcaption>
+							<h5>Example 2</h5>
+							<em>
+							Bike thefts in Vancouver in 2011. The data was obtained from a 2013 Vancouver Sun 
+							<a href="http://blogs.vancouversun.com/2013/12/27/get-the-raw-data-for-our-bike-theft-and-auto-crime-series-right-here/">blog post</a>
+							 by Chad Skelton.
+							</em>
+						</figcaption>
+						
+						
+					 </figure>
+				</div>
+			</div>
+
+			<div class="myRow">	
+				<div class="well myCol">
+					<figure>
+						
+						<a href="images/HMC3.png">
+							<img src="images/HMC3_low.png" alt="Example 3" class="border-img">
+						</a>
+						
+						<figcaption>
+							<h5>Example 3</h5>
+							<em>
+							The location of traffic signals in Toronto. The data was obtained from 
+							<a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=9e56e03bb8d1e310VgnVCM10000071d60f89RCRD">Toronto Open Data</a>
+							. The idea to use this data set comes from this 
+							<a href="http://www.r-bloggers.com/heatmap-of-toronto-traffic-signals-using-rgooglemaps/">R-bloggers post</a>
+							 by Myles Harrison.
+							</em>
+						</figcaption>
+						
+					 </figure>
+				</div>
+			</div>
+			
+			
+		
+		</div>
     </body>
 </html>	

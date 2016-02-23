@@ -2,8 +2,111 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		<style>
+			.border-img {
+				border:0.2em solid black;
+				width:100%;
+				height:15em;
+				border-radius:0.4em;
+				max-width:20em;
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			
+			figcaption {
+				text-align:center;
+				margin-bottom:0.5em;
+			}
+
+			.myRow {
+				display:table-row;
+			}
+			.myCol {
+				display:table-cell;
+				width:33%;
+			}
+			.myTable {
+				border-spacing:1em;
+			}
+
+		</style>
     </head>  
     <body>
-				<img src="../../www/images/geomap.png" alt="image overlay" class="border-img">
+
+		<div class="myTable">
+			
+			<div class="myRow">
+				
+				<div class="well myCol">
+					<figure>
+						
+						<a href="images/HMG1.png">
+							<img src="images/HMG1_low.png" alt="Example 1" class="border-img">
+						</a>
+						
+						<figcaption>
+							<h5>Example 1</h5>
+							<em>
+							Example data from a 
+							<a href="http://open.canada.ca/data/en/dataset/23f028e8-424e-4c73-ace4-4e3614e0e3aa">carbon monoxide emissions study</a>
+							 conducted by Environment Canada. The results displayed are from the 1990 dataset.
+							</em>
+						</figcaption>
+						
+						
+					 </figure>
+				</div>
+				
+				<div class="well myCol">
+					<figure>
+						
+						<a href="images/HMG2.png">
+							<img src="images/HMG2_low.png" alt="Example 2" class="border-img">
+						</a>
+						
+						<figcaption>
+							<h5>Example 2</h5>
+							<em>
+							Example from Statistics Canada. Data adapted from 
+							<a href="http://www80.statcan.gc.ca/wes-esw/page1-eng.htm">New cases and age-standardized rate for primary cancer</a>
+							 (based on the February 2014 CCR tabulation file), by cancer type and sex, Canada, provinces and territories. The columns represent new cancer cases (age-standardized rate per 100,000 population). This example is for 2006.
+							</em>
+						</figcaption>
+						
+						
+					 </figure>
+				</div>
+			</div>
+				
+			<div class="myRow">	
+
+				<div class="well myCol">
+					<figure>
+						
+						<a href="images/HMG3.png">
+							<img src="images/HMG3_low.png" alt="Example 3" class="border-img">
+						</a>
+						
+						<figcaption>
+							<h5>Example 3</h5>
+							<em>
+							Example from the 
+							<a href="http://www.cdc.gov/">U.S. Centers for Disease Control and Prevention</a>
+							. The data is from 
+							<a href="http://gis.cdc.gov/grasp/diabetes/DiabetesAtlas.html">Diagnosed Diabetes, Age Adjusted Rate (per 100), Adults - Total, 2013.</a>
+							</em>
+						</figcaption>
+						
+						
+					 </figure>
+				</div>
+			</div>
+			
+			
+		
+		</div>
     </body>
 </html>	

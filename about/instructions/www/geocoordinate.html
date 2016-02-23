@@ -4,6 +4,22 @@
         <meta charset="UTF-8">
 		<style>
 			td {padding:0.5em;}
+
+			.opt {
+				text-align: center;
+			}		
+
+			.desc {
+				text-align: left;
+				width: 50%;
+			}
+
+			.desc_table {
+				text-align: left;
+				width: 70%;
+			}
+
+
 		</style>
     </head>  
     <body>
@@ -23,59 +39,169 @@
 			Latitude: any number between -180 and +180 <br />
 			Longitude: any number between -90 and +90 <br />
 			Value: any positive number
-			<h4>Examples of Valid Input</h4>
-			<table>
-				<tr>
-					<td>Latitude</td>
-					<td>Longitude</td>
-					<td>Value</td> 
-				</tr>
-				<tr>
-					<td>
-						-90
-					</td>
-					<td>
-						-180
-					</td>
-					<td>
-						0
-					</td>
-				</tr>
-				<tr>
-					<td>
-						90
-					</td>
-					<td>
-						180
-					</td>
-					<td>
-						0.5
-					</td>
-				</tr>
-			</table>
-			<br />
-			<table>
-				<tr>
-					<td>Longitude</td>
-					<td>Latitude</td>
-				</tr>
-				<tr>
-					<td>
-						0
-					</td>
-					<td>
-						0
-					</td>
-				</tr>
-				<tr>
-					<td>
-						1.234
-					</td>
-					<td>
-						4.321
-					</td>
-				</tr>
-			</table>
+			
+			<h4>Example</h4>
+			
+			Download an example input file <a href="examples/geocoordinate_example1.txt" target="_blank">here</a>.
+			<br /><br />
+			
+			Example layouts:<br />
+			
+<code style="white-space: pre;">
+Longitude	Latitude	Value
+-0.13793	51.513418	3
+-0.137883	51.513361	2
+-0.137853	51.513317	1
+-0.137812	51.513262	1
+-0.137767	51.513204	4
+...</code>
+
+<br /><br />
+or
+<br />
+
+<code style="white-space: pre;">
+Value	Longitude	Latitude
+3	-0.13793	51.513418
+2	-0.137883	51.513361
+1	-0.137853	51.513317
+1	-0.137812	51.513262
+4	-0.137767	51.513204
+...</code>
+
+<br /><br />
+or
+<br />
+
+<code style="white-space: pre;">
+Longitude	Latitude
+-0.13793	51.513418
+-0.137883	51.513361
+-0.137853	51.513317
+-0.137812	51.513262
+-0.137767	51.513204
+...</code>
+
 		</div>
+
+<div>
+<h5>An example of geocoordinate functionality: Deaths from a cholera outbreak in 1854</h5>
+<p>
+John Snow used this data in conjunction with local pump locations as evidence that cholera is spread by contaminated water. A <a href="https://www.google.com/fusiontables/DataSource?docid=147wlDisDp6NnpNxHQpbnjAQ-iW4dR2MAmFdQxYc#map:id=3">digitised version</a> of the data is available online, courtesy of Robin Wilson (robin@rtwilson.com).
+</p>
+<p>You may use the data file given above for this example.</p>
+<p>Click on the <strong>Geocoordinate</strong> tab on the main header and select the Upload File radio button, followed by the Choose File button. Alternatively, you may choose the 'Example File' radio button. Note: details about the example may be viewed by clicking the Information Icon. The following map is created. You may zoom in or out by clinking on the <strong>'+'</strong> or <strong>'-'</strong> icons.</p>
+<br></br>
+<center><img src="images/HMC1.png" width="70%" height="70%"</body></img></center>
+<br></br>
+
+<p class="opt">The following menu shows the available options. Each option is reviewed below.</p>
+<br></br>
+<center><img src="images/HMC2.png" width="40%" height="40%"</body></img></center>
+<br></br>
+
+<center><img src="images/HMC3.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Show/Hide Layers:</strong> Add or remove heatmap layers on the image. By deleting the <strong>Heatmap</strong> layer for example, only the area outline will display without the heatmap intensity visualization.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC4.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Map Type:</strong> Change the format of the map displayed. The three options besides 'Default' are 'Positron', 'Toner', and 'Watercolor'. The <strong>Positron</strong> view is a grey-scale mapping style.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC5.png" width="50%" height="50%"</body></img>
+<p class="desc"> The <strong>Toner</strong> view is a black and white mapping style. This may be useful for clearly identifying jurisdictional areas/borders.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC6.png" width="50%" height="50%"</body></img>
+<p class="desc"> The <strong>Watercolor</strong> view is a mapping style that uses a watercolor palette to differentiate features on the map.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC7.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Gaussian Radius Multiplier:</strong> Adjust the bandwidth for kernel density estimation. By increasing the value to 0.8, this image will be displayed. This may be useful to more clearly define areas of differing intensities and transitions.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC8.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Contour Smoothness:</strong> Adjust the number of grid points in each direciton for kernel density estimation. Lowering the value to 10 would limit the number of points that constute the contour lines on the map. A more rugged outline is observed as follows. Increasing the value, on the other hand, would result in a more detailed outline.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC9.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Heatmap Opacity:</strong> Adjust the opacity of the outlined area. With an opacity of 1, the heatmap displays solid colors with no transparency. This option may be used to more clearly identity the affected area. By decreasing the opacity, the map features on the affected become more visible.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC10.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Number of Shades:</strong> Adjust the number of colors used for intensity transition. Increasing the value to 50 would result in a more detailed intensity progression on the map. This is a useful visual tool for displaying more detailed distributions.</p>
+</center>
+<br></br>
+
+
+<center><img src="images/HMC11.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Color Scheme:</strong> Change the color progression scheme. The two options besides 'Default' are 'Rainbow' and 'Topo'. The 'Default' view uses the 'Low Color' and 'High Color' settings to create a gradient for intensity. The <strong>Rainbow</strong> scheme does not use a color gradient,but instead assigns differring colors to different intensities, as shown in the image. This may be useful to better differentiate the intensity areas.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC12.png" width="50%" height="50%"</body></img>
+<p class="desc">Similarly, the <strong>Topo</strong> color scheme assigns a different color to each kernel, with lighter colors representing higher intensity.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC13.png" width="50%" height="50%"</body></img>
+<p class="desc">For the <strong>Default</strong> color scheme, the user may change the colors of the gradient. For example, by clicking on the <strong>Low Color</strong> colored box and choosing a light green value from the palette, this distribution is observed.</p>
+</center>
+<br></br>
+
+<p>There are two Download options that may be used to download the map/data at any step during the experience. The <strong>Download Plot</strong> option will download the heatmap view in html format. The <strong>Download Table</strong> option will download a text format of the data in table format, containing the values for the given latitude/longitute positions.</p>
+<p class="opt">Further fine tuning may be performed with the <strong>Show Advanced Options</strong> tab. The three available options are described below.</p>
+<br></br>
+<center><img src="images/HMArrow.png" width="40%" height="40%"</body></img>
+<p></p>
+</center>
+
+<center><img src="images/HMCAdvanced.png" width="40%" height="40%"</body></img>
+</center>
+<br></br>
+
+
+<center><img src="images/HMC14.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Contour Line Width:</strong> Adjust the separator line thickness for outlined kernels. Increasing the value to 3, for example, would more clearly mark the distribution outlines on the map, as shown in the image.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC15.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Point Width:</strong> Adjust the size of the data points displayed on the map. Increasing the value to 4, for example, would more clearly display the points on the map, as shown in the image.</p>
+</center>
+<br></br>
+
+
+<center><img src="images/HMC16.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Point Opacity:</strong> Adjust the opacity of the data points displayed on the map. To remove the data points from the map, the opacity may be set to 0, as shown in the image. A higher opacity, on the other hand, would more clearly mark the points in a more solid color.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC17.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may also view the data in table format, by clicking the <strong>Table</strong> plot tab next to the 'Interactive' tab.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC18.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may search the Table values, using the Search functionality, either by using the main 'Search box' at the top of the table, or the three 'Longitute', 'Latitude', and 'Value' text boxes directly below the table. For example, by entering the value '15' in the <strong>Value search box</strong>, the above position is retrieved.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMC19.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The Table can be sorted by 'Longitute', 'Latitude', or 'Value' by clicking on the arrows next to these headings. For example, by cliking twice on the <strong>Value arrow</strong>, the table is sorted by decreasing intensity values to display the locations with higher values first, as shown in the image.</p>
+</center>
+<br></br>
+
+
+<br></br><br></br>
+</div>
+
     </body>
-</html>	
+</html>

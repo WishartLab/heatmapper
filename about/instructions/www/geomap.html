@@ -4,6 +4,21 @@
         <meta charset="UTF-8">
 		<style>
 			td {padding:0.5em;}
+
+			.opt {
+				text-align: center;
+			}		
+
+			.desc {
+				text-align: left;
+				width: 50%;
+			}
+
+			.desc_table {
+				text-align: left;
+				width: 70%;
+			}
+
 		</style>
     </head>  
     <body>
@@ -23,59 +38,153 @@
 			<h4>Range</h4>
 			Region Names: names of regions which match the selected map region names<br />
 			Other Columns: any positive or negative number
-			<h4>Examples of Valid Input</h4>
-			<table>
-				<tr>
-					<td>Canadian Provinces</td>
-					<td>Column 1 Values</td>
-					<td>Column 2 Values</td> 
-				</tr>
-				<tr>
-					<td>
-						Alberta
-					</td>
-					<td>
-						0
-					</td>
-					<td>
-						5000.5
-					</td>
-				</tr>
-				<tr>
-					<td>
-						British Columbia
-					</td>
-					<td>
-						1
-					</td>
-					<td>
-						-5000.5
-					</td>
-				</tr>
-			</table>
+			
+			<h4>Example</h4>
+			
+			Download an example input file <a href="examples/geomap_example1.txt" target="_blank">here</a>.
+			<br /><br />
+			
+			Example layout (with tabs replaced by spaces to make the columns apparent):
 			<br />
-			<table>
-				<tr>
-					<td>Region Name</td>
-					<td>Data</td>
-				</tr>
-				<tr>
-					<td>
-						Canada
-					</td>
-					<td>
-						10
-					</td>
-				</tr>
-				<tr>
-					<td>
-						United States
-					</td>
-					<td>
-						0
-					</td>
-				</tr>
-			</table>
+			
+<code style="white-space: pre;">
+Province or territory              emissions 1990 (kt)  emissions 2000 (kt)   emissions 2013 (kt)
+Newfoundland and Labrador          1520.3               844.2                 261.6
+Prince Edward Island               152.3                83.4                  34.8
+Nova Scotia                        315.2                218.5                 179.9
+New Brunswick                      329.3                216.6                 147.4
+Quebec                             2968                 2254.2                1713.8
+Ontario                            3985                 2707.8                1500.4
+Manitoba                           920.9                532.5                 228.8
+Saskatchewan                       1138.7               686.5                 291.9
+Alberta                            2416.6               1662.3                1191.3
+British Columbia                   2475.1               1276.8                692.2
+Yukon                              90                   43.3                  12.4
+Northwest Territories and Nunavut  500.4                245.8                 46.7</code>
+			
+			<br /><br />
+			Tab-delimited version (can be copied and pasted for use in Heatmapper):
+			<br />
+			
+<code style="white-space: pre;">
+Province or territory	emissions 1990 (kt)	emissions 2000 (kt)	emissions 2013 (kt)
+Newfoundland and Labrador	1520.3	844.2	261.6
+Prince Edward Island	152.3	83.4	34.8
+Nova Scotia	315.2	218.5	179.9
+New Brunswick	329.3	216.6	147.4
+Quebec	2968	2254.2	1713.8
+Ontario	3985	2707.8	1500.4
+Manitoba	920.9	532.5	228.8
+Saskatchewan	1138.7	686.5	291.9
+Alberta	2416.6	1662.3	1191.3
+British Columbia	2475.1	1276.8	692.2
+Yukon	90	43.3	12.4
+Northwest Territories and Nunavut	500.4	245.8	46.7</code>
+			
+			<br /><br />
+			The name of the first column ("Province or territory" in this example) can be
+			anything you like. Names of regions can be adjusted later on in Heatmapper under
+			the Table tab if they do not match Heatmapper's region names exactly.
+			
 		</div>
-    </body>
-</html>	
+<div>
+<h5>An example of geomap functionality: A carbon monoxide <a href="http://open.canada.ca/data/en/dataset/23f028e8-424e-4c73-ace4-4e3614e0e3aa">emissions study</a> conducted by Environment Canada</h5>
+<p>You may use the data file given above for this example.</p>
+<p>Click on the <strong>Geomap</strong> tab on the main header and select the Upload File radio button, followed by the Choose File button. Alternatively, you may choose the 'Example File' radio button. Note: details about the example may be viewed by clicking the Information Icon. The following map is created. You may hover over an area to view the value for that specific region. Also, clicking the <strong>'+'</strong> and <strong>'-'</strong> icons allows zooming in or out on the map.</p>
+<center><img src="images/HMG1.png" width="70%" height="70%"</body></img></center>
+<br></br>
+
+<p class="opt">The following menu shows the available options. Each option is reviewed below.</p>
+<br></br>
+<center><img src="images/HMG2.png" width="40%" height="40%"</body></img></center>
+<br></br>
+
+<center><img src="images/HMG3.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Area to Use:</strong> Select the map to display according to area of interest. In this example, 'Canada' is selected as the dataset includes values only for regions of Canada. A few options include the world or a continent divided by countries (such as 'Africa: By Country') which would display data by each country, while others allow for specific country divisions (such as 'Japan'). Also note that the average value for each region can be viewed on the map by hovering over the region of interest. Note the Region Information box in the image, with a value of 2968 for emissions in Quebec.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG4.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Range of Interest:</strong> Adjust the color assignment cutoff values, to group together or better differentiate certain value ranges. For exmaple, by choosing the range '90' to '880' on the bar, and clicking the <strong>Submit Range</strong> button, all values above 880 are grouped together. All regions on the map that exceed that emissions value are clearly displayed in the same dark pink color.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG5.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Column to Use:</strong> Select the column from the input file to display. In this example, there are three data sets, for the years '1990', '2000', and '2013'. To compare the data from 1990 with the data from 2013, the user may change the option to 'X2013..emissions.in.kilotonnes.'. By selecting the same range as above (90-880), it can be seen that emissions have substantially decreased for most regions.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG6.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Show/Hide Layers:</strong> Add or remove heatmapp layers to display to remove certain features of the map. Deleting the 'Contour Lines' tab, for example, will remove the region outlines on the map, as shown on the image. This option may be a useful visual aid for viewing an the overall map pattern (especially for smooth transitions).</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG7.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Heatmap Opcaity:</strong> Adjust the opacity of the heatmap on the map display. An opacity of 1 displays the heatmap with fully solid colors, to more fully distinguish the regions. A lower opacity, such as 0.4, would make the heatmap more transparent and the colors lighter as shown in the image. This may be useful in order to make underlying map features more visible.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG8.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Number of Shades:</strong> Adjust the number of colors to be used for the progression of values. A lower value such as 2 would group together more ranges under one color as shown in the image, while a larger value would further divide the ranges by color and better differentiate values on the map.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG9.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Color:</strong> The user may choose the <strong>Low Color</strong> and <strong>High Color</strong> according to preference to create the gradient for the value ranges displayed, by cliking on the colored box and choosing a color from the palette. For example, by choosing a light green for the 'Low Color' would result in this image. Regions with low, average, and high values are now more distinguishable as a whole when looking at the map.</p>
+</center>
+<br></br>
+
+
+<p>There are two Download options that may be used to download the map/data at any step during the experience. The <strong>Download Plot</strong> option will download the heatmap view in html format. The <strong>Download Table</strong> option will download a text format of the data in table format, containing the values for the given latitude/longitute positions.</p>
+
+<p class="opt">Further fine tuning may be performed with the <strong>Show Advanced Options</strong> tab. The two available options are described below.</p>
+<br></br>
+
+<center><img src="images/HMArrow.png" width="40%" height="40%"</body></img>
+<p></p>
+</center>
+
+<center><img src="images/HMGAdvanced.png" width="40%" height="40%"</body></img>
+</center>
+<br></br>
+
+<center><img src="images/HMG10.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Custom Legend Title:</strong> The user may give the legend a meaningful name. In this example, 'Emissions in Kilotonnes' is appropriate. Notice the legend box on the map.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG11.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Contour Line Width:</strong> Adjust the thickness of the region outlines on the map. A higher value would better distinguish the regions the data is devided by on the map. A value of 4, for example, would display borders as seen on the image. A lower value would make region borders less obvious.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG12.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may also view the data in table format, by clicking the <strong>Table</strong> plot tab next to the 'Interactive' tab. Values for all regions under each data set (by year in this exmaple) are clearly outlined.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG13.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may also search the data by entering a region name, or value in the <strong>Search box</strong> above the table. By entering the region 'Alberta', for example, the emission values for all three years are retrieved for the province of Alberta in Canada.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG14.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The table is also sortable, by regions or values. To sort the table by a column, click on the arrows next to the column header. For example, clicking twice on the 'X2013..' column arrow will display the table sorted by regions in decreasing order of emissions for the year 2013.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG15.png" width="70%" height="70%"</body></img>
+<p class="desc_table">A list of the regions for the data may be viewed by clicking the <strong>Region Names</strong> tab next to the 'Table' plot tab.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMG16.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may also find out if a region is included, by using the <strong>Search box</strong> above the table. For example, entering 'Alberta' will retrieve that region name.</p>
+</center>
+<br></br>
+
+<br></br><br></br>
+</div>
+
+</body>
+</html>

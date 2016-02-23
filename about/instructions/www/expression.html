@@ -8,75 +8,105 @@
     </head>  
     <body>
 		<div class = "well">
+			The expression function within Heatmapper allows the user to view unclustered
+			expression data, such as that from transcriptomic (microarray or RNAseq),
+			proteomic or metabolomic experiments.
+			
 			<h4>Accepted File Formats</h4>
 			<ul>
 				<li>Tab separated with extensions <em>.txt</em>, .<em>dat</em>, <em>.tsv</em>, or <em>.tab</em></li>
 				<li>First sheet of an Excel workbook with extension <em>.xlsx</em></li>
 			</ul>
-			<h4>Data Structure</h4>
-			The first row is used to assign column names. 
-			The data input must contain at least 2 columns and 2 rows with numeric data. 
-			If a column labeled "NAME" exists it will be used to assign row names. 
-			If a NAME column is not specified rows will be labeled by numbers based on the order they are listed in. 
-			Any additional columns containing strings will be ignored. 
 			
+			<h4>Data Structure</h4>
+			<ul>
+				<li>The first (header) row is used to assign column names.</li>
+				<li>If a column labeled "NAME" exists (optional), it will be used to assign row names.</li>
+				<li>Any additional columns containing non-numeric data will be ignored.</li>
+				<li>Data values can be positive or negative numbers.</li>
+			</ul>
 			<h4>Range</h4>
-			First row: column names<br />
-			NAME column: row names<br />
-			Other Columns: any positive or negative number
-			<h4>Examples of Valid Input</h4>
-			<table>
-				<tr>
-					<td>NAME</td>
-					<td>C1</td>
-					<td>C2</td> 
-				</tr>
-				<tr>
-					<td>
-						R1
-					</td>
-					<td>
-						0
-					</td>
-					<td>
-						0
-					</td>
-				</tr>
-				<tr>
-					<td>
-						R2
-					</td>
-					<td>
-						0
-					</td>
-					<td>
-						0
-					</td>
-				</tr>
-			</table>
+			<ul>
+				<li>First row: column names</li>
+				<li>NAME column: row names</li>
+				<li>Other Columns: any positive or negative number</li>
+			</ul>
+			
+			<h4>Example</h4>
+			
+			Download an example input file <a href="examples/expression_example1.txt" target="_blank">here</a>.
+			<br /><br />
+			
+			Example layout (snippet, with tabs replaced by spaces to make the columns apparent):
 			<br />
-			<table>
-				<tr>
-					<td>col 1</td>
-					<td>col 2</td> 
-				</tr>
-				<tr>
-					<td>
-						-0.5
-					</td>
-					<td>
-						0
-					</td>
-				</tr>
-				<tr>
-					<td>
-						0.5
-					</td>
-					<td>
-						1
-					</td>
-				</tr>
-			</table>
+			
+<code style="white-space: pre;">
+UNIQID     NAME                                             1             1             1             2             2             2
+Hs.9305    angiotensin receptor-like 1            0.533865724   2.667389535    1.98516763   4.832817262   3.590801314   3.309607441
+Hs.181307  H3 histone, family 3A                 -0.942951315  -0.500171526  -0.705453196   -0.32191231   -0.14030858  -0.427467964
+Hs.83484   SRY (sex determining region Y)-box 4  -3.418094026  -3.181358856  -3.276305367  -2.392780506  -1.740889988  -2.248737455
+...</code>
+			
+			<br />
+			<br />
+			
+			Tab-delimited version:
+			<br />
+			
+<code style="white-space: pre;">
+UNIQID	NAME	1	1	1	2	2	2
+Hs.9305	angiotensin receptor-like 1	0.533865724	2.667389535	1.98516763	4.832817262	3.590801314	3.309607441
+Hs.181307	H3 histone, family 3A	-0.942951315	-0.500171526	-0.705453196	-0.32191231	-0.14030858	-0.427467964
+Hs.83484	SRY (sex determining region Y)-box 4	-3.418094026	-3.181358856	-3.276305367	-2.392780506	-1.740889988	-2.248737455
+...</code>
+			
+			<br />
+			<br />
+			
+			In this example, the 'UNIQID' column ignored, but the 'NAME' column is used to
+			assign row names. Since the column names are not unique, Heatmapper will
+			automatically modify them to create unique column names.
+			
 		</div>
+
+<div>
+<h5>An example of expression functionality: data from the Ashley Lab <a href="http://ashleylab.stanford.edu/tools/tools-scripts.html">Heatmap Builder</a></h5>
+<p>You may use the data file given above for this example.</p>
+<br></br>
+<p>Click on the Expression tab on the main header and select the Upload File radio button, followed by the Choose File button. Alternatively, you may choose the 'Example File' radio button. Note: details about the example may be viewed by clicking the Information Icon. The following plot is created.</p>
+<br></br>
+<center><img src="images/HME1.png" width="70%" height="70%"</body></img></center>
+<br></br>
+<p>You may change the colors of your intensities my clicking in the color boxes and selecting a different color.</p>
+<br></br>
+<center><img src="images/HME2.png" width="50%" height="50%"</body></img></center>
+<br></br>
+<center><img src="images/HME3.png" width="70%" height="70%"</body></img></center>
+<br></br>
+<p>Also, you may change the hierarchical clustering method and distance measurement method (for computing distance between rows and columns) as shown below. In this example, we choose 'Centroid Linkage' for the clustering method and 'Pearson' for the distance measuremenet matrix. You may also apply the clustering to rows, columns, or both with the 'Appliy Clustering To' option.</p>
+<br></br>
+<center><img src="images/HME4.png" width="50%" height="50%"</body></img></center>
+<br></br>
+<center><img src="images/HME5.png" width="70%" height="70%"</body></img></center>
+<br></br>
+<p>A few other options to try in the menu include:</p>
+<p>Scale Type - Allows you to select the direction to scale values in, either by rows or columns.</p>
+<p>Color Brightness - Contrast may be enhanced by adjusting the brightness of the colors on the plot.</p>
+<p>Download - You may download at any time an image of the plot, or a text file in table format.</p>
+<p>You may further adjust the plot, such as naming the axes by clicking on the 'Show Advanced Options' tab. Here you may also adjust the color for 'Missing Data', to better distinguish the data without values on the plot. For this exmaple, we do not change this as there are no missing values.</p>
+<br></br>
+<center><img src="images/HMArrow.png" width="50%" height="50%"</body></img></center>
+<br></br>
+<center><img src="images/HME6.png" width="50%" height="50%"</body></img></center>
+<br></br>
+<p>Different result formats are available. For example, click on the 'Row Dendrogram' plot tab, and you will be shown a diagram depicting phylogenetic relationships based on row similarity, and the nodes that data rows fit under. Two other options are 'Column Dendrogram' and 'Table'.</p>
+<br></br>
+<center><img src="images/HME7.png" width="70%" height="70%"</body></img></center>
+<center><img src="images/HME8.png" width="70%" height="70%"</body></img></center>
+<center><img src="images/HME9.png" width="70%" height="70%"</body></img></center>
+
+<br></br><br></br>
+</div>
+
     </body>
-</html>	
+</html>

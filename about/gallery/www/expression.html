@@ -2,8 +2,108 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		<style>
+			.border-img {
+				border:0.2em solid black;
+				width:100%;
+				height:15em;
+				border-radius:0.4em;
+				max-width:20em;
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			
+			
+			figcaption {
+				text-align:center;
+				margin-bottom:0.5em;
+			}
+
+			.myRow {
+				display:table-row;
+			}
+			.myCol {
+				display:table-cell;
+				width:33%;
+			}
+			.myTable {
+				border-spacing:1em;
+			}
+
+		</style>
     </head>  
     <body>
-				<img src="../../www/images/expression.png" alt="image overlay" class="border-img">
+		<!-- <img src="../../www/images/expression.png" alt="image overlay" class="border-img"> -->
+
+		<div class="myTable">
+			
+			<div class="myRow">
+				
+				<div class="well myCol">
+					<figure>
+						
+						<a href="images/HME1.png">
+							<img src="images/HME1_low.png" alt="Example 1" class="border-img">
+						</a>
+						
+						<figcaption>
+							<h5>Example 1</h5>
+							<em>
+							Sample input retreived from the website for the Ashley Lab 
+							<a href="http://ashleylab.stanford.edu/tools/tools-scripts.html">Heatmap Builder</a>
+							</em>
+						</figcaption>
+						
+						
+					 </figure>
+				</div>
+				
+				<div class="well myCol">
+					<figure>
+						
+						<a href="images/HME2.png">
+							<img src="images/HME2_low.png" alt="Example 2" class="border-img">
+						</a>
+						
+						<figcaption>
+							<h5>Example 2</h5>
+							<em>
+							Example dataset from a tutorial by Yan Cui (ycui2@uthsc.edu).
+							</em>
+						</figcaption>
+						
+						
+					 </figure>
+				</div>
+			</div>
+				
+			<div class="myRow">	
+				<div class="well myCol">
+					<figure>
+						
+						<a href="images/HME3.png">
+							<img src="images/HME3_low.png" alt="Example 3" class="border-img">
+						</a>
+						
+						<figcaption>
+							<h5>Example 3</h5>
+							<em>
+							Dataset from the 		
+							<a href="http://genome-www.stanford.edu/clustering/">online supplement</a>
+							 to Eisen et al. (1998). The details of how the data was collected are outlined in the paper.
+							</em>
+						</figcaption>
+						
+						
+					 </figure>
+				</div>
+			</div>
+			
+			
+		
+		</div>
     </body>
 </html>	
