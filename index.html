@@ -18,6 +18,17 @@
 				margin-right: auto;
 			}
 			
+			.logo {
+				/* These options are to prevent anti-aliasing */
+				image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+				image-rendering: -moz-crisp-edges;          /* Firefox                        */
+				image-rendering: -o-crisp-edges;            /* Opera                          */
+				image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+				image-rendering: pixelated; /* Chrome */
+				image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+				-ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+			}
+			
 			figcaption {
 				text-align:center;
 				margin-bottom:0.5em;
@@ -34,6 +45,12 @@
 				border-spacing:1em;
 			}
 
+			td {
+					width: 50%;
+					padding: 5px;
+					vertical-align: top;
+			}
+			
 		</style>
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -50,12 +67,149 @@
 			ga('create', 'UA-66346182-1', 'auto');
 			ga('send', 'pageview');
 		</script>
+		
+		<noscript>
+			<div class="alert alert-danger" style="margin: 1em;">
+				<strong>JavaScript not enabled!</strong> Heatmapper requires JavaScript to be
+				enabled in your browser in order to function. To enable JavaScript, do one of the
+				following:<br /><br />
+				
+				<div style="font-size: small;">
+				
+				<table>
+				
+				<tr>
+				<td>
+				
+				<i>In Google Chrome:</i>
+				<ol>
+				<li>Click the Chrome menu icon <img src="www/images/GoogleChromeMenuIcon.png"> on the browser toolbar.</li>
+				<li>Select <b>Settings</b>.</li>
+				<li>On the "Settings" page, click the <b>Show advanced settings...</b> link at the bottom.</li>
+				<li>In the "Privacy" section, click <b>Content settings...</b></li>
+				<li>Select <b>Allow all sites to run JavaScript (recommended)</b> in the "JavaScript" section.</li>
+				<li>Click <b>Done.</b></li>
+				<li>Refresh your Heatmapper page.</li>
+				</ol>
+				
+				</td>
+				<td>
+
+				<i>In Windows Internet Explorer:</i>
+				<ol>
+					<li>On the <b>Tools</b> menu, click <b>Internet Options</b>, and then click the <b>Security</b> tab.</li>
+					<li>Click the <b>Internet</b> zone.</li>
+					<li>If you do not have to customize your Internet security settings, click <b>Default Level</b>. Then do step 4.<br /><br />
+					If you have to customize your Internet security settings, follow these steps:</li>
+					<ol type="a">
+					<li>Click <b>Custom Level</b>.</li>
+					<li>In the <b>Security Settings – Internet Zone</b> dialog box, click <b>Enable</b> for <b>Active Scripting</b> in the <b>Scripting</b> section.</li>
+					</ol>
+					<br />
+					<li>Click the <b>Back</b> button to return to the previous page, and then click the <b>Refresh</b> button to refresh Heatmapper.</li>
+				</ol>
+				
+				</td>
+				</tr>
+				<tr>
+				
+				<td>
+				
+				<i>In Mozilla Firefox:</i><br />
+				<ul><li>In Firefox, JavaScript is enabled by default, but may be blocked if a privacy extension
+				such as NoScript or Ghostery was installed. Please edit the settings for the
+				particular extension you have installed to un-block Heatmapper.</li></ul><br /><br />
+				
+				</td>
+				<td>
+				
+				<i>In Apple Safari:</i>
+				<ol>
+					<li>From the <b>Safari</b> (on Mac) or <b>Edit</b> (on Windows) drop-down menu, select <b>Preferences...</b></li>
+					<li>Select the <b>Security</b> icon/tab at the top on the window.</li>
+					<li>Then, check the <b>Enable JavaScript</b> checkbox.</li>
+					<li>Refresh your Heatmapper page.</li>
+				</ol>
+				
+				</td>
+				</tr>
+				</table>
+				
+				</div>
+				
+			</div>
+		</noscript>
+		
+		
     </head>  
 	
     <body>
 		<div id="navbar"></div>
 		<div class="myTable">
-			<h2 style="margin-left:15px;">Welcome to Heatmapper!</h2>
+			<h2 style="margin-left:0px; padding-left:1.9em;">Welcome to Heatmapper!</h2>
+			
+			<div class="myRow" style="width:67%;">
+				
+<!-- 
+				<div style="display:table-cell; width:100%;">
+ -->
+				
+				<div class="myCol" style="display:table-cell; width:67%; padding-left:3em; padding-right:3em;">
+				
+				<img src="www/images/logo.png" class="logo" style="width:240px; padding-left:1em; padding-bottom:1em; float:right;">
+				
+				<p style="text-align:justify; width:100%;">
+				Heatmapper is a freely available web server that allows users to interactively
+				visualize their data in the form of heat maps through an easy-to-use graphical
+				interface. Heatmapper is a versatile tool that allows users to easily create a
+				wide variety of heat maps for many different data types and applications.
+				Heatmapper allows users to generate, cluster and visualize: 1) <b>expression-based
+				heat maps</b> from transcriptomic, proteomic and metabolomic experiments;
+				2) <b>pairwise distance maps</b>; 3) <b>correlation maps</b>; 4) <b>image overlay heat maps</b>;
+				5) <b>latitude and longitude heat maps</b> and 6) <b>geopolitical (choropleth) heat maps</b>.
+				Heatmapper offers a number of simple and intuitive customization options for
+				easy adjustments to each heat map’s appearance and plotting parameters.
+				Heatmapper also allows users to interactively explore their numeric data values
+				by hovering their cursor over each heat map, or by using a searchable/sortable
+				data table view.
+				</p>
+				
+				</div>
+				
+<!-- 
+				</div>
+				
+				<div class="well" style="display:table-cell; width:100%; float:right; ">
+ -->
+				
+				
+				<div class="myCol well" style="display:table-cell; width:33%;">
+				<h5>Please cite:</h5>
+				<p>
+				Sasha Babicki, David Arndt, Adam Maciejewski, and David S. Wishart. Heatmapper: Web-enabled Heat Mapping for All. <i>Nucleic Acids Research</i> (submitted).
+				</p>
+				
+				<br />
+				<h5>Funding</b>
+				
+				<p>
+					<a href="http://www.cihr-irsc.gc.ca" target="_blank">
+						<img src="www/images/cihr.png" style="width:118px; margin-left:0px; margin-right:20px; margin-top:10px;">
+					</a>
+				
+					<a href="http://genomealberta.ca" target="_blank">
+						<img src="www/images/galberta.png" style="width:118px; margin-left:0px; margin-right:20px; margin-top:10px;">
+					</a>
+				</p>
+				
+				</div>
+				
+			</div>
+				
+			
+		</div>
+		<div class="myTable">
+			
 			<div class="myRow">
 				
 				<div class="well myCol">
