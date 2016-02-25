@@ -13,6 +13,7 @@
 				height:15em;
 				border-radius:0.4em;
 				max-width:20em;
+				/*max-width: 70%;*/
 				display: block;
 				margin-left: auto;
 				margin-right: auto;
@@ -29,11 +30,12 @@
 				-ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
 			}
 			
-			figcaption {
-				text-align:center;
-				margin-bottom:0.5em;
-			}
+			.myTable {
+				table-layout: fixed;
+				border-spacing:1em;
+				width: 100%;
 
+			}
 			.myRow {
 				display:table-row;
 			}
@@ -41,16 +43,26 @@
 				display:table-cell;
 				width:33%;
 			}
-			.myTable {
-				border-spacing:1em;
+
+			.well.myCol {
+				display:table-cell;
+				width:33%;
+			}
+
+			.sectionStats {
+				text-align: left;
+			}
+
+			figcaption {
+				text-align:center;
+				margin-bottom:0.5em;
 			}
 
 			td {
-					width: 50%;
 					padding: 5px;
 					vertical-align: top;
 			}
-			
+		
 		</style>
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -67,7 +79,15 @@
 			ga('create', 'UA-66346182-1', 'auto');
 			ga('send', 'pageview');
 		</script>
-		
+
+		<script>
+			function ChangeButton(button_id){
+				var text = document.getElementById(button_id).firstChild;
+   				text.data = text.data == "Show Details" ? "Hide Details" : "Show Details";
+			}
+
+		</script>
+
 		<noscript>
 			<div class="alert alert-danger" style="margin: 1em;">
 				<strong>JavaScript not enabled!</strong> Heatmapper requires JavaScript to be
@@ -206,9 +226,8 @@
 				
 			</div>
 				
-			
 		</div>
-		<div class="myTable">
+		<div class="myTable" style="display:table;">
 			
 			<div class="myRow">
 				
@@ -217,24 +236,30 @@
 						
 						<a href="/expression">
 							<img src="www/images/expression.png" alt="Expression" class="border-img">
+			
 						</a>
 						
 						<figcaption>
 							<h4>Expression</h4>
+							<a id="exp_btn" data-toggle="collapse" data-target="#exp" onClick="ChangeButton('exp_btn');">Show Details</a>
+							<div id="exp" class="collapse">
+							<br />
 							<em>
 								Displays unclustered expression data, such as from a <a href="https://en.wikipedia.org/wiki/Microarray" target="_blank">microarray</a> experiment, as a heatmap. 
 								Hierarchical clustering can also be performed on the data and the resulting dendrogram can be viewed. 				
 							</em>
+						
+							<div class = "sectionStats">
+								<br />
+								<strong>Input Formats:</strong> Tab Delimited Text (.txt, .dat, .tsv, .tab)
+								<br />
+								<strong>Example Usage:</strong> Cluster and visualize the results of a DNA microarray experiment to analyze gene expression levels
+								<br />
+								<strong>Number of Features:</strong> 18
+							</div>
+							<div>
+
 						</figcaption>
-						
-						<div class = "sectionStats">
-							<strong>Input Formats:</strong> Tab Delimited Text (.txt, .dat, .tsv, .tab)
-							<br />
-							<strong>Example Usage:</strong> Cluster and visualize the results of a DNA microarray experiment to analyze gene expression levels
-							<br />
-							<strong>Number of Features:</strong> 18
-						</div>
-						
 					 </figure>
 				</div>
 				
@@ -247,19 +272,25 @@
 						
 						<figcaption>
 							<h4>Pairwise Comparison</h4>
+							<a id="pair_btn" data-toggle="collapse" data-target="#pair" onClick="ChangeButton('pair_btn');">Show Details</a>
+
+							<div id="pair" class="collapse">
+							<br />
 							<em>
 								Displays heatmap of user data either as a <a href=" https://en.wikipedia.org/wiki/Distance_matrix"  target="_blank">distance matrix</a>,
 								as a <a href="https://en.wikipedia.org/wiki/Correlation_and_dependence#Correlation_matrices" target="_blank">correlation matrix</a>, or as-is.
 							</em>
-						</figcaption>
 						
 						<div class = "sectionStats">
+							<br />
 							<strong>Input Formats:</strong> Tab Delimited Text (.txt, .dat, .tsv, .tab), Comma Separated Values (.csv), or Protein Data Bank format.
 							<br />
 							<strong>Example Usage:</strong> Visualize pairwise distances for predicting protein structure 
 							<br />
 							<strong>Number of Features:</strong> 14
 						</div>
+						</div>
+					</figcaption>
 						
 					 </figure>
 				</div>
@@ -269,16 +300,21 @@
 						
 						<a href="/image">
 							<img src="www/images/image.png" alt="image overlay" class="border-img">
+
 						</a>
 						
 						<figcaption>
 							<h4>Image Overlay</h4>
+							<a id="img_btn" data-toggle="collapse" data-target="#img" onClick="ChangeButton('img_btn');">Show Details</a>
+							<div id="img" class="collapse">
+							<br />
 							<em>
 								Displays a heatmap of densities based on values at plot coordinates corresponding to an image.
 							</em>
-						</figcaption>
+
 						
 						<div class = "sectionStats">
+							<br />
 							<strong>Input Formats:</strong> 
 							.jpeg or .png for Image, 
 							Tab Delimited Text (.txt, .dat, .tsv, .tab) for Grid
@@ -287,34 +323,43 @@
 							<br />
 							<strong>Number of Features:</strong> 18
 						</div>
+						</div>
+					</figcaption>
 						
 					 </figure>
 				</div>
 			</div>
-			
+
 			<div class="myRow">
 				<div class="well myCol">
 					<figure>
 						
 						<a href="/geomap">
 							<img src="www/images/geomap.png" alt="geomap" class="border-img">
+
 						</a>
 						
 						<figcaption>
 							<h4>Geomap</h4>
+							<a id="map_btn" data-toggle="collapse" data-target="#map" onClick="ChangeButton('map_btn');">Show Details</a>
+							<div id="map" class="collapse">
+							<br />
 							<em>
 								Displays a <a href="https://en.wikipedia.org/wiki/Choropleth_map" target="_blank">choropleth</a> 
 								heatmap specified by values assigned to locations based on political boundaries. 
 							</em>
-						</figcaption>
+
 						
 						<div class = "sectionStats">
+							<br />
 							<strong>Input Formats:</strong> Tab Delimited Text (.txt, .dat, .tsv, .tab) or Comma Separated Values (.csv)
 							<br />
 							<strong>Example Usage:</strong> Visualize disease prevalence by country
 							<br />
 							<strong>Number of Features:</strong> 12	
 						</div>
+						</div>
+					</figcaption>
 						
 					 </figure>
 				</div>
@@ -328,19 +373,24 @@
 						
 						<figcaption>
 							<h4>Geocoordinate</h4>
+							<a id="geo_btn" data-toggle="collapse" data-target="#geo" onClick="ChangeButton('geo_btn');">Show Details</a>
+							<div id="geo" class="collapse">
+							<br />
 							<em>
 								Displays a heatmap of densities based on values assigned to locations specified by latitude and longitude coordinates. 
 								Density estimation calculation can be performed based on density of points or weighted by values specified for each coordinate.
 							</em>
-						</figcaption>
 						
 						<div class = "sectionStats">
+							<br />
 							<strong>Input Formats:</strong> Tab Delimited Text (.txt, .dat, .tsv, .tab) or Comma Separated Values (.csv)
 							<br />
 							<strong>Example Usage:</strong> Visualize observed animal population densities in a region
 							<br />
 							<strong>Number of Features:</strong> 13
 						</div>
+						</div>
+					</figcaption>
 						
 					 </figure>
 				</div>
@@ -349,16 +399,20 @@
 						
 						<a href="/about/instructions">
 							<img src="www/images/about.png" alt="about" class="border-img">
+
 						</a>
 						<figcaption>
 							<h4>About</h4>	
+							<a id="about_btn" data-toggle="collapse" data-target="#about" onClick="ChangeButton('about_btn');">Show Details</a>
+							<div id="about" class="collapse">
+							<br />
 							<em>	
 								Provides information about heatmapper.ca. 
 								The about section contains four subsections: Instructions, Gallery, Contact, and GitHub.
 							</em>
-						</figcaption>
 						
 						<div class = "sectionStats">
+							<br />
 							<strong>Instructions:</strong>
 							View instructions on how to use each section
 							<br />
@@ -371,6 +425,8 @@
 							<strong>GitHub:</strong>
 							View the project source code
 						</div>
+						</div>
+					</figcaption>
 						
 					 </figure>
 				</div>
@@ -378,4 +434,4 @@
 		
 		</div>
     </body>
-</html>	
+</html>
