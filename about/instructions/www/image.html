@@ -4,6 +4,19 @@
         <meta charset="UTF-8">
 		<style>
 			td {padding:0.5em;}
+			.opt {
+				text-align: center;
+			}		
+
+			.desc {
+				text-align: left;
+				width: 50%;
+			}
+
+			.desc_table {
+				text-align: left;
+				width: 70%;
+			}
 		</style>
     </head>  
     <body>
@@ -116,45 +129,120 @@ x	y	value
 </p>
 <p>You may use the data files given above for this example.</p>
 <br></br>
-<p>Click on the Image Overlay tab on the main header and select the Upload File radio button for the 'Select Image File' section, followed by the Choose File button (use the "long" example here). Alternatively, you may choose the 'Example File' radio button. Note: details about the example may be viewed by clicking the Information Icon. The following image will display.</p>
+<p>Click on the <strong>Image Overlay</strong> tab on the main header and select the Upload File radio button for the <strong>Select Image File</strong> section, followed by the Choose File button (use the "long" example here). Alternatively, you may choose the 'Example File' radio button. Note: details about the example may be viewed by clicking the Information Icon.</p>
+<p>Do the same for the <strong>Select Grid File</strong> section to view an overlay(use the "wide" example here). Alternatively, you may choose the 'Example File' radio button. The following image will display.</p>
 <br></br>
 <center><img src="images/HMI1.png" width="70%" height="70%"</body></img></center>
 <br></br>
 
-<p>Do the same for the "Select Grid File" section to view an overlay(use the "wide" example here). Alternatively, you may choose the 'Example File' radio button. The following image will display. Note that the default display is set to Gausian.</p>
+<p class="opt">The following menu shows the available options. Each option is reviewed below.</p>
 <br></br>
-<center><img src="images/HMI2.png" width="70%" height="70%"</body></img></center>
-<br></br>
-
-<p>Data points may be added interactively using the box directly above the image. Coordinates are chosen either by clinking a position on the image itself, or by entering the exact x and y values of interest in the box. The Value for the point of interest may be entered in the "Value" field. By clicking the "Submit" button, the value is added directly on the image, as shown below.</p>
+<center><img src="images/HMI2.png" width="40%" height="40%"</body></img></center>
 <br></br>
 
-<center><img src="images/HMI7.png" width="70%" height="70%"</body></img></center>
+<center><img src="images/HMI3.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Show/Hide Layers:</strong> Add or remove heatmap layers to display or remove certain features of the heatmap, such as contour lines, axis labels, or the heatmap itself. For example, by choosing to display only the <strong>Heatmap</strong>, <strong>Grid Lines</strong>, and <strong>Axis Labels</strong>, the plot changes to this image to display the grid and the distribution on a readable graph.</p>
+</center>
 <br></br>
 
-<p>You may change the color scheme, such as to "Rainbow" under the "Color Scheme" dropdown menu.</p>
-<br></br>
-<center><img src="images/HMI3.png" width="70%" height="70%"</body></img></center>
-<br></br>
-
-<p>The above options are shown in the menu below. You may also select the "Square" display option, versus the default "Gausian" display, in order to overlay the grid directly without emphasis of distribution. To clearly view the data points, increase the color opacity to 1 with the "Heatmap Opacity".</p>
+<center><img src="images/HMI4.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Display:</strong> Choose the distribution for the overlaying grid. The default is <strong>Gaussian</strong>, which smoothes the distribution, while the <strong>Square</strong> display does not (as shown in this image). For this example, the heatmap opacity has been changed to 30 (this option is explained below).</p>
+</center>
 <br></br>
 
-<center><img src="images/HMI5.png" width="50%" height="50%"</body></img></center>
+<center><img src="images/HMI5.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Gaussian Radius Multiplier:</strong> Adjust the bandwidth for kernel density estimation. A higher value smoothes the graph further. For example, a value of 1.5 displays this distribution.</p>
+</center>
 <br></br>
-<center><img src="images/HMI6.png" width="70%" height="70%"</body></img></center>
+
+<center><img src="images/HMI6.png" width="50%" height="50%"</body></img>
+<p class="desc">Almost no smoothing occurs with a Gaussian Radius Multiplier value of 0.5, and individual data points are distinctly observed (for this example heatmap opacity was increased to 0.2).</p>
+</center>
 <br></br>
-<p>A few other options to try in the menu include:</p>
-<p>Show/Hide Layers - Add or remove heatmap layers on the image. For example, adding the 'Contour Lines' layer would result in clearly differentiated kernels on the Gaussian view.</p>
-<p>Gaussian Radius Multiplier - Adjusts the bandwidth for kernel density estimation.</p>
-<p>Contour Smoothness - Adjusts the number of grid points in each direction for kernel density estimation.</p>
-<p>Number of Shades - Increase or decrease the number of shades to use for higher/lower intensity values. For example, by increasing the number of shades, the Gaussian display would appear more gradual.</p>
-<p>Download - You may download at any time an image of the plot, or a text file in table format.</p>
-<p>Advanced Options Tab- You may adjust the plot width or height for a more clear rendition of the grid.</p>
+
+<center><img src="images/HMI7.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Contour Smoothness:</strong> Adjust the number of grid points in each direction for kernel density estimation. A high value of 400 would extensively smooth the kernel outlines, as seen in the image (for this example the 'Contour Lines' layer was selected to be shown).</p>
+</center>
 <br></br>
-<p>You may also view the grid positions displayed in table format by selecting the "Table" grid option.</p>
+
+<center><img src="images/HMI8.png" width="50%" height="50%"</body></img>
+<p class="desc">For a Contour Smoothness value of 25, only a minimal set of 25 points are used for density estimation and kernel outlining, which the result seen on the image (for this example the 'Contour Lines' layer was selected to be shown).</p>
+</center>
 <br></br>
-<center><img src="images/HMI4.png" width="70%" height="70%"</body></img></center>
+
+<center><img src="images/HMI9.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Heatmap Opacity:</strong> Adjust the opacity of the grid overlay. A higher value would more clearly display the heatmap distribution. For example, increasing the opacity to 0.15, results in this image (compared to the initially uploaded image). A maximum opacity will display the grid distribution in solid colors, without the underlying image.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMI10.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Number of Shades:</strong> Adjust the number of colors used for the distribution. A lower value of 7, for example, would divide the distribution into fewer regions as seen in the image (for this example heatmapp opacity was set to 0.15). A higher value, however, would identify regions of transition in more detail.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMI11.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Color Scheme:</strong> Change the color progression scheme. The two options besides 'Custom' are 'Rainbow' and 'Topo'. The 'Custom' view uses the 'Low Color' and 'High Color' settings to create a gradient for the distribution. The <strong>Rainbow</strong> scheme does not use a color gradient, but instead assigns rainbow colors to different intensities, as shown in the image. This may be useful to better differentiate the areas of the distribution.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMI12.png" width="50%" height="50%"</body></img>
+<p class="desc">Similarly, the <strong>Topo</strong> color scheme assigns a different color to each kernel, with lighter colors representing higher values.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMI13.png" width="50%" height="50%"</body></img>
+<p class="desc">For the <strong>Custom</strong> color scheme, the user may change the colors of the gradient. For example, by clicking on the <strong>Low Color</strong> colored box and choosing a light blue value from the palette, this distribution is observed.</p>
+</center>
+<br></br>
+
+<p>There are two Download options that may be used to download the image/data at any step during the experience. The <strong>Plot</strong> option will download the image as seen on the webpage. The <strong>Table</strong> option will download a text format of the data in table format, containing the positions and values for overlayed grid.</p>
+
+<p class="opt">Further fine tuning may be performed with the <strong>Show Advanced Options</strong> tab. The three available options are described below.</p>
+<br></br>
+
+<center><img src="images/HMArrow.png" width="40%" height="40%"</body></img>
+<p></p>
+</center>
+
+<center><img src="images/HMIAdvanced.png" width="40%" height="40%"</body></img>
+</center>
+<br></br>
+
+<center><img src="images/HMI14.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Stretch Image to Fit Grid:</strong> The image is stretched to fill the available grid space on the plot (for this example, the 'Axis Labels' layer was selected to be shown).</p>
+</center>
+<br></br>
+
+<center><img src="images/HMI15.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Plot Width:</strong> The width of the plot/grid is increased with a higher value (such as 900), to stretch the distribution on the grid as shown in the image.</p>
+<p class="desc"><strong>Plot Height:</strong> Increasing the plot height would have a similar effect in the vertical direction.</p>
+</center>
+<br></br>
+
+
+<center><img src="images/HMI16.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may also add a new point on the heatmap or change the value of an existing point using the <strong>Selected Point</strong> feature directly above the image. For exmaple, by entering the values for x=10, and y=20 and checking the <strong>Show</strong> option, the point is identified with a yellow square as shown in the image below. By changing the <strong>Value</strong> to 200, for example, the intensity of the point is changed along with the overall distribution, as shown below.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMI17.png" width="50%" height="50%"</body></img>
+<p class="desc">Changing the value of a point on the heatmap, as described above.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMI18.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may also view the data in table format, by clicking the <strong>Table</strong> tab next to the 'Plot' tab. Values for all positions of the overlayed grid are displayed.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMI19.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The table is sortable, by clicking on the arrows next to the table headers. For example, to view the table in order of decreasing value, click the <strong>Value</strong> arrow twice. The points with highest intensity are now displayed.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMI20.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may search the table by value and/or position by entering a value in the search text boxes, either the <strong>Search</strong> box at the top of the table, or the <strong>X</strong>, <strong>Y</strong>, or <strong>Value</strong> search boxes directly below the table columns. For example, entering '45' in the 'Value' text box, will retireve all the positions with a value of '45'.</p>
+</center>
 
 <br></br><br></br>
 </div>
