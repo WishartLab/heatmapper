@@ -126,7 +126,7 @@ John Snow used this data in conjunction with local pump locations as evidence th
 <br></br>
 
 <center><img src="images/HMC8.png" width="50%" height="50%"</body></img>
-<p class="desc"><strong>Contour Smoothness:</strong> Adjust the number of grid points in each direciton for kernel density estimation. Lowering the value to 10 would limit the number of points that constute the contour lines on the map. A more rugged outline is observed as follows. Increasing the value, on the other hand, would result in a more detailed outline.</p>
+<p class="desc"><strong>Contour Smoothness:</strong> Adjust the number of grid points in each direciton for kernel density estimation. Lowering the value to 10 would limit the number of points that form the contour lines on the map. A more rugged outline is observed as follows. Increasing the value, on the other hand, would result in a more detailed outline.</p>
 </center>
 <br></br>
 
@@ -142,12 +142,12 @@ John Snow used this data in conjunction with local pump locations as evidence th
 
 
 <center><img src="images/HMC11.png" width="50%" height="50%"</body></img>
-<p class="desc"><strong>Color Scheme:</strong> Change the color progression scheme. The two options besides 'Default' are 'Rainbow' and 'Topo'. The 'Default' view uses the 'Low Color' and 'High Color' settings to create a gradient for intensity. The <strong>Rainbow</strong> scheme does not use a color gradient,but instead assigns differring colors to different intensities, as shown in the image. This may be useful to better differentiate the intensity areas.</p>
+<p class="desc"><strong>Color Scheme:</strong> Change the color progression scheme. The two options besides 'Default' are 'Rainbow' and 'Topo'. The 'Default' view uses the 'Low Color' and 'High Color' settings to create a gradient for intensity. The <strong>Rainbow</strong> scheme does not use a color gradient,but instead assigns rainbow colors to different intensities, as shown in the image. This may be useful to better differentiate the areas of the distribution.</p>
 </center>
 <br></br>
 
 <center><img src="images/HMC12.png" width="50%" height="50%"</body></img>
-<p class="desc">Similarly, the <strong>Topo</strong> color scheme assigns a different color to each kernel, with lighter colors representing higher intensity.</p>
+<p class="desc">Similarly, the <strong>Topo</strong> color scheme assigns a different color to each kernel, with lighter colors representing higher values.</p>
 </center>
 <br></br>
 
@@ -156,22 +156,27 @@ John Snow used this data in conjunction with local pump locations as evidence th
 </center>
 <br></br>
 
-<p>There are two Download options that may be used to download the map/data at any step during the experience. The <strong>Download Plot</strong> option will download the heatmap view in html format. The <strong>Download Table</strong> option will download a text format of the data in table format, containing the values for the given latitude/longitute positions.</p>
-<p class="opt">Further fine tuning may be performed with the <strong>Show Advanced Options</strong> tab. The three available options are described below.</p>
+<p>There are two Download options that may be used to download the map/data at any step during the experience. The <strong>Download Plot</strong> option will download the heatmap view in html format. The <strong>Download Table</strong> option will download a text format of the data in table format, containing the values for the given map divisions/dataset.</p>
+
+
+
+<p class="opt">Further fine tuning may be performed with the <strong>Show Advanced Options</strong> tab. The two available options are described below.</p>
 <br></br>
 <center><img src="images/HMArrow.png" width="40%" height="40%"</body></img>
 <p></p>
 </center>
 
-<center><img src="images/HMCAdvanced.png" width="40%" height="40%"</body></img>
+<center><img src="images/HMGAdvanced.png" width="40%" height="40%"</body></img>
 </center>
 <br></br>
 
 
-<center><img src="images/HMC14.png" width="50%" height="50%"</body></img>
-<p class="desc"><strong>Contour Line Width:</strong> Adjust the separator line thickness for outlined kernels. Increasing the value to 3, for example, would more clearly mark the distribution outlines on the map, as shown in the image.</p>
+<center><img src="images/HMG14.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Custom legend title:</strong> Give the legend a meaningful name. In this example, 'Emissions in Kilotonnes' is appropriate. Notice the legend bos on the map.</p>
 </center>
 <br></br>
+
+
 
 <center><img src="images/HMC15.png" width="50%" height="50%"</body></img>
 <p class="desc"><strong>Point Width:</strong> Adjust the size of the data points displayed on the map. Increasing the value to 4, for example, would more clearly display the points on the map, as shown in the image.</p>
