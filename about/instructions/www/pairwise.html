@@ -5,6 +5,21 @@
 		<style>
 			td {padding:0.5em;}
 			code { white-space: pre; }
+
+			.opt {
+				text-align: center;
+			}		
+
+			.desc {
+				text-align: left;
+				width: 50%;
+			}
+
+			.desc_table {
+				text-align: left;
+				width: 70%;
+			}
+
 		</style>
     </head>  
     <body>
@@ -107,45 +122,115 @@ sample0005	10.000	7.1	2.80	5.9
 <a href="CowDiet.csv" download><p>CowDiet.csv</p>
 </a>
 <br></br>
-<p>Click on the Pairwise tab on the main header and select the Upload File radio button, followed by the Choose File button. The following plot is created.</p>
+<p>Click on the <strong>Pairwise</strong> tab on the main header and select the Upload File radio button, followed by the Choose File button. The following plot is created. Note that there are two <strong>Upload Format</strong> options, <strong>Generic Data Table</strong> and <strong>PDB Format</strong>. For this example, 'Generic Data Table' is set.</p>
 <br></br>
 <center><img src="images/HMP1.png" width="70%" height="70%"</body></img></center>
 <br></br>
-<p>The file has only numeric values in the first row and Heatmapper thinks they are data values. We want to treat them as header values. To do this, select the 'Lables in first row' option. Also, the default matrix type is selected as a distance matrix. For this example, we want to select the 'Calculate correlation matrix' option. You may also choose to display the data 'as is', without applying a distance matrix.</p>
-<p>With a distance matrix, each row is treated as a point and Euclidean distances between points are calculated. With a correlation matrix, correlations between the variables in each data column are calculated.</p>
+
+<p class="opt">The following menu shows the available options. Each option is reviewed below.</p>
 <br></br>
-<center><img src="images/HMP2.png" width="50%" height="50%"</body></img></center>
+<center><img src="images/HMP2.png" width="40%" height="40%"</body></img></center>
 <br></br>
-<p>Also, you may uncheck the 'Reverse Data Order' option to change the order of the data on the x-axis and y-axis of the plot. The plot will be reversed.</p>
+
+<center>
+<p class="desc"><strong>Labels in First Row</strong> and <strong>Labels in First Column:</strong> Treat entries of the first row or column in the data as headers. For this example, the file has only numeric values in the first row and Heatmapper thinks they are data values. To treat them as header values, the 'Lables in First Row' is selected.</p>
+</center>
 <br></br>
-<center><img src="images/HMP3.png" width="50%" height="50%"</body></img></center>
+
+
+<center><img src="images/HMP3.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Choose Matrix Type to Calculate:</strong> There are three matrix options that can be used. With the Distance Matrix (the default matrix used as for the above image), each row is treated as a point, and Euclidean distances between points are calculated. With the Correlation Matrix, correlations between the variables in each data column are calculated. This plot is created with this option.</p>
+</center>
 <br></br>
-<center><img src="images/HMP4.png" width="70%" height="70%"</body></img></center>
+
+<center><img src="images/HMP4.png" width="50%" height="50%"</body></img>
+<p class="desc">With the <strong>Display Data As-Is</strong> option, no matrix is applied and the values are directly mapped on the plot.</p>
+</center>
 <br></br>
-<p>You may choose a different color scheme, such as 'Rainbow' from the 'Color Scheme' dropdown menu option. This may be beneficial for a different representation of intensity.</p>
+
+<center><img src="images/HMP12.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Set Aspect Ratio = 1:</strong> This option is set by default, with a ratio of 1. The aspect ratio describes the proportional relationship between the image height and width. By unchecking the option, the resulting plot has a less proportional width vs height layout. Compare with the plot above.</p>
+</center>
 <br></br>
-<center><img src="images/HMP8.png" width="70%" height="70%"</body></img></center>
+
+<center><img src="images/HMP5.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Show/Hide Layers:</strong> Add or remove heatmap layers to display or remove certain features of the plot, such as the Legend, or the Axis Labels. For example, removing the 'Axis Label' layer will only display the plot cells without the labels.</p>
+</center>
 <br></br>
-<p>A few other options to try in the menu include:</p>
-<p>Upload Format - Allows upload of data in generic table format or PDB format.</p>
-<p>Number of Shades - The user may set the number of color shades to use in the plot. The minimum would only allow one shade of red and one shade of green along with black, for example. This option may be useful for viewing a more generalized pattern, or a more detailed version.</p>
-<p>Aspect Ratio - You may check or uncheck this option that sets the aspect ratio of the image to 1. The aspect ratio refers to the proportional relationship between image width and image height.</p>
-<p>Download - You may download at any time an image of the plot, or a text file in table format.</p>
-<p>You may next update the names of the plot and the axes as you wish, by first clicking on the 'Show Advanced Options' tab.</p>
+
+<center><img src="images/HMP6.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Number of Shades:</strong> Adjust the number of colors to be used for the plot. A lower value, such as '3', would categorize the data within larger ranges based on color. As shown in the image, a general distribution of the values is more readily visible. A higher value, on the other hand, would use more colors for smaller ranges of the dataset.</p>
+</center>
 <br></br>
-<center><img src="images/HMArrow.png" width="50%" height="50%"</body></img></center>
+
+<center><img src="images/HMP7.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Color Scheme:</strong> Change the color progression scheme. The two options besides 'Custom' are 'Rainbow' and 'Topo'. The 'Custom' view uses the 'Low Color' and 'High Color' settings to create a gradient for value ranges. The <strong>Rainbow</strong> scheme does not use a color gradient, but instead assigns rainbow colors to different value ranges, as shown in the image.</p>
+</center>
 <br></br>
-<center><img src="images/HMP5.png" width="50%" height="50%"</body></img></center>
+
+<center><img src="images/HMP8.png" width="50%" height="50%"</body></img>
+<p class="desc">Similarly, the <strong>Topo</strong> color scheme assigns a different color to each value range, with lighter colors representing higher values.</p>
+</center>
 <br></br>
-<center><img src="images/HMP6.png" width="70%" height="70%"</body></img></center>
+
+<center><img src="images/HMP9.png" width="50%" height="50%"</body></img>
+<p class="desc">For the <strong>Custom</strong> color scheme, the user may change the colors of the gradient. For example, by clicking on the <strong>Low Color</strong> colored box and choosing a yellow value from the palette, as well as a purple <strong>High Color</strong>, the gradient is changed as shown on the plot and the contrast is improved.</p>
+</center>
 <br></br>
-<p>The plot size may be adjusted to view a section in more detail. Notice the 'Interactive' plot tab. You may select a section on the plot by holding and dragging your mouse over the desired area. The plot will zoom in upon release. Hovering over the plot will display specific cell information. You may zoom back out by clicking the mouse on the plot one more time.</p>
+
+<center><img src="images/HMP10.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Reverse Data Order:</strong> Change the order of the x and y axes values. The plot is reversed, as shown in the image (compare with the first image on this page).</p>
+</center>
 <br></br>
-<center><img src="images/HMP7.png" width="70%" height="70%"</body></img></center>
+
+<p>There are two Download options that may be used to download the map/data at any step during the experience. The <strong>Plot</strong> option will download the plot image as seen on the webpage. The <strong>Table</strong> option will download the raw data in table format, with values for each row/column pair.</p>
+
+
+
+<p class="opt">Further fine tuning may be performed with the <strong>Show Advanced Options</strong> tab. The five available options are described below.</p>
 <br></br>
-<p>You may also view the data in table format, by clicking on the 'Table' plot tab. You may choose to sort the table by columns or values, using the header arrows. You may also search the table for a specific region or value.</p>
+
+<center><img src="images/HMArrow.png" width="40%" height="40%"</body></img>
+<p></p>
+</center>
+
+<center><img src="images/HMPAdvanced.png" width="40%" height="40%"</body></img>
+</center>
 <br></br>
-<center><img src="images/HMP9.png" width="70%" height="70%"</body></img></center>
+
+<center>
+<p class="desc"><strong>Plot Width:</strong> Adjust the size of the plot in the horizontal direction. A larger plot has better resolution.</p>
+<p class="desc"><strong>Plot Height:</strong> Adjust the size of the plot in the vertical direction.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMP11.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Title:</strong> Name the plot.</p>
+<p class="desc"><strong>X Axis Label:</strong> Name the x-axis.</p>
+<p class="desc"><strong>Y Axis Label:</strong> Name the y-axis.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMP13.png" width="70%" height="70%"</body></img>
+<p class="desc_table">To view a section of the plot in more detail click on the <strong>Interactive</strong> tab next to the 'Plot' tab. Click and drag a portion of the plot to zoom in (by clicking once more anywhere on the plot, it will zoom back out). Hovering over the plot will display specific cell information, as shown in the image.</p>
+</center>
+<br></br>
+
+
+<center><img src="images/HMP14.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may also view the data in table format, by clicking the <strong>Table</strong> plot tab next to the 'Interactive' tab.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMP15.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may search the Table values, using the <strong>Search</strong> box at the top of the table, or the column specific search boxes directly below the table. For example, by entering a correlation coefficient value of '4656' in the main search box, all rows and columns that contain that value are retrieved.</p>
+</center>
+<br></br>
+
+<center><img src="images/HMP16.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The Table can be sorted by any one of the columns, using the arrows next to each header. For example, by cliking twice on the '0_1_1' arrow, the table is sorted in decreasing order of values for the '0_1_1' sample column.</p>
+</center>
+
 <br></br><br></br>
 </div>
     </body>
