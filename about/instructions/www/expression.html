@@ -77,33 +77,140 @@ Hs.83484	SRY (sex determining region Y)-box 4	-3.418094026	-3.181358856	-3.27630
 <br></br>
 <center><img src="images/HME1.png" width="70%" height="70%"</body></img></center>
 <br></br>
-<p>You may change the colors of your intensities my clicking in the color boxes and selecting a different color.</p>
+
+
+<p class="opt">The following menu shows the available options. Each option is reviewed below.</p>
 <br></br>
-<center><img src="images/HME2.png" width="50%" height="50%"</body></img></center>
+<center><img src="images/HME2.png" width="40%" height="40%"</body></img></center>
 <br></br>
-<center><img src="images/HME3.png" width="70%" height="70%"</body></img></center>
+
+<center><img src="images/HME3.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Scale Type:</strong> Select direction to scale values in. There are three options: 'Row', 'Column', 'None'. The <strong>Row</strong> option is the default, which scales values by data rows. The <strong>Column</strong> option scales values by columns, as shown on the plot.</p>
+</center>
 <br></br>
-<p>Also, you may change the hierarchical clustering method and distance measurement method (for computing distance between rows and columns) as shown below. In this example, we choose 'Centroid Linkage' for the clustering method and 'Pearson' for the distance measuremenet matrix. You may also apply the clustering to rows, columns, or both with the 'Appliy Clustering To' option.</p>
+
+<center><img src="images/HME4.png" width="50%" height="50%"</body></img>
+<p class="desc">The <strong>None</strong> scaling option does not scale the values, as seen on the plot.</p>
+</center>
 <br></br>
-<center><img src="images/HME4.png" width="50%" height="50%"</body></img></center>
+
+<center><img src="images/HME5.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Color Brightness:</strong> Adjust the brightness of the colors on the plot. The default value is 0. By increasing it, to '30' for example, the plot is brighter. Some regions are more easily distinguished.</p>
+</center>
 <br></br>
-<center><img src="images/HME5.png" width="70%" height="70%"</body></img></center>
+
+<center><img src="images/HME6.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Number of Shades:</strong> Change the number of colors to be used on the plot. A lower value, such as 3, would group the data into only 3 categories by color as seen in the plot, and a more general pattern is observed. A higher value would divide the data further by color and more detail would be seen.</p>
+</center>
 <br></br>
-<p>A few other options to try in the menu include:</p>
-<p>Scale Type - Allows you to select the direction to scale values in, either by rows or columns.</p>
-<p>Color Brightness - Contrast may be enhanced by adjusting the brightness of the colors on the plot.</p>
-<p>Download - You may download at any time an image of the plot, or a text file in table format.</p>
-<p>You may further adjust the plot, such as naming the axes by clicking on the 'Show Advanced Options' tab. Here you may also adjust the color for 'Missing Data', to better distinguish the data without values on the plot. For this exmaple, we do not change this as there are no missing values.</p>
+
+<center><img src="images/HME7.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Color:</strong> Change the colors to be used for the plot. The Low Color, Middle Color, and High Color color boxes can be used to adjust the gradient. For example, by selecting a yellow from the 'Low Color' palette and a purple from the 'Middle Color' pallete, data values now progress from yellow to purple, to red. With this option, the very low and very high values are more visibly distinguishable.</p>
+</center>
 <br></br>
-<center><img src="images/HMArrow.png" width="50%" height="50%"</body></img></center>
+
+<center><img src="images/HME11.png" width="50%" height="50%"</body></img>
+<p class="desc">Another color scheme with light grey, dark grey, and red results in this plot. Now the high values are more distinguishable than all the rest.</p>
+</center>
 <br></br>
-<center><img src="images/HME6.png" width="50%" height="50%"</body></img></center>
+
+<center>
+<p class="desc"><strong>Clustering Method:</strong> Choose the method to be used for computing hierarchical clustering. The data would be grouped by similar expression levels.</p>
+<p class="desc"><strong>Average Linkage</strong> - The distance between two clusters is the mean distance between all objects of the clusters (the default option).</p>
+<p class="desc"><strong>Centroid Linkage</strong> - The distance between two clusters is the distance between their centroid values, as shown in this plot.</p>
+<p class="desc"><strong>Complete Linkage</strong> - The distance between two clusters is the largset distance between the objects of the clusters.</p>
+<p class="desc"><strong>Single Linkage</strong> The distance between two clusters is the smallest distance between an objects of one cluster and another object of the other cluster.</p>
+<p class="desc"><strong>None</strong> - No clustering method is applied to the data. No dendrogram is created (either by row/column). Also, the Distance Measurement Method option is no longer applicable.</p>
+</center>
 <br></br>
-<p>Different result formats are available. For example, click on the 'Row Dendrogram' plot tab, and you will be shown a diagram depicting phylogenetic relationships based on row similarity, and the nodes that data rows fit under. Two other options are 'Column Dendrogram' and 'Table'.</p>
 <br></br>
-<center><img src="images/HME7.png" width="70%" height="70%"</body></img></center>
-<center><img src="images/HME8.png" width="70%" height="70%"</body></img></center>
-<center><img src="images/HME9.png" width="70%" height="70%"</body></img></center>
+
+<center>
+<p class="desc"><strong>Distance Measurement Method:</strong> Choose the method to be used for computing distance between rows and columns. The selected distance method is used by the selected clustering algorithm to compute distances.
+<p class="desc"><strong>Eucledian</strong> - The distance is computed as the length of the line segment connecting two values.</p>
+<p class="desc"><strong>Pearson</strong> - The distance is the absolute value of the Pearson correlation coefficient (between 0 and 1).</p>
+<p class="desc"><strong>Kendall's Tau</strong> - The distance is the number of pairwise disagreements between two groups of values. The larger the distance, the more dissimillar the two clusters are.</p>
+<p class="desc"><strong>Spearman Rank Correlation</strong> - The distance is measured as the strength of association between two ranked values/groups.</p>
+<p class="desc"><strong>Manhattan</strong> - The distance is the sum of distances (along each dimension) between two values.</p>
+</center>
+<br></br>
+
+<center><img src="images/HME8.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Apply Clustering to Rows/Columns:</strong> Cluster the data by rows, columns, or both by selecting/removing the appropriate tabs. The default option is 'Rows'. As with this example, row clustering would group the genes by similar expression patterns, while column clustering would group the samples with similar expression levels. Row and column clustering would do both. This plot shows Column clustering, with the default 'Average Linkage' clustering method and 'Eucledian' distance method (compare with the first image on this page, clustered by rows).</p>
+</center>
+<br></br>
+
+
+
+<center><img src="images/HME9.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Show Dendrogram:</strong> Choose to display the row/column clustering on the plot. For exmaple, after applying the clustering to both 'Rows' and 'Columns', choosing to show both 'Rows' and 'Columns' dendrograms with display the clustering information for both rows and columns on the plot, as seen in the image.</p>
+</center>
+<br></br>
+
+<p>There are two Download options that may be used to download the plot/data at any step during the experience. The <strong>Plot</strong> option will download the an image of the plot as seen on the webpage (as PNG, PDF, PNG, or TIFF). The <strong>Table</strong> option will download the raw data in table format (as TXT or CSV).</p>
+
+<p class="opt">Further fine tuning may be performed with the <strong>Show Advanced Options</strong> tab. The seven available options are described below.</p>
+<br></br>
+<center><img src="images/HMArrow.png" width="40%" height="40%"</body></img>
+<p></p>
+</center>
+
+<center><img src="images/HMEAdvanced.png" width="40%" height="40%"</body></img>
+</center>
+<br></br>
+
+<center>
+<p class="desc"><strong>Plot Width:</strong> By expanding the plot width, the size of the individual cells will increase horizontally. Similarly, by decreasing the width, the cells will be more compact.</p>
+<p class="desc"><strong>Plot Heigth:</strong> By expanding the plot height, the size of the individual cells will increase vertically. Similarly, by decreasing the height, the cells will be more compact.</p>
+</center>
+<br></br>
+
+<center><img src="images/HME10.png" width="50%" height="50%"</body></img>
+<p class="desc"><strong>Preview Full Height:</strong> Expand the plot vertically (the cells will have a minimum height). This improves visualization. A portion of the plot is shown here.</p>
+</center>
+<br></br>
+
+<p class="desc"><strong>Title:</strong> Name the plot.</p>
+<p class="desc"><strong>X Axis Label:</strong> Name the x-axis.</p>
+<p class="desc"><strong>Y Axis Label:</strong> Name the y-axis.</p>
+</center>
+<br></br>
+
+<center>
+<p class="desc"><strong>Missing Data Color:</strong> Choose a color to distinguish the cells that have no value (for example if a chip was damaged at particular pixels). For this example, since the 'Middle Color' of the plot is also set to black, changing the missing color to yellow would display the empty cells with yellow, in contrast to the red/green on the plot. This is also a good way to check that there is no missing data, as is the case for this exmaple.</p>
+</center>
+<br></br>
+
+<center><img src="images/HME12.png" width="70%" height="70%"</body></img>
+<p class="desc_table">To view a section of the plot in more detail click on the <strong>Interactive</strong> tab next to the 'Plot' tab. Click and drag a portion of the plot to zoom in (by clicking once more anywhere on the plot, it will zoom back out). Hovering over the plot will display specific cell information, as shown in the image.</p>
+</center>
+<br></br>
+
+
+<center><img src="images/HME13.png" width="70%" height="70%"</body></img>
+<p class="desc_table">To view the full Row Dendrogram click on the <strong>Row Dendrogram</strong> tab next to the 'Interactive' tab. This will display the clustering relationships by row (in this case by expression levels between genes). Note that the clustering must be applied to 'Rows' for a dendrogram to be computed.</p>
+</center>
+<br></br>
+
+<center><img src="images/HME14.png" width="70%" height="70%"</body></img>
+<p class="desc_table">To view the full Column Dendrogram click on the <strong>Column Dendrogram</strong> tab next to the 'Row Dendrogram' tab. This will display the clustering relationships by column (in this case by expression levels between samples). Note that the clustering must be applied to 'Columns' for a dendrogram to be computed.</p>
+</center>
+<br></br>
+
+<center><img src="images/HME15.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The user may also view the data in Table format by clicking on the <strong>Table</strong> tab next to the 'Column Dendrogram' tab. This will display the expression values for all genes and samples.</p>
+</center>
+<br></br>
+
+<center><img src="images/HME16.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The table is searchable, by the gene name/id, or expression value. The user may enter a search value in the main <strong>Search</strong> box above the table, or in a column specific search box directly below the table. For example, by entering the name 'cathepsin O' in the <strong>NAME</strong> search box, all sample values for 'cathepsin O' are retrieved.</p>
+</center>
+<br></br>
+
+<center><img src="images/HME17.png" width="70%" height="70%"</body></img>
+<p class="desc_table">The table is also sortable, with the arrows located next to each header. For example, by clicking once on the NAME arrow, the table is sorted alphabetically by gene name.</p>
+</center>
+
 
 <br></br><br></br>
 </div>
