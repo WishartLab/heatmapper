@@ -1,5 +1,5 @@
 library(shiny)
-library(xlsx)
+library(gdata)
 library(leaflet)
 library(htmlwidgets)
 library(ggtern)
@@ -28,8 +28,8 @@ shinyServer(function(input, output, session){
 			fileType <- tail(unlist(strsplit(x = values$file$name, split = "[.]")), n=1)
 			
 			tryCatch({
-				if(fileType == "xlsx"){
-					file <- read.xlsx(values$file$datapath, 1)
+				if(fileType == "xls" || fileType == "xlsx"){
+					file <- read.xls(values$file$datapath, sheet=1)
 				}
 				else if(fileType == "csv"){
 					file <- read.csv(values$file$datapath, header = TRUE)

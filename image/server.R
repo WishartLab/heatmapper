@@ -1,5 +1,5 @@
 library(shiny)
-library(xlsx)
+library(gdata)
 library(jpeg)
 library(png)
 library(tiff)
@@ -232,7 +232,7 @@ shinyServer(function(input, output, session){
 				fileType <- tail(unlist(strsplit(x = values$gridFile$name, split = "[.]")), n=1)
 				
 				if(fileType == "xls" || fileType == "xlsx"){
-					data_file <- read.xlsx(values$gridFile$datapath, 1, header = FALSE)
+					data_file <- read.xls(values$gridFile$datapath, sheet=1, header = FALSE)
 				}
 				else if(fileType == "csv"){
 					data_file <- read.csv(values$gridFile$datapath, header = FALSE)
@@ -247,7 +247,7 @@ shinyServer(function(input, output, session){
 					
 					# Re-read the file, but with header = TRUE
 					if(fileType == "xls" || fileType == "xlsx"){
-						data_file <- read.xlsx(values$gridFile$datapath, 1, header = TRUE)
+						data_file <- read.xls(values$gridFile$datapath, sheet=1, header = TRUE)
 					}
 					else if(fileType == "csv"){
 						data_file <- read.csv(values$gridFile$datapath, header = TRUE)

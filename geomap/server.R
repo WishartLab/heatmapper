@@ -2,7 +2,7 @@ library(leaflet)
 library(RColorBrewer)
 library(raster)
 library(htmlwidgets)
-library(xlsx)
+library(gdata)
 library(DT)
 
 source("../global_ui.R") # so we can see EXAMPLE_FILES
@@ -220,7 +220,7 @@ shinyServer(function(input, output, session) {
 				fileType <- tail(unlist(strsplit(x = values$inputFile$name, split = "[.]")), n=1)
 				
 				if(fileType == "xls" || fileType == "xlsx"){
-					data_file <- read.xlsx(values$inputFile$datapath, 1)
+					data_file <- read.xls(values$inputFile$datapath, sheet=1)
 				}
 				else if(fileType == "csv"){
 					data_file <- read.csv(values$inputFile$datapath, header = TRUE)

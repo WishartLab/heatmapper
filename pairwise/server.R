@@ -1,5 +1,5 @@
 library(shiny)
-library(xlsx)
+library(gdata)
 library(ggplot2)
 library(reshape2)
 library(d3heatmap)
@@ -50,7 +50,7 @@ shinyServer(function(input, output, session){
 		
 		# Initial read of file.
 		if(fileType == "xls" || fileType == "xlsx"){
-			data_file <- read.xlsx(filePath, 1, header = FALSE, row.names = NULL)
+			data_file <- read.xls(filePath, sheet=1, header = FALSE, row.names = NULL)
 		}
 		else if(fileType == "csv"){
 			data_file <- read.csv(filePath, header = FALSE, row.names = NULL)
@@ -109,7 +109,7 @@ shinyServer(function(input, output, session){
 		
 		# Read the file again, this time with header/row labels specified.
 		if(fileType == "xls" || fileType == "xlsx"){
-			read.xlsx(filePath, 1, header = use_col_labels, row.names = row.names.val)
+			read.xls(filePath, sheet=1, header = use_col_labels, row.names = row.names.val)
 		}
 		else if(fileType == "csv"){
 			read.csv(filePath, header = use_col_labels, row.names = row.names.val)

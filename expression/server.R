@@ -1,5 +1,5 @@
 library(shiny)
-library(xlsx)
+library(gdata)
 library(d3heatmap)
 library(gplots)
 library(ggdendro)
@@ -38,7 +38,7 @@ shinyServer(function(input, output, session){
 				print(fileType)
 				
 				if(fileType == "xls" || fileType == "xlsx"){
-					values$file <- read.xlsx(input$file$datapath, 1)
+					values$file <- read.xls(input$file$datapath, sheet=1)
 				}
 				else if(fileType == "csv"){
 					values$file <- read.csv(input$file$datapath)
@@ -471,8 +471,8 @@ shinyServer(function(input, output, session){
 		
 		print(length(x))
 		
-		validate(need(length(x) <= 10000, 
-			"File is too large for this feature. Please select a smaller file with no more than 10,000 cells."))
+		validate(need(length(x) <= 400000, 
+			"File is too large for this feature. Please select a smaller file with no more than 400,000 cells."))
 		
 		tryCatch({
 			
