@@ -73,7 +73,7 @@ shinyUI(list(HEAD_TASKS("#pairwiseTab", "50%", "40%"), fluidPage(title = "Pairwi
 
 			LAYERS_SELECT(c("Legend" = 'showLegend', "Axis Labels" = 'showAxisLabels'), c('showLegend', 'showAxisLabels')),
 			
-			BIN_SLIDER(3, 299, 160), 
+			BIN_SLIDER(3, 100, 50), 
 			
 			COLOUR_SCHEME_SELECT(), 
 			

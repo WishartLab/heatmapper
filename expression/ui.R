@@ -25,7 +25,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
     	
 			BRIGHTNESS_SLIDER(),
     	
-    	BIN_SLIDER(3, 299, 160),
+    	BIN_SLIDER(3, 100, 50),
     
     	JSCOLOUR_3_ROW(),
 			
