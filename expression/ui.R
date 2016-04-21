@@ -26,8 +26,17 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 			BRIGHTNESS_SLIDER(),
     	
     	BIN_SLIDER(3, 100, 50),
+			
+			COLOUR_SCHEME_SELECT(), 
+			
+			conditionalPanel(condition = "input.colourScheme == 'custom'",	
+			 fluidRow(
+			   column(4,jscolourInput("lowColour", label = "Low Colour", value = "#FF0000")), 
+			   column(4, jscolourInput("midColour", label = "Middle Colour")),
+			   column(4, jscolourInput("highColour", label = "High Colour", value = "#23B000")))
+			),
     
-    	JSCOLOUR_3_ROW(),
+    	#JSCOLOUR_3_ROW(),
 			
 			jscolourInput("missingColour", label = "Missing Data Colour"),
 			
