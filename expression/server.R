@@ -3,6 +3,7 @@ library(gdata)
 library(d3heatmap)
 library(gplots)
 library(ggdendro)
+library(RColorBrewer)
 # memory testing
 # library(pryr)
 
@@ -393,35 +394,39 @@ shinyServer(function(input, output, session){
 			col_dendrogram_height = 60
 		}
 		heatmap_height = get_plot_height() - col_dendrogram_height
+		# creates a own color palette from red to green
+		my_palette <- colorRampPalette(c("red", "yellow", "green"))(n = 299)
 		
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
-				key=FALSE, 
+				key=TRUE, 
 				symkey=FALSE, 
 				density.info="none", 
 				trace="none",
-				
-				keysize=0.6, 
+				 
+				keysize=0.9, 
 				offsetCol = 0, 
 				offsetRow = 0,
 				
 				dendrogram = dend_select(),
 				Rowv = get_dendrograms()[[1]], 
 				Colv = get_dendrograms()[[2]], 
-				col = get_colour_palette()(input$binNumber), 
+				col = get_colour_palette()(input$binNumber),
 				scale = input$scale,
-				main = input$title, 
+				main = input$title,
 				xlab = input$xlab, 
 				ylab = input$ylab,
 				
-				lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
+				#lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
 			)
 			graphics.off()
 		},
 		error = function(err){
 			validate(txt=ERR_plot_display)
 		})
+		
+		
 	}
 	
 	# returns the result of ggdendrogram() on param x
