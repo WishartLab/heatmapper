@@ -129,8 +129,7 @@ shinyServer(function(input, output, session){
 		    }
 		    adjusted_colours <- c(adjusted_colours, new_color)
 		  }
-        #adjusted_colours = change_brightness(cl, brightness_adj)
-		  #rainbow(input$binNumber)
+		  
 		  adjusted_colours
 		 }else if(input$colourScheme == 'custom'){
 		  if (brightness_adj == 0) {
