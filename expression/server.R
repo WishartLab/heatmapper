@@ -418,11 +418,13 @@ shinyServer(function(input, output, session){
 				ylab = input$ylab,
 				cexRow = 1.0,
 				cexCol = 1.0,
+
 				lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
 			)
 			graphics.off()
 		},
 		error = function(err){
+			print(paste("ERROR: ", err))
 			validate(txt=ERR_plot_display)
 		})
 		
@@ -456,7 +458,6 @@ shinyServer(function(input, output, session){
 		reactive({
 		if(input$fullSize){
 			if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
-				print("hey")
 				input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
 			}
 			else{
@@ -528,23 +529,24 @@ shinyServer(function(input, output, session){
 		
 		content = function(file) {
 			if(input$downloadPlotFormat == "pdf"){
-				pdf(file)
+				pdf(file, width=input$plotWidth/72, height=input$plotHeight/72)
 				get_plot()
 			}
 			else if(input$downloadPlotFormat == "jpg"){
-				jpeg(file)
+				jpeg(file, width=input$plotWidth, height=input$plotHeight)
 				get_plot()
 			}
 			else if(input$downloadPlotFormat == "tiff"){
-				tiff(file)
+				tiff(file, width=input$plotWidth, height=input$plotHeight)
 				get_plot()
 			}
 			else{
 				tryCatch({
-					png(file)	
+					png(file, width=input$plotWidth, height=input$plotHeight)
 					get_plot()
 				}, 
 				error = function(err){
+					print(paste("ERROR:  ", err))
 					validate(need(FALSE,"PNG image too large. Please decrease the dimensions or resolution of the image."))
 					return(NULL)
 				})

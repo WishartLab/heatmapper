@@ -25,10 +25,12 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
     	
 			BRIGHTNESS_SLIDER(),
     	
-    	BIN_SLIDER(3, 299, 160),
+    	BIN_SLIDER(3, 100, 50),
     
     	JSCOLOUR_3_ROW(),
-    	
+			
+			jscolourInput("missingColour", label = "Missing Data Colour"),
+			
     	tipify(selectInput('clusterMethod', 
     		label = "Clustering Method",	
     		choices = c(
@@ -83,7 +85,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 					
 					sliderInput('plotWidth', label = WIDTH, 
 		    		min = 500,
-		    		max = 2000, 
+		    		max = 2000,
 		    		value = 600),
 					
 					tipify(
@@ -98,9 +100,9 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 					
 					textInput('title', label = "Title", value = ""),
 					textInput('xlab', label = "X Axis Label", value = ""),
-					textInput('ylab', label = "Y Axis Label",	value = ""), 
+					textInput('ylab', label = "Y Axis Label",	value = "")
 						
-					jscolourInput("missingColour", label = "Missing Data Colour")
+					#jscolourInput("missingColour", label = "Missing Data Colour")
 				)
 			)
     ),
