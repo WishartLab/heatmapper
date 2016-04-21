@@ -395,7 +395,7 @@ shinyServer(function(input, output, session){
 		}
 		heatmap_height = get_plot_height() - col_dendrogram_height
 		# creates a own color palette from red to green
-		ratio = col_dendrogram_height / heatmap_height
+		#ratio = col_dendrogram_height / heatmap_height
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
