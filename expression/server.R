@@ -391,12 +391,11 @@ shinyServer(function(input, output, session){
 		if (clust_selected("col") && length(grep("col", input$dendSelectRC))>0) {
 			col_dendrogram_height = 120
 		} else {
-			col_dendrogram_height = 60
+			col_dendrogram_height = 80
 		}
 		heatmap_height = get_plot_height() - col_dendrogram_height
 		# creates a own color palette from red to green
-		my_palette <- colorRampPalette(c("red", "yellow", "green"))(n = 299)
-		
+		ratio = col_dendrogram_height / heatmap_height
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
@@ -417,8 +416,9 @@ shinyServer(function(input, output, session){
 				main = input$title,
 				xlab = input$xlab, 
 				ylab = input$ylab,
-				
-				#lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
+				cexRow = 1.0,
+				cexCol = 1.0,
+				lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
 			)
 			graphics.off()
 		},
