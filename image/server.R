@@ -426,7 +426,7 @@ shinyServer(function(input, output, session){
 #		else{
 #			scale_fill_gradientn(colours = rev(topo.colors(7)))
 #		}
-#	})
+})
 	  
 	  
 	
