@@ -417,7 +417,6 @@ shinyServer(function(input, output, session){
 	  }
 	  
 	  
-	  
 	#	if(input$colourScheme == 'rainbow'){
 	#		scale_fill_gradientn(colours = rev(rainbow(7)))
 #		}
@@ -428,6 +427,8 @@ shinyServer(function(input, output, session){
 #			scale_fill_gradientn(colours = rev(topo.colors(7)))
 #		}
 #	})
+	  
+	  
 	
 	# returns geom_point of selected point if valid selection is made
 	get_selected_point <- function(){
