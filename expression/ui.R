@@ -9,7 +9,6 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 	
 	sidebarLayout(position = "right",
     sidebarPanel(id = "sidebarPanel", width = 1,
-      tags$head(tags$script(src='active.js')),
 			FILE_UPLOAD_PANEL(),
     	EXAMPLE_FILE_SELECT(),
     	
