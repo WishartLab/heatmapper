@@ -391,7 +391,7 @@ shinyServer(function(input, output, session){
 		if (clust_selected("col") && length(grep("col", input$dendSelectRC))>0) {
 			col_dendrogram_height = 120
 		} else {
-			col_dendrogram_height = 80
+			col_dendrogram_height = 120
 		}
 		heatmap_height = get_plot_height() - col_dendrogram_height
 		# creates a own color palette from red to green
@@ -403,7 +403,7 @@ shinyServer(function(input, output, session){
 				symkey=FALSE, 
 				density.info="none", 
 				trace="none",
-				 
+				key.title = input$distanceMethod,
 				keysize=0.9, 
 				offsetCol = 0, 
 				offsetRow = 0,
@@ -418,7 +418,7 @@ shinyServer(function(input, output, session){
 				ylab = input$ylab,
 				cexRow = 1.0,
 				cexCol = 1.0,
-
+				#mar=c(2,30),
 				lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
 			)
 			graphics.off()
@@ -446,11 +446,13 @@ shinyServer(function(input, output, session){
 	
 	# heatmap.2 plot
 	output$heatmap <- renderPlot(
+	  
 		get_plot(),
 		width =  reactive({input$plotWidth}),
 		height = reactive({
 			get_plot_height()
-		})
+		}),
+		
 	)
 	
 	get_plot_height <- (

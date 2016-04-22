@@ -237,10 +237,16 @@ shinyServer(function(input, output, session){
 			}
 		}
 		
-		if (input$chooseInput != 'example') {
+		#if (input$chooseInput != 'example') {
 			if (input$matType == "distMat") {
 				# calculate distance matrix
-				file <- dist(file, diag = TRUE, upper = TRUE)
+			  if(input$distanceMethod == 'euclidean' || input$distanceMethod == 'manhattan'){
+			    file <- dist(file,  method = input$distanceMethod, diag = TRUE, upper = TRUE)
+			  }
+			  else{
+			    file <- as.dist(1-cor(t(data.matrix(file)), method=input$distanceMethod), diag = TRUE, upper = TRUE)
+			  }
+				#file <- dist(file,  method = input$distanceMethod, diag = TRUE, upper = TRUE)  # old code for "euclidean" only
 				file <- as.data.frame(as.matrix(file))
 				file <- cbind(rownames(file), file)
 			} else if (input$matType == "corrMat") {
@@ -254,7 +260,7 @@ shinyServer(function(input, output, session){
 				file <- as.data.frame(as.matrix(file))
 				file <- cbind(rownames(file), file)
 			}
-		}
+		#}
 		
 		colnames(file)[1] <- "cols"
 		
