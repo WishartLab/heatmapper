@@ -10,6 +10,16 @@ library(RColorBrewer)
 # Constants
 q = 5; # Use q*2 + 1 colors when brightening the expression heat map.
 
+# because there is no way to fix the first look of the plot output from ui.R. the plot width and plot
+# height are from the "Show advanced options" of ui.R. That is not good for showing file with many rows,
+# especially more than 100 rows. So here we adjust the plot height with this parameter to make it bigger if row 
+# count number is big. So we can read the y axis lable visually with the reasonable height.
+scope <<- 0.020107349; 
+intercept <<- 0.37506195;
+# the upper free params used in this formula. adjust_plot_height_weight = scope * rows(input_file) + intercept.
+# please check the get_weight function
+
+
 shinyServer(function(input, output, session){
 	
 	# http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels
@@ -82,11 +92,22 @@ shinyServer(function(input, output, session){
 	# returns raw data from file input or selected example file
 	get_file <- reactive({
 		if(input$chooseInput == 'fileUpload'){
-			values$file
+			file <- values$file
 		}
 		else{ # Example
-			read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
+			file <- read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
 		}
+	})
+	
+	# returns raw data from file input or selected example file
+	get_weight <- reactive({
+	  file <- get_file()
+	  if (is.null(file)){
+	    return(0)
+	  }else{
+	   adjust_plot_height_weight = scope * nrow(file) + intercept
+	   return(adjust_plot_height_weight)
+	  }
 	})
 	
 	# converts file from data.frame to data.matrix
@@ -495,8 +516,7 @@ shinyServer(function(input, output, session){
 		width =  reactive({input$plotWidth}),
 		height = reactive({
 			get_plot_height()
-		}),
-		
+		})
 	)
 	
 	get_plot_height <- (
@@ -507,11 +527,11 @@ shinyServer(function(input, output, session){
 				input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
 			}
 			else{
-				input$plotHeight
+				input$plotHeight * get_weight()
 			}
 		}
 		else{
-			input$plotHeight
+			input$plotHeight * get_weight()
 		}
 		})
 	)
