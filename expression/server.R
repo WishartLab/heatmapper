@@ -34,8 +34,6 @@ shinyServer(function(input, output, session){
 	observe({
 		input$clearColClusterFile
 		values$colClusterFile <- NULL
-		input$colClusterFile$datapath = NULL
-		print("HERE CLICK")
 	})
 
 	observe({
@@ -339,7 +337,8 @@ shinyServer(function(input, output, session){
 	
 	get_hclust_from_file <- function(margin) {
 	  field = ifelse(margin == 2, 'colClusterFile', 'rowClusterFile')
-		if(!is.null(input[[field]])){
+		# if(!is.null(input[[field]])){
+		if(!is.null(values[[field]])){
 			tryCatch({
 			  as.hclust.phylo(values[[field]]) 
 			}, 
@@ -354,7 +353,7 @@ shinyServer(function(input, output, session){
 	
 	# Reorder the data to match imported clusters
 	reorder_data <- function(data) {
-	  # TODO check and catch errors on label names
+	  # TODO check and catch errors on label names: try doing this in file observer
 	  # Reorder columns
 	  if(!is.null(values$colClusterFile) && class(values$colHclust) == 'hclust') {
 	    labels = values$colHclust$labels
@@ -365,7 +364,7 @@ shinyServer(function(input, output, session){
         # session$sendCustomMessage(type='resetClusterFile', 'Col')
 	      # input$colClusterFile = NULL
 	      # values$colHclust = NULL # BAD
-	      values$colClusterFile = NULL # BAD
+	      # values$colClusterFile = NULL # BAD
 	    }
 	  }
 	  # Reorder Rows
@@ -426,8 +425,10 @@ shinyServer(function(input, output, session){
 	# finds if a string is a current selected item in input$clusterSelectRC
 	clust_selected <- function(rc){
 	  if(input$clusterMethod == 'import') { 
+	    # field = paste0(rc, 'ClusterFile')
+	    # !is.null(input[[field]]$datapath)
 	    field = paste0(rc, 'ClusterFile')
-	    !is.null(input[[field]]$datapath)
+	    !is.null(values[[field]])
 	  } else {
 	    if(length(grep(rc, input$clusterSelectRC))>0){
 	      TRUE

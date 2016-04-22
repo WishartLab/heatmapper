@@ -89,9 +89,4 @@ $(document).ready(function() {
         }
     }
 
-    Shiny.addCustomMessageHandler("resetClusterFile", function(margin) {
-      $("#clear" + margin + "ClusterFile").click();
-      console.log('clear')
-    })
-    
 })	
