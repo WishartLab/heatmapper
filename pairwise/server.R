@@ -281,6 +281,42 @@ shinyServer(function(input, output, session){
 	})
 	
 	#################### GGPLOT HELPER FUNCTIONS ####################
+	# Darken the given color based on adj (a negative integer).
+	darken <- function(col, adj){
+	  r = strtoi(paste('0x', substr(col, 2,3), sep=''))
+	  g = strtoi(paste('0x', substr(col, 4,5), sep=''))
+	  b = strtoi(paste('0x', substr(col, 6,7), sep=''))
+	  
+	  adj = (100.0 + adj)/100.0
+	  
+	  r = as.integer(r*adj)
+	  g = as.integer(g*adj)
+	  b = as.integer(b*adj)
+	  
+	  col = toupper(sprintf("#%02x%02x%02x",r,g,b))
+	  return (col)
+	}
+	
+	
+	# Return a set of colors ranging from lowCol to highCol, with midCol in the
+	# middle, adjusted brighter based on the value of adj.
+	lighten <- function(col, adj) {
+	  
+	  adj = (100.0 - adj)/100.0
+	  adj = 1-adj
+	  r1 = strtoi(paste('0x', substr(col, 2,3), sep=''))
+	  g1 = strtoi(paste('0x', substr(col, 4,5), sep=''))
+	  b1 = strtoi(paste('0x', substr(col, 6,7), sep=''))
+	  
+	  r = as.integer((255-r1)*adj+r1)
+	  g = as.integer((255-g1)*adj+g1)
+	  b = as.integer((255-b1)*adj+b1)
+	  
+	  col = toupper(sprintf("#%02x%02x%02x",r,g,b))
+	  return (col)
+	}
+	
+	
 	# get colour palette based on input$colourScheme selection
 	get_colour_palette <- function() {
 		if(input$colourScheme == 'rainbow'){
@@ -289,7 +325,19 @@ shinyServer(function(input, output, session){
 		else if(input$colourScheme == 'custom'){
 			return(colorRampPalette(c(input$lowColour, input$midColour, input$highColour))(3))
 		}
-		else{
+		else if(input$colourScheme == 'red/green'){
+		  lowColour = "#FF0000"
+		  midColour = "#000000"
+		  highColour = "#23B000"
+		  
+		  return(colorRampPalette(c(lowColour, midColour, highColour))(3))
+		}else if(input$colourScheme == 'blue/yellow'){
+		  lowColour = "#0016DB"
+		  midColour = "#FFFFFF"
+		  highColour = "#FFFF00"
+		  
+		  return(colorRampPalette(c(lowColour, midColour, highColour))(3))
+		}else{
 			return(topo.colors(7))
 		}
 	}
@@ -330,7 +378,7 @@ shinyServer(function(input, output, session){
 	
 	# plot using ggplot
 	get_plot <- reactive({
-		
+	  
 		data <- melt_file()
 		validate(need(!is.null(data), ERR_file_upload))
 		

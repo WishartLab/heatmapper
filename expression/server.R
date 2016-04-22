@@ -154,22 +154,59 @@ shinyServer(function(input, output, session){
 		# colors.
 		brightness_adj = as.integer(input$plotBrightness)
 		
-		if (brightness_adj == 0) {
-			lowCol = input$lowColour
-			midCol = input$midColour
-			highCol = input$highColour
-			colorRampPalette(c(lowCol, midCol, highCol))
-		} else if (brightness_adj < 0) {
-			lowCol = darken(input$lowColour, brightness_adj)
-			midCol = darken(input$midColour, brightness_adj)
-			highCol = darken(input$highColour, brightness_adj)
-			colorRampPalette(c(lowCol, midCol, highCol))
-		} else {
-			lowCol = input$lowColour
-			midCol = input$midColour
-			highCol = input$highColour
-			colorRampPalette(get_brightness_adjusted_color_set(lowCol, midCol, highCol, brightness_adj))
+		if(input$colourScheme == 'red/green'){
+		  lowCol = "#FF0000"
+		  midCol = "#000000"
+		  highCol = "#23B000"
+		}else if (input$colourScheme == 'blue/yellow'){
+		  lowCol = "#0016DB"
+		  midCol = "#FFFFFF"
+		  highCol = "#FFFF00"
+		}else if(input$colourScheme == 'custom'){
+		  lowCol = input$lowColour
+		  midCol = input$midColour
+		  highCol = input$highColour
 		}
+
+		if(input$colourScheme == 'rainbow' || input$colourScheme == 'topo'){
+		  if(input$colourScheme == 'rainbow'){
+		  cl = rainbow(input$binNumber)
+		  }else{
+		  cl = topo.colors(input$binNumber)
+		  }
+		  
+		  adjusted_colours = c()
+		  for (color in cl){
+		    if (brightness_adj == 0) {
+		      new_color = color
+		    }else if (brightness_adj < 0) {
+		      new_color = darken(color, brightness_adj)
+		    }else{
+		      new_color = lighten(color, brightness_adj)
+		    }
+		    adjusted_colours <- c(adjusted_colours, new_color)
+		  }
+		  
+		  adjusted_colours
+		 }else if(input$colourScheme == 'custom' || input$colourScheme == 'red/green' || input$colourScheme == 'blue/yellow'){
+		  if (brightness_adj == 0) {
+			  lowCol = lowCol
+			  midCol = midCol
+			  highCol = highCol
+			  colorRampPalette(c(lowCol, midCol, highCol))(input$binNumber)
+		  } else if (brightness_adj < 0) {
+			  lowCol = darken(lowCol, brightness_adj)
+			  midCol = darken(midCol, brightness_adj)
+			  highCol = darken(highCol, brightness_adj)
+			  colorRampPalette(c(lowCol, midCol, highCol))(input$binNumber)
+		  } else {
+			  lowCol = lowCol
+			  midCol = midCol
+			  highCol = highCol
+			  colorRampPalette(get_brightness_adjusted_color_set(lowCol, midCol, highCol, brightness_adj))(input$binNumber)
+		  }
+		}
+		
 	})
 	
 	# Return a set of colors ranging from lowCol to highCol, with midCol in the
@@ -281,6 +318,7 @@ shinyServer(function(input, output, session){
 		return(r + x)
 	}
 	
+	
 	# Darken the given color based on adj (a negative integer).
 	darken <- function(col, adj){
 		r = strtoi(paste('0x', substr(col, 2,3), sep=''))
@@ -296,6 +334,26 @@ shinyServer(function(input, output, session){
 		col = toupper(sprintf("#%02x%02x%02x",r,g,b))
 		return (col)
 	}
+	
+	
+	# Return a set of colors ranging from lowCol to highCol, with midCol in the
+	# middle, adjusted brighter based on the value of adj.
+	lighten <- function(col, adj) {
+	  
+	  adj = (100.0 - adj)/100.0
+    adj = 1-adj
+	  r1 = strtoi(paste('0x', substr(col, 2,3), sep=''))
+	  g1 = strtoi(paste('0x', substr(col, 4,5), sep=''))
+	  b1 = strtoi(paste('0x', substr(col, 6,7), sep=''))
+	  
+	  r = as.integer((255-r1)*adj+r1)
+	  g = as.integer((255-g1)*adj+g1)
+	  b = as.integer((255-b1)*adj+b1)
+	  
+	  col = toupper(sprintf("#%02x%02x%02x",r,g,b))
+	  return (col)
+	}
+	
 	
 	# calculates and returns a distance matrix
 	# param: data matrix
@@ -521,7 +579,7 @@ shinyServer(function(input, output, session){
 				dendrogram = dend_select(),
 				Rowv = get_dendrograms()[[1]], 
 				Colv = get_dendrograms()[[2]], 
-				col = get_colour_palette()(input$binNumber), 
+				col = get_colour_palette(),#(input$binNumber), 
 				scale = input$scale,
 				main = input$title, 
 				xlab = input$xlab, 

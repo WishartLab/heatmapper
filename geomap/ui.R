@@ -1,5 +1,6 @@
 source("../global_ui.R")
 library(leaflet)
+library(d3heatmap)
 
 shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 	
@@ -280,7 +281,12 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			
 			BIN_SLIDER(2, 12, 8),
 			
-			JSCOLOUR_ROW("#FFEDA0", "#800026"),
+      COLOUR_SCHEME_SELECT_LIMITED(),
+
+      conditionalPanel(condition = "input.colourScheme == 'custom'", 
+        JSCOLOUR_ROW("#FFEDA0", "#800026")
+      ), 
+		#	JSCOLOUR_ROW("#FFEDA0", "#800026"),
 
     	DOWNLOAD_BUTTONS(),
 		 		
