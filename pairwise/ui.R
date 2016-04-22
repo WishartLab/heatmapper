@@ -49,28 +49,50 @@ shinyUI(list(HEAD_TASKS("#pairwiseTab", "50%", "40%"), fluidPage(title = "Pairwi
 				),
 				EXAMPLE_FILE_SELECT()
 			),
-
-			fluidRow(
-				column(10,
-					radioButtons('matType', label = "Choose matrix type to calculate",
-						 inline=FALSE,
-						 choices = c(
-							"Calculate distance matrix" = 'distMat',
-							"Calculate correlation matrix" = 'corrMat',
-							"Display data as-is" = 'simpleMat'),
-						 selected = 'distMat')
-				),
-				tipify(actionButton('matrixInfoButton', label = NULL, class = "btn-info", icon = icon("fa fa-info-circle")),
+			
+			wellPanel(
+			  fluidRow(
+				  column(10,
+					  radioButtons('matType', label = "Choose matrix type to calculate",
+						   inline=FALSE,
+						   choices = c(
+							  "Calculate distance matrix" = 'distMat',
+							  "Calculate correlation matrix" = 'corrMat',
+							  "Display data as-is" = 'simpleMat'
+						    ),
+						   selected = 'distMat')
+				  ),
+				  tipify(actionButton('matrixInfoButton', label = NULL, class = "btn-info", icon = icon("fa fa-info-circle")),
 						title = "Matrix Type Info", placement = "right")
+			  ),
+
+			
+			
+			
+			  conditionalPanel(condition = "input.matType == 'distMat'",
+			       wellPanel(
+			                 tipify(selectInput('distanceMethod', 
+			                                    label = "Distance Measurement Method",
+			                                    choices = c(
+			                                      "Euclidean" = 'euclidean',
+			                                      "Pearson" = 'pearson',
+			                                      "Kendall's Tau" = 'kendall',
+			                                      "Spearman Rank Correlation" = 'spearman',
+			                                      "Manhattan" = 'manhattan'),
+			                                    selected = 'euclidean'), "Select method for computing distance between rows and columns", placement = "right")
+			                 
+			                 
+			                 
+			  )),
+			  conditionalPanel(condition = "input.matrixInfoButton>0",
+				  wellPanel(id = "matrixInfo",
+					  tags$label("Matrix Type"),
+					  HTML("<button id='closeMatrixInfoButton' class='action-button' style='float:right;'><i class='fa fa-times'></i></button>"),
+					  HTML("<br />Distance matrix: Each row is treated as a point, and Euclidean distances between points are calculated.<br />Correlation matrix: Calculate correlations between the variables in each data column.")
+				  ))
 			),
-
-			conditionalPanel(condition = "input.matrixInfoButton>0",
-				wellPanel(id = "matrixInfo",
-					tags$label("Matrix Type"),
-					HTML("<button id='closeMatrixInfoButton' class='action-button' style='float:right;'><i class='fa fa-times'></i></button>"),
-					HTML("<br />Distance matrix: Each row is treated as a point, and Euclidean distances between points are calculated.<br />Correlation matrix: Calculate correlations between the variables in each data column.")
-				)),
-
+			
+			
 			LAYERS_SELECT(c("Legend" = 'showLegend', "Axis Labels" = 'showAxisLabels'), c('showLegend', 'showAxisLabels')),
 			
 			#BRIGHTNESS_SLIDER(), 
