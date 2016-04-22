@@ -289,7 +289,19 @@ shinyServer(function(input, output, session){
 		else if(input$colourScheme == 'custom'){
 			return(colorRampPalette(c(input$lowColour, input$midColour, input$highColour))(3))
 		}
-		else{
+		else if(input$colourScheme == 'red/green'){
+		  lowColour = "#FF0000"
+		  midColour = "#000000"
+		  highColour = "#23B000"
+		  
+		  return(colorRampPalette(c(lowColour, midColour, highColour))(3))
+		}else if(input$colourScheme == 'blue/yellow'){
+		  lowColour = "#0016DB"
+		  midColour = "#FFFFFF"
+		  highColour = "#FFFF00"
+		  
+		  return(colorRampPalette(c(lowColour, midColour, highColour))(3))
+		}else{
 			return(topo.colors(7))
 		}
 	}
@@ -330,7 +342,7 @@ shinyServer(function(input, output, session){
 	
 	# plot using ggplot
 	get_plot <- reactive({
-		
+	  
 		data <- melt_file()
 		validate(need(!is.null(data), ERR_file_upload))
 		

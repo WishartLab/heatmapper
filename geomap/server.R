@@ -4,6 +4,13 @@ library(raster)
 library(htmlwidgets)
 library(gdata)
 library(DT)
+require(dendextend)
+require(installr)
+require(colorspace)
+library(shiny)
+library(d3heatmap)
+library(gplots)
+library(ggdendro)
 
 source("../global_ui.R") # so we can see EXAMPLE_FILES
 
@@ -78,6 +85,7 @@ shinyServer(function(input, output, session) {
 		input$binNumber
 		input$lowColour
 		input$highColour
+		input$colourScheme
 		isolate({
 			if(!is.null(values$density)){
 				rangeMin <- input$range[[1]]
@@ -284,15 +292,25 @@ shinyServer(function(input, output, session) {
 		values$to <- tail(densityBreaks, length(densityBreaks)-1)
 
 		# Eight colors for eight buckets
+		if(input$colourScheme == 'red/green'){
+		  values$palette <- colorRampPalette(c("#FF0000", "#000000", "#23B000"))(input$binNumber)
+		}else if(input$colourScheme == 'blue/yellow'){
+		  values$palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(input$binNumber)
+		}else if(input$colourScheme == 'rainbow'){
+		  values$palette <- rainbow(input$binNumber)
+		}else if(input$colourScheme == 'topo'){
+		    values$palette <- topo.colors(input$binNumber)
+		}else if(input$colourScheme == 'custom'){
 		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(input$binNumber)
-
+		}
+		print(values$palette)
 		# Assign colors to states
 		values$colours <- structure(
 			values$palette[as.integer(cut(values$density, densityBreaks, include.lowest = TRUE, ordered = TRUE))], 
 			names = names(values$density)
 		)
 	}
-
+	
 	# The state names that come back from the maps package's state database has
 	# state:qualifier format. This function strips off the qualifier.
 	parseRegionName <- function(id) {

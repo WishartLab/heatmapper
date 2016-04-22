@@ -155,12 +155,29 @@ COLOUR_SCHEME_SELECT <- function(selected = 'custom'){
 			selectInput('colourScheme', label = NULL, 
 	  		choices = c(
 	  			'Custom' = "custom",
+	  			'Reg/Green' = "red/green",
+	  			'Blue/Yellow' = "blue/yellow",
 	  			'Rainbow' = "rainbow", 
 	  			'Topo' = "topo"
 	  		), 
 	  		selected = selected)
 		)
 	), "Select custom or preset colour scheme", placement = "right")
+}
+
+COLOUR_SCHEME_SELECT_LIMITED <- function(selected = 'custom'){
+  tipify(fluidRow(
+    column(3, tags$label("Colour Scheme")),
+    column(9,					
+           selectInput('colourScheme', label = NULL, 
+                       choices = c(
+                         'Custom' = "custom",
+                         'Reg/Green' = "red/green",
+                         'Blue/Yellow' = "blue/yellow"
+                       ), 
+                       selected = selected)
+    )
+  ), "Select custom or preset colour scheme", placement = "right")
 }
 
 # heatmap opacity slider

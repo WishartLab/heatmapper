@@ -170,6 +170,10 @@ shinyServer(function(input, output, session){
 		
 		if(input$colourScheme == 'custom'){
 			palette <- colorRampPalette(c(input$lowColour, input$highColour))(n)
+		}else if(input$colourScheme == 'red/green'){
+		  palette <- colorRampPalette(c("#FF0000", "#000000", "#23B000"))(input$binNumber)
+		}else if(input$colourScheme == 'blue/yellow'){
+		  palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(input$binNumber)
 		}
 		else if(input$colourScheme == 'rainbow'){
 			palette <- substr(rev(rainbow(n, end = 5/6)), 0, 7)
