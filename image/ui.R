@@ -106,8 +106,8 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  	FILL_OPACITY_SLIDER("0.05"),
 	  	BIN_SLIDER(2, 50, 30),
 	  	
-	  	#COLOUR_SCHEME_SELECT(),
-	  	COLOUR_SCHEME_SELECT_LIMITED(),
+	  	COLOUR_SCHEME_SELECT(),
+	  	#COLOUR_SCHEME_SELECT_LIMITED(),
 	  	
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
 	  		JSCOLOUR_ROW("#EE00FF", "#FFFF00")
