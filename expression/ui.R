@@ -9,6 +9,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 	
 	sidebarLayout(position = "right",
     sidebarPanel(id = "sidebarPanel", width = 1,
+      tags$head(tags$script(src='active.js')),
 			FILE_UPLOAD_PANEL(),
     	EXAMPLE_FILE_SELECT(),
     	
@@ -66,15 +67,20 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 							selected = 'row'))
     		  ),"Apply clustering to rows and/or columns", "right")
     	),
+			# conditionalPanel(condition = "input.clusterMethod == 'import'",
+			#   tipify(fileInput('rowClusterFile', label = "Row Cluster File"), "A file containing existing clusters in Newick tree format", placement = "right"),
+			#   tipify(fileInput('colClusterFile', label = "Column Cluster File"), "A file containing existing clusters in Newick tree format", placement = "right")
+			# ),
 			conditionalPanel(condition = "input.clusterMethod == 'import'",
-			  tipify(fileInput('rowClusterFile', label = "Row Cluster File"), "A file containing existing clusters in Newick tree format", placement = "right"),
-			  tipify(fileInput('colClusterFile', label = "Column Cluster File"), "A file containing existing clusters in Newick tree format", placement = "right")
+			  tags$label("Row Cluster File"),
+        HTML("<button id='clearRowClusterFile' class='action-button clearButton clearClusterFile'>Clear File</button>"),
+        bsTooltip("clearRowClusterFile", "Clear uploaded file", "right"),
+			  tipify(fileInput('rowClusterFile', label = NULL), "A file containing existing clusters in Newick tree format", placement = "right"),
+			  tags$label("Column Cluster File"),
+        HTML("<button id='clearColClusterFile' class='action-button clearButton clearClusterFile'>Clear File</button>"),
+        bsTooltip("clearColClusterFile", "Clear uploaded file", "right"),
+			  tipify(fileInput('colClusterFile', label = NULL), "A file containing existing clusters in Newick tree format", placement = "right")
 			),
-# 			        conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
-#             HTML("<button id='clearFile' class='action-button clearButton'>Clear File</button>"), 
-#             bsTooltip("clearFile", "Clear uploaded file", "right"),
-#             fileInput('file', label = NULL)
-#         )
     		
     	conditionalPanel(condition = "input.tabSelections == 'Plot' && input.clusterMethod != 'none'",
 	    	tipify(fluidRow(

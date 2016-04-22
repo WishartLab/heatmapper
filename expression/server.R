@@ -31,6 +31,18 @@ shinyServer(function(input, output, session){
 		values$file <- NULL
 	})
 	
+	observe({
+		input$clearColClusterFile
+		values$colClusterFile <- NULL
+		input$colClusterFile$datapath = NULL
+		print("HERE CLICK")
+	})
+
+	observe({
+		input$clearRowClusterFile
+		values$rowClusterFile <- NULL
+	})
+	
 	# update values$file when a file is uploaded, set to NA if file cannot be read
 	observe({
 		if(!is.null(input$file$datapath)){
@@ -63,10 +75,24 @@ shinyServer(function(input, output, session){
 			tryCatch({
 			  values$colClusterFile <- read.tree(input$colClusterFile$datapath)
 			  update_col_clust()
-			  # print(values$colClusterFile)
+			  print(values$colClusterFile)
 			}, 
 			error = function(err){
 				values$colClusterFile <- NA
+			})
+		}
+	})
+	
+	# update values$rowClusterFile when a file is uploaded, set to NA if file cannot be read
+	observe({
+		if(!is.null(input$rowClusterFile$datapath)){
+			tryCatch({
+			  values$rowClusterFile <- read.tree(input$rowClusterFile$datapath)
+			  update_row_clust()
+			  # print(values$rowClusterFile)
+			}, 
+			error = function(err){
+				values$rowClusterFile <- NA
 			})
 		}
 	})
@@ -315,7 +341,7 @@ shinyServer(function(input, output, session){
 	  field = ifelse(margin == 2, 'colClusterFile', 'rowClusterFile')
 		if(!is.null(input[[field]])){
 			tryCatch({
-			  as.hclust.phylo(values$colClusterFile) 
+			  as.hclust.phylo(values[[field]]) 
 			}, 
 			error = function(err){
 				NA
@@ -324,7 +350,6 @@ shinyServer(function(input, output, session){
 		else{
 			NULL
 		}
-	  
 	}
 	
 	# Reorder the data to match imported clusters
@@ -337,14 +362,16 @@ shinyServer(function(input, output, session){
 	      data = data[,values$colHclust$labels]
 	    } else {
 	      print("Error: with column cluster labels")
-	      # values$colHclust = NULL
-	      # values$colCLusterFile = NULL
+        # session$sendCustomMessage(type='resetClusterFile', 'Col')
+	      # input$colClusterFile = NULL
+	      # values$colHclust = NULL # BAD
+	      values$colClusterFile = NULL # BAD
 	    }
 	  }
 	  # Reorder Rows
 	  if(!is.null(values$rowClusterFile) && class(values$rowHclust) == 'hclust') {
 	    labels = values$rowHclust$labels
-	    if(all(labels %in% rownames(data))) {
+	    if(all(labels %in% colnames(data))) {
 	      data = data[,values$rowHclust$labels]
 	    } else {
 	      print("Error: with row cluster labels")
@@ -446,7 +473,17 @@ shinyServer(function(input, output, session){
 	get_dendrograms <- reactive({
 		hr <- NA
 		hc <- NA
-		if(input$clusterMethod != 'none'){
+    if(input$clusterMethod == 'import') {
+			if(clust_selected("row") && !is.null(values$rowClusterFile)){
+			# if(clust_selected("row")){
+				hr <- as.dendrogram(values$rowHclust)
+			}
+			if(clust_selected("col") && !is.null(values$colClusterFile)){
+			# if(clust_selected("col")){
+				hc <- as.dendrogram(values$colHclust)
+			}
+    }
+    else if(input$clusterMethod != 'none'){
 			if(clust_selected("row")){
 				hr <- as.dendrogram(values$rowHclust)
 			}
