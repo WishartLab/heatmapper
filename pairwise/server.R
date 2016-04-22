@@ -42,7 +42,13 @@ shinyServer(function(input, output, session){
 		error = function(e){
 			header <<- TRUE
 		})
-		read.table(filePath, header = header, sep = sep)
+		
+		file <- read.table(filePath, header = header, sep = sep)
+		rname <- file[,1]
+		if (!is.numeric(rname[1]) & !is.na(rname[1])){ # check the second line's first item, numeric or not, if not, it is a rowname
+		  file <- read.table(filePath, header = header, row.names=1, sep = sep)
+		}
+		file
 	}
 	
 	read.coords <- function(filePath,	fileName = "txt") {
