@@ -303,7 +303,7 @@ shinyServer(function(input, output, session) {
 		}else if(input$colourScheme == 'custom'){
 		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(input$binNumber)
 		}
-		print(values$palette)
+
 		# Assign colors to states
 		values$colours <- structure(
 			values$palette[as.integer(cut(values$density, densityBreaks, include.lowest = TRUE, ordered = TRUE))], 
