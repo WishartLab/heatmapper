@@ -116,9 +116,9 @@ shinyServer(function(input, output, session){
 		  midCol = "#000000"
 		  highCol = "#23B000"
 		}else if (input$colourScheme == 'blue/yellow'){
-		  lowColour = "#0016DB"
-		  midColour = "#FFFFFF"
-		  highColour = "#FFFF00"
+		  lowCol = "#0016DB"
+		  midCol = "#FFFFFF"
+		  highCol = "#FFFF00"
 		}else if(input$colourScheme == 'custom'){
 		  lowCol = input$lowColour
 		  midCol = input$midColour
