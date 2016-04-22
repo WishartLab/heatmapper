@@ -188,6 +188,7 @@ shinyServer(function(input, output, session){
 		# Each row will be 3 integers representing R, G, and B values. The first
 		# row is the low color, and the last is the high color, with a total of
 		# q*2 + 1 colors.
+		
 		arr = matrix(c(
 					subarr(r1, r2, q)[1:q], subarr(r2, r3, q),
 					subarr(g1, g2, q)[1:q], subarr(g2, g3, q),
