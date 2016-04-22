@@ -47,11 +47,12 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 					"Average Linkage" = 'average',
 					"Centroid Linkage" = 'centroid',
 					"Complete Linkage" = 'complete',
-					"Single Linkage" = 'single'
+					"Single Linkage" = 'single',
+					"Import Existing Clusters" = 'import'
 				),	
     		selected = 'average'), "Select method for computing hierarchical clustering", placement = "right"),
     	
-    	conditionalPanel(condition = "input.clusterMethod != 'none'",
+    	conditionalPanel(condition = "input.clusterMethod != 'none' && input.clusterMethod != 'import'",
 	    	tipify(selectInput('distanceMethod', 
 					label = "Distance Measurement Method",
 					choices = c(
@@ -71,20 +72,30 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 								"Rows" = 'row', 
 								"Columns" = 'col'), 
 							selected = 'row'))
-    		),"Apply clustering to rows and/or columns", "right"),
+    		  ),"Apply clustering to rows and/or columns", "right")
+    	),
+			conditionalPanel(condition = "input.clusterMethod == 'import'",
+			  tags$label("Row Cluster File"),
+        HTML("<button id='clearRowClusterFile' class='action-button clearButton clearClusterFile'>Clear File</button>"),
+        bsTooltip("clearRowClusterFile", "Clear uploaded file", "right"),
+			  tipify(fileInput('rowClusterFile', label = NULL), "A file containing existing clusters in Newick tree format", placement = "right"),
+			  tags$label("Column Cluster File"),
+        HTML("<button id='clearColClusterFile' class='action-button clearButton clearClusterFile'>Clear File</button>"),
+        bsTooltip("clearColClusterFile", "Clear uploaded file", "right"),
+			  tipify(fileInput('colClusterFile', label = NULL), "A file containing existing clusters in Newick tree format", placement = "right")
+			),
     		
-    		conditionalPanel(condition = "input.tabSelections == 'Plot'",
-	    		tipify(fluidRow(
-	    			column(5, tags$label("Show Dendrogram")),
-	    			column(7,
-	    				selectInput('dendSelectRC', label = NULL, 
-								multiple = TRUE,
-								choices = c(
-									"Rows" = 'row', 
-									"Columns" = 'col'), 
-							selected = 'row'))
-	    		), "Show or hide dendrograms", "right")
-    		)
+    	conditionalPanel(condition = "input.tabSelections == 'Plot' && input.clusterMethod != 'none'",
+	    	tipify(fluidRow(
+	    		column(5, tags$label("Show Dendrogram")),
+	    		column(7,
+	    			selectInput('dendSelectRC', label = NULL, 
+							multiple = TRUE,
+							choices = c(
+								"Rows" = 'row', 
+								"Columns" = 'col'), 
+						selected = 'row'))
+	      	), "Show or hide dendrograms", "right")
     	),
     	
     	DOWNLOAD_BUTTONS_WITH_SELECTION(),
