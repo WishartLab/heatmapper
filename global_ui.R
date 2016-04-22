@@ -70,7 +70,8 @@ HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 }
 
 # file upload vs example selection, file upload button when fileUpload is selected
-FILE_UPLOAD_PANEL <- function(selected = 'fileUpload'){
+# FILE_UPLOAD_PANEL <- function(selected = 'fileUpload'){
+FILE_UPLOAD_PANEL <- function(selected = 'example'){
     list(  
 		tipify(radioButtons('chooseInput', label = FILE_UPLOAD, 
     	    inline=TRUE, 

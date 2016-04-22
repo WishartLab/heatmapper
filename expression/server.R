@@ -3,6 +3,7 @@ library(gdata)
 library(d3heatmap)
 library(gplots)
 library(ggdendro)
+library(ape)
 # memory testing
 # library(pryr)
 
@@ -17,6 +18,8 @@ shinyServer(function(input, output, session){
 	
 	values <- reactiveValues(
 		file = NULL,
+		rowClusterFile = NULL,
+		colClusterFile = NULL,
 		rowMatrix = NULL, 
 		colMatrix = NULL, 
 		rowHclust = NULL, 
@@ -54,6 +57,20 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
+	# update values$colClusterFile when a file is uploaded, set to NA if file cannot be read
+	observe({
+		if(!is.null(input$colClusterFile$datapath)){
+			tryCatch({
+			  values$colClusterFile <- read.tree(input$colClusterFile$datapath)
+			  update_col_clust()
+			  # print(values$colClusterFile)
+			}, 
+			error = function(err){
+				values$colClusterFile <- NA
+			})
+		}
+	})
+	
 	# try to update reactive values when row and/or col clustering is selected
 	observe({
 		try({
@@ -77,7 +94,6 @@ shinyServer(function(input, output, session){
 	})
 	
 	################################## HELPER FUNCTIONS ##################################
-
 	# returns raw data from file input or selected example file
 	get_file <- reactive({
 		if(input$chooseInput == 'fileUpload'){
@@ -94,6 +110,9 @@ shinyServer(function(input, output, session){
 		validate(need(!is.null(get_file()), ERR_file_upload))
 		tryCatch({
 			data <- remove_strings(get_file())
+			if(input$clusterMethod == 'import') {
+			  data = reorder_data(data)
+			}
 			return(data.matrix(data))
 		}, 
 		error = function(err){
@@ -291,13 +310,59 @@ shinyServer(function(input, output, session){
 			NULL
 		}
 	}
+	
+	get_hclust_from_file <- function(margin) {
+	  field = ifelse(margin == 2, 'colClusterFile', 'rowClusterFile')
+		if(!is.null(input[[field]])){
+			tryCatch({
+			  as.hclust.phylo(values$colClusterFile) 
+			}, 
+			error = function(err){
+				NA
+			})
+		}
+		else{
+			NULL
+		}
+	  
+	}
+	
+	# Reorder the data to match imported clusters
+	reorder_data <- function(data) {
+	  # TODO check and catch errors on label names
+	  # Reorder columns
+	  if(!is.null(values$colClusterFile) && class(values$colHclust) == 'hclust') {
+	    labels = values$colHclust$labels
+	    if(all(labels %in% colnames(data))) {
+	      data = data[,values$colHclust$labels]
+	    } else {
+	      print("Error: with column cluster labels")
+	      # values$colHclust = NULL
+	      # values$colCLusterFile = NULL
+	    }
+	  }
+	  # Reorder Rows
+	  if(!is.null(values$rowClusterFile) && class(values$rowHclust) == 'hclust') {
+	    labels = values$rowHclust$labels
+	    if(all(labels %in% rownames(data))) {
+	      data = data[,values$rowHclust$labels]
+	    } else {
+	      print("Error: with row cluster labels")
+	    }
+	  }
+	  data
+	}
 
 	# updated when change in file, dist method, or hclust method
 	# sets values$rowMatrix and values$rowHclust
 	update_row_clust <- reactive({
 		if(!is.null(get_file())){
 			values$rowMatrix <- get_data_matrix()
-			values$rowHclust <- get_hclust( get_dist(values$rowMatrix) )
+			if(input$clusterMethod == 'import') {
+			  values$rowHclust <- get_hclust_from_file(margin=1)
+			} else {
+			  values$rowHclust <- get_hclust( get_dist(values$rowMatrix) )
+			}
 		}
 	})
 	
@@ -306,7 +371,11 @@ shinyServer(function(input, output, session){
 	update_col_clust <- reactive({
 		if(!is.null(get_file())){
 			values$colMatrix <- t(get_data_matrix())
-			values$colHclust <- get_hclust( get_dist(values$colMatrix) )
+			if(input$clusterMethod == 'import') {
+			  values$colHclust <- get_hclust_from_file(margin=2)
+			} else {
+			  values$colHclust <- get_hclust( get_dist(values$colMatrix) )
+			}
 		}
 	})
 
@@ -329,12 +398,17 @@ shinyServer(function(input, output, session){
 	
 	# finds if a string is a current selected item in input$clusterSelectRC
 	clust_selected <- function(rc){
-		if(length(grep(rc, input$clusterSelectRC))>0){
-			TRUE
-		}
-		else{
-			FALSE
-		}
+	  if(input$clusterMethod == 'import') { 
+	    field = paste0(rc, 'ClusterFile')
+	    !is.null(input[[field]]$datapath)
+	  } else {
+	    if(length(grep(rc, input$clusterSelectRC))>0){
+	      TRUE
+	    }
+	    else{
+	      FALSE
+	    }
+	  }
 	}
 	
 	# check which of "row" and "col" is selected
