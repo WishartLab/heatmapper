@@ -55,7 +55,7 @@ HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
                 .clearButton {float:right; font-size:12px;}
 				.fa-angle-down:before, .fa-angle-up:before {float:right;}
 				#lowColour, #highColour, #midColour, #missingColour {width:100%}
-				#file_progress {height:0;}
+				#file_progress, #colClusterFile_progress, #rowClusterFile_progress  {height:0;}
 				#sidebarPanel {width:23.45em;}
 				#mainPanel {left:24.45em; position:absolute; min-width:25em;}
 				#exampleButton {float:right;}")
@@ -155,12 +155,29 @@ COLOUR_SCHEME_SELECT <- function(selected = 'custom'){
 			selectInput('colourScheme', label = NULL, 
 	  		choices = c(
 	  			'Custom' = "custom",
+	  			'Reg/Green' = "red/green",
+	  			'Blue/Yellow' = "blue/yellow",
 	  			'Rainbow' = "rainbow", 
 	  			'Topo' = "topo"
 	  		), 
 	  		selected = selected)
 		)
 	), "Select custom or preset colour scheme", placement = "right")
+}
+
+COLOUR_SCHEME_SELECT_LIMITED <- function(selected = 'custom'){
+  tipify(fluidRow(
+    column(3, tags$label("Colour Scheme")),
+    column(9,					
+           selectInput('colourScheme', label = NULL, 
+                       choices = c(
+                         'Custom' = "custom",
+                         'Reg/Green' = "red/green",
+                         'Blue/Yellow' = "blue/yellow"
+                       ), 
+                       selected = selected)
+    )
+  ), "Select custom or preset colour scheme", placement = "right")
 }
 
 # heatmap opacity slider

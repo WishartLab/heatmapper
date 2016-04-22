@@ -3,7 +3,8 @@ library(gdata)
 library(d3heatmap)
 library(gplots)
 library(ggdendro)
-library(RColorBrewer)
+library(ape)
+
 # memory testing
 # library(pryr)
 
@@ -28,6 +29,8 @@ shinyServer(function(input, output, session){
 	
 	values <- reactiveValues(
 		file = NULL,
+		rowClusterFile = NULL,
+		colClusterFile = NULL,
 		rowMatrix = NULL, 
 		colMatrix = NULL, 
 		rowHclust = NULL, 
@@ -37,6 +40,16 @@ shinyServer(function(input, output, session){
 	observe({
 		input$clearFile
 		values$file <- NULL
+	})
+	
+	observe({
+		input$clearColClusterFile
+		values$colClusterFile <- NULL
+	})
+
+	observe({
+		input$clearRowClusterFile
+		values$rowClusterFile <- NULL
 	})
 	
 	# update values$file when a file is uploaded, set to NA if file cannot be read
@@ -65,6 +78,34 @@ shinyServer(function(input, output, session){
 		}
 	})
 	
+	# update values$colClusterFile when a file is uploaded, set to NA if file cannot be read
+	observe({
+		if(!is.null(input$colClusterFile$datapath)){
+			tryCatch({
+			  values$colClusterFile <- read.tree(input$colClusterFile$datapath)
+			  update_col_clust()
+			  print(values$colClusterFile)
+			}, 
+			error = function(err){
+				values$colClusterFile <- NA
+			})
+		}
+	})
+	
+	# update values$rowClusterFile when a file is uploaded, set to NA if file cannot be read
+	observe({
+		if(!is.null(input$rowClusterFile$datapath)){
+			tryCatch({
+			  values$rowClusterFile <- read.tree(input$rowClusterFile$datapath)
+			  update_row_clust()
+			  # print(values$rowClusterFile)
+			}, 
+			error = function(err){
+				values$rowClusterFile <- NA
+			})
+		}
+	})
+	
 	# try to update reactive values when row and/or col clustering is selected
 	observe({
 		try({
@@ -88,7 +129,6 @@ shinyServer(function(input, output, session){
 	})
 	
 	################################## HELPER FUNCTIONS ##################################
-
 	# returns raw data from file input or selected example file
 	get_file <- reactive({
 		if(input$chooseInput == 'fileUpload'){
@@ -116,6 +156,9 @@ shinyServer(function(input, output, session){
 		validate(need(!is.null(get_file()), ERR_file_upload))
 		tryCatch({
 			data <- remove_strings(get_file())
+			if(input$clusterMethod == 'import') {
+			  data = reorder_data(data)
+			}
 			return(data.matrix(data))
 		}, 
 		error = function(err){
@@ -133,6 +176,20 @@ shinyServer(function(input, output, session){
 		# colors.
 		brightness_adj = as.integer(input$plotBrightness)
 		
+		if(input$colourScheme == 'red/green'){
+		  lowCol = "#FF0000"
+		  midCol = "#000000"
+		  highCol = "#23B000"
+		}else if (input$colourScheme == 'blue/yellow'){
+		  lowCol = "#0016DB"
+		  midCol = "#FFFFFF"
+		  highCol = "#FFFF00"
+		}else if(input$colourScheme == 'custom'){
+		  lowCol = input$lowColour
+		  midCol = input$midColour
+		  highCol = input$highColour
+		}
+
 		if(input$colourScheme == 'rainbow' || input$colourScheme == 'topo'){
 		  if(input$colourScheme == 'rainbow'){
 		  cl = rainbow(input$binNumber)
@@ -153,21 +210,21 @@ shinyServer(function(input, output, session){
 		  }
 		  
 		  adjusted_colours
-		 }else if(input$colourScheme == 'custom'){
+		 }else if(input$colourScheme == 'custom' || input$colourScheme == 'red/green' || input$colourScheme == 'blue/yellow'){
 		  if (brightness_adj == 0) {
-			  lowCol = input$lowColour
-			  midCol = input$midColour
-			  highCol = input$highColour
+			  lowCol = lowCol
+			  midCol = midCol
+			  highCol = highCol
 			  colorRampPalette(c(lowCol, midCol, highCol))(input$binNumber)
 		  } else if (brightness_adj < 0) {
-			  lowCol = darken(input$lowColour, brightness_adj)
-			  midCol = darken(input$midColour, brightness_adj)
-			  highCol = darken(input$highColour, brightness_adj)
+			  lowCol = darken(lowCol, brightness_adj)
+			  midCol = darken(midCol, brightness_adj)
+			  highCol = darken(highCol, brightness_adj)
 			  colorRampPalette(c(lowCol, midCol, highCol))(input$binNumber)
 		  } else {
-			  lowCol = input$lowColour
-			  midCol = input$midColour
-			  highCol = input$highColour
+			  lowCol = lowCol
+			  midCol = midCol
+			  highCol = highCol
 			  colorRampPalette(get_brightness_adjusted_color_set(lowCol, midCol, highCol, brightness_adj))(input$binNumber)
 		  }
 		}
@@ -357,13 +414,61 @@ shinyServer(function(input, output, session){
 			NULL
 		}
 	}
+	
+	get_hclust_from_file <- function(margin) {
+	  field = ifelse(margin == 2, 'colClusterFile', 'rowClusterFile')
+		# if(!is.null(input[[field]])){
+		if(!is.null(values[[field]])){
+			tryCatch({
+			  as.hclust.phylo(values[[field]]) 
+			}, 
+			error = function(err){
+				NA
+			})
+		}
+		else{
+			NULL
+		}
+	}
+	
+	# Reorder the data to match imported clusters
+	reorder_data <- function(data) {
+	  # TODO check and catch errors on label names: try doing this in file observer
+	  # Reorder columns
+	  if(!is.null(values$colClusterFile) && class(values$colHclust) == 'hclust') {
+	    labels = values$colHclust$labels
+	    if(all(labels %in% colnames(data))) {
+	      data = data[,values$colHclust$labels]
+	    } else {
+	      print("Error: with column cluster labels")
+        # session$sendCustomMessage(type='resetClusterFile', 'Col')
+	      # input$colClusterFile = NULL
+	      # values$colHclust = NULL # BAD
+	      # values$colClusterFile = NULL # BAD
+	    }
+	  }
+	  # Reorder Rows
+	  if(!is.null(values$rowClusterFile) && class(values$rowHclust) == 'hclust') {
+	    labels = values$rowHclust$labels
+	    if(all(labels %in% colnames(data))) {
+	      data = data[,values$rowHclust$labels]
+	    } else {
+	      print("Error: with row cluster labels")
+	    }
+	  }
+	  data
+	}
 
 	# updated when change in file, dist method, or hclust method
 	# sets values$rowMatrix and values$rowHclust
 	update_row_clust <- reactive({
 		if(!is.null(get_file())){
 			values$rowMatrix <- get_data_matrix()
-			values$rowHclust <- get_hclust( get_dist(values$rowMatrix) )
+			if(input$clusterMethod == 'import') {
+			  values$rowHclust <- get_hclust_from_file(margin=1)
+			} else {
+			  values$rowHclust <- get_hclust( get_dist(values$rowMatrix) )
+			}
 		}
 	})
 	
@@ -372,7 +477,11 @@ shinyServer(function(input, output, session){
 	update_col_clust <- reactive({
 		if(!is.null(get_file())){
 			values$colMatrix <- t(get_data_matrix())
-			values$colHclust <- get_hclust( get_dist(values$colMatrix) )
+			if(input$clusterMethod == 'import') {
+			  values$colHclust <- get_hclust_from_file(margin=2)
+			} else {
+			  values$colHclust <- get_hclust( get_dist(values$colMatrix) )
+			}
 		}
 	})
 
@@ -395,12 +504,19 @@ shinyServer(function(input, output, session){
 	
 	# finds if a string is a current selected item in input$clusterSelectRC
 	clust_selected <- function(rc){
-		if(length(grep(rc, input$clusterSelectRC))>0){
-			TRUE
-		}
-		else{
-			FALSE
-		}
+	  if(input$clusterMethod == 'import') { 
+	    # field = paste0(rc, 'ClusterFile')
+	    # !is.null(input[[field]]$datapath)
+	    field = paste0(rc, 'ClusterFile')
+	    !is.null(values[[field]])
+	  } else {
+	    if(length(grep(rc, input$clusterSelectRC))>0){
+	      TRUE
+	    }
+	    else{
+	      FALSE
+	    }
+	  }
 	}
 	
 	# check which of "row" and "col" is selected
@@ -438,7 +554,17 @@ shinyServer(function(input, output, session){
 	get_dendrograms <- reactive({
 		hr <- NA
 		hc <- NA
-		if(input$clusterMethod != 'none'){
+    if(input$clusterMethod == 'import') {
+			if(clust_selected("row") && !is.null(values$rowClusterFile)){
+			# if(clust_selected("row")){
+				hr <- as.dendrogram(values$rowHclust)
+			}
+			if(clust_selected("col") && !is.null(values$colClusterFile)){
+			# if(clust_selected("col")){
+				hc <- as.dendrogram(values$colHclust)
+			}
+    }
+    else if(input$clusterMethod != 'none'){
 			if(clust_selected("row")){
 				hr <- as.dendrogram(values$rowHclust)
 			}
