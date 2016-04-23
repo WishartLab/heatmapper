@@ -44,10 +44,22 @@ $(document).ready(function() {
         $("#rowClusterFile_progress").hide();
     });
 
+    /* clear multiple file upload button control */
+    var fileMultiControl = $("#fileMulti");
+
+    $("#clearFileMulti").on("click", function () {
+        fileMultiControl.replaceWith( fileMultiControl = fileMultiControl.clone( true ) );
+        $("#fileMulti_progress").hide();
+    });
+
     /* file input progress bar control */
     $('#file,#colClusterFile,#rowClusterFile').change(function() {
       $(this).siblings('.progress').get(0).setAttribute('style', "height:20px; margin-top:5px;");
     })
+
+    $( "#fileMulti" ).change(function() {
+      document.getElementById("file_progress").setAttribute('style', "height:20px; margin-top:5px;");
+    });
 
     /* example file info close button */
     $( "#closeExampleButton" ).on("click", function(){
