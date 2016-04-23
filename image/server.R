@@ -403,16 +403,34 @@ shinyServer(function(input, output, session){
 	
 	# return colour scheme 
 	get_colours <- reactive({
-		if(input$colourScheme == 'rainbow'){
-			scale_fill_gradientn(colours = rev(rainbow(7)))
-		}
-		else if(input$colourScheme == 'custom'){
-			scale_fill_gradient(low = input$lowColour, high = input$highColour)
-		}
-		else{
-			scale_fill_gradientn(colours = rev(topo.colors(7)))
-		}
-	})
+	  
+	  if(input$colourScheme == 'red/green'){
+	    scale_fill_gradientn(colours = colorRampPalette(c("#FF0000", "#000000", "#23B000")))
+	  }else if(input$colourScheme == 'blue/yellow'){
+	    scale_fill_gradientn(colours = colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00")))
+	  }else if(input$colourScheme == 'piyg'){
+	    scale_fill_gradientn(colours = colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134")))
+	  }else if(input$colourScheme == 'grayscale'){
+	    scale_fill_gradientn(colours = colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF")))
+	  }else if(input$colourScheme == 'rainbow'){
+	    scale_fill_gradientn(colours = rev(rainbow(7)))
+	  }else if(input$colourScheme == 'topo'){
+	    scale_fill_gradientn(colours = rev(topo.colors(7)))
+	  }else if(input$colourScheme == 'custom'){
+	    scale_fill_gradient(low = input$lowColour, high = input$highColour)
+	  }
+	  
+	#	if(input$colourScheme == 'rainbow'){
+	#		scale_fill_gradientn(colours = rev(rainbow(7)))
+#		}
+#		else if(input$colourScheme == 'custom'){
+#			scale_fill_gradient(low = input$lowColour, high = input$highColour)
+#		}
+#		else{
+#			scale_fill_gradientn(colours = rev(topo.colors(7)))
+#		}
+})
+	  
 	
 	# returns geom_point of selected point if valid selection is made
 	get_selected_point <- function(){

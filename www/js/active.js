@@ -21,21 +21,33 @@ $(document).ready(function() {
     /* clear file button control */
     var fileControl = $("#file");
 
-    $("#clearFile").on("click", function () {
-        fileControl.replaceWith( fileControl = fileControl.clone( true ) );
-        $("#file_progress").hide();
-    });
-    
     /* clear file input when upload format selection changed */
     $("#uploadFormat").on("change", function () {
         fileControl.replaceWith( fileControl = fileControl.clone( true ) );
         $("#file_progress").hide();
     });
-        
+
+    $("#clearFile").on("click", function () {
+        fileControl.replaceWith( fileControl = fileControl.clone( true ) );
+        $("#file_progress").hide();
+    });
+    
+    $("#clearColClusterFile").on("click", function () {
+        var fileControl = $("#colClusterFile");
+        fileControl.replaceWith( fileControl = fileControl.clone( true ) );
+        $("#colClusterFile_progress").hide();
+    });
+    
+    $("#clearRowClusterFile").on("click", function () {
+        var fileControl = $("#rowClusterFile");
+        fileControl.replaceWith( fileControl = fileControl.clone( true ) );
+        $("#rowClusterFile_progress").hide();
+    });
+
     /* file input progress bar control */
-    $( "#file" ).change(function() {
-      document.getElementById("file_progress").setAttribute('style', "height:20px; margin-top:5px;");
-    });    
+    $('#file,#colClusterFile,#rowClusterFile').change(function() {
+      $(this).siblings('.progress').get(0).setAttribute('style', "height:20px; margin-top:5px;");
+    })
 
     /* example file info close button */
     $( "#closeExampleButton" ).on("click", function(){
@@ -76,5 +88,5 @@ $(document).ready(function() {
             document.getElementById(messageId).innerHTML = "Show " + message;
         }
     }
-    
+
 })	
