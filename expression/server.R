@@ -122,9 +122,7 @@ shinyServer(function(input, output, session){
 			  data_rows = rownames(data)
 			  # cluster_labels = values$rowClusterFile$tip.label
 			  cluster_labels = read.tree(input$rowClusterFile$datapath)$tip.label
-			    if (condition) {
-			      
-			    }f(all(cluster_labels %in% data_rows)) {
+			  if(all(cluster_labels %in% data_rows)) {
 			    update_row_clust()
 			  } else {
 			    values$rowClusterFile <- NA
