@@ -156,6 +156,7 @@ COLOUR_SCHEME_SELECT <- function(selected = 'blue/yellow'){
 	  		choices = c(
 	  		  'Blue/Yellow' = "blue/yellow",
 	  			'Reg/Green' = "red/green",
+	  			'Grayscale' = "grayscale",
 	  			'Custom' = "custom",
 	  			'Rainbow' = "rainbow", 
 	  			'Topo' = "topo"
@@ -173,6 +174,7 @@ COLOUR_SCHEME_SELECT_LIMITED <- function(selected = 'blue/yellow'){
                        choices = c(
                          'Blue/Yellow' = "blue/yellow",
                          'Reg/Green' = "red/green",
+                         'Grayscale' = "grayscale",
                          'Custom' = "custom"
                        ), 
                        selected = selected)

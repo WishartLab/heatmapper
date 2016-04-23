@@ -36,6 +36,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 			   column(4, jscolourInput("highColour", label = "High Colour", value = "#23B000")))
 			),
     
+			
     	#JSCOLOUR_3_ROW(),
 			
 			jscolourInput("missingColour", label = "Missing Data Colour"),
