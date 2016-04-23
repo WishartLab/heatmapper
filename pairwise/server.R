@@ -9,7 +9,9 @@ shinyServer(function(input, output, session){
 
 	#################### GLOBAL REACTIVE VALUES ####################
 	values <- reactiveValues(
-		file = NULL
+		file = NULL,
+		fileMulti = NULL,
+		plotnum = 1 # For multiple file upload. First plot is 1.
 	)
 	
 	#################### OBSERVERS ####################
@@ -17,7 +19,12 @@ shinyServer(function(input, output, session){
 		input$clearFile
 		values$file <- NULL
 	})
-	
+
+	observe({
+		input$clearFileMulti
+		values$fileMulti <- NULL
+	})
+
 	observe({
 		input$uploadFormat
 		values$file <- NULL
@@ -27,7 +34,46 @@ shinyServer(function(input, output, session){
 		values$file <- input$file
 	})
 	
-	
+	observe({
+		if (is.null(input$fileMulti)) {
+			values$fileMulti <- NULL
+		} else {
+			values$fileMulti <- input$fileMulti[with(input$fileMulti, order(name)), ] # sort by file name as we copy the data table
+		}
+	})
+
+	observeEvent(input$cyclePlotsStart, {
+		if (is.null(nrow(values$fileMulti))) {
+			values$plotnum
+		} else if (values$plotnum > 1) {
+			values$plotnum <- 1
+		}
+	})
+
+	observeEvent(input$cyclePlotsLeft, {
+		if (is.null(nrow(values$fileMulti))) {
+			values$plotnum
+		} else if (values$plotnum > 1) {
+			values$plotnum <- values$plotnum - 1
+		}
+	})
+
+	observeEvent(input$cyclePlotsRight, {
+		if (is.null(nrow(values$fileMulti))) {
+			values$plotnum
+		} else if (values$plotnum < nrow(values$fileMulti)) {
+			values$plotnum <- values$plotnum + 1
+		}
+	})
+
+	observeEvent(input$cyclePlotsEnd, {
+		if (is.null(nrow(values$fileMulti))) {
+			values$plotnum
+		} else if (values$plotnum < nrow(values$fileMulti)) {
+			values$plotnum <- nrow(values$fileMulti)
+		}
+	})
+
 	#################### FILE INPUT FUNCTIONS ####################
 	# read a file given a file name
 	read_file <- function(filePath, fileName = "txt") {
@@ -219,12 +265,16 @@ shinyServer(function(input, output, session){
 		return (TRUE)
 	}
 	
+	get_plot_num <- reactive({
+		values$plotnum
+	})
+
 	# retrieve original data
 	get_file <- reactive({
 		if(input$chooseInput == 'example'){
 			file <- read_file(input$exampleFiles)
 		}
-		else {
+		else if(input$chooseInput == 'fileUpload'){
 			if(is.null(values$file$datapath)){
 				return(NULL)
 			}
@@ -235,6 +285,12 @@ shinyServer(function(input, output, session){
 			} else {
 				file <- read.coords(values$file$datapath, values$file$name)
 			}
+		} else {
+			# Multiple file upload
+			if(is.null(values$fileMulti[[get_plot_num(), 'datapath']])){
+				return(NULL)
+			}
+			file <- read.coords(values$fileMulti[[get_plot_num(), 'datapath']], values$fileMulti[[get_plot_num(), 'name']])
 		}
 		
 		if (input$chooseInput != 'example') {
@@ -332,7 +388,12 @@ shinyServer(function(input, output, session){
 	get_plot <- reactive({
 		
 		data <- melt_file()
-		validate(need(!is.null(data), ERR_file_upload))
+		
+		if(input$chooseInput == 'fileUpload'){
+			validate(need(!is.null(data), ERR_file_upload))
+		} else if (input$chooseInput == 'fileMultiUpload') {
+			validate(need(!is.null(data), ERR_file_multi_upload))
+		}
 		
 		q <- ggplot(aes(x=cols, y=rows), 
 			data = transform(data, binned = cut(value, breaks = input$binNumber, include.lowest = TRUE))) + 
@@ -380,6 +441,18 @@ shinyServer(function(input, output, session){
 		get_plot()
 	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
 
+	output$currentFileNameLabel <- renderText({ 
+		paste(values$fileMulti[[get_plot_num(), 'name']])
+	})
+	
+	output$currentFilePositionLabel <- renderText({
+		if (!is.null(nrow(values$fileMulti)) && nrow(values$fileMulti) > 0) {
+			paste(get_plot_num(), "of", nrow(values$fileMulti))
+		} else {
+			""
+		}
+	})
+	
 	output$table <- renderDataTable({
 		get_file()	
 	})

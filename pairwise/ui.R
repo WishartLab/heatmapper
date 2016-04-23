@@ -9,15 +9,17 @@ shinyUI(list(HEAD_TASKS("#pairwiseTab", "50%", "40%"), fluidPage(title = "Pairwi
 			# File upload panel with option to select file upload format.
 			wellPanel(
 				radioButtons('chooseInput', label = FILE_UPLOAD, 
-										inline=TRUE, 
+										inline=FALSE, 
 										choices = c(
+											"Example File" = 'example',
 											"Upload File" = 'fileUpload',
-											"Example File" = 'example'), 
+											"Upload Multiple Files" = 'fileMultiUpload'
+											), 
 										selected = 'fileUpload'),
 				conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
 					HTML("<button id='clearFile' class='action-button clearButton'>Clear</button>"),
 					fileInput('file', label = NULL, width="82%"),
-					
+
 					fluidRow(
 						column(3, tags$label("Upload Format")),
 						column(9,
@@ -47,8 +49,19 @@ shinyUI(list(HEAD_TASKS("#pairwiseTab", "50%", "40%"), fluidPage(title = "Pairwi
 						)
 					)
 				),
-				EXAMPLE_FILE_SELECT()
+				EXAMPLE_FILE_SELECT(),
+
+
+				conditionalPanel(condition = "input.chooseInput == 'fileMultiUpload'",
+					HTML("<button id='clearFileMulti' class='action-button clearButton'>Clear</button>"),
+					fileInput('fileMulti', label = NULL, width="82%", multiple=TRUE),
+
+					checkboxGroupInput("labels", NULL,
+						 c("Labels in first row" = "useColLabels",
+							"Labels in first column" = "useRowLabels"))
+				)
 			),
+
 
 			fluidRow(
 				column(10,
@@ -107,8 +120,32 @@ shinyUI(list(HEAD_TASKS("#pairwiseTab", "50%", "40%"), fluidPage(title = "Pairwi
   	), 
 		mainPanel(id = "mainPanel",
 			tabsetPanel(id = "tabSelections", type = "tabs", 
-				tabPanel(title = "Plot", tags$br(), 
-					plotOutput("map")),
+				tabPanel(title = "Plot",
+					tags$br(),
+
+					# Multiple file navigation controls
+					conditionalPanel(condition = "input.chooseInput == 'fileMultiUpload'",
+					fluidRow(
+						column(2, actionButton("cyclePlotsStart", label = "Start"), align="left"), 
+						column(2, actionButton("cyclePlotsLeft", label = "Previous"), align="right"), 
+						column(4,
+								wellPanel(
+								textOutput("currentFileNameLabel"),
+								textOutput("currentFilePositionLabel"),
+								tags$head(tags$style("#currentFilePositionLabel{color: grey;
+										font-size: 12px;
+										}"
+									)
+								)
+							), align="center"),
+						column(2, actionButton("cyclePlotsRight", label = "Next"), align="left"),
+						column(2, actionButton("cyclePlotsEnd", label = "End"), align="right")
+					)
+					),
+
+					# Main heat map plot
+					plotOutput("map")
+				),
 				tabPanel(title = "Interactive", tags$br(), d3heatmapOutput("d3map", height = 500)),
 				tabPanel(title = "Table", tags$br(), dataTableOutput("table"))
 				))),	
