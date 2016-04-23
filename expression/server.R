@@ -3,7 +3,6 @@ library(gdata)
 library(d3heatmap)
 library(gplots)
 library(ggdendro)
-library(ape)
 
 # memory testing
 # library(pryr)
@@ -193,6 +192,14 @@ shinyServer(function(input, output, session){
 		  lowCol = "#0016DB"
 		  midCol = "#FFFFFF"
 		  highCol = "#FFFF00"
+		}else if(input$colourScheme == 'grayscale'){
+		  lowCol = "#000000"
+		  midCol = "#bdbdbd"
+		  highCol = "#FFFFFF"
+		}else if(input$colourScheme == 'piyg'){
+		  lowCol = "#C9438C"
+		  midCol = "#f7f7f7"
+		  highCol = "#7BC134"
 		}else if(input$colourScheme == 'custom'){
 		  lowCol = input$lowColour
 		  midCol = input$midColour
@@ -219,7 +226,7 @@ shinyServer(function(input, output, session){
 		  }
 		  
 		  adjusted_colours
-		 }else if(input$colourScheme == 'custom' || input$colourScheme == 'red/green' || input$colourScheme == 'blue/yellow'){
+		 }else if(input$colourScheme == 'custom' || input$colourScheme == 'red/green' || input$colourScheme == 'blue/yellow' || input$colourScheme == 'grayscale' || input$colourScheme == 'piyg'){
 		  if (brightness_adj == 0) {
 			  lowCol = lowCol
 			  midCol = midCol
@@ -262,6 +269,7 @@ shinyServer(function(input, output, session){
 		# Each row will be 3 integers representing R, G, and B values. The first
 		# row is the low color, and the last is the high color, with a total of
 		# q*2 + 1 colors.
+		
 		arr = matrix(c(
 					subarr(r1, r2, q)[1:q], subarr(r2, r3, q),
 					subarr(g1, g2, q)[1:q], subarr(g2, g3, q),

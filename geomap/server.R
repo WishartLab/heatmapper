@@ -296,6 +296,10 @@ shinyServer(function(input, output, session) {
 		  values$palette <- colorRampPalette(c("#FF0000", "#000000", "#23B000"))(input$binNumber)
 		}else if(input$colourScheme == 'blue/yellow'){
 		  values$palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(input$binNumber)
+		}else if(input$colourScheme == 'grayscale'){
+		  values$palette <- colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(input$binNumber)
+		}else if(input$colourScheme == 'piyg'){
+		  values$palette <- colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(input$binNumber)
 		}else if(input$colourScheme == 'rainbow'){
 		  values$palette <- rainbow(input$binNumber)
 		}else if(input$colourScheme == 'topo'){
@@ -303,7 +307,7 @@ shinyServer(function(input, output, session) {
 		}else if(input$colourScheme == 'custom'){
 		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(input$binNumber)
 		}
-		print(values$palette)
+
 		# Assign colors to states
 		values$colours <- structure(
 			values$palette[as.integer(cut(values$density, densityBreaks, include.lowest = TRUE, ordered = TRUE))], 
