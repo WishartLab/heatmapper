@@ -11,6 +11,25 @@ library(RColorBrewer)
 # Constants
 q = 5; # Use q*2 + 1 colors when brightening the expression heat map.
 
+# because there is no way to fix the first look of the plot output from ui.R. the plot width and plot
+# height are from the "Show advanced options" of ui.R. That is not good for showing file with many rows,
+# especially more than 100 rows. So here we adjust the plot height with this parameter to make it bigger if row 
+# count number is big. So we can read the y axis lable visually with the reasonable height.
+scope <<- 0.020107349; 
+intercept <<- 0.37506195;
+# the upper free params used in this formula. adjust_plot_height_weight = scope * rows(input_file) + intercept.
+# please check the get_image_weight function
+
+
+# for adjusting the font size, please read function 'get_label_weight'
+EACH_ROW_SIZE_LIMIT <- 13; # the minimum pixel size of each row in heatmap.2 image, if larger than it, start making font size 
+                          # of heatmap.2 image propotionaly. if the font size is bigger than 1.5, the font size not increaseed 
+                          # anymore. If lower than it, keep the minum front size.
+MIN_FONT_SIZE <- 1.0;
+MAX_FONT_SIZE <- 1.45;
+
+
+
 shinyServer(function(input, output, session){
 	
 	# http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels
@@ -122,11 +141,22 @@ shinyServer(function(input, output, session){
 	# returns raw data from file input or selected example file
 	get_file <- reactive({
 		if(input$chooseInput == 'fileUpload'){
-			values$file
+			file <- values$file
 		}
 		else{ # Example
-			read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
+			file <- read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
 		}
+	})
+	
+	# returns raw data from file input or selected example file
+	get_image_weight <- reactive({
+	  file <- get_file()
+	  if (is.null(file)){
+	    return(0)
+	  }else{
+	   adjust_plot_height_weight = scope * nrow(file) + intercept
+	   return(adjust_plot_height_weight)
+	  }
 	})
 	
 	# converts file from data.frame to data.matrix
@@ -563,6 +593,25 @@ shinyServer(function(input, output, session){
 		list(hr,hc)
 	})
 	
+	# to get the proper weight for font size of the lables
+	get_label_weight <- reactive({
+	  file <- get_file()
+	  if (is.null(file)){
+	    return(1)
+	  }else{
+	    each_row_size = input$plotHeight / nrow(file)
+	    if (each_row_size > EACH_ROW_SIZE_LIMIT){
+	       font_size = each_row_size/EACH_ROW_SIZE_LIMIT * MIN_FONT_SIZE
+	       if (font_size > MAX_FONT_SIZE){
+	         font_size = MAX_FONT_SIZE
+	       }
+	    }else{
+	      font_size = MIN_FONT_SIZE
+	    }
+	    return(font_size)
+	  }
+	})
+	
 	# returns a heatmap.2 image based on get_data_matrix()
 	get_plot <- function(){
 		x <- get_data_matrix()
@@ -574,7 +623,7 @@ shinyServer(function(input, output, session){
 		}
 		heatmap_height = get_plot_height() - col_dendrogram_height
 		# creates a own color palette from red to green
-		#ratio = col_dendrogram_height / heatmap_height
+		#print (paste("get_label_weight ", get_label_weight()))
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
@@ -595,8 +644,8 @@ shinyServer(function(input, output, session){
 				main = input$title,
 				xlab = input$xlab, 
 				ylab = input$ylab,
-				cexRow = 1.0,
-				cexCol = 1.0,
+				cexRow = get_label_weight(),
+				cexCol = get_label_weight(),
 				#mar=c(2,30),
 				lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
 			)
@@ -630,8 +679,7 @@ shinyServer(function(input, output, session){
 		width =  reactive({input$plotWidth}),
 		height = reactive({
 			get_plot_height()
-		}),
-		
+		})
 	)
 	
 	get_plot_height <- (
@@ -642,11 +690,15 @@ shinyServer(function(input, output, session){
 				input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
 			}
 			else{
-				input$plotHeight
+				#input$plotHeight * get_image_weight()
+			  #print (paste("Full size ", input$plotHeight))
+			  input$plotHeight * 1
 			}
 		}
 		else{
-			input$plotHeight
+			#input$plotHeight * get_image_weight()
+		  #print (paste("Not full size ", input$plotHeight))
+		  input$plotHeight * 1
 		}
 		})
 	)
