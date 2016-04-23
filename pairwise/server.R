@@ -338,6 +338,10 @@ shinyServer(function(input, output, session){
 	    lowCol = "#000000"
 	    midCol = "#bdbdbd"
 	    highCol = "#FFFFFF"
+	  }else if(input$colourScheme == 'piyg'){
+	    lowCol = "#C9438C"
+	    midCol = "#f7f7f7"
+	    highCol = "#7BC134"
 	  }else if(input$colourScheme == 'custom'){
 	    lowCol = input$lowColour
 	    midCol = input$midColour
@@ -364,7 +368,7 @@ shinyServer(function(input, output, session){
 	    }
 	    
 	    adjusted_colours
-	  }else if(input$colourScheme == 'custom' || input$colourScheme == 'red/green' || input$colourScheme == 'blue/yellow' || input$colourScheme == 'grayscale'){
+	  }else if(input$colourScheme == 'custom' || input$colourScheme == 'red/green' || input$colourScheme == 'blue/yellow' || input$colourScheme == 'grayscale' || input$colourScheme == 'piyg'){
 	    if (brightness_adj == 0) {
 	      lowCol = lowCol
 	      midCol = midCol

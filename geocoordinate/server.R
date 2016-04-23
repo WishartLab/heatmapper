@@ -176,6 +176,8 @@ shinyServer(function(input, output, session){
 		  palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(n)
 		}else if(input$colourScheme == 'grayscale'){
 		  palette <- colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(n)
+		}else if(input$colourScheme == 'piyg'){
+		  palette <- colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(n)
 		}
 		else if(input$colourScheme == 'rainbow'){
 			palette <- substr(rev(rainbow(n, end = 5/6)), 0, 7)

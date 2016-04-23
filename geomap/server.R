@@ -298,6 +298,8 @@ shinyServer(function(input, output, session) {
 		  values$palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(input$binNumber)
 		}else if(input$colourScheme == 'grayscale'){
 		  values$palette <- colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(input$binNumber)
+		}else if(input$colourScheme == 'piyg'){
+		  values$palette <- colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(input$binNumber)
 		}else if(input$colourScheme == 'rainbow'){
 		  values$palette <- rainbow(input$binNumber)
 		}else if(input$colourScheme == 'topo'){
