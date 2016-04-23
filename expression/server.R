@@ -92,8 +92,18 @@ shinyServer(function(input, output, session){
 		if(!is.null(input$colClusterFile$datapath)){
 			tryCatch({
 			  values$colClusterFile <- read.tree(input$colClusterFile$datapath)
-			  update_col_clust()
-			  print(values$colClusterFile)
+			  # Validate that labels match data file
+			  validate(need(!is.null(get_file()), ERR_file_upload))
+			  data <- remove_strings(get_file())
+			  data_cols = colnames(data)
+			  # cluster_labels = values$colClusterFile$tip.label
+			  cluster_labels = read.tree(input$colClusterFile$datapath)$tip.label
+			  if(all(cluster_labels %in% data_cols)) {
+			    update_col_clust()
+			  } else {
+			    values$colClusterFile <- NA
+			    print("Error: with col cluster labels")
+			  }
 			}, 
 			error = function(err){
 				values$colClusterFile <- NA
@@ -106,8 +116,20 @@ shinyServer(function(input, output, session){
 		if(!is.null(input$rowClusterFile$datapath)){
 			tryCatch({
 			  values$rowClusterFile <- read.tree(input$rowClusterFile$datapath)
-			  update_row_clust()
-			  # print(values$rowClusterFile)
+			  # Validate that labels match data file
+			  validate(need(!is.null(get_file()), ERR_file_upload))
+			  data <- remove_strings(get_file())
+			  data_rows = rownames(data)
+			  # cluster_labels = values$rowClusterFile$tip.label
+			  cluster_labels = read.tree(input$rowClusterFile$datapath)$tip.label
+			    if (condition) {
+			      
+			    }f(all(cluster_labels %in% data_rows)) {
+			    update_row_clust()
+			  } else {
+			    values$rowClusterFile <- NA
+			    print("Error: with row cluster labels")
+			  }
 			}, 
 			error = function(err){
 				values$rowClusterFile <- NA
@@ -147,6 +169,22 @@ shinyServer(function(input, output, session){
 			file <- read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
 		}
 	})
+	
+	get_rowClusterFile <- reactive({
+	  values$rowClusterFile
+	})
+	
+	get_colClusterFile <- reactive({
+	  values$colClusterFile
+	})
+	
+	get_clusterFile <- function(margin) {
+	  if(margin == 'row') {
+	    get_rowClusterFile()
+	  } else if (margin == 'col') {
+	    get_colClusterFile()
+	  }
+	}
 	
 	# returns raw data from file input or selected example file
 	get_image_weight <- reactive({
@@ -434,11 +472,10 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_hclust_from_file <- function(margin) {
-	  field = ifelse(margin == 2, 'colClusterFile', 'rowClusterFile')
-		# if(!is.null(input[[field]])){
-		if(!is.null(values[[field]])){
+	  clusterFile = get_clusterFile(margin)
+		if(!is.null(clusterFile) && !is.na(clusterFile)){
 			tryCatch({
-			  as.hclust.phylo(values[[field]]) 
+			  as.hclust.phylo(clusterFile) 
 			}, 
 			error = function(err){
 				NA
@@ -453,26 +490,12 @@ shinyServer(function(input, output, session){
 	reorder_data <- function(data) {
 	  # TODO check and catch errors on label names: try doing this in file observer
 	  # Reorder columns
-	  if(!is.null(values$colClusterFile) && class(values$colHclust) == 'hclust') {
-	    labels = values$colHclust$labels
-	    if(all(labels %in% colnames(data))) {
-	      data = data[,values$colHclust$labels]
-	    } else {
-	      print("Error: with column cluster labels")
-        # session$sendCustomMessage(type='resetClusterFile', 'Col')
-	      # input$colClusterFile = NULL
-	      # values$colHclust = NULL # BAD
-	      # values$colClusterFile = NULL # BAD
-	    }
+	  if(!is.null(get_colClusterFile) && class(values$colHclust) == 'hclust') {
+	    data = data[,values$colHclust$labels]
 	  }
 	  # Reorder Rows
-	  if(!is.null(values$rowClusterFile) && class(values$rowHclust) == 'hclust') {
-	    labels = values$rowHclust$labels
-	    if(all(labels %in% colnames(data))) {
-	      data = data[,values$rowHclust$labels]
-	    } else {
-	      print("Error: with row cluster labels")
-	    }
+	  if(!is.null(get_rowClusterFile) && class(values$rowHclust) == 'hclust') {
+	    data = data[values$rowHclust$labels,]
 	  }
 	  data
 	}
@@ -483,7 +506,7 @@ shinyServer(function(input, output, session){
 		if(!is.null(get_file())){
 			values$rowMatrix <- get_data_matrix()
 			if(input$clusterMethod == 'import') {
-			  values$rowHclust <- get_hclust_from_file(margin=1)
+			  values$rowHclust <- get_hclust_from_file('row')
 			} else {
 			  values$rowHclust <- get_hclust( get_dist(values$rowMatrix) )
 			}
@@ -496,7 +519,7 @@ shinyServer(function(input, output, session){
 		if(!is.null(get_file())){
 			values$colMatrix <- t(get_data_matrix())
 			if(input$clusterMethod == 'import') {
-			  values$colHclust <- get_hclust_from_file(margin=2)
+			  values$colHclust <- get_hclust_from_file('col')
 			} else {
 			  values$colHclust <- get_hclust( get_dist(values$colMatrix) )
 			}
@@ -523,10 +546,7 @@ shinyServer(function(input, output, session){
 	# finds if a string is a current selected item in input$clusterSelectRC
 	clust_selected <- function(rc){
 	  if(input$clusterMethod == 'import') { 
-	    # field = paste0(rc, 'ClusterFile')
-	    # !is.null(input[[field]]$datapath)
-	    field = paste0(rc, 'ClusterFile')
-	    !is.null(values[[field]])
+	    !is.null(get_clusterFile(rc))
 	  } else {
 	    if(length(grep(rc, input$clusterSelectRC))>0){
 	      TRUE
@@ -573,12 +593,10 @@ shinyServer(function(input, output, session){
 		hr <- NA
 		hc <- NA
     if(input$clusterMethod == 'import') {
-			if(clust_selected("row") && !is.null(values$rowClusterFile)){
-			# if(clust_selected("row")){
+			if(clust_selected("row") && !is.na(get_rowClusterFile) && !is.null(values$rowHclust)){
 				hr <- as.dendrogram(values$rowHclust)
 			}
-			if(clust_selected("col") && !is.null(values$colClusterFile)){
-			# if(clust_selected("col")){
+			if(clust_selected("col") && !is.na(get_colClusterFile) && !is.null(values$colHclust)){
 				hc <- as.dendrogram(values$colHclust)
 			}
     }
