@@ -18,7 +18,16 @@ q = 5; # Use q*2 + 1 colors when brightening the expression heat map.
 scope <<- 0.020107349; 
 intercept <<- 0.37506195;
 # the upper free params used in this formula. adjust_plot_height_weight = scope * rows(input_file) + intercept.
-# please check the get_weight function
+# please check the get_image_weight function
+
+
+# for adjusting the font size, please read function 'get_label_weigt'
+EACH_ROW_SIZE_LIMIT <- 13; # the minimum pixel size of each row in heatmap.2 image, if larger than it, start making font size 
+                          # of heatmap.2 image propotionaly. if the font size is bigger than 1.5, the font size not increaseed 
+                          # anymore. If lower than it, keep the minum front size.
+MIN_FONT_SIZE <- 1.0;
+MAX_FONT_SIZE <- 1.45;
+
 
 
 shinyServer(function(input, output, session){
@@ -140,7 +149,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	# returns raw data from file input or selected example file
-	get_weight <- reactive({
+	get_image_weight <- reactive({
 	  file <- get_file()
 	  if (is.null(file)){
 	    return(0)
@@ -575,6 +584,25 @@ shinyServer(function(input, output, session){
 		list(hr,hc)
 	})
 	
+	# to get the proper weight for font size of the lables
+	get_label_weigt <- reactive({
+	  file <- get_file()
+	  if (is.null(file)){
+	    return(1)
+	  }else{
+	    each_row_size = input$plotHeight / nrow(file)
+	    if (each_row_size > EACH_ROW_SIZE_LIMIT){
+	       font_size = each_row_size/EACH_ROW_SIZE_LIMIT * MIN_FONT_SIZE
+	       if (font_size > MAX_FONT_SIZE){
+	         font_size = MAX_FONT_SIZE
+	       }
+	    }else{
+	      font_size = MIN_FONT_SIZE
+	    }
+	    return(font_size)
+	  }
+	})
+	
 	# returns a heatmap.2 image based on get_data_matrix()
 	get_plot <- function(){
 		x <- get_data_matrix()
@@ -586,7 +614,7 @@ shinyServer(function(input, output, session){
 		}
 		heatmap_height = get_plot_height() - col_dendrogram_height
 		# creates a own color palette from red to green
-		#ratio = col_dendrogram_height / heatmap_height
+		#print (paste("get_label_weight ", get_label_weigt()))
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
@@ -607,8 +635,8 @@ shinyServer(function(input, output, session){
 				main = input$title,
 				xlab = input$xlab, 
 				ylab = input$ylab,
-				cexRow = 1.0,
-				cexCol = 1.0,
+				cexRow = get_label_weigt(),
+				cexCol = get_label_weigt(),
 				#mar=c(2,30),
 				lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
 			)
@@ -653,11 +681,15 @@ shinyServer(function(input, output, session){
 				input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
 			}
 			else{
-				input$plotHeight * get_weight()
+				#input$plotHeight * get_image_weight()
+			  #print (paste("Full size ", input$plotHeight))
+			  input$plotHeight * 1
 			}
 		}
 		else{
-			input$plotHeight * get_weight()
+			#input$plotHeight * get_image_weight()
+		  #print (paste("Not full size ", input$plotHeight))
+		  input$plotHeight * 1
 		}
 		})
 	)
