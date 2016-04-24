@@ -106,7 +106,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 					
 					sliderInput('plotWidth', label = WIDTH, 
 		    		min = 500,
-		    		max = 2000,
+		    		max = 3000,
 		    		value = 600),
 					
 					tipify(
