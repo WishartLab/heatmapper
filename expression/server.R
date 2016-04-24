@@ -8,6 +8,9 @@ library(RColorBrewer)
 # memory testing
 # library(pryr)
 
+# Increase max upload file side to 10 MB
+options(shiny.maxRequestSize=10*1024^2) 
+
 # Constants
 q = 5; # Use q*2 + 1 colors when brightening the expression heat map.
 
