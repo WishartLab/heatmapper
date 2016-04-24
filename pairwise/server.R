@@ -631,6 +631,9 @@ shinyServer(function(input, output, session){
 		      axis.text.x=element_blank(),
 		      axis.text.y=element_blank(),
 		      axis.ticks=element_blank()) 
+		}else{
+		  q <- q + theme(
+		    axis.text.x=element_text(angle = 90, hjust = 1))
 		}
 		if(!layer_selected('showLegend')){
 			q <- q + guides(fill=FALSE)
