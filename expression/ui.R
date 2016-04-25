@@ -8,12 +8,30 @@ options(expressions = 500000)
 shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Map",
 	
 	sidebarLayout(position = "right",
-    sidebarPanel(id = "sidebarPanel", width = 1,
-			FILE_UPLOAD_PANEL(),
-    	EXAMPLE_FILE_SELECT(),
-    	
-    	tipify(fluidRow(
-    		column(3, tags$label("Scale Type")),
+		sidebarPanel(id = "sidebarPanel", width = 1,
+
+			radioButtons('chooseInput', label = FILE_UPLOAD,
+				inline=FALSE,
+				choices = c(
+					"Example File" = 'example',
+					"Upload File" = 'fileUpload',
+					"Upload Multiple Files" = 'fileMultiUpload'
+					),
+				selected = 'fileUpload'),
+			conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
+				HTML("<button id='clearFile' class='action-button clearButton'>Clear</button>"),
+				fileInput('file', label = NULL, width="82%")
+			),
+
+			EXAMPLE_FILE_SELECT(),
+
+			conditionalPanel(condition = "input.chooseInput == 'fileMultiUpload'",
+				HTML("<button id='clearFileMulti' class='action-button clearButton'>Clear</button>"),
+				fileInput('fileMulti', label = NULL, width="82%", multiple=TRUE)
+			),
+
+			tipify(fluidRow(
+				column(3, tags$label("Scale Type")),
 				column(9,	
 						selectInput('scale', label = NULL,
 							choices = c(
@@ -130,8 +148,34 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 		
 		mainPanel(id = "mainPanel",
 			tabsetPanel(id = "tabSelections", type = "tabs",
-				tabPanel("Plot", tags$br(), h4(textOutput("plotMesage")), plotOutput("heatmap")), 
-				
+				tabPanel("Plot", tags$br(),
+
+					# Multiple file navigation controls
+					conditionalPanel(condition = "input.chooseInput == 'fileMultiUpload'",
+					fluidRow(
+						column(2, actionButton("cyclePlotsStart", label = "Start"), align="left"),
+						column(2, actionButton("cyclePlotsLeft", label = "Previous"), align="right"),
+						column(4,
+								wellPanel(
+								textOutput("currentFileNameLabel"),
+								textOutput("currentFilePositionLabel"),
+								tags$head(tags$style("#currentFilePositionLabel{color: grey;
+										font-size: 12px;
+										}"
+									)
+								)
+							), align="center"),
+						column(2, actionButton("cyclePlotsRight", label = "Next"), align="left"),
+						column(2, actionButton("cyclePlotsEnd", label = "End"), align="right")
+					)
+					),
+
+					# Message about automatic plot dimension adjustment
+					h4(textOutput("plotMesage")),
+
+					# Main heat map plot
+					plotOutput("heatmap")),
+
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 600)),
 				
 				tabPanel("Row Dendrogram", 

@@ -48,12 +48,60 @@ shinyServer(function(input, output, session){
 		rowMatrix = NULL, 
 		colMatrix = NULL, 
 		rowHclust = NULL, 
-		colHclust = NULL)
+		colHclust = NULL,
+		fileMulti = NULL,
+		plotnum = 1 # For multiple file upload. First plot is 1.
+		)
 	
 	################################## OBSERVERS ##################################
 	observe({
 		input$clearFile
 		values$file <- NULL
+	})
+
+	observe({
+		input$clearFileMulti
+		values$fileMulti <- NULL
+	})
+
+	observe({
+		if (is.null(input$fileMulti)) {
+			values$fileMulti <- NULL
+		} else {
+			values$fileMulti <- input$fileMulti[with(input$fileMulti, order(name)), ] # sort by file name as we copy the data table
+		}
+	})
+
+	observeEvent(input$cyclePlotsStart, {
+		if (is.null(nrow(values$fileMulti))) {
+			values$plotnum
+		} else if (values$plotnum > 1) {
+			values$plotnum <- 1
+		}
+	})
+
+	observeEvent(input$cyclePlotsLeft, {
+		if (is.null(nrow(values$fileMulti))) {
+			values$plotnum
+		} else if (values$plotnum > 1) {
+			values$plotnum <- values$plotnum - 1
+		}
+	})
+
+	observeEvent(input$cyclePlotsRight, {
+		if (is.null(nrow(values$fileMulti))) {
+			values$plotnum
+		} else if (values$plotnum < nrow(values$fileMulti)) {
+			values$plotnum <- values$plotnum + 1
+		}
+	})
+
+	observeEvent(input$cyclePlotsEnd, {
+		if (is.null(nrow(values$fileMulti))) {
+			values$plotnum
+		} else if (values$plotnum < nrow(values$fileMulti)) {
+			values$plotnum <- nrow(values$fileMulti)
+		}
 	})
 	
 	observe({
@@ -65,31 +113,43 @@ shinyServer(function(input, output, session){
 		input$clearRowClusterFile
 		values$rowClusterFile <- NULL
 	})
-	
+
 	# update values$file when a file is uploaded, set to NA if file cannot be read
 	observe({
-		if(!is.null(input$file$datapath)){
+
+		if(input$chooseInput == 'fileUpload'){
+			datapath = input$file$datapath
+			filename = input$file$name
+		} else if (input$chooseInput == 'fileMultiUpload') {
+			datapath = values$fileMulti[[get_plot_num(), 'datapath']]
+			filename = values$fileMulti[[get_plot_num(), 'name']]
+		} else {
+			datapath = NULL
+		}
+
+		if(!is.null(datapath)){
 			tryCatch({
-				
-				fileType <- tail(unlist(strsplit(x = input$file$name, split = "[.]")), n=1)
-				
+
+				fileType <- tail(unlist(strsplit(x = filename, split = "[.]")), n=1)
+
 				print(fileType)
-				
+
 				if(fileType == "xls" || fileType == "xlsx"){
-					values$file <- read.xls(input$file$datapath, sheet=1)
+					values$file <- read.xls(datapath, sheet=1)
 				}
 				else if(fileType == "csv"){
-					values$file <- read.csv(input$file$datapath)
+					values$file <- read.csv(datapath)
 				}
 				else{
-					values$file <- read.delim(input$file$datapath)
+					values$file <- read.delim(datapath)
 				}
-				
+
 			}, 
 			error = function(err){
 				values$file <- NA
 			})
 		}
+
 	})
 	
 	# update values$colClusterFile when a file is uploaded, set to NA if file cannot be read
@@ -98,7 +158,11 @@ shinyServer(function(input, output, session){
 			tryCatch({
 			  values$colClusterFile <- read.tree(input$colClusterFile$datapath)
 			  # Validate that labels match data file
-			  validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
+			  if(input$chooseInput == 'fileUpload'){
+			  	validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
+			  } else if (input$chooseInput == 'fileMultiUpload') {
+			  	validate(need(!is.null(get_file()), paste(ERR_file_multi_upload, dimensions_msg)))
+			  }
 			  data <- remove_strings(get_file())
 			  data_cols = colnames(data)
 			  # cluster_labels = values$colClusterFile$tip.label
@@ -122,7 +186,11 @@ shinyServer(function(input, output, session){
 			tryCatch({
 			  values$rowClusterFile <- read.tree(input$rowClusterFile$datapath)
 			  # Validate that labels match data file
-			  validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
+			  if(input$chooseInput == 'fileUpload'){
+			  	validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
+			  } else if (input$chooseInput == 'fileMultiUpload') {
+			  	validate(need(!is.null(get_file()), paste(ERR_file_multi_upload, dimensions_msg)))
+			  }
 			  data <- remove_strings(get_file())
 			  data_rows = rownames(data)
 			  # cluster_labels = values$rowClusterFile$tip.label
@@ -163,12 +231,23 @@ shinyServer(function(input, output, session){
 	})
 	
 	################################## HELPER FUNCTIONS ##################################
+
+	get_plot_num <- reactive({
+		values$plotnum
+	})
+
 	# returns raw data from file input or selected example file
 	get_file <- reactive({
 		if(input$chooseInput == 'fileUpload'){
 			file <- values$file
-		}
-		else{ # Example
+		} else if (input$chooseInput == 'fileMultiUpload') {
+			# Multiple file upload
+# 			if(is.null(values$fileMulti[[get_plot_num(), 'datapath']])){
+# 				return(NULL)
+# 			}
+# 			file <- values$fileMulti[[get_plot_num(), 'datapath']]
+			file <- values$file
+		} else{ # Example
 			file <- read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
 		}
 	})
@@ -203,7 +282,11 @@ shinyServer(function(input, output, session){
 	# converts file from data.frame to data.matrix
 	# returns data matrix or NULL if non valid input
 	get_data_matrix <- reactive({
-		validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
+		if(input$chooseInput == 'fileUpload'){
+			validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
+		} else if (input$chooseInput == 'fileMultiUpload') {
+			validate(need(!is.null(get_file()), paste(ERR_file_multi_upload, dimensions_msg)))
+		}
 		tryCatch({
 			data <- remove_strings(get_file())
 			if(input$clusterMethod == 'import') {
@@ -697,7 +780,11 @@ shinyServer(function(input, output, session){
 	
 	# returns the result of ggdendrogram() on param x
 	get_dendrogram_plot <- function(x, message){
-		validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
+		if(input$chooseInput == 'fileUpload'){
+			validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
+		} else if (input$chooseInput == 'fileMultiUpload') {
+			validate(need(!is.null(get_file()), paste(ERR_file_multi_upload, dimensions_msg)))
+		}
 		validate(need(!is.null(x), paste0("Select a clusting method and apply clustering to ", message, " to view this dendrogram")))
 		validate(need(!is.na(x), ERR_file_read))
 
@@ -716,10 +803,14 @@ shinyServer(function(input, output, session){
 	get_plot_message <- (
 	  reactive({
 	    file <- get_file()
-	    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS){
-	      "Plot dimensions were auto-adjusted. See below in Advanced Options for plot size settings."
-	    }else{
-	      ""
+	    if (input$chooseInput != 'fileMultiUpload') {
+		    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS){
+		      "Plot dimensions were auto-adjusted. See below in Advanced Options for plot size settings."
+		    }else{
+		      ""
+		    }
+	    } else {
+	    	""
 	    }
 	  })
 	)
@@ -737,21 +828,25 @@ shinyServer(function(input, output, session){
 	get_plot_height <- (
 		reactive({
 		  file <- get_file()
-		  if(input$fullSize || (!is.null(file) &&nrow(file) > MIN_FILE_ROWS)){
-			    if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
-				    input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
-			    }
-			    else{
-				    #input$plotHeight * get_image_weight()
-			      #print (paste("Full size ", input$plotHeight))
+		  if (input$chooseInput != 'fileMultiUpload') {
+			  if(input$fullSize || (!is.null(file) &&nrow(file) > MIN_FILE_ROWS)){
+				    if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
+					    input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
+				    }
+				    else{
+					    #input$plotHeight * get_image_weight()
+				      #print (paste("Full size ", input$plotHeight))
+				      input$plotHeight * 1
+				    }
+			  }
+			  else{
+			    	#input$plotHeight * get_image_weight()
+			      #print (paste("Not full size ", input$plotHeight))
 			      input$plotHeight * 1
-			    }
+			  }
+		  } else {
+		  	input$plotHeight
 		  }
-		  else{
-		    	#input$plotHeight * get_image_weight()
-		      #print (paste("Not full size ", input$plotHeight))
-		      input$plotHeight * 1
-	    }
     })
 	)
 	
@@ -791,7 +886,19 @@ shinyServer(function(input, output, session){
 		get_dendrogram_plot(values$colHclust, "column")
 	}, height = reactive({ifelse(is.null(values$colHclust) || is.na(values$colHclust), 100, length(values$colHclust[[1]])*10)})
 	)
-	
+
+	output$currentFileNameLabel <- renderText({ 
+		paste(values$fileMulti[[get_plot_num(), 'name']])
+	})
+
+	output$currentFilePositionLabel <- renderText({
+		if (!is.null(nrow(values$fileMulti)) && nrow(values$fileMulti) > 0) {
+			paste(get_plot_num(), "of", nrow(values$fileMulti))
+		} else {
+			""
+		}
+	})
+
 	# display table
 	output$table <- renderDataTable({
 		get_file()
