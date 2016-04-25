@@ -31,7 +31,8 @@ EACH_ROW_SIZE_LIMIT <- 13; # the minimum pixel size of each row in heatmap.2 ima
 MIN_FONT_SIZE <- 1.0;
 MAX_FONT_SIZE <- 1.45;
 
-
+MIN_FILE_ROWS <- 100; # Control if auto-adjust plot size by this threshold row number of input file. If less, use the default 
+                      # plot size setting; if more, use auto-adjust plot size ("Preview Full Height")
 
 shinyServer(function(input, output, session){
 	
@@ -223,11 +224,26 @@ shinyServer(function(input, output, session){
 		# brighten the colors by shifting them closer to the low and high
 		# colors.
 		brightness_adj = as.integer(input$plotBrightness)
-		
+
+		# Set number of colors to use in the color ramp palette, depending
+		# on whether we are rendering a heatmap.2 or d3heatmap plot.
+		if (input$tabSelections == 'Interactive') {
+			# Rendering d3heatmap, so ignore user's chosen no. of shades.
+			if (brightness_adj > 0) {
+				num_colors = q*2 + 1
+			} else {
+				#num_colors = 3
+				num_colors = q*2 + 1 # was 3 before, but use this since otherwise the color is off
+			}
+		} else {
+			# Rendering heatmap.2
+			num_colors = input$binNumber
+		}
+
 		if(input$colourScheme == 'red/green'){
 		  lowCol = "#FF0000"
 		  midCol = "#000000"
-		  highCol = "#23B000"
+		  highCol = "#33FF00"
 		}else if (input$colourScheme == 'blue/yellow'){
 		  lowCol = "#0016DB"
 		  midCol = "#FFFFFF"
@@ -248,9 +264,9 @@ shinyServer(function(input, output, session){
 
 		if(input$colourScheme == 'rainbow' || input$colourScheme == 'topo'){
 		  if(input$colourScheme == 'rainbow'){
-		  cl = rainbow(input$binNumber)
+		  cl = rainbow(num_colors)
 		  }else{
-		  cl = topo.colors(input$binNumber)
+		  cl = topo.colors(num_colors)
 		  }
 		  
 		  adjusted_colours = c()
@@ -271,17 +287,17 @@ shinyServer(function(input, output, session){
 			  lowCol = lowCol
 			  midCol = midCol
 			  highCol = highCol
-			  colorRampPalette(c(lowCol, midCol, highCol))(input$binNumber)
+			  colorRampPalette(c(lowCol, midCol, highCol))(num_colors)
 		  } else if (brightness_adj < 0) {
 			  lowCol = darken(lowCol, brightness_adj)
 			  midCol = darken(midCol, brightness_adj)
 			  highCol = darken(highCol, brightness_adj)
-			  colorRampPalette(c(lowCol, midCol, highCol))(input$binNumber)
+			  colorRampPalette(c(lowCol, midCol, highCol))(num_colors)
 		  } else {
 			  lowCol = lowCol
 			  midCol = midCol
 			  highCol = highCol
-			  colorRampPalette(get_brightness_adjusted_color_set(lowCol, midCol, highCol, brightness_adj))(input$binNumber)
+			  colorRampPalette(get_brightness_adjusted_color_set(lowCol, midCol, highCol, brightness_adj))(num_colors)
 		  }
 		}
 		
@@ -658,7 +674,7 @@ shinyServer(function(input, output, session){
 				dendrogram = dend_select(),
 				Rowv = get_dendrograms()[[1]], 
 				Colv = get_dendrograms()[[2]], 
-				col = get_colour_palette(),#(input$binNumber), 
+				col = get_colour_palette(),
 				scale = input$scale,
 				main = input$title,
 				xlab = input$xlab, 
@@ -691,6 +707,22 @@ shinyServer(function(input, output, session){
 	
 	################################## OUTPUT FUNCTIONS ##################################
 	
+	# plot message of notice of reszing image
+	output$plotMesage <- renderText(
+	  get_plot_message()
+	)
+	
+	get_plot_message <- (
+	  reactive({
+	    file <- get_file()
+	    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS){
+	      "Plot dimensions were auto-adjusted. See below in Advanced Options for plot size settings."
+	    }else{
+	      ""
+	    }
+	  })
+	)
+	
 	# heatmap.2 plot
 	output$heatmap <- renderPlot(
 	  
@@ -702,24 +734,24 @@ shinyServer(function(input, output, session){
 	)
 	
 	get_plot_height <- (
-		
 		reactive({
-		if(input$fullSize){
-			if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
-				input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
-			}
-			else{
-				#input$plotHeight * get_image_weight()
-			  #print (paste("Full size ", input$plotHeight))
-			  input$plotHeight * 1
-			}
-		}
-		else{
-			#input$plotHeight * get_image_weight()
-		  #print (paste("Not full size ", input$plotHeight))
-		  input$plotHeight * 1
-		}
-		})
+		  file <- get_file()
+		  if(input$fullSize || (!is.null(file) &&nrow(file) > MIN_FILE_ROWS)){
+			    if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
+				    input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
+			    }
+			    else{
+				    #input$plotHeight * get_image_weight()
+			      #print (paste("Full size ", input$plotHeight))
+			      input$plotHeight * 1
+			    }
+		  }
+		  else{
+		    	#input$plotHeight * get_image_weight()
+		      #print (paste("Not full size ", input$plotHeight))
+		      input$plotHeight * 1
+	    }
+    })
 	)
 	
 	
@@ -727,28 +759,18 @@ shinyServer(function(input, output, session){
 	output$d3map <- renderD3heatmap({
 		x <- get_data_matrix()
 		
-		print(length(x))
+# 		print(length(x))
 		
 		validate(need(length(x) <= 400000, 
 			"File is too large for this feature. Please select a smaller file with no more than 400,000 cells."))
 		
 		tryCatch({
-			
-			# Get number of colors to use in color palette, which depends on whether
-			# or not we are brightening the plot.
-			brightness_adj = as.integer(input$plotBrightness)
-			if (brightness_adj > 0) {
-				num_colors = q*2 + 1
-			} else {
-				num_colors = 3;
-			}
-			
 			d3heatmap(x, 
-				Rowv = get_dendrograms()[[1]], 
-				Colv = get_dendrograms()[[2]],  
-				colors = get_colour_palette()(num_colors),
-				scale = input$scale, 
-				show_grid = FALSE, 
+				Rowv = get_dendrograms()[[1]],
+				Colv = get_dendrograms()[[2]],
+				colors = get_colour_palette(),
+				scale = input$scale,
+				show_grid = FALSE,
 				anim_duration = 0)
 		}, 
 		error = function(err){

@@ -31,9 +31,9 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 			
 			conditionalPanel(condition = "input.colourScheme == 'custom'",	
 			 fluidRow(
-			   column(4,jscolourInput("lowColour", label = "Low Colour", value = "#FF0000")), 
-			   column(4, jscolourInput("midColour", label = "Middle Colour")),
-			   column(4, jscolourInput("highColour", label = "High Colour", value = "#23B000")))
+			   column(4,jscolourInput("lowColour", label = "Low Colour", value = "#0016DB")), 
+			   column(4, jscolourInput("midColour", label = "Middle Colour", value = "#FFFFFF")),
+			   column(4, jscolourInput("highColour", label = "High Colour", value = "#FFFF00")))
 			),
     
 			
@@ -130,7 +130,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 		
 		mainPanel(id = "mainPanel",
 			tabsetPanel(id = "tabSelections", type = "tabs",
-				tabPanel("Plot", tags$br(), plotOutput("heatmap")), 
+				tabPanel("Plot", tags$br(), h4(textOutput("plotMesage")), plotOutput("heatmap")), 
 				
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 600)),
 				

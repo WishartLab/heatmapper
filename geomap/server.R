@@ -293,7 +293,7 @@ shinyServer(function(input, output, session) {
 
 		# Eight colors for eight buckets
 		if(input$colourScheme == 'red/green'){
-		  values$palette <- colorRampPalette(c("#FF0000", "#000000", "#23B000"))(input$binNumber)
+		  values$palette <- colorRampPalette(c("#FF0000", "#000000", "#33FF00"))(input$binNumber)
 		}else if(input$colourScheme == 'blue/yellow'){
 		  values$palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(input$binNumber)
 		}else if(input$colourScheme == 'grayscale'){
