@@ -149,36 +149,36 @@ BRIGHTNESS_SLIDER <- function(){
 }
 
 # colour scheme dropdown selection
-COLOUR_SCHEME_SELECT <- function(selected = 'blue/yellow'){
+COLOUR_SCHEME_SELECT <- function(selected = 'custom'){
 	tipify(fluidRow(
     column(3, tags$label("Colour Scheme")),
 		column(9,					
 			selectInput('colourScheme', label = NULL, 
 	  		choices = c(
+	  		  'Custom' = "custom",
 	  		  'Blue/Yellow' = "blue/yellow",
-	  			'Reg/Green' = "red/green",
+	  			'Red/Green' = "red/green",
+	  			'Pink/White/Green' = "piyg",
+	  			'Blue/Green/Yellow' = "topo",
 	  			'Grayscale' = "grayscale",
-	  			'PiYG' = "piyg",
-	  			'Custom' = "custom",
-	  			'Rainbow' = "rainbow", 
-	  			'Topo' = "topo"
+	  			'Rainbow' = "rainbow"
 	  		), 
 	  		selected = selected)
 		)
 	), "Select custom or preset colour scheme", placement = "right")
 }
 
-COLOUR_SCHEME_SELECT_LIMITED <- function(selected = 'blue/yellow'){
+COLOUR_SCHEME_SELECT_LIMITED <- function(selected = 'custom'){
   tipify(fluidRow(
     column(3, tags$label("Colour Scheme")),
     column(9,					
            selectInput('colourScheme', label = NULL, 
                        choices = c(
+                         'Custom' = "custom",
                          'Blue/Yellow' = "blue/yellow",
-                         'Reg/Green' = "red/green",
-                         'Grayscale' = "grayscale",
-                         'PiYG' = "piyg",
-                         'Custom' = "custom"
+                         'Red/Green' = "red/green",
+                         'Pink/White/Green' = "piyg",
+                         'Grayscale' = "grayscale"
                        ), 
                        selected = selected)
     )

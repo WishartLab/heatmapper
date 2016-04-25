@@ -6,6 +6,7 @@ library(d3heatmap)
 
 library(gplots)
 library(ggdendro)
+library(stringr)
 #library(shinyjs)
 
 # Constants
@@ -277,6 +278,126 @@ shinyServer(function(input, output, session){
 		return (TRUE)
 	}
 	
+	# Read multi-FASTA file and compute k-mer count statistics. The k-mer counts are
+	# intended to be used in a distance matrix for alignment-free phylogenetic analysis.
+	read.fasta <- function(filePath) {
+		k = input$kmerSelect # k-mer length
+
+		# Traverse file and count the number of sequences
+		con <- file(filePath, "rt")
+		count = 0
+		while(TRUE) {
+			line = readLines(con, 1) # Read one line
+			if (length(line) == 0) {
+				break
+			}
+			if (substr(line, 1,1) == '>') {
+				count = count + 1
+			}
+		}
+
+		# Compute number of columns needed based on k-mer length chosen
+		col.count = 4**k # assume DNA with only ATGC
+
+		# Create data frame to hold the k-mer count stats
+		kmerstats = as.data.frame(matrix(0, nrow=count, ncol=col.count))
+		rownames(kmerstats) = paste("old", rownames(kmerstats)) # set names of rows to ones we will not use
+
+		# Traverse the file again and parse the sequences.
+		num_seqs_parsed = 0
+		seq = ''
+		id = ''
+		seek(con, where = 0) # jump to start of file again
+		while(TRUE) {
+			line = readLines(con, 1) # Read one line
+			if (length(line) == 0) {
+
+				# Process the previous sequence
+				if (num_seqs_parsed > 0) {
+					seq = toupper(seq)
+					for (i in 1:(nchar(seq) - k + 1) ) {
+						kmer = substr(seq, i,i+k-1)
+						if (!is.na(str_match(kmer, "^[ATGC]+$"))) {
+							idx = get_kmer_index(kmer)
+							kmerstats[num_seqs_parsed, idx] = kmerstats[num_seqs_parsed, idx] + 1
+						}
+					}
+
+					# Normalize by sequence length (or rather total number of k-mers in the sequence)
+					kmerstats[num_seqs_parsed,] = kmerstats[num_seqs_parsed,]/(nchar(seq) - k + 1)
+
+					rownames(kmerstats)[num_seqs_parsed] <- id
+				}
+
+				# done parsing file
+				break
+			} else if (substr(line, 1,1) == '>') {
+
+				# Process the previous sequence
+				if (num_seqs_parsed > 0) {
+					seq = toupper(seq)
+					for (i in 1:(nchar(seq) - k + 1) ) {
+						kmer = substr(seq, i,i+k-1)
+						if (!is.na(str_match(kmer, "^[ATGC]+$"))) {
+							idx = get_kmer_index(kmer)
+							kmerstats[num_seqs_parsed, idx] = kmerstats[num_seqs_parsed, idx] + 1
+						}
+					}
+
+					# Normalize by sequence length (or rather total number of k-mers in the sequence)
+					kmerstats[num_seqs_parsed,] = kmerstats[num_seqs_parsed,]/(nchar(seq) - k + 1)
+
+					rownames(kmerstats)[num_seqs_parsed] <- id
+				}
+
+				# parse new FASTA entry
+				num_seqs_parsed = num_seqs_parsed + 1
+				seq = ''
+				id = str_match(line, "^>(\\S+)")[2]
+				if (is.na(id)) {
+					id = toString(num_seqs_parsed)
+				}
+			} else {
+				# sequence line - append to the parsed sequence
+				seq_part = str_match(line, "([A-Za-z]+)")[2]
+				seq = paste(seq, seq_part, sep="")
+			}
+		}
+		close(con)
+# 		print(kmerstats)
+		return(kmerstats)
+	}
+
+	# Given a k-mer (uppercase string of DNA nucleotides), calculate its index in our
+	# data frame. The data frame is arranged thus:
+	#
+	# AAA
+	# AAT
+	# AAG
+	# AAC
+	# ATA
+	# ATT
+	# ATG
+	# ...
+	#
+	get_kmer_index <- function(kmer) {
+		k_val = nchar(kmer)
+		idx = 1
+		for (i in 1:k_val) {
+			char = substr(kmer, k_val-i+1, k_val-i+1) # going in reverse
+			if (char == 'A') {
+				idx = idx + 0
+			} else if (char == 'T') {
+				idx = idx + 1*(4**(i-1))
+			} else if (char == 'G') {
+				idx = idx + 2*(4**(i-1))
+			} else if (char == 'C') {
+				idx = idx + 3*(4**(i-1))
+			}
+		}
+		return(idx)
+	}
+
 	get_plot_num <- reactive({
 		values$plotnum
 	})
@@ -294,6 +415,8 @@ shinyServer(function(input, output, session){
 			if (input$uploadFormat == "pdb") {
 			#if (is.pdb(values$file$datapath)) {
 				file <- read.pdb(values$file$datapath)
+			} else if (input$uploadFormat == "fasta") {
+				file <- read.fasta(values$file$datapath)
 			} else {
 				file <- read.coords(values$file$datapath, values$file$name)
 			}
@@ -397,7 +520,7 @@ shinyServer(function(input, output, session){
 	  if(input$colourScheme == 'red/green'){
 	    lowCol = "#FF0000"
 	    midCol = "#000000"
-	    highCol = "#23B000"
+	    highCol = "#33FF00"
 	  }else if (input$colourScheme == 'blue/yellow'){
 	    lowCol = "#0016DB"
 	    midCol = "#FFFFFF"
