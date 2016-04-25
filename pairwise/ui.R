@@ -26,7 +26,9 @@ shinyUI(list(HEAD_TASKS("#pairwiseTab", "50%", "40%"), fluidPage(title = "Pairwi
 							selectInput('uploadFormat', label = NULL,
 								choices = c(
 									"Generic data table" = 'generic',
-									"PDB format" = 'pdb'),
+									"PDB format" = 'pdb',
+									"Multi-FASTA format" = 'fasta'
+									),
 								selected = 'dm')
 						)
 					),
@@ -46,6 +48,16 @@ shinyUI(list(HEAD_TASKS("#pairwiseTab", "50%", "40%"), fluidPage(title = "Pairwi
 										"All atoms" = 'all'),
 									selected = 'ca')
 						)
+						)
+					),
+					conditionalPanel(condition = "input.uploadFormat == 'fasta'",
+						fluidRow(
+							column(8, tags$label("k-mer Size to Use for Comparison")),
+							column(4,
+										 numericInput('kmerSelect', label = NULL,
+																min=3, max=5, step=1,
+																value=3)
+							)
 						)
 					)
 				),
