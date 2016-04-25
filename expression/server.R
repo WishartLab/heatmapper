@@ -4,7 +4,7 @@ library(d3heatmap)
 library(gplots)
 library(ggdendro)
 library(RColorBrewer)
-
+library(ape)
 # memory testing
 # library(pryr)
 
