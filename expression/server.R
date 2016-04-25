@@ -574,7 +574,7 @@ shinyServer(function(input, output, session){
 	
 	get_hclust_from_file <- function(margin) {
 	  clusterFile = get_clusterFile(margin)
-		if(!is.null(clusterFile) && !is.na(clusterFile)){
+		if(!is.empty(clusterFile)){
 			tryCatch({
 			  as.hclust.phylo(clusterFile) 
 			}, 
@@ -591,11 +591,11 @@ shinyServer(function(input, output, session){
 	reorder_data <- function(data) {
 	  # TODO check and catch errors on label names: try doing this in file observer
 	  # Reorder columns
-	  if(!is.null(get_colClusterFile) && class(values$colHclust) == 'hclust') {
+	  if(!is.empty(get_colClusterFile()) && class(values$colHclust) == 'hclust') {
 	    data = data[,values$colHclust$labels]
 	  }
 	  # Reorder Rows
-	  if(!is.null(get_rowClusterFile) && class(values$rowHclust) == 'hclust') {
+	  if(!is.empty(get_rowClusterFile()) && class(values$rowHclust) == 'hclust') {
 	    data = data[values$rowHclust$labels,]
 	  }
 	  data
@@ -644,10 +644,14 @@ shinyServer(function(input, output, session){
 		return(nums)
 	}
 	
+	is.empty <- function(x) {
+	  is.null(x) || is.na(x)
+	}
+	
 	# finds if a string is a current selected item in input$clusterSelectRC
 	clust_selected <- function(rc){
 	  if(input$clusterMethod == 'import') { 
-	    !is.null(get_clusterFile(rc))
+	    !is.empty(get_clusterFile(rc))
 	  } else {
 	    if(length(grep(rc, input$clusterSelectRC))>0){
 	      TRUE
@@ -694,10 +698,10 @@ shinyServer(function(input, output, session){
 		hr <- NA
 		hc <- NA
     if(input$clusterMethod == 'import') {
-			if(clust_selected("row") && !is.na(get_rowClusterFile) && !is.null(values$rowHclust)){
+			if(clust_selected("row") && !is.empty(get_rowClusterFile()) && !is.empty(values$rowHclust)){
 				hr <- as.dendrogram(values$rowHclust)
 			}
-			if(clust_selected("col") && !is.na(get_colClusterFile) && !is.null(values$colHclust)){
+			if(clust_selected("col") && !is.empty(get_colClusterFile()) && !is.empty(values$colHclust)){
 				hc <- as.dendrogram(values$colHclust)
 			}
     }
