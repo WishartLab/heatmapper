@@ -707,15 +707,30 @@ shinyServer(function(input, output, session){
 	
 	################################## OUTPUT FUNCTIONS ##################################
 	
+	# control full size checkbox
+	output$fullSizeControl <- renderUI({
+	  file <- get_file()
+	  if(!is.null(file)){
+	    if (nrow(file) > MIN_FILE_ROWS){
+	      checkboxInput('fullSize', label = "Preview Full Height", value = TRUE)
+	    }else{
+	      checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
+	    }
+	  }else{
+	    checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
+	  }
+	})
+	
+	
 	# plot message of notice of reszing image
 	output$plotMesage <- renderText(
-	  get_plot_message()
+	    get_plot_message()
 	)
 	
 	get_plot_message <- (
 	  reactive({
 	    file <- get_file()
-	    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS){
+	    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS && input$fullSize){
 	      "Plot dimensions were auto-adjusted. See below in Advanced Options for plot size settings."
 	    }else{
 	      ""
@@ -736,7 +751,7 @@ shinyServer(function(input, output, session){
 	get_plot_height <- (
 		reactive({
 		  file <- get_file()
-		  if(input$fullSize || (!is.null(file) &&nrow(file) > MIN_FILE_ROWS)){
+		  if(input$fullSize ){
 			    if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
 				    input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
 			    }

@@ -110,7 +110,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 		    		value = 600),
 					
 					tipify(
-						checkboxInput('fullSize', label = "Preview Full Height", value = FALSE), 
+					  uiOutput("fullSizeControl"),
 						"Not Recomended for Large Files", placement = "top"), 
 					
 					conditionalPanel(condition = "input.fullSize == false", 
