@@ -5,6 +5,9 @@ library(htmlwidgets)
 library(ggtern)
 library(MASS)
 
+# Constants
+dimensions_msg <- "Input data can have up to 8,000 data points."
+
 shinyServer(function(input, output, session){
 	
 	values <- reactiveValues(file = NULL)
@@ -23,7 +26,7 @@ shinyServer(function(input, output, session){
 			file <- read.delim(input$exampleFiles, header = TRUE, sep="\t", row.names = NULL)
 		}
 		else{
-			validate(need(values$file$datapath, ERR_file_upload))
+			validate(need(values$file$datapath, paste(ERR_file_upload, dimensions_msg)))
 			
 			fileType <- tail(unlist(strsplit(x = values$file$name, split = "[.]")), n=1)
 			
@@ -40,7 +43,7 @@ shinyServer(function(input, output, session){
 				
 			},
 			error = function(err){
-				validate(txt = ERR_file_read)
+				validate(txt = paste(ERR_file_read, dimensions_msg))
 			})
 		}
 		

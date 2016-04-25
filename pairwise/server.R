@@ -10,6 +10,7 @@ library(stringr)
 #library(shinyjs)
 
 # Constants
+dimensions_msg <- "Input data can have up to 300 rows and 500 columns for distance matrix, or 500 rows and 300 columns for correlation matrix."
 q = 5;
 
 shinyServer(function(input, output, session){
@@ -731,9 +732,9 @@ shinyServer(function(input, output, session){
 		data <- melt_file()
 		
 		if(input$chooseInput == 'fileUpload'){
-			validate(need(!is.null(data), ERR_file_upload))
+			validate(need(!is.null(data), paste(ERR_file_upload, dimensions_msg)))
 		} else if (input$chooseInput == 'fileMultiUpload') {
-			validate(need(!is.null(data), ERR_file_multi_upload))
+			validate(need(!is.null(data), paste(ERR_file_multi_upload, dimensions_msg)))
 		}
 		
 		q <- ggplot(aes(x=cols, y=rows), 

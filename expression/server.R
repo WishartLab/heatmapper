@@ -12,6 +12,7 @@ library(RColorBrewer)
 options(shiny.maxRequestSize=10*1024^2) 
 
 # Constants
+dimensions_msg <- "Input data can have up to 2,500 rows and 300 columns."
 q = 5; # Use q*2 + 1 colors when brightening the expression heat map.
 
 # because there is no way to fix the first look of the plot output from ui.R. the plot width and plot
@@ -97,7 +98,7 @@ shinyServer(function(input, output, session){
 			tryCatch({
 			  values$colClusterFile <- read.tree(input$colClusterFile$datapath)
 			  # Validate that labels match data file
-			  validate(need(!is.null(get_file()), ERR_file_upload))
+			  validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
 			  data <- remove_strings(get_file())
 			  data_cols = colnames(data)
 			  # cluster_labels = values$colClusterFile$tip.label
@@ -121,7 +122,7 @@ shinyServer(function(input, output, session){
 			tryCatch({
 			  values$rowClusterFile <- read.tree(input$rowClusterFile$datapath)
 			  # Validate that labels match data file
-			  validate(need(!is.null(get_file()), ERR_file_upload))
+			  validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
 			  data <- remove_strings(get_file())
 			  data_rows = rownames(data)
 			  # cluster_labels = values$rowClusterFile$tip.label
@@ -202,7 +203,7 @@ shinyServer(function(input, output, session){
 	# converts file from data.frame to data.matrix
 	# returns data matrix or NULL if non valid input
 	get_data_matrix <- reactive({
-		validate(need(!is.null(get_file()), ERR_file_upload))
+		validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
 		tryCatch({
 			data <- remove_strings(get_file())
 			if(input$clusterMethod == 'import') {
@@ -696,7 +697,7 @@ shinyServer(function(input, output, session){
 	
 	# returns the result of ggdendrogram() on param x
 	get_dendrogram_plot <- function(x, message){
-		validate(need(!is.null(get_file()), ERR_file_upload))
+		validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
 		validate(need(!is.null(x), paste0("Select a clusting method and apply clustering to ", message, " to view this dendrogram")))
 		validate(need(!is.na(x), ERR_file_read))
 
