@@ -171,7 +171,7 @@ shinyServer(function(input, output, session){
 		if(input$colourScheme == 'custom'){
 			palette <- colorRampPalette(c(input$lowColour, input$highColour))(n)
 		}else if(input$colourScheme == 'red/green'){
-		  palette <- colorRampPalette(c("#FF0000", "#000000", "#23B000"))(n)
+		  palette <- colorRampPalette(c("#FF0000", "#000000", "#33FF00"))(n)
 		}else if(input$colourScheme == 'blue/yellow'){
 		  palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(n)
 		}else if(input$colourScheme == 'grayscale'){
