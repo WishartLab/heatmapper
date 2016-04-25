@@ -405,13 +405,13 @@ shinyServer(function(input, output, session){
 	get_colours <- reactive({
 	  
 	  if(input$colourScheme == 'red/green'){
-	    scale_fill_gradientn(colours = colorRampPalette(c("#FF0000", "#000000", "#23B000")))
+	    scale_fill_gradientn(colours = colorRampPalette(c("#FF0000", "#000000", "#23B000"))(7))
 	  }else if(input$colourScheme == 'blue/yellow'){
-	    scale_fill_gradientn(colours = colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00")))
+	    scale_fill_gradientn(colours = colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(7))
 	  }else if(input$colourScheme == 'piyg'){
-	    scale_fill_gradientn(colours = colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134")))
+	    scale_fill_gradientn(colours = colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(7))
 	  }else if(input$colourScheme == 'grayscale'){
-	    scale_fill_gradientn(colours = colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF")))
+	    scale_fill_gradientn(colours = colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(7))
 	  }else if(input$colourScheme == 'rainbow'){
 	    scale_fill_gradientn(colours = rev(rainbow(7)))
 	  }else if(input$colourScheme == 'topo'){
