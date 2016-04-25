@@ -31,7 +31,8 @@ EACH_ROW_SIZE_LIMIT <- 13; # the minimum pixel size of each row in heatmap.2 ima
 MIN_FONT_SIZE <- 1.0;
 MAX_FONT_SIZE <- 1.45;
 
-
+MIN_FILE_ROWS <- 100; # Control if auto-adjust plot size by this threshold row number of input file. If less, use the default 
+                      # plot size setting; if more, use auto-adjust plot size ("Preview Full Height")
 
 shinyServer(function(input, output, session){
 	
@@ -706,6 +707,22 @@ shinyServer(function(input, output, session){
 	
 	################################## OUTPUT FUNCTIONS ##################################
 	
+	# plot message of notice of reszing image
+	output$plotMesage <- renderText(
+	  get_plot_message()
+	)
+	
+	get_plot_message <- (
+	  reactive({
+	    file <- get_file()
+	    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS){
+	      "Plot dimensions were auto-adjusted. See below in Advanced Options for plot size settings."
+	    }else{
+	      ""
+	    }
+	  })
+	)
+	
 	# heatmap.2 plot
 	output$heatmap <- renderPlot(
 	  
@@ -717,24 +734,24 @@ shinyServer(function(input, output, session){
 	)
 	
 	get_plot_height <- (
-		
 		reactive({
-		if(input$fullSize){
-			if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
-				input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
-			}
-			else{
-				#input$plotHeight * get_image_weight()
-			  #print (paste("Full size ", input$plotHeight))
-			  input$plotHeight * 1
-			}
-		}
-		else{
-			#input$plotHeight * get_image_weight()
-		  #print (paste("Not full size ", input$plotHeight))
-		  input$plotHeight * 1
-		}
-		})
+		  file <- get_file()
+		  if(input$fullSize || (!is.null(file) &&nrow(file) > MIN_FILE_ROWS)){
+			    if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
+				    input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
+			    }
+			    else{
+				    #input$plotHeight * get_image_weight()
+			      #print (paste("Full size ", input$plotHeight))
+			      input$plotHeight * 1
+			    }
+		  }
+		  else{
+		    	#input$plotHeight * get_image_weight()
+		      #print (paste("Not full size ", input$plotHeight))
+		      input$plotHeight * 1
+	    }
+    })
 	)
 	
 	

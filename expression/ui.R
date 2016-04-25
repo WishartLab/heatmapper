@@ -130,7 +130,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 		
 		mainPanel(id = "mainPanel",
 			tabsetPanel(id = "tabSelections", type = "tabs",
-				tabPanel("Plot", tags$br(), plotOutput("heatmap")), 
+				tabPanel("Plot", tags$br(), h4(textOutput("plotMesage")), plotOutput("heatmap")), 
 				
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 600)),
 				
