@@ -799,9 +799,24 @@ shinyServer(function(input, output, session){
 	
 	################################## OUTPUT FUNCTIONS ##################################
 	
+	# control full size checkbox
+	output$fullSizeControl <- renderUI({
+	  file <- get_file()
+	  if(!is.null(file)){
+	    if (nrow(file) > MIN_FILE_ROWS){
+	      checkboxInput('fullSize', label = "Preview Full Height", value = TRUE)
+	    }else{
+	      checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
+	    }
+	  }else{
+	    checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
+	  }
+	})
+	
+	
 	# plot message of notice of reszing image
 	output$plotMesage <- renderText(
-	  get_plot_message()
+	    get_plot_message()
 	)
 	
 	get_plot_message <- (

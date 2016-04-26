@@ -159,6 +159,7 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 				  	
 					),
 					plotOutput("ggplotMap", click = "plot_click")
+
 				),
 				tabPanel("Table", 
 					tags$br(),
