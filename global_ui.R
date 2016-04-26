@@ -279,9 +279,17 @@ ADVANCED_OPTIONS_PANEL <- function(options_list){
 		tipify(actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"), 
             "View more options", placement = "right"), 
 		conditionalPanel(condition = "input.advancedOptionsButton%2",
-			wellPanel(options_list)
-		)
+		                 wellPanel(options_list))
 	)
+}
+# advanced options panel
+ADVANCED_OPTIONS_PANEL_EXPRESSION <- function(options_list){
+  list(
+    tipify(actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"), 
+           "View more options", placement = "right"),
+    conditionalPanel(condition = textOutput("showAdvancedOpttionsControl"),
+                     wellPanel(options_list))
+  )
 }
 
 INCLUDE_JS <- function(){

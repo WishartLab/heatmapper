@@ -799,12 +799,35 @@ shinyServer(function(input, output, session){
 	
 	################################## OUTPUT FUNCTIONS ##################################
 	
+	# control "show Advanced Options" button
+	output$showAdvancedOpttionsControl <- renderText({
+	  get_button_count()
+	})
+	
+	get_button_count<-(
+	  reactive({
+	    file <- get_file()
+	    if(!is.null(file)){
+	      if (nrow(file) > MIN_FILE_ROWS){
+	        input$advancedOptionsButton <- input$advancedOptionsButton + 1
+	      }
+	    }
+	    #print (paste("rrrr input$advancedOptionsButton ", input$advancedOptionsButton))
+	    if(input$advancedOptionsButton %% 2 == 1){
+	      paste("\"true\"")
+	    }else{
+	      paste("\"false\"")
+	    }
+	  })
+	)
+	
 	# control full size checkbox
 	output$fullSizeControl <- renderUI({
 	  file <- get_file()
 	  if(!is.null(file)){
 	    if (nrow(file) > MIN_FILE_ROWS){
 	      checkboxInput('fullSize', label = "Preview Full Height", value = TRUE)
+	      
 	    }else{
 	      checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
 	    }
@@ -813,6 +836,7 @@ shinyServer(function(input, output, session){
 	  }
 	})
 	
+
 	
 	# plot message of notice of reszing image
 	output$plotMesage <- renderText(
@@ -823,7 +847,7 @@ shinyServer(function(input, output, session){
 	  reactive({
 	    file <- get_file()
 	    if (input$chooseInput != 'fileMultiUpload') {
-		    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS){
+		    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS && input$fullSize){
 		      "Plot dimensions were auto-adjusted. See below in Advanced Options for plot size settings."
 		    }else{
 		      ""
@@ -848,8 +872,10 @@ shinyServer(function(input, output, session){
 		reactive({
 		  file <- get_file()
 		  if (input$chooseInput != 'fileMultiUpload') {
-			  if(input$fullSize || (!is.null(file) &&nrow(file) > MIN_FILE_ROWS)){
+			  if(!is.null(input$fullSize) && 
+			     input$fullSize){
 				    if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
+				      #print(paste("input.advancedOptionsButton ", input$advancedOptionsButton))
 					    input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
 				    }
 				    else{
@@ -859,8 +885,9 @@ shinyServer(function(input, output, session){
 				    }
 			  }
 			  else{
+			    
 			    	#input$plotHeight * get_image_weight()
-			      #print (paste("Not full size ", input$plotHeight))
+			      #print (paste("Not full size  or nrow > 100  ", input$plotHeight))
 			      input$plotHeight * 1
 			  }
 		  } else {

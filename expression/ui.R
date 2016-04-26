@@ -119,7 +119,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
     	
     	DOWNLOAD_BUTTONS_WITH_SELECTION(),
     	
-    	ADVANCED_OPTIONS_PANEL( 
+			ADVANCED_OPTIONS_PANEL_EXPRESSION( 
 				list(
 					
 					sliderInput('plotWidth', label = WIDTH, 
