@@ -14,6 +14,9 @@ library(ggdendro)
 
 source("../global_ui.R") # so we can see EXAMPLE_FILES
 
+# Constants
+dimensions_msg <- "Input data can have up to 50 data columns."
+
 # reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
 	
@@ -203,7 +206,7 @@ shinyServer(function(input, output, session) {
 			return(nums_col)
 		}, 
 		error = function(err){
-			validate(txt = ERR_file_read)
+			validate(txt = paste(ERR_file_read, dimensions_msg))
 		})
 		
 	})
@@ -221,7 +224,7 @@ shinyServer(function(input, output, session) {
 			}
 			
 			# return message if no file uploaded
-			validate(need(values$inputFile$datapath, "Please upload a file"))
+			validate(need(values$inputFile$datapath, paste("Please upload a file.", dimensions_msg)))
 			
 			tryCatch({
 				
@@ -245,7 +248,7 @@ shinyServer(function(input, output, session) {
 				data_file
 			}, 
 			error = function(err){
-				validate(txt = ERR_file_read)
+				validate(txt = paste(ERR_file_read, dimensions_msg))
 			})
 		}
 		

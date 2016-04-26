@@ -9,6 +9,9 @@ library(ggtern)
 library(MASS)
 library(reshape2)
 
+# Constants
+dimensions_msg <- "Input data can have up to 200 x and 200 y coordinates."
+
 shinyServer(function(input, output, session){
 	
 	#################### GLOBAL REACTIVE VALUES ####################
@@ -163,7 +166,7 @@ shinyServer(function(input, output, session){
 	#################### FILE INPUT FUNCTIONS ####################
 	
 	# prints error message if file has not been uploaded
-	selected_file_validate <- function(message = ERR_file_upload){
+	selected_file_validate <- function(message = paste(ERR_file_upload, dimensions_msg)){
 		validate(
 			need(
 				!is.null(values$imageFile) || input$imageSelect == 'imageExample' ||

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+
+       <script>
+       function setImage() {
+       	 var s = document.getElementById("image");
+       	 var source = getURLParameter('image');
+       	 var link = "images/".concat(source).concat(".png")
+            s.src = link;
+   	   }
+
+
+   	   function getURLParameter(name) {
+  		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+		}
+
+		function back() {
+        	window.history.back();
+    	}
+
+       </script>
+
+
+    </head>  
+    <body onload="setImage()">
+
+    <div>
+
+		<img src="" position="relative" width="50%" height = "50%" id="image">
+	</div>
+	<br>	
+	<div align = "center">
+
+		<a onclick="back()">Back</a>
+
+	</div>	
+    </div>	
+		
+    </body>
+</html>	
