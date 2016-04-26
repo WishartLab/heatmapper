@@ -81,6 +81,16 @@ $(document).ready(function() {
         $("#matrixInfo").show();
     });
     
+    /* more info close button */
+    $( "#closeMoreInfoButton" ).on("click", function(){
+        $("#moreInfo").hide();
+    });
+
+    /* more info open button */
+    $( "#moreButton" ).on("click", function(){
+        $("#moreInfo").show();
+    });
+
     /* advanced options section */
     var advancedOptionsButtonCount = 1;
     document.getElementById("advancedOptionsButton").addEventListener("click", toggleAdvancedOptionsButton);

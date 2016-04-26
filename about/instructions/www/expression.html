@@ -50,7 +50,7 @@
 			
 			<h4>Example</h4>
 			
-			Download an example input file <a href="examples/expression_example1.txt" target="_blank">here</a>.
+			Download an example input file <a href="examples/expression_example1.txt" target="_blank">here</a> (Example 1).
 			<br /><br />
 			
 			Example layout (snippet, with tabs replaced by spaces to make the columns apparent):
@@ -82,6 +82,13 @@ Hs.83484	SRY (sex determining region Y)-box 4	-3.418094026	-3.181358856	-3.27630
 			In this example, the 'UNIQID' column ignored, but the 'NAME' column is used to
 			assign row names. Since the column names are not unique, Heatmapper will
 			automatically modify them to create unique column names.
+			
+			<br />
+			<br />
+			
+			With the Import Existing Clusters option, one may also
+			upload existing clusters from a file in <a href='http://evolution.genetics.washington.edu/phylip/newicktree.html' target="_blank">Newick Tree Format</a>. The node names in the tree must match the label names in the data file and must not include  blanks, colons, semicolons, parentheses, or square brackets. 
+			The following are example cluster files for Example 1 (linked above): <a href="examples/expression_example1_column_clusters.txt" target="_blank">column_clusters</a> and <a href="examples/expression_example1_row_clusters.txt" target="_blank">row_clusters</a>
 			
 		</div>
 
@@ -136,7 +143,7 @@ Hs.83484	SRY (sex determining region Y)-box 4	-3.418094026	-3.181358856	-3.27630
 <p class="desc"><strong>Centroid Linkage</strong> - The distance between two clusters is the distance between their centroid values, as shown in this plot.</p>
 <p class="desc"><strong>Complete Linkage</strong> - The distance between two clusters is the largset distance between the objects of the clusters.</p>
 <p class="desc"><strong>Single Linkage</strong> - The distance between two clusters is the smallest distance between an objects of one cluster and another object of the other cluster.</p>
-<p class="desc"><strong>Import Existing Clusters</strong> - Upload existing clusters from a file in <a href='http://evolution.genetics.washington.edu/phylip/newicktree.html'>Newick Tree Format</a>. The node names in the tree must match the label names in the data file and must not include  blanks, colons, semicolons, parentheses, and square brackets. The following are example cluster files for Example 1: <a href="examples/expression_example1_column_clusters.txt" target="_blank">column_clusters</a> and <a href="examples/expression_example1_row_clusters.txt" target="_blank">row_clusters</a></p>
+<p class="desc"><strong>Import Existing Clusters</strong> - Upload existing clusters from a file in <a href='http://evolution.genetics.washington.edu/phylip/newicktree.html' target="_blank">Newick Tree Format</a>. The node names in the tree must match the label names in the data file and must not include  blanks, colons, semicolons, parentheses, or square brackets. The following are example cluster files for Example 1: <a href="examples/expression_example1_column_clusters.txt" target="_blank">column_clusters</a> and <a href="examples/expression_example1_row_clusters.txt" target="_blank">row_clusters</a></p>
 <p class="desc"><strong>None</strong> - No clustering method is applied to the data. No dendrogram is created (either by row/column). Also, the Distance Measurement Method option is no longer applicable.</p>
 </center>
 <br></br>
