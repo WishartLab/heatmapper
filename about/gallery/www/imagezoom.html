@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-
        <script>
        function setImage() {
        	 var s = document.getElementById("image");
@@ -17,26 +16,23 @@
   		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 		}
 
-		function back() {
-        	window.history.back();
-    	}
-
        </script>
 
 
     </head>  
     <body onload="setImage()">
 
-    <div>
+	<div align = "left" style="margin-left:50px;">
 
-		<img src="" position="relative" width="50%" height = "50%" id="image">
+		<br />
+		<b><a href="http://www.heatmapper.ca/about/gallery/">Return to Gallery</a></b>
+
+	</div>
+	<div>
+
+		<img src="" width="60%" height="60%" id="image">
 	</div>
 	<br>	
-	<div align = "center">
-
-		<a onclick="back()">Back</a>
-
-	</div>	
     </div>	
 		
     </body>
