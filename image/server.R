@@ -339,7 +339,7 @@ shinyServer(function(input, output, session){
 		y <- data$y
 		val <- data$value
 		
-		dens <- kde2d.weighted(x, y, val, n = input$contourSmoothness, h = get_bandwidth())
+		dens <- kde2d.weighted(x, y, w = val, n = input$contourSmoothness, h = get_bandwidth())
 		
 		# set NAs to 0
 		dens$z[is.na(dens$z)] <- 0
@@ -405,30 +405,29 @@ shinyServer(function(input, output, session){
 	get_colours <- reactive({
 	  
 	  if(input$colourScheme == 'red/green'){
-	    scale_fill_gradientn(colours = colorRampPalette(c("#FF0000", "#000000", "#23B000"))(7))
+	    scale_fill_gradientn(colours = colorRampPalette(c("#FF0000", "#000000", "#23B000"))(7),guide = "colourbar")
 	  }else if(input$colourScheme == 'blue/yellow'){
-	    scale_fill_gradientn(colours = colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(7))
+	    scale_fill_gradientn(colours = colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(7),guide = "colourbar")
 	  }else if(input$colourScheme == 'piyg'){
-	    scale_fill_gradientn(colours = colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(7))
+	    scale_fill_gradientn(colours = colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(7),guide = "colourbar")
 	  }else if(input$colourScheme == 'grayscale'){
-	    scale_fill_gradientn(colours = colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(7))
+	    scale_fill_gradientn(colours = colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(7),guide = "colourbar")
 	  }else if(input$colourScheme == 'rainbow'){
-	    scale_fill_gradientn(colours = rev(rainbow(7)))
+	    scale_fill_gradientn(colours = rev(rainbow(7)),guide = "colourbar")
 	  }else if(input$colourScheme == 'topo'){
-	    scale_fill_gradientn(colours = rev(topo.colors(7)))
+	    scale_fill_gradientn(colours = rev(topo.colors(7)), guide = "colourbar")
 	  }else if(input$colourScheme == 'custom'){
-	    scale_fill_gradient(low = input$lowColour, high = input$highColour)
+	    scale_fill_gradient(low = input$lowColour, high = input$highColour,guide = "colourbar")
 	  }
-	  
-	#	if(input$colourScheme == 'rainbow'){
-	#		scale_fill_gradientn(colours = rev(rainbow(7)))
-#		}
-#		else if(input$colourScheme == 'custom'){
-#			scale_fill_gradient(low = input$lowColour, high = input$highColour)
-#		}
-#		else{
-#			scale_fill_gradientn(colours = rev(topo.colors(7)))
-#		}
+	  else if(input$colourScheme == 'rainbow'){
+			scale_fill_gradientn(colours = rev(rainbow(7)),guide = "colourbar")
+		}
+		else if(input$colourScheme == 'custom'){
+			scale_fill_gradient(low = input$lowColour, high = input$highColour,guide = "colourbar")
+		}
+		else{
+			scale_fill_gradientn(colours = rev(topo.colors(7)),guide = "colourbar")
+		}
 })
 	  
 	
@@ -482,24 +481,22 @@ shinyServer(function(input, output, session){
 		
 		if(input$displayType == 'square'){
 			if(layer_selected("showHeatmap")){
-				plot1 <- plot1 + geom_raster(aes(fill = value), alpha = input$fillOpacity, bins = input$binNumber) + get_colours()
+				plot1 <- plot1 + geom_raster(aes(fill = value), alpha = input$fillOpacity) + get_colours()
 			}
 		}
 		
 		else if(input$displayType == 'gaussian'){
 			dfdens <- get_density()
-			
 			# avoid contour/fill errors
 			if(var(dfdens$z) != 0){
-				
 				#add fill
 				if(layer_selected("showHeatmap")){
 					plot1 <- plot1 + 
-					stat_contour(aes(z = z,  fill=..level..), bins = input$binNumber, 
-						alpha = input$fillOpacity, data = dfdens, geom="polygon") + guides(fill=FALSE) +
+					stat_contour(aes(z = z, fill=..level..), bins = input$binNumber, 
+						alpha = input$fillOpacity, data = dfdens, geom="polygon") + 
 					get_colours() 
 				}
-					
+				
 				# add contour
 				if(layer_selected("showContour")){
 					plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens, bins = input$binNumber)
@@ -513,7 +510,8 @@ shinyServer(function(input, output, session){
 				geom_vline(xintercept = 0.5:(values$numRows-0.5)) + 
 				geom_hline(yintercept = 0.5:(values$numRows-0.5))
 		}
-		
+		plot1 + theme(legend.title = element_text(colour="blue", size=10, 
+		                                          face="bold"))
 		plot1
 	})
 	
@@ -532,8 +530,16 @@ shinyServer(function(input, output, session){
 	output$ggplotMap <- renderPlot({
 		selected_file_validate()
 		validate(need(!is.na(get_grid_file()),ERR_file_read))
-		get_plot()  + values$highlightPoint
+		get_plot() +  values$highlightPoint
 	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
+	
+	
+	output$ggplotMapLegend <- renderPlot({
+	  selected_file_validate()
+	  validate(need(!is.na(get_grid_file()),ERR_file_read))
+	  get_legend() + values$highlightPoint
+	}, width = 20, height = 100)
+	
 	
 	output$plotDownload <- downloadHandler(
 		filename = reactive({get_plot_download_name()}),
