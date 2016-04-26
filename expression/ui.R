@@ -10,6 +10,8 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel", width = 1,
 
+			fluidRow(
+			column(7,
 			radioButtons('chooseInput', label = FILE_UPLOAD,
 				inline=FALSE,
 				choices = c(
@@ -17,7 +19,23 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 					"Upload File" = 'fileUpload',
 					"Upload Multiple Files" = 'fileMultiUpload'
 					),
-				selected = 'fileUpload'),
+				selected = 'fileUpload')
+			),
+			column(5,
+				tipify(actionButton('moreButton', label = NULL, class = "btn-info", icon = icon("fa fa-info-circle")), 
+						 title = "More Info", placement = "right")
+				, align="right")
+			),
+			tags$style(type='text/css', "#moreButton {margin-top: 30px;}"),
+			
+			conditionalPanel(condition = "input.moreButton>0",
+											 wellPanel(id = "moreInfo",
+											 					tags$label("Expression Heatmap Info"),
+											 					HTML("<button id='closeMoreInfoButton' class='action-button' style='float:right;'><i class='fa fa-times'></i></button>"),
+											 					tags$br(),
+											 					includeHTML("www/expressionInfo.html")
+											 )),
+			
 			conditionalPanel(condition = "input.chooseInput == 'fileUpload'",
 				HTML("<button id='clearFile' class='action-button clearButton'>Clear</button>"),
 				fileInput('file', label = NULL, width="82%")
