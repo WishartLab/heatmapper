@@ -799,43 +799,24 @@ shinyServer(function(input, output, session){
 	
 	################################## OUTPUT FUNCTIONS ##################################
 	
-	# control "show Advanced Options" button
-	output$showAdvancedOpttionsControl <- renderText({
-	  get_button_count()
-	})
-	
-	get_button_count<-(
-	  reactive({
-	    file <- get_file()
-	    if(!is.null(file)){
-	      if (nrow(file) > MIN_FILE_ROWS){
-	        input$advancedOptionsButton <- input$advancedOptionsButton + 1
-	      }
-	    }
-	    #print (paste("rrrr input$advancedOptionsButton ", input$advancedOptionsButton))
-	    if(input$advancedOptionsButton %% 2 == 1){
-	      paste("\"true\"")
-	    }else{
-	      paste("\"false\"")
-	    }
-	  })
-	)
-	
 	# control full size checkbox
 	output$fullSizeControl <- renderUI({
-	  file <- get_file()
-	  if(!is.null(file)){
-	    if (nrow(file) > MIN_FILE_ROWS){
-	      checkboxInput('fullSize', label = "Preview Full Height", value = TRUE)
-	      
-	    }else{
-	      checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
-	    }
-	  }else{
-	    checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
-	  }
+	  get_UI()
 	})
 	
+get_UI <- reactive({
+    file <- get_file()
+    if(!is.null(file)){
+      if (nrow(file) > MIN_FILE_ROWS){
+        checkboxInput('fullSize', label = "Preview Full Height", value = TRUE)
+        
+      }else{
+        checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
+      }
+    }else{
+      checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
+    }
+  })
 
 	
 	# plot message of notice of reszing image
@@ -847,8 +828,14 @@ shinyServer(function(input, output, session){
 	  reactive({
 	    file <- get_file()
 	    if (input$chooseInput != 'fileMultiUpload') {
-		    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS && input$fullSize){
-		      "Plot dimensions were auto-adjusted. See below in Advanced Options for plot size settings."
+		    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS){
+		      #print (paste("input$fullSize ", input$fullSize))
+		      #print (paste("input$advancedOptionsButton ", input$advancedOptionsButton))
+		      if ((!is.null(input$fullSize) && input$fullSize) || input$advancedOptionsButton==0){
+		        "Plot dimensions were auto-adjusted. See below in Advanced Options for plot size settings."
+		      }else{
+	          ""
+	        }
 		    }else{
 		      ""
 		    }
@@ -871,11 +858,14 @@ shinyServer(function(input, output, session){
 	get_plot_height <- (
 		reactive({
 		  file <- get_file()
+		  #print(paste("input.advancedOptionsButton ", input$advancedOptionsButton))
+		  #print(paste("111input$fullSize ", input$fullSize))
 		  if (input$chooseInput != 'fileMultiUpload') {
-			  if(!is.null(input$fullSize) && 
-			     input$fullSize){
+		    if (!is.null(file) && nrow(file) > MIN_FILE_ROWS && input$advancedOptionsButton==0){
+		      input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
+		    }
+			  else if(!is.null(input$fullSize) && input$fullSize){
 				    if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
-				      #print(paste("input.advancedOptionsButton ", input$advancedOptionsButton))
 					    input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
 				    }
 				    else{
