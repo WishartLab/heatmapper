@@ -11,6 +11,7 @@ library(reshape2)
 
 # Constants
 dimensions_msg <- "Input data can have up to 200 x and 200 y coordinates."
+log.file = "/apps/heatmapper_monitor/heatmapper_logs/image_activity.log";
 
 shinyServer(function(input, output, session){
 	
@@ -40,24 +41,29 @@ shinyServer(function(input, output, session){
 	# set values$num when numeric input is changed
 	observe({
 		values$num <- input$selectedValue
+		log_activity('input$selectedValue')
 	})
 	
 	observe({
 		input$clearImage
 		values$imageFile <- NULL
+		log_activity('clearImage')
 	})
 	
 	observe({
 		input$clearFile
 		values$gridFile <- NULL
+		log_activity('clearFile')
 	})
 	
 	observe({
 		values$imageFile <- input$imageFile
+		log_activity('input$imageFile')
 	})
 	
 	observe({
 		values$gridFile <- input$file
+		log_activity('input$file')
 	})
 
 	
@@ -94,6 +100,7 @@ shinyServer(function(input, output, session){
 
 	# calculate index from x and y coordinates
 	find_index <- reactive({
+		log_activity('find_index')
 		
 		x <- input$selectedX
 		y <- input$selectedY
@@ -178,29 +185,35 @@ shinyServer(function(input, output, session){
 	
 	# read and return background image file
 	get_image_file <- reactive({
-		if(input$imageSelect == 'imageExample'){
-			readPNG("example_input/background.png")
-		}
-		else if(!is.null(values$imageFile)){
-			name <- values$imageFile$name
-			extension <- tolower(substr(name, nchar(name)-3, nchar(name)))
+		log_activity('begin get_image_file')
+		tryCatch({
+			if(input$imageSelect == 'imageExample'){
+				readPNG("example_input/background.png")
+			}
+			else if(!is.null(values$imageFile)){
+				name <- values$imageFile$name
+				extension <- tolower(substr(name, nchar(name)-3, nchar(name)))
 
-			if(extension == ".jpg" || extension == "jpeg"){
-				readJPEG(values$imageFile$datapath)
-			}
-			else if(extension == ".png"){
-				readPNG(values$imageFile$datapath)
-			}
-			else if(extension == ".tif" || extension == "tiff"){
-				readTIFF(values$imageFile$datapath)
+				if(extension == ".jpg" || extension == "jpeg"){
+					readJPEG(values$imageFile$datapath)
+				}
+				else if(extension == ".png"){
+					readPNG(values$imageFile$datapath)
+				}
+				else if(extension == ".tif" || extension == "tiff"){
+					readTIFF(values$imageFile$datapath)
+				}
+				else{
+					validate(txt = "Unfortunately the type of file you uploaded is not supported. Please upload a PNG or JPEG image file.")
+				}
 			}
 			else{
-				validate(txt = "Unfortunately the type of file you uploaded is not supported. Please upload a PNG or JPEG image file.")
+				NULL
 			}
-		}
-		else{
-			NULL
-		}
+		},
+		finally = {
+			log_activity('end get_image_file')
+		})
 	})
 	
 	# get column based on list of names
@@ -215,17 +228,17 @@ shinyServer(function(input, output, session){
 	
 	# read and return grid file
 	get_grid_file <- reactive({
-
+		log_activity('begin get_grid_file')
 		# reset values$data if grid changes
 		if(input$gridSelect == 'fileExample'){
 			if(input$exampleSelect == 'example'){
-				read.delim("example_input/example.txt")
+				ret <- read.delim("example_input/example.txt")
 			}
 			else{
 				max <- input$numGridRows 
 				newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
 				newy <- rep(seq(1, max), max)
-				data.frame("value" = 0, "x" = newx, "y" = newy)
+				ret <- data.frame("value" = 0, "x" = newx, "y" = newy)
 			}
 		}
 		else if(!is.null(values$gridFile)){
@@ -266,10 +279,10 @@ shinyServer(function(input, output, session){
 					
 					if(is.null(x) || is.null(y) || is.null(val)){
 						# names couldn't be matched
-						NA
+						ret <- NA
 					} else{
 						# all names were matched
-						data.frame(x = c(as.integer(x)), y = c(as.integer(y)), value = c(val))
+						ret <- data.frame(x = c(as.integer(x)), y = c(as.integer(y)), value = c(val))
 					}
 					
 				} else {
@@ -281,12 +294,12 @@ shinyServer(function(input, output, session){
 					
 					# flip the data
 					x <- x[nrow(x):1,]
-					melt(x, varnames  = c("y","x"))
+					ret <- melt(x, varnames  = c("y","x"))
 				}
 				
 			}, 
 			error = function(err){
-				validate(txt = ERR_file_read)
+				ret <- validate(txt = ERR_file_read)
 			})
 			
 		}
@@ -294,8 +307,11 @@ shinyServer(function(input, output, session){
 			max <- input$numGridRows
 			newx <- unlist(lapply(1:max, function(x){rep(x, max)}))
 			newy <- rep(seq(1, max), max)
-			data.frame("value" = rep(0, max*max), "x" = newx, "y" = newy)
-		}	
+			ret <- data.frame("value" = rep(0, max*max), "x" = newx, "y" = newy)
+		}
+		
+		log_activity('end get_grid_file')
+		return(ret)
 	})
 	
 	#################### KDE2D HELPER FUNCTIONS ####################
@@ -449,73 +465,78 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_plot <- reactive({
-
-		plot1 <- 	ggplot(data = values$data, aes(x = x, y = y))  + 
+		log_activity('begin get_plot')
+		tryCatch({
+			plot1 <- 	ggplot(data = values$data, aes(x = x, y = y))  + 
 			
-			# prevent "no layers in plot" error
-			geom_blank() +
+				# prevent "no layers in plot" error
+				geom_blank() +
 			
-			# add theme
-			get_theme() +
+				# add theme
+				get_theme() +
 			
-			# add background 
-			get_background() +
+				# add background 
+				get_background() +
 			
-			# crop edges 
-			coord_cartesian(xlim = get_limits(), ylim = get_limits())
+				# crop edges 
+				coord_cartesian(xlim = get_limits(), ylim = get_limits())
 			
-		if(layer_selected("showAxisLabels")){
-			# scale x and y axis values
-			plot1 <- plot1 + 
-				scale_x_continuous(breaks=get_breaks()) + 
-				scale_y_continuous(breaks=get_breaks())
-		}
-		else{
-			plot1 <- plot1 + 	
-				theme(
-					axis.line=element_blank(),
-		      axis.text.x=element_blank(),
-		      axis.text.y=element_blank(),
-		      axis.ticks=element_blank(),
-		      axis.title.x=element_blank(),
-		      axis.title.y=element_blank()
-				) 
-		}
-		
-		if(input$displayType == 'square'){
-			if(layer_selected("showHeatmap")){
-				plot1 <- plot1 + geom_raster(aes(fill = value), alpha = input$fillOpacity) + get_colours()
+			if(layer_selected("showAxisLabels")){
+				# scale x and y axis values
+				plot1 <- plot1 + 
+					scale_x_continuous(breaks=get_breaks()) + 
+					scale_y_continuous(breaks=get_breaks())
 			}
-		}
+			else{
+				plot1 <- plot1 + 	
+					theme(
+						axis.line=element_blank(),
+						axis.text.x=element_blank(),
+						axis.text.y=element_blank(),
+						axis.ticks=element_blank(),
+						axis.title.x=element_blank(),
+						axis.title.y=element_blank()
+					) 
+			}
 		
-		else if(input$displayType == 'gaussian'){
-			dfdens <- get_density()
-			# avoid contour/fill errors
-			if(var(dfdens$z) != 0){
-				#add fill
+			if(input$displayType == 'square'){
 				if(layer_selected("showHeatmap")){
-					plot1 <- plot1 + 
-					stat_contour(aes(z = z, fill=..level..), bins = input$binNumber, 
-						alpha = input$fillOpacity, data = dfdens, geom="polygon") + 
-					get_colours() 
-				}
-				
-				# add contour
-				if(layer_selected("showContour")){
-					plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens, bins = input$binNumber)
+					plot1 <- plot1 + geom_raster(aes(fill = value), alpha = input$fillOpacity) + get_colours()
 				}
 			}
-		}
+		
+			else if(input$displayType == 'gaussian'){
+				dfdens <- get_density()
+				# avoid contour/fill errors
+				if(var(dfdens$z) != 0){
+					#add fill
+					if(layer_selected("showHeatmap")){
+						plot1 <- plot1 + 
+						stat_contour(aes(z = z, fill=..level..), bins = input$binNumber, 
+							alpha = input$fillOpacity, data = dfdens, geom="polygon") + 
+						get_colours() 
+					}
+				
+					# add contour
+					if(layer_selected("showContour")){
+						plot1 <- plot1 + geom_contour(aes(z = z), data = dfdens, bins = input$binNumber)
+					}
+				}
+			}
 
-		# add grid
-		if(layer_selected("showGrid")){
-			plot1 <- plot1 + 
-				geom_vline(xintercept = 0.5:(values$numRows-0.5)) + 
-				geom_hline(yintercept = 0.5:(values$numRows-0.5))
-		}
-		plot1 + theme(legend.title = element_text(colour="blue", size=10, 
-		                                          face="bold"))
-		plot1
+			# add grid
+			if(layer_selected("showGrid")){
+				plot1 <- plot1 + 
+					geom_vline(xintercept = 0.5:(values$numRows-0.5)) + 
+					geom_hline(yintercept = 0.5:(values$numRows-0.5))
+			}
+			plot1 + theme(legend.title = element_text(colour="blue", size=10, 
+																								face="bold"))
+			plot1
+		},
+		finally = {
+			log_activity('end get_plot')
+		})
 	})
 	
 	get_plot_download_name <- function(){
@@ -531,9 +552,15 @@ shinyServer(function(input, output, session){
 	})
 	
 	output$ggplotMap <- renderPlot({
-		selected_file_validate()
-		validate(need(!is.na(get_grid_file()),ERR_file_read))
-		get_plot() +  values$highlightPoint
+		log_activity('begin output$ggplotMap')
+		tryCatch({
+			selected_file_validate()
+			validate(need(!is.na(get_grid_file()),ERR_file_read))
+			get_plot() +  values$highlightPoint
+		},
+		finally = {
+			log_activity('end output$ggplotMap')
+		})
 	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
 	
 	
@@ -547,6 +574,7 @@ shinyServer(function(input, output, session){
 	output$plotDownload <- downloadHandler(
 		filename = reactive({get_plot_download_name()}),
 		content = function(file){
+			log_activity('plotDownload')
 			ggsave(file, get_plot(), width = input$plotWidth/72, height = input$plotHeight/72)
 		}
 	)
@@ -554,6 +582,7 @@ shinyServer(function(input, output, session){
 	output$tableDownload <- downloadHandler(
 		filename = reactive({paste0("table.", input$downloadTableFormat)}),
 		content = function(file){
+			log_activity('tableDownload')
 			if(input$downloadTableFormat == "csv"){
 				write.csv(values$data, quote = FALSE, file = file, row.names = FALSE)
 			}
@@ -564,8 +593,21 @@ shinyServer(function(input, output, session){
 	)
 	
 	output$table <- renderDataTable({
+		log_activity('renderDataTable')
 		selected_file_validate()
 		data.frame("X" = values$data$x, "Y" = values$data$y, "Value" = values$data$value)
 	})
+
+	# Log user activity to a file, for use by the Heatmapper Monitor API used for
+	# directing users to appropriate server nodes. Note that if an activity string starts
+	# with 'begin', it will indicate to the API that a process has begun that may take an
+	# extended amount of time (more than a fraction of a second), so this node can be
+	# avoided if another user wants to use the same app.
+	log_activity <- function(activity) {
+		z <- Sys.time();
+		write(paste(unclass(z), z, activity, sep="\t"), file=log.file, append=TRUE);
+			# unclass(z) will be the time in seconds since the beginning of 1970.
+			# z will be printed as the human-readable date and time.
+	}
 
 })
