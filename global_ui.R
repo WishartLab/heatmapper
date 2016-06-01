@@ -47,6 +47,7 @@ HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 	list(
 		includeHTML("../www/navbar.html"),
 		tags$script(paste0("$('", activeTab, "').addClass('active');")), 
+		tags$head(includeScript("../www/js/google-analytics.js")),
 		
 		tags$head(
 			# HTML("<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"),

@@ -7,7 +7,9 @@ server <- function(input, output) {
 	})
 }
 
-ui <- list(NAVBAR("#aboutTab"), fluidPage(
+ui <- list(tags$head(includeScript("../../www/js/google-analytics.js")),
+					NAVBAR("#aboutTab"), fluidPage(
+# 	tags$head(includeScript("../../../www/js/google-analytics.js")),
 	sidebarLayout(
 		sidebarPanel(id = "sidebarPanel",
             titlePanel("Gallery"),
