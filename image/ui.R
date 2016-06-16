@@ -103,14 +103,14 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 		  	GRID_POINTS_SLIDER(10, 400, 200, 10)
 	  	),
 	  	
-	  	FILL_OPACITY_SLIDER("0.05"),
-	  	BIN_SLIDER(2, 50, 30),
+	  	FILL_OPACITY_SLIDER("0.2"),
+	  	BIN_SLIDER(2, 50, 7),
 	  	
 	  	COLOUR_SCHEME_SELECT(),
 	  	#COLOUR_SCHEME_SELECT_LIMITED(),
 	  	
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
-	  		JSCOLOUR_ROW("#EE00FF", "#FFFF00")
+	  		JSCOLOUR_ROW("#0000FF", "#FF0000")
 	  	), 
 	  	
 	  	DOWNLOAD_BUTTONS_WITH_SELECTION(),

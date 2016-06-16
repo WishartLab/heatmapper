@@ -189,7 +189,7 @@ shinyServer(function(input, output, session){
 		log_activity('image', 'begin get_image_file')
 		tryCatch({
 			if(input$imageSelect == 'imageExample'){
-				readPNG("example_input/background.png")
+				readJPEG("example_input/background.jpg")
 			}
 			else if(!is.null(values$imageFile)){
 				name <- values$imageFile$name
@@ -233,7 +233,7 @@ shinyServer(function(input, output, session){
 		# reset values$data if grid changes
 		if(input$gridSelect == 'fileExample'){
 			if(input$exampleSelect == 'example'){
-				ret <- read.delim("example_input/example.txt")
+				ret <- read_grid_file("example.txt", "example_input/example.txt")
 			}
 			else{
 				max <- input$numGridRows 
@@ -243,66 +243,7 @@ shinyServer(function(input, output, session){
 			}
 		}
 		else if(!is.null(values$gridFile)){
-			
-			tryCatch({
-				
-				fileType <- tail(unlist(strsplit(x = values$gridFile$name, split = "[.]")), n=1)
-				
-				if(fileType == "xls" || fileType == "xlsx"){
-					data_file <- read.xls(values$gridFile$datapath, sheet=1, header = FALSE)
-				}
-				else if(fileType == "csv"){
-					data_file <- read.csv(values$gridFile$datapath, header = FALSE)
-				}
-				else{
-					data_file <- read.delim(values$gridFile$datapath, header = FALSE, sep="\t", row.names = NULL)
-				}
-				
-				if (sum(grepl("^[-+]?([0-9]*[.])?[0-9]+([eE][+-]?[0-9]+)?$", lapply(data_file[1,], as.character), perl=TRUE)) < length(data_file[1,])) {
-					# Not all cells in the first row are numbers, so we will assume that the first row is a header row.
-					# We are expecting column headers for x, y, and value ('long format').
-					
-					# Re-read the file, but with header = TRUE
-					if(fileType == "xls" || fileType == "xlsx"){
-						data_file <- read.xls(values$gridFile$datapath, sheet=1, header = TRUE)
-					}
-					else if(fileType == "csv"){
-						data_file <- read.csv(values$gridFile$datapath, header = TRUE)
-					}
-					else{
-						data_file <- read.delim(values$gridFile$datapath, header = TRUE, sep="\t", row.names = NULL)
-					}
-					
-					# check alternative names
-					x <- get_column(data_file, c("x", "X","col", "Col", "COL", "cols", "Cols", "COLS", "columns", "Columns", "COLUMNS"))
-					y <- get_column(data_file, c("y", "Y", "row", "Row", "ROW", "rows", "Rows", "ROWS"))
-					val <- get_column(data_file, c("value", "Value", "VALUE", "val", "Val", "VAL"))
-					
-					if(is.null(x) || is.null(y) || is.null(val)){
-						# names couldn't be matched
-						ret <- NA
-					} else{
-						# all names were matched
-						ret <- data.frame(x = c(as.integer(x)), y = c(as.integer(y)), value = c(val))
-					}
-					
-				} else {
-					# First row contains all numeric values.
-					# Treat data as matrix form ('wide format').
-					
-					colnames(data_file) <- NULL
-					x <- as.matrix(data_file)
-					
-					# flip the data
-					x <- x[nrow(x):1,]
-					ret <- melt(x, varnames  = c("y","x"))
-				}
-				
-			}, 
-			error = function(err){
-				ret <- validate(txt = ERR_file_read)
-			})
-			
+			ret <- read_grid_file(values$gridFile$name, values$gridFile$datapath)
 		}
 		else{
 			max <- input$numGridRows
@@ -314,6 +255,69 @@ shinyServer(function(input, output, session){
 		log_activity('image', 'end get_grid_file')
 		return(ret)
 	})
+	
+	
+	read_grid_file <- function(filename, filepath){
+		tryCatch({
+			
+			fileType <- tail(unlist(strsplit(x = filename, split = "[.]")), n=1)
+			
+			if(fileType == "xls" || fileType == "xlsx"){
+				data_file <- read.xls(filepath, sheet=1, header = FALSE)
+			}
+			else if(fileType == "csv"){
+				data_file <- read.csv(filepath, header = FALSE)
+			}
+			else{
+				data_file <- read.delim(filepath, header = FALSE, sep="\t", row.names = NULL)
+			}
+			
+			if (sum(grepl("^[-+]?([0-9]*[.])?[0-9]+([eE][+-]?[0-9]+)?$", lapply(data_file[1,], as.character), perl=TRUE)) < length(data_file[1,])) {
+				# Not all cells in the first row are numbers, so we will assume that the first row is a header row.
+				# We are expecting column headers for x, y, and value ('long format').
+				
+				# Re-read the file, but with header = TRUE
+				if(fileType == "xls" || fileType == "xlsx"){
+					data_file <- read.xls(filepath, sheet=1, header = TRUE)
+				}
+				else if(fileType == "csv"){
+					data_file <- read.csv(filepath, header = TRUE)
+				}
+				else{
+					data_file <- read.delim(filepath, header = TRUE, sep="\t", row.names = NULL)
+				}
+				
+				# check alternative names
+				x <- get_column(data_file, c("x", "X","col", "Col", "COL", "cols", "Cols", "COLS", "columns", "Columns", "COLUMNS"))
+				y <- get_column(data_file, c("y", "Y", "row", "Row", "ROW", "rows", "Rows", "ROWS"))
+				val <- get_column(data_file, c("value", "Value", "VALUE", "val", "Val", "VAL"))
+				
+				if(is.null(x) || is.null(y) || is.null(val)){
+					# names couldn't be matched
+					ret <- NA
+				} else{
+					# all names were matched
+					ret <- data.frame(x = c(as.integer(x)), y = c(as.integer(y)), value = c(val))
+				}
+				
+			} else {
+				# First row contains all numeric values.
+				# Treat data as matrix form ('wide format').
+				
+				colnames(data_file) <- NULL
+				x <- as.matrix(data_file)
+				
+				# flip the data
+				x <- x[nrow(x):1,]
+				ret <- melt(x, varnames  = c("y","x"))
+			}
+		}, 
+		error = function(err){
+			ret <- validate(txt = ERR_file_read)
+		})
+		return(ret)
+	}
+	
 	
 	#################### KDE2D HELPER FUNCTIONS ####################
 	
