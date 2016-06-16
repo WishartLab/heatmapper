@@ -10,7 +10,7 @@ log_activity <- function(app, activity) {
 	log.file = paste("/apps/heatmapper_monitor/heatmapper_logs/", app ,"_activity.log", sep="");
 	z <- Sys.time();
 	tryCatch({
-		write(paste(unclass(z), z, activity, sep="\t"), file=log.file, append=TRUE);
+		suppressWarnings(write(paste(unclass(z), z, activity, sep="\t"), file=log.file, append=TRUE));
 			# unclass(z) will be the time in seconds since the beginning of 1970.
 			# z will be printed as the human-readable date and time.
 		}, 
