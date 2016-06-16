@@ -9,9 +9,10 @@ library(ggtern)
 library(MASS)
 library(reshape2)
 
+source("../global_server.R")
+
 # Constants
 dimensions_msg <- "Input data can have up to 200 x and 200 y coordinates."
-log.file = "/apps/heatmapper_monitor/heatmapper_logs/image_activity.log";
 
 shinyServer(function(input, output, session){
 	
@@ -41,29 +42,29 @@ shinyServer(function(input, output, session){
 	# set values$num when numeric input is changed
 	observe({
 		values$num <- input$selectedValue
-		log_activity('input$selectedValue')
+		log_activity('image', 'input$selectedValue')
 	})
 	
 	observe({
 		input$clearImage
 		values$imageFile <- NULL
-		log_activity('clearImage')
+		log_activity('image', 'clearImage')
 	})
 	
 	observe({
 		input$clearFile
 		values$gridFile <- NULL
-		log_activity('clearFile')
+		log_activity('image', 'clearFile')
 	})
 	
 	observe({
 		values$imageFile <- input$imageFile
-		log_activity('input$imageFile')
+		log_activity('image', 'input$imageFile')
 	})
 	
 	observe({
 		values$gridFile <- input$file
-		log_activity('input$file')
+		log_activity('image', 'input$file')
 	})
 
 	
@@ -100,7 +101,7 @@ shinyServer(function(input, output, session){
 
 	# calculate index from x and y coordinates
 	find_index <- reactive({
-		log_activity('find_index')
+		log_activity('image', 'find_index')
 		
 		x <- input$selectedX
 		y <- input$selectedY
@@ -185,10 +186,10 @@ shinyServer(function(input, output, session){
 	
 	# read and return background image file
 	get_image_file <- reactive({
-		log_activity('begin get_image_file')
+		log_activity('image', 'begin get_image_file')
 		tryCatch({
 			if(input$imageSelect == 'imageExample'){
-				readPNG("example_input/background.png")
+				readJPEG("example_input/background.jpg")
 			}
 			else if(!is.null(values$imageFile)){
 				name <- values$imageFile$name
@@ -212,7 +213,7 @@ shinyServer(function(input, output, session){
 			}
 		},
 		finally = {
-			log_activity('end get_image_file')
+			log_activity('image', 'end get_image_file')
 		})
 	})
 	
@@ -228,11 +229,11 @@ shinyServer(function(input, output, session){
 	
 	# read and return grid file
 	get_grid_file <- reactive({
-		log_activity('begin get_grid_file')
+		log_activity('image', 'begin get_grid_file')
 		# reset values$data if grid changes
 		if(input$gridSelect == 'fileExample'){
 			if(input$exampleSelect == 'example'){
-				ret <- read.delim("example_input/example.txt")
+				ret <- read_grid_file("example.txt", "example_input/example.txt")
 			}
 			else{
 				max <- input$numGridRows 
@@ -242,66 +243,7 @@ shinyServer(function(input, output, session){
 			}
 		}
 		else if(!is.null(values$gridFile)){
-			
-			tryCatch({
-				
-				fileType <- tail(unlist(strsplit(x = values$gridFile$name, split = "[.]")), n=1)
-				
-				if(fileType == "xls" || fileType == "xlsx"){
-					data_file <- read.xls(values$gridFile$datapath, sheet=1, header = FALSE)
-				}
-				else if(fileType == "csv"){
-					data_file <- read.csv(values$gridFile$datapath, header = FALSE)
-				}
-				else{
-					data_file <- read.delim(values$gridFile$datapath, header = FALSE, sep="\t", row.names = NULL)
-				}
-				
-				if (sum(grepl("^[-+]?([0-9]*[.])?[0-9]+([eE][+-]?[0-9]+)?$", lapply(data_file[1,], as.character), perl=TRUE)) < length(data_file[1,])) {
-					# Not all cells in the first row are numbers, so we will assume that the first row is a header row.
-					# We are expecting column headers for x, y, and value ('long format').
-					
-					# Re-read the file, but with header = TRUE
-					if(fileType == "xls" || fileType == "xlsx"){
-						data_file <- read.xls(values$gridFile$datapath, sheet=1, header = TRUE)
-					}
-					else if(fileType == "csv"){
-						data_file <- read.csv(values$gridFile$datapath, header = TRUE)
-					}
-					else{
-						data_file <- read.delim(values$gridFile$datapath, header = TRUE, sep="\t", row.names = NULL)
-					}
-					
-					# check alternative names
-					x <- get_column(data_file, c("x", "X","col", "Col", "COL", "cols", "Cols", "COLS", "columns", "Columns", "COLUMNS"))
-					y <- get_column(data_file, c("y", "Y", "row", "Row", "ROW", "rows", "Rows", "ROWS"))
-					val <- get_column(data_file, c("value", "Value", "VALUE", "val", "Val", "VAL"))
-					
-					if(is.null(x) || is.null(y) || is.null(val)){
-						# names couldn't be matched
-						ret <- NA
-					} else{
-						# all names were matched
-						ret <- data.frame(x = c(as.integer(x)), y = c(as.integer(y)), value = c(val))
-					}
-					
-				} else {
-					# First row contains all numeric values.
-					# Treat data as matrix form ('wide format').
-					
-					colnames(data_file) <- NULL
-					x <- as.matrix(data_file)
-					
-					# flip the data
-					x <- x[nrow(x):1,]
-					ret <- melt(x, varnames  = c("y","x"))
-				}
-				
-			}, 
-			error = function(err){
-				ret <- validate(txt = ERR_file_read)
-			})
-			
+			ret <- read_grid_file(values$gridFile$name, values$gridFile$datapath)
 		}
 		else{
 			max <- input$numGridRows
@@ -310,9 +252,72 @@ shinyServer(function(input, output, session){
 			ret <- data.frame("value" = rep(0, max*max), "x" = newx, "y" = newy)
 		}
 		
-		log_activity('end get_grid_file')
+		log_activity('image', 'end get_grid_file')
 		return(ret)
 	})
+	
+	
+	read_grid_file <- function(filename, filepath){
+		tryCatch({
+			
+			fileType <- tail(unlist(strsplit(x = filename, split = "[.]")), n=1)
+			
+			if(fileType == "xls" || fileType == "xlsx"){
+				data_file <- read.xls(filepath, sheet=1, header = FALSE)
+			}
+			else if(fileType == "csv"){
+				data_file <- read.csv(filepath, header = FALSE)
+			}
+			else{
+				data_file <- read.delim(filepath, header = FALSE, sep="\t", row.names = NULL)
+			}
+			
+			if (sum(grepl("^[-+]?([0-9]*[.])?[0-9]+([eE][+-]?[0-9]+)?$", lapply(data_file[1,], as.character), perl=TRUE)) < length(data_file[1,])) {
+				# Not all cells in the first row are numbers, so we will assume that the first row is a header row.
+				# We are expecting column headers for x, y, and value ('long format').
+				
+				# Re-read the file, but with header = TRUE
+				if(fileType == "xls" || fileType == "xlsx"){
+					data_file <- read.xls(filepath, sheet=1, header = TRUE)
+				}
+				else if(fileType == "csv"){
+					data_file <- read.csv(filepath, header = TRUE)
+				}
+				else{
+					data_file <- read.delim(filepath, header = TRUE, sep="\t", row.names = NULL)
+				}
+				
+				# check alternative names
+				x <- get_column(data_file, c("x", "X","col", "Col", "COL", "cols", "Cols", "COLS", "columns", "Columns", "COLUMNS"))
+				y <- get_column(data_file, c("y", "Y", "row", "Row", "ROW", "rows", "Rows", "ROWS"))
+				val <- get_column(data_file, c("value", "Value", "VALUE", "val", "Val", "VAL"))
+				
+				if(is.null(x) || is.null(y) || is.null(val)){
+					# names couldn't be matched
+					ret <- NA
+				} else{
+					# all names were matched
+					ret <- data.frame(x = c(as.integer(x)), y = c(as.integer(y)), value = c(val))
+				}
+				
+			} else {
+				# First row contains all numeric values.
+				# Treat data as matrix form ('wide format').
+				
+				colnames(data_file) <- NULL
+				x <- as.matrix(data_file)
+				
+				# flip the data
+				x <- x[nrow(x):1,]
+				ret <- melt(x, varnames  = c("y","x"))
+			}
+		}, 
+		error = function(err){
+			ret <- validate(txt = ERR_file_read)
+		})
+		return(ret)
+	}
+	
 	
 	#################### KDE2D HELPER FUNCTIONS ####################
 	
@@ -465,7 +470,7 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_plot <- reactive({
-		log_activity('begin get_plot')
+		log_activity('image', 'begin get_plot')
 		tryCatch({
 			plot1 <- 	ggplot(data = values$data, aes(x = x, y = y))  + 
 			
@@ -535,7 +540,7 @@ shinyServer(function(input, output, session){
 			plot1
 		},
 		finally = {
-			log_activity('end get_plot')
+			log_activity('image', 'end get_plot')
 		})
 	})
 	
@@ -552,14 +557,14 @@ shinyServer(function(input, output, session){
 	})
 	
 	output$ggplotMap <- renderPlot({
-		log_activity('begin output$ggplotMap')
+		log_activity('image', 'begin output$ggplotMap')
 		tryCatch({
 			selected_file_validate()
 			validate(need(!is.na(get_grid_file()),ERR_file_read))
 			get_plot() +  values$highlightPoint
 		},
 		finally = {
-			log_activity('end output$ggplotMap')
+			log_activity('image', 'end output$ggplotMap')
 		})
 	}, width = reactive({input$plotWidth}), height = reactive({input$plotHeight}))
 	
@@ -574,7 +579,7 @@ shinyServer(function(input, output, session){
 	output$plotDownload <- downloadHandler(
 		filename = reactive({get_plot_download_name()}),
 		content = function(file){
-			log_activity('plotDownload')
+			log_activity('image', 'plotDownload')
 			ggsave(file, get_plot(), width = input$plotWidth/72, height = input$plotHeight/72)
 		}
 	)
@@ -582,7 +587,7 @@ shinyServer(function(input, output, session){
 	output$tableDownload <- downloadHandler(
 		filename = reactive({paste0("table.", input$downloadTableFormat)}),
 		content = function(file){
-			log_activity('tableDownload')
+			log_activity('image', 'tableDownload')
 			if(input$downloadTableFormat == "csv"){
 				write.csv(values$data, quote = FALSE, file = file, row.names = FALSE)
 			}
@@ -593,21 +598,9 @@ shinyServer(function(input, output, session){
 	)
 	
 	output$table <- renderDataTable({
-		log_activity('renderDataTable')
+		log_activity('image', 'renderDataTable')
 		selected_file_validate()
 		data.frame("X" = values$data$x, "Y" = values$data$y, "Value" = values$data$value)
 	})
-
-	# Log user activity to a file, for use by the Heatmapper Monitor API used for
-	# directing users to appropriate server nodes. Note that if an activity string starts
-	# with 'begin', it will indicate to the API that a process has begun that may take an
-	# extended amount of time (more than a fraction of a second), so this node can be
-	# avoided if another user wants to use the same app.
-	log_activity <- function(activity) {
-		z <- Sys.time();
-		write(paste(unclass(z), z, activity, sep="\t"), file=log.file, append=TRUE);
-			# unclass(z) will be the time in seconds since the beginning of 1970.
-			# z will be printed as the human-readable date and time.
-	}
 
 })

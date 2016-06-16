@@ -5,9 +5,10 @@ library(htmlwidgets)
 library(ggtern)
 library(MASS)
 
+source("../global_server.R")
+
 # Constants
 dimensions_msg <- "Input data can have up to 8,000 data points."
-log.file = "/apps/heatmapper_monitor/heatmapper_logs/geocoordinate_activity.log";
 
 shinyServer(function(input, output, session){
 	
@@ -16,16 +17,16 @@ shinyServer(function(input, output, session){
 	observe({
 		input$clearFile
 		values$file <- NULL
-		log_activity('clearFile')
+		log_activity('geocoordinate', 'clearFile')
 	})
 	
 	observe({
 		values$file <- input$file
-		log_activity('input$file')
+		log_activity('geocoordinate', 'input$file')
 	})
 	
 	get_file <- reactive({
-		log_activity('begin get_file')
+		log_activity('geocoordinate', 'begin get_file')
 		
 		tryCatch({
 			if(input$chooseInput == 'example'){
@@ -80,7 +81,7 @@ shinyServer(function(input, output, session){
 			return(points)
 		},
 		finally = {
-			log_activity('end get_file')
+			log_activity('geocoordinate', 'end get_file')
 		})
 	})
 	
@@ -137,7 +138,7 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_fill_opacity <- reactive({
-		log_activity('get_fill_opacity')
+		log_activity('geocoordinate', 'get_fill_opacity')
 		if(layer_selected("showHeatmap")){
 			input$fillOpacity
 		}
@@ -147,7 +148,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_contour_size <- reactive({
-		log_activity('get_contour_size')
+		log_activity('geocoordinate', 'get_contour_size')
 		if(layer_selected("showContours")){
 			input$contourSize
 		}
@@ -228,7 +229,7 @@ shinyServer(function(input, output, session){
 
 	# http://leaflet-extras.github.io/leaflet-providers/preview/index.html
 	get_tiles <- function(m){
-		log_activity('get_tiles')
+		log_activity('geocoordinate', 'get_tiles')
 		
 		get_file()
 		
@@ -247,7 +248,7 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_shapes <- function(m){
-		log_activity('get_shapes')
+		log_activity('geocoordinate', 'get_shapes')
 		m <- get_contour_shapes(m)
 		m <- get_point_shapes(m)
 		m
@@ -269,12 +270,12 @@ shinyServer(function(input, output, session){
 	})
 	
 	output$map <- renderLeaflet({
-		log_activity('renderLeaflet')
+		log_activity('geocoordinate', 'renderLeaflet')
 		leaflet(get_file()) %>% fitBounds(~min(Longitude, na.rm = TRUE), ~min(Latitude, na.rm = TRUE), ~max(Longitude, na.rm = TRUE), ~max(Latitude, na.rm = TRUE))
 	})
 	
 	output$table <- renderDataTable({
-		log_activity('renderDataTable')
+		log_activity('geocoordinate', 'renderDataTable')
 		get_file()
 	})
 	
@@ -283,7 +284,7 @@ shinyServer(function(input, output, session){
 			"geoHeatmap.html"
 		},
 		content = function(file) {
-			log_activity('plotDownload')
+			log_activity('geocoordinate', 'plotDownload')
 			m <- get_shapes(leaflet(get_file())) %>% get_tiles()
 			
 			saveWidget(m, file=file)
@@ -295,21 +296,9 @@ shinyServer(function(input, output, session){
 			"table.txt"
 		},
 		content = function(file) {
-			log_activity('tableDownload')
+			log_activity('geocoordinate', 'tableDownload')
 			write.table(get_file(), file, sep = "\t", row.names = FALSE, quote = FALSE)
 		}
 	)
-	
-	# Log user activity to a file, for use by the Heatmapper Monitor API used for
-	# directing users to appropriate server nodes. Note that if an activity string starts
-	# with 'begin', it will indicate to the API that a process has begun that may take an
-	# extended amount of time (more than a fraction of a second), so this node can be
-	# avoided if another user wants to use the same app.
-	log_activity <- function(activity) {
-		z <- Sys.time();
-		write(paste(unclass(z), z, activity, sep="\t"), file=log.file, append=TRUE);
-			# unclass(z) will be the time in seconds since the beginning of 1970.
-			# z will be printed as the human-readable date and time.
-	}
-	
+
 })

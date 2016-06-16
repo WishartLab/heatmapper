@@ -12,11 +12,11 @@ library(d3heatmap)
 library(gplots)
 library(ggdendro)
 
+source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
 
 # Constants
 dimensions_msg <- "Input data can have up to 50 data columns."
-log.file = "/apps/heatmapper_monitor/heatmapper_logs/geomap_activity.log";
 
 # reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
@@ -36,18 +36,18 @@ shinyServer(function(input, output, session) {
 	observe({
 		input$clearFile
 		values$inputFile <- NULL
-		log_activity('clearFile')
+		log_activity('geomap', 'clearFile')
 	})
 	
 	observe({
 		values$inputFile <- input$file
-		log_activity('input$file')
+		log_activity('geomap', 'input$file')
 	})
 	
 	# when a valid column is selected set values$density
 	observe({
 		if(input$colSelect != 0){
-			log_activity('input$colSelect')
+			log_activity('geomap', 'input$colSelect')
 			values$density <- get_density()
 			
 			# update the slider with the new max and min from that column
@@ -92,7 +92,7 @@ shinyServer(function(input, output, session) {
 		input$lowColour
 		input$highColour
 		input$colourScheme
-		log_activity('observe rangeSubmit binNumber lowColour highColour colourScheme')
+		log_activity('geomap', 'observe rangeSubmit binNumber lowColour highColour colourScheme')
 		isolate({
 			if(!is.null(values$density)){
 				rangeMin <- input$range[[1]]
@@ -129,13 +129,13 @@ shinyServer(function(input, output, session) {
 	
 		# if input$area is updated change map
   observe({
-  	log_activity('observe values$map')
+  	log_activity('geomap', 'observe values$map')
   	values$map <- readRDS(input$area) 
 	})
 	
 	# if values$density, values$colours, or values$map is changed update the polygons
 	observe({
-		log_activity('layer/tab changes')
+		log_activity('geomap', 'layer/tab changes')
 		get_file()
 		if(input$tabSelections == "Interactive"){
 			if(is.null(values$density)){
@@ -219,7 +219,7 @@ shinyServer(function(input, output, session) {
 	
 	# read file if chooseInput is changed or file is uploaded
 	get_file <- reactive({
-		log_activity('begin get_file')
+		log_activity('geomap', 'begin get_file')
 		
 		tryCatch({
 			if(input$chooseInput == 'example'){
@@ -267,7 +267,7 @@ shinyServer(function(input, output, session) {
 			return(data_file)
 		},
 		finally = {
-			log_activity('end get_file')
+			log_activity('geomap', 'end get_file')
 		})
 	})
 	
@@ -450,7 +450,7 @@ shinyServer(function(input, output, session) {
 	
   # Dynamically render the box in the upper-right
   output$stateInfo <- renderUI({
-  	log_activity('stateInfo')
+  	log_activity('geomap', 'stateInfo')
     if (is.null(values$highlight)) {
       return(tags$div("Hover over a region"))
     } 
@@ -472,7 +472,7 @@ shinyServer(function(input, output, session) {
 	output$tableDownload <- downloadHandler(
 		filename = "table.txt",
 		content = function(file){
-			log_activity('tableDownload')
+			log_activity('geomap', 'tableDownload')
 			write.table(values$file, sep = "\t", quote = FALSE, file = file, row.names = FALSE)
 		}
 	)
@@ -483,23 +483,11 @@ shinyServer(function(input, output, session) {
 			"geomap.html"
 		},
 		content = function(file) {
-			log_activity('plotDownload')
+			log_activity('geomap', 'plotDownload')
 			m <- get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
 			#m <- leaflet()
 			saveWidget(m, file=file)
 		}
 	)
-
-	# Log user activity to a file, for use by the Heatmapper Monitor API used for
-	# directing users to appropriate server nodes. Note that if an activity string starts
-	# with 'begin', it will indicate to the API that a process has begun that may take an
-	# extended amount of time (more than a fraction of a second), so this node can be
-	# avoided if another user wants to use the same app.
-	log_activity <- function(activity) {
-		z <- Sys.time();
-		write(paste(unclass(z), z, activity, sep="\t"), file=log.file, append=TRUE);
-			# unclass(z) will be the time in seconds since the beginning of 1970.
-			# z will be printed as the human-readable date and time.
-	}
 
 })
