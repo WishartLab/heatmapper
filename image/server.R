@@ -580,7 +580,16 @@ shinyServer(function(input, output, session){
 		filename = reactive({get_plot_download_name()}),
 		content = function(file){
 			log_activity('image', 'plotDownload')
-			ggsave(file, get_plot(), width = input$plotWidth/72, height = input$plotHeight/72)
+
+			if(input$downloadPlotFormat == "pdf"){
+				ggsave(file, get_plot(), width = input$plotWidth/72, height = input$plotHeight/72)
+			} else {
+				ppi = as.numeric(input$downloadPlotResolution)
+				widthInches = input$plotWidth/72
+				heightInches = input$plotHeight/72
+				
+				ggsave(file, get_plot(), width = widthInches, height = heightInches, units = "in", dpi=ppi, type="cairo")
+			}
 		}
 	)
 	

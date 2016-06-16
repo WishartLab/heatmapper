@@ -117,12 +117,17 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 	  	
 	  	ADVANCED_OPTIONS_PANEL(
 	  		list(
+	  			
+	  			selectInput('downloadPlotResolution', label = RESOLUTION,
+	  									choices = c("72" = '72',"144" = '144',"300" = '300'),
+	  									selected = '144'),
+	  			
 		  		span(id = "fullStretchImage", 
 						checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = FALSE)), 
-		  		bsTooltip(id = "fullStretchImage", 
+	  			bsTooltip(id = "fullStretchImage", 
 						title = "Warning: changing this feature may cause misalignment of the heatmap layer",
-						placement = "top"), 
-		  			
+						placement = "top"),
+		  		
 		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
 					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 520)
 	  		)

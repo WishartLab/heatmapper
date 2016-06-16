@@ -136,6 +136,10 @@ shinyUI(list(HEAD_TASKS("#pairwiseTab", "50%", "40%"), fluidPage(title = "Pairwi
 			ADVANCED_OPTIONS_PANEL(
 				list(
 					
+					selectInput('downloadPlotResolution', label = RESOLUTION,
+											choices = c("72" = '72',"144" = '144',"300" = '300'),
+											selected = '144'),
+					
 		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
 					
 					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 500),

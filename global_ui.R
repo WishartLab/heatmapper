@@ -37,8 +37,12 @@ GRID_POINTS <- "Contour Smoothness"
 DOWNLOAD_PLOT <- "Download Plot"
 DOWNLOAD_TABLE <- "Download Table"
 
+RESOLUTION <- "Downloaded plot resolution (pixels per inch)"
 WIDTH <- "Plot Width (pixels)"
 HEIGHT <- "Plot Height (pixels)"
+	# Note: On Retina/HiDPI displays, "pixels" here refers to virtual pixels, though a
+	# single virtual pixel may be rendered by more than one physical pixel. Shiny/R should
+	# automatically scale up the number of actual pixels used to render the image.
 CONTOUR_WIDTH <- "Contour Line Width (pixels)"
 BRIGHTNESS <- "Colour Brightness"
 
@@ -225,7 +229,8 @@ DOWNLOAD_BUTTONS <- function(){
 }
 
 # plotdownload and table download buttons with file format selection options
-DOWNLOAD_BUTTONS_WITH_SELECTION <- function(plotChoices = c("JPEG" = 'jpg',"PDF" = 'pdf',"PNG" = 'png',"TIFF" = 'tiff'), plotSelected = "png", tableChoices=c("TXT"='txt', "CSV" = 'csv'), tableSelected = "txt"){
+DOWNLOAD_BUTTONS_WITH_SELECTION <- function(plotChoices = c("JPEG" = 'jpg',"PDF" = 'pdf',"PNG" = 'png',"TIFF" = 'tiff'),
+																						plotSelected = "png", tableChoices=c("TXT"='txt', "CSV" = 'csv'), tableSelected = "txt"){
 	list(
         fluidRow(
             column(4, tags$label("Download")), 

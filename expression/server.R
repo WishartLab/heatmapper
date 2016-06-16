@@ -776,6 +776,7 @@ shinyServer(function(input, output, session){
 		heatmap_height = get_plot_height() - col_dendrogram_height
 		# creates a own color palette from red to green
 		#print (paste("get_label_weight ", get_label_weight()))
+
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
@@ -804,7 +805,7 @@ shinyServer(function(input, output, session){
 			graphics.off()
 		},
 		error = function(err){
-			print(paste("ERROR: ", err))
+			print(paste("ERROR in get_plot(): ", err))
 			validate(txt=ERR_plot_display)
 		},
 		finally = {
@@ -974,26 +975,43 @@ shinyServer(function(input, output, session){
 		
 		content = function(file) {
 			log_activity('expression', 'plotDownload')
+			
+			# Plot width and height are set in pixels, but for Retina/HiDPI displays, "pixels"
+			# here refers to virtual pixels. A single virtual pixel may be rendered by more than
+			# one physical pixel on the display. On a Retina/HiDPI display with a typical pixel
+			# ratio of 2 (i.e. a 2x2 section of pixels for every standard/virtual pixel), the
+			# plot is displayed at a nominal 144 pixels per inch (ppi) on screen (though the
+			# exact number of inches as measured by a tape measure held up to the screen may vary
+			# depending on the display model).
+			#
+			# For purpose of rendering a downloaded plot as JPEG, TIFF or PNG, we scale the plot
+			# dimensions based on the user's chosen resolution. PNG, TIFF and JPEG files are
+			# only saved with the appropriate resolution metadata with type = "cairo" or
+			# type = "Xlib".
+			ppi = as.numeric(input$downloadPlotResolution)
+			widthInches = input$plotWidth/72
+			heightInches = input$plotHeight/72
+			
 			if(input$downloadPlotFormat == "pdf"){
 				pdf(file, width=input$plotWidth/72, height=input$plotHeight/72)
 				get_plot()
 			}
 			else if(input$downloadPlotFormat == "jpg"){
-				jpeg(file, width=input$plotWidth, height=input$plotHeight)
+				jpeg(file, width=widthInches, height=heightInches, units = "in", res=ppi, type="cairo")
 				get_plot()
 			}
 			else if(input$downloadPlotFormat == "tiff"){
-				tiff(file, width=input$plotWidth, height=input$plotHeight)
+				tiff(file, width=widthInches, height=heightInches, units = "in", res=ppi, compression="lzw", type="cairo")
 				get_plot()
 			}
 			else{
 				tryCatch({
-					png(file, width=input$plotWidth, height=input$plotHeight)
+					png(file, width=widthInches, height=heightInches, units = "in", res=ppi, type="cairo")
 					get_plot()
 				}, 
 				error = function(err){
 					print(paste("ERROR:  ", err))
-					validate(need(FALSE,"PNG image too large. Please decrease the dimensions or resolution of the image."))
+					validate(need(FALSE,"Error generating PNG image."))
 					return(NULL)
 				})
 			}
