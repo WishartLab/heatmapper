@@ -269,8 +269,8 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			
 			tipify(
 				selectInput("colSelect", label = "Column to Use", choices = c(" " = 0)), 
-			"Select column from input file", placement = "right", 
-			),
+				"Select column from input file", placement = "right"
+				),
 			
 			LAYERS_SELECT(
 				c("Map" = 'showTiles', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap'), 
@@ -292,6 +292,12 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		 		
 			ADVANCED_OPTIONS_PANEL(
 				list(
+					
+					checkboxInput('detectRetina', label = "Scale map tiles on retina displays", value = FALSE),
+						# On mixed display setups, user must load the page while the browser window is
+						# positioned on a retina display, in addition to checking this box, in order
+						# for retina-resolution map tiles to display.
+					
 					textInput('legend',
 		    		label = "Custom legend title", 
 		   			value = "Legend"), 
