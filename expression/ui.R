@@ -145,14 +145,11 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 		    		max = 3000,
 		    		value = 600),
 					
-					tipify(
-					  uiOutput("fullSizeControl"),
-						"Not Recomended for Large Files", placement = "top"), 
+					checkboxInput('fullSize', label = "Auto-adjust Plot Height", value = FALSE), 
 					
 					conditionalPanel(condition = "input.fullSize == false", 
 			    	sliderInput('plotHeight', label = HEIGHT, 
-			    		min = 500,
-			    		max = 8000,
+			    		min = 500,			    		max = 8000,
 			    		value = 600)),
 					
 					textInput('title', label = "Title", value = ""),
@@ -189,7 +186,7 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 					),
 
 					# Message about automatic plot dimension adjustment
-					h4(textOutput("plotMesage")),
+					textOutput("plotMesage"),
 
 					# Main heat map plot
 					plotOutput("heatmap")),

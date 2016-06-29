@@ -739,14 +739,11 @@ shinyServer(function(input, output, session){
 	get_plot <- function(){
 		x <- get_data_matrix()
 		
-		if (clust_selected("col") && length(grep("col", input$dendSelectRC))>0) {
-			col_dendrogram_height = 120
-		} else {
-			col_dendrogram_height = 120
-		}
+		col_dendrogram_height = 100
 		heatmap_height = get_plot_height() - col_dendrogram_height
 		# creates a own color palette from red to green
 		#print (paste("get_label_weight ", get_label_weight()))
+		
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
@@ -769,7 +766,6 @@ shinyServer(function(input, output, session){
 				ylab = input$ylab,
 				cexRow = get_label_weight(),
 				cexCol = get_label_weight(),
-				#mar=c(2,30),
 				lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
 			)
 			graphics.off()
@@ -799,54 +795,19 @@ shinyServer(function(input, output, session){
 	
 	################################## OUTPUT FUNCTIONS ##################################
 	
-	# control full size checkbox
-	output$fullSizeControl <- renderUI({
-	  get_UI()
-	})
-	
-get_UI <- reactive({
-    file <- get_file()
-    if(!is.null(file)){
-      if (nrow(file) > MIN_FILE_ROWS && input$advancedOptionsButton==0){
-        checkboxInput('fullSize', label = "Preview Full Height", value = TRUE)
-        
-      }
-      else if (!is.null(input$fullSize) && input$fullSize){
-        checkboxInput('fullSize', label = "Preview Full Height", value = TRUE)
-        
-      }
-      else{
-        checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
-      }
-    }else{
-      checkboxInput('fullSize', label = "Preview Full Height", value = FALSE)
-    }
-  })
-
-	
-	# plot message of notice of reszing image
+	# Plot message advising user that they can adjust the height of the plot.
 	output$plotMesage <- renderText(
-	    get_plot_message()
+		get_plot_message()
 	)
 	
 	get_plot_message <- (
 	  reactive({
 	    file <- get_file()
-	    if (input$chooseInput != 'fileMultiUpload') {
-		    if(!is.null(file) && nrow(file) > MIN_FILE_ROWS){
-		      #print (paste("input$fullSize ", input$fullSize))
-		      #print (paste("input$advancedOptionsButton ", input$advancedOptionsButton))
-		      if (input$advancedOptionsButton==0){
-		        "Plot dimensions were auto-adjusted. See below in Advanced Options for plot size settings."
-		      }else{
-	          ""
-	        }
-		    }else{
-		      ""
-		    }
-	    } else {
-	    	""
-	    }
+	    if (input$chooseInput != 'fileMultiUpload' && !is.null(file) && nrow(file) > MIN_FILE_ROWS && !input$fullSize) {
+		    "Tip: See below in Advanced Options for plot size settings."
+		  } else {
+		  	""
+		  }
 	  })
 	)
 	
@@ -862,32 +823,21 @@ get_UI <- reactive({
 	
 	get_plot_height <- (
 		reactive({
-		  file <- get_file()
-		  print(paste("input.advancedOptionsButton ", input$advancedOptionsButton))
-		  print(paste("111input$fullSize ", input$fullSize))
-		  if (input$chooseInput != 'fileMultiUpload') {
-		    if (!is.null(file) && nrow(file) > MIN_FILE_ROWS && input$advancedOptionsButton==0){
-		      input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
-		    }
-			  else if(!is.null(input$fullSize) && input$fullSize){
-				    if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
-					    input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix)
-				    }
-				    else{
-					    #input$plotHeight * get_image_weight()
-				      #print (paste("Full size ", input$plotHeight))
-				      input$plotHeight * 1
-				    }
-			  }
-			  else{
-			    
-			    	#input$plotHeight * get_image_weight()
-			      #print (paste("Not full size  or nrow > 100  ", input$plotHeight))
-			      input$plotHeight * 1
-			  }
-		  } else {
-		  	input$plotHeight
-		  }
+			if(input$fullSize){
+				if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
+					trunc(input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix))
+				}
+				else{
+					#input$plotHeight * get_image_weight()
+					#print (paste("Full size ", input$plotHeight))
+					input$plotHeight
+				}
+			}
+			else{
+				#input$plotHeight * get_image_weight()
+				#print (paste("Not full size ", input$plotHeight))
+				input$plotHeight
+			}
     })
 	)
 	
@@ -911,6 +861,7 @@ get_UI <- reactive({
 				anim_duration = 0)
 		}, 
 		error = function(err){
+			print(paste("ERROR: ", err))
 			validate(txt=ERR_plot_display)
 		})
 	})
@@ -952,20 +903,20 @@ get_UI <- reactive({
 		
 		content = function(file) {
 			if(input$downloadPlotFormat == "pdf"){
-				pdf(file, width=input$plotWidth/72, height=input$plotHeight/72)
+				pdf(file, width=input$plotWidth/72, height=get_plot_height()/72)
 				get_plot()
 			}
 			else if(input$downloadPlotFormat == "jpg"){
-				jpeg(file, width=input$plotWidth, height=input$plotHeight)
+				jpeg(file, width=input$plotWidth, height=get_plot_height())
 				get_plot()
 			}
 			else if(input$downloadPlotFormat == "tiff"){
-				tiff(file, width=input$plotWidth, height=input$plotHeight)
+				tiff(file, width=input$plotWidth, height=get_plot_height())
 				get_plot()
 			}
 			else{
 				tryCatch({
-					png(file, width=input$plotWidth, height=input$plotHeight)
+					png(file, width=input$plotWidth, height=get_plot_height())
 					get_plot()
 				}, 
 				error = function(err){
