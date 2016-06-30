@@ -103,26 +103,31 @@ shinyUI(list(HEAD_TASKS("#imageTab", "65%", "50%"), fluidPage(title = "Image Ove
 		  	GRID_POINTS_SLIDER(10, 400, 200, 10)
 	  	),
 	  	
-	  	FILL_OPACITY_SLIDER("0.05"),
-	  	BIN_SLIDER(2, 50, 30),
+	  	FILL_OPACITY_SLIDER("0.2"),
+	  	BIN_SLIDER(2, 50, 7),
 	  	
 	  	COLOUR_SCHEME_SELECT(),
 	  	#COLOUR_SCHEME_SELECT_LIMITED(),
 	  	
 	  	conditionalPanel(condition = "input.colourScheme == 'custom'", 
-	  		JSCOLOUR_ROW("#EE00FF", "#FFFF00")
+	  		JSCOLOUR_ROW("#0000FF", "#FF0000")
 	  	), 
 	  	
 	  	DOWNLOAD_BUTTONS_WITH_SELECTION(),
 	  	
 	  	ADVANCED_OPTIONS_PANEL(
 	  		list(
+	  			
+	  			selectInput('downloadPlotResolution', label = RESOLUTION,
+	  									choices = c("72" = '72',"144" = '144',"300" = '300'),
+	  									selected = '144'),
+	  			
 		  		span(id = "fullStretchImage", 
 						checkboxInput('stretchImage', label = strong("Stretch image to fit grid"), value = FALSE)), 
-		  		bsTooltip(id = "fullStretchImage", 
+	  			bsTooltip(id = "fullStretchImage", 
 						title = "Warning: changing this feature may cause misalignment of the heatmap layer",
-						placement = "top"), 
-		  			
+						placement = "top"),
+		  		
 		  		sliderInput('plotWidth', label = WIDTH, min = 400, max = 2000, value = 600),
 					sliderInput('plotHeight', label = HEIGHT, min = 400, max = 2000, value = 520)
 	  		)

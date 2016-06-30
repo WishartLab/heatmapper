@@ -9,6 +9,8 @@ library(ggdendro)
 library(stringr)
 #library(shinyjs)
 
+source("../global_server.R")
+
 # Constants
 dimensions_msg <- "Input data can have up to 300 rows and 500 columns for distance matrix, or 500 rows and 300 columns for correlation matrix."
 q = 5;
@@ -26,20 +28,24 @@ shinyServer(function(input, output, session){
 	observe({
 		input$clearFile
 		values$file <- NULL
+		log_activity('pairwise', 'clearFile')
 	})
 
 	observe({
 		input$clearFileMulti
 		values$fileMulti <- NULL
+		log_activity('pairwise', 'clearFileMulti')
 	})
 
 	observe({
 		input$uploadFormat
 		values$file <- NULL
+		log_activity('pairwise', 'uploadFormat')
 	})
 	
 	observe({
 		values$file <- input$file
+		log_activity('pairwise', 'input$file')
 	})
 	
 	observe({
@@ -48,6 +54,7 @@ shinyServer(function(input, output, session){
 		} else {
 			values$fileMulti <- input$fileMulti[with(input$fileMulti, order(name)), ] # sort by file name as we copy the data table
 		}
+		log_activity('pairwise', 'fileMulti')
 	})
 
 	observeEvent(input$cyclePlotsStart, {
@@ -56,6 +63,7 @@ shinyServer(function(input, output, session){
 		} else if (values$plotnum > 1) {
 			values$plotnum <- 1
 		}
+		log_activity('pairwise', 'cyclePlotsStart')
 	})
 
 	observeEvent(input$cyclePlotsLeft, {
@@ -64,6 +72,7 @@ shinyServer(function(input, output, session){
 		} else if (values$plotnum > 1) {
 			values$plotnum <- values$plotnum - 1
 		}
+		log_activity('pairwise', 'cyclePlotsLeft')
 	})
 
 	observeEvent(input$cyclePlotsRight, {
@@ -72,6 +81,7 @@ shinyServer(function(input, output, session){
 		} else if (values$plotnum < nrow(values$fileMulti)) {
 			values$plotnum <- values$plotnum + 1
 		}
+		log_activity('pairwise', 'cyclePlotsRight')
 	})
 
 	observeEvent(input$cyclePlotsEnd, {
@@ -80,11 +90,13 @@ shinyServer(function(input, output, session){
 		} else if (values$plotnum < nrow(values$fileMulti)) {
 			values$plotnum <- nrow(values$fileMulti)
 		}
+		log_activity('pairwise', 'cyclePlotsEnd')
 	})
 
 	#################### FILE INPUT FUNCTIONS ####################
 	# read a file given a file name
 	read_file <- function(filePath, fileName = "txt") {
+		log_activity('pairwise', 'begin read_file')
 		sep <- "\t"
 		if(tolower(substr(fileName, nchar(fileName)-2, nchar(fileName))) == "csv"){
 			sep <- ","
@@ -102,10 +114,12 @@ shinyServer(function(input, output, session){
 		if (!is.numeric(rname[1]) & !is.na(rname[1])){ # check the second line's first item, numeric or not, if not, it is a rowname
 		  file <- read.table(filePath, header = header, row.names=1, sep = sep)
 		}
+		log_activity('pairwise', 'end read_file')
 		file
 	}
 	
 	read.coords <- function(filePath,	fileName = "txt") {
+		log_activity('pairwise', 'begin read.coords')
 		fileType <- tail(unlist(strsplit(x = fileName, split = "[.]")), n=1)
 		
 		# Initial read of file.
@@ -169,15 +183,17 @@ shinyServer(function(input, output, session){
 		
 		# Read the file again, this time with header/row labels specified.
 		if(fileType == "xls" || fileType == "xlsx"){
-			read.xls(filePath, sheet=1, header = use_col_labels, row.names = row.names.val)
+			ret <- read.xls(filePath, sheet=1, header = use_col_labels, row.names = row.names.val)
 		}
 		else if(fileType == "csv"){
-			read.csv(filePath, header = use_col_labels, row.names = row.names.val)
+			ret <- read.csv(filePath, header = use_col_labels, row.names = row.names.val)
 		}
 		else{
-			read.delim(filePath, header = use_col_labels, row.names = row.names.val, sep="\t")
+			ret <- read.delim(filePath, header = use_col_labels, row.names = row.names.val, sep="\t")
 		}
 		
+		log_activity('pairwise', 'end read.coords')
+		return(ret)
 	}
 	
 	# Returns TRUE if the given file looks like a PDB file; otherwise FALSE.
@@ -209,6 +225,7 @@ shinyServer(function(input, output, session){
 	
 	# returns table of 3-D coordinates of the first chain in the given PDB file
 	read.pdb <- function(filePath) {
+		log_activity('pairwise', 'begin read.pdb')
 		
 		# Traverse file and count how many atoms we want to use.
 		con <- file(filePath, "rt")
@@ -261,6 +278,7 @@ shinyServer(function(input, output, session){
 			}
 		}
 		close(con)
+		log_activity('pairwise', 'end read.pdb')
 		return(coords)
 	}
 	
@@ -282,6 +300,8 @@ shinyServer(function(input, output, session){
 	# Read multi-FASTA file and compute k-mer count statistics. The k-mer counts are
 	# intended to be used in a distance matrix for alignment-free phylogenetic analysis.
 	read.fasta <- function(filePath) {
+		log_activity('pairwise', 'begin read.fasta')
+	
 		k = input$kmerSelect # k-mer length
 
 		# Traverse file and count the number of sequences
@@ -365,6 +385,7 @@ shinyServer(function(input, output, session){
 			}
 		}
 		close(con)
+		log_activity('pairwise', 'end read.fasta')
 # 		print(kmerstats)
 		return(kmerstats)
 	}
@@ -405,11 +426,13 @@ shinyServer(function(input, output, session){
 
 	# retrieve original data
 	get_file <- reactive({
+		log_activity('pairwise', 'begin get_file')
 		if(input$chooseInput == 'example'){
 			file <- read_file(input$exampleFiles)
 		}
 		else if(input$chooseInput == 'fileUpload'){
 			if(is.null(values$file$datapath)){
+				log_activity('pairwise', 'end get_file')
 				return(NULL)
 			}
 			
@@ -424,6 +447,7 @@ shinyServer(function(input, output, session){
 		} else {
 			# Multiple file upload
 			if(is.null(values$fileMulti[[get_plot_num(), 'datapath']])){
+				log_activity('pairwise', 'end get_file')
 				return(NULL)
 			}
 			file <- read.coords(values$fileMulti[[get_plot_num(), 'datapath']], values$fileMulti[[get_plot_num(), 'name']])
@@ -456,6 +480,7 @@ shinyServer(function(input, output, session){
 		
 		colnames(file)[1] <- "cols"
 		
+		log_activity('pairwise', 'end get_file')
 		return(file)
 	})
 
@@ -515,7 +540,7 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_colour_palette <- function() {
-	  
+	  log_activity('pairwise', 'get_colour_palette')
 	  brightness_adj = as.integer(input$plotBrightness)
 	  
 	  if(input$colourScheme == 'red/green'){
@@ -728,7 +753,7 @@ shinyServer(function(input, output, session){
 	
 	# plot using ggplot
 	get_plot <- reactive({
-	  
+	  log_activity('pairwise', 'begin get_plot')
 		data <- melt_file()
 		
 		if(input$chooseInput == 'fileUpload'){
@@ -763,12 +788,13 @@ shinyServer(function(input, output, session){
 			q <- q + guides(fill=FALSE)
 		}
 		
-		
+		log_activity('pairwise', 'end get_plot')
 		return(q)
 	})
 	
 	#################### OUTPUT FUNCTIONS ####################
 	output$d3map <- renderD3heatmap({
+		log_activity('pairwise', 'begin renderD3heatmap')
 		file <- get_file()
 		print(length(file))
 		validate(need(length(file)^2 <= 50000, 
@@ -779,7 +805,13 @@ shinyServer(function(input, output, session){
 		}
 		row.names(file)<- file[,1]
 		file <- file[,-1]
-		d3heatmap(file,colors = get_colour_palette(), Colv = NULL, Rowv = NULL)
+		
+		tryCatch({
+			d3heatmap(file,colors = get_colour_palette(), Colv = NULL, Rowv = NULL)
+		},
+		finally = {
+			log_activity('pairwise', 'end renderD3heatmap')
+		})
 	})
 	
 	output$map <- renderPlot({
@@ -799,6 +831,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	output$table <- renderDataTable({
+		log_activity('pairwise', 'renderDataTable')
 		get_file()	
 	})
 
@@ -809,13 +842,24 @@ shinyServer(function(input, output, session){
 	output$plotDownload <- downloadHandler(
 		filename = reactive({get_plot_download_name()}),
 		content = function(file){
-			ggsave(file, get_plot(), width = input$plotWidth/72, height = input$plotHeight/72)
+			log_activity('pairwise', 'plotDownload')
+			
+			if(input$downloadPlotFormat == "pdf"){
+				ggsave(file, get_plot(), width = input$plotWidth/72, height = input$plotHeight/72)
+			} else {
+				ppi = as.numeric(input$downloadPlotResolution)
+				widthInches = input$plotWidth/72
+				heightInches = input$plotHeight/72
+				
+				ggsave(file, get_plot(), width = widthInches, height = heightInches, units = "in", dpi=ppi, type="cairo")
+			}
 		}
 	)
 	
 	output$tableDownload <- downloadHandler(
 		filename = reactive({paste0("table.", input$downloadTableFormat)}),
 		content = function(file){
+			log_activity('pairwise', 'tableDownload')
 			if(input$downloadTableFormat == "csv"){
 				write.csv(get_file(), quote = FALSE, file = file, row.names = FALSE)
 			}
@@ -826,5 +870,5 @@ shinyServer(function(input, output, session){
 	)
 	
 	trim <- function (x) gsub("^\\s+|\\s+$", "", x)
-	
+
 })

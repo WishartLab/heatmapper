@@ -1,0 +1,39 @@
+<html>
+<head>
+	<script>
+		function setHref() {
+			document.getElementById('single-expression').href = window.location.protocol + "//" + window.location.hostname + ":8803/cgi-bin/single_node_report.cgi?app=expression";
+			document.getElementById('single-pairwise').href = window.location.protocol + "//" + window.location.hostname + ":8803/cgi-bin/single_node_report.cgi?app=pairwise";
+			document.getElementById('single-image').href = window.location.protocol + "//" + window.location.hostname + ":8803/cgi-bin/single_node_report.cgi?app=image";
+			document.getElementById('single-geomap').href = window.location.protocol + "//" + window.location.hostname + ":8803/cgi-bin/single_node_report.cgi?app=geomap";
+			document.getElementById('single-geocoordinate').href = window.location.protocol + "//" + window.location.hostname + ":8803/cgi-bin/single_node_report.cgi?app=geocoordinate";
+
+			document.getElementById('multi-expression').href = window.location.protocol + "//" + window.location.hostname + ":8803/cgi-bin/multi_node_report.cgi?app=expression";
+			document.getElementById('multi-pairwise').href = window.location.protocol + "//" + window.location.hostname + ":8803/cgi-bin/multi_node_report.cgi?app=pairwise";
+			document.getElementById('multi-image').href = window.location.protocol + "//" + window.location.hostname + ":8803/cgi-bin/multi_node_report.cgi?app=image";
+			document.getElementById('multi-geomap').href = window.location.protocol + "//" + window.location.hostname + ":8803/cgi-bin/multi_node_report.cgi?app=geomap";
+			document.getElementById('multi-geocoordinate').href = window.location.protocol + "//" + window.location.hostname + ":8803/cgi-bin/multi_node_report.cgi?app=geocoordinate";
+		}
+	</script>
+</head>
+
+<body onload="setHref()">
+
+	<h1>Heatmapper Monitor</h1>
+
+	<h2>Single Node Reports</h2>
+	<a href="" id="single-expression">Expression</a>
+	<a href="" id="single-pairwise">Pairwise</a>
+	<a href="" id="single-image">Image Overlay</a>
+	<a href="" id="single-geomap">Geomap</a>
+	<a href="" id="single-geocoordinate">Geocoordinate</a>
+
+	<h2>Multi-Node Reports</h2>
+	<a href="" id="multi-expression">Expression</a>
+	<a href="" id="multi-pairwise">Pairwise</a>
+	<a href="" id="multi-image">Image Overlay</a>
+	<a href="" id="multi-geomap">Geomap</a>
+	<a href="" id="multi-geocoordinate">Geocoordinate</a>
+
+</body>
+</html>

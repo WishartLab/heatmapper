@@ -8,8 +8,10 @@ library(ape)
 # memory testing
 # library(pryr)
 
-# Increase max upload file side to 10 MB
-options(shiny.maxRequestSize=10*1024^2) 
+source("../global_server.R")
+
+# Increase max upload file size to 10 MB
+options(shiny.maxRequestSize=10*1024^2)
 
 # Constants
 dimensions_msg <- "Input data can have up to 2,500 rows and 300 columns."
@@ -32,8 +34,7 @@ EACH_ROW_SIZE_LIMIT <- 13; # the minimum pixel size of each row in heatmap.2 ima
 MIN_FONT_SIZE <- 1.0;
 MAX_FONT_SIZE <- 1.45;
 
-MIN_FILE_ROWS <- 100; # Control if auto-adjust plot size by this threshold row number of input file. If less, use the default 
-                      # plot size setting; if more, use auto-adjust plot size ("Preview Full Height")
+MANY_FILE_ROWS <- 100; # More than this many rows is considered a lot.
 
 shinyServer(function(input, output, session){
 	
@@ -57,11 +58,13 @@ shinyServer(function(input, output, session){
 	observe({
 		input$clearFile
 		values$file <- NULL
+		log_activity('expression', 'clearFile')
 	})
 
 	observe({
 		input$clearFileMulti
 		values$fileMulti <- NULL
+		log_activity('expression', 'clearFileMulti')
 	})
 
 	observe({
@@ -70,6 +73,7 @@ shinyServer(function(input, output, session){
 		} else {
 			values$fileMulti <- input$fileMulti[with(input$fileMulti, order(name)), ] # sort by file name as we copy the data table
 		}
+		log_activity('expression', 'fileMulti')
 	})
 
 	observeEvent(input$cyclePlotsStart, {
@@ -78,6 +82,7 @@ shinyServer(function(input, output, session){
 		} else if (values$plotnum > 1) {
 			values$plotnum <- 1
 		}
+		log_activity('expression', 'cyclePlotsStart')
 	})
 
 	observeEvent(input$cyclePlotsLeft, {
@@ -86,6 +91,7 @@ shinyServer(function(input, output, session){
 		} else if (values$plotnum > 1) {
 			values$plotnum <- values$plotnum - 1
 		}
+		log_activity('expression', 'cyclePlotsLeft')
 	})
 
 	observeEvent(input$cyclePlotsRight, {
@@ -94,6 +100,7 @@ shinyServer(function(input, output, session){
 		} else if (values$plotnum < nrow(values$fileMulti)) {
 			values$plotnum <- values$plotnum + 1
 		}
+		log_activity('expression', 'cyclePlotsRight')
 	})
 
 	observeEvent(input$cyclePlotsEnd, {
@@ -102,16 +109,19 @@ shinyServer(function(input, output, session){
 		} else if (values$plotnum < nrow(values$fileMulti)) {
 			values$plotnum <- nrow(values$fileMulti)
 		}
+		log_activity('expression', 'cyclePlotsEnd')
 	})
 	
 	observe({
 		input$clearColClusterFile
 		values$colClusterFile <- NULL
+		log_activity('expression', 'clearColClusterFile')
 	})
 
 	observe({
 		input$clearRowClusterFile
 		values$rowClusterFile <- NULL
+		log_activity('expression', 'clearRowClusterFile')
 	})
 
 	# update values$file when a file is uploaded, set to NA if file cannot be read
@@ -128,6 +138,7 @@ shinyServer(function(input, output, session){
 		}
 
 		if(!is.null(datapath)){
+			log_activity('expression', 'begin load file')
 			tryCatch({
 
 				fileType <- tail(unlist(strsplit(x = filename, split = "[.]")), n=1)
@@ -147,6 +158,8 @@ shinyServer(function(input, output, session){
 			}, 
 			error = function(err){
 				values$file <- NA
+			}, finally = {
+				log_activity('expression', 'end load file')
 			})
 		}
 
@@ -155,6 +168,7 @@ shinyServer(function(input, output, session){
 	# update values$colClusterFile when a file is uploaded, set to NA if file cannot be read
 	observe({
 		if(!is.null(input$colClusterFile$datapath)){
+			log_activity('expression', 'begin update colClusterFile')
 			tryCatch({
 			  values$colClusterFile <- read.tree(input$colClusterFile$datapath)
 			  # Validate that labels match data file
@@ -176,6 +190,8 @@ shinyServer(function(input, output, session){
 			}, 
 			error = function(err){
 				values$colClusterFile <- NA
+			}, finally = {
+				log_activity('expression', 'end update colClusterFile')
 			})
 		}
 	})
@@ -183,6 +199,7 @@ shinyServer(function(input, output, session){
 	# update values$rowClusterFile when a file is uploaded, set to NA if file cannot be read
 	observe({
 		if(!is.null(input$rowClusterFile$datapath)){
+			log_activity('expression', 'begin update rowClusterFile')
 			tryCatch({
 			  values$rowClusterFile <- read.tree(input$rowClusterFile$datapath)
 			  # Validate that labels match data file
@@ -204,6 +221,8 @@ shinyServer(function(input, output, session){
 			}, 
 			error = function(err){
 				values$rowClusterFile <- NA
+			}, finally = {
+				log_activity('expression', 'end update rowClusterFile')
 			})
 		}
 	})
@@ -220,6 +239,8 @@ shinyServer(function(input, output, session){
 			if(clust_selected("col")){
 				update_col_clust()
 			}
+
+			log_activity('expression', 'update clustering')
 		})
 	})
 	
@@ -238,18 +259,24 @@ shinyServer(function(input, output, session){
 
 	# returns raw data from file input or selected example file
 	get_file <- reactive({
-		if(input$chooseInput == 'fileUpload'){
-			file <- values$file
-		} else if (input$chooseInput == 'fileMultiUpload') {
-			# Multiple file upload
-# 			if(is.null(values$fileMulti[[get_plot_num(), 'datapath']])){
-# 				return(NULL)
-# 			}
-# 			file <- values$fileMulti[[get_plot_num(), 'datapath']]
-			file <- values$file
-		} else{ # Example
-			file <- read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
-		}
+		log_activity('expression', 'begin get_file')
+		tryCatch({
+			if(input$chooseInput == 'fileUpload'){
+				file <- values$file
+			} else if (input$chooseInput == 'fileMultiUpload') {
+				# Multiple file upload
+	# 			if(is.null(values$fileMulti[[get_plot_num(), 'datapath']])){
+	# 				return(NULL)
+	# 			}
+	# 			file <- values$fileMulti[[get_plot_num(), 'datapath']]
+				file <- values$file
+			} else{ # Example
+				file <- read.delim(file = input$exampleFiles, header = TRUE, sep = "\t")
+			}
+		},
+		finally = {
+			#log_activity('expression', 'end get_file')
+		})
 	})
 	
 	get_rowClusterFile <- reactive({
@@ -738,12 +765,13 @@ shinyServer(function(input, output, session){
 	# returns a heatmap.2 image based on get_data_matrix()
 	get_plot <- function(){
 		x <- get_data_matrix()
+		log_activity('expression', 'begin get heatmap.2 plot') # call this after get_data_matrix()
 		
 		col_dendrogram_height = 100
-		heatmap_height = get_plot_height() - col_dendrogram_height
+		heatmap_height = input$plotHeight - col_dendrogram_height
 		# creates a own color palette from red to green
 		#print (paste("get_label_weight ", get_label_weight()))
-		
+
 		tryCatch({
 			heatmap.2(x,
 				na.color = input$missingColour, 
@@ -771,8 +799,11 @@ shinyServer(function(input, output, session){
 			graphics.off()
 		},
 		error = function(err){
-			print(paste("ERROR: ", err))
+			print(paste("ERROR in get_plot(): ", err))
 			validate(txt=ERR_plot_display)
+		},
+		finally = {
+			log_activity('expression', 'end get heatmap.2 plot')
 		})
 		
 		
@@ -780,17 +811,24 @@ shinyServer(function(input, output, session){
 	
 	# returns the result of ggdendrogram() on param x
 	get_dendrogram_plot <- function(x, message){
-		if(input$chooseInput == 'fileUpload'){
-			validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
-		} else if (input$chooseInput == 'fileMultiUpload') {
-			validate(need(!is.null(get_file()), paste(ERR_file_multi_upload, dimensions_msg)))
-		}
-		validate(need(!is.null(x), paste0("Select a clusting method and apply clustering to ", message, " to view this dendrogram")))
-		validate(need(!is.na(x), ERR_file_read))
+		log_activity('expression', 'begin get_dendrogram_plot')
+		tryCatch({
+			if(input$chooseInput == 'fileUpload'){
+				validate(need(!is.null(get_file()), paste(ERR_file_upload, dimensions_msg)))
+			} else if (input$chooseInput == 'fileMultiUpload') {
+				validate(need(!is.null(get_file()), paste(ERR_file_multi_upload, dimensions_msg)))
+			}
+			validate(need(!is.null(x), paste0("Select a clusting method and apply clustering to ", message, " to view this dendrogram")))
+			validate(need(!is.na(x), ERR_file_read))
 
-		x$labels <- strtrim(x$labels, 60)
-		ggdendrogram(x, rotate = TRUE)
-
+			x$labels <- strtrim(x$labels, 60)
+			dend <- ggdendrogram(x, rotate = TRUE)
+		
+			return(dend)
+		},
+		finally = {
+			log_activity('expression', 'end get_dendrogram_plot')
+		})
 	}
 	
 	################################## OUTPUT FUNCTIONS ##################################
@@ -803,8 +841,8 @@ shinyServer(function(input, output, session){
 	get_plot_message <- (
 	  reactive({
 	    file <- get_file()
-	    if (input$chooseInput != 'fileMultiUpload' && !is.null(file) && nrow(file) > MIN_FILE_ROWS && !input$fullSize) {
-		    "Tip: See below in Advanced Options for plot size settings."
+	    if (input$chooseInput != 'fileMultiUpload' && !is.null(file) && nrow(file) > MANY_FILE_ROWS) {
+		    "Tip: See below in Advanced Options to adjust plot size."
 		  } else {
 		  	""
 		  }
@@ -816,31 +854,8 @@ shinyServer(function(input, output, session){
 	  
 		get_plot(),
 		width =  reactive({input$plotWidth}),
-		height = reactive({
-			get_plot_height()
-		})
+		height = reactive({input$plotHeight})
 	)
-	
-	get_plot_height <- (
-		reactive({
-			if(input$fullSize){
-				if(!is.null(values$rowMatrix) && !is.na(values$rowMatrix)){
-					trunc(input$plotWidth/ncol(values$rowMatrix) * nrow(values$rowMatrix))
-				}
-				else{
-					#input$plotHeight * get_image_weight()
-					#print (paste("Full size ", input$plotHeight))
-					input$plotHeight
-				}
-			}
-			else{
-				#input$plotHeight * get_image_weight()
-				#print (paste("Not full size ", input$plotHeight))
-				input$plotHeight
-			}
-    })
-	)
-	
 	
 	# d3heatmap plot
 	output$d3map <- renderD3heatmap({
@@ -852,6 +867,7 @@ shinyServer(function(input, output, session){
 			"File is too large for this feature. Please select a smaller file with no more than 400,000 cells."))
 		
 		tryCatch({
+			log_activity('expression', 'begin renderD3heatmap') # call this after get_data_matrix()
 			d3heatmap(x, 
 				Rowv = get_dendrograms()[[1]],
 				Colv = get_dendrograms()[[2]],
@@ -863,6 +879,9 @@ shinyServer(function(input, output, session){
 		error = function(err){
 			print(paste("ERROR: ", err))
 			validate(txt=ERR_plot_display)
+		},
+		finally = {
+			log_activity('expression', 'end renderD3heatmap') # though plot may not appear to user until a few seconds later
 		})
 	})
 	
@@ -893,6 +912,7 @@ shinyServer(function(input, output, session){
 
 	# display table
 	output$table <- renderDataTable({
+		log_activity('expression', 'renderDataTable')
 		get_file()
 	})
 		
@@ -902,28 +922,72 @@ shinyServer(function(input, output, session){
 		filename = reactive({paste("heatmap.", input$downloadPlotFormat, sep="")}),
 		
 		content = function(file) {
+			log_activity('expression', 'plotDownload')
+			
+			# Plot width and height are set in pixels, but for Retina/HiDPI displays, "pixels"
+			# here refers to virtual pixels. A single virtual pixel may be rendered by more than
+			# one physical pixel on the display. On a Retina/HiDPI display with a typical pixel
+			# ratio of 2 (i.e. a 2x2 section of pixels for every standard/virtual pixel), the
+			# plot is displayed at a nominal 144 pixels per inch (ppi) on screen (though the
+			# exact number of inches as measured by a tape measure held up to the screen may vary
+			# depending on the display model).
+			#
+			# For purpose of rendering a downloaded plot as JPEG, TIFF or PNG, we scale the plot
+			# dimensions based on the user's chosen resolution. PNG, TIFF and JPEG files are
+			# only saved with the appropriate resolution metadata with type = "cairo" or
+			# type = "Xlib".
+			ppi = as.numeric(input$downloadPlotResolution)
+			plotWidthPixels = input$plotWidth
+			plotHeightPixels = input$plotHeight
+			widthInches = plotWidthPixels/72
+			heightInches = plotHeightPixels/72
+			
 			if(input$downloadPlotFormat == "pdf"){
-				pdf(file, width=input$plotWidth/72, height=get_plot_height()/72)
+				if (plotHeightPixels > 14400) {
+					stop("ERROR: Maximum height for downloaded PDF is 14,400 pixels (200 inches).")
+				} else if (plotWidthPixels > 14400) {
+					stop("ERROR: Maximum width for downloaded PDF is 14,400 pixels (200 inches).")
+				}
+				
+				pdf(file, width=widthInches, height=heightInches)
 				get_plot()
-			}
-			else if(input$downloadPlotFormat == "jpg"){
-				jpeg(file, width=input$plotWidth, height=get_plot_height())
-				get_plot()
-			}
-			else if(input$downloadPlotFormat == "tiff"){
-				tiff(file, width=input$plotWidth, height=get_plot_height())
-				get_plot()
-			}
-			else{
-				tryCatch({
-					png(file, width=input$plotWidth, height=get_plot_height())
+			} else {
+				
+				# Note: the true maximum values are slightly higher, but these are nice round numbers.
+				plotFormatString = toupper(input$downloadPlotFormat)
+				if (ppi == 72) {
+					if (plotHeightPixels > 32000) {
+						stop(paste("ERROR: Maximum height for downloaded", plotFormatString, "is 32,000 pixels at", ppi, "ppi."))
+					}
+				} else if (ppi == 144) {
+					if (plotHeightPixels > 16000) {
+						stop(paste("ERROR: Maximum height for downloaded", plotFormatString, "is 16,000 pixels at", ppi, "ppi. Decrease plot height and/or resolution."))
+					}
+				} else { # 300
+					if (plotHeightPixels > 8000) {
+						stop(paste("ERROR: Maximum height for downloaded", plotFormatString, "is 8,000 pixels at", ppi, "ppi. Decrease plot height and/or resolution."))
+					}
+				}
+				
+				if(input$downloadPlotFormat == "jpg"){
+					jpeg(file, width=widthInches, height=heightInches, units = "in", res=ppi, type="cairo")
 					get_plot()
-				}, 
-				error = function(err){
-					print(paste("ERROR:  ", err))
-					validate(need(FALSE,"PNG image too large. Please decrease the dimensions or resolution of the image."))
-					return(NULL)
-				})
+				}
+				else if(input$downloadPlotFormat == "tiff"){
+					tiff(file, width=widthInches, height=heightInches, units = "in", res=ppi, compression="lzw", type="cairo")
+					get_plot()
+				}
+				else{
+					tryCatch({
+						png(file, width=widthInches, height=heightInches, units = "in", res=ppi, type="cairo")
+						get_plot()
+					}, 
+					error = function(err){
+						print(paste("ERROR:  ", err))
+						validate(need(FALSE,"Error generating PNG image."))
+						return(NULL)
+					})
+				}
 			}
 		}
 	)
@@ -932,6 +996,7 @@ shinyServer(function(input, output, session){
 	output$tableDownload <- downloadHandler(
 		filename = reactive({paste0("table.", input$downloadTableFormat)}),
 		content = function(file){
+			log_activity('expression', 'download data file')
 			if(input$downloadTableFormat == "csv"){
 				write.csv(get_file(), quote = FALSE, file = file, row.names = FALSE)
 			}

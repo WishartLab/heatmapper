@@ -5,6 +5,8 @@ library(htmlwidgets)
 library(ggtern)
 library(MASS)
 
+source("../global_server.R")
+
 # Constants
 dimensions_msg <- "Input data can have up to 8,000 data points."
 
@@ -15,63 +17,72 @@ shinyServer(function(input, output, session){
 	observe({
 		input$clearFile
 		values$file <- NULL
+		log_activity('geocoordinate', 'clearFile')
 	})
 	
 	observe({
 		values$file <- input$file
+		log_activity('geocoordinate', 'input$file')
 	})
 	
 	get_file <- reactive({
-		if(input$chooseInput == 'example'){
-			file <- read.delim(input$exampleFiles, header = TRUE, sep="\t", row.names = NULL)
-		}
-		else{
-			validate(need(values$file$datapath, paste(ERR_file_upload, dimensions_msg)))
-			
-			fileType <- tail(unlist(strsplit(x = values$file$name, split = "[.]")), n=1)
-			
-			tryCatch({
-				if(fileType == "xls" || fileType == "xlsx"){
-					file <- read.xls(values$file$datapath, sheet=1)
-				}
-				else if(fileType == "csv"){
-					file <- read.csv(values$file$datapath, header = TRUE)
-				}
-				else{
-					file <- read.delim(values$file$datapath, header = TRUE, sep="\t", row.names = NULL)
-				}
-				
-			},
-			error = function(err){
-				validate(txt = paste(ERR_file_read, dimensions_msg))
-			})
-		}
+		log_activity('geocoordinate', 'begin get_file')
 		
-		# get rid of NAs
-		file <- na.omit(file)
-		
-		lat <- get_column(file, c("Latitude", "latitude", "Lat", "lat"))
-		lon <- get_column(file, c("Longitude", "longitude", "Long", "long", "Lon", "lon"))
-		
-		validate(need(length(lat)>1, "File could not be read. Please ensure the file contains more than 1 row."))
-		
-		if(!is.null(lat) && !is.null(lon)){
-			if(!is.null(file$Value)){
-				points <- data.frame(
-				Longitude = c(lon), 
-				Latitude = c(lat), 
-				Value = c(file$Value))
+		tryCatch({
+			if(input$chooseInput == 'example'){
+				file <- read.delim(input$exampleFiles, header = TRUE, sep="\t", row.names = NULL)
 			}
 			else{
-				points <- data.frame(
-				Longitude = c(lon), 
-				Latitude = c(lat))
+				validate(need(values$file$datapath, paste(ERR_file_upload, dimensions_msg)))
+			
+				fileType <- tail(unlist(strsplit(x = values$file$name, split = "[.]")), n=1)
+			
+				tryCatch({
+					if(fileType == "xls" || fileType == "xlsx"){
+						file <- read.xls(values$file$datapath, sheet=1)
+					}
+					else if(fileType == "csv"){
+						file <- read.csv(values$file$datapath, header = TRUE)
+					}
+					else{
+						file <- read.delim(values$file$datapath, header = TRUE, sep="\t", row.names = NULL)
+					}
+				
+				},
+				error = function(err){
+					validate(txt = paste(ERR_file_read, dimensions_msg))
+				})
 			}
-		}
-		else{
-			validate(txt = "File could not be read. Please ensure the columns are correctly labeled.")
-		}
-		return(points)
+		
+			# get rid of NAs
+			file <- na.omit(file)
+		
+			lat <- get_column(file, c("Latitude", "latitude", "Lat", "lat"))
+			lon <- get_column(file, c("Longitude", "longitude", "Long", "long", "Lon", "lon"))
+		
+			validate(need(length(lat)>1, "File could not be read. Please ensure the file contains more than 1 row."))
+		
+			if(!is.null(lat) && !is.null(lon)){
+				if(!is.null(file$Value)){
+					points <- data.frame(
+					Longitude = c(lon), 
+					Latitude = c(lat), 
+					Value = c(file$Value))
+				}
+				else{
+					points <- data.frame(
+					Longitude = c(lon), 
+					Latitude = c(lat))
+				}
+			}
+			else{
+				validate(txt = "File could not be read. Please ensure the columns are correctly labeled.")
+			}
+			return(points)
+		},
+		finally = {
+			log_activity('geocoordinate', 'end get_file')
+		})
 	})
 	
 	get_column <- function(file, names_list){
@@ -127,6 +138,7 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_fill_opacity <- reactive({
+		log_activity('geocoordinate', 'get_fill_opacity')
 		if(layer_selected("showHeatmap")){
 			input$fillOpacity
 		}
@@ -136,6 +148,7 @@ shinyServer(function(input, output, session){
 	})
 	
 	get_contour_size <- reactive({
+		log_activity('geocoordinate', 'get_contour_size')
 		if(layer_selected("showContours")){
 			input$contourSize
 		}
@@ -216,12 +229,14 @@ shinyServer(function(input, output, session){
 
 	# http://leaflet-extras.github.io/leaflet-providers/preview/index.html
 	get_tiles <- function(m){
+		log_activity('geocoordinate', 'get_tiles')
+		
 		get_file()
 		
 		m <- clearTiles(m)
 		
 		if(layer_selected("showMap")){
-			m <- addProviderTiles(m, input$mapType)
+			m <- addProviderTiles(m, input$mapType, options = providerTileOptions(detectRetina = input$detectRetina))
 			
 			# prevent zooming out further than provider tile allows
 			if(!is.null(input$map_zoom) && input$map_zoom <1){
@@ -233,11 +248,9 @@ shinyServer(function(input, output, session){
 	}
 	
 	get_shapes <- function(m){
-		
+		log_activity('geocoordinate', 'get_shapes')
 		m <- get_contour_shapes(m)
-		
 		m <- get_point_shapes(m)
-		
 		m
 	}
 	
@@ -257,10 +270,12 @@ shinyServer(function(input, output, session){
 	})
 	
 	output$map <- renderLeaflet({
+		log_activity('geocoordinate', 'renderLeaflet')
 		leaflet(get_file()) %>% fitBounds(~min(Longitude, na.rm = TRUE), ~min(Latitude, na.rm = TRUE), ~max(Longitude, na.rm = TRUE), ~max(Latitude, na.rm = TRUE))
 	})
 	
 	output$table <- renderDataTable({
+		log_activity('geocoordinate', 'renderDataTable')
 		get_file()
 	})
 	
@@ -269,6 +284,7 @@ shinyServer(function(input, output, session){
 			"geoHeatmap.html"
 		},
 		content = function(file) {
+			log_activity('geocoordinate', 'plotDownload')
 			m <- get_shapes(leaflet(get_file())) %>% get_tiles()
 			
 			saveWidget(m, file=file)
@@ -280,7 +296,9 @@ shinyServer(function(input, output, session){
 			"table.txt"
 		},
 		content = function(file) {
+			log_activity('geocoordinate', 'tableDownload')
 			write.table(get_file(), file, sep = "\t", row.names = FALSE, quote = FALSE)
 		}
 	)
+
 })

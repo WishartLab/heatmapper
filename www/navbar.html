@@ -2,6 +2,49 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		
+		<script>
+			
+			var MULTI_NODE_MODE = false;
+				// Whether to redirect users to other Heatmapper server nodes based on node usage.
+			
+			// Because Shiny Server Open Source edition only executes a single thread per app,
+			// we run Heatmapper in a distributed fashion on multiple server nodes. Though
+			// particular heatmap types are already separate apps, we want to avoid cases where
+			// multiple users are using the same Heatmapper app simultaneously.
+			//
+			// For the main Heatmapper apps, when the user click on the app name in the menu bar
+			// we will contact the Heatmapper Monitor API, which resides on each server node.
+			// The API will return the domain name of the server node that the user can use for
+			// their chosen app, based on the current and recent use of that app on each server
+			// node, as well as overall node system load levels. This function will then set the
+			// link, and the user will be taken to the app page on the server node determined
+			// by the API.
+			function heatmapperLink(app)
+			{
+				if (MULTI_NODE_MODE) {
+					url = 'http://' + location.host + ':8803/cgi-bin/multi_node_report.cgi?app=' + app;
+					
+					$.get( url, function( data, status, xhr ) {
+						//console.log(data);
+						var myRe = new RegExp("^best\: ([a-zA-Z0-9.]+)");
+						var myArray = myRe.exec(data);
+						var domain = myArray[1];
+						//console.log(domain);
+						var link = 'http://' + domain + '/' + app;
+						location.href = link;
+						
+						//console.dir(xhr);
+						//console.log(xhr.responseText);
+					});
+				} else {
+					// Not using multi-node mode, so just use a link to the app on the same host.
+					location.href = 'http://' + location.host + '/' + app;
+				}
+			}
+			
+		</script>
+		
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -9,17 +52,27 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapseNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>                        
+					<span class="icon-bar"></span>
 				</button>
 				<span class = "navbar-brand" id="heatmapper-logo" style="cursor:pointer">Heatmapper</span>
 			</div>
 			<div class="collapse navbar-collapse" id="collapseNavbar">
 				<ul class="nav navbar-nav">
-					<li id="expressionTab"><a href="/expression">Expression</a></li>
-					<li id="pairwiseTab"><a href="/pairwise">Pairwise</a></li>
-					<li id="imageTab"><a href="/image">Image Overlay</a></li>
-					<li id="geomapTab"><a href="/geomap">Geomap</a></li>
-					<li id="geocoordTab"><a href="/geocoordinate">Geocoordinate</a></li>
+					<li id="expressionTab">
+						<a id="expressionLink" href="" onclick="heatmapperLink('expression');return false;">Expression</a>
+					</li>
+					<li id="pairwiseTab">
+						<a id="pairwiseLink" href="" onclick="heatmapperLink('pairwise');return false;">Pairwise</a>
+					</li>
+					<li id="imageTab">
+						<a id="imageLink" href="" onclick="heatmapperLink('image');return false;">Image Overlay</a>
+					</li>
+					<li id="geomapTab">
+						<a id="geomapLink" href="" onclick="heatmapperLink('geomap');return false;">Geomap</a>
+					</li>
+					<li id="geocoordinateTab">
+						<a id="geocoordinateLink" href="" onclick="heatmapperLink('geocoordinate');return false;">Geocoordinate</a>
+					</li>
 					<li id="aboutTab" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							About<b class="caret"></b>

@@ -137,20 +137,26 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
     	
     	DOWNLOAD_BUTTONS_WITH_SELECTION(),
     	
-			ADVANCED_OPTIONS_PANEL( 
+    	ADVANCED_OPTIONS_PANEL(
 				list(
+					
+					selectInput('downloadPlotResolution', label = RESOLUTION,
+						choices = c("72" = '72',"144" = '144',"300" = '300'),
+						selected = '144'),
+							# We set default to 144 ppi since this is the resolution on screen for
+							# typical Retina/hiDPI displays with pixel ratios of 2. We want users
+							# of such displays to download plots by default that will look the
+							# same as what they see on screen in Heatmapper.
 					
 					sliderInput('plotWidth', label = WIDTH, 
 		    		min = 500,
 		    		max = 3000,
 		    		value = 600),
 					
-					checkboxInput('fullSize', label = "Auto-adjust Plot Height", value = FALSE), 
-					
-					conditionalPanel(condition = "input.fullSize == false", 
-			    	sliderInput('plotHeight', label = HEIGHT, 
-			    		min = 500,			    		max = 8000,
-			    		value = 600)),
+		    	sliderInput('plotHeight', label = HEIGHT, 
+		    		min = 500,
+		    		max = 32000,
+		    		value = 600),
 					
 					textInput('title', label = "Title", value = ""),
 					textInput('xlab', label = "X Axis Label", value = ""),

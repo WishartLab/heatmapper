@@ -45,6 +45,12 @@ shinyUI(list(HEAD_TASKS("#geocoordTab"), fluidPage(title = "Geocoordinate",
 		 	
 			ADVANCED_OPTIONS_PANEL(
 				list(
+					
+					checkboxInput('detectRetina', label = "Scale map tiles on retina displays", value = FALSE),
+						# On mixed display setups, user must load the page while the browser window is
+						# positioned on a retina display, in addition to checking this box, in order
+						# for retina-resolution map tiles to display.
+					
 					sliderInput('contourSize', 
 	    			label = CONTOUR_WIDTH, 
 	    			min = 0, 

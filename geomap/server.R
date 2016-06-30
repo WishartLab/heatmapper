@@ -12,6 +12,7 @@ library(d3heatmap)
 library(gplots)
 library(ggdendro)
 
+source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
 
 # Constants
@@ -35,15 +36,18 @@ shinyServer(function(input, output, session) {
 	observe({
 		input$clearFile
 		values$inputFile <- NULL
+		log_activity('geomap', 'clearFile')
 	})
 	
 	observe({
 		values$inputFile <- input$file
+		log_activity('geomap', 'input$file')
 	})
 	
 	# when a valid column is selected set values$density
 	observe({
 		if(input$colSelect != 0){
+			log_activity('geomap', 'input$colSelect')
 			values$density <- get_density()
 			
 			# update the slider with the new max and min from that column
@@ -78,7 +82,6 @@ shinyServer(function(input, output, session) {
 													choices = NULL, 
 													selected = map_to_select)
 			}
-			
 		}
 	})
 	
@@ -89,6 +92,7 @@ shinyServer(function(input, output, session) {
 		input$lowColour
 		input$highColour
 		input$colourScheme
+		log_activity('geomap', 'observe rangeSubmit binNumber lowColour highColour colourScheme')
 		isolate({
 			if(!is.null(values$density)){
 				rangeMin <- input$range[[1]]
@@ -125,11 +129,13 @@ shinyServer(function(input, output, session) {
 	
 		# if input$area is updated change map
   observe({
+  	log_activity('geomap', 'observe values$map')
   	values$map <- readRDS(input$area) 
 	})
 	
 	# if values$density, values$colours, or values$map is changed update the polygons
 	observe({
+		log_activity('geomap', 'layer/tab changes')
 		get_file()
 		if(input$tabSelections == "Interactive"){
 			if(is.null(values$density)){
@@ -213,52 +219,56 @@ shinyServer(function(input, output, session) {
 	
 	# read file if chooseInput is changed or file is uploaded
 	get_file <- reactive({
-		if(input$chooseInput == 'example'){
-			data_file <- read.table(input$exampleFiles, header = TRUE, sep="\t")
-		}
-		else{
-			
-			# reset column selection to empty
-			if(is.null(values$inputFile$datapath)){
-				updateSelectInput(session, inputId="colSelect", choices = c(" " = 0))
+		log_activity('geomap', 'begin get_file')
+		
+		tryCatch({
+			if(input$chooseInput == 'example'){
+				data_file <- read.table(input$exampleFiles, header = TRUE, sep="\t")
 			}
+			else{
 			
-			# return message if no file uploaded
-			validate(need(values$inputFile$datapath, paste("Please upload a file.", dimensions_msg)))
+				# reset column selection to empty
+				if(is.null(values$inputFile$datapath)){
+					updateSelectInput(session, inputId="colSelect", choices = c(" " = 0))
+				}
 			
-			tryCatch({
+				# return message if no file uploaded
+				validate(need(values$inputFile$datapath, paste("Please upload a file.", dimensions_msg)))
+			
+				tryCatch({
+					fileType <- tail(unlist(strsplit(x = values$inputFile$name, split = "[.]")), n=1)
 				
-				fileType <- tail(unlist(strsplit(x = values$inputFile$name, split = "[.]")), n=1)
-				
-				if(fileType == "xls" || fileType == "xlsx"){
-					data_file <- read.xls(values$inputFile$datapath, sheet=1)
-				}
-				else if(fileType == "csv"){
-					data_file <- read.csv(values$inputFile$datapath, header = TRUE)
-				}
-				else{
-					data_file <- read.delim(values$inputFile$datapath, header = TRUE, sep="\t", row.names = NULL)
-				}
+					if(fileType == "xls" || fileType == "xlsx"){
+						data_file <- read.xls(values$inputFile$datapath, sheet=1)
+					}
+					else if(fileType == "csv"){
+						data_file <- read.csv(values$inputFile$datapath, header = TRUE)
+					}
+					else{
+						data_file <- read.delim(values$inputFile$datapath, header = TRUE, sep="\t", row.names = NULL)
+					}
 					
-				# remove "%" if they exist
-				data_file[-1] <- lapply(data_file[-1], function(data_file){
-					as.numeric(sub(pattern = "%", replacement = "", data_file))
+					# remove "%" if they exist
+					data_file[-1] <- lapply(data_file[-1], function(data_file){
+						as.numeric(sub(pattern = "%", replacement = "", data_file))
+					})
+				}, 
+				error = function(err){
+					validate(txt = paste(ERR_file_read, dimensions_msg))
 				})
-				
-				data_file
-			}, 
-			error = function(err){
-				validate(txt = paste(ERR_file_read, dimensions_msg))
-			})
-		}
+			}
 		
-		# region names should be in lower case
-		data_file[[1]] <- tolower(data_file[[1]])
+			# region names should be in lower case
+			data_file[[1]] <- tolower(data_file[[1]])
 		
-		# update the column selection options when a new file is uploaded
-		updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
-		
-		return(data_file)
+			# update the column selection options when a new file is uploaded
+			updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
+			
+			return(data_file)
+		},
+		finally = {
+			log_activity('geomap', 'end get_file')
+		})
 	})
 	
 	# returns a list of break points given local min/max, global min/max, and # of bins
@@ -407,7 +417,7 @@ shinyServer(function(input, output, session) {
 	
 	get_tiles <- function(m){
 		if(layer_selected("showTiles")){
-			addTiles(m)
+			addTiles(m, options=tileOptions(detectRetina = input$detectRetina))
 		}
 		else{
 			clearTiles(m)
@@ -440,6 +450,7 @@ shinyServer(function(input, output, session) {
 	
   # Dynamically render the box in the upper-right
   output$stateInfo <- renderUI({
+  	log_activity('geomap', 'stateInfo')
     if (is.null(values$highlight)) {
       return(tags$div("Hover over a region"))
     } 
@@ -461,6 +472,7 @@ shinyServer(function(input, output, session) {
 	output$tableDownload <- downloadHandler(
 		filename = "table.txt",
 		content = function(file){
+			log_activity('geomap', 'tableDownload')
 			write.table(values$file, sep = "\t", quote = FALSE, file = file, row.names = FALSE)
 		}
 	)
@@ -471,6 +483,7 @@ shinyServer(function(input, output, session) {
 			"geomap.html"
 		},
 		content = function(file) {
+			log_activity('geomap', 'plotDownload')
 			m <- get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
 			#m <- leaflet()
 			saveWidget(m, file=file)
