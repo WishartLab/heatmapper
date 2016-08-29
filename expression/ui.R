@@ -149,14 +149,14 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 							# same as what they see on screen in Heatmapper.
 					
 					sliderInput('plotWidth', label = WIDTH, 
-		    		min = 500,
+		    		min = 1000,
 		    		max = 3000,
-		    		value = 600),
+		    		value = 1100),
 					
 		    	sliderInput('plotHeight', label = HEIGHT, 
-		    		min = 500,
+		    		min = 1000,
 		    		max = 32000,
-		    		value = 600),
+		    		value = 1000),
 					
 					textInput('title', label = "Title", value = ""),
 					textInput('xlab', label = "X Axis Label", value = ""),
@@ -173,29 +173,30 @@ shinyUI(list(HEAD_TASKS("#expressionTab"), fluidPage(title = "Expression Heat Ma
 
 					# Multiple file navigation controls
 					conditionalPanel(condition = "input.chooseInput == 'fileMultiUpload'",
-					fluidRow(
-						column(2, actionButton("cyclePlotsStart", label = "Start"), align="left"),
-						column(2, actionButton("cyclePlotsLeft", label = "Previous"), align="right"),
-						column(4,
-								wellPanel(
-								textOutput("currentFileNameLabel"),
-								textOutput("currentFilePositionLabel"),
-								tags$head(tags$style("#currentFilePositionLabel{color: grey;
-										font-size: 12px;
-										}"
-									)
-								)
-							), align="center"),
-						column(2, actionButton("cyclePlotsRight", label = "Next"), align="left"),
-						column(2, actionButton("cyclePlotsEnd", label = "End"), align="right")
-					)
+  					fluidRow(
+  						column(2, actionButton("cyclePlotsStart", label = "Start"), align="left"),
+  						column(2, actionButton("cyclePlotsLeft", label = "Previous"), align="right"),
+  						column(4,
+  								wellPanel(
+  								textOutput("currentFileNameLabel"),
+  								textOutput("currentFilePositionLabel"),
+  								tags$head(tags$style("#currentFilePositionLabel{color: grey;
+  										font-size: 12px;
+  										}"
+  									)
+  								)
+  							), align="center"),
+  						column(2, actionButton("cyclePlotsRight", label = "Next"), align="left"),
+  						column(2, actionButton("cyclePlotsEnd", label = "End"), align="right")
+  					)
 					),
 
 					# Message about automatic plot dimension adjustment
 					textOutput("plotMesage"),
 
 					# Main heat map plot
-					plotOutput("heatmap")),
+					plotOutput("heatmap")
+				),
 
 				tabPanel("Interactive", tags$br(), d3heatmapOutput("d3map", height = 600)),
 				

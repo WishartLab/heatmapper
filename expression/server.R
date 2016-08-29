@@ -28,11 +28,11 @@ intercept <<- 0.37506195;
 
 
 # for adjusting the font size, please read function 'get_label_weight'
-EACH_ROW_SIZE_LIMIT <- 13; # the minimum pixel size of each row in heatmap.2 image, if larger than it, start making font size 
+EACH_ROW_SIZE_LIMIT <- 10; # the minimum pixel size of each row in heatmap.2 image, if larger than it, start making font size 
                           # of heatmap.2 image propotionaly. if the font size is bigger than 1.5, the font size not increaseed 
                           # anymore. If lower than it, keep the minum front size.
-MIN_FONT_SIZE <- 1.0;
-MAX_FONT_SIZE <- 1.45;
+MIN_FONT_SIZE <- 0.7;
+MAX_FONT_SIZE <- 1.3;
 
 MANY_FILE_ROWS <- 100; # More than this many rows is considered a lot.
 
@@ -253,6 +253,10 @@ shinyServer(function(input, output, session){
 	
 	################################## HELPER FUNCTIONS ##################################
 
+	get_plotWidth <- reactive({
+	   input$plotWidth * 1.0
+	})
+	
 	get_plot_num <- reactive({
 		values$plotnum
 	})
@@ -733,10 +737,10 @@ shinyServer(function(input, output, session){
 			}
     }
     else if(input$clusterMethod != 'none'){
-			if(clust_selected("row")){
+			if(clust_selected("row") && !is.empty(values$rowHclust)){
 				hr <- as.dendrogram(values$rowHclust)
 			}
-			if(clust_selected("col")){
+			if(clust_selected("col") && !is.empty(values$colHclust)){
 				hc <- as.dendrogram(values$colHclust)
 			}
 		}
@@ -750,6 +754,7 @@ shinyServer(function(input, output, session){
 	    return(1)
 	  }else{
 	    each_row_size = input$plotHeight / nrow(file)
+	    #print(paste("each_row_size=",each_row_size))
 	    if (each_row_size > EACH_ROW_SIZE_LIMIT){
 	       font_size = each_row_size/EACH_ROW_SIZE_LIMIT * MIN_FONT_SIZE
 	       if (font_size > MAX_FONT_SIZE){
@@ -762,6 +767,20 @@ shinyServer(function(input, output, session){
 	  }
 	})
 	
+	get_margins <- function(x)({
+	  # set up margins for calling heatmap.2
+	  max_char_count = max(nchar(rownames(x)))
+	  #print(paste("Max char#=", max_char_count))
+	  #margin.factor <- get_label_weight()
+	  #pixOnNchar = ceiling(margin.factor*100 /ncol(x))
+	  #pixOnNchar = ceiling(margin.factor*100 * ncol(x) / 75)
+	  #print(paste("get_label_weight=", get_label_weight()," pixOnNchar=",pixOnNchar, " matrix_column=", ncol(x))) 
+	  #marg <- max(5, min(pixOnNchar, pixOnNchar))
+	  max_char_count = min(40, max_char_count/2 + 2)
+	  #print(paste("margins(", 20, ",", max_char_count,")"))
+	  margins <- c(30, max_char_count)
+	})
+	
 	# returns a heatmap.2 image based on get_data_matrix()
 	get_plot <- function(){
 		x <- get_data_matrix()
@@ -770,9 +789,10 @@ shinyServer(function(input, output, session){
 		col_dendrogram_height = 100
 		heatmap_height = input$plotHeight - col_dendrogram_height
 		# creates a own color palette from red to green
-		#print (paste("get_label_weight ", get_label_weight()))
-
+		#print (paste("get_label_weight=", get_label_weight()))
+		
 		tryCatch({
+		  
 			heatmap.2(x,
 				na.color = input$missingColour, 
 				key=TRUE, 
@@ -783,7 +803,7 @@ shinyServer(function(input, output, session){
 				keysize=0.9, 
 				offsetCol = 0, 
 				offsetRow = 0,
-				
+				margins = get_margins(x),     # widens margins around plot
 				dendrogram = dend_select(),
 				Rowv = get_dendrograms()[[1]], 
 				Colv = get_dendrograms()[[2]], 
@@ -794,6 +814,7 @@ shinyServer(function(input, output, session){
 				ylab = input$ylab,
 				cexRow = get_label_weight(),
 				cexCol = get_label_weight(),
+				srtCol=45,
 				lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
 			)
 			graphics.off()
@@ -853,6 +874,7 @@ shinyServer(function(input, output, session){
 	output$heatmap <- renderPlot(
 	  
 		get_plot(),
+		#width =  reactive({get_plotWidth()}),
 		width =  reactive({input$plotWidth}),
 		height = reactive({input$plotHeight})
 	)
@@ -937,6 +959,7 @@ shinyServer(function(input, output, session){
 			# only saved with the appropriate resolution metadata with type = "cairo" or
 			# type = "Xlib".
 			ppi = as.numeric(input$downloadPlotResolution)
+			#plotWidthPixels = get_plotWidth()
 			plotWidthPixels = input$plotWidth
 			plotHeightPixels = input$plotHeight
 			widthInches = plotWidthPixels/72
