@@ -36,6 +36,7 @@
 			<h4>Data Structure</h4>
 			<ul>
 				<li>The first (header) row is used to assign column names.</li>
+				<li>A column labeled UNIQID is required.</li>
 				<li>If a column labeled "NAME" exists (optional), it will be used to assign row names.</li>
 				<li>Any additional columns containing non-numeric data will be ignored.</li>
 				<li>Data values can be positive or negative numbers.</li>
@@ -79,8 +80,8 @@ Hs.83484	SRY (sex determining region Y)-box 4	-3.418094026	-3.181358856	-3.27630
 			<br />
 			<br />
 			
-			In this example, the 'UNIQID' column ignored, but the 'NAME' column is used to
-			assign row names. Since the column names are not unique, Heatmapper will
+			In this example, because the 'NAME' column is present, it is used to assign row names
+			instead of the 'UNIQID' column. Since the column names are not unique, Heatmapper will
 			automatically modify them to create unique column names.
 			
 			<br />
