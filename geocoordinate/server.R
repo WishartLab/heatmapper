@@ -57,6 +57,8 @@ shinyServer(function(input, output, session){
 			# get rid of NAs
 			file <- na.omit(file)
 		
+			names(file) = gsub("^[[:space:]]+", '', names(file))
+			names(file) = gsub("[[:space:]]+$", '', names(file))
 			lat <- get_column(file, c("Latitude", "latitude", "Lat", "lat"))
 			lon <- get_column(file, c("Longitude", "longitude", "Long", "long", "Lon", "lon"))
 		
