@@ -11,6 +11,7 @@ library(shiny)
 library(d3heatmap)
 library(gplots)
 library(ggdendro)
+library(dbConnect)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
@@ -286,15 +287,41 @@ shinyServer(function(input, output, session) {
 				dbname = "cov19col",
 				host = "127.0.0.1",
 				username = "root",
-				password = "")
+				#password = "parool" #Jaanus for local testing
+				password = ""
+				)
 			on.exit(dbDisconnect(conn), add = TRUE)
 			data_file <- dbGetQuery(conn, paste0(
-				"select GeolocCiudad, count(*) as 'fever count' from myTable where inputFebre  = 'True' group by GeolocCiudad;"))
-			data_file[, 1] <- as.factor(data_file[, 1])
-
-			# region names should be in lower case
-			data_file[[1]] <- tolower(data_file[[1]])
-
+			  "select 
+			   f.GeolocCiudad,
+			   fever_count,
+			   cough_count,
+			   runny_nose_count
+			   from (select
+			         GeolocCiudad,
+			         count(inputFebre) as fever_count
+			         from myTable
+			         where inputFebre  = 'True'
+			         group by GeolocCiudad) f
+			   left join (select
+			         GeolocCiudad,
+			         count(inputTos) as cough_count
+			         from myTable
+          		 where inputTos  = 'Yes'
+          		 group by GeolocCiudad) as c on c.GeolocCiudad = f.GeolocCiudad
+			   left join (select
+			         GeolocCiudad,
+			         count(inputMoqueo) as runny_nose_count
+			         from myTable
+          		 where inputMoqueo  = 'Yes'
+          		 group by GeolocCiudad) r on r.GeolocCiudad = f.GeolocCiudad"
+				
+				))
+			
+			data_file <- data_file %>% 
+			  # region names should be in lower case
+			  mutate(GeolocCiudad = tolower(GeolocCiudad))
+			
 			# update the column selection options when new DB data is loaded
 			updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
 
