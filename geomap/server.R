@@ -76,6 +76,8 @@ shinyServer(function(input, output, session) {
 				map_to_select = 'data/CAN_1.rds'
 			} else if (input$exampleFiles == EXAMPLE_FILES[3]) {
 				map_to_select = 'data/USA_1.rds'
+			} else if (input$exampleFiles == EXAMPLE_FILES[4]) {
+			    map_to_select = 'data/COL_2.rds'
 			}
 			if (map_to_select != '') {
 				updateSelectInput(session, inputId = "area", label = NULL, 
@@ -137,7 +139,8 @@ shinyServer(function(input, output, session) {
 	observe({
 		log_activity('geomap', 'layer/tab changes')
 		get_file()
-		if(input$tabSelections == "Interactive"){
+		if(input$tabSelections == "Interactivo"){
+		#if(input$tabSelections == "Interactive"){
 			if(is.null(values$density)){
 				# remove old shapes when map is changed
 	  		leafletProxy("map") %>% clearShapes() %>% get_tiles() %>% get_view() 
@@ -152,7 +155,8 @@ shinyServer(function(input, output, session) {
 	# update legend when needed
 	observe({
 		get_file()
-		if(!is.null(values$density) && input$tabSelections == "Interactive"){
+		#if(!is.null(values$density) && input$tabSelections == "Interactive"){
+	  if(!is.null(values$density) && input$tabSelections == "Interactivo"){
 			leafletProxy("map", data = isolate({get_map_data()})) %>% 	
 				addLegend(layerId = "legendLayer", position = "bottomright", 
 						opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),

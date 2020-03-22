@@ -12,7 +12,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		
 			tipify(fluidRow(
 				# column(3, tags$label("Area to use")),
-				column(3, tags$label("Área a utilizar")),
+				column(3, tags$label("Area a utilizar")),#Ć
 				
 				column(9, 
 		    	selectInput("area", label = NULL, 
@@ -32,7 +32,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		    			
 # "Afghanistan" = 'data/AFG_1.rds',
 # "Akrotiri and Dhekelia" = 'data/XAD_1.rds',
-# "Åland" = 'data/ALA_1.rds',
+# "Ćland" = 'data/ALA_1.rds',
 # "Albania" = 'data/ALB_1.rds',
 # "Algeria" = 'data/DZA_1.rds',
 # "American Samoa" = 'data/ASM_1.rds',
@@ -76,7 +76,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 "Colombia: Departamentos" = 'data/COL_1.rds'
 # "Comoros" = 'data/COM_1.rds',
 # "Costa Rica" = 'data/CRI_1.rds',
-# "Côte d'Ivoire" = 'data/CIV_1.rds',
+# "CĆ“te d'Ivoire" = 'data/CIV_1.rds',
 # "Croatia" = 'data/HRV_1.rds',
 # "Cuba" = 'data/CUB_1.rds',
 # "Cyprus" = 'data/CYP_1.rds',
@@ -264,9 +264,11 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 					 		
 			ADVANCED_OPTIONS_PANEL(
 				list(
-					HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
+					HTML("<button id='rangeSubmit' class='action-button clearButton'>Enviar rango</button>"),
+					#HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
 					bsTooltip(id = "rangeSubmit", "Update heatmap using range of interest", placement = "right"),
-					tags$label("Range of Interest"),
+					tags$label("Rango de Interes"),#ĆØ
+					#tags$label("Range of Interest"),
 					tipify(
 						sliderInput("range",
 							label = NULL,
@@ -291,7 +293,8 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 						JSCOLOUR_ROW("#FFEDA0", "#800026")
 					), 
 
-					checkboxInput('detectRetina', label = "Scale map tiles on retina displays", value = FALSE),
+					#checkboxInput('detectRetina', label = "Scale map tiles on retina displays", value = FALSE),
+					checkboxInput('detectRetina', label = "Escala de mosaicos de mapas en pantallas de retina", value = FALSE),
 						# On mixed display setups, user must load the page while the browser window is
 						# positioned on a retina display, in addition to checking this box, in order
 						# for retina-resolution map tiles to display.
@@ -299,11 +302,12 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 					textInput('legend',
 		    		# label = "Custom legend title", 
 		   			# value = "Legend"),
-		    		label = "Título de leyenda personalizado", 
+		    		label = "Titulo de leyenda personalizado", #Ć�
 		    		value = "Leyenda"),
 					
-					sliderInput("lineSize", 
-						label = "Contour Line Width", 
+					sliderInput("lineSize",
+					  #label = "Contour Line Width",
+						label = "Ancho de livnea de contorno", #Ć�
 						min = 0,
 						max = 5,
 						value = 1),
@@ -314,7 +318,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 	),
 	mainPanel(id = "mainPanel",
 		tabsetPanel(id = "tabSelections", type = "tabs",
-			tabPanel(title = "Interactive", 
+			tabPanel(title = "Interactivo", 
 				tags$br(),
 			  leafletOutput("map", "100%", 600),
 				conditionalPanel("output.map",
