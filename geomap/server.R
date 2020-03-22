@@ -138,7 +138,7 @@ shinyServer(function(input, output, session) {
 	# if values$density, values$colours, or values$map is changed update the polygons
 	observe({
 		log_activity('geomap', 'layer/tab changes')
-		get_file()
+		get_db_data()
 		if(input$tabSelections == "Interactivo"){
 		#if(input$tabSelections == "Interactive"){
 			if(is.null(values$density)){
@@ -154,7 +154,7 @@ shinyServer(function(input, output, session) {
 	
 	# update legend when needed
 	observe({
-		get_file()
+		get_db_data()
 		#if(!is.null(values$density) && input$tabSelections == "Interactive"){
 	  if(!is.null(values$density) && input$tabSelections == "Interactivo"){
 			leafletProxy("map", data = isolate({get_map_data()})) %>% 	
@@ -171,7 +171,7 @@ shinyServer(function(input, output, session) {
 	
 	# use values$file to store file info instead of get_file() for editing table
 	observe({
-		values$file <- get_file()
+		values$file <- get_db_data()
 	})
 			
 	# populate select input with region names for that map
@@ -274,7 +274,37 @@ shinyServer(function(input, output, session) {
 			log_activity('geomap', 'end get_file')
 		})
 	})
-	
+
+	# obtain data from database
+	get_db_data <- reactive({
+		log_activity('geomap', 'begin get_db_data')
+
+		tryCatch({
+
+			conn <- dbConnect(
+				drv = RMySQL::MySQL(),
+				dbname = "cov19col",
+				host = "127.0.0.1",
+				username = "root",
+				password = "")
+			on.exit(dbDisconnect(conn), add = TRUE)
+			data_file <- dbGetQuery(conn, paste0(
+				"select GeolocCiudad, count(*) as 'fever count' from myTable where inputFebre  = 'True' group by GeolocCiudad;"))
+			data_file[, 1] <- as.factor(data_file[, 1])
+
+			# region names should be in lower case
+			data_file[[1]] <- tolower(data_file[[1]])
+
+			# update the column selection options when new DB data is loaded
+			updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
+
+			return(data_file)
+		},
+		finally = {
+			log_activity('geomap', 'end get_db_data')
+		})
+	})
+
 	# returns a list of break points given local min/max, global min/max, and # of bins
 	get_breaks <- function(rangeMin, rangeMax, min, max, bins){
 		minadd <- FALSE
@@ -364,7 +394,7 @@ shinyServer(function(input, output, session) {
 
   # default map
   output$map <- renderLeaflet({
-  	get_file()
+		get_db_data()
   	leaflet()
   })
 	
