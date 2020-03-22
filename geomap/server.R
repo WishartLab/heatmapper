@@ -293,7 +293,7 @@ shinyServer(function(input, output, session) {
 			on.exit(dbDisconnect(conn), add = TRUE)
 			data_file <- dbGetQuery(conn, paste0(
 			  "select 
-			   f.GeolocCiudad,
+			   f.GeolocCiudad as region,
 			   fever_count,
 			   cough_count,
 			   runny_nose_count
@@ -314,13 +314,38 @@ shinyServer(function(input, output, session) {
 			         count(inputMoqueo) as runny_nose_count
 			         from myTable
           		 where inputMoqueo  = 'Yes'
-          		 group by GeolocCiudad) r on r.GeolocCiudad = f.GeolocCiudad"
+          		 group by GeolocCiudad) r on r.GeolocCiudad = f.GeolocCiudad
+			  union
+			  select 
+			   f.GeolocDepartamento as region,
+			   fever_count,
+			   cough_count,
+			   runny_nose_count
+			   from (select
+			         GeolocDepartamento,
+			         count(inputFebre) as fever_count
+			         from myTable
+			         where inputFebre  = 'True'
+			         group by GeolocDepartamento) f
+			   left join (select
+			         GeolocDepartamento,
+			         count(inputTos) as cough_count
+			         from myTable
+          		 where inputTos  = 'Yes'
+          		 group by GeolocDepartamento) as c on c.GeolocDepartamento = f.GeolocDepartamento
+			   left join (select
+			         GeolocDepartamento,
+			         count(inputMoqueo) as runny_nose_count
+			         from myTable
+          		 where inputMoqueo  = 'Yes'
+          		 group by GeolocDepartamento) r on r.GeolocDepartamento = f.GeolocDepartamento;
+			  "
 				
 				))
 			
 			data_file <- data_file %>% 
 			  # region names should be in lower case
-			  mutate(GeolocCiudad = tolower(GeolocCiudad))
+			  mutate(region = tolower(region))
 			
 			# update the column selection options when new DB data is loaded
 			updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
