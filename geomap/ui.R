@@ -307,7 +307,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 					
 					sliderInput("lineSize",
 					  #label = "Contour Line Width",
-						label = "Ancho de livnea de contorno", #Ä†­
+						label = "Ancho de linea de contorno", #Ä†­
 						min = 0,
 						max = 5,
 						value = 1),
