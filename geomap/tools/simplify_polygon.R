@@ -66,8 +66,7 @@ prepare_map <- function(country_code,
   map <- load_map(cntry_code = country_code,
                   lvl = level)
   if (is.null(map)){
-    print("No map found")
-    print("Check level")
+    print("No map found. Check level.")
     return(NULL)
   }
   library(dplyr)
@@ -106,9 +105,10 @@ prepare_map <- function(country_code,
   #Clean the data on map object
   print("Cleaning dataframe")
   print("*************************")
+  map_data <- map_data %>% 
+    mutate(row_nr = row_number())
   if (level == 2){
     map_data <- map_data %>% 
-      mutate(row_nr = row_number()) %>%
       group_by(row_nr) %>% 
       mutate(state = stri_trans_general(NAME_1, id = "Latin-ASCII"),
              county = stri_trans_general(NAME_2, id = "Latin-ASCII"),
@@ -130,16 +130,30 @@ prepare_map <- function(country_code,
     
   } else if (level == 1){
     map_data_names <- map_data %>% 
-      mutate(row_nr = row_number()) %>%
       group_by(row_nr) %>% 
       mutate(NAME = stri_trans_general(NAME_1, id = "Latin-ASCII")) %>% 
       ungroup() %>% 
+      select(NAME)
+  } else if (level == 3){
+    map_data_names <- map_data %>% 
+      group_by(row_nr) %>% 
+      mutate(
+        state = stri_trans_general(NAME_1, id = "Latin-ASCII"),
+        county = stri_trans_general(NAME_2, id = "Latin-ASCII"),
+        parish = stri_trans_general(NAME_3, id = "Latin-ASCII"),
+        NAME = paste(parish, county, state, sep = ", ")) %>% 
+      ungroup() %>% 
+      select(NAME)
+  } else {
+    map_data_names <- map_data %>% 
+      rename(NAME = NAME_0) %>% 
       select(NAME)
   }
   map_simple@data <- map_data_names
   return(map_simple)
 }
 
-# australia <- prepare_map(country_code = "AUS",
+# austria <- prepare_map(country_code = "AUT",
 #                          threshold = 0.01,
-#                          level = 2)
+#                          level = 3)
+
