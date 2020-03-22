@@ -1,5 +1,6 @@
 library(rmapshaper)
 library(stringi)
+library(RCurl)
 #FUNCTION to load map from GADM database
 #Input variables
 #*******************
@@ -10,7 +11,12 @@ library(stringi)
 load_map <- function(cntry_code,
                      lvl){
   library(raster)
-  map <- getData('GADM', country = cntry_code, level = lvl)
+  map <- NULL
+  map <- tryCatch({
+    getData('GADM', country = cntry_code, level = lvl)
+  }, error = function(err) {
+    cat("ERROR: ", conditionMessage(err), "\n")
+  })
   detach("package:raster", unload = TRUE)
   return(map)
 }
@@ -39,11 +45,31 @@ simplify_polygons <- function(map,
 prepare_map <- function(country_code,
                         threshold,
                         level){
+  #Validating country code
+  url_temp <- paste("https://biogeo.ucdavis.edu/data/gadm3.6/Rsp/gadm36_",
+                       country_code,
+                       "_0_sp.rds",
+                       sep = "")
+  request <- url.exists(url = url_temp)
+  if(!request){
+    print("No map available. Please check the country code")
+    return(NULL)
+  }
+  #Validating level
+  if (!(level %in% c(0,1,2,3))){
+    print("Level should be integer between 0 and 3")
+    return(NULL)
+  }
   print("loading map")
   print("*************************")
   #load map
   map <- load_map(cntry_code = country_code,
                   lvl = level)
+  if (is.null(map)){
+    print("No map found")
+    print("Check level")
+    return(NULL)
+  }
   library(dplyr)
   library(stringr)
   #Extract data from map object
@@ -65,6 +91,7 @@ prepare_map <- function(country_code,
   if (!identical(polygon_ids, row_names)){
     print("Polygon IDs do not match with dataframe")
     print("Updating polygon IDs")
+    print("*************************")
     #Update polygon ids
     for (i in 1:(map_data %>% dim() %>% first())){
       map@polygons[[i]]@ID <- row_names[i]
@@ -92,11 +119,13 @@ prepare_map <- function(country_code,
     state_abb_na <- map_data$state_abbreviation %>% is.na() %>% sum()
     
     map_data_names <- map_data %>% 
+      group_by(row_nr) %>% 
       mutate(NAME = if_else(
         state_abb_na > nr_polygons/2,
         paste(county, state, sep = ", "),
         paste(county, state_abbreviation, sep = ", ")
       )) %>% 
+      ungroup() %>% 
       select(NAME)
     
   } else if (level == 1){
