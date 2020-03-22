@@ -11,7 +11,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			EXAMPLE_FILE_SELECT(),
 		
 			tipify(fluidRow(
-				column(3, tags$label("Area to use")),
+				# column(3, tags$label("Area to use")),
+				column(3, tags$label("Área a utilizar")),
+				
 				column(9, 
 		    	selectInput("area", label = NULL, 
 		    		choices = c(
@@ -252,61 +254,61 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 # "Zimbabwe" = 'data/ZWE_1.rds'
 
 		    			),
-		    		selected = 'data/World_Countries.rds'))
+		    		selected = 'data/COL_2.rds'))
 			), "Select map to display", placement = "right"),
-			
-			HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"), 
-			bsTooltip(id = "rangeSubmit", "Update heatmap using range of interest", placement = "right"),
-			tags$label("Range of Interest"),
-			tipify(
-				sliderInput("range", 	   			
-					label = NULL, 
-			   	min = 0, 
-			   	max = 100, 
-			 		value = c(0, 100)), 
-			"Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap", 
-			placement = "right"),
 			
 			tipify(
 				selectInput("colSelect", label = "Column to Use", choices = c(" " = 0)), 
 				"Select column from input file", placement = "right"
 				),
-			
-			LAYERS_SELECT(
-				c("Map" = 'showTiles', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap'), 
-				c('showTiles', 'showContours', 'showHeatmap')
-			),
-			
-			FILL_OPACITY_SLIDER(0.8),
-			
-			BIN_SLIDER(2, 12, 8),
-			
-      COLOUR_SCHEME_SELECT_LIMITED(),
-
-      conditionalPanel(condition = "input.colourScheme == 'custom'", 
-        JSCOLOUR_ROW("#FFEDA0", "#800026")
-      ), 
-		#	JSCOLOUR_ROW("#FFEDA0", "#800026"),
-
-    	DOWNLOAD_BUTTONS(),
-		 		
+					 		
 			ADVANCED_OPTIONS_PANEL(
 				list(
+					HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
+					bsTooltip(id = "rangeSubmit", "Update heatmap using range of interest", placement = "right"),
+					tags$label("Range of Interest"),
+					tipify(
+						sliderInput("range",
+							label = NULL,
+							min = 0,
+							max = 100,
+							value = c(0, 100)),
+					"Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
+					placement = "right"),
 					
+					LAYERS_SELECT(
+						c("Map" = 'showTiles', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap'), 
+						c('showTiles', 'showContours', 'showHeatmap')
+					),
+			
+					FILL_OPACITY_SLIDER(0.8),
+			
+					BIN_SLIDER(2, 12, 8),
+			
+					COLOUR_SCHEME_SELECT_LIMITED(),
+
+					conditionalPanel(condition = "input.colourScheme == 'custom'", 
+						JSCOLOUR_ROW("#FFEDA0", "#800026")
+					), 
+
 					checkboxInput('detectRetina', label = "Scale map tiles on retina displays", value = FALSE),
 						# On mixed display setups, user must load the page while the browser window is
 						# positioned on a retina display, in addition to checking this box, in order
 						# for retina-resolution map tiles to display.
 					
 					textInput('legend',
-		    		label = "Custom legend title", 
-		   			value = "Legend"), 
-			
+		    		# label = "Custom legend title", 
+		   			# value = "Legend"),
+		    		label = "Título de leyenda personalizado", 
+		    		value = "Leyenda"),
+					
 					sliderInput("lineSize", 
 						label = "Contour Line Width", 
 						min = 0,
 						max = 5,
-						value = 1)
+						value = 1),
+					
+					DOWNLOAD_BUTTONS()
 				)
 			)
 	),

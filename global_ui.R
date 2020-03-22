@@ -20,13 +20,16 @@ EXAMPLE_FILES <- c(
 					"Example 4" = 'example_input/example4.txt')
 
 # LAYERS_SELECT()
-LAYERS <- "Show/Hide Layers"
+# LAYERS <- "Show/Hide Layers"
+LAYERS <- "Mostrar/Ocultar Capas"
 
 # BIN_SLIDER()
-BIN_NUMBER <- "Number of Shades"
+# BIN_NUMBER <- "Number of Shades"
+BIN_NUMBER <- "Numero de Gradaciones"
 
 # FILL_OPACITY_SLIDER()
-FILL_OPACITY <- "Heatmap Opacity"
+# FILL_OPACITY <- "Heatmap Opacity"
+FILL_OPACITY <- "Opacidad"
 
 # BANDWIDTH_SLIDER()
 BANDWIDTH <- "Gaussian Radius Multiplier"
@@ -35,8 +38,11 @@ BANDWIDTH <- "Gaussian Radius Multiplier"
 GRID_POINTS <- "Contour Smoothness"
 
 # DOWNLOAD_BUTTONS()
-DOWNLOAD_PLOT <- "Download Plot"
-DOWNLOAD_TABLE <- "Download Table"
+# DOWNLOAD_PLOT <- "Download Plot"
+# DOWNLOAD_TABLE <- "Download Table"
+DOWNLOAD_PLOT <- "Descargar Plot"
+DOWNLOAD_TABLE <- "Descargar Tabla"
+
 
 RESOLUTION <- "Downloaded plot resolution (pixels per inch)"
 WIDTH <- "Plot Width (pixels)"
@@ -224,8 +230,9 @@ GRID_POINTS_SLIDER <- function(min, max, value, step){
 DOWNLOAD_BUTTONS <- function(){
 	list(
         tags$style("#tableDownload {float:right;}"),
-		tipify(downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot", placement = "top"),
-		tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download the raw data", placement = "top"),
+		# tipify(downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot", placement = "top"),
+		# tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download data", placement = "top"),
+		tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Descargar datos", placement = "top"),
 		tags$br(), tags$br()
 	)
 }
@@ -284,8 +291,10 @@ JSCOLOUR_3_ROW <- function(low = "#33FF00", mid = "#000000", high = "#FF0000"){
 # advanced options panel
 ADVANCED_OPTIONS_PANEL <- function(options_list){
 	list(
-		tipify(actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"), 
-            "View more options", placement = "right"), 
+# 		tipify(actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"), 
+#             "View more options", placement = "right"), 
+		tipify(actionButton('advancedOptionsButton', label = "Mostrar Opciones Avanzadas", class = "toggleButton fa fa-angle-down"), 
+					 "Ver más opciones", placement = "right"), 
 		conditionalPanel(condition = "input.advancedOptionsButton%2",
 		                 wellPanel(options_list))
 	)

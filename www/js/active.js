@@ -96,18 +96,21 @@ $(document).ready(function() {
     document.getElementById("advancedOptionsButton").addEventListener("click", toggleAdvancedOptionsButton);
     
     function toggleAdvancedOptionsButton(e){
-        generalToggleButtons("advancedOptionsButton", "Advanced Options", advancedOptionsButtonCount);
+//         generalToggleButtons("advancedOptionsButton", "Advanced Options", advancedOptionsButtonCount);
+        generalToggleButtons("advancedOptionsButton", "Opciones Avanzadas", advancedOptionsButtonCount);
         advancedOptionsButtonCount++;
     } 
     
     function generalToggleButtons(messageId, message, count) {
         if(count%2){
             $("#"+messageId).removeClass("fa fa-angle-down").addClass("fa fa-angle-up");
-            document.getElementById(messageId).innerHTML = "Hide " + message;
+//             document.getElementById(messageId).innerHTML = "Hide " + message;
+            document.getElementById(messageId).innerHTML = "Ocultar " + message;
         }
         else{
             $("#"+messageId).removeClass("fa fa-angle-up").addClass("fa fa-angle-down");
-            document.getElementById(messageId).innerHTML = "Show " + message;
+//             document.getElementById(messageId).innerHTML = "Show " + message;
+            document.getElementById(messageId).innerHTML = "Mostrar " + message;
         }
     }
 
