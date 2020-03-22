@@ -14,9 +14,10 @@ FILE_UPLOAD <- "Select Data File"
 # EXAMPLE_FILE_SELECT()
 SELECT_EXAMPLE <- "Select Example File"
 EXAMPLE_FILES <- c(
-					"Example 1" = 'example_input/example1.txt',
-					"Example 2" = 'example_input/example2.txt',
-					"Example 3" = 'example_input/example3.txt')
+					# "Example 1" = 'example_input/example1.txt',
+					# "Example 2" = 'example_input/example2.txt',
+					 "Example 3" = 'example_input/example3.txt',
+					"Example 4" = 'example_input/example4.txt')
 
 # LAYERS_SELECT()
 LAYERS <- "Show/Hide Layers"
@@ -111,9 +112,10 @@ EXAMPLE_FILE_SELECT <- function(){
 	  			wellPanel(id = "exampleInfo",
 	  				tags$label("Example File Information"),
 	  				HTML("<button id='closeExampleButton' class='action-button' style='float:right;'><i class='fa fa-times'></i></button>"),
-						conditionalPanel(condition = "input.exampleFiles == 'example_input/example1.txt'", includeHTML("www/example1info.html")),
-						conditionalPanel(condition = "input.exampleFiles == 'example_input/example2.txt'", includeHTML("www/example2info.html")),
-						conditionalPanel(condition = "input.exampleFiles == 'example_input/example3.txt'", includeHTML("www/example3info.html"))
+						# conditionalPanel(condition = "input.exampleFiles == 'example_input/example1.txt'", includeHTML("www/example1info.html")),
+						# conditionalPanel(condition = "input.exampleFiles == 'example_input/example2.txt'", includeHTML("www/example2info.html")),
+						 conditionalPanel(condition = "input.exampleFiles == 'example_input/example3.txt'", includeHTML("www/example3info.html")),
+						conditionalPanel(condition = "input.exampleFiles == 'example_input/example4.txt'", includeHTML("www/example4info.html"))
 				))
 		)
 	)
