@@ -1,3 +1,17 @@
+if (!requireNamespace(c("dplyr",
+                        "stringr",
+                        "stringi",
+                        "RCurl",
+                        "rmapshaper",
+                        "raster"),
+                      quietly = TRUE)){
+  install.packages(c("dplyr",
+                   "stringr",
+                   "stringi",
+                   "RCurl",
+                   "rmapshaper",
+                   "raster"))
+}
 library(rmapshaper)
 library(stringi)
 library(RCurl)
@@ -153,7 +167,6 @@ prepare_map <- function(country_code,
   return(map_simple)
 }
 
-# austria <- prepare_map(country_code = "AUT",
+# canada <- prepare_map(country_code = "CAN",
 #                          threshold = 0.01,
-#                          level = 3)
-
+#                          level = 2)
