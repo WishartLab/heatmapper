@@ -94,8 +94,8 @@ prepare_map <- function(country_code,
     map_data_names <- map_data %>% 
       mutate(NAME = if_else(
         state_abb_na > nr_polygons/2,
-        NAME = paste(county, state, sep = ", "),
-        NAME = paste(county, state_abbreviation, sep = ", ")
+        paste(county, state, sep = ", "),
+        paste(county, state_abbreviation, sep = ", ")
       )) %>% 
       select(NAME)
     
