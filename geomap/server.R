@@ -144,11 +144,21 @@ shinyServer(function(input, output, session) {
 		#if(input$tabSelections == "Interactive"){
 			if(is.null(values$density)){
 				# remove old shapes when map is changed
-	  		leafletProxy("map") %>% clearShapes() %>% get_tiles() %>% get_view() 
+	  		leafletProxy("map") %>% 
+			    clearShapes() %>% 
+			    get_tiles() %>% 
+			    get_view() 
 			}
 			else{
 				mapData <- get_map_data()
-	  		leafletProxy("map", data =  mapData) %>% clearShapes() %>% get_shapes() %>% get_tiles() %>% get_view() 
+	  		leafletProxy("map", data =  mapData) %>% 
+	  		  clearShapes() %>%
+	  		  #Set centre point to Bogota and increase zoom. Works currently for departmento level
+	  		  setView(lng = -74.040242, lat = 4.612821,  zoom = 5.3) %>% 
+	  		  get_shapes() %>% 
+	  		  get_tiles() %>% 
+	  		  get_view()
+	  		  
 			}
 		}
   })
@@ -340,7 +350,6 @@ shinyServer(function(input, output, session) {
           		 where inputMoqueo  = 'Yes'
           		 group by GeolocDepartamento) r on r.GeolocDepartamento = f.GeolocDepartamento;
 			  "
-				
 				))
 			
 			data_file <- data_file %>% 
