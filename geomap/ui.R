@@ -25,7 +25,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		    			# "South America: By Country" = 'data/South_America.rds', 
 		    			
 # 		    			"Canada: Level 2" = 'data/CAN_2.rds',
- 		    			"Colombia: Municipalities" = 'data/COL_2.rds',
+ 		    			"Colombia: Municipios" = 'data/COL_2.rds',
 # 		    			"USA: Level 2" = 'data/USA_2.rds',
 # 		    			"United Kingdom: Level 2" = 'data/GBR_2.rds',
 # 		    			"Australia: Level 2" = 'data/AUS_2.rds',
@@ -73,7 +73,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 # "Chad" = 'data/TCD_1.rds',
 # "Chile" = 'data/CHL_1.rds',
 # "China" = 'data/CHN_1.rds',
-"Colombia: Departments" = 'data/COL_1.rds'
+"Colombia: Departamentos" = 'data/COL_1.rds'
 # "Comoros" = 'data/COM_1.rds',
 # "Costa Rica" = 'data/CRI_1.rds',
 # "Côte d'Ivoire" = 'data/CIV_1.rds',
