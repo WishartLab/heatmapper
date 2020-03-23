@@ -293,11 +293,11 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			
 					#BIN_SLIDER(2, 12, 8),
 			
-					COLOUR_SCHEME_SELECT_LIMITED(),
+					#COLOUR_SCHEME_SELECT_LIMITED(),
 
-					conditionalPanel(condition = "input.colourScheme == 'custom'", 
-						JSCOLOUR_ROW("#FFEDA0", "#800026")
-					), 
+					# conditionalPanel(condition = "input.colourScheme == 'custom'", 
+					# 	JSCOLOUR_ROW("#FFEDA0", "#800026")
+					# ), 
 
 					#checkboxInput('detectRetina', label = "Scale map tiles on retina displays", value = FALSE),
 					#checkboxInput('detectRetina', label = "Escala de mosaicos de mapas en pantallas de retina", value = FALSE),

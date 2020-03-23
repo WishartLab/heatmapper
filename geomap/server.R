@@ -400,21 +400,24 @@ shinyServer(function(input, output, session) {
 		values$to <- tail(densityBreaks, length(densityBreaks)-1)
 
 		# Eight colors for eight buckets
-		if(input$colourScheme == 'red/green'){
-		  values$palette <- colorRampPalette(c("#FF0000", "#000000", "#33FF00"))(8)#input$binNumber
-		}else if(input$colourScheme == 'blue/yellow'){
-		  values$palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(8)#input$binNumber
-		}else if(input$colourScheme == 'grayscale'){
-		  values$palette <- colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(8)#input$binNumber
-		}else if(input$colourScheme == 'piyg'){
-		  values$palette <- colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(8)#input$binNumber
-		}else if(input$colourScheme == 'rainbow'){
-		  values$palette <- rainbow(8)#input$binNumber
-		}else if(input$colourScheme == 'topo'){
-		    values$palette <- topo.colors(8)#input$binNumber
-		}else if(input$colourScheme == 'custom'){
-		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)#input$binNumber
-		}
+		# if(input$colourScheme == 'red/green'){
+		#   values$palette <- colorRampPalette(c("#FF0000", "#000000", "#33FF00"))(8)#input$binNumber
+		# }else if(input$colourScheme == 'blue/yellow'){
+		#   values$palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(8)#input$binNumber
+		# }else if(input$colourScheme == 'grayscale'){
+		#   values$palette <- colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(8)#input$binNumber
+		# }else if(input$colourScheme == 'piyg'){
+		#   values$palette <- colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(8)#input$binNumber
+		# }else if(input$colourScheme == 'rainbow'){
+		#   values$palette <- rainbow(8)#input$binNumber
+		# }else if(input$colourScheme == 'topo'){
+		#     values$palette <- topo.colors(8)#input$binNumber
+		# }else if(input$colourScheme == 'custom'){
+		# values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)#input$binNumber
+		# }
+		#https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=8
+		#Colorblind friendly 8 bins
+		values$palette <- c("#ffffcc","#ffeda0","#fed976","#feb24c","#fd8d3c","#fc4e2a","#e31a1c","#b10026")
 
 		# Assign colors to states
 		values$colours <- structure(
