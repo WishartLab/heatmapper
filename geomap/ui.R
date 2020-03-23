@@ -294,7 +294,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 					), 
 
 					#checkboxInput('detectRetina', label = "Scale map tiles on retina displays", value = FALSE),
-					checkboxInput('detectRetina', label = "Escala de mosaicos de mapas en pantallas de retina", value = FALSE),
+					#checkboxInput('detectRetina', label = "Escala de mosaicos de mapas en pantallas de retina", value = FALSE),
 						# On mixed display setups, user must load the page while the browser window is
 						# positioned on a retina display, in addition to checking this box, in order
 						# for retina-resolution map tiles to display.

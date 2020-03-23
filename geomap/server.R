@@ -512,12 +512,13 @@ shinyServer(function(input, output, session) {
 	}
 	
 	get_tiles <- function(m){
-		if(layer_selected("showTiles")){
-			addTiles(m, options=tileOptions(detectRetina = input$detectRetina))
-		}
-		else{
-			clearTiles(m)
-		}
+		# if(layer_selected("showTiles")){
+		# 	addTiles(m, options=tileOptions(detectRetina = input$detectRetina))
+		# }
+		# else{
+		# 	clearTiles(m)
+		# }
+	  clearTiles(m)
 	}  
 
 	################# OUTPUT FUNCTIONS ################# 
