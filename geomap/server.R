@@ -65,7 +65,7 @@ shinyServer(function(input, output, session) {
 			
 			updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
 			isolate({
-				update_colours(round(seq(min, max, length.out = input$binNumber+1), num_digits))
+				update_colours(round(seq(min, max, length.out = 8+1), num_digits))#input$binNumber
 			})
 			
 			# When user chooses an example file, automatically set the
@@ -91,7 +91,7 @@ shinyServer(function(input, output, session) {
 	# update colours when range of interest is changed or new file is selected
 	observe({
 		input$rangeSubmit
-		input$binNumber
+		#input$binNumber
 		input$lowColour
 		input$highColour
 		input$colourScheme
@@ -104,7 +104,7 @@ shinyServer(function(input, output, session) {
 				min <- floor(min(values$density, na.rm = TRUE))
 				max <- ceiling(max(values$density, na.rm = TRUE))
 				
-				bins <- input$binNumber + 1
+				bins <- 8 + 1 #input$binNumber
 				
 				# adjust selected range if difference between max and min is < # of bins
 				if(rangeMax - rangeMin < bins){
@@ -297,8 +297,8 @@ shinyServer(function(input, output, session) {
 				dbname = "cov19col",
 				host = "127.0.0.1",
 				username = "root",
-				#password = "parool" #Jaanus for local testing
-				password = ""
+				password = "parool" #Jaanus for local testing
+				#password = ""
 				)
 			on.exit(dbDisconnect(conn), add = TRUE)
 			data_file <- dbGetQuery(conn, paste0(
@@ -401,19 +401,19 @@ shinyServer(function(input, output, session) {
 
 		# Eight colors for eight buckets
 		if(input$colourScheme == 'red/green'){
-		  values$palette <- colorRampPalette(c("#FF0000", "#000000", "#33FF00"))(input$binNumber)
+		  values$palette <- colorRampPalette(c("#FF0000", "#000000", "#33FF00"))(8)#input$binNumber
 		}else if(input$colourScheme == 'blue/yellow'){
-		  values$palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(input$binNumber)
+		  values$palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(8)#input$binNumber
 		}else if(input$colourScheme == 'grayscale'){
-		  values$palette <- colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(input$binNumber)
+		  values$palette <- colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(8)#input$binNumber
 		}else if(input$colourScheme == 'piyg'){
-		  values$palette <- colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(input$binNumber)
+		  values$palette <- colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(8)#input$binNumber
 		}else if(input$colourScheme == 'rainbow'){
-		  values$palette <- rainbow(input$binNumber)
+		  values$palette <- rainbow(8)#input$binNumber
 		}else if(input$colourScheme == 'topo'){
-		    values$palette <- topo.colors(input$binNumber)
+		    values$palette <- topo.colors(8)#input$binNumber
 		}else if(input$colourScheme == 'custom'){
-		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(input$binNumber)
+		values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)#input$binNumber
 		}
 
 		# Assign colors to states

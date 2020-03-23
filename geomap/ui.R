@@ -285,7 +285,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			
 					FILL_OPACITY_SLIDER(0.8),
 			
-					BIN_SLIDER(2, 12, 8),
+					#BIN_SLIDER(2, 12, 8),
 			
 					COLOUR_SCHEME_SELECT_LIMITED(),
 
