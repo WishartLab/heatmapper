@@ -257,7 +257,12 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 
 		    			),
 		    		selected = 'data/COL_2.rds'))
-			), "Select map to display", placement = "right"),
+			), 
+			#"Select map to display",
+			"Seleccione el mapa para mostrar",
+			placement = "right"),
+			
+			
 			
 			tipify(
 				selectInput("colSelect", 
@@ -265,11 +270,16 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				            choices = c("Febre" = 'fever_count',
 				                        "Tos" = 'cough_count',
 				                        "Moqueo" = 'runny_nose_count')), 
-				"Select column from input file", placement = "right"
+				#"Select column from input file",
+				"Seleccionar sintoma",
+				placement = "right"
 				),
 			HTML("<button id='rangeSubmit' class='action-button clearButton'>Enviar rango</button>"),
 			#HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
-			bsTooltip(id = "rangeSubmit", "Update heatmap using range of interest", placement = "right"),
+			bsTooltip(id = "rangeSubmit", 
+			          #"Update heatmap using range of interest",
+			          "Actualice el mapa de calor usando el rango de interes",
+			          placement = "right"),
 			tags$label("Rango de Interes"),#ĆØ
 			#tags$label("Range of Interest"),
 			tipify(
@@ -278,7 +288,8 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			              min = 0,
 			              max = 100,
 			              value = c(0, 100)),
-			  "Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
+			  #"Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
+			  "Ajuste los valores de corte de asignacion de color, luego haga clic en el boton Enviar rango para actualizar el mapa de calor",
 			  placement = "right"),
 			
 			FILL_OPACITY_SLIDER(0.8),

@@ -205,7 +205,9 @@ FILL_OPACITY_SLIDER <- function(value = 0.5){
 	  	    column(3, tags$label(FILL_OPACITY)), 
 	  	    column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = value, step = 0.05))
         ),
-    "Adjust the heatmap colour opacity", placement = "right")
+    #"Adjust the heatmap colour opacity",
+    "Ajuste la opacidad del color del mapa de calor",
+    placement = "right")
 }
 
 # gaussian radius multiplier slider
