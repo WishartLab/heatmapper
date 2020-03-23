@@ -171,7 +171,7 @@ shinyServer(function(input, output, session) {
 			leafletProxy("map", data = isolate({get_map_data()})) %>% 	
 				addLegend(layerId = "legendLayer", position = "bottomright", 
 						opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
-						title = input$legend)
+						title = 'Leyenda')#input$legend
 		}
 	})
 	
@@ -297,8 +297,8 @@ shinyServer(function(input, output, session) {
 				dbname = "cov19col",
 				host = "127.0.0.1",
 				username = "root",
-				#password = "parool" #Jaanus for local testing
-				password = ""
+				password = "parool" #Jaanus for local testing
+				#password = ""
 				)
 			on.exit(dbDisconnect(conn), add = TRUE)
 			data_file <- dbGetQuery(conn, paste0(

@@ -301,11 +301,11 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 						# positioned on a retina display, in addition to checking this box, in order
 						# for retina-resolution map tiles to display.
 					
-					textInput('legend',
-		    		# label = "Custom legend title", 
-		   			# value = "Legend"),
-		    		label = "Titulo de leyenda personalizado", #Ä†­
-		    		value = "Leyenda"),
+		# 			textInput('legend',
+		#     		# label = "Custom legend title", 
+		#    			# value = "Legend"),
+		#     		label = "Titulo de leyenda personalizado", #Ä†­
+		#     		value = "Leyenda"),
 					
 					# sliderInput("lineSize",
 					#   #label = "Contour Line Width",
