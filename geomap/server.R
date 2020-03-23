@@ -484,21 +484,23 @@ shinyServer(function(input, output, session) {
 	}
 	
 	get_lines <- reactive({
-		if(layer_selected("showContours")){
-			#input$lineSize
-		  1
-		}
-		else{
-			0
-		}
+		# if(layer_selected("showContours")){
+		# 	#input$lineSize
+		#   1
+		# }
+		# else{
+		# 	0
+		# }
+	  1
 	})
 	get_opacity <- reactive({
-		if(layer_selected("showHeatmap")){
-			input$fillOpacity
-		}
-		else{
-			0
-		}
+		# if(layer_selected("showHeatmap")){
+		# 	input$fillOpacity
+		# }
+		# else{
+		# 	0
+		# }
+	  input$fillOpacity
 	})
 	
 	# see if a given layer name is shown or hidden by user
@@ -518,7 +520,7 @@ shinyServer(function(input, output, session) {
 		# else{
 		# 	clearTiles(m)
 		# }
-	  clearTiles(m)
+	  addTiles(m)
 	}  
 
 	################# OUTPUT FUNCTIONS ################# 
