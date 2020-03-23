@@ -303,31 +303,48 @@ shinyServer(function(input, output, session) {
 			on.exit(dbDisconnect(conn), add = TRUE)
 			data_file <- dbGetQuery(conn, paste0(
 			  "select 
-			   f.GeolocCiudad as region,
+			   i.GeolocCiudad as region,
+			   i.GeolocDepartamento as department,
 			   fever_count,
 			   cough_count,
 			   difficult_breath_count
+			   -- Distinct of all the regions available in DB
 			   from (select
-			         GeolocCiudad,
+			         distinct(k.key_region),
+			         k.GeolocCiudad,
+			         k.GeolocDepartamento
+			         from (select
+			               GeolocCiudad,
+			               GeolocDepartamento,
+			               CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region
+			               from responses) as k
+			         ) as i
+			   -- Add fever cases
+			   left join (select
+			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
 			         count(inputFebre) as fever_count
 			         from responses
 			         where inputFebre  = 'febre'
-			         group by GeolocCiudad) f
+			         group by key_region) f on f.key_region = i.key_region
+			   -- Add Cough cases
 			   left join (select
-			         GeolocCiudad,
+			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
 			         count(inputTos) as cough_count
 			         from responses
           		 where inputTos  = 'tos'
-          		 group by GeolocCiudad) as c on c.GeolocCiudad = f.GeolocCiudad
+          		 group by key_region) as c on c.key_region = i.key_region
+         -- Add Breathing difficulties cases
 			   left join (select
-			         GeolocCiudad,
+			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
 			         count(inputRespirar) as difficult_breath_count
 			         from responses
           		 where inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocCiudad) r on r.GeolocCiudad = f.GeolocCiudad
+          		 group by key_region) r on r.key_region = i.key_region
+        -- Add everything on department level
 			  union
 			  select 
 			   f.GeolocDepartamento as region,
+			   f.GeolocDepartamento as department,
 			   fever_count,
 			   cough_count,
 			   difficult_breath_count
