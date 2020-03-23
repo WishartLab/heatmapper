@@ -269,7 +269,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				            label = "El Sintoma", 
 				            choices = c("Febre" = 'fever_count',
 				                        "Tos" = 'cough_count',
-				                        "Moqueo" = 'runny_nose_count')), 
+				                        "Dificultad a respirar" = 'difficult_breath_count')), 
 				#"Select column from input file",
 				"Seleccionar sintoma",
 				placement = "right"

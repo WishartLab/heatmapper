@@ -306,48 +306,48 @@ shinyServer(function(input, output, session) {
 			   f.GeolocCiudad as region,
 			   fever_count,
 			   cough_count,
-			   runny_nose_count
+			   difficult_breath_count
 			   from (select
 			         GeolocCiudad,
 			         count(inputFebre) as fever_count
-			         from myTable
-			         where inputFebre  = 'True'
+			         from responses
+			         where inputFebre  = 'febre'
 			         group by GeolocCiudad) f
 			   left join (select
 			         GeolocCiudad,
 			         count(inputTos) as cough_count
-			         from myTable
-          		 where inputTos  = 'Yes'
+			         from responses
+          		 where inputTos  = 'tos'
           		 group by GeolocCiudad) as c on c.GeolocCiudad = f.GeolocCiudad
 			   left join (select
 			         GeolocCiudad,
-			         count(inputMoqueo) as runny_nose_count
-			         from myTable
-          		 where inputMoqueo  = 'Yes'
+			         count(inputRespirar) as difficult_breath_count
+			         from responses
+          		 where inputRespirar  = 'dificultad a respirar'
           		 group by GeolocCiudad) r on r.GeolocCiudad = f.GeolocCiudad
 			  union
 			  select 
 			   f.GeolocDepartamento as region,
 			   fever_count,
 			   cough_count,
-			   runny_nose_count
+			   difficult_breath_count
 			   from (select
 			         GeolocDepartamento,
 			         count(inputFebre) as fever_count
-			         from myTable
-			         where inputFebre  = 'True'
+			         from responses
+			         where inputFebre  = 'febre'
 			         group by GeolocDepartamento) f
 			   left join (select
 			         GeolocDepartamento,
 			         count(inputTos) as cough_count
-			         from myTable
-          		 where inputTos  = 'Yes'
+			         from responses
+          		 where inputTos  = 'tos'
           		 group by GeolocDepartamento) as c on c.GeolocDepartamento = f.GeolocDepartamento
 			   left join (select
 			         GeolocDepartamento,
-			         count(inputMoqueo) as runny_nose_count
-			         from myTable
-          		 where inputMoqueo  = 'Yes'
+			         count(inputRespirar) as difficult_breath_count
+			         from responses
+          		 where inputRespirar  = 'dificultad a respirar'
           		 group by GeolocDepartamento) r on r.GeolocDepartamento = f.GeolocDepartamento;
 			  "
 				))
