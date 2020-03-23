@@ -15,6 +15,7 @@ library(dbConnect)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
+source("config.R") # load DB connection details
 
 # Constants
 dimensions_msg <- "Input data can have up to 50 data columns."
@@ -294,11 +295,10 @@ shinyServer(function(input, output, session) {
 
 			conn <- dbConnect(
 				drv = RMySQL::MySQL(),
-				dbname = "cov19col",
-				host = "127.0.0.1",
-				username = "root",
-				password = "parool" #Jaanus for local testing
-				#password = ""
+				dbname = dbName,
+				host = hostName,
+				username = userName,
+				password = password
 				)
 			on.exit(dbDisconnect(conn), add = TRUE)
 			data_file <- dbGetQuery(conn, paste0(
