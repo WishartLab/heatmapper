@@ -267,60 +267,76 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				                        "Moqueo" = 'runny_nose_count')), 
 				"Select column from input file", placement = "right"
 				),
-					 		
-			ADVANCED_OPTIONS_PANEL(
-				list(
-					HTML("<button id='rangeSubmit' class='action-button clearButton'>Enviar rango</button>"),
-					#HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
-					bsTooltip(id = "rangeSubmit", "Update heatmap using range of interest", placement = "right"),
-					tags$label("Rango de Interes"),#ĆØ
-					#tags$label("Range of Interest"),
-					tipify(
-						sliderInput("range",
-							label = NULL,
-							min = 0,
-							max = 100,
-							value = c(0, 100)),
-					"Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
-					placement = "right"),
-					
-					# LAYERS_SELECT(
-					# 	c("Map" = 'showTiles', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap'), 
-					# 	c('showTiles', 'showContours', 'showHeatmap')
-					# ),
+			HTML("<button id='rangeSubmit' class='action-button clearButton'>Enviar rango</button>"),
+			#HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
+			bsTooltip(id = "rangeSubmit", "Update heatmap using range of interest", placement = "right"),
+			tags$label("Rango de Interes"),#ĆØ
+			#tags$label("Range of Interest"),
+			tipify(
+			  sliderInput("range",
+			              label = NULL,
+			              min = 0,
+			              max = 100,
+			              value = c(0, 100)),
+			  "Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
+			  placement = "right"),
 			
-					FILL_OPACITY_SLIDER(0.8),
+			FILL_OPACITY_SLIDER(0.8),
 			
-					#BIN_SLIDER(2, 12, 8),
-			
-					#COLOUR_SCHEME_SELECT_LIMITED(),
-
-					# conditionalPanel(condition = "input.colourScheme == 'custom'", 
-					# 	JSCOLOUR_ROW("#FFEDA0", "#800026")
-					# ), 
-
-					#checkboxInput('detectRetina', label = "Scale map tiles on retina displays", value = FALSE),
-					#checkboxInput('detectRetina', label = "Escala de mosaicos de mapas en pantallas de retina", value = FALSE),
-						# On mixed display setups, user must load the page while the browser window is
-						# positioned on a retina display, in addition to checking this box, in order
-						# for retina-resolution map tiles to display.
-					
-		# 			textInput('legend',
-		#     		# label = "Custom legend title", 
-		#    			# value = "Legend"),
-		#     		label = "Titulo de leyenda personalizado", #Ć�
-		#     		value = "Leyenda"),
-					
-					# sliderInput("lineSize",
-					#   #label = "Contour Line Width",
-					# 	label = "Ancho de linea de contorno", #Ć�
-					# 	min = 0,
-					# 	max = 5,
-					# 	value = 1),
-					
-					DOWNLOAD_BUTTONS()
-				)
-			)
+			DOWNLOAD_BUTTONS()		 		
+		# 	ADVANCED_OPTIONS_PANEL(
+		# 		list(
+		# 			HTML("<button id='rangeSubmit' class='action-button clearButton'>Enviar rango</button>"),
+		# 			#HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
+		# 			bsTooltip(id = "rangeSubmit", "Update heatmap using range of interest", placement = "right"),
+		# 			tags$label("Rango de Interes"),#ĆØ
+		# 			#tags$label("Range of Interest"),
+		# 			tipify(
+		# 				sliderInput("range",
+		# 					label = NULL,
+		# 					min = 0,
+		# 					max = 100,
+		# 					value = c(0, 100)),
+		# 			"Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
+		# 			placement = "right"),
+		# 			
+		# 			# LAYERS_SELECT(
+		# 			# 	c("Map" = 'showTiles', "Contour Lines" = 'showContours', "Heatmap" = 'showHeatmap'), 
+		# 			# 	c('showTiles', 'showContours', 'showHeatmap')
+		# 			# ),
+		# 	
+		# 			FILL_OPACITY_SLIDER(0.8),
+		# 	
+		# 			#BIN_SLIDER(2, 12, 8),
+		# 	
+		# 			#COLOUR_SCHEME_SELECT_LIMITED(),
+		# 
+		# 			# conditionalPanel(condition = "input.colourScheme == 'custom'", 
+		# 			# 	JSCOLOUR_ROW("#FFEDA0", "#800026")
+		# 			# ), 
+		# 
+		# 			#checkboxInput('detectRetina', label = "Scale map tiles on retina displays", value = FALSE),
+		# 			#checkboxInput('detectRetina', label = "Escala de mosaicos de mapas en pantallas de retina", value = FALSE),
+		# 				# On mixed display setups, user must load the page while the browser window is
+		# 				# positioned on a retina display, in addition to checking this box, in order
+		# 				# for retina-resolution map tiles to display.
+		# 			
+		# # 			textInput('legend',
+		# #     		# label = "Custom legend title", 
+		# #    			# value = "Legend"),
+		# #     		label = "Titulo de leyenda personalizado", #Ć�
+		# #     		value = "Leyenda"),
+		# 			
+		# 			# sliderInput("lineSize",
+		# 			#   #label = "Contour Line Width",
+		# 			# 	label = "Ancho de linea de contorno", #Ć�
+		# 			# 	min = 0,
+		# 			# 	max = 5,
+		# 			# 	value = 1),
+		# 			
+		# 			DOWNLOAD_BUTTONS()
+		# 		)
+		# 	)
 	),
 	mainPanel(id = "mainPanel",
 		tabsetPanel(id = "tabSelections", type = "tabs",
