@@ -12,11 +12,16 @@ library(d3heatmap)
 library(gplots)
 library(ggdendro)
 library(dbConnect)
+library(dplyr)
+library(stringi)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
 source("../config.R") # load DB connection details
-
+# Data for region mapping
+region_names <- read.csv("../department_municipality_name.csv",
+                         header = T,
+                         sep = ",")
 # Constants
 dimensions_msg <- "Input data can have up to 50 data columns."
 
@@ -307,7 +312,10 @@ shinyServer(function(input, output, session) {
 			   i.GeolocDepartamento as department,
 			   fever_count,
 			   cough_count,
-			   difficult_breath_count
+			   difficult_breath_count,
+			   fever_cough_count,
+			   fever_breath_count,
+			   cough_breath_count
 			   -- Distinct of all the regions available in DB
 			   from (select
 			         distinct(k.key_region),
@@ -340,6 +348,30 @@ shinyServer(function(input, output, session) {
 			         from responses
           		 where inputRespirar  = 'dificultad a respirar'
           		 group by key_region) r on r.key_region = i.key_region
+         -- Add Fever and Cough combination cases
+			   left join (select
+			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
+			         count(*) as fever_cough_count
+			         from responses
+          		 where inputFebre  = 'febre'
+          		 and inputTos  = 'tos'
+          		 group by key_region) fc on fc.key_region = i.key_region
+         -- Add Fever and Breath difficulties combination cases
+			   left join (select
+			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
+			         count(*) as fever_breath_count
+			         from responses
+          		 where inputFebre  = 'febre'
+          		 and inputRespirar  = 'dificultad a respirar'
+          		 group by key_region) fb on fb.key_region = i.key_region
+         -- Add Cough and Breath difficulties combination cases
+			   left join (select
+			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
+			         count(*) as cough_breath_count
+			         from responses
+          		 where inputTos  = 'tos'
+          		 and inputRespirar  = 'dificultad a respirar'
+          		 group by key_region) cb on cb.key_region = i.key_region
         -- Add everything on department level
 			  union
 			  select 
@@ -347,7 +379,10 @@ shinyServer(function(input, output, session) {
 			   f.GeolocDepartamento as department,
 			   fever_count,
 			   cough_count,
-			   difficult_breath_count
+			   difficult_breath_count,
+			   fever_cough_count,
+			   fever_breath_count,
+			   cough_breath_count
 			   from (select
 			         GeolocDepartamento,
 			         count(inputFebre) as fever_count
@@ -365,12 +400,75 @@ shinyServer(function(input, output, session) {
 			         count(inputRespirar) as difficult_breath_count
 			         from responses
           		 where inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) r on r.GeolocDepartamento = f.GeolocDepartamento;
+          		 group by GeolocDepartamento) r on r.GeolocDepartamento = f.GeolocDepartamento
+         left join (select
+			         GeolocDepartamento,
+			         count(*) as fever_cough_count
+			         from responses
+          		 where inputFebre  = 'febre'
+          		 and inputTos  = 'tos'
+          		 group by GeolocDepartamento) fc on fc.GeolocDepartamento = f.GeolocDepartamento
+         left join (select
+			         GeolocDepartamento,
+			         count(*) as fever_breath_count
+			         from responses
+          		 where inputFebre  = 'febre'
+          		 and inputRespirar  = 'dificultad a respirar'
+          		 group by GeolocDepartamento) fb on fb.GeolocDepartamento = f.GeolocDepartamento
+         left join (select
+			         GeolocDepartamento,
+			         count(*) as cough_breath_count
+			         from responses
+          		 where inputTos  = 'tos'
+          		 and inputRespirar  = 'dificultad a respirar'
+          		 group by GeolocDepartamento) cb on cb.GeolocDepartamento = f.GeolocDepartamento;
 			  "
 				))
+			#Ouput is "region", "department", "fever_count", "cough_count", "difficult_breath_count", "fever_cough_count", "fever_breath_count", "cough_breath_count"
+		
+			data_file <- data_file %>% 
+			  dplyr::left_join(region_names %>% 
+			              dplyr::select(department, department_abbreviation),
+			            by = "department") %>% 
+			  mutate(row_nr = row_number()) %>% 
+			  group_by(row_nr) %>% 
+			  mutate(region = stringi::stri_trans_general(region, id = "Latin-ASCII"),
+			         region = dplyr::case_when(
+			           #the departments in the end of table Assumption no municipality has same name as department
+			           region == department ~ region,
+			           is.na(department_abbreviation) ~ paste0(region),
+			           TRUE ~ paste(region, department_abbreviation, sep = ", ")),
+			         region = tolower(region),
+			         fever_count = dplyr::if_else(is.na(fever_count),
+			                                      0,
+			                                      fever_count),
+			         cough_count = dplyr::if_else(is.na(cough_count),
+			                                      0,
+			                                      cough_count),
+			         difficult_breath_count = dplyr::if_else(is.na(difficult_breath_count),
+          			                                       0,
+          			                                       difficult_breath_count),
+			         fever_cough_count = dplyr::if_else(is.na(fever_cough_count),
+      			                                      0,
+      			                                      fever_cough_count),
+			         fever_breath_count = dplyr::if_else(is.na(fever_breath_count),
+      			                                       0,
+      			                                       fever_breath_count),
+			         cough_breath_count = dplyr::if_else(is.na(cough_breath_count),
+      			                                       0,
+      			                                       cough_breath_count)) %>% 
+			  ungroup() %>% 
+			  dplyr::select(region,
+			                fever_count,
+			                cough_count,
+			                difficult_breath_count,
+			                fever_cough_count,
+			                fever_breath_count,
+			                cough_breath_count)
+			
 			
 			# region names should be in lower case
-			data_file[[1]] <- tolower(data_file[[1]])
+			#data_file[[1]] <- tolower(data_file[[1]])
 			
 			# # update the column selection options when new DB data is loaded
 			# updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
