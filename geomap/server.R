@@ -485,7 +485,8 @@ shinyServer(function(input, output, session) {
 	
 	get_lines <- reactive({
 		if(layer_selected("showContours")){
-			input$lineSize
+			#input$lineSize
+		  1
 		}
 		else{
 			0

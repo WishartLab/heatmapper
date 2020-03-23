@@ -305,12 +305,12 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		    		label = "Titulo de leyenda personalizado", #Ä†­
 		    		value = "Leyenda"),
 					
-					sliderInput("lineSize",
-					  #label = "Contour Line Width",
-						label = "Ancho de linea de contorno", #Ä†­
-						min = 0,
-						max = 5,
-						value = 1),
+					# sliderInput("lineSize",
+					#   #label = "Contour Line Width",
+					# 	label = "Ancho de linea de contorno", #Ä†­
+					# 	min = 0,
+					# 	max = 5,
+					# 	value = 1),
 					
 					DOWNLOAD_BUTTONS()
 				)
