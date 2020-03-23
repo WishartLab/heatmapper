@@ -15,7 +15,7 @@ library(dbConnect)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
-source("config.R") # load DB connection details
+source("../config.R") # load DB connection details
 
 # Constants
 dimensions_msg <- "Input data can have up to 50 data columns."
