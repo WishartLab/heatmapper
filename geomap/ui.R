@@ -7,8 +7,8 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel", width = 1,
 			
-			FILE_UPLOAD_PANEL(),
-			EXAMPLE_FILE_SELECT(),
+			#FILE_UPLOAD_PANEL(),
+			#EXAMPLE_FILE_SELECT(),
 		
 			tipify(fluidRow(
 				# column(3, tags$label("Area to use")),

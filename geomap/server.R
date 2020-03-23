@@ -71,15 +71,15 @@ shinyServer(function(input, output, session) {
 			# When user chooses an example file, automatically set the
 			# appropriate map.
 			map_to_select = ''
-			if (input$exampleFiles == EXAMPLE_FILES[1]) {
-				map_to_select = 'data/CAN_1.rds'
-			} else if (input$exampleFiles == EXAMPLE_FILES[2]) {
-				map_to_select = 'data/CAN_1.rds'
-			} else if (input$exampleFiles == EXAMPLE_FILES[3]) {
-				map_to_select = 'data/USA_1.rds'
-			} else if (input$exampleFiles == EXAMPLE_FILES[4]) {
-			    map_to_select = 'data/COL_2.rds'
-			}
+			# if (input$exampleFiles == EXAMPLE_FILES[1]) {
+			# 	map_to_select = 'data/CAN_1.rds'
+			# } else if (input$exampleFiles == EXAMPLE_FILES[2]) {
+			# 	map_to_select = 'data/CAN_1.rds'
+			# } else if (input$exampleFiles == EXAMPLE_FILES[3]) {
+			# 	map_to_select = 'data/USA_1.rds'
+			# } else if (input$exampleFiles == EXAMPLE_FILES[4]) {
+			#     map_to_select = 'data/COL_2.rds'
+			# }
 			if (map_to_select != '') {
 				updateSelectInput(session, inputId = "area", label = NULL, 
 													choices = NULL, 
