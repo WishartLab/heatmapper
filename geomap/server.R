@@ -297,8 +297,8 @@ shinyServer(function(input, output, session) {
 				dbname = "cov19col",
 				host = "127.0.0.1",
 				username = "root",
-				password = "parool" #Jaanus for local testing
-				#password = ""
+				#password = "parool" #Jaanus for local testing
+				password = ""
 				)
 			on.exit(dbDisconnect(conn), add = TRUE)
 			data_file <- dbGetQuery(conn, paste0(
@@ -356,8 +356,8 @@ shinyServer(function(input, output, session) {
 			  # region names should be in lower case
 			  mutate(region = tolower(region))
 			
-			# update the column selection options when new DB data is loaded
-			updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
+			# # update the column selection options when new DB data is loaded
+			# updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
 
 			return(data_file)
 		},

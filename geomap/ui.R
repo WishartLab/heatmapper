@@ -260,7 +260,11 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			), "Select map to display", placement = "right"),
 			
 			tipify(
-				selectInput("colSelect", label = "Column to Use", choices = c(" " = 0)), 
+				selectInput("colSelect", 
+				            label = "El Sintoma", 
+				            choices = c("Febre" = 'fever_count',
+				                        "Tos" = 'cough_count',
+				                        "Moqueo" = 'runny_nose_count')), 
 				"Select column from input file", placement = "right"
 				),
 					 		
