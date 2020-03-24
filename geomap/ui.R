@@ -367,11 +367,11 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			),
 			tabPanel(title = "Table", 
 				tags$br(),
-				wellPanel(
-					tags$label("Update Region Name"), 
-					HTML("<button id='submitName' class='action-button clearButton'>Submit Name</button>"), 
-					selectInput('tableNames', label = NULL, choices = c(" " = 0))		
-				),
+				# wellPanel(
+				# 	tags$label("Update Region Name"), 
+				# 	HTML("<button id='submitName' class='action-button clearButton'>Submit Name</button>"), 
+				# 	selectInput('tableNames', label = NULL, choices = c(" " = 0))		
+				# ),
 				DT::dataTableOutput("table")), 
 			tabPanel(title = "Region Names", 
 				tags$br(),
