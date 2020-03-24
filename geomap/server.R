@@ -443,7 +443,8 @@ shinyServer(function(input, output, session) {
           		 group by GeolocDepartamento) fcb on fcb.GeolocDepartamento = f.GeolocDepartamento;
 			  "
 				))
-			#Ouput is "region", "department", "fever_count", "cough_count", "difficult_breath_count", "fever_cough_count", "fever_breath_count", "cough_breath_count"
+			#Ouput is "region", "department", "fever_count", "cough_count", "difficult_breath_count", "fever_cough_count",
+			#"fever_breath_count", "cough_breath_count", fever_cough_breath_count
 		
 			data_file <- data_file %>% 
 			  mutate(row_nr = row_number()) %>% 
@@ -578,7 +579,7 @@ shinyServer(function(input, output, session) {
 		mapData <- values$map
 		
 		i <- 1
-  	fillArray <- rep("#000000", length(mapData$NAME))
+  	fillArray <- rep("#d3d3d3", length(mapData$NAME))
 		
   	for(region in mapData$NAME){
   		region <- tolower(parseRegionName(region))
@@ -706,9 +707,9 @@ shinyServer(function(input, output, session) {
     }
   })
 
-	output$regionNames <- renderDataTable({
-		data.frame("Regions" = levels(values$map$NAME))
-	}, options = list(pageLength = 10))
+	# output$regionNames <- renderDataTable({
+	# 	data.frame("Regions" = levels(values$map$NAME))
+	# }, options = list(pageLength = 10))
 	
 	# save example file
 	output$tableDownload <- downloadHandler(
