@@ -446,10 +446,13 @@ shinyServer(function(input, output, session) {
 			#Ouput is "region", "department", "fever_count", "cough_count", "difficult_breath_count", "fever_cough_count", "fever_breath_count", "cough_breath_count"
 		
 			data_file <- data_file %>% 
-			  dplyr::left_join(region_names %>% 
-			              dplyr::select(department, department_abbreviation),
-			            by = "department") %>% 
 			  mutate(row_nr = row_number()) %>% 
+			  group_by(row_nr) %>% 
+			  mutate(department = stringi::stri_trans_general(department, id = "Latin-ASCII")) %>% 
+			  ungroup() %>% 
+			  dplyr::left_join(region_names %>% 
+			              dplyr::distinct(department, department_abbreviation),
+			            by = "department") %>% 
 			  group_by(row_nr) %>% 
 			  mutate(region = stringi::stri_trans_general(region, id = "Latin-ASCII"),
 			         region = dplyr::case_when(
