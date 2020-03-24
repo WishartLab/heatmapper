@@ -702,7 +702,9 @@ shinyServer(function(input, output, session) {
       stateName <- values$highlight
       return(tags$div(
         tags$strong(stateName),
-        tags$div(values$density[tolower(parseRegionName(stateName))], HTML(""))
+        tags$div(if_else(is.na(values$density[tolower(parseRegionName(stateName))]),
+                         "Sin datos recopilados",
+                         values$density[tolower(parseRegionName(stateName))] %>% as.character()), HTML(""))
       ))
     }
   })
