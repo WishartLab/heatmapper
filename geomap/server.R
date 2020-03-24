@@ -96,11 +96,11 @@ shinyServer(function(input, output, session) {
 	
 	# update colours when range of interest is changed or new file is selected
 	observe({
-		input$rangeSubmit
+		#input$rangeSubmit
 		#input$binNumber
-		input$lowColour
-		input$highColour
-		input$colourScheme
+		# input$lowColour
+		# input$highColour
+		# input$colourScheme
 		log_activity('geomap', 'observe rangeSubmit binNumber lowColour highColour colourScheme')
 		isolate({
 			if(!is.null(values$density)){
@@ -176,7 +176,7 @@ shinyServer(function(input, output, session) {
 	  if(!is.null(values$density) && input$tabSelections == "Interactivo"){
 			leafletProxy("map", data = isolate({get_map_data()})) %>% 	
 				addLegend(layerId = "legendLayer", position = "bottomright", 
-						opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
+						opacity = 0.7, colors = colorRampPalette(c("#ffffcc","#b10026"))(length(values$from)), labels = paste(values$from, "-", values$to),
 						title = 'Leyenda')#input$legend
 		}
 	})
@@ -452,7 +452,8 @@ shinyServer(function(input, output, session) {
 			  mutate(department = stringi::stri_trans_general(department, id = "Latin-ASCII")) %>% 
 			  ungroup() %>% 
 			  dplyr::left_join(region_names %>% 
-			              dplyr::distinct(department, department_abbreviation),
+			                     dplyr::mutate(department = as.character(department)) %>% 
+			                     dplyr::distinct(department, department_abbreviation),
 			            by = "department") %>% 
 			  group_by(row_nr) %>% 
 			  mutate(region = stringi::stri_trans_general(region, id = "Latin-ASCII"),
@@ -491,8 +492,8 @@ shinyServer(function(input, output, session) {
 			                fever_cough_count,
 			                fever_breath_count,
 			                cough_breath_count,
-			                fever_cough_breath_count)
-			
+			                fever_cough_breath_count) 
+			  
 			
 			# region names should be in lower case
 			#data_file[[1]] <- tolower(data_file[[1]])
