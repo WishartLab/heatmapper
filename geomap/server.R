@@ -317,6 +317,7 @@ shinyServer(function(input, output, session) {
 			  "select 
 			   i.GeolocCiudad as region,
 			   i.GeolocDepartamento as department,
+			   high_score,
 			   fever_count,
 			   cough_count,
 			   difficult_breath_count,
@@ -335,6 +336,20 @@ shinyServer(function(input, output, session) {
 			               CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region
 			               from responses) as k
 			         ) as i
+			   -- Add Severity score counting
+			   left join (select 
+                    key_region, 
+                    count(*) as high_score
+                    from (select
+                    			CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
+                    			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
+                    			case when inputTos = 'tos' then 1 else 0 end as score_cough,
+                    			case when inputDigestivos = 'problemas digestivos' then 1 else 0 end as score_digest,
+                    			case when inputRespirar = 'dificultad a respirar' then 3.5 else 0 end as score_breath,
+                    			case when optionsContacto = 'si' then 0.5 else 0 end as score_contact 
+                    			from responses )si 
+                    where (si.score_fever+si.score_cough+si.score_breath+si.score_digest+si.score_contact) >= 3.5 
+                    group by key_region) hs on hs.key_region = i.key_region
 			   -- Add fever cases
 			   left join (select
 			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
@@ -392,8 +407,9 @@ shinyServer(function(input, output, session) {
         -- Add everything on department level
 			  union
 			  select 
-			   f.GeolocDepartamento as region,
-			   f.GeolocDepartamento as department,
+			   i.GeolocDepartamento as region,
+			   i.GeolocDepartamento as department,
+			   high_score,
 			   fever_count,
 			   cough_count,
 			   difficult_breath_count,
@@ -401,45 +417,62 @@ shinyServer(function(input, output, session) {
 			   fever_breath_count,
 			   cough_breath_count,
 			   fever_cough_breath_count
+			   -- Distinct of all the regions available in DB
 			   from (select
+			         distinct(GeolocDepartamento)
+			         from responses) as i
+			   left join (select 
+                    GeolocDepartamento, 
+                    count(*) as high_score
+                    from (select
+                    			GeolocDepartamento,
+                    			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
+                    			case when inputTos = 'tos' then 1 else 0 end as score_cough,
+                    			case when inputDigestivos = 'problemas digestivos' then 1 else 0 end as score_digest,
+                    			case when inputRespirar = 'dificultad a respirar' then 3.5 else 0 end as score_breath,
+                    			case when optionsContacto = 'si' then 0.5 else 0 end as score_contact 
+                    			from responses )si 
+                    where (si.score_fever+si.score_cough+si.score_breath+si.score_digest+si.score_contact) >= 3.5 
+                    group by GeolocDepartamento) as hs on hs.GeolocDepartamento = i.GeolocDepartamento
+         left join (select
 			         GeolocDepartamento,
 			         count(inputFebre) as fever_count
 			         from responses
 			         where inputFebre  = 'febre'
-			         group by GeolocDepartamento) f
+          		 group by GeolocDepartamento) as f on f.GeolocDepartamento = i.GeolocDepartamento
 			   left join (select
 			         GeolocDepartamento,
 			         count(inputTos) as cough_count
 			         from responses
           		 where inputTos  = 'tos'
-          		 group by GeolocDepartamento) as c on c.GeolocDepartamento = f.GeolocDepartamento
+          		 group by GeolocDepartamento) as c on c.GeolocDepartamento = i.GeolocDepartamento
 			   left join (select
 			         GeolocDepartamento,
 			         count(inputRespirar) as difficult_breath_count
 			         from responses
           		 where inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) r on r.GeolocDepartamento = f.GeolocDepartamento
+          		 group by GeolocDepartamento) r on r.GeolocDepartamento = i.GeolocDepartamento
          left join (select
 			         GeolocDepartamento,
 			         count(*) as fever_cough_count
 			         from responses
           		 where inputFebre  = 'febre'
           		 and inputTos  = 'tos'
-          		 group by GeolocDepartamento) fc on fc.GeolocDepartamento = f.GeolocDepartamento
+          		 group by GeolocDepartamento) fc on fc.GeolocDepartamento = i.GeolocDepartamento
          left join (select
 			         GeolocDepartamento,
 			         count(*) as fever_breath_count
 			         from responses
           		 where inputFebre  = 'febre'
           		 and inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) fb on fb.GeolocDepartamento = f.GeolocDepartamento
+          		 group by GeolocDepartamento) fb on fb.GeolocDepartamento = i.GeolocDepartamento
          left join (select
 			         GeolocDepartamento,
 			         count(*) as cough_breath_count
 			         from responses
           		 where inputTos  = 'tos'
           		 and inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) cb on cb.GeolocDepartamento = f.GeolocDepartamento
+          		 group by GeolocDepartamento) cb on cb.GeolocDepartamento = i.GeolocDepartamento
     		 left join (select
 			         GeolocDepartamento,
 			         count(*) as fever_cough_breath_count
@@ -447,7 +480,7 @@ shinyServer(function(input, output, session) {
           		 where inputTos  = 'tos'
           		 and inputRespirar  = 'dificultad a respirar'
           		 and inputFebre  = 'febre'
-          		 group by GeolocDepartamento) fcb on fcb.GeolocDepartamento = f.GeolocDepartamento;
+          		 group by GeolocDepartamento) fcb on fcb.GeolocDepartamento = i.GeolocDepartamento;
 			  "
 				))
 			#Ouput is "region", "department", "fever_count", "cough_count", "difficult_breath_count", "fever_cough_count",
