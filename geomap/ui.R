@@ -278,23 +278,23 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				"Seleccionar sintoma",
 				placement = "right"
 				),
-			HTML("<button id='rangeSubmit' class='action-button clearButton'>Enviar rango</button>"),
+			#HTML("<button id='rangeSubmit' class='action-button clearButton'>Enviar rango</button>"),
 			#HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
-			bsTooltip(id = "rangeSubmit", 
-			          #"Update heatmap using range of interest",
-			          "Actualice el mapa de calor usando el rango de interes",
-			          placement = "right"),
-			tags$label("Rango de Interes"),#ĆØ
+			# bsTooltip(id = "rangeSubmit", 
+			#           #"Update heatmap using range of interest",
+			#           "Actualice el mapa de calor usando el rango de interes",
+			#           placement = "right"),
+			# tags$label("Rango de Interes"),#ĆØ
 			#tags$label("Range of Interest"),
-			tipify(
-			  sliderInput("range",
-			              label = NULL,
-			              min = 0,
-			              max = 100,
-			              value = c(0, 100)),
-			  #"Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
-			  "Ajuste los valores de corte de asignacion de color, luego haga clic en el boton Enviar rango para actualizar el mapa de calor",
-			  placement = "right"),
+			# tipify(
+			#   sliderInput("range",
+			#               label = NULL,
+			#               min = 0,
+			#               max = 100,
+			#               value = c(0, 100)),
+			#   #"Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
+			#   "Ajuste los valores de corte de asignacion de color, luego haga clic en el boton Enviar rango para actualizar el mapa de calor",
+			#   placement = "right"),
 			
 			FILL_OPACITY_SLIDER(0.8),
 			
