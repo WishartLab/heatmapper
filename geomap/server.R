@@ -315,7 +315,8 @@ shinyServer(function(input, output, session) {
 			   difficult_breath_count,
 			   fever_cough_count,
 			   fever_breath_count,
-			   cough_breath_count
+			   cough_breath_count,
+			   fever_cough_breath_count
 			   -- Distinct of all the regions available in DB
 			   from (select
 			         distinct(k.key_region),
@@ -372,6 +373,15 @@ shinyServer(function(input, output, session) {
           		 where inputTos  = 'tos'
           		 and inputRespirar  = 'dificultad a respirar'
           		 group by key_region) cb on cb.key_region = i.key_region
+         -- Add Fever, Cough and Breath difficulties combination cases
+			   left join (select
+			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
+			         count(*) as fever_cough_breath_count
+			         from responses
+          		 where inputTos  = 'tos'
+          		 and inputRespirar  = 'dificultad a respirar'
+          		 and inputFebre  = 'febre'
+          		 group by key_region) fcb on fcb.key_region = i.key_region
         -- Add everything on department level
 			  union
 			  select 
@@ -382,7 +392,8 @@ shinyServer(function(input, output, session) {
 			   difficult_breath_count,
 			   fever_cough_count,
 			   fever_breath_count,
-			   cough_breath_count
+			   cough_breath_count,
+			   fever_cough_breath_count
 			   from (select
 			         GeolocDepartamento,
 			         count(inputFebre) as fever_count
@@ -421,7 +432,15 @@ shinyServer(function(input, output, session) {
 			         from responses
           		 where inputTos  = 'tos'
           		 and inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) cb on cb.GeolocDepartamento = f.GeolocDepartamento;
+          		 group by GeolocDepartamento) cb on cb.GeolocDepartamento = f.GeolocDepartamento
+    		 left join (select
+			         GeolocDepartamento,
+			         count(*) as fever_cough_breath_count
+			         from responses
+          		 where inputTos  = 'tos'
+          		 and inputRespirar  = 'dificultad a respirar'
+          		 and inputFebre  = 'febre'
+          		 group by GeolocDepartamento) fcb on fcb.GeolocDepartamento = f.GeolocDepartamento;
 			  "
 				))
 			#Ouput is "region", "department", "fever_count", "cough_count", "difficult_breath_count", "fever_cough_count", "fever_breath_count", "cough_breath_count"
@@ -456,7 +475,10 @@ shinyServer(function(input, output, session) {
       			                                       fever_breath_count),
 			         cough_breath_count = dplyr::if_else(is.na(cough_breath_count),
       			                                       0,
-      			                                       cough_breath_count)) %>% 
+      			                                       cough_breath_count),
+			         fever_cough_breath_count = dplyr::if_else(is.na(fever_cough_breath_count),
+			                                                   0,
+			                                                   fever_cough_breath_count)) %>% 
 			  ungroup() %>% 
 			  dplyr::select(region,
 			                fever_count,
@@ -464,7 +486,8 @@ shinyServer(function(input, output, session) {
 			                difficult_breath_count,
 			                fever_cough_count,
 			                fever_breath_count,
-			                cough_breath_count)
+			                cough_breath_count,
+			                fever_cough_breath_count)
 			
 			
 			# region names should be in lower case
