@@ -103,9 +103,9 @@ shinyServer(function(input, output, session) {
 		# input$colourScheme
 		log_activity('geomap', 'observe rangeSubmit binNumber lowColour highColour colourScheme')
 		isolate({
-			if(!is.null(values$density)){
-				rangeMin <- input$range[[1]]
-				rangeMax <- input$range[[2]]
+		    if(!is.null(values$density)){
+				rangeMin <- 0
+				rangeMax <- 100
 				
 				min <- floor(min(values$density, na.rm = TRUE))
 				max <- ceiling(max(values$density, na.rm = TRUE))
@@ -224,17 +224,24 @@ shinyServer(function(input, output, session) {
 	
 	# assign density names and values based on the selected column
 	get_density <- reactive({ 
-		tryCatch({
-			data_file <- values$file
-			name_col <- tolower(data_file[[1]])
-			nums_col <- get_nums_col(data_file, input$colSelect)
-			names(nums_col) <- name_col
-		
-			return(nums_col)
-		}, 
-		error = function(err){
-			validate(txt = paste(ERR_file_read, dimensions_msg))
-		})
+	  tryCatch({
+	    data_file <- values$file
+	    name_col <- tolower(data_file[[1]])
+	    nums_col <- get_nums_col(data_file, input$colSelect)
+	    names(nums_col) <- name_col
+	    
+	    write('get_density: completed without exception', file='log.txt', append=TRUE)
+	    return(nums_col)
+	  }, 
+	  warning = function(warning_condition) {
+	    write('get_density: caught warning:', file='log.txt', append=TRUE)
+	    write(paste0(warning_condition), file='log.txt', append=TRUE)
+	  },
+	  error = function(err){
+	    write('get_density: caught error:', file='log.txt', append=TRUE)
+	    write(paste0(err), file='log.txt', append=TRUE)
+	    validate(txt = paste(ERR_file_read, dimensions_msg))
+	  })
 		
 	})
 	
@@ -493,7 +500,6 @@ shinyServer(function(input, output, session) {
 			                fever_breath_count,
 			                cough_breath_count,
 			                fever_cough_breath_count) 
-			  
 			
 			# region names should be in lower case
 			#data_file[[1]] <- tolower(data_file[[1]])
