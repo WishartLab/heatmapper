@@ -266,7 +266,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			
 			tipify(
 				selectInput("colSelect", 
-				            label = "El Sintoma", 
+				            label = "Persona cuenta con síntomas", 
 				            choices = c("Puntaje combinado severo" = 'high_score',
 				                        "Febre" = 'fever_count',
 				                        "Tos" = 'cough_count',
