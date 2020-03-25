@@ -26,7 +26,12 @@ region_names <- read.csv("../department_municipality_name.csv",
 dimensions_msg <- "Input data can have up to 50 data columns."
 
 # Logging & debugging
-log_filename <- 'log.txt'
+log_filename = tryCatch({
+	paste(system("hostname", intern = TRUE), 'log.txt', sep="_")
+}, error = function(e) {
+	'log.txt'
+})
+log_filename = paste('/log/', log_filename, sep='')
 debug = FALSE
 
 # reference: https://jcheng.shinyapps.io/choropleth3/
