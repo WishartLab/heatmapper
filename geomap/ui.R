@@ -300,6 +300,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			FILL_OPACITY_SLIDER(0.8),
 			
 			DOWNLOAD_BUTTONS(),
+			tags$div(style = "font-size:16px;",
+			  HTML('<b><a href="http://cov19col.co/" target="_blank">Formulario Técnico de detección de caso</a></b>')
+			),
 			tags$p("Desarrollado por",
 			       class = "text1"),
 			img(src = "combined.png",
