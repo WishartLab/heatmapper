@@ -25,6 +25,10 @@ region_names <- read.csv("../department_municipality_name.csv",
 # Constants
 dimensions_msg <- "Input data can have up to 50 data columns."
 
+# Logging & debugging
+log_filename <- 'log.txt'
+debug = FALSE
+
 # reference: https://jcheng.shinyapps.io/choropleth3/
 shinyServer(function(input, output, session) {
 	
@@ -49,48 +53,87 @@ shinyServer(function(input, output, session) {
 	observe({
 		values$inputFile <- input$file
 		log_activity('geomap', 'input$file')
+		if (debug) write('observe input$file run', file=log_filename, append=TRUE)
 	})
 	
 	# when a valid column is selected set values$density
 	observe({
 		if(input$colSelect != 0){
-			log_activity('geomap', 'input$colSelect')
-			values$density <- get_density()
-			
-			# update the slider with the new max and min from that column
-			min <- floor(min(values$density, na.rm = TRUE))
-			max <- ceiling(max(values$density, na.rm = TRUE))
+			tryCatch({
+				if (debug) {
+					write('observe input$colSelect triggered', file=log_filename, append=TRUE)
+					write('value of input$colSelect:', file=log_filename, append=TRUE)
+					write(input$colSelect, file=log_filename, append=TRUE)
+				}
+				log_activity('geomap', 'input$colSelect')
 
-			# set number of digit to which to round
-			num_digits = 0
-			if (max < 10) {
-				num_digits = 2
-			} else if (max < 100) {
-				num_digits = 1
-			}
-			
-			updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
-			isolate({
-				update_colours(round(seq(min, max, length.out = 8+1), num_digits))#input$binNumber
+				values$density <- get_density()
+				if (debug) write('observe input$colSelect: get_density returned', file=log_filename, append=TRUE)
+
+				# update the slider with the new max and min from that column
+				if (debug) {
+					write(paste('starting minmax', sep="\t"), file=log_filename, append=TRUE)
+					write(values$density, file=log_filename, append=TRUE)
+					write(paste('applying min...', sep="\t"), file=log_filename, append=TRUE)
+				}
+				min <- floor(min(values$density, na.rm = TRUE))
+				if (debug) {
+					write(values$density, file=log_filename, append=TRUE)
+					write(paste('applying max...', sep="\t"), file=log_filename, append=TRUE)
+				}
+				max <- ceiling(max(values$density, na.rm = TRUE))
+				if (debug) {
+					write(values$density, file=log_filename, append=TRUE)
+					write(paste('done minmax', sep="\t"), file=log_filename, append=TRUE)
+					write(paste('min:', min, sep="\t"), file=log_filename, append=TRUE)
+					write(paste('max:', max, sep="\t"), file=log_filename, append=TRUE)
+				}
+
+				# set number of digit to which to round
+				num_digits = 0
+				if (max < 10) {
+					num_digits = 2
+				} else if (max < 100) {
+					num_digits = 1
+				}
+
+				updateSliderInput(session, inputId = "range", min = min, max = max, value = c(min,max))
+				if (debug) write('observe input$colSelect: updateSliderInput returned', file=log_filename, append=TRUE)
+				isolate({
+					if (is.finite(min) && is.finite(max)) {
+						update_colours(round(seq(min, max, length.out = 8+1), num_digits))#input$binNumber
+						if (debug) write('observe input$colSelect: update_colours returned', file=log_filename, append=TRUE)
+					}
+				})
+
+				# When user chooses an example file, automatically set the
+				# appropriate map.
+				map_to_select = ''
+				# if (input$exampleFiles == EXAMPLE_FILES[1]) {
+				# 	map_to_select = 'data/CAN_1.rds'
+				# } else if (input$exampleFiles == EXAMPLE_FILES[2]) {
+				# 	map_to_select = 'data/CAN_1.rds'
+				# } else if (input$exampleFiles == EXAMPLE_FILES[3]) {
+				# 	map_to_select = 'data/USA_1.rds'
+				# } else if (input$exampleFiles == EXAMPLE_FILES[4]) {
+				#     map_to_select = 'data/COL_2.rds'
+				# }
+				if (map_to_select != '') {
+					updateSelectInput(session, inputId = "area", label = NULL,
+														choices = NULL,
+														selected = map_to_select)
+				}
+
+				if (debug) write('observe input$colSelect: completed without exception', file=log_filename, append=TRUE)
+			},
+			# warning = function(warning_condition) {
+			# 	write('observe input$colSelect: caught warning:', file=log_filename, append=TRUE)
+			# 	write(paste0(warning_condition), file=log_filename, append=TRUE)
+			# },
+			error = function(error_condition) {
+				write('observe input$colSelect: caught error:', file=log_filename, append=TRUE)
+				write(paste0(error_condition), file=log_filename, append=TRUE)
 			})
-			
-			# When user chooses an example file, automatically set the
-			# appropriate map.
-			map_to_select = ''
-			# if (input$exampleFiles == EXAMPLE_FILES[1]) {
-			# 	map_to_select = 'data/CAN_1.rds'
-			# } else if (input$exampleFiles == EXAMPLE_FILES[2]) {
-			# 	map_to_select = 'data/CAN_1.rds'
-			# } else if (input$exampleFiles == EXAMPLE_FILES[3]) {
-			# 	map_to_select = 'data/USA_1.rds'
-			# } else if (input$exampleFiles == EXAMPLE_FILES[4]) {
-			#     map_to_select = 'data/COL_2.rds'
-			# }
-			if (map_to_select != '') {
-				updateSelectInput(session, inputId = "area", label = NULL, 
-													choices = NULL, 
-													selected = map_to_select)
-			}
 		}
 	})
 	
@@ -189,6 +232,7 @@ shinyServer(function(input, output, session) {
 	# use values$file to store file info instead of get_file() for editing table
 	observe({
 		values$file <- get_db_data()
+		if (debug) write('observe values$file run', file=log_filename, append=TRUE)
 	})
 			
 	# populate select input with region names for that map
@@ -214,35 +258,81 @@ shinyServer(function(input, output, session) {
 	#################### HELPER FUNCTIONS ####################
 	
 	# return the values from the selected column
+	# get_nums_col <- function(data_file, col){
+	# 	nums_col <- data_file[[col]]
+	# 	if(is.null(nums_col)){
+	# 		nums_col <- data_file[[2]]
+	# 	}
+	# 	return(nums_col)
+	# }
 	get_nums_col <- function(data_file, col){
-		nums_col <- data_file[[col]]
-		if(is.null(nums_col)){
-			nums_col <- data_file[[2]]
-		}
-		return(nums_col)
+		tryCatch({
+			if (debug) {
+				write('    get_nums_col triggered', file=log_filename, append=TRUE)
+				write(paste('    get_nums_col: col:', col, sep="\t"), file=log_filename, append=TRUE)
+				write('    get_nums_col: data_file:', file=log_filename, append=TRUE)
+				write(paste0(data_file), file=log_filename, append=TRUE)
+			}
+
+			nums_col <- data_file[[col]]
+			if (debug) write(paste('    get_nums_col: nums_col after nums_col <- data_file[[col]]:', nums_col, sep="\t"), file=log_filename, append=TRUE)
+			if(is.null(nums_col)){
+				nums_col <- data_file[[2]]
+				if (debug) write(paste('    get_nums_col: nums_col after nums_col <- data_file[[2]]:', nums_col, sep="\t"), file=log_filename, append=TRUE)
+			}
+			if (debug) write('    get_nums_col: completed without exception', file=log_filename, append=TRUE)
+			if (debug) write(paste0('    nums_col: ',paste0(nums_col)), file=log_filename, append=TRUE)
+			return(nums_col)
+		},
+		warning = function(warning_condition) {
+			write('    get_nums_col: caught warning:', file=log_filename, append=TRUE)
+			write(paste0(warning_condition), file=log_filename, append=TRUE)
+		},
+		error = function(err){
+			write('    get_nums_col: caught error:', file=log_filename, append=TRUE)
+			write(paste0(err), file=log_filename, append=TRUE)
+			validate(txt = paste(ERR_file_read, dimensions_msg))
+		})
 	}
 	
 	# assign density names and values based on the selected column
-	get_density <- reactive({ 
-	  tryCatch({
-	    data_file <- values$file
-	    name_col <- tolower(data_file[[1]])
-	    nums_col <- get_nums_col(data_file, input$colSelect)
-	    names(nums_col) <- name_col
-	    
-	    write('get_density: completed without exception', file='log.txt', append=TRUE)
-	    return(nums_col)
-	  }, 
-	  warning = function(warning_condition) {
-	    write('get_density: caught warning:', file='log.txt', append=TRUE)
-	    write(paste0(warning_condition), file='log.txt', append=TRUE)
-	  },
-	  error = function(err){
-	    write('get_density: caught error:', file='log.txt', append=TRUE)
-	    write(paste0(err), file='log.txt', append=TRUE)
-	    validate(txt = paste(ERR_file_read, dimensions_msg))
-	  })
-		
+	get_density <- reactive({
+		tryCatch({
+			if (debug) write('  get_density triggered', file=log_filename, append=TRUE)
+
+			data_file <- values$file
+
+			if (debug) {
+				write('  get_density: data_file:', file=log_filename, append=TRUE)
+				write(paste0(data_file), file=log_filename, append=TRUE)
+				write('  get_density: calling tolower...', file=log_filename, append=TRUE)
+			}
+
+			name_col <- tolower(data_file[[1]])
+
+			if (debug) {
+				write('  get_density: name_col:', file=log_filename, append=TRUE)
+				write(name_col, file=log_filename, append=TRUE)
+				write('  get_density: calling get_nums_col...', file=log_filename, append=TRUE)
+			}
+
+			nums_col <- get_nums_col(data_file, input$colSelect)
+			if (debug) write(paste('  get_density: nums_col:', nums_col, sep="\t"), file=log_filename, append=TRUE)
+
+			names(nums_col) <- name_col
+
+			if (debug) write('  get_density: completed without exception', file=log_filename, append=TRUE)
+			return(nums_col)
+		},
+		warning = function(warning_condition) {
+			write('  get_density: caught warning:', file=log_filename, append=TRUE)
+			write(paste0(warning_condition), file=log_filename, append=TRUE)
+		},
+		error = function(err){
+			write('  get_density: caught error:', file=log_filename, append=TRUE)
+			write(paste0(err), file=log_filename, append=TRUE)
+			validate(txt = paste(ERR_file_read, dimensions_msg))
+		})
 	})
 	
 	# read file if chooseInput is changed or file is uploaded
@@ -302,9 +392,17 @@ shinyServer(function(input, output, session) {
 	# obtain data from database
 	get_db_data <- reactive({
 		log_activity('geomap', 'begin get_db_data')
+		if (debug) write('get_db_data triggered', file=log_filename, append=TRUE)
 
 		tryCatch({
 
+			if (debug) {
+				write('credentials:', file=log_filename, append=TRUE)
+				write(paste('  dbName:', dbName, sep="\t"), file=log_filename, append=TRUE)
+				write(paste('  hostName:', hostName, sep="\t"), file=log_filename, append=TRUE)
+				write(paste('  userName:', userName, sep="\t"), file=log_filename, append=TRUE)
+				# write(paste('  password:', password, sep="\t"), file=log_filename, append=TRUE)
+			}
 			conn <- dbConnect(
 				drv = RMySQL::MySQL(),
 				dbname = dbName,
@@ -485,7 +583,12 @@ shinyServer(function(input, output, session) {
 				))
 			#Ouput is "region", "department", "fever_count", "cough_count", "difficult_breath_count", "fever_cough_count",
 			#"fever_breath_count", "cough_breath_count", fever_cough_breath_count
-		
+
+			if (debug) {
+				write('get_db_data: raw data_file after SQL query:', file=log_filename, append=TRUE)
+				write(paste0(data_file), file=log_filename, append=TRUE)
+			}
+
 			data_file <- data_file %>% 
 			  mutate(row_nr = row_number()) %>% 
 			  group_by(row_nr) %>% 
@@ -540,7 +643,28 @@ shinyServer(function(input, output, session) {
 			# # update the column selection options when new DB data is loaded
 			# updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
 
+			if (debug) {
+				write('get_db_data: completed without exception', file=log_filename, append=TRUE)
+				write('get_db_data: data_file:', file=log_filename, append=TRUE)
+				write(paste0(data_file), file=log_filename, append=TRUE)
+			}
 			return(data_file)
+		},
+		warning = function(warning_condition) {
+			write('get_db_data: caught warning:', file=log_filename, append=TRUE)
+			write(paste0(warning_condition), file=log_filename, append=TRUE)
+			if (debug) {
+				write("get_db_data: data_file:", file=log_filename, append=TRUE)
+				write(paste0(data_file), file=log_filename, append=TRUE)
+			}
+		},
+		error = function(error_condition) {
+			write('get_db_data: caught error:', file=log_filename, append=TRUE)
+			write(paste0(error_condition), file=log_filename, append=TRUE)
+			if (debug) {
+				write("get_db_data: data_file:", file=log_filename, append=TRUE)
+				write(paste0(data_file), file=log_filename, append=TRUE)
+			}
 		},
 		finally = {
 			log_activity('geomap', 'end get_db_data')
