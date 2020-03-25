@@ -735,7 +735,7 @@ shinyServer(function(input, output, session) {
   output$stateInfo <- renderUI({
   	log_activity('geomap', 'stateInfo')
     if (is.null(values$highlight)) {
-      return(tags$div("Hover over a region"))
+      return(tags$div("Pase el mouse sobre una región"))
     } 
   	else {
       # Get a properly formatted state name

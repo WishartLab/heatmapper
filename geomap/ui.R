@@ -12,7 +12,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		
 			tipify(fluidRow(
 				# column(3, tags$label("Area to use")),
-				column(3, tags$label("Area a utilizar")),#Ć
+				column(3, tags$label("Área a utilizar")),#Ć
 				
 				column(9, 
 		    	selectInput("area", label = NULL, 
@@ -299,7 +299,20 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			
 			FILL_OPACITY_SLIDER(0.8),
 			
-			DOWNLOAD_BUTTONS()		 		
+			DOWNLOAD_BUTTONS(),
+			tags$p("Desarrollado por",
+			       class = "text1"),
+			img(src = "combined.png",
+			    height = 114,
+			    width = 300),
+			tags$div(
+			  HTML('Este proyecto es de <a href="https://github.com/WishartLab/heatmapper" target="_blank">código abierto</a>.
+			       Los mapas de calor utilizan <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>
+			         desarrollado en el <a href="http://www.wishartlab.com" target="_blank">Wishart Research Group</a> de la Universidad de Alberta.<br>
+			         ¿Preguntas o comentarios? Por favor, use nuestra <a href="http://feedback.wishartlab.com/?site=cov19col" target="_blank">página de comentarios</a>.
+			       Licencia: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>')
+			)
+			
 		# 	ADVANCED_OPTIONS_PANEL(
 		# 		list(
 		# 			HTML("<button id='rangeSubmit' class='action-button clearButton'>Enviar rango</button>"),
@@ -340,12 +353,12 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		# # 			textInput('legend',
 		# #     		# label = "Custom legend title", 
 		# #    			# value = "Legend"),
-		# #     		label = "Titulo de leyenda personalizado", #Ć�
+		# #     		label = "Titulo de leyenda personalizado", #Ć?
 		# #     		value = "Leyenda"),
 		# 			
 		# 			# sliderInput("lineSize",
 		# 			#   #label = "Contour Line Width",
-		# 			# 	label = "Ancho de linea de contorno", #Ć�
+		# 			# 	label = "Ancho de linea de contorno", #Ć?
 		# 			# 	min = 0,
 		# 			# 	max = 5,
 		# 			# 	value = 1),
@@ -366,7 +379,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 					)
 				)
 			),
-			tabPanel(title = "Table", 
+			tabPanel(title = "la Tabla", 
 				tags$br(),
 				# wellPanel(
 				# 	tags$label("Update Region Name"), 
