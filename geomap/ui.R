@@ -6,7 +6,13 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 	
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel", width = 1,
-			
+		             tags$head(
+		               #Color of horizontal separator
+		               tags$style(HTML("hr {border-top: 1px solid #808080;
+		                                    margin-top: 27px;
+		                                    margin-bottom: 27px
+		                               }"))
+		             ),
 			#FILE_UPLOAD_PANEL(),
 			#EXAMPLE_FILE_SELECT(),
 		
@@ -300,9 +306,11 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			FILL_OPACITY_SLIDER(0.8),
 			
 			DOWNLOAD_BUTTONS(),
+			hr(),
 			tags$div(style = "font-size:16px;",
 			  HTML('<b><a href="http://cov19col.co/" target="_blank">Formulario Técnico de detección de caso</a></b>')
 			),
+			hr(),
 			tags$p("Desarrollado por",
 			       class = "text1"),
 			column(6,
@@ -324,7 +332,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			# img(src = "combined.png",
 			#     height = 114,
 			#     width = 300),
-			tags$div(style = "font-size: small;",
+			tags$div(style = "font-size: 10px;",
 			  HTML('Este proyecto es de <a href="https://github.com/WishartLab/heatmapper" target="_blank">código abierto</a>.
 			       Los mapas de calor utilizan <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>
 			         desarrollado en el <a href="http://www.wishartlab.com" target="_blank">Wishart Research Group</a> de la Universidad de Alberta.<br>
