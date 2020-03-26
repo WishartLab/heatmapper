@@ -31,7 +31,10 @@ log_filename = tryCatch({
 }, error = function(e) {
 	'log.txt'
 })
-log_filename = paste('/log/', log_filename, sep='')
+if (!exists('logDir') || is.na(logDir) || logDir == '') {
+	logDir = '.'
+}
+log_filename = paste(logDir, log_filename, sep='/')
 debug = FALSE
 
 # reference: https://jcheng.shinyapps.io/choropleth3/
