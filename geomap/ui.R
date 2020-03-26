@@ -311,14 +311,13 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			FILL_OPACITY_SLIDER(0.8),
 			
 			DOWNLOAD_BUTTONS(),
-			tags$div(style = "font-size:16px;",
-			  HTML('<b><a href="http://cov19col.co/" target="_blank">Formulario Técnico de detección de caso</a></b>')
-			),
-			tags$p("Desarrollado por",
+			
+			tags$p("Developed by",
 			       class = "text1"),
-			img(src = "combined.png",
+			img(src = "tmic_plain_stacked.svg",
 			    height = 114,
-			    width = 300),
+			    width = 215,
+			    style = "display: block; margin-left: auto; margin-right: auto; "),
 			tags$div(
 			  HTML('Este proyecto es de <a href="https://github.com/WishartLab/heatmapper" target="_blank">código abierto</a>.
 			       Los mapas de calor utilizan <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>
