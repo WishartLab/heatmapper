@@ -22,6 +22,14 @@ source("../config.R") # load DB connection details
 region_names <- read.csv("../department_municipality_name.csv",
                          header = T,
                          sep = ",")
+
+# Data to map between country names in data files and map file names
+maps_files_to_data_files <- read.csv("tools/map_name_to_data_name.csv",
+                                     header = T,
+                                     sep = ",",
+                                     col.names = c("datafile","prefix"),
+                                     colClasses = c("character","character"))
+
 # Constants
 dimensions_msg <- "Input data can have up to 50 data columns."
 
@@ -495,7 +503,17 @@ shinyServer(function(input, output, session) {
     )
     tryCatch({
      
-      prefix <- input$area %>% substr(start = 1, stop = 10)
+      map_file_name <- input$area
+      write(paste('  map-file_name:', map_file_name, sep = "\t"),
+            file = log_filename,
+            append = TRUE)
+      region_name <- maps_files_to_data_files %>% 
+        filter(datafile == map_file_name) %>% 
+        pull(prefix)
+      write(paste('  region_name:', region_name, sep = "\t"),
+            file = log_filename,
+            append = TRUE)
+      prefix <- paste("data/",region_name,sep = "")
       write(paste('  prefix:', prefix, sep = "\t"),
             file = log_filename,
             append = TRUE)
