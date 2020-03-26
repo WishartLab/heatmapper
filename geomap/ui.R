@@ -305,10 +305,26 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			),
 			tags$p("Desarrollado por",
 			       class = "text1"),
-			img(src = "combined.png",
-			    height = 114,
-			    width = 300),
-			tags$div(
+			column(6,
+			       tags$a(
+			         img(src = "tmic_plain_stacked.svg",
+			             height = 114,
+			             width = 150),
+			         href = "https://www.metabolomicscentre.ca/",
+			         target="_blank"
+			       )),
+			column(6,
+			       tags$a(
+			         img(src = "quantrack-logo-black.png",
+			             height = 114,
+			             width = 150),
+			         href = "https://www.quantrack.io/",
+			         target="_blank"
+			       )),
+			# img(src = "combined.png",
+			#     height = 114,
+			#     width = 300),
+			tags$div(style = "font-size: small;",
 			  HTML('Este proyecto es de <a href="https://github.com/WishartLab/heatmapper" target="_blank">código abierto</a>.
 			       Los mapas de calor utilizan <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>
 			         desarrollado en el <a href="http://www.wishartlab.com" target="_blank">Wishart Research Group</a> de la Universidad de Alberta.<br>
