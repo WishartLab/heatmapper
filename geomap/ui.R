@@ -6,6 +6,13 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 	
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel", width = 1,
+		             tags$head(
+		               #Color of horizontal separator
+		               tags$style(HTML("hr {border-top: 1px solid #808080;
+		                                    margin-top: 27px;
+		                                    margin-bottom: 27px
+		                               }"))
+		             ),
 			
 			#FILE_UPLOAD_PANEL(),
 			#EXAMPLE_FILE_SELECT(),
@@ -307,9 +314,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			#   placement = "right"),
 			
 			FILL_OPACITY_SLIDER(0.8),
-			
+			hr(),
 			DOWNLOAD_BUTTONS(),
-			
+			hr(),
 			tags$p("Developed by",
 			       class = "text1"),
 			tags$a(img(src = "tmic_plain_stacked.svg",
@@ -318,7 +325,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			           style = "display: block; margin-left: auto; margin-right: auto; "),
 			       href = "https://www.metabolomicscentre.ca/"),
 			
-			tags$div(style = "font-size: small;",
+			tags$div(style = "font-size: 10px;",
 			  HTML('This project is <a href="https://github.com/WishartLab/heatmapper" target="_blank">open source</a>.
 Heat maps use <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>
 developed in the <a href="http://www.wishartlab.com" target="_blank">Wishart Research Group</a> at the University of Alberta.<br>
