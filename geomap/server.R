@@ -423,8 +423,9 @@ shinyServer(function(input, output, session) {
 			  "select 
 			   i.GeolocCiudad as region,
 			   i.GeolocDepartamento as department,
-			   high_score,
-			   low_score
+			   casos_severos,
+			   casos_benignos,
+			   todos_casos
 			   -- Distinct of all the regions available in DB
 			   from (select
 			         distinct(k.key_region),
@@ -439,7 +440,7 @@ shinyServer(function(input, output, session) {
 			   -- Add high severity score counting
 			   left join (select 
                     key_region, 
-                    count(*) as high_score
+                    count(*) as casos_severos
                     from (select
                     			CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
                     			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
@@ -453,7 +454,7 @@ shinyServer(function(input, output, session) {
         -- Add low severity score counting
 			   left join (select 
                     key_region, 
-                    count(*) as low_score
+                    count(*) as casos_benignos
                     from (select
                     			CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
                     			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
@@ -464,19 +465,28 @@ shinyServer(function(input, output, session) {
                     			from responses )sl 
                     where (sl.score_fever+sl.score_cough+sl.score_breath+sl.score_digest+sl.score_contact) < 3.5 
                     group by key_region) ls on ls.key_region = i.key_region
+        -- Add total counting
+			   left join (select 
+                    key_region, 
+                    count(*) as todos_casos
+                    from (select
+                    			CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region
+                    			from responses )sl 
+                    group by key_region) tc on tc.key_region = i.key_region
 			  union
 			  select 
 			   i.GeolocDepartamento as region,
 			   i.GeolocDepartamento as department,
-			   high_score,
-			   low_score
+			   casos_severos,
+			   casos_benignos,
+			   todos_casos
 			   -- Distinct of all the regions available in DB
 			   from (select
 			         distinct(GeolocDepartamento)
 			         from responses) as i
 			   left join (select 
                     GeolocDepartamento, 
-                    count(*) as high_score
+                    count(*) as casos_severos
                     from (select
                     			GeolocDepartamento,
                     			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
@@ -489,7 +499,7 @@ shinyServer(function(input, output, session) {
                     group by GeolocDepartamento) as hs on hs.GeolocDepartamento = i.GeolocDepartamento
          left join (select 
                     GeolocDepartamento, 
-                    count(*) as low_score
+                    count(*) as casos_benignos
                     from (select
                     			GeolocDepartamento,
                     			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
@@ -499,7 +509,14 @@ shinyServer(function(input, output, session) {
                     			case when optionsContacto = 'si' then 0.5 else 0 end as score_contact 
                     			from responses ) sl 
                     where (sl.score_fever+sl.score_cough+sl.score_breath+sl.score_digest+sl.score_contact) < 3.5 
-                    group by GeolocDepartamento) as ls on ls.GeolocDepartamento = i.GeolocDepartamento;"
+                    group by GeolocDepartamento) as ls on ls.GeolocDepartamento = i.GeolocDepartamento
+			  left join (select 
+                    GeolocDepartamento, 
+                    count(*) as todos_casos
+                    from (select
+                    			GeolocDepartamento
+                    			from responses ) sl 
+                    group by GeolocDepartamento) as tc on tc.GeolocDepartamento = i.GeolocDepartamento;"
 				))
 			#Ouput is "region", "department", "high_score", "low_score"
 
@@ -525,16 +542,20 @@ shinyServer(function(input, output, session) {
 			           is.na(department_abbreviation) ~ paste0(region),
 			           TRUE ~ paste(region, department_abbreviation, sep = ", ")),
 			         region = tolower(region),
-			         high_score = dplyr::if_else(is.na(high_score),
+			         casos_severos = dplyr::if_else(is.na(casos_severos),
 			                                     0,
-			                                     high_score),
-			         low_score = dplyr::if_else(is.na(low_score),
+			                                     casos_severos),
+			         casos_benignos = dplyr::if_else(is.na(casos_benignos),
 			                                    0,
-			                                    low_score)) %>% 
+			                                    casos_benignos),
+			         todos_casos = dplyr::if_else(is.na(todos_casos),
+			                                    0,
+			                                    todos_casos)) %>% 
 			  ungroup() %>% 
 			  dplyr::select(region,
-			                high_score,
-			                low_score) 
+			                casos_severos,
+			                casos_benignos,
+			                todos_casos) 
 			
 			# region names should be in lower case
 			#data_file[[1]] <- tolower(data_file[[1]])

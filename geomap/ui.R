@@ -273,8 +273,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			tipify(
 				selectInput("colSelect", 
 				            label = "Persona cuenta con síntomas", 
-				            choices = c("Casos potencialmente severos" = 'high_score',
-				                        "Casos potencialmente benignos" = 'low_score')), 
+				            choices = c("Casos potencialmente severos" = 'casos_severos',
+				                        "Casos potencialmente benignos" = 'casos_benignos',
+				                        "Todos casos" = 'todos_casos')), 
 				#"Select column from input file",
 				"Seleccionar sintoma",
 				placement = "right"
