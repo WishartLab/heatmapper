@@ -261,6 +261,17 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			#"Select map to display",
 			"Seleccione el mapa para mostrar",
 			placement = "right"),
+			tipify(fluidRow(
+			  column(3, tags$label("Date:")),
+			  column(5,
+			    dateInput("date",
+			              label = NULL,
+			              value = Sys.Date())
+			  )),
+			title = NULL
+			  
+			),
+		  
 			
 			
 			
