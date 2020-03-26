@@ -312,16 +312,18 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			
 			tags$p("Developed by",
 			       class = "text1"),
-			img(src = "tmic_plain_stacked.svg",
-			    height = 114,
-			    width = 215,
-			    style = "display: block; margin-left: auto; margin-right: auto; "),
-			tags$div(
-			  HTML('Este proyecto es de <a href="https://github.com/WishartLab/heatmapper" target="_blank">código abierto</a>.
-			       Los mapas de calor utilizan <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>
-			         desarrollado en el <a href="http://www.wishartlab.com" target="_blank">Wishart Research Group</a> de la Universidad de Alberta.<br>
-			         ¿Preguntas o comentarios? Por favor, use nuestra <a href="http://feedback.wishartlab.com/?site=cov19col" target="_blank">página de comentarios</a>.
-			       Licencia: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>')
+			tags$a(img(src = "tmic_plain_stacked.svg",
+			           height = 114,
+			           width = 215,
+			           style = "display: block; margin-left: auto; margin-right: auto; "),
+			       href = "https://www.metabolomicscentre.ca/"),
+			
+			tags$div(style = "font-size: small;",
+			  HTML('This project is <a href="https://github.com/WishartLab/heatmapper" target="_blank">open source</a>.
+Heat maps use <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>
+developed in the <a href="http://www.wishartlab.com" target="_blank">Wishart Research Group</a> at the University of Alberta.<br>
+Questions or comments? Please use our <a href="http://feedback.wishartlab.com/?site=cov19col" target="_blank">feedback page</a>.
+License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>')
 			)
 			
 		# 	ADVANCED_OPTIONS_PANEL(
