@@ -424,13 +424,7 @@ shinyServer(function(input, output, session) {
 			   i.GeolocCiudad as region,
 			   i.GeolocDepartamento as department,
 			   high_score,
-			   fever_count,
-			   cough_count,
-			   difficult_breath_count,
-			   fever_cough_count,
-			   fever_breath_count,
-			   cough_breath_count,
-			   fever_cough_breath_count
+			   low_score
 			   -- Distinct of all the regions available in DB
 			   from (select
 			         distinct(k.key_region),
@@ -442,7 +436,7 @@ shinyServer(function(input, output, session) {
 			               CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region
 			               from responses) as k
 			         ) as i
-			   -- Add Severity score counting
+			   -- Add high severity score counting
 			   left join (select 
                     key_region, 
                     count(*) as high_score
@@ -456,73 +450,26 @@ shinyServer(function(input, output, session) {
                     			from responses )si 
                     where (si.score_fever+si.score_cough+si.score_breath+si.score_digest+si.score_contact) >= 3.5 
                     group by key_region) hs on hs.key_region = i.key_region
-			   -- Add fever cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(inputFebre) as fever_count
-			         from responses
-			         where inputFebre  = 'febre'
-			         group by key_region) f on f.key_region = i.key_region
-			   -- Add Cough cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(inputTos) as cough_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 group by key_region) as c on c.key_region = i.key_region
-         -- Add Breathing difficulties cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(inputRespirar) as difficult_breath_count
-			         from responses
-          		 where inputRespirar  = 'dificultad a respirar'
-          		 group by key_region) r on r.key_region = i.key_region
-         -- Add Fever and Cough combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as fever_cough_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputTos  = 'tos'
-          		 group by key_region) fc on fc.key_region = i.key_region
-         -- Add Fever and Breath difficulties combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as fever_breath_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by key_region) fb on fb.key_region = i.key_region
-         -- Add Cough and Breath difficulties combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by key_region) cb on cb.key_region = i.key_region
-         -- Add Fever, Cough and Breath difficulties combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as fever_cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 and inputFebre  = 'febre'
-          		 group by key_region) fcb on fcb.key_region = i.key_region
-        -- Add everything on department level
+        -- Add low severity score counting
+			   left join (select 
+                    key_region, 
+                    count(*) as low_score
+                    from (select
+                    			CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
+                    			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
+                    			case when inputTos = 'tos' then 1 else 0 end as score_cough,
+                    			case when inputDigestivos = 'problemas digestivos' then 1 else 0 end as score_digest,
+                    			case when inputRespirar = 'dificultad a respirar' then 3.5 else 0 end as score_breath,
+                    			case when optionsContacto = 'si' then 0.5 else 0 end as score_contact 
+                    			from responses )sl 
+                    where (sl.score_fever+sl.score_cough+sl.score_breath+sl.score_digest+sl.score_contact) < 3.5 
+                    group by key_region) ls on ls.key_region = i.key_region
 			  union
 			  select 
 			   i.GeolocDepartamento as region,
 			   i.GeolocDepartamento as department,
 			   high_score,
-			   fever_count,
-			   cough_count,
-			   difficult_breath_count,
-			   fever_cough_count,
-			   fever_breath_count,
-			   cough_breath_count,
-			   fever_cough_breath_count
+			   low_score
 			   -- Distinct of all the regions available in DB
 			   from (select
 			         distinct(GeolocDepartamento)
@@ -540,57 +487,21 @@ shinyServer(function(input, output, session) {
                     			from responses )si 
                     where (si.score_fever+si.score_cough+si.score_breath+si.score_digest+si.score_contact) >= 3.5 
                     group by GeolocDepartamento) as hs on hs.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(inputFebre) as fever_count
-			         from responses
-			         where inputFebre  = 'febre'
-          		 group by GeolocDepartamento) as f on f.GeolocDepartamento = i.GeolocDepartamento
-			   left join (select
-			         GeolocDepartamento,
-			         count(inputTos) as cough_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 group by GeolocDepartamento) as c on c.GeolocDepartamento = i.GeolocDepartamento
-			   left join (select
-			         GeolocDepartamento,
-			         count(inputRespirar) as difficult_breath_count
-			         from responses
-          		 where inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) r on r.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(*) as fever_cough_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputTos  = 'tos'
-          		 group by GeolocDepartamento) fc on fc.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(*) as fever_breath_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) fb on fb.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(*) as cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) cb on cb.GeolocDepartamento = i.GeolocDepartamento
-    		 left join (select
-			         GeolocDepartamento,
-			         count(*) as fever_cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 and inputFebre  = 'febre'
-          		 group by GeolocDepartamento) fcb on fcb.GeolocDepartamento = i.GeolocDepartamento;
-			  "
+         left join (select 
+                    GeolocDepartamento, 
+                    count(*) as low_score
+                    from (select
+                    			GeolocDepartamento,
+                    			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
+                    			case when inputTos = 'tos' then 1 else 0 end as score_cough,
+                    			case when inputDigestivos = 'problemas digestivos' then 1 else 0 end as score_digest,
+                    			case when inputRespirar = 'dificultad a respirar' then 3.5 else 0 end as score_breath,
+                    			case when optionsContacto = 'si' then 0.5 else 0 end as score_contact 
+                    			from responses ) sl 
+                    where (sl.score_fever+sl.score_cough+sl.score_breath+sl.score_digest+sl.score_contact) < 3.5 
+                    group by GeolocDepartamento) as ls on ls.GeolocDepartamento = i.GeolocDepartamento;"
 				))
-			#Ouput is "region", "department", "fever_count", "cough_count", "difficult_breath_count", "fever_cough_count",
-			#"fever_breath_count", "cough_breath_count", fever_cough_breath_count
+			#Ouput is "region", "department", "high_score", "low_score"
 
 			if (debug) {
 				write('get_db_data: raw data_file after SQL query:', file=log_filename, append=TRUE)
@@ -614,36 +525,16 @@ shinyServer(function(input, output, session) {
 			           is.na(department_abbreviation) ~ paste0(region),
 			           TRUE ~ paste(region, department_abbreviation, sep = ", ")),
 			         region = tolower(region),
-			         fever_count = dplyr::if_else(is.na(fever_count),
-			                                      0,
-			                                      fever_count),
-			         cough_count = dplyr::if_else(is.na(cough_count),
-			                                      0,
-			                                      cough_count),
-			         difficult_breath_count = dplyr::if_else(is.na(difficult_breath_count),
-          			                                       0,
-          			                                       difficult_breath_count),
-			         fever_cough_count = dplyr::if_else(is.na(fever_cough_count),
-      			                                      0,
-      			                                      fever_cough_count),
-			         fever_breath_count = dplyr::if_else(is.na(fever_breath_count),
-      			                                       0,
-      			                                       fever_breath_count),
-			         cough_breath_count = dplyr::if_else(is.na(cough_breath_count),
-      			                                       0,
-      			                                       cough_breath_count),
-			         fever_cough_breath_count = dplyr::if_else(is.na(fever_cough_breath_count),
-			                                                   0,
-			                                                   fever_cough_breath_count)) %>% 
+			         high_score = dplyr::if_else(is.na(high_score),
+			                                     0,
+			                                     high_score),
+			         low_score = dplyr::if_else(is.na(low_score),
+			                                    0,
+			                                    low_score)) %>% 
 			  ungroup() %>% 
 			  dplyr::select(region,
-			                fever_count,
-			                cough_count,
-			                difficult_breath_count,
-			                fever_cough_count,
-			                fever_breath_count,
-			                cough_breath_count,
-			                fever_cough_breath_count) 
+			                high_score,
+			                low_score) 
 			
 			# region names should be in lower case
 			#data_file[[1]] <- tolower(data_file[[1]])
