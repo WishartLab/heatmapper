@@ -18,9 +18,8 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			#EXAMPLE_FILE_SELECT(),
 		
 			tipify(fluidRow(
-				# column(3, tags$label("Area to use")),
-				column(3, tags$label("Área a utilizar")),#Ć
-				
+				column(3, tags$label("Area to use")),
+
 				column(9, 
 		    	selectInput("area", label = NULL, 
 		    		choices = c(
@@ -265,8 +264,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		    			),
 		    		selected = 'data/COL_2.rds'))
 			), 
-			#"Select map to display",
-			"Seleccione el mapa para mostrar",
+			"Select map to display",
 			placement = "right"),
 			tipify(fluidRow(
 			  column(3, tags$label("Date:")),
@@ -284,7 +282,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			
 			tipify(
 				selectInput("colSelect", 
-				            label = "Variable", 
+				            label = "Data to display", 
 				            choices = c("Total confirmed" = 'Total_Confirmed',
 				                        "Total recovered" = 'Total_Recovered',
 				                        "Total deaths" = 'Total_Deaths',
@@ -292,25 +290,21 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				                        "New daily recovered" = 'Daily_Recovered',
 				                        "New daily deaths" = 'Daily_Deaths')), 
 				#"Select column from input file",
-				"Select the variable",
+				"Select the data to show on the map",
 				placement = "right"
 				),
-			#HTML("<button id='rangeSubmit' class='action-button clearButton'>Enviar rango</button>"),
 			#HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
 			# bsTooltip(id = "rangeSubmit", 
-			#           #"Update heatmap using range of interest",
-			#           "Actualice el mapa de calor usando el rango de interes",
+			#           "Update heatmap using range of interest",
 			#           placement = "right"),
-			# tags$label("Rango de Interes"),#ĆØ
-			#tags$label("Range of Interest"),
+			# tags$label("Range of Interest"),
 			# tipify(
 			#   sliderInput("range",
 			#               label = NULL,
 			#               min = 0,
 			#               max = 100,
 			#               value = c(0, 100)),
-			#   #"Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
-			#   "Ajuste los valores de corte de asignacion de color, luego haga clic en el boton Enviar rango para actualizar el mapa de calor",
+			#   "Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
 			#   placement = "right"),
 			
 			FILL_OPACITY_SLIDER(0.8),
@@ -338,8 +332,7 @@ License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank
 		# 			HTML("<button id='rangeSubmit' class='action-button clearButton'>Enviar rango</button>"),
 		# 			#HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
 		# 			bsTooltip(id = "rangeSubmit", "Update heatmap using range of interest", placement = "right"),
-		# 			tags$label("Rango de Interes"),#ĆØ
-		# 			#tags$label("Range of Interest"),
+		# 			tags$label("Range of Interest"),
 		# 			tipify(
 		# 				sliderInput("range",
 		# 					label = NULL,
@@ -365,20 +358,16 @@ License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank
 		# 			# ), 
 		# 
 		# 			#checkboxInput('detectRetina', label = "Scale map tiles on retina displays", value = FALSE),
-		# 			#checkboxInput('detectRetina', label = "Escala de mosaicos de mapas en pantallas de retina", value = FALSE),
 		# 				# On mixed display setups, user must load the page while the browser window is
 		# 				# positioned on a retina display, in addition to checking this box, in order
 		# 				# for retina-resolution map tiles to display.
 		# 			
 		# # 			textInput('legend',
-		# #     		# label = "Custom legend title", 
-		# #    			# value = "Legend"),
-		# #     		label = "Titulo de leyenda personalizado", #Ć?
-		# #     		value = "Leyenda"),
+		# #     		label = "Custom legend title", 
+		# #    			value = "Legend"),
 		# 			
 		# 			# sliderInput("lineSize",
-		# 			#   #label = "Contour Line Width",
-		# 			# 	label = "Ancho de linea de contorno", #Ć?
+		# 			#   label = "Contour Line Width",
 		# 			# 	min = 0,
 		# 			# 	max = 5,
 		# 			# 	value = 1),
@@ -389,7 +378,7 @@ License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank
 	),
 	mainPanel(id = "mainPanel",
 		tabsetPanel(id = "tabSelections", type = "tabs",
-			tabPanel(title = "Interactivo", 
+			tabPanel(title = "Interactive", 
 				tags$br(),
 			  leafletOutput("map", "100%", 600),
 				conditionalPanel("output.map",
@@ -399,7 +388,7 @@ License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank
 					)
 				)
 			),
-			tabPanel(title = "la Tabla", 
+			tabPanel(title = "Table", 
 				tags$br(),
 				# wellPanel(
 				# 	tags$label("Update Region Name"), 

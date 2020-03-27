@@ -20,16 +20,13 @@ EXAMPLE_FILES <- c(
 					"Example 4" = 'example_input/example4.txt')
 
 # LAYERS_SELECT()
-# LAYERS <- "Show/Hide Layers"
-LAYERS <- "Mostrar/Ocultar Capas"
+LAYERS <- "Show/Hide Layers"
 
 # BIN_SLIDER()
-# BIN_NUMBER <- "Number of Shades"
-BIN_NUMBER <- "Numero de Gradaciones"
+BIN_NUMBER <- "Number of Shades"
 
 # FILL_OPACITY_SLIDER()
-# FILL_OPACITY <- "Heatmap Opacity"
-FILL_OPACITY <- "Opacidad"
+FILL_OPACITY <- "Heatmap Opacity"
 
 # BANDWIDTH_SLIDER()
 BANDWIDTH <- "Gaussian Radius Multiplier"
@@ -38,11 +35,8 @@ BANDWIDTH <- "Gaussian Radius Multiplier"
 GRID_POINTS <- "Contour Smoothness"
 
 # DOWNLOAD_BUTTONS()
-# DOWNLOAD_PLOT <- "Download Plot"
-# DOWNLOAD_TABLE <- "Download Table"
-DOWNLOAD_PLOT <- "Descargar Plot"
-DOWNLOAD_TABLE <- "Descargar Tabla"
-
+DOWNLOAD_PLOT <- "Download Plot"
+DOWNLOAD_TABLE <- "Download Table"
 
 RESOLUTION <- "Downloaded plot resolution (pixels per inch)"
 WIDTH <- "Plot Width (pixels)"
@@ -205,8 +199,7 @@ FILL_OPACITY_SLIDER <- function(value = 0.5){
 	  	    column(3, tags$label(FILL_OPACITY)), 
 	  	    column(9, sliderInput('fillOpacity', label = NULL, min = 0, max = 1, value = value, step = 0.05))
         ),
-    #"Adjust the heatmap colour opacity",
-    "Ajuste la opacidad del color del mapa de calor",
+    "Adjust the heatmap colour opacity",
     placement = "right")
 }
 
@@ -233,8 +226,7 @@ DOWNLOAD_BUTTONS <- function(){
 	list(
         tags$style("#tableDownload {float:right;}"),
 		# tipify(downloadButton('plotDownload', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot", placement = "top"),
-		# tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download data", placement = "top"),
-		tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Descargar datos", placement = "top"),
+		tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download data", placement = "top"),
 		tags$br(), tags$br()
 	)
 }
@@ -293,10 +285,8 @@ JSCOLOUR_3_ROW <- function(low = "#33FF00", mid = "#000000", high = "#FF0000"){
 # advanced options panel
 ADVANCED_OPTIONS_PANEL <- function(options_list){
 	list(
-# 		tipify(actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"), 
-#             "View more options", placement = "right"), 
-		tipify(actionButton('advancedOptionsButton', label = "Mostrar Opciones Avanzadas", class = "toggleButton fa fa-angle-down"), 
-					 "Ver más opciones", placement = "right"), 
+		tipify(actionButton('advancedOptionsButton', label = "Show Advanced Options", class = "toggleButton fa fa-angle-down"),
+            "View more options", placement = "right"),
 		conditionalPanel(condition = "input.advancedOptionsButton%2",
 		                 wellPanel(options_list))
 	)

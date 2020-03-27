@@ -264,8 +264,7 @@ shinyServer(function(input, output, session) {
   observe({
     log_activity('geomap', 'layer/tab changes')
     get_file()
-    if (input$tabSelections == "Interactivo") {
-      #if(input$tabSelections == "Interactive"){
+    if(input$tabSelections == "Interactive"){
       if (is.null(values$density)) {
         # remove old shapes when map is changed
         leafletProxy("map") %>%
@@ -288,9 +287,7 @@ shinyServer(function(input, output, session) {
   # update legend when needed
   observe({
     get_file()
-    #if(!is.null(values$density) && input$tabSelections == "Interactive"){
-    if (!is.null(values$density) &&
-        input$tabSelections == "Interactivo") {
+    if(!is.null(values$density) && input$tabSelections == "Interactive"){
       leafletProxy("map", data = isolate({
         get_map_data()
       })) %>%
@@ -1090,7 +1087,7 @@ shinyServer(function(input, output, session) {
   output$stateInfo <- renderUI({
     log_activity('geomap', 'stateInfo')
     if (is.null(values$highlight)) {
-      return(tags$div("Pase el mouse sobre una región"))
+      return(tags$div("Mouse over a region"))
     }
     else {
       # Get a properly formatted state name
@@ -1099,7 +1096,7 @@ shinyServer(function(input, output, session) {
                       tags$div(
                         if_else(
                           is.na(values$density[tolower(parseRegionName(stateName))]),
-                          "Sin datos recopilados",
+                          "No data collected",
                           values$density[tolower(parseRegionName(stateName))] %>% as.character()
                         ),
                         HTML("")
