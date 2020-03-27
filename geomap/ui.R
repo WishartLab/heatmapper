@@ -271,7 +271,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			  column(5,
 			    dateInput("date",
 			              label = NULL,
-			              value = Sys.Date())
+			              value = Sys.Date()-1)
 			  )),
 			title = NULL
 			  

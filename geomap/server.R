@@ -506,7 +506,8 @@ shinyServer(function(input, output, session) {
             append = TRUE)
       region_name <- maps_files_to_data_files %>% 
         filter(datafile == map_file_name) %>% 
-        pull(prefix)
+        pull(prefix) %>% 
+        paste("_",sep = "")
       write(paste('  region_name:', region_name, sep = "\t"),
             file = log_filename,
             append = TRUE)
@@ -518,8 +519,9 @@ shinyServer(function(input, output, session) {
       write(paste('  date:', date, sep = "\t"),
             file = log_filename,
             append = TRUE)
+      datepart <- paste(date[2], date[3], date[1], sep = "-")
       file_name <-
-        paste(prefix, date[2], date[3], date[1], sep = "-") %>% paste(".txt", sep = "")
+        paste(prefix, datepart,".txt", sep = "")
       write(paste('  file_name:', file_name, sep = "\t"),
             file = log_filename,
             append = TRUE)
