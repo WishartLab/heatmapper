@@ -297,7 +297,7 @@ shinyServer(function(input, output, session) {
           opacity = 0.7,
           colors = colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from)),
           labels = paste(values$from, "-", values$to),
-          title = 'Legend'
+          title = 'Person count'
         )#input$legend
     }
   })
@@ -915,6 +915,19 @@ shinyServer(function(input, output, session) {
     # Construct break ranges for displaying in the legend
     values$from <- head(densityBreaks, length(densityBreaks) - 1)
     values$to <- tail(densityBreaks, length(densityBreaks) - 1)
+    #Rounding the bin limits values for legend
+    for (i in 1:length(values$from)){
+      values$from[i] <- if_else(values$from[i] < 500,
+                                round(values$from[i],
+                                      digits = -1),
+                                round(values$from[i],
+                                      digits = -2))
+      values$to[i] <- if_else(values$to[i] <= 500,
+                                round(values$to[i],
+                                      digits = -1),
+                                round(values$to[i],
+                                      digits = -2))
+    }
     
     # Eight colors for eight buckets
     # if(input$colourScheme == 'red/green'){
