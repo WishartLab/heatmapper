@@ -297,7 +297,7 @@ shinyServer(function(input, output, session) {
           opacity = 0.7,
           colors = colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from)),
           labels = paste(values$from, "-", values$to),
-          title = 'Leyenda'
+          title = 'Legend'
         )#input$legend
     }
   })
