@@ -83,7 +83,7 @@ def write_to_file(file, region, list):
 
 hierarchy = {}
 all_rows = []
-with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/03-26-2020.csv') as csv_file:
+with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/03-24-2020.csv') as csv_file:
     reader = csv.reader(csv_file, delimiter=',')
     next(csv_file)
     for row in reader:
@@ -128,7 +128,7 @@ for row in all_rows:
         continent_hash[country] =  [row[4],row[5],row[6],row[7]]
 headers = ["Confirmed, Deaths, Recovered, Active"]
 now = datetime.datetime.now()
-time_file = str(now.year)+ "-" + str(now.month) + "-" + str(now.day - 1) + ".txt"
+time_file = str(now.year)+ "-" + str(now.month) + "-" + str(now.day - 3) + ".txt"
 with open("Global/"+"Global"+ "_" + time_file,"w") as global_file:
     global_file.write("\t".join(headers))
     global_file.write("\n")
