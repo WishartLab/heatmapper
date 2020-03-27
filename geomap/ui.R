@@ -323,7 +323,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			  HTML('This project is <a href="https://github.com/WishartLab/heatmapper" target="_blank">open source</a>.
 Heat maps use <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>
 developed in the <a href="http://www.wishartlab.com" target="_blank">Wishart Research Group</a> at the University of Alberta.<br>
-Questions or comments? Please use our <a href="http://feedback.wishartlab.com/?site=cov19col" target="_blank">feedback page</a>.
+Questions or comments? Please use our <a href="http://feedback.wishartlab.com/?site=covidmapper" target="_blank">feedback page</a>.
 License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>')
 			)
 			
