@@ -1,0 +1,28 @@
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/CAN_1.rds
+  region_name:	Global/North_America/Canada/Canada_
+  prefix:	data/Global/North_America/Canada/Canada_
+  date:	2020
+  date:	03
+  date:	26
+  file_name:	data/Global/North_America/Canada/Canada_03-26-2020.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/CAN_1.rds
+  region_name:	Global/North_America/Canada/Canada_
+  prefix:	data/Global/North_America/Canada/Canada_
+  date:	2020
+  date:	03
+  date:	26
+  file_name:	data/Global/North_America/Canada/Canada_03-26-2020.txt
