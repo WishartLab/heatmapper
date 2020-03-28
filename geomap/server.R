@@ -18,6 +18,7 @@ library(stringi)
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
 source("../config.R") # load DB connection details
+`%then%` <- shiny:::`%OR%` #function to have several validation for error handling
 # Data for region mapping
 region_names <- read.csv("../department_municipality_name.csv",
                          header = T,
@@ -111,6 +112,9 @@ shinyServer(function(input, output, session) {
                 append = TRUE)
         }
         min <- floor(min(values$density, na.rm = TRUE))
+        if (is.infinite(min)){
+          min <- 0
+        }
         if (debug) {
           write(values$density, file = log_filename, append = TRUE)
           write(paste('applying max...', sep = "\t"),
@@ -118,6 +122,9 @@ shinyServer(function(input, output, session) {
                 append = TRUE)
         }
         max <- ceiling(max(values$density, na.rm = TRUE))
+        if (is.infinite(max)){
+          max <- 0
+        }
         if (debug) {
           write(values$density, file = log_filename, append = TRUE)
           write(paste('done minmax', sep = "\t"),
@@ -153,7 +160,7 @@ shinyServer(function(input, output, session) {
             append = TRUE
           )
         isolate({
-          if (is.finite(min) && is.finite(max)) {
+          if (is.finite(min) && is.finite(max) && min != max) {
             update_colours(round(seq(min, max, length.out = 8 + 1), num_digits))#input$binNumber
             if (debug)
               write(
@@ -161,6 +168,8 @@ shinyServer(function(input, output, session) {
                 file = log_filename,
                 append = TRUE
               )
+          } else {
+            update_colours(round(min, num_digits))
           }
         })
         
@@ -249,7 +258,7 @@ shinyServer(function(input, output, session) {
         }
         
         densityBreaks <- get_breaks(rangeMin, rangeMax, min, max, bins)
-        update_colours(densityBreaks)
+        update_colours(densityBreaks)  
       }
     })
   })
@@ -519,7 +528,7 @@ shinyServer(function(input, output, session) {
       write(paste('  date:', date, sep = "\t"),
             file = log_filename,
             append = TRUE)
-      datepart <- paste(date[2], date[3], date[1], sep = "-")
+      datepart <- paste0(date, collapse = "-")
       file_name <-
         paste(prefix, datepart,".txt", sep = "")
       write(paste('  file_name:', file_name, sep = "\t"),
@@ -539,10 +548,11 @@ shinyServer(function(input, output, session) {
     },
     error = function(err) {
       # return message if we do not have data for this country
-      validate(need(
-        !file.exists(file_name),
-        "No data available for this country on that level"
-      ))
+      write(paste("ERROR : ", conditionMessage(err), "\n"), sep = "\t",
+            file = log_filename,
+            append = TRUE)
+      
+      return(NULL)
     },
     finally = {
       log_activity('geomap', 'end get_file')
@@ -906,7 +916,9 @@ shinyServer(function(input, output, session) {
     if (maxadd) {
       densityBreaks <- c(densityBreaks, max)
     }
-    
+    if (min == max) {
+      densityBreaks <- rangeMin
+    }
     densityBreaks
   }
   
@@ -915,18 +927,24 @@ shinyServer(function(input, output, session) {
     # Construct break ranges for displaying in the legend
     values$from <- head(densityBreaks, length(densityBreaks) - 1)
     values$to <- tail(densityBreaks, length(densityBreaks) - 1)
+    #Change empty elements to densityBreaks values
+    if (is.empty(values$from) && is.empty(values$to)){
+      values$from <- densityBreaks
+      values$to <- densityBreaks
+    }
+    
     #Rounding the bin limits values for legend
     for (i in 1:length(values$from)){
-      values$from[i] <- if_else(values$from[i] < 500,
-                                round(values$from[i],
-                                      digits = -1),
-                                round(values$from[i],
-                                      digits = -2))
-      values$to[i] <- if_else(values$to[i] <= 500,
-                                round(values$to[i],
-                                      digits = -1),
-                                round(values$to[i],
-                                      digits = -2))
+      values$from[i] <- case_when(
+        values$from[i] < 20 ~ round(values$from[i], digits = 0),
+        values$from[i] < 500 ~ round(values$from[i], digits = -1),
+        TRUE ~ round(values$from[i], digits = -2)
+        )
+      values$to[i] <- case_when(
+        values$to[i] < 20 ~ round(values$to[i], digits = 0),
+        values$to[i] < 500 ~ round(values$to[i], digits = -1),
+        TRUE ~ round(values$to[i], digits = -2)
+      )
     }
     
     # Eight colors for eight buckets
@@ -947,26 +965,31 @@ shinyServer(function(input, output, session) {
     # }
     #https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=8
     #Colorblind friendly 8 bins
-    values$palette <-
-      c(
-        "#ffffcc",
-        "#ffeda0",
-        "#fed976",
-        "#feb24c",
-        "#fd8d3c",
-        "#fc4e2a",
-        "#e31a1c",
-        "#b10026"
-      )
+    values$palette <- colorRampPalette(c("#ffffcc","#b10026"))(length(values$from))
+    # values$palette <-
+    #   c(
+    #     "#ffffcc",
+    #     "#ffeda0",
+    #     "#fed976",
+    #     "#feb24c",
+    #     "#fd8d3c",
+    #     "#fc4e2a",
+    #     "#e31a1c",
+    #     "#b10026"
+    #   )
     
     # Assign colors to states
-    values$colours <- structure(values$palette[as.integer(cut(
-      values$density,
-      densityBreaks,
-      include.lowest = TRUE,
-      ordered = TRUE
-    ))],
-    names = names(values$density))
+    if (length(values$from) == 1){
+      values$colours <- structure(rep(values$palette,length(values$density)),names = names(values$density))
+    } else {
+      values$colours <- structure(values$palette[as.integer(cut(
+        values$density,
+        densityBreaks,
+        include.lowest = TRUE,
+        ordered = TRUE
+      ))],
+      names = names(values$density))
+    }
   }
   
   # The state names that come back from the maps package's state database has
@@ -1002,6 +1025,33 @@ shinyServer(function(input, output, session) {
   # default map
   output$map <- renderLeaflet({
     get_file()
+    #Error handling
+    #Retrieveing the oldest date for available datafile
+    datafile_prefix <- maps_files_to_data_files %>% 
+      filter(datafile == input$area) %>% 
+      pull(prefix) %>% 
+      stri_split(regex = "/") %>% 
+      unlist()
+    path_to_dir <- paste("data",
+                         paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
+                         sep = "/")
+    filenames_list <- list.files(path_to_dir)
+    dates_vec <- NULL
+    for (filename in filenames_list){
+      date <- filename %>% 
+        stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
+        unlist() 
+      dates_vec <- c(dates_vec,date)
+    } 
+    oldest_date <- min(dates_vec, na.rm = T)
+
+    validate(
+      need(input$date < Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
+      need(input$date >= oldest_date, 
+           paste("No data available for this region on that date. \nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
+      need(!is.null(get_file()), "No data available for this region on that date") #Error message for data not available
+      )
+    #Present map
     leaflet()
   })
   
