@@ -310,23 +310,25 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			#   placement = "right"),
 			
 			FILL_OPACITY_SLIDER(0.8),
-			hr(),
+
 			DOWNLOAD_BUTTONS(),
+
 			hr(),
-			tags$p("Developed by",
-			       class = "text1"),
+			HTML('Want to make your own custom heatmaps? Try our freely accessible <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a> tool.'),
 			tags$a(img(src = "tmic_plain_stacked.svg",
-			           height = 114,
-			           width = 215,
-			           style = "display: block; margin-left: auto; margin-right: auto; "),
-			       href = "https://www.metabolomicscentre.ca/"),
+							height = 114,
+							width = 215,
+							style = "display: block; margin-left: auto; margin-right: auto; padding: 1.0em 0.0em 1.0em 0.0em;"),
+						href = "https://www.metabolomicscentre.ca/",
+						target="_blank"),
 			
-			tags$div(style = "font-size: 10px;",
-			  HTML('This project is <a href="https://github.com/WishartLab/heatmapper" target="_blank">open source</a>.
-Heat maps use <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>
-developed in the <a href="http://www.wishartlab.com" target="_blank">Wishart Research Group</a> at the University of Alberta.<br>
-Questions or comments? Please use our <a href="http://feedback.wishartlab.com/?site=covidmapper" target="_blank">feedback page</a>.
-License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>')
+			tags$div(style = "font-size: 11px;",
+			HTML('Developed by <a href="http://www.metabolomicscentre.ca" target="_blank">The Metabolomics Innovation Centre</a> at the University of Alberta.
+				This is an <a href="https://github.com/WishartLab/heatmapper/tree/covid-19" target="_blank">open source</a> project
+				based on <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>.
+				License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>.
+				<br>
+				Questions or comments? Please use our <a href="http://feedback.wishartlab.com/?site=covidmapper" target="_blank">feedback page</a>.')
 			)
 			
 		# 	ADVANCED_OPTIONS_PANEL(
