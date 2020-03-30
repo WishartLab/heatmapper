@@ -30,7 +30,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		    			"Asia: By Country" = 'data/Asia.rds', 
 		    			"Europe: By Country" = 'data/Europe.rds', 
 		    			"North America: By Country" = 'data/North_America.rds',
-		    			# "Oceania: By Country" = 'data/Oceania.rds',
+		    			"Oceania: By Country" = 'data/Oceania.rds',
 		    			"South America: By Country" = 'data/South_America.rds', 
 		    			
               #"Canada: Level 2" = 'data/CAN_2.rds',
