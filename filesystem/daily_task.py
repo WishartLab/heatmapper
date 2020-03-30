@@ -6,7 +6,7 @@ import numpy as np
 country_convert = {"US":"United States of America", "Bahamas" : "The Bahamas", "Congo (Kinshasa)": "Democratic Republic of the Congo","Congo (Brazzaville)":"Republic of the Congo",
         "Cote d'Ivoire": "Ivory Coast", "Czechia" : "Czech Republic", "Eswatini" : "Swaziland", "Korea, South" : "South Korea", 
         "North Macedonia": "Macedonia", "Serbia" : "Republic of Serbia", "Taiwan*" : "Taiwan", "Tanzania":"United Republic of Tanzania", "Timor-Leste" :"East Timor",
-        "Holy See" : "Vatican", "Cabo Verde" : "Cape Verde", "Burma" : "Myanmar", "The Gambia": "Gambia"}
+        "Holy See" : "Vatican", "Cabo Verde" : "Cape Verde", "Burma" : "Myanmar", "The Gambia": "Gambia", "Bahamas, The": "The Bahamas"}
 
 
 us_county_convert = {"DeKalb": "De Kalb", "De Baca" : "Debaca", "De Soto": "Desoto", "DeSoto" : "Desoto", 
@@ -87,7 +87,7 @@ def write_to_file(file, region, list):
         file.write("\t")
         file.write(str(x))
     file.write("\n")
-    print("File: " + file.name + " written" )
+    #print("File: " + file.name + " written" )
 
 
 date = datetime.strptime(xDate, "%Y-%m-%d")
@@ -105,13 +105,10 @@ with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/'+month+"-"+d
     data = list(reader)
     countries = []
     w_dependencies = []
-    print int(month)
-    print int(day)
     if (int(month) < 3) or ((int(month) == 3) and (int(day) < 22)):
-        print "goes in here"
+        
         for row in data:
             data[data.index(row)] = ['',''] + row  
-    print(data) 
     for row in data:
         dependency = row[2]
         country = row[3]
@@ -124,8 +121,7 @@ with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/'+month+"-"+d
         if (dependency == '') and (country in w_dependencies):
             countries.append(country)
     third_reader = csv.reader(csv_file, delimiter=',')
-    for row in data:
-        
+    for row in data: 
         country = row[3]
         state_province = row[2]
         county_department = row[1]
@@ -151,6 +147,15 @@ with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/'+month+"-"+d
         else:
             all_rows.append([continent,country,state_province,county_department,row[7],row[8], row[9], row[10]])
 
+for row in all_rows:
+    region = row[2]
+    for second_row in all_rows:
+        dependent_country = second_row[1]
+        nil_region = second_row[2]
+        if region == dependent_country and nil_region == '' and region != "Diamond Princess" and second_row[0] == 'other':
+            print row
+            print second_row
+            #all_rows.remove(second_row)
 
 for row in all_rows:
     continent = row[0]
