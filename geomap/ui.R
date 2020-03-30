@@ -25,12 +25,13 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		    		choices = c(
 		    		  #"Municipios" = 'data/COL_2.rds',
 		    		  #"Departamentos" = 'data/COL_1.rds'
-		    			# "World: By Country" = 'data/World_Countries.rds',
-		    			# "Africa: By Country" = 'data/Africa.rds', 
-		    			# "Asia: By Country" = 'data/Asia.rds', 
+		    			"World: By Country" = 'data/World_Countries.rds',
+		    			"Africa: By Country" = 'data/Africa.rds', 
+		    			"Asia: By Country" = 'data/Asia.rds', 
 		    			"Europe: By Country" = 'data/Europe.rds', 
-		    			# "North America: By Country" = 'data/North_America.rds', 
-		    			# "South America: By Country" = 'data/South_America.rds', 
+		    			"North America: By Country" = 'data/North_America.rds',
+		    			# "Oceania: By Country" = 'data/Oceania.rds',
+		    			"South America: By Country" = 'data/South_America.rds', 
 		    			
               #"Canada: Level 2" = 'data/CAN_2.rds',
                
@@ -80,7 +81,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
               # "Central African Republic" = 'data/CAF_1.rds',
               # "Chad" = 'data/TCD_1.rds',
               # "Chile" = 'data/CHL_1.rds',
-              # "China" = 'data/CHN_1.rds',
+              "China" = 'data/CHN_1.rds',
               
               # "Comoros" = 'data/COM_1.rds',
               # "Costa Rica" = 'data/CRI_1.rds',

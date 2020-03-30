@@ -520,7 +520,7 @@ shinyServer(function(input, output, session) {
       write(paste('  region_name:', region_name, sep = "\t"),
             file = log_filename,
             append = TRUE)
-      prefix <- paste("data/",region_name,sep = "")
+      prefix <- paste("../filesystem/",region_name,sep = "")
       write(paste('  prefix:', prefix, sep = "\t"),
             file = log_filename,
             append = TRUE)
@@ -1032,7 +1032,7 @@ shinyServer(function(input, output, session) {
       pull(prefix) %>% 
       stri_split(regex = "/") %>% 
       unlist()
-    path_to_dir <- paste("data",
+    path_to_dir <- paste("../filesystem/",
                          paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
                          sep = "/")
     filenames_list <- list.files(path_to_dir)

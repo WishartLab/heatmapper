@@ -1,9 +1,10 @@
 ﻿datafile,prefix
-data/World_Countries.rds,World_Countries
-data/Africa.rds,Africa
-data/Asia.rds,Asia
+data/World_Countries.rds,Global/Global-Country
+data/Africa.rds,Global/Africa/Africa
+data/Asia.rds,Global/Asia/Asia
 data/Europe.rds,Global/Europe/Europe
 data/North_America.rds,Global/North_America/North_America
+data/Oceania.rds,Global/Oceania/Oceania
 data/South_America.rds,Global/South_America/South_America
 data/CAN_2.rds,Canada_2
 data/CHN_2.rds,China_2
@@ -52,7 +53,7 @@ data/CYM_1.rds,Caymania
 data/CAF_1.rds,Central_African_Republic
 data/TCD_1.rds,Chad
 data/CHL_1.rds,Chile
-data/CHN_1.rds,China
+data/CHN_1.rds,Global/Asia/China/China
 data/COL_1.rds,Colombia
 data/COM_1.rds,Comoros
 data/CRI_1.rds,Costa_Rica
@@ -62,7 +63,7 @@ data/CUB_1.rds,Cuba
 data/CYP_1.rds,Cyprus
 data/CZE_1.rds,Czechia
 data/COD_1.rds,Democratic_Republic_of_the_Congo
-data/DNK_1.rds,Denmark
+data/DNK_1.rds,Global/Europe/Denmark/Denmark
 data/DJI_1.rds,Djibouti
 data/DMA_1.rds,Dominica
 data/DOM_1.rds,Dominican_Republic
