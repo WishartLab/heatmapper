@@ -716,3 +716,165 @@ get_file part
   date:	03
   date:	29
   file_name:	../filesystem/Global/Europe/Estonia/Estonia_2020-03-29.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Global/Africa/Africa_
+  prefix:	../filesystem/Global/Africa/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Africa/Africa_2020-03-29.txt
+get_file part
+  map-file_name:	data/DNK_1.rds
+  region_name:	Global/Europe/Denmark/Denmark_
+  prefix:	../filesystem/Global/Europe/Denmark/Denmark_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Europe/Denmark/Denmark_2020-03-29.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Global/Africa/Africa_
+  prefix:	../filesystem/Global/Africa/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Africa/Africa_2020-03-29.txt
+get_file part
+  map-file_name:	data/Asia.rds
+  region_name:	Global/Asia/Asia_
+  prefix:	../filesystem/Global/Asia/Asia_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Asia/Asia_2020-03-29.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Global/Africa/Africa_
+  prefix:	../filesystem/Global/Africa/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Africa/Africa_2020-03-29.txt
+get_file part
+  map-file_name:	data/Asia.rds
+  region_name:	Global/Asia/Asia_
+  prefix:	../filesystem/Global/Asia/Asia_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Asia/Asia_2020-03-29.txt
+get_file part
+  map-file_name:	data/CHN_1.rds
+  region_name:	Global/Asia/China/China_
+  prefix:	../filesystem/Global/Asia/China/China_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Asia/China/China_2020-03-29.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Global/Africa/Africa_
+  prefix:	../filesystem/Global/Africa/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Africa/Africa_2020-03-29.txt
+get_file part
+  map-file_name:	data/Oceania.rds
+  region_name:	Global/Oceania/Oceania_
+  prefix:	../filesystem/Global/Oceania/Oceania_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Oceania/Oceania_2020-03-29.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Global/Africa/Africa_
+  prefix:	../filesystem/Global/Africa/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Africa/Africa_2020-03-29.txt
+get_file part
+  map-file_name:	data/Oceania.rds
+  region_name:	Global/Oceania/Oceania_
+  prefix:	../filesystem/Global/Oceania/Oceania_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Oceania/Oceania_2020-03-29.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Global/Africa/Africa_
+  prefix:	../filesystem/Global/Africa/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Africa/Africa_2020-03-29.txt
+get_file part
+  map-file_name:	data/North_America.rds
+  region_name:	Global/North_America/North_America_
+  prefix:	../filesystem/Global/North_America/North_America_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/North_America/North_America_2020-03-29.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Global/Africa/Africa_
+  prefix:	../filesystem/Global/Africa/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Africa/Africa_2020-03-29.txt
+get_file part
+  map-file_name:	data/North_America.rds
+  region_name:	Global/North_America/North_America_
+  prefix:	../filesystem/Global/North_America/North_America_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/North_America/North_America_2020-03-29.txt
