@@ -3,21 +3,13 @@ footer {
 }
 
 .footer {
-#   background-color: yellow;
-#   display: flex;
   text-align: center;
   display: inline-block;
-#   width: 100%;
   width: 1024px;
 }
 
 .footer-container {
-#   background-color: red;
-#   text-align: center;
-#   width: 80%;
-#   display: flex;
   display: inline-block;
-#   padding: 5px;
 }
 
 .footer-container-2 {
@@ -25,33 +17,23 @@ footer {
 }
 
 .footer-left {
-#   background-color: green;
   float: left;
   text-align: left;
-#   width: 50%;
   width: 500px;
-#   font-size: 14px;
   color: #74736E;
-#   margin: 0em 0.5em 0em 0em;
   padding: 1.0em;
 }
 
 .footer-right {
-#   background-color: blue;
   float: right;
   width: 524px;
-#   width: 50%;
-#   margin-left: 1em;
 }
 
 .support-logo {
   display: inline;
-#   padding-left: 4px;
-#   padding-right: 4px;
 }
 
 .logo-img {
-#   vertical-align: bottom;
   width: 250px;
   padding: 1.2em 0.5em 0em 0.5em;
 }
