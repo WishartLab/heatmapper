@@ -67,7 +67,23 @@
 					padding: 5px;
 					vertical-align: top;
 			}
-		
+
+			.notice-holder {
+				display:table-cell;
+				width: 67%;
+				text-align: center;
+			}
+
+			.notice {
+				display:inline-block;
+				vertical-align: middle;
+				width: 80%;
+				padding: 1.0em 1.0em 0.5em 1.0em;
+				background-color: #eae0ff;
+				border-style: solid;
+				border-width: 2px;
+				border-color: #c9b1ff;
+			}
 		</style>
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -165,6 +181,28 @@
 		<div class="myTable">
 			<h2 style="margin-left:0px; padding-left:1.9em;">Welcome to Heatmapper!</h2>
 			
+				<div class="notice-holder">
+					<div class="notice"">
+						<p style="text-align:justify; width:100%;">
+							In response to COVID-19, Heatmapper has been adapted to
+							map cold- and flu-like symptoms in Colombia, South America, to enable officials
+							to better respond to the crisis. People in Colombia can self-report symptoms at
+							<a href="https://cov19col.herokuapp.com" target="_blank">cov19col.herokuapp.com</a>.
+							Please help get the word out!
+						</p>
+						<p style="text-align:justify; width:100%;">
+							The project is open source, for both the
+							<a href="https://github.com/WishartLab/heatmapper/tree/symptom_mapping" target="_blank">heatmapping</a>
+							and
+							<a href="https://github.com/Marco8301/QT-Cov19-OS" target="_blank">self-reporting</a>
+							apps.
+						</p>
+						<p style="text-align:justify; width:100%;">
+							We will also soon be launching a separate site for mapping COVID-19 data.
+						</p>
+					</div>
+				</div>
+
 			<div class="myRow" style="width:67%;">
 				
 <!-- 
