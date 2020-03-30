@@ -1,11 +1,12 @@
 import csv
 import os
-import datetime
-
+from datetime import datetime
+import sys
+import numpy as np 
 country_convert = {"US":"United States of America", "Bahamas" : "The Bahamas", "Congo (Kinshasa)": "Democratic Republic of the Congo","Congo (Brazzaville)":"Republic of the Congo",
         "Cote d'Ivoire": "Ivory Coast", "Czechia" : "Czech Republic", "Eswatini" : "Swaziland", "Korea, South" : "South Korea", 
         "North Macedonia": "Macedonia", "Serbia" : "Republic of Serbia", "Taiwan*" : "Taiwan", "Tanzania":"United Republic of Tanzania", "Timor-Leste" :"East Timor",
-        "Holy See" : "Vatican", "Cabo Verde" : "Cape Verde"}
+        "Holy See" : "Vatican", "Cabo Verde" : "Cape Verde", "Burma" : "Myanmar", "The Gambia": "Gambia"}
 
 
 us_county_convert = {"DeKalb": "De Kalb", "De Baca" : "Debaca", "De Soto": "Desoto", "DeSoto" : "Desoto", 
@@ -65,28 +66,66 @@ country_continent = {'Canada': 'North America', 'East Timor': 'Asia', 'Sao Tome 
 'Singapore': 'Asia', 'Comoros': 'Africa', 'United Kingdom': 'Europe', 'Greece': 'Europe', 'Sri Lanka': 'Asia', 'Namibia': 'Africa', 
 'Botswana': 'Africa', 'West Bank and Gaza': "Europe", "Guinea-Bissau" :"Africa"}
 
+
+
+xDate = sys.argv[1]
+
 def combine_values(list1,list2):
     new_list = []
     i=0
     for i in range(len(list1)):
-        new_list.append(int(list1[i])+int(list2[i]))
+        if list1[i] == "N/A" or list2[i] == "N/A":
+            new_list.append("N/A")
+        else:
+            new_list.append(int(list1[i])+int(list2[i]))
     return new_list
 
 
 def write_to_file(file, region, list):
     file.write(region)
-    file.write('\t')
-    file.write("\t".join(str(x) for x in list))
+    for x in list:
+        file.write("\t")
+        file.write(str(x))
     file.write("\n")
+    print("File: " + file.name + " written" )
 
 
+date = datetime.strptime(xDate, "%Y-%m-%d")
+
+year = str(date.year)
+month = str('%02d' % date.month)
+day = str('%02d' % date.day)
 
 hierarchy = {}
 all_rows = []
-with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/03-24-2020.csv') as csv_file:
+
+with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/'+month+"-"+day+"-"+year+'.csv') as csv_file:
     reader = csv.reader(csv_file, delimiter=',')
     next(csv_file)
-    for row in reader:
+    data = list(reader)
+    countries = []
+    w_dependencies = []
+    print int(month)
+    print int(day)
+    if (int(month) < 3) or ((int(month) == 3) and (int(day) < 22)):
+        print "goes in here"
+        for row in data:
+            data[data.index(row)] = ['',''] + row  
+    print(data) 
+    for row in data:
+        dependency = row[2]
+        country = row[3]
+        if dependency:
+            w_dependencies.append(country)
+    w_dependencies = np.unique(w_dependencies)
+    for row in data:
+        dependency = row[2]
+        country = row[3]
+        if (dependency == '') and (country in w_dependencies):
+            countries.append(country)
+    third_reader = csv.reader(csv_file, delimiter=',')
+    for row in data:
+        
         country = row[3]
         state_province = row[2]
         county_department = row[1]
@@ -98,10 +137,19 @@ with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/03-24-2020.cs
         if country == "China":
             if state_province in china_convert:
                 state_province = china_convert.get(state_province)
+        if country == "Cruise Ship":
+                country = "Diamond Princess"
+                state_province = None
+                county_department = None
+        if country in countries and state_province == '':
+            state_province = country
         continent = country_continent.get(country)
         if continent == None:
-            continent = "other"        
-        all_rows.append([continent,country,state_province,county_department,row[7],row[8], row[9], row[10]])
+            continent = "other"
+        if (int(month) < 3) or ((int(month) == 3) and (int(day) < 22)):
+            all_rows.append([continent,country,state_province,county_department,row[5],row[6], row[7], "N/A"])
+        else:
+            all_rows.append([continent,country,state_province,county_department,row[7],row[8], row[9], row[10]])
 
 
 for row in all_rows:
@@ -126,46 +174,50 @@ for row in all_rows:
             country_hash[prov] = [row[4],row[5],row[6],row[7]]
     else:
         continent_hash[country] =  [row[4],row[5],row[6],row[7]]
-headers = ["Confirmed, Deaths, Recovered, Active"]
-now = datetime.datetime.now()
-time_file = str(now.year)+ "-" + str(now.month) + "-" + str(now.day - 3) + ".txt"
-with open("Global/"+"Global"+ "_" + time_file,"w") as global_file:
-    global_file.write("\t".join(headers))
-    global_file.write("\n")
-    for continent in hierarchy.keys():
-        with open("Global/"+continent.replace(" ","_")+"/"+continent.replace(" ","_")+"_" + time_file,"w+") as continental_file:
-            continental_file.write("\t".join(headers))
-            continental_file.write("\n")
-            continental_collective_count = [0,0,0,0]
-            for country in hierarchy[continent]:
-                if type(hierarchy[continent][country]) is list:
-                    write_to_file(continental_file,country,hierarchy[continent][country])
-                    continental_collective_count = combine_values(continental_collective_count, hierarchy[continent][country])
-                else:
-                    country_collective_count = [0,0,0,0]
-                    with open("Global/"+continent.replace(" ","_")+ "/" + country.replace(" ","_") + "/" + country.replace(" ","_") + "_" + time_file,"w+") as country_file:
-                        country_file.write("\t".join(headers))
-                        country_file.write("\n")
-                        for prov_state in hierarchy[continent][country]:
-                            if prov_state == "Recovered":
-                                continue 
-                            print prov_state
-                            if type(hierarchy[continent][country][prov_state]) is list:
-                                write_to_file(country_file,prov_state,hierarchy[continent][country][prov_state])
-                                country_collective_count = combine_values(country_collective_count,hierarchy[continent][country][prov_state])
-                            else:
-                                prov_state_collective_count = [0,0,0,0]
-                                with open("Global/"+continent.replace(" ","_")+ "/" + 
-                                    country.replace(" ","_")+ "/" + prov_state.replace(" ", "_") + "/" + prov_state.replace(" ", "_")+ "_" + time_file,"w+") as prov_state_file:
-                                    prov_state_file.write("\t".join(headers))
-                                    prov_state_file.write("\n")
-                                    for county in hierarchy[continent][country][prov_state]:
-                                        write_to_file(prov_state_file, county, hierarchy[continent][country][prov_state][county])
-                                        prov_state_collective_count = combine_values(prov_state_collective_count,hierarchy[continent][country][prov_state][county])
-                                    write_to_file(country_file,prov_state,prov_state_collective_count)
-                                    country_collective_count = combine_values(country_collective_count, prov_state_collective_count)
-                    write_to_file(continental_file, country,country_collective_count)
-                    continental_collective_count =combine_values(continental_collective_count, country_collective_count)
-        write_to_file(global_file,continent,continental_collective_count)
+headers = ["Name", "Confirmed", "Deaths", "Recovered", "Active"]
+
+time_file = year + "-" + month + "-" + day + ".txt"
+with open("Global/"+"Global-Continent"+ "_" + time_file,"w") as global_continent_file:
+    global_continent_file.write("\t".join(headers))
+    global_continent_file.write("\n")
+    with open("Global/"+"Global-Country"+"_"+time_file,"w") as global_country_file:
+        global_country_file.write("\t".join(headers))
+        global_country_file.write("\n")
+        for continent in hierarchy.keys():
+            with open("Global/"+continent.replace(" ","_")+"/"+continent.replace(" ","_")+"_" + time_file,"w+") as continental_file:
+                continental_file.write("\t".join(headers))
+                continental_file.write("\n")
+                continental_collective_count = [0,0,0,0]
+                for country in hierarchy[continent]:
+                    if type(hierarchy[continent][country]) is list:
+                        write_to_file(continental_file,country,hierarchy[continent][country])
+                        write_to_file(global_country_file,country,hierarchy[continent][country])
+                        continental_collective_count = combine_values(continental_collective_count, hierarchy[continent][country])
+                    else:
+                        country_collective_count = [0,0,0,0]
+                        with open("Global/"+continent.replace(" ","_")+ "/" + country.replace(" ","_") + "/" + country.replace(" ","_") + "_" + time_file,"w+") as country_file:
+                            country_file.write("\t".join(headers))
+                            country_file.write("\n")
+                            for prov_state in hierarchy[continent][country]:
+                                if prov_state == "Recovered":
+                                    continue 
+                                if type(hierarchy[continent][country][prov_state]) is list:
+                                    write_to_file(country_file,prov_state,hierarchy[continent][country][prov_state])
+                                    country_collective_count = combine_values(country_collective_count,hierarchy[continent][country][prov_state])
+                                else:
+                                    prov_state_collective_count = [0,0,0,0]
+                                    with open("Global/"+continent.replace(" ","_")+ "/" + 
+                                        country.replace(" ","_")+ "/" + prov_state.replace(" ", "_") + "/" + prov_state.replace(" ", "_")+ "_" + time_file,"w+") as prov_state_file:
+                                        prov_state_file.write("\t".join(headers))
+                                        prov_state_file.write("\n")
+                                        for county in hierarchy[continent][country][prov_state]:
+                                            write_to_file(prov_state_file, county, hierarchy[continent][country][prov_state][county])
+                                            prov_state_collective_count = combine_values(prov_state_collective_count,hierarchy[continent][country][prov_state][county])
+                                        write_to_file(country_file,prov_state,prov_state_collective_count)
+                                        country_collective_count = combine_values(country_collective_count, prov_state_collective_count)
+                        write_to_file(continental_file, country,country_collective_count)
+                        write_to_file(global_country_file,country,country_collective_count)
+                        continental_collective_count =combine_values(continental_collective_count, country_collective_count)
+            write_to_file(global_continent_file,continent,continental_collective_count)
 
 
