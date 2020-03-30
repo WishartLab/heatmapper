@@ -50,6 +50,7 @@ BRIGHTNESS <- "Colour Brightness"
 HEAD_TASKS <- function(activeTab, left = "65%", top = "45%"){
 	list(
 		includeHTML("../www/navbar.html"),
+		includeHTML("../www/notice.html"),
 		tags$script(paste0("$('", activeTab, "').addClass('active');")), 
 		tags$head(includeScript("../www/js/google-analytics.js")),
 		
