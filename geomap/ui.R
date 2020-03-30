@@ -26,11 +26,11 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		    		  #"Municipios" = 'data/COL_2.rds',
 		    		  #"Departamentos" = 'data/COL_1.rds'
 		    			# "World: By Country" = 'data/World_Countries.rds',
-		    			# "Africa: By Country" = 'data/Africa.rds', 
-		    			# "Asia: By Country" = 'data/Asia.rds', 
+		    			"Africa: By Country" = 'data/Africa.rds', 
+		    			"Asia: By Country" = 'data/Asia.rds', 
 		    			"Europe: By Country" = 'data/Europe.rds', 
-		    			# "North America: By Country" = 'data/North_America.rds', 
-		    			# "South America: By Country" = 'data/South_America.rds', 
+		    			"North America: By Country" = 'data/North_America.rds', 
+		    			"South America: By Country" = 'data/South_America.rds', 
 		    			
               #"Canada: Level 2" = 'data/CAN_2.rds',
                

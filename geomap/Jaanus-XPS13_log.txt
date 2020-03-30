@@ -440,3 +440,279 @@ get_file part
   date:	03
   date:	26
   file_name:	data/Global/Europe/Europe_2020-03-26.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Europe.rds
+  region_name:	Global/Europe/Europe_
+  prefix:	data/Global/Europe/Europe_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	data/Global/Europe/Europe_2020-03-29.txt
+ERROR :  cannot open the connection 
+
+get_file part
+  map-file_name:	data/CAN_1.rds
+  region_name:	Global/North_America/Canada/Canada_
+  prefix:	data/Global/North_America/Canada/Canada_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	data/Global/North_America/Canada/Canada_2020-03-29.txt
+ERROR :  cannot open the connection 
+
+get_file part
+  map-file_name:	data/CAN_1.rds
+  region_name:	Global/North_America/Canada/Canada_
+  prefix:	data/Global/North_America/Canada/Canada_
+  date:	2020
+  date:	03
+  date:	26
+  file_name:	data/Global/North_America/Canada/Canada_2020-03-26.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Europe.rds
+  region_name:	Global/Europe/Europe_
+  prefix:	../filesystem/Global/Europe/Europe_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Europe/Europe_2020-03-29.txt
+get_file part
+  map-file_name:	data/CAN_1.rds
+  region_name:	Global/North_America/Canada/Canada_
+  prefix:	../filesystem/Global/North_America/Canada/Canada_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/North_America/Canada/Canada_2020-03-29.txt
+get_file part
+  map-file_name:	data/Europe.rds
+  region_name:	Global/Europe/Europe_
+  prefix:	../filesystem/Global/Europe/Europe_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Europe/Europe_2020-03-29.txt
+get_file part
+  map-file_name:	data/Europe.rds
+  region_name:	Global/Europe/Europe_
+  prefix:	../filesystem/Global/Europe/Europe_
+  date:	2020
+  date:	03
+  date:	30
+  file_name:	../filesystem/Global/Europe/Europe_2020-03-30.txt
+ERROR :  cannot open the connection 
+
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Africa_
+  prefix:	../filesystem/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Africa_2020-03-29.txt
+ERROR :  cannot open the connection 
+
+get_file part
+  map-file_name:	data/Asia.rds
+  region_name:	Asia_
+  prefix:	../filesystem/Asia_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Asia_2020-03-29.txt
+ERROR :  cannot open the connection 
+
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Global/Africa/Africa_
+  prefix:	../filesystem/Global/Africa/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Africa/Africa_2020-03-29.txt
+get_file part
+  map-file_name:	data/Europe.rds
+  region_name:	Global/Europe/Europe_
+  prefix:	../filesystem/Global/Europe/Europe_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Europe/Europe_2020-03-29.txt
+get_file part
+  map-file_name:	data/North_America.rds
+  region_name:	Global/North_America/North_America_
+  prefix:	../filesystem/Global/North_America/North_America_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/North_America/North_America_2020-03-29.txt
+get_file part
+  map-file_name:	data/South_America.rds
+  region_name:	Global/South_America/South_America_
+  prefix:	../filesystem/Global/South_America/South_America_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/South_America/South_America_2020-03-29.txt
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Global/Africa/Africa_
+  prefix:	../filesystem/Global/Africa/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Africa/Africa_2020-03-29.txt
+get_file part
+  map-file_name:	data/Asia.rds
+  region_name:	Global/Asia/Asia_
+  prefix:	../filesystem/Global/Asia/Asia_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Asia/Asia_2020-03-29.txt
+get_file part
+  map-file_name:	data/Europe.rds
+  region_name:	Global/Europe/Europe_
+  prefix:	../filesystem/Global/Europe/Europe_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Europe/Europe_2020-03-29.txt
+get_file part
+  map-file_name:	data/North_America.rds
+  region_name:	Global/North_America/North_America_
+  prefix:	../filesystem/Global/North_America/North_America_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/North_America/North_America_2020-03-29.txt
+get_file part
+  map-file_name:	data/South_America.rds
+  region_name:	Global/South_America/South_America_
+  prefix:	../filesystem/Global/South_America/South_America_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/South_America/South_America_2020-03-29.txt
+get_file part
+  map-file_name:	data/CAN_1.rds
+  region_name:	Global/North_America/Canada/Canada_
+  prefix:	../filesystem/Global/North_America/Canada/Canada_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/North_America/Canada/Canada_2020-03-29.txt
+get_file part
+  map-file_name:	data/EST_1.rds
+  region_name:	Global/Europe/Estonia/Estonia_
+  prefix:	../filesystem/Global/Europe/Estonia/Estonia_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Europe/Estonia/Estonia_2020-03-29.txt
+ERROR :  cannot open the connection 
+
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+  get_density: caught error:
+Error in names(nums_col) <- name_col: attempt to set an attribute on NULL
+
+observe input$colSelect: caught error:
+Error: File could not be read. Please ensure that the file you uploaded is valid. Input data can have up to 50 data columns.
+
+get_file part
+  map-file_name:	data/Africa.rds
+  region_name:	Global/Africa/Africa_
+  prefix:	../filesystem/Global/Africa/Africa_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Africa/Africa_2020-03-29.txt
+get_file part
+  map-file_name:	data/Asia.rds
+  region_name:	Global/Asia/Asia_
+  prefix:	../filesystem/Global/Asia/Asia_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Asia/Asia_2020-03-29.txt
+get_file part
+  map-file_name:	data/Europe.rds
+  region_name:	Global/Europe/Europe_
+  prefix:	../filesystem/Global/Europe/Europe_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Europe/Europe_2020-03-29.txt
+get_file part
+  map-file_name:	data/North_America.rds
+  region_name:	Global/North_America/North_America_
+  prefix:	../filesystem/Global/North_America/North_America_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/North_America/North_America_2020-03-29.txt
+get_file part
+  map-file_name:	data/South_America.rds
+  region_name:	Global/South_America/South_America_
+  prefix:	../filesystem/Global/South_America/South_America_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/South_America/South_America_2020-03-29.txt
+get_file part
+  map-file_name:	data/CAN_1.rds
+  region_name:	Global/North_America/Canada/Canada_
+  prefix:	../filesystem/Global/North_America/Canada/Canada_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/North_America/Canada/Canada_2020-03-29.txt
+get_file part
+  map-file_name:	data/EST_1.rds
+  region_name:	Global/Europe/Estonia/Estonia_
+  prefix:	../filesystem/Global/Europe/Estonia/Estonia_
+  date:	2020
+  date:	03
+  date:	29
+  file_name:	../filesystem/Global/Europe/Estonia/Estonia_2020-03-29.txt
