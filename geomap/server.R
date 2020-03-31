@@ -161,7 +161,21 @@ shinyServer(function(input, output, session) {
           )
         isolate({
           if (is.finite(min) && is.finite(max) && min != max) {
-            update_colours(round(seq(min, max, length.out = 8 + 1), num_digits))#input$binNumber
+            #update_colours(round(seq(min, max, length.out = 8 + 1), num_digits))#input$binNumber
+            #Added logarithmic scale if max is 500 times higher than min
+            if (max/max(min,1) > 500){
+              densityBreaks <- round(10^seq(log10(max(min,1)), log10(max), length.out = 8 + 1), num_digits)
+            } else {
+              densityBreaks <- round(seq(min, max, length.out = 8 + 1), num_digits)
+            }
+            
+            if (min == 0){
+              #Set lower limit to 0
+              densityBreaks[1] <- 0
+            } 
+            update_colours(densityBreaks)#input$binNumber
+    
+            
             if (debug)
               write(
                 'observe input$colSelect: update_colours returned',
@@ -1007,21 +1021,21 @@ shinyServer(function(input, output, session) {
     # }
     #https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=8
     #Colorblind friendly 8 bins
-    values$palette <- colorRampPalette(c("#ffffcc","#b10026"))(length(values$from))
-    # values$palette <-
-    #   c(
-    #     "#ffffcc",
-    #     "#ffeda0",
-    #     "#fed976",
-    #     "#feb24c",
-    #     "#fd8d3c",
-    #     "#fc4e2a",
-    #     "#e31a1c",
-    #     "#b10026"
-    #   )
+    values$palette <-
+      c(
+        "#ffffcc",
+        "#ffeda0",
+        "#fed976",
+        "#feb24c",
+        "#fd8d3c",
+        "#fc4e2a",
+        "#e31a1c",
+        "#b10026"
+      )
     
     # Assign colors to states
     if (length(values$from) == 1){
+      values$palette <- colorRampPalette(c("#ffffcc","#b10026"))(length(values$from))
       values$colours <- structure(rep(values$palette,length(values$density)),names = names(values$density))
     } else {
       values$colours <- structure(values$palette[as.integer(cut(
