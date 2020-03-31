@@ -938,12 +938,16 @@ shinyServer(function(input, output, session) {
       values$from[i] <- case_when(
         values$from[i] < 20 ~ round(values$from[i], digits = 0),
         values$from[i] < 500 ~ round(values$from[i], digits = -1),
-        TRUE ~ round(values$from[i], digits = -2)
+        values$from[i] < 2000 ~ round(values$from[i], digits = -2),
+        values$from[i] < 20000 ~ round(values$from[i], digits = -3),
+        TRUE ~ round(values$from[i], digits = -4)
         )
       values$to[i] <- case_when(
         values$to[i] < 20 ~ round(values$to[i], digits = 0),
         values$to[i] < 500 ~ round(values$to[i], digits = -1),
-        TRUE ~ round(values$to[i], digits = -2)
+        values$to[i] < 2000 ~ round(values$to[i], digits = -2),
+        values$to[i] < 20000 ~ round(values$to[i], digits = -3),
+        TRUE ~ round(values$to[i], digits = -4)
       )
     }
     
