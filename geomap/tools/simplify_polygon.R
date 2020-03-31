@@ -87,6 +87,8 @@ prepare_map <- function(country_code,
   library(stringr)
   #Extract data from map object
   map_data <- map@data 
+  #Extract polygons
+  polygons <- map@polygons
   #extract row names
   row_names <- map_data %>% row.names()
   #extract number of polygons
