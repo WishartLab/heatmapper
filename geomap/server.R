@@ -928,7 +928,7 @@ shinyServer(function(input, output, session) {
     values$from <- head(densityBreaks, length(densityBreaks) - 1)
     values$to <- tail(densityBreaks, length(densityBreaks) - 1)
     #Change empty elements to densityBreaks values
-    if (is.empty(values$from) && is.empty(values$to)){
+    if (length(values$from) == 0 && length(values$to) == 0){
       values$from <- densityBreaks
       values$to <- densityBreaks
     }
