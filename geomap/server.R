@@ -1050,7 +1050,7 @@ shinyServer(function(input, output, session) {
     oldest_date <- min(dates_vec, na.rm = T)
 
     validate(
-      need(input$date < Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
+      need(input$date <= Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
       need(input$date >= oldest_date, 
            paste("No data available for this region on that date. \nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
       need(!is.null(get_file()), "No data available for this region on that date") #Error message for data not available
