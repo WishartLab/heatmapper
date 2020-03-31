@@ -513,9 +513,12 @@ shinyServer(function(input, output, session) {
       write(paste('  map-file_name:', map_file_name, sep = "\t"),
             file = log_filename,
             append = TRUE)
-      region_name <- maps_files_to_data_files %>% 
-        filter(datafile == map_file_name) %>% 
-        pull(prefix) %>% 
+      #Retrieve datafile mapping string
+      datafile_mapping <- maps_files_to_data_files %>% 
+        filter(datafile == input$area) %>% 
+        pull(prefix)
+      #Extract region name
+      region_name <- datafile_mapping %>% 
         paste("_",sep = "")
       write(paste('  region_name:', region_name, sep = "\t"),
             file = log_filename,
@@ -524,17 +527,52 @@ shinyServer(function(input, output, session) {
       write(paste('  prefix:', prefix, sep = "\t"),
             file = log_filename,
             append = TRUE)
-      date <- input$date %>% stri_split(regex = "-") %>% unlist()
+      #Retrieveing the the datafiles for that region
+      datafile_prefix <- datafile_mapping %>% 
+        stri_split(regex = "/") %>% 
+        unlist()
+      path_to_dir <- paste("../filesystem/",
+                           paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
+                           sep = "/")
+      filenames_list <- list.files(path_to_dir)
+      dates_vec <- NULL
+      for (filename in filenames_list){
+        date <- filename %>% 
+          stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
+          unlist() 
+        dates_vec <- c(dates_vec,date)
+      }
+      
+      oldest_date <- min(dates_vec, na.rm = T)
+      newest_date <- max(dates_vec, na.rm = T)
+      
+      #Check if we do have file with that date
+      date_checked <- case_when(
+        input$date < oldest_date ~ oldest_date %>% as.character(),
+        input$date > newest_date ~ newest_date %>% as.character(),
+        TRUE ~ input$date %>% as.character()
+      )
+      #Update input$date in UI if date has been corrected
+      isolate({
+        if (date_checked != input$date){
+          #Update input$date in UI
+          updateDateInput(session, inputId="date", value = date_checked %>% as.Date())
+        }
+      })
+      
+      #Extract date information from string this part maybe obsolete as we have now same format as default format
+      date <- date_checked %>% stri_split(regex = "-") %>% unlist()
       write(paste('  date:', date, sep = "\t"),
             file = log_filename,
             append = TRUE)
       datepart <- paste0(date, collapse = "-")
+      #Create file name
       file_name <-
         paste(prefix, datepart,".txt", sep = "")
       write(paste('  file_name:', file_name, sep = "\t"),
             file = log_filename,
             append = TRUE)
-      
+      #read file
       data_file <- read.csv(file = file_name,
                             sep = "\t")
       
@@ -928,7 +966,7 @@ shinyServer(function(input, output, session) {
     values$from <- head(densityBreaks, length(densityBreaks) - 1)
     values$to <- tail(densityBreaks, length(densityBreaks) - 1)
     #Change empty elements to densityBreaks values
-    if (is.empty(values$from) && is.empty(values$to)){
+    if (length(values$from) == 0 && length(values$to) == 0){
       values$from <- densityBreaks
       values$to <- densityBreaks
     }
@@ -938,12 +976,16 @@ shinyServer(function(input, output, session) {
       values$from[i] <- case_when(
         values$from[i] < 20 ~ round(values$from[i], digits = 0),
         values$from[i] < 500 ~ round(values$from[i], digits = -1),
-        TRUE ~ round(values$from[i], digits = -2)
+        values$from[i] < 2000 ~ round(values$from[i], digits = -2),
+        values$from[i] < 20000 ~ round(values$from[i], digits = -3),
+        TRUE ~ round(values$from[i], digits = -4)
         )
       values$to[i] <- case_when(
         values$to[i] < 20 ~ round(values$to[i], digits = 0),
         values$to[i] < 500 ~ round(values$to[i], digits = -1),
-        TRUE ~ round(values$to[i], digits = -2)
+        values$to[i] < 2000 ~ round(values$to[i], digits = -2),
+        values$to[i] < 20000 ~ round(values$to[i], digits = -3),
+        TRUE ~ round(values$to[i], digits = -4)
       )
     }
     
@@ -1024,33 +1066,37 @@ shinyServer(function(input, output, session) {
   
   # default map
   output$map <- renderLeaflet({
-    get_file()
+    
     #Error handling
     #Retrieveing the oldest date for available datafile
-    datafile_prefix <- maps_files_to_data_files %>% 
-      filter(datafile == input$area) %>% 
-      pull(prefix) %>% 
-      stri_split(regex = "/") %>% 
-      unlist()
-    path_to_dir <- paste("../filesystem/",
-                         paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
-                         sep = "/")
-    filenames_list <- list.files(path_to_dir)
-    dates_vec <- NULL
-    for (filename in filenames_list){
-      date <- filename %>% 
-        stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
-        unlist() 
-      dates_vec <- c(dates_vec,date)
-    } 
-    oldest_date <- min(dates_vec, na.rm = T)
+    # datafile_prefix <- maps_files_to_data_files %>% 
+    #   filter(datafile == input$area) %>% 
+    #   pull(prefix) %>% 
+    #   stri_split(regex = "/") %>% 
+    #   unlist()
+    # path_to_dir <- paste("../filesystem/",
+    #                      paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
+    #                      sep = "/")
+    # filenames_list <- list.files(path_to_dir)
+    # dates_vec <- NULL
+    # for (filename in filenames_list){
+    #   date <- filename %>% 
+    #     stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
+    #     unlist() 
+    #   dates_vec <- c(dates_vec,date)
+    # } 
+    # oldest_date <- min(dates_vec, na.rm = T)
+    # newest_date <- max(dates_vec, na.rm = T)
 
-    validate(
-      need(input$date < Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
-      need(input$date >= oldest_date, 
-           paste("No data available for this region on that date. \nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
-      need(!is.null(get_file()), "No data available for this region on that date") #Error message for data not available
-      )
+    # validate(
+    #   need(input$date <= Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
+    #   need(input$date >= oldest_date, 
+    #        paste("No data available for this region on that date.\nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
+    #   need(!is.null(get_file()), 
+    #        paste("No data available for this region on that date\nWe can provide data for that region starting from",
+    #              oldest_date,"to",newest_date)) #Error message for data not available
+    #   )
+    get_file()
     #Present map
     leaflet()
   })
