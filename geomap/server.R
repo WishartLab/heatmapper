@@ -210,8 +210,6 @@ shinyServer(function(input, output, session) {
 				mapData <- get_map_data()
 	  		leafletProxy("map", data =  mapData) %>% 
 	  		  clearShapes() %>%
-	  		  #Set centre point to Bogota and increase zoom. Works currently for departmento level
-	  		  setView(lng = -74.040242, lat = 4.612821,  zoom = 5.3) %>% 
 	  		  get_shapes() %>% 
 	  		  get_tiles() %>% 
 	  		  get_view()
@@ -699,7 +697,7 @@ shinyServer(function(input, output, session) {
   		lon <<- c(lon, x@labpt[[2]])
   	})
 		
-		setView(m, mean(lat), mean(lon), zoom = 3) 
+		setView(m, mean(lat), mean(lon), zoom = 5.3) 
 	}
 	
 	get_shapes <- function(m){
