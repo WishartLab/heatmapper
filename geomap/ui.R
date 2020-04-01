@@ -1,8 +1,10 @@
 source("../global_ui.R")
 library(leaflet)
 library(d3heatmap)
+library(shinyjs)
 
 shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
+                                                 useShinyjs(),
 	
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel", width = 1,

@@ -365,6 +365,27 @@ shinyServer(function(input, output, session) {
       }
     })
   })
+  # Implement showing Download csv button only for Table tab
+  # Idea from: https://stackoverflow.com/questions/41738927/show-hide-button-on-tab-select-r-shiny
+  observeEvent(input$tabSelections, {
+    choice = input$tabSelections
+    write(paste('Observe tabSelection:',choice),
+          file = log_filename,
+          append = TRUE)
+    if(choice == "Table") {
+      write(paste('Observe tabSelection:',choice),
+            file = log_filename,
+            append = TRUE)
+      runjs(
+        'document.getElementById("tableDownload").style.visibility = "visible";'
+      )
+    }
+    else {
+      runjs(
+        'document.getElementById("tableDownload").style.visibility = "hidden";'
+      )
+    }
+  })
   
   #################### HELPER FUNCTIONS ####################
   
