@@ -310,7 +310,7 @@ shinyServer(function(input, output, session) {
   # update legend when needed
   observe({
     get_file()
-    if(!is.null(values$density) && input$tabSelections == "Interactive"){
+    if(!is.null(values$density) && input$tabSelections == "Heatmap"){
       leafletProxy("map", data = isolate({
         get_map_data()
       })) %>%
