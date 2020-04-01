@@ -1137,7 +1137,9 @@ shinyServer(function(input, output, session) {
     #   )
     get_file()
     #Present map
-    leaflet()
+    leaflet(
+      #Restricting lowest zoom limit
+      options = leafletOptions(minZoom = 2))
   })
   
   
@@ -1210,7 +1212,9 @@ shinyServer(function(input, output, session) {
     # else{
     # 	clearTiles(m)
     # }
-    addTiles(m)
+    addTiles(m,
+             #REstrict to one copy of the map of Globe
+             options=providerTileOptions(noWrap = TRUE))
   }
   
   ################# OUTPUT FUNCTIONS #################
