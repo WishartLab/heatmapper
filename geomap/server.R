@@ -19,7 +19,7 @@ source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
 source("../config.R") # load DB connection details
 `%then%` <- shiny:::`%OR%` #function to have several validation for error handling
-# Data for region mapping
+# Data for region mapping----
 region_names <- read.csv("../department_municipality_name.csv",
                          header = T,
                          sep = ",")
@@ -31,9 +31,13 @@ maps_files_to_data_files <- read.csv("tools/map_name_to_data_name.csv",
                                      col.names = c("datafile","prefix"),
                                      colClasses = c("character","character"))
 
-# Constants
+# Constants----
 dimensions_msg <- "Input data can have up to 50 data columns."
 
+#FUNCTIONS----
+mround <- function(x,base){
+ return(base*round(x/base))
+}
 # Logging & debugging
 log_filename = tryCatch({
   paste(system("hostname", intern = TRUE), 'log.txt', sep = "_")
@@ -988,14 +992,14 @@ shinyServer(function(input, output, session) {
     #Rounding the bin limits values for legend
     for (i in 1:length(values$from)){
       values$from[i] <- case_when(
-        values$from[i] < 20 ~ round(values$from[i], digits = 0),
+        values$from[i] < 20 ~ mround(values$from[i], base = 5),
         values$from[i] < 500 ~ round(values$from[i], digits = -1),
         values$from[i] < 2000 ~ round(values$from[i], digits = -2),
         values$from[i] < 20000 ~ round(values$from[i], digits = -3),
         TRUE ~ round(values$from[i], digits = -4)
         )
       values$to[i] <- case_when(
-        values$to[i] < 20 ~ round(values$to[i], digits = 0),
+        values$to[i] < 20 ~ mround(values$to[i], base = 5),
         values$to[i] < 500 ~ round(values$to[i], digits = -1),
         values$to[i] < 2000 ~ round(values$to[i], digits = -2),
         values$to[i] < 20000 ~ round(values$to[i], digits = -3),
