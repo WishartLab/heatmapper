@@ -1,6 +1,7 @@
 library(jscolourR)
 library(spin)
 library(shinyBS)
+library(mapview)
 
 # error messages
 ERR_file_upload <- "Please upload a file."

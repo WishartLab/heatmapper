@@ -191,7 +191,6 @@ shinyServer(function(input, output, session) {
 	})
 	
 	#################### HELPER FUNCTIONS ####################
-	
 	# return the values from the selected column
 	get_nums_col <- function(data_file, col){
 		nums_col <- data_file[[col]]
@@ -361,7 +360,7 @@ shinyServer(function(input, output, session) {
   # default map
   output$map <- renderLeaflet({
   	get_file()
-  	leaflet()
+  	leaflet() 
   })
 	
 
@@ -477,17 +476,25 @@ shinyServer(function(input, output, session) {
 		}
 	)
 	
-	# save leaflet html page
-	output$plotDownload <- downloadHandler(
-		filename = function(){
-			"geomap.html"
-		},
+	# save geomap image as png
+	output$geomap <- downloadHandler(
+		filename = paste0( Sys.Date()
+		                   , "_customLeafletmap"
+		                   , ".png"
+		)
+		,
 		content = function(file) {
-			log_activity('geomap', 'plotDownload')
-			m <- get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
-			#m <- leaflet()
-			saveWidget(m, file=file)
-		}
+			log_activity('geomap', 'geomap')
+		  # mapshot() from mapview package to save the image as png
+		  mapshot( x = get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
+		           %>% get_view()
+		           %>% addLegend(layerId = "legendLayer", position = "bottomright", 
+		                     opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
+		                     title = input$legend)
+		           , file = file
+		           , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
+		           , selfcontained = FALSE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
+		  )
+	  }
 	)
-
 })

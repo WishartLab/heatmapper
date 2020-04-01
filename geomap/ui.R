@@ -3,7 +3,7 @@ library(leaflet)
 library(d3heatmap)
 
 shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
-	
+                                                 
 	sidebarLayout(position = "right",
 		sidebarPanel(id = "sidebarPanel", width = 1,
 			
@@ -288,7 +288,13 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
       ), 
 		#	JSCOLOUR_ROW("#FFEDA0", "#800026"),
 
-    	DOWNLOAD_BUTTONS(),
+# plotdownload and table download buttons
+  list(
+    #tags$style("#tableDownload {float:right;}"),
+    tipify(downloadButton('geomap', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot", placement = "top"),
+    tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download the raw data", placement = "top"),
+    tags$br(), tags$br()
+  ),
 		 		
 			ADVANCED_OPTIONS_PANEL(
 				list(
@@ -314,7 +320,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		tabsetPanel(id = "tabSelections", type = "tabs",
 			tabPanel(title = "Interactive", 
 				tags$br(),
-			  leafletOutput("map", "100%", 600),
+			  leafletOutput(outputId = "map", "100%", 600),
 				conditionalPanel("output.map",
 					absolutePanel(id = "controls", class = "info legend leaflet-control", right = 30, top = 70, width=200,
 			  		h4(strong("Region Information")),
