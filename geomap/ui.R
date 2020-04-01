@@ -17,22 +17,30 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			#FILE_UPLOAD_PANEL(),
 			#EXAMPLE_FILE_SELECT(),
 		
-			tipify(fluidRow(
-				column(3, tags$label("Area to use")),
-
-				column(9, 
-		    	selectInput("area", label = NULL, 
+			tipify(
+			  #fluidRow(
+				# column(4.5, tags$label("Plot COVID Heatmap by:"
+				#                      # ,
+				#                      # style = "margin-right:2px"
+				#                      )),
+				# 
+				# column(8, 
+		    	selectInput("area", label = "Plot COVID Heatmap by:", 
 		    		choices = c(
 		    		  #"Municipios" = 'data/COL_2.rds',
 		    		  #"Departamentos" = 'data/COL_1.rds'
-		    			"World: By Country" = 'data/World_Countries.rds',
-		    			"Africa: By Country" = 'data/Africa.rds', 
-		    			"Asia: By Country" = 'data/Asia.rds', 
-		    			"Europe: By Country" = 'data/Europe.rds', 
-		    			"North America: By Country" = 'data/North_America.rds',
-		    			"Oceania: By Country" = 'data/Oceania.rds',
-		    			"South America: By Country" = 'data/South_America.rds', 
-		    			
+		    			"World (By Country)" = 'data/World_Countries.rds',
+		    			"Africa (By Country)" = 'data/Africa.rds', 
+		    			"Asia (By Country)" = 'data/Asia.rds', 
+		    			"Europe (By Country)" = 'data/Europe.rds', 
+		    			"North America (By Country)" = 'data/North_America.rds',
+		    			"Oceania (By Country)" = 'data/Oceania.rds',
+		    			"South America (By Country)" = 'data/South_America.rds', 
+		    			"Australia (By State)" = 'data/AUS_1.rds',
+		    			"Canada (By Province)" = 'data/CAN_1.rds',
+		    			"China (By Province)" = 'data/CHN_1.rds',
+		    			"United States (By States)" = 'data/USA_1.rds',
+		    			"Estonia (By County)" = 'data/EST_1.rds',
               #"Canada: Level 2" = 'data/CAN_2.rds',
                
               #"USA: Level 2" = 'data/USA_2.rds',
@@ -50,7 +58,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
               # "Antigua and Barbuda" = 'data/ATG_1.rds',
               # "Argentina" = 'data/ARG_1.rds',
               # "Armenia" = 'data/ARM_1.rds',
-              "Australia" = 'data/AUS_1.rds',
+              
               # "Austria" = 'data/AUT_1.rds',
               # "Azerbaijan" = 'data/AZE_1.rds',
               # "Bahamas" = 'data/BHS_1.rds',
@@ -75,13 +83,13 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
               # "Burundi" = 'data/BDI_1.rds',
               # "Cambodia" = 'data/KHM_1.rds',
               # "Cameroon" = 'data/CMR_1.rds',
-               "Canada" = 'data/CAN_1.rds',
+              
               # "Cape Verde" = 'data/CPV_1.rds',
               # "Cayman Islands" = 'data/CYM_1.rds',
               # "Central African Republic" = 'data/CAF_1.rds',
               # "Chad" = 'data/TCD_1.rds',
               # "Chile" = 'data/CHL_1.rds',
-              "China" = 'data/CHN_1.rds',
+              
               
               # "Comoros" = 'data/COM_1.rds',
               # "Costa Rica" = 'data/CRI_1.rds',
@@ -100,7 +108,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
               # "El Salvador" = 'data/SLV_1.rds',
               # "Equatorial Guinea" = 'data/GNQ_1.rds',
               # "Eritrea" = 'data/ERI_1.rds',
-              "Estonia" = 'data/EST_1.rds',
+              
               # "Ethiopia" = 'data/ETH_1.rds',
               # "Faroe Islands" = 'data/FRO_1.rds',
               # "Fiji" = 'data/FJI_1.rds',
@@ -315,12 +323,13 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		    			
 
 		    			),
-		    		selected = 'data/COL_2.rds'))
-			), 
-			"Select map to display",
+		    		selected = 'data/COL_2.rds'),
+		    	#)
+			#), 
+			"Select map to display:",
 			placement = "right"),
 			tipify(fluidRow(
-			  column(3, tags$label("Date:")),
+			  column(4, tags$label("Select Date")),
 			  column(5,
 			    dateInput("date",
 			              label = NULL,
@@ -335,17 +344,21 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			
 			tipify(
 				selectInput("colSelect", 
-				            label = "Data to display", 
-				            choices = c("Total confirmed" = 'Confirmed',
-				                        "Total recovered" = 'Recovered',
-				                        "Total deaths" = 'Deaths'
+				            label = "Select Data to Display:", 
+				            choices = c("Confirmed" = 'Confirmed',
+				                        "Recovered" = 'Recovered',
+				                        "Deaths" = 'Deaths',
+				                        #"Active" = 'Active',
+				                        "Prediction IFR 0.35%" = 'IFR_35',
+				                        "Prediction IFR 0.65%" = 'IFR_65',
+				                        "Prediction IFR 1.00%" = 'IFR_100'
 				                        # ,
 				                        # "New daily confirmed" = 'Daily_Confirmed',
 				                        # "New daily recovered" = 'Daily_Recovered',
 				                        # "New daily deaths" = 'Daily_Deaths'
 				                        )), 
 				#"Select column from input file",
-				"Select the data to show on the map",
+				"Select the data to show on the heatmap",
 				placement = "right"
 				),
 			#HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
@@ -435,7 +448,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 	),
 	mainPanel(id = "mainPanel",
 		tabsetPanel(id = "tabSelections", type = "tabs",
-			tabPanel(title = "Interactive", 
+			tabPanel(title = "Heatmap", 
 				tags$br(),
 			  leafletOutput("map", "100%", 600),
 				conditionalPanel("output.map",

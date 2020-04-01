@@ -287,7 +287,7 @@ shinyServer(function(input, output, session) {
   observe({
     log_activity('geomap', 'layer/tab changes')
     get_file()
-    if(input$tabSelections == "Interactive"){
+    if(input$tabSelections == "Heatmap"){
       if (is.null(values$density)) {
         # remove old shapes when map is changed
         leafletProxy("map") %>%
@@ -1125,8 +1125,6 @@ shinyServer(function(input, output, session) {
       lat <<- c(lat, x@labpt[[1]])
       lon <<- c(lon, x@labpt[[2]])
     })
-    
-    setView(m, mean(lat), mean(lon), zoom = 3)
     latitude_diff <- max(lat)-min(lat)
     longitude_diff <- max(lat)-min(lat)
     zoom <- case_when(
