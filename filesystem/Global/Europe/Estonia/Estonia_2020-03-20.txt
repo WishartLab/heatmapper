@@ -1,17 +1,17 @@
-Region	Confirmed	Recovered	Deaths	Daily_Confirmed	Daily_Recovered	Daily_Deaths
-Harju	108			4		
-Hiiu	2			1		
-Ida-Viru	6			1		
-Jarva	1			0		
-Jogeva	1			0		
-Laane	2			2		
-Laane-Viru	1			0		
-Parnu	22			0		
-Polva	3			0		
-Rapla	2			0		
-Saare	77			6		
-Tartu	15			1		
-Voru	30			1		
-Valga	1			0		
-Viljandi	2			0		
-other	10			0		
+Region	Confirmed	Recovered	Deaths	Confirmed_per_capita	Deaths_per_capita	IFR_30_Expected	IFR_65_Expected	IFR_100_Expected	IFR_30_Expected_per_capita	IFR_65_Expected_per_capita	IFR_100_Expected_per_capita
+Harju	108	NA	NA	0.18	NA	NA	NA	NA	NA	NA	NA
+Hiiu	2	NA	NA	0.21	NA	NA	NA	NA	NA	NA	NA
+Ida-Viru	6	NA	NA	0.04	NA	NA	NA	NA	NA	NA	NA
+Jogeva	1	NA	NA	0.04	NA	NA	NA	NA	NA	NA	NA
+Jarva	1	NA	NA	0.03	NA	NA	NA	NA	NA	NA	NA
+Laane	2	NA	NA	0.1	NA	NA	NA	NA	NA	NA	NA
+Laane-Viru	1	NA	NA	0.02	NA	NA	NA	NA	NA	NA	NA
+Polva	3	NA	NA	0.12	NA	NA	NA	NA	NA	NA	NA
+Parnu	22	NA	NA	0.25	NA	NA	NA	NA	NA	NA	NA
+Rapla	2	NA	NA	0.06	NA	NA	NA	NA	NA	NA	NA
+NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+Saare	77	NA	NA	2.3	NA	NA	NA	NA	NA	NA	NA
+Tartu	15	NA	NA	0.1	NA	NA	NA	NA	NA	NA	NA
+Valga	1	NA	NA	0.04	NA	NA	NA	NA	NA	NA	NA
+Viljandi	2	NA	NA	0.04	NA	NA	NA	NA	NA	NA	NA
+Voru	30	NA	NA	0.84	NA	NA	NA	NA	NA	NA	NA
