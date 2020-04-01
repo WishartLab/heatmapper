@@ -360,7 +360,9 @@ shinyServer(function(input, output, session) {
   # default map
   output$map <- renderLeaflet({
   	get_file()
-  	leaflet() 
+    leaflet(
+      #Restricting lowest zoom limit
+      options = leafletOptions(minZoom = 2))
   })
 	
 
@@ -416,7 +418,8 @@ shinyServer(function(input, output, session) {
 	
 	get_tiles <- function(m){
 		if(layer_selected("showTiles")){
-			addTiles(m, options=tileOptions(detectRetina = input$detectRetina))
+			addTiles(m, options=tileOptions(detectRetina = input$detectRetina,
+			                                noWrap = TRUE))
 		}
 		else{
 			clearTiles(m)
