@@ -11,6 +11,7 @@ library(shiny)
 library(d3heatmap)
 library(gplots)
 library(ggdendro)
+library(tidyverse)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
