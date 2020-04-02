@@ -1,10 +1,10 @@
-Name	Confirmed	Deaths	Recovered	Active
-St Martin	8	0	0	8
-Mayotte	24	0	0	24
-Reunion	71	0	1	70
-New Caledonia	8	0	0	8
-French Polynesia	19874	860	2200	16814
-French Guiana	20	0	6	14
-Martinique	53	1	0	52
-Saint Barthelemy	3	0	0	3
-Guadeloupe	62	1	0	61
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+St Martin	8.0	0.0	0.0	8.0	N/A	N/A	N/A	N/A	40.0	16.0	10.0	N/A	N/A	N/A
+Mayotte	24.0	0.0	0.0	24.0	N/A	N/A	N/A	N/A	120.0	48.0	30.0	N/A	N/A	N/A
+Reunion	71.0	0.0	1.0	70.0	N/A	N/A	N/A	N/A	355.0	142.0	88.75	N/A	N/A	N/A
+New Caledonia	8.0	0.0	0.0	8.0	N/A	N/A	N/A	N/A	40.0	16.0	10.0	N/A	N/A	N/A
+French Polynesia	19874.0	860.0	2200.0	16814.0	N/A	N/A	N/A	N/A	286666.666667	132307.692308	86000.0	N/A	N/A	N/A
+French Guiana	20.0	0.0	6.0	14.0	N/A	N/A	N/A	N/A	100.0	40.0	25.0	N/A	N/A	N/A
+Martinique	53.0	1.0	0.0	52.0	N/A	N/A	N/A	N/A	333.333333333	153.846153846	100.0	N/A	N/A	N/A
+Saint Barthelemy	3.0	0.0	0.0	3.0	N/A	N/A	N/A	N/A	15.0	6.0	3.75	N/A	N/A	N/A
+Guadeloupe	62.0	1.0	0.0	61.0	N/A	N/A	N/A	N/A	333.333333333	153.846153846	100.0	N/A	N/A	N/A

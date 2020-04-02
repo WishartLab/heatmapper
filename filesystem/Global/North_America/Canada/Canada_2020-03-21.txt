@@ -1,13 +1,13 @@
-Name	Confirmed	Deaths	Recovered	Active
-Ontario	377	3	6	N/A
-Newfoundland and Labrador	6	0	0	N/A
-Saskatchewan	26	0	0	N/A
-Prince Edward Island	2	0	0	N/A
-British Columbia	424	10	4	N/A
-Nova Scotia	21	0	0	N/A
-Quebec	181	5	0	N/A
-Grand Princess	10	0	0	N/A
-Alberta	195	1	0	N/A
-Manitoba	18	0	0	N/A
-Northwest Territories	1	0	0	N/A
-New Brunswick	17	0	0	N/A
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Ontario	377.0	3.0	6.0	N/A	2.61e-05	2.1e-07	1000.0	461.538461538	300.0	7e-05	3.23076923077e-05	2.1e-05
+Newfoundland and Labrador	6.0	0.0	0.0	N/A	1.145e-05	0.0	30.0	12.0	7.5	5.725e-05	2.29e-05	1.43125e-05
+Saskatchewan	26.0	0.0	0.0	N/A	2.225e-05	0.0	130.0	52.0	32.5	0.00011125	4.45e-05	2.78125e-05
+Prince Edward Island	2.0	0.0	0.0	N/A	1.292e-05	0.0	10.0	4.0	2.5	6.46e-05	2.584e-05	1.615e-05
+British Columbia	424.0	10.0	4.0	N/A	8.446e-05	1.99e-06	3333.33333333	1538.46153846	1000.0	0.000663333333333	0.000306153846154	0.000199
+Nova Scotia	21.0	0.0	0.0	N/A	2.162e-05	0.0	105.0	42.0	26.25	0.0001081	4.324e-05	2.7025e-05
+Quebec	181.0	5.0	0.0	N/A	2.146e-05	5.9e-07	1666.66666667	769.230769231	500.0	0.000196666666667	9.07692307692e-05	5.9e-05
+Grand Princess	10.0	0.0	0.0	N/A	N/A	N/A	50.0	20.0	12.5	N/A	N/A	N/A
+Alberta	195.0	1.0	0.0	N/A	4.487e-05	2.3e-07	333.333333333	153.846153846	100.0	7.66666666667e-05	3.53846153846e-05	2.3e-05
+Manitoba	18.0	0.0	0.0	N/A	1.323e-05	0.0	90.0	36.0	22.5	6.615e-05	2.646e-05	1.65375e-05
+Northwest Territories	1.0	0.0	0.0	N/A	2.242e-05	0.0	5.0	2.0	1.25	0.0001121	4.484e-05	2.8025e-05
+New Brunswick	17.0	0.0	0.0	N/A	2.202e-05	0.0	85.0	34.0	21.25	0.0001101	4.404e-05	2.7525e-05

@@ -1,3 +1,8 @@
-Name	Confirmed	Deaths	Recovered	Active
-United Kingdom	9529	465	135	8929
-Channel Islands	46	0	0	46
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Isle of Man	23.0	0.0	0.0	23.0	N/A	N/A	N/A	N/A	115.0	46.0	28.75	N/A	N/A	N/A
+Cayman Islands	8.0	1.0	0.0	7.0	N/A	N/A	N/A	N/A	333.333333333	153.846153846	100.0	N/A	N/A	N/A
+Montserrat	1.0	0.0	0.0	1.0	N/A	N/A	N/A	N/A	5.0	2.0	1.25	N/A	N/A	N/A
+Channel Islands	46.0	0.0	0.0	46.0	N/A	N/A	N/A	N/A	230.0	92.0	57.5	N/A	N/A	N/A
+United Kingdom	9529.0	465.0	135.0	8929.0	N/A	N/A	N/A	N/A	155000.0	71538.4615385	46500.0	N/A	N/A	N/A
+Bermuda	7.0	0.0	0.0	7.0	N/A	N/A	N/A	N/A	35.0	14.0	8.75	N/A	N/A	N/A
+Gibraltar	26.0	0.0	5.0	21.0	N/A	N/A	N/A	N/A	130.0	52.0	32.5	N/A	N/A	N/A

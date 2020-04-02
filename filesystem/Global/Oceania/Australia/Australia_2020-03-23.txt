@@ -1,9 +1,9 @@
-Name	Confirmed	Deaths	Recovered	Active
-Northern Territory	5	0	0	5
-Western Australia	140	1	1	138
-Australian Capital Territory	32	0	0	32
-Victoria	355	0	97	258
-New South Wales	669	6	4	659
-Queensland	319	0	8	311
-Tasmania	28	0	3	25
-South Australia	134	0	6	128
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Northern Territory	5.0	0.0	0.0	5.0	2.034e-05	0.0	25.0	10.0	6.25	0.0001017	4.068e-05	2.5425e-05
+Western Australia	140.0	1.0	1.0	138.0	5.34e-05	3.8e-07	333.333333333	153.846153846	100.0	0.000126666666667	5.84615384615e-05	3.8e-05
+Australian Capital Territory	32.0	0.0	0.0	32.0	7.499e-05	0.0	160.0	64.0	40.0	0.00037495	0.00014998	9.37375e-05
+Victoria	355.0	0.0	97.0	258.0	5.383e-05	0.0	1775.0	710.0	443.75	0.00026915	0.00010766	6.72875e-05
+New South Wales	669.0	6.0	4.0	659.0	8.27e-05	7.4e-07	2000.0	923.076923077	600.0	0.000246666666667	0.000113846153846	7.4e-05
+Queensland	319.0	0.0	8.0	311.0	6.261e-05	0.0	1595.0	638.0	398.75	0.00031305	0.00012522	7.82625e-05
+Tasmania	28.0	0.0	3.0	25.0	5.241e-05	0.0	140.0	56.0	35.0	0.00026205	0.00010482	6.55125e-05
+South Australia	134.0	0.0	6.0	128.0	5.111e-05	0.0	670.0	268.0	167.5	0.00025555	0.00010222	6.38875e-05

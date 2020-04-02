@@ -1,2 +1,4 @@
-Name	Confirmed	Deaths	Recovered	Active
-Denmark	1724	34	1	1689
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Faroe Islands	132.0	0.0	38.0	94.0	N/A	N/A	N/A	N/A	660.0	264.0	165.0	N/A	N/A	N/A
+Denmark	1724.0	34.0	1.0	1689.0	N/A	N/A	N/A	N/A	11333.3333333	5230.76923077	3400.0	N/A	N/A	N/A
+Greenland	6.0	0.0	2.0	4.0	N/A	N/A	N/A	N/A	30.0	12.0	7.5	N/A	N/A	N/A

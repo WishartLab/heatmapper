@@ -1,17 +1,17 @@
-Name	Confirmed	Deaths	Recovered	Active
-Penobscot	4	0	0	0
-Sagadahoc	3	0	0	0
-Lincoln	5	0	0	0
-Kennebec	5	0	0	0
-Waldo	1	0	0	0
-Piscataquis	0	0	0	0
-Hancock	0	0	0	0
-Androscoggin	3	0	0	0
-Aroostook	0	0	0	0
-Washington	0	0	0	0
-York	16	0	0	0
-Franklin	0	0	0	0
-Oxford	6	0	0	0
-Knox	1	0	0	0
-Somerset	0	0	0	0
-Cumberland	74	0	0	0
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Penobscot	4.0	0.0	0.0	0.0	2.647e-05	0.0	20.0	8.0	5.0	0.00013235	5.294e-05	3.30875e-05
+Sagadahoc	3.0	0.0	0.0	0.0	8.419e-05	0.0	15.0	6.0	3.75	0.00042095	0.00016838	0.0001052375
+Lincoln	5.0	0.0	0.0	0.0	0.00014559	0.0	25.0	10.0	6.25	0.00072795	0.00029118	0.0001819875
+Kennebec	5.0	0.0	0.0	0.0	4.096e-05	0.0	25.0	10.0	6.25	0.0002048	8.192e-05	5.12e-05
+Waldo	1.0	0.0	0.0	0.0	2.519e-05	0.0	5.0	2.0	1.25	0.00012595	5.038e-05	3.14875e-05
+Piscataquis	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Hancock	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Androscoggin	3.0	0.0	0.0	0.0	2.786e-05	0.0	15.0	6.0	3.75	0.0001393	5.572e-05	3.4825e-05
+Aroostook	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+York	16.0	0.0	0.0	0.0	7.758e-05	0.0	80.0	32.0	20.0	0.0003879	0.00015516	9.6975e-05
+Franklin	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Oxford	6.0	0.0	0.0	0.0	0.00010413	0.0	30.0	12.0	7.5	0.00052065	0.00020826	0.0001301625
+Knox	1.0	0.0	0.0	0.0	2.514e-05	0.0	5.0	2.0	1.25	0.0001257	5.028e-05	3.1425e-05
+Somerset	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Cumberland	74.0	0.0	0.0	0.0	0.00025208	0.0	370.0	148.0	92.5	0.0012604	0.00050416	0.0003151

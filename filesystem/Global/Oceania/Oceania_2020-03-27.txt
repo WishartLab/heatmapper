@@ -1,5 +1,5 @@
-Name	Confirmed	Deaths	Recovered	Active
-New Zealand	368	0	37	331
-Australia	3143	13	194	2936
-Fiji	5	0	0	5
-Papua New Guinea	1	0	0	1
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+New Zealand	368.0	0.0	37.0	331.0	7.532e-05	0.0	1840.0	736.0	460.0	0.0003766	0.00015064	9.415e-05
+Australia	3143	13	194	2936	0.00012576	5.2e-07	4333.33333333	2000.0	1300.0	0.000173333333333	8e-05	5.2e-05
+Fiji	5.0	0.0	0.0	5.0	5.66e-06	0.0	25.0	10.0	6.25	2.83e-05	1.132e-05	7.075e-06
+Papua New Guinea	1.0	0.0	0.0	1.0	1.2e-07	0.0	5.0	2.0	1.25	6e-07	2.4e-07	1.5e-07

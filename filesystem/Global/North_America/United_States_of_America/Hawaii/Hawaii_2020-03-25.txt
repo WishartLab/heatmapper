@@ -1,7 +1,7 @@
-Name	Confirmed	Deaths	Recovered	Active
-Honolulu	58	0	0	0
-Hawaii	2	0	0	0
-Kalawao	0	0	0	0
-Kauai	1	0	0	0
-Maui	9	0	0	0
-Unassigned	21	0	0	0
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Honolulu	58.0	0.0	0.0	0.0	5.918e-05	0.0	290.0	116.0	72.5	0.0002959	0.00011836	7.3975e-05
+Hawaii	2.0	0.0	0.0	0.0	9.95e-06	0.0	10.0	4.0	2.5	4.975e-05	1.99e-05	1.24375e-05
+Kalawao	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Kauai	1.0	0.0	0.0	0.0	1.386e-05	0.0	5.0	2.0	1.25	6.93e-05	2.772e-05	1.7325e-05
+Maui	9.0	0.0	0.0	0.0	5.383e-05	0.0	45.0	18.0	11.25	0.00026915	0.00010766	6.72875e-05
+Unassigned	21.0	0.0	0.0	0.0	N/A	N/A	105.0	42.0	26.25	N/A	N/A	N/A

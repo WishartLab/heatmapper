@@ -1,30 +1,30 @@
-Name	Confirmed	Deaths	Recovered	Active
-Nome	0	0	0	0
-Skagway	0	0	0	0
-Kusilvak	0	0	0	0
-Denali	0	0	0	0
-Yukon-Koyukuk	0	0	0	0
-Sitka	0	0	0	0
-Prince of Wales-Hyder	0	0	0	0
-Petersburg	0	0	0	0
-Southeast Fairbanks	0	0	0	0
-North Slope	0	0	0	0
-Fairbanks North Star	7	0	0	0
-Hoonah-Angoon	0	0	0	0
-Bethel	0	0	0	0
-Juneau	1	0	0	0
-Kenai Peninsula	3	0	0	0
-Yakutat	0	0	0	0
-Aleutians West	0	0	0	0
-Kodiak Island	0	0	0	0
-Bristol Bay	0	0	0	0
-Lake and Peninsula	0	0	0	0
-Anchorage	13	0	0	0
-Haines	0	0	0	0
-Dillingham	0	0	0	0
-Ketchikan Gateway	6	0	0	0
-Aleutians East	0	0	0	0
-Matanuska-Susitna	0	0	0	0
-Valdez-Cordova	0	0	0	0
-Northwest Arctic	0	0	0	0
-Wrangell	0	0	0	0
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Nome	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Skagway	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Kusilvak	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Denali	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Yukon-Koyukuk	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Sitka	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Prince of Wales-Hyder	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Petersburg	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Southeast Fairbanks	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+North Slope	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Fairbanks North Star	7.0	0.0	0.0	0.0	7.073e-05	0.0	35.0	14.0	8.75	0.00035365	0.00014146	8.84125e-05
+Hoonah-Angoon	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Bethel	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Juneau	1.0	0.0	0.0	0.0	3.114e-05	0.0	5.0	2.0	1.25	0.0001557	6.228e-05	3.8925e-05
+Kenai Peninsula	3.0	0.0	0.0	0.0	5.125e-05	0.0	15.0	6.0	3.75	0.00025625	0.0001025	6.40625e-05
+Yakutat	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Aleutians West	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Kodiak Island	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Bristol Bay	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Lake and Peninsula	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Anchorage	13.0	0.0	0.0	0.0	4.459e-05	0.0	65.0	26.0	16.25	0.00022295	8.918e-05	5.57375e-05
+Haines	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Dillingham	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Ketchikan Gateway	6.0	0.0	0.0	0.0	0.0004311	0.0	30.0	12.0	7.5	0.0021555	0.0008622	0.000538875
+Aleutians East	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Matanuska-Susitna	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Valdez-Cordova	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Northwest Arctic	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Wrangell	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0

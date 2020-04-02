@@ -1,7 +1,7 @@
-Name	Confirmed	Deaths	Recovered	Active
-Bristol	6	0	0	0
-Washington	14	0	0	0
-Providence	91	0	0	0
-Unassigned	33	0	0	0
-Newport	12	0	0	0
-Kent	9	0	0	0
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Bristol	6.0	0.0	0.0	0.0	0.00012333	0.0	30.0	12.0	7.5	0.00061665	0.00024666	0.0001541625
+Washington	14.0	0.0	0.0	0.0	0.00011095	0.0	70.0	28.0	17.5	0.00055475	0.0002219	0.0001386875
+Providence	91.0	0.0	0.0	0.0	0.00014306	0.0	455.0	182.0	113.75	0.0007153	0.00028612	0.000178825
+Unassigned	33.0	0.0	0.0	0.0	N/A	N/A	165.0	66.0	41.25	N/A	N/A	N/A
+Newport	12.0	0.0	0.0	0.0	0.00014538	0.0	60.0	24.0	15.0	0.0007269	0.00029076	0.000181725
+Kent	9.0	0.0	0.0	0.0	5.492e-05	0.0	45.0	18.0	11.25	0.0002746	0.00010984	6.865e-05
