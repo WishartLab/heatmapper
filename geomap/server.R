@@ -1155,9 +1155,10 @@ shinyServer(function(input, output, session) {
     latitude_diff <- max(lat)-min(lat)
     longitude_diff <- max(lat)-min(lat)
     zoom <- case_when(
-      max(latitude_diff,longitude_diff) < 5 ~ 7,
-      max(latitude_diff,longitude_diff) < 13 ~ 5,
-      max(latitude_diff,longitude_diff) < 50 ~ 4,
+      max(latitude_diff,longitude_diff*1.5) < 5 ~ 7,
+      max(latitude_diff,longitude_diff*1.5) < 10 ~ 6,
+      max(latitude_diff,longitude_diff*1.5) < 15 ~ 5,
+      max(latitude_diff,longitude_diff*1.5) < 50 ~ 4,
       TRUE ~ 3
     )
     setView(m, mean(lat), mean(lon), zoom = zoom)
