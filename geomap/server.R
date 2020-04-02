@@ -503,9 +503,9 @@ shinyServer(function(input, output, session) {
               append = TRUE)
       }
       col_name <- input$colSelect
-      # if (input$radio == "per_capita"){
-      #   col_name <- paste(col_name,input$radio, sep = "_")
-      # }
+      if (input$radio == "per_capita"){
+        col_name <- paste(col_name,input$radio, sep = "_")
+      }
       
       nums_col <- get_nums_col(data_file, col_name)
       if (debug)
@@ -617,7 +617,8 @@ shinyServer(function(input, output, session) {
             append = TRUE)
       #read file
       data_file <- read.csv(file = file_name,
-                            sep = "\t")
+                            sep = "\t",
+                            stringsAsFactors = FALSE)
       
       # region names should be in lower case
       data_file[[1]] <- tolower(data_file[[1]])
