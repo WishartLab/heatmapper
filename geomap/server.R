@@ -502,8 +502,12 @@ shinyServer(function(input, output, session) {
               file = log_filename,
               append = TRUE)
       }
+      # col_name <- input$colSelect
+      # if (input$radio == "per_capita"){
+      #   col_name <- paste(col_name,input$radio, sep = "_")
+      # }
       
-      nums_col <- get_nums_col(data_file, input$colSelect)
+      nums_col <- get_nums_col(data_file, col_name)
       if (debug)
         write(
           paste('  get_density: nums_col:', nums_col, sep = "\t"),

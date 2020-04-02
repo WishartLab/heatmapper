@@ -339,7 +339,10 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			title = NULL
 			  
 			),
-		  
+			# radioButtons(inputId = "radio",
+			#              label = "Characteristic",
+			#              choices = c("Absolute" = 'absolute',
+			#                          "Per Capita (1000)" = 'per_capita'), selected = "absolute"),
 			
 			
 			
