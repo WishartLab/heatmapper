@@ -502,7 +502,7 @@ shinyServer(function(input, output, session) {
               file = log_filename,
               append = TRUE)
       }
-      # col_name <- input$colSelect
+      col_name <- input$colSelect
       # if (input$radio == "per_capita"){
       #   col_name <- paste(col_name,input$radio, sep = "_")
       # }
