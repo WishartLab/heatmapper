@@ -12,6 +12,7 @@ library(d3heatmap)
 library(gplots)
 library(ggdendro)
 library(tidyverse)
+library(mapview)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
@@ -483,12 +484,11 @@ shinyServer(function(input, output, session) {
 	# save geomap image as png
 	output$geomap <- downloadHandler(
 		filename = paste0( Sys.Date()
-		                   , "_customLeafletmap"
+		                   , "_customGeomap"
 		                   , ".png"
 		)
 		,
 		content = function(file) {
-			log_activity('geomap', 'geomap')
 		  # mapshot() from mapview package to save the image as png
 		  mapshot( x = get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
 		           %>% get_view()
@@ -497,8 +497,9 @@ shinyServer(function(input, output, session) {
 		                     title = input$legend)
 		           , file = file
 		           , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
-		           , selfcontained = FALSE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
-		  )
-	  }
-	)
+		           , selfcontained = TRUE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
+		  )# end of mapshot()
+		  log_activity('geomap', 'geomap')
+	  } # end of content function
+	)# end of downloadHandler
 })
