@@ -11,7 +11,12 @@
   transform: translate(-50%, -50%);
 }
 
-.btn-white-border {          
+.btn-lg{
+  padding: calc(0.2em + 0.5vw);
+  font-size: calc(0.5em + 1.2vw);
+}
+
+.btn-white-border {
   border-color: white;
   border-width: medium;
 }
