@@ -1,3 +1,38 @@
+.container {
+  position: relative;
+  text-align: center;
+}
+
+.centered-box {          
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-white-border {          
+  border-color: white;
+  border-width: medium;
+}
+
+.info-box {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 1em;
+  border-color: #2D3090;
+  border-width: 0.5em;
+  border-radius: 1em;
+  border-style: ridge;
+  font-size: calc(0.5em + 0.8vw);
+}
+
+.map-box {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-width: 0.5em;
+}
+
 footer {
   text-align: center;
 }
@@ -5,7 +40,7 @@ footer {
 .footer {
   text-align: center;
   display: inline-block;
-  width: 1024px;
+  width: 100%;
 }
 
 .footer-container {

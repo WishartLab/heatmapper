@@ -83,6 +83,7 @@ shinyServer(function(input, output, session) {
   
   # when a valid column is selected set values$density
   observe({
+   # input$radio
     if (input$colSelect != 0) {
       tryCatch({
         if (debug) {
@@ -150,7 +151,7 @@ shinyServer(function(input, output, session) {
         } else if (max < 100) {
           num_digits = 1
         }
-        
+        #num_digits = -1*log10(mean(min,max))+1
         updateSliderInput(
           session,
           inputId = "range",
@@ -245,6 +246,7 @@ shinyServer(function(input, output, session) {
     # input$lowColour
     # input$highColour
     # input$colourScheme
+ #   input$radio
     log_activity('geomap',
                  'observe rangeSubmit binNumber lowColour highColour colourScheme')
     isolate({
@@ -255,6 +257,15 @@ shinyServer(function(input, output, session) {
         min <- floor(min(values$density, na.rm = TRUE))
         max <- ceiling(max(values$density, na.rm = TRUE))
         
+        # min_tester <- values$density[values$density != 0]
+        # 
+        # if (min(min_tester, na.rm = TRUE) < 0.9){
+        #   min <- min(values$density, na.rm = TRUE)
+        #   max <- max(values$density, na.rm = TRUE)
+        # } else {
+        #   min <- floor(min(values$density, na.rm = TRUE))
+        #   max <- ceiling(max(values$density, na.rm = TRUE))
+        # }
         bins <- 8 + 1 #input$binNumber
         
         # adjust selected range if difference between max and min is < # of bins
@@ -618,7 +629,8 @@ shinyServer(function(input, output, session) {
             append = TRUE)
       #read file
       data_file <- read.csv(file = file_name,
-                            sep = "\t")
+                            sep = "\t",
+                            stringsAsFactors = FALSE)
       
       # region names should be in lower case
       data_file[[1]] <- tolower(data_file[[1]])
@@ -1018,6 +1030,14 @@ shinyServer(function(input, output, session) {
     #Rounding the bin limits values for legend
     for (i in 1:length(values$from)){
       values$from[i] <- case_when(
+        # values$from[i] < 0.0000001 ~ mround(values$from[i], base = 0.00000001),
+        # values$from[i] < 0.000001 ~ mround(values$from[i], base = 0.0000001),
+        # values$from[i] < 0.00001 ~ mround(values$from[i], base = 0.000001),
+        # values$from[i] < 0.0001 ~ mround(values$from[i], base = 0.00001),
+        # values$from[i] < 0.001 ~ mround(values$from[i], base = 0.0001),
+        # values$from[i] < 0.01 ~ mround(values$from[i], base = 0.001),
+        # values$from[i] < 0.1 ~ mround(values$from[i], base = 0.01),
+        # values$from[i] < 1 ~ mround(values$from[i], base = 0.1),
         values$from[i] < 20 ~ mround(values$from[i], base = 5),
         values$from[i] < 500 ~ round(values$from[i], digits = -1),
         values$from[i] < 2000 ~ round(values$from[i], digits = -2),
@@ -1025,6 +1045,14 @@ shinyServer(function(input, output, session) {
         TRUE ~ round(values$from[i], digits = -4)
         )
       values$to[i] <- case_when(
+        # values$to[i] < 0.0000001 ~ mround(values$to[i], base = 0.00000001),
+        # values$to[i] < 0.000001 ~ mround(values$to[i], base = 0.0000001),
+        # values$to[i] < 0.00001 ~ mround(values$to[i], base = 0.000001),
+        # values$to[i] < 0.0001 ~ mround(values$to[i], base = 0.00001),
+        # values$to[i] < 0.001 ~ mround(values$to[i], base = 0.0001),
+        # values$to[i] < 0.01 ~ mround(values$to[i], base = 0.001),
+        # values$to[i] < 0.1 ~ mround(values$to[i], base = 0.01),
+        # values$to[i] < 1 ~ mround(values$to[i], base = 0.1),
         values$to[i] < 20 ~ mround(values$to[i], base = 5),
         values$to[i] < 500 ~ round(values$to[i], digits = -1),
         values$to[i] < 2000 ~ round(values$to[i], digits = -2),

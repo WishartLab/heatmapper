@@ -339,24 +339,22 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			title = NULL
 			  
 			),
-			# radioButtons(inputId = "radio",
-			#              label = "Characteristic",
-			#              choices = c("Absolute" = 'absolute',
-			#                          "Per Capita (1000)" = 'per_capita'), selected = "absolute"),
-			
-			
 			
 			tipify(
 				selectInput("colSelect", 
 				            label = "Select Data to Display:", 
 				            choices = c("Confirmed" = 'Confirmed',
-				                        "Recovered" = 'Recovered',
+				                        #"Recovered" = 'Recovered',
 				                        "Deaths" = 'Deaths',
 				                        #"Active" = 'Active',
-				                        "Prediction IFR 0.35%" = 'IFR_35',
-				                        "Prediction IFR 0.65%" = 'IFR_65',
-				                        "Prediction IFR 1.00%" = 'IFR_100'
-				                        # ,
+                                                    # "Confirmed Per Capita" = "Confirmed_per_capita",
+                                                    # "Deaths Per Capita" = "Deaths_per_capita",
+				                        "Expected Cases (IFR 0.30%)" = 'IFR_0.30_expected',
+				                        "Expected Cases (IFR 0.65%)" = 'IFR_0.65_expected',
+				                        "Expected Cases (IFR 1.00%)" = 'IFR_1.0_expected'
+                                                    # "Expected Cases Per Capita( IFR 0.30%)" = 'IFR_0.30_expected_per_capita',
+                                                    # "Expected Cases Per Capita (IFR 0.65%)" = 'IFR_0.65_expected_per_capita',
+                                                    # "Expected Cases Per Capita (IFR 1.00%)" = 'IFR_1.0_expected_per_capita' 
 				                        # "New daily confirmed" = 'Daily_Confirmed',
 				                        # "New daily recovered" = 'Daily_Recovered',
 				                        # "New daily deaths" = 'Daily_Deaths'
@@ -365,6 +363,10 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				"Select the data to show on the heatmap",
 				placement = "right"
 				),
+			# radioButtons(inputId = "radio",
+			#              label = "Adjust values:",
+			#              choices = c("Unadjusted counts" = 'absolute',
+			#                          "Per capita" = 'per_capita'), selected = "absolute"),
 			#HTML("<button id='rangeSubmit' class='action-button clearButton'>Submit Range</button>"),
 			# bsTooltip(id = "rangeSubmit", 
 			#           "Update heatmap using range of interest",

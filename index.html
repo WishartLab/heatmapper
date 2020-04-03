@@ -1,228 +1,112 @@
 <!DOCTYPE html>
 <html>
-		<head>
-		<meta charset="UTF-8">
-		
-		<title>COVIDmapper</title>
-		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="www/stylesheets/main.css">
-		<style>
-			.border-img {
-				border:0.2em solid black;
-				width:100%;
-				height:15em;
-				border-radius:0.4em;
-				max-width:20em;
-				/*max-width: 70%;*/
-				display: block;
-				margin-left: auto;
-				margin-right: auto;
-			}
-			
-			.myTable {
-				table-layout: fixed;
-				border-spacing:1em;
-				width: 1024px; /* virtual pixel width of many iPads */
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>COVIDmapper</title>
 
-			}
-			.myRow {
-				display:table-row;
-			}
-			.myCol {
-				display:table-cell;
-			}
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="www/stylesheets/main.css">
 
-			.well.myCol {
-				display:table-cell;
-			}
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script> $(function(){ $("#navbar").load("www/navbar.html"); }); </script>
+    <script type="text/javascript" src="www/js/google-analytics.js"></script>
+  </head>
+  
+  <body>
+    <div id="navbar"></div>
 
-			.sectionStats {
-				text-align: left;
-			}
-			
-			.heatmapTitle {
-				font-size: large;
-				font-weight: 500;
-				position: relative;
-				top: 3px;
-			}
+    <div class="container">
+      <img src="www/images/COVIDmapper_logo.svg" style="width:50%;">
 
-			figcaption {
-				text-align:center;
-				margin-bottom:0.5em;
-			}
+      <div class="centered-box">
+        <img src="www/images/COVIDmapper_word_logo.svg" style="width:100%;">
+        <button type="button" class="btn btn-primary btn-lg btn-white-border" onclick="heatmapperLink('geomap');return false;">View Maps</button>
+      </div>
+    </div>
 
-			td {
-					padding: 5px;
-					vertical-align: top;
-			}
-		
-		</style>
-		
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-		
-		<script> $(function(){ $("#navbar").load("www/navbar.html"); }); </script>
-		
-		<script type="text/javascript" src="www/js/google-analytics.js"></script>
+    <div class="container info-box bg-primary">
+      <p>
+        The COVIDmapper project is designed to provide geopolitical heatmaps showing the progression of COVID-19 spatially and temporally. COVIDmapper uses the Heatmapper platform (<a href="http://heatmapper.ca/" style="color:#ffffff;" target="_blank">http://heatmapper.ca/</a>) and spatio-temporal COVID data collected from the WHO, Johns Hopkins University, and a number of regional health centres from around the world (<a href="https://github.com/CSSEGISandData/COVID-19" style="color:#ffffff;" target="_blank">1</a>,<a href="https://opendata.riik.ee/en/andmehulgad/andmed-koroonaviiruse-hetkeolukorra-kohta/" style="color:#ffffff;" target="_blank">2</a>). It also employs modeled data from reported and existing epidemiological trend data to predict future COVID trends ([1]). Data for COVIDmapper is updated daily at 0:00 GMT. 
+      </p>
+      <br>
+      <p>
+        Using a simple pull-down menu, users can display COVID-19 heatmaps for different geographic levels: 1) the world, 2) continents, 3) individual countries, and 4) states or provinces. Data on the reported number of COVID cases, reported number of COVID deaths, reported per capita cases, reported per capita deaths, “real” number of cases (using 3 different case fatality rate models) and reported COVID tests can be easily displayed using COVIDmapper’s simple pull-down menu. Users may select any date to explore previous COVID statistics or any future date (based on modeled projections) to explore projected COVID statistics for different regions. Tables for all data in COVIDmapper (at the state, country, continent, or global level) are viewable as tables and can be freely downloaded. All maps are interactively zoomable and exact values are interactively displayed over each map by hovering over a region of interest. The intensity (opacity) of the heatmaps can be adjusted to display more (or less) of a country’s geography. Please report any bugs to the COVIDmapper team (<a href="http://feedback.wishartlab.com/?site=covidmapper" style="color:#ffffff;" target="_blank">http://feedback.wishartlab.com/?site=covidmapper</a>).
+      </p>
+      <br>
+      <p>
+        Disclaimer: The data presented in COVIDmapper has been assembled to the best of our ability using the most up-to-date and reliable sources we can find. It is shown for information purposes only and is not intended to guide medical, political or personal decisions.
+      </p>
+    </div>
 
-		<script>
-			function ChangeButton(button_id){
-				var text = document.getElementById(button_id).firstChild;
-   				text.data = text.data == "Show Details" ? "Hide Details" : "Show Details";
-			}
+    <div class="container map-box">
+      <div id="COVIDmapper-carousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#COVIDmapper-carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#COVIDmapper-carousel" data-slide-to="1"></li>
+          <li data-target="#COVIDmapper-carousel" data-slide-to="2"></li>
+        </ol>
 
-		</script>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="www/images/world_map.png" alt="World Map" style="width:100%;">
+          </div>
 
-		<noscript>
-			<div class="alert alert-danger" style="margin: 1em;">
-				<strong>JavaScript not enabled!</strong> This app requires JavaScript to be
-				enabled in your browser in order to function. To enable JavaScript, do one of the
-				following:<br /><br />
-				
-				<div style="font-size: small;">
-				
-				<table>
-				
-				<tr>
-				<td>
-				
-				<i>In Google Chrome:</i>
-				<ol>
-				<li>Click the Chrome menu icon <img src="www/images/GoogleChromeMenuIcon.png"> on the browser toolbar.</li>
-				<li>Select <b>Settings</b>.</li>
-				<li>On the "Settings" page, click the <b>Show advanced settings...</b> link at the bottom.</li>
-				<li>In the "Privacy" section, click <b>Content settings...</b></li>
-				<li>Select <b>Allow all sites to run JavaScript (recommended)</b> in the "JavaScript" section.</li>
-				<li>Click <b>Done.</b></li>
-				<li>Refresh your web page.</li>
-				</ol>
-				
-				</td>
-				<td>
+          <div class="item">
+            <img src="www/images/country_map.png" alt="Country Map" style="width:100%;">
+          </div>
+        
+          <div class="item">
+            <img src="www/images/region_map.png" alt="Region Map" style="width:100%;">
+          </div>
+        </div>
 
-				<i>In Windows Internet Explorer:</i>
-				<ol>
-					<li>On the <b>Tools</b> menu, click <b>Internet Options</b>, and then click the <b>Security</b> tab.</li>
-					<li>Click the <b>Internet</b> zone.</li>
-					<li>If you do not have to customize your Internet security settings, click <b>Default Level</b>. Then do step 4.<br /><br />
-					If you have to customize your Internet security settings, follow these steps:</li>
-					<ol type="a">
-					<li>Click <b>Custom Level</b>.</li>
-					<li>In the <b>Security Settings – Internet Zone</b> dialog box, click <b>Enable</b> for <b>Active Scripting</b> in the <b>Scripting</b> section.</li>
-					</ol>
-					<br />
-					<li>Click the <b>Back</b> button to return to the previous page, and then click the <b>Refresh</b> button to refresh the web page.</li>
-				</ol>
-				
-				</td>
-				</tr>
-				<tr>
-				
-				<td>
-				
-				<i>In Mozilla Firefox:</i><br />
-				<ul><li>In Firefox, JavaScript is enabled by default, but may be blocked if a privacy extension
-				such as NoScript or Ghostery was installed. Please edit the settings for the
-				particular extension you have installed to un-block this page.</li></ul><br /><br />
-				
-				</td>
-				<td>
-				
-				<i>In Apple Safari:</i>
-				<ol>
-					<li>From the <b>Safari</b> (on Mac) or <b>Edit</b> (on Windows) drop-down menu, select <b>Preferences...</b></li>
-					<li>Select the <b>Security</b> icon/tab at the top on the window.</li>
-					<li>Then, check the <b>Enable JavaScript</b> checkbox.</li>
-					<li>Refresh your web page.</li>
-				</ol>
-				
-				</td>
-				</tr>
-				</table>
-				
-				</div>
-				
-			</div>
-		</noscript>
-		
-		
-    </head>  
-	
-    <body>
-		<div id="navbar"></div>
-		<div class="myTable">
-			<h2 style="margin-left:0px; padding-left:1.9em;">COVIDmapper</h2>
-			
-			<div class="myRow" style="width:67%;">
-				
-				<div class="myCol" style="display:table-cell; width:67%; padding-left:3em; padding-right:3em;">
-				
-				<button type="button" class="btn btn-primary" style="margin-left:20px;" onclick="heatmapperLink('geomap');return false;">View Maps</button>
-				<br><br>
-				
-				<p style="text-align:justify; width:100%;">
-				Maps of COVID-19 data.
-				</p>
-				
-				
-				</div>
-				
-			</div>
-				
-		</div>
-		<div class="myTable" style="display:table;">
-			
-			<div class="myRow">
-				<div class="well myCol">
-					<figure>
-						
-						<a href="/geomap">
-							<img src="www/images/geomap.png" alt="geomap" class="border-img">
-						</a>
-						
-						<figcaption>
-							<div style="margin-top:5px; margin-bottom:10px;">
-								<span class="heatmapTitle">COVID-19 Maps</span>
-								<button type="button" class="btn btn-primary" style="margin-left:20px;" onclick="heatmapperLink('geomap');return false;">View</button>
-							</div>
-							
-						</figcaption>
-						
-					 </figure>
-				</div>
-			</div>
-		</div>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#COVIDmapper-carousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#COVIDmapper-carousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
 
-		<div class="footer">
-			<div class="footer-container">
-				<div class="footer-container-2">
+    <div class="footer">
+      <div class="footer-container">
+        <div class="footer-container-2">
 
-					<div class="footer-left">
-						Developed by <a href="http://www.metabolomicscentre.ca" target="_blank">The Metabolomics Innovation Centre</a> at the University of Alberta.
-						This is an <a href="https://github.com/WishartLab/heatmapper/tree/covid-19" target="_blank">open source</a> project
-						based on <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>.
-						License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>.
-						Questions or comments? Please use our <a href="http://feedback.wishartlab.com/?site=covidmapper" target="_blank">feedback page</a>.
-					</div>
+          <div class="footer-left">
+            Developed by <a href="http://www.metabolomicscentre.ca" target="_blank">The Metabolomics Innovation Centre</a> at the University of Alberta.
+            This is an <a href="https://github.com/WishartLab/heatmapper/tree/covid-19" target="_blank">open source</a> project
+            based on <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a>.
+            License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>.
+            Questions or comments? Please use our <a href="http://feedback.wishartlab.com/?site=covidmapper" target="_blank">feedback page</a>.
+          </div>
 
-					<div class="footer-right">
-						<div class="support-logo">
-						<a href="http://www.metabolomicscentre.ca" target="_blank">
-							<img src="www/images/tmic.png" class="logo-img">
-						</a>
-						</div>
+          <div class="footer-right">
+            <div class="support-logo">
+            <a href="http://www.metabolomicscentre.ca" target="_blank">
+              <img src="www/images/tmic.png" class="logo-img">
+            </a>
+            </div>
 
-						<div class="support-logo">
-						<a href="http://www.ualberta.ca" target="_blank">
-							<img src="www/images/ualberta.svg" class="logo-img">
-						</a>
-						</div>
-					</div>
+            <div class="support-logo">
+            <a href="http://www.ualberta.ca" target="_blank">
+              <img src="www/images/ualberta.svg" class="logo-img">
+            </a>
+            </div>
+          </div>
 
-				</div>
-			</div>
-		</div>
-		</body>
-</html>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html> 
