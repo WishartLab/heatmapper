@@ -14,6 +14,7 @@ library(ggdendro)
 library(dbConnect)
 library(dplyr)
 library(stringi)
+library(mapview)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
@@ -1289,17 +1290,24 @@ shinyServer(function(input, output, session) {
     }
   )
   
-  # save leaflet html page
-  output$plotDownload <- downloadHandler(
-    filename = function() {
-      "geomap.html"
-    },
+  # save leaflet png page
+  output$geomap <- downloadHandler(
+    filename = paste0( Sys.Date()
+                       , "_customGeomap"
+                       , ".png"
+    ),
     content = function(file) {
-      log_activity('geomap', 'plotDownload')
-      m <- get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
-      #m <- leaflet()
-      saveWidget(m, file = file)
-    }
-  )
-  
+      # mapshot() from mapview package to save the image as png
+      mapshot( x = get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
+               %>% get_view()
+               %>% addLegend(layerId = "legendLayer", position = "bottomright", 
+                             opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
+                             title = input$legend)
+               , file = file
+               , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
+               , selfcontained = TRUE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
+      )# end of mapshot()
+      log_activity('geomap', 'geomap')
+    } # end of content function
+  )# end of downloadHandler
 })
