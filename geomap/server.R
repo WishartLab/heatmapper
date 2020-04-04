@@ -64,7 +64,6 @@ shinyServer(function(input, output, session) {
     palette = NULL,
     map = NULL
   )
-  
   #################### OBSERVERS ####################
   observe({
     input$clearFile
@@ -336,7 +335,7 @@ shinyServer(function(input, output, session) {
           opacity = 0.7,
           colors = colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from)),
           labels = paste(values$from, "-", values$to),
-          title = 'Person count'
+          title = "Person count"
         )#input$legend
     }
   }) 
@@ -516,11 +515,26 @@ shinyServer(function(input, output, session) {
       }
       # update the column name when "Per capita" radio button is selected 
       col_name <- input$colSelect
-      #  if (input$radio == "per_capita"){
-      #  col_name <- paste(col_name,input$radio, sep = "_")
-      #  }
+       # if (input$radio == "per_capita"){
+       # col_name <- paste(col_name,input$radio, sep = "_")
+       # }
       
+      
+      # nums_col contains values in the selected column 
       nums_col <- get_nums_col(data_file, col_name)
+      
+      # indicate names of files that contain country-level data to specify per Million adjustment
+      keyNames <- c("Global-Country_", "North_America_", 
+                    "Asia_", "Europe_", "Africa_", "South_America_", "Oceania_")
+      # adjust per capita number to per Million 
+      if (grepl(paste(keyNames, collapse = "|"), file_name) & grepl("_per_capita", col_name)){
+         nums_col <- as.numeric(nums_col) * 1000000
+         #input$legend <<- "Person count (per Million)"
+      } else if (grepl("_per_capita", col_name)){
+         nums_col <- nums_col * 1000
+         #input$legend <<- "Person count (per 1000)"
+       }
+      
       if (debug)
         write(
           paste('  get_density: nums_col:', nums_col, sep = "\t"),
@@ -537,6 +551,7 @@ shinyServer(function(input, output, session) {
           append = TRUE
         )
       return(nums_col)
+      
     },
     warning = function(warning_condition) {
       write('  get_density: caught warning:',
@@ -552,8 +567,8 @@ shinyServer(function(input, output, session) {
             append = TRUE)
       write(paste0(err), file = log_filename, append = TRUE)
       validate(txt = paste(ERR_file_read, dimensions_msg))
-    })
-  })
+    }) 
+  }) # End of get_density, which get the number of person
   
   # read file if chooseInput is changed or file is uploaded
   get_file <- reactive({
@@ -564,7 +579,7 @@ shinyServer(function(input, output, session) {
       append = TRUE
     )
     tryCatch({
-     
+      
       map_file_name <- input$area
       write(paste('  map-file_name:', map_file_name, sep = "\t"),
             file = log_filename,
@@ -623,7 +638,7 @@ shinyServer(function(input, output, session) {
             append = TRUE)
       datepart <- paste0(date, collapse = "-")
       #Create file name
-      file_name <-
+      file_name <<-
         paste(prefix, datepart,".txt", sep = "")
       write(paste('  file_name:', file_name, sep = "\t"),
             file = log_filename,
@@ -632,6 +647,10 @@ shinyServer(function(input, output, session) {
       data_file <- read.csv(file = file_name,
                             sep = "\t",
                             stringsAsFactors = FALSE)
+      
+      if (grepl("Global-Country_", file_name)) {
+        data_file <- data_file[-c((nrow(data_file)-1):nrow(data_file)),]
+      }
       
       # region names should be in lower case
       data_file[[1]] <- tolower(data_file[[1]])
@@ -1015,7 +1034,7 @@ shinyServer(function(input, output, session) {
       densityBreaks <- rangeMin
     }
     densityBreaks
-  }
+  } # End of get_breaks()
   
   # update colours based on density breaks when value changes
   update_colours <- function(densityBreaks) {
@@ -1105,7 +1124,7 @@ shinyServer(function(input, output, session) {
       ))],
       names = names(values$density))
     }
-  }
+  } # End of get_colours() function
   
   # The state names that come back from the maps package's state database has
   # state:qualifier format. This function strips off the qualifier.
@@ -1133,7 +1152,6 @@ shinyServer(function(input, output, session) {
     }
     
     mapData$fillColour <- fillArray
-    
     return(mapData)
   })
   
