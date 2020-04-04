@@ -1039,11 +1039,11 @@ shinyServer(function(input, output, session) {
         # values$from[i] < 0.01 ~ mround(values$from[i], base = 0.001),
         # values$from[i] < 0.1 ~ mround(values$from[i], base = 0.01),
         # values$from[i] < 1 ~ mround(values$from[i], base = 0.1),
-        values$from[i] < 20 ~ mround(values$from[i], base = 5),
-        values$from[i] < 500 ~ round(values$from[i], digits = -1),
-        values$from[i] < 2000 ~ round(values$from[i], digits = -2),
-        values$from[i] < 20000 ~ round(values$from[i], digits = -3),
-        TRUE ~ round(values$from[i], digits = -4)
+        values$from[i] <= 30 ~ mround(values$from[i], base = 5),
+        values$from[i] <= 300 ~ mround(values$from[i], base = 50),
+        values$from[i] <= 3000 ~ mround(values$from[i], base = 500),
+        values$from[i] <= 30000 ~ mround(values$from[i], base = 5000),
+        TRUE ~ mround(values$from[i], base = 50000)
         )
       values$to[i] <- case_when(
         # values$to[i] < 0.0000001 ~ mround(values$to[i], base = 0.00000001),
@@ -1054,11 +1054,11 @@ shinyServer(function(input, output, session) {
         # values$to[i] < 0.01 ~ mround(values$to[i], base = 0.001),
         # values$to[i] < 0.1 ~ mround(values$to[i], base = 0.01),
         # values$to[i] < 1 ~ mround(values$to[i], base = 0.1),
-        values$to[i] < 20 ~ mround(values$to[i], base = 5),
-        values$to[i] < 500 ~ round(values$to[i], digits = -1),
-        values$to[i] < 2000 ~ round(values$to[i], digits = -2),
-        values$to[i] < 20000 ~ round(values$to[i], digits = -3),
-        TRUE ~ round(values$to[i], digits = -4)
+        values$to[i] <= 30 ~ mround(values$to[i], base = 5),
+        values$to[i] <= 300 ~ mround(values$to[i], base = 50),
+        values$to[i] <= 3000 ~ mround(values$to[i], base = 500),
+        values$to[i] <= 30000 ~ mround(values$to[i], base = 5000),
+        TRUE ~ mround(values$to[i], base = 50000)
       )
     }
     

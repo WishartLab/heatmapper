@@ -1,3 +1,15 @@
 Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
-Canada	250	1	8	N/A	6.75e-06	3e-08	333.333333333	153.846153846	100.0	1e-05	4.61538461538e-06	3e-06
-United States of America	3499	63	12	N/A	1.069e-05	1.9e-07	21000.0	9692.30769231	6300.0	6.33333333333e-05	2.92307692308e-05	1.9e-05
+Canada	250	1	8	N/A	6.75e-6	3e-8	333.333333333	153.846153846	100	1e-5	4.61538461538e-6	3e-6
+United States of America	3499	63	12	N/A	1.069e-5	1.9e-7	21000	9692.30769231	6300	6.33333333333e-5	2.92307692308e-5	1.9e-5
+Panama	43	1	0	N/A	1.029e-5	2.4e-7	333.333333333	153.846153846	100	8e-5	3.69230769231e-5	2.4e-5
+Costa Rica	27	0	0	N/A	5.4e-6	0	135	54	33.75	2.7e-5	1.08e-5	6.75e-6
+Cuba	4	0	0	N/A	3.5e-7	0	20	8	5	1.75e-6	7e-7	4.375e-7
+Guatemala	1	0	0	N/A	6e-8	0	5	2	1.25	3e-7	1.2e-7	7.5e-8
+Saint Vincent and the Grenadines	1	0	0	N/A	9.07e-6	0	5	2	1.25	4.535e-5	1.814e-5	1.13375e-5
+Dominican Republic	11	0	0	N/A	1.04e-6	0	55	22	13.75	5.2e-6	2.08e-6	1.3e-6
+Saint Lucia	2	0	0	N/A	1.1e-5	0	10	4	2.5	5.5e-5	2.2e-5	1.375e-5
+Trinidad and Tobago	2	0	0	N/A	1.44e-6	0	10	4	2.5	7.2e-6	2.88e-6	1.8e-6
+Jamaica	10	0	0	N/A	3.41e-6	0	50	20	12.5	1.705e-5	6.82e-6	4.2625e-6
+Honduras	3	0	0	N/A	3.1e-7	0	15	6	3.75	1.55e-6	6.2e-7	3.875e-7
+Mexico	41	0	4	N/A	3.2e-7	0	205	82	51.25	1.6e-6	6.4e-7	4e-7
+Antigua and Barbuda	1	0	0	N/A	1.039e-5	0	5	2	1.25	5.195e-5	2.078e-5	1.29875e-5
