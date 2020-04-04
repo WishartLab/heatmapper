@@ -14,6 +14,7 @@ library(ggdendro)
 library(dbConnect)
 library(dplyr)
 library(stringi)
+library(mapview)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
@@ -338,7 +339,7 @@ shinyServer(function(input, output, session) {
           title = 'Person count'
         )#input$legend
     }
-  })
+  }) 
   
   # get hover location over region
   observe({
@@ -513,10 +514,11 @@ shinyServer(function(input, output, session) {
               file = log_filename,
               append = TRUE)
       }
+      # update the column name when "Per capita" radio button is selected 
       col_name <- input$colSelect
-      # if (input$radio == "per_capita"){
-      #   col_name <- paste(col_name,input$radio, sep = "_")
-      # }
+      #  if (input$radio == "per_capita"){
+      #  col_name <- paste(col_name,input$radio, sep = "_")
+      #  }
       
       nums_col <- get_nums_col(data_file, col_name)
       if (debug)
@@ -1037,11 +1039,11 @@ shinyServer(function(input, output, session) {
         # values$from[i] < 0.01 ~ mround(values$from[i], base = 0.001),
         # values$from[i] < 0.1 ~ mround(values$from[i], base = 0.01),
         # values$from[i] < 1 ~ mround(values$from[i], base = 0.1),
-        values$from[i] < 20 ~ mround(values$from[i], base = 5),
-        values$from[i] < 500 ~ round(values$from[i], digits = -1),
-        values$from[i] < 2000 ~ round(values$from[i], digits = -2),
-        values$from[i] < 20000 ~ round(values$from[i], digits = -3),
-        TRUE ~ round(values$from[i], digits = -4)
+        values$from[i] <= 30 ~ mround(values$from[i], base = 5),
+        values$from[i] <= 300 ~ mround(values$from[i], base = 50),
+        values$from[i] <= 3000 ~ mround(values$from[i], base = 500),
+        values$from[i] <= 30000 ~ mround(values$from[i], base = 5000),
+        TRUE ~ mround(values$from[i], base = 50000)
         )
       values$to[i] <- case_when(
         # values$to[i] < 0.0000001 ~ mround(values$to[i], base = 0.00000001),
@@ -1052,11 +1054,11 @@ shinyServer(function(input, output, session) {
         # values$to[i] < 0.01 ~ mround(values$to[i], base = 0.001),
         # values$to[i] < 0.1 ~ mround(values$to[i], base = 0.01),
         # values$to[i] < 1 ~ mround(values$to[i], base = 0.1),
-        values$to[i] < 20 ~ mround(values$to[i], base = 5),
-        values$to[i] < 500 ~ round(values$to[i], digits = -1),
-        values$to[i] < 2000 ~ round(values$to[i], digits = -2),
-        values$to[i] < 20000 ~ round(values$to[i], digits = -3),
-        TRUE ~ round(values$to[i], digits = -4)
+        values$to[i] <= 30 ~ mround(values$to[i], base = 5),
+        values$to[i] <= 300 ~ mround(values$to[i], base = 50),
+        values$to[i] <= 3000 ~ mround(values$to[i], base = 500),
+        values$to[i] <= 30000 ~ mround(values$to[i], base = 5000),
+        TRUE ~ mround(values$to[i], base = 50000)
       )
     }
     
@@ -1186,12 +1188,15 @@ shinyServer(function(input, output, session) {
     })
     latitude_diff <- max(lat)-min(lat)
     longitude_diff <- max(lat)-min(lat)
-    zoom <- case_when(
-      max(latitude_diff,longitude_diff*1.5) < 4 ~ 7,
-      max(latitude_diff,longitude_diff*1.5) < 8 ~ 6,
+    zoom <- case_when( # zoom is assigned based on the max of longitude or latitude diff
+      max(latitude_diff,longitude_diff*1.5) < 1.8 ~ 9,
+      max(latitude_diff,longitude_diff*1.5) < 6 ~ 8,
+      max(latitude_diff,longitude_diff*1.5) < 10 ~ 7,
+      max(latitude_diff,longitude_diff*1.5) < 12 ~ 6,
       max(latitude_diff,longitude_diff*1.5) < 15 ~ 5,
-      max(latitude_diff,longitude_diff*1.5) < 50 ~ 4,
-      TRUE ~ 3
+      max(latitude_diff,longitude_diff*1.5) < 40 ~ 4,
+      max(latitude_diff,longitude_diff*1.5) < 250 ~ 3,
+      TRUE ~ 2
     )
     setView(m, mean(lat), mean(lon), zoom = zoom)
   }
@@ -1317,17 +1322,24 @@ shinyServer(function(input, output, session) {
     }
   )
   
-  # save leaflet html page
-  output$plotDownload <- downloadHandler(
-    filename = function() {
-      "geomap.html"
-    },
+  # save leaflet png page
+  output$geomap <- downloadHandler(
+    filename = paste0( Sys.Date()
+                       , "_customGeomap"
+                       , ".png"
+    ),
     content = function(file) {
-      log_activity('geomap', 'plotDownload')
-      m <- get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
-      #m <- leaflet()
-      saveWidget(m, file = file)
-    }
-  )
-  
+      # mapshot() from mapview package to save the image as png
+      mapshot( x = get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
+               %>% get_view()
+               %>% addLegend(layerId = "legendLayer", position = "bottomright", 
+                             opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
+                             title = "Person count")
+               , file = file
+               , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
+               , selfcontained = TRUE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
+      )# end of mapshot()
+      log_activity('geomap', 'geomap')
+    } # end of content function
+  )# end of downloadHandler
 })
