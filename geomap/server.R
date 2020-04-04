@@ -335,7 +335,7 @@ shinyServer(function(input, output, session) {
           opacity = 0.7,
           colors = colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from)),
           labels = paste(values$from, "-", values$to),
-          title = "Person count"
+          title = legend_title
         )#input$legend
     }
   }) 
@@ -428,6 +428,10 @@ shinyServer(function(input, output, session) {
       }
       
       nums_col <- data_file[[col]]
+      #Check if values have python "N/A" symbol, substitute with 0
+      if (grepl(pattern = "N/A",x = nums_col) %>% sum() >= 1){
+        nums_col <- gsub(pattern = "N/A", replacement = 0, x = nums_col)
+      }
       if (debug)
         write(
           paste(
@@ -514,25 +518,30 @@ shinyServer(function(input, output, session) {
               append = TRUE)
       }
       # update the column name when "Per capita" radio button is selected 
-      col_name <- input$colSelect
+      #col_name <- input$colSelect
        # if (input$radio == "per_capita"){
        # col_name <- paste(col_name,input$radio, sep = "_")
        # }
       
       
       # nums_col contains values in the selected column 
-      nums_col <- get_nums_col(data_file, col_name)
-      
+      nums_col <- get_nums_col(data_file, input$colSelect)
+      #Check if it is not per capita column and round to integers, as we cannot have fraction of people
+      if (!grepl("_per_capita", input$colSelect)){
+        nums_col <- round(nums_col, digits = 0)
+      }
+      # set legend title
+      legend_title <<- "Person count"
       # indicate names of files that contain country-level data to specify per Million adjustment
       keyNames <- c("Global-Country_", "North_America_", 
-                    "Asia_", "Europe_", "Africa_", "South_America_", "Oceania_")
-      # adjust per capita number to per Million 
-      if (grepl(paste(keyNames, collapse = "|"), file_name) & grepl("_per_capita", col_name)){
+                    "Asia_", "Europe_", "Africa_", "South_America_", "Oceania_", "Canada_", "China_", "United_States_of_America")
+      # adjust per capita number to per Million and adjsut legend title
+      if (grepl(paste(keyNames, collapse = "|"), file_name) & grepl("_per_capita", input$colSelect)){
          nums_col <- as.numeric(nums_col) * 1000000
-         #input$legend <<- "Person count (per Million)"
-      } else if (grepl("_per_capita", col_name)){
-         nums_col <- nums_col * 1000
-         #input$legend <<- "Person count (per 1000)"
+         legend_title <<- "Person count (per 1M)"
+      } else if (grepl("_per_capita", input$colSelect)){
+         nums_col <- as.numeric(nums_col) * 1000
+         legend_title <<- "Person count (per 1000)"
        }
       
       if (debug)
@@ -1057,7 +1066,7 @@ shinyServer(function(input, output, session) {
         # values$from[i] < 0.001 ~ mround(values$from[i], base = 0.0001),
         # values$from[i] < 0.01 ~ mround(values$from[i], base = 0.001),
         # values$from[i] < 0.1 ~ mround(values$from[i], base = 0.01),
-        # values$from[i] < 1 ~ mround(values$from[i], base = 0.1),
+        values$from[i] <= 1 ~ mround(values$from[i], base = 1),
         values$from[i] <= 30 ~ mround(values$from[i], base = 5),
         values$from[i] <= 300 ~ mround(values$from[i], base = 50),
         values$from[i] <= 3000 ~ mround(values$from[i], base = 500),
@@ -1072,7 +1081,7 @@ shinyServer(function(input, output, session) {
         # values$to[i] < 0.001 ~ mround(values$to[i], base = 0.0001),
         # values$to[i] < 0.01 ~ mround(values$to[i], base = 0.001),
         # values$to[i] < 0.1 ~ mround(values$to[i], base = 0.01),
-        # values$to[i] < 1 ~ mround(values$to[i], base = 0.1),
+        values$to[i] <= 1 ~ mround(values$to[i], base = 1),
         values$to[i] <= 30 ~ mround(values$to[i], base = 5),
         values$to[i] <= 300 ~ mround(values$to[i], base = 50),
         values$to[i] <= 3000 ~ mround(values$to[i], base = 500),
@@ -1352,7 +1361,7 @@ shinyServer(function(input, output, session) {
                %>% get_view()
                %>% addLegend(layerId = "legendLayer", position = "bottomright", 
                              opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
-                             title = "Person count")
+                             title = legend_title)
                , file = file
                , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
                , selfcontained = TRUE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
