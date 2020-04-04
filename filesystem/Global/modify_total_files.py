@@ -29,11 +29,9 @@ for continent in continents:
                     for row in data:
                         if not os.path.exists(root+"/"+row[0].replace(" ","_")+"/"):
                             os.mkdir(root+"/"+row[0].replace(" ","_"))
-                        with open(root+"/"+row[0].replace(" ","_")+"/"+"accumulated.txt",'a') as csv_file:
-                            reader = csv.reader(root+"/"+row[0].replace(" ","_")+"/"+"accumulated.txt", delimiter='\t')  
+                        with open(root+"/"+row[0].replace(" ","_")+"/"+"accumulated.txt",'a') as csv_file: 
                             writer = csv.writer(csv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                            data = list(reader)
-                            if not data:
+                            if os.path.getsize(root+"/"+row[0].replace(" ","_")+"/"+"accumulated.txt") == 0:
                                 writer.writerow(headers)
                             row.append(file[-14:-4])
                             writer.writerow(row)
