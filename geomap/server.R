@@ -542,16 +542,20 @@ shinyServer(function(input, output, session) {
       # set legend title
       legend_title <<- "Person count"
       # indicate names of files that contain country-level data to specify per Million adjustment
-      keyNames <- c("Global-Country_", "North_America_", 
-                    "Asia_", "Europe_", "Africa_", "South_America_", "Oceania_", "Canada_", "China_", "United_States_of_America")
-      # adjust per capita number to per Million and adjsut legend title
-      if (grepl(paste(keyNames, collapse = "|"), file_name) & grepl("_per_capita", input$colSelect)){
-         nums_col <- as.numeric(nums_col) * 1000000
-         legend_title <<- "Person count (per 1M)"
-      } else if (grepl("_per_capita", input$colSelect)){
-         nums_col <- as.numeric(nums_col) * 1000
-         legend_title <<- "Person count (per 1000)"
-       }
+      # keyNames <- c("Global-Country_", "North_America_", 
+      #               "Asia_", "Europe_", "Africa_", "South_America_", "Oceania_", "Canada_", "China_", "United_States_of_America")
+      # # adjust per capita number to per Million and adjsut legend title
+      # if (grepl(paste(keyNames, collapse = "|"), file_name) & grepl("_per_capita", input$colSelect)){
+      #    nums_col <- as.numeric(nums_col) * 1000000
+      #    legend_title <<- "Person count (per 1M)"
+      # } else if (grepl("_per_capita", input$colSelect)){
+         # nums_col <- as.numeric(nums_col) * 1000
+         # legend_title <<- "Person count (per 1000)"
+      #  }
+      if(grepl("_per_capita", input$colSelect)){
+        nums_col <- as.numeric(nums_col) * 100000
+        legend_title <<- "Person count (per 100,000)"
+      }
       
       if (debug)
         write(
@@ -1075,7 +1079,7 @@ shinyServer(function(input, output, session) {
         # values$from[i] < 0.001 ~ mround(values$from[i], base = 0.0001),
         # values$from[i] < 0.01 ~ mround(values$from[i], base = 0.001),
         # values$from[i] < 0.1 ~ mround(values$from[i], base = 0.01),
-        values$from[i] <= 1 ~ mround(values$from[i], base = 1),
+        values$from[i] <= 1 ~ mround(values$from[i], base = 0.1),
         values$from[i] <= 30 ~ mround(values$from[i], base = 5),
         values$from[i] <= 300 ~ mround(values$from[i], base = 50),
         values$from[i] <= 3000 ~ mround(values$from[i], base = 500),
@@ -1090,7 +1094,7 @@ shinyServer(function(input, output, session) {
         # values$to[i] < 0.001 ~ mround(values$to[i], base = 0.0001),
         # values$to[i] < 0.01 ~ mround(values$to[i], base = 0.001),
         # values$to[i] < 0.1 ~ mround(values$to[i], base = 0.01),
-        values$to[i] <= 1 ~ mround(values$to[i], base = 1),
+        values$to[i] <= 1 ~ mround(values$to[i], base = 0.1),
         values$to[i] <= 30 ~ mround(values$to[i], base = 5),
         values$to[i] <= 300 ~ mround(values$to[i], base = 50),
         values$to[i] <= 3000 ~ mround(values$to[i], base = 500),
