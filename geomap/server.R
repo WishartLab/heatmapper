@@ -48,10 +48,11 @@ date_part <- Sys.time() %>%
 log_filename = tryCatch({
   paste(system("hostname", intern = TRUE),
         #Add date to log file
-        date_part,
+        #date_part,
         'log.txt', sep = "_")
 }, error = function(e) {
-  paste(date_part,'log.txt', sep = "_")
+  'log.txt'
+  #paste(date_part,'log.txt', sep = "_")
 })
 if (!exists('logDir') || is.na(logDir) || logDir == '') {
 	logDir = '.'
