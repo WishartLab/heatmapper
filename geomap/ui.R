@@ -335,7 +335,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			  column(7,
 			    dateInput("date",
 			              label = NULL,
-			              value = Sys.Date()-1,
+			              value = "2020-04-03",
 			              min = "2020-03-01",
 			              max = Sys.Date()+90)
 			  )),
