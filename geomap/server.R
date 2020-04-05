@@ -177,7 +177,7 @@ shinyServer(function(input, output, session) {
           if (is.finite(min) && is.finite(max) && min != max) {
             #update_colours(round(seq(min, max, length.out = 8 + 1), num_digits))#input$binNumber
             #Added logarithmic scale if max is 500 times higher than min
-            if (max/max(min,1) > 500){
+            if (max/max(abs(min),1) > 500){
               densityBreaks <- round(10^seq(log10(max(min,1)), log10(max), length.out = 8 + 1), num_digits)
             } else {
               densityBreaks <- round(seq(min, max, length.out = 8 + 1), num_digits)
@@ -555,6 +555,9 @@ shinyServer(function(input, output, session) {
       if(grepl("_per_capita", input$colSelect)){
         nums_col <- as.numeric(nums_col) * 100000
         legend_title <<- "Person count (per 100,000)"
+        #Check if % change column to update the legend title
+      } else if (grepl("_change", input$colSelect)){
+        legend_title <<- "% Change"
       }
       
       if (debug)
@@ -1070,6 +1073,10 @@ shinyServer(function(input, output, session) {
     }
     
     #Rounding the bin limits values for legend
+    mround_bases <- c(0.1,5,50,500,5000,50000)
+    if (grepl("_change", input$colSelect)){
+      mround_bases <- c(0.1,1,10,100,1000,10000)
+    }
     for (i in 1:length(values$from)){
       values$from[i] <- case_when(
         # values$from[i] < 0.0000001 ~ mround(values$from[i], base = 0.00000001),
@@ -1079,12 +1086,12 @@ shinyServer(function(input, output, session) {
         # values$from[i] < 0.001 ~ mround(values$from[i], base = 0.0001),
         # values$from[i] < 0.01 ~ mround(values$from[i], base = 0.001),
         # values$from[i] < 0.1 ~ mround(values$from[i], base = 0.01),
-        values$from[i] <= 1 ~ mround(values$from[i], base = 0.1),
-        values$from[i] <= 30 ~ mround(values$from[i], base = 5),
-        values$from[i] <= 300 ~ mround(values$from[i], base = 50),
-        values$from[i] <= 3000 ~ mround(values$from[i], base = 500),
-        values$from[i] <= 30000 ~ mround(values$from[i], base = 5000),
-        TRUE ~ mround(values$from[i], base = 50000)
+        abs(values$from[i]) <= 1 ~ mround(values$from[i], base = mround_bases[1]),
+        abs(values$from[i]) <= 30 ~ mround(values$from[i], base = mround_bases[2]),
+        abs(values$from[i]) <= 300 ~ mround(values$from[i], base = mround_bases[3]),
+        abs(values$from[i]) <= 3000 ~ mround(values$from[i], base = mround_bases[4]),
+        abs(values$from[i]) <= 30000 ~ mround(values$from[i], base = mround_bases[5]),
+        TRUE ~ mround(values$from[i], base = mround_bases[6])
         )
       values$to[i] <- case_when(
         # values$to[i] < 0.0000001 ~ mround(values$to[i], base = 0.00000001),
@@ -1094,12 +1101,12 @@ shinyServer(function(input, output, session) {
         # values$to[i] < 0.001 ~ mround(values$to[i], base = 0.0001),
         # values$to[i] < 0.01 ~ mround(values$to[i], base = 0.001),
         # values$to[i] < 0.1 ~ mround(values$to[i], base = 0.01),
-        values$to[i] <= 1 ~ mround(values$to[i], base = 0.1),
-        values$to[i] <= 30 ~ mround(values$to[i], base = 5),
-        values$to[i] <= 300 ~ mround(values$to[i], base = 50),
-        values$to[i] <= 3000 ~ mround(values$to[i], base = 500),
-        values$to[i] <= 30000 ~ mround(values$to[i], base = 5000),
-        TRUE ~ mround(values$to[i], base = 50000)
+        abs(values$to[i]) <= 1 ~ mround(values$to[i], base = mround_bases[1]),
+        abs(values$to[i]) <= 30 ~ mround(values$to[i], base = mround_bases[2]),
+        abs(values$to[i]) <= 300 ~ mround(values$to[i], base = mround_bases[3]),
+        abs(values$to[i]) <= 3000 ~ mround(values$to[i], base = mround_bases[4]),
+        abs(values$to[i]) <= 30000 ~ mround(values$to[i], base = mround_bases[5]),
+        TRUE ~ mround(values$to[i], base = mround_bases[6])
       )
     }
     
