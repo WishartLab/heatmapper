@@ -14,7 +14,6 @@ library(ggdendro)
 library(dbConnect)
 library(dplyr)
 library(stringi)
-library(mapview)
 #library(mapview)
 #library(webshot)
 
