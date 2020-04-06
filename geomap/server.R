@@ -15,6 +15,8 @@ library(dbConnect)
 library(dplyr)
 library(stringi)
 library(mapview)
+#library(mapview)
+#library(webshot)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
