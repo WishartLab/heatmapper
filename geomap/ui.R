@@ -391,12 +391,12 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			FILL_OPACITY_SLIDER(0.8),
 
 			# plotdownload and table download buttons
-			list(
-			  #tags$style("#tableDownload {float:right;}"),
-			  tipify(downloadButton('geomap', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot", placement = "top"),
-			  tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download the raw data", placement = "top"),
-			  tags$br(), tags$br()
-			),
+			# list(
+			#   #tags$style("#tableDownload {float:right;}"),
+			#   tipify(downloadButton('geomap', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot", placement = "top"),
+			#   tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download the raw data", placement = "top"),
+			#   tags$br(), tags$br()
+			# ),
 
 			hr(),
 			HTML('Want to make your own custom heatmaps? Try our freely accessible <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a> tool.'),
