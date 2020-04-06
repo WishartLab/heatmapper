@@ -1,5 +1,5 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily	Confirmed_change	Deaths_change
-New Zealand	52	0	0	N/A	1.064e-5	0	260	104	65	5.32e-5	2.128e-5	1.33e-5	13	0	18.2	0
-Australia	1071	7	26	N/A	4.285e-5	2.8e-7	2333.33333333	1076.92307692	700	9.33333333333e-5	4.30769230769e-5	2.8e-5	280	0	154.5	0
-Fiji	1	0	0	N/A	1.13e-6	0	5	2	1.25	5.65e-6	2.26e-6	1.4125e-6	0	0	100	0
-Papua New Guinea	1	0	0	N/A	1.2e-7	0	5	2	1.25	6e-7	2.4e-7	1.5e-7	0	0	100	0
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily	Confirmed_change	Deaths_change	Tests	Tests_per_capita
+New Zealand	52	0	0	N/A	1.064e-5	0	260	104	65	5.32e-5	2.128e-5	1.33e-5	13	0	18.2	0	NA	NA
+Australia	1071	7	26	N/A	4.285e-5	2.8e-7	2333.33333333	1076.92307692	700	9.33333333333e-5	4.30769230769e-5	2.8e-5	280	0	154.5	0	NA	NA
+Fiji	1	0	0	N/A	1.13e-6	0	5	2	1.25	5.65e-6	2.26e-6	1.4125e-6	0	0	100	0	NA	NA
+Papua New Guinea	1	0	0	N/A	1.2e-7	0	5	2	1.25	6e-7	2.4e-7	1.5e-7	0	0	100	0	NA	NA

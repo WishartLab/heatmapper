@@ -1,14 +1,14 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
-Brazil	162.0	0.0	0.0	N/A	7.7e-07	0.0	810.0	324.0	202.5	3.85e-06	1.54e-06	9.625e-07
-Chile	74.0	0.0	0.0	N/A	3.95e-06	0.0	370.0	148.0	92.5	1.975e-05	7.9e-06	4.9375e-06
-Suriname	1.0	0.0	0.0	N/A	1.74e-06	0.0	5.0	2.0	1.25	8.7e-06	3.48e-06	2.175e-06
-Colombia	34.0	0.0	0.0	N/A	6.8e-07	0.0	170.0	68.0	42.5	3.4e-06	1.36e-06	8.5e-07
-Uruguay	4.0	0.0	0.0	N/A	1.16e-06	0.0	20.0	8.0	5.0	5.8e-06	2.32e-06	1.45e-06
-Aruba	2.0	0.0	0.0	N/A	1.89e-05	0.0	10.0	4.0	2.5	9.45e-05	3.78e-05	2.3625e-05
-Peru	43.0	0.0	0.0	N/A	1.34e-06	0.0	215.0	86.0	53.75	6.7e-06	2.68e-06	1.675e-06
-Guyana	4.0	1.0	0.0	N/A	5.13e-06	1.28e-06	333.333333333	153.846153846	100.0	0.000426666666667	0.000196923076923	0.000128
-Argentina	45.0	2.0	1.0	N/A	1.01e-06	4e-08	666.666666667	307.692307692	200.0	1.33333333333e-05	6.15384615385e-06	4e-06
-Bolivia	10.0	0.0	0.0	N/A	8.8e-07	0.0	50.0	20.0	12.5	4.4e-06	1.76e-06	1.1e-06
-Venezuela	10.0	0.0	0.0	N/A	3.5e-07	0.0	50.0	20.0	12.5	1.75e-06	7e-07	4.375e-07
-Ecuador	28.0	2.0	0.0	N/A	1.64e-06	1.2e-07	666.666666667	307.692307692	200.0	4e-05	1.84615384615e-05	1.2e-05
-Curacao	1.0	0.0	0.0	N/A	6.26e-06	0.0	5.0	2.0	1.25	3.13e-05	1.252e-05	7.825e-06
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Tests	Tests_per_capita
+Brazil	162	0	0	N/A	7.7e-7	0	810	324	202.5	3.85e-6	1.54e-6	9.625e-7	NA	NA
+Chile	74	0	0	N/A	3.95e-6	0	370	148	92.5	1.975e-5	7.9e-6	4.9375e-6	NA	NA
+Suriname	1	0	0	N/A	1.74e-6	0	5	2	1.25	8.7e-6	3.48e-6	2.175e-6	NA	NA
+Colombia	34	0	0	N/A	6.8e-7	0	170	68	42.5	3.4e-6	1.36e-6	8.5e-7	NA	NA
+Uruguay	4	0	0	N/A	1.16e-6	0	20	8	5	5.8e-6	2.32e-6	1.45e-6	NA	NA
+Aruba	2	0	0	N/A	1.89e-5	0	10	4	2.5	9.45e-5	3.78e-5	2.3625e-5	NA	NA
+Peru	43	0	0	N/A	1.34e-6	0	215	86	53.75	6.7e-6	2.68e-6	1.675e-6	NA	NA
+Guyana	4	1	0	N/A	5.13e-6	1.28e-6	333.333333333	153.846153846	100	4.26666666667e-4	1.96923076923e-4	1.28e-4	NA	NA
+Argentina	45	2	1	N/A	1.01e-6	4e-8	666.666666667	307.692307692	200	1.33333333333e-5	6.15384615385e-6	4e-6	NA	NA
+Bolivia	10	0	0	N/A	8.8e-7	0	50	20	12.5	4.4e-6	1.76e-6	1.1e-6	NA	NA
+Venezuela	10	0	0	N/A	3.5e-7	0	50	20	12.5	1.75e-6	7e-7	4.375e-7	NA	NA
+Ecuador	28	2	0	N/A	1.64e-6	1.2e-7	666.666666667	307.692307692	200	4e-5	1.84615384615e-5	1.2e-5	NA	NA
+Curacao	1	0	0	N/A	6.26e-6	0	5	2	1.25	3.13e-5	1.252e-5	7.825e-6	NA	NA
