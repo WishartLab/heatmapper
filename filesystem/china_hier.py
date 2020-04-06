@@ -12,6 +12,7 @@ with open('map_dependencies/china_map_dependencies.csv') as csv_file:
         if province not in heat_prov:
             heat_prov.append(province)
         
+        
 
 with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/03-24-2020.csv') as csv_file:
     can_reader = csv.reader(csv_file, delimiter=',')

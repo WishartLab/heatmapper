@@ -1,12 +1,12 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
-British Columbia	103.0	4.0	4.0	N/A	2.052e-05	8e-07	1333.33333333	615.384615385	400.0	0.000266666666667	0.000123076923077	8e-05
-Newfoundland and Labrador	1.0	0.0	0.0	N/A	1.91e-06	0.0	5.0	2.0	1.25	9.55e-06	3.82e-06	2.3875e-06
-Saskatchewan	7.0	0.0	0.0	N/A	5.99e-06	0.0	35.0	14.0	8.75	2.995e-05	1.198e-05	7.4875e-06
-Prince Edward Island	1.0	0.0	0.0	N/A	6.46e-06	0.0	5.0	2.0	1.25	3.23e-05	1.292e-05	8.075e-06
-Ontario	177.0	0.0	5.0	N/A	1.225e-05	0.0	885.0	354.0	221.25	6.125e-05	2.45e-05	1.53125e-05
-Nova Scotia	5.0	0.0	0.0	N/A	5.15e-06	0.0	25.0	10.0	6.25	2.575e-05	1.03e-05	6.4375e-06
-Quebec	50.0	0.0	0.0	N/A	5.93e-06	0.0	250.0	100.0	62.5	2.965e-05	1.186e-05	7.4125e-06
-Grand Princess	2.0	0.0	0.0	N/A	N/A	N/A	10.0	4.0	2.5	N/A	N/A	N/A
-Alberta	56.0	0.0	0.0	N/A	1.289e-05	0.0	280.0	112.0	70.0	6.445e-05	2.578e-05	1.61125e-05
-Manitoba	7.0	0.0	0.0	N/A	5.15e-06	0.0	35.0	14.0	8.75	2.575e-05	1.03e-05	6.4375e-06
-New Brunswick	6.0	0.0	0.0	N/A	7.77e-06	0.0	30.0	12.0	7.5	3.885e-05	1.554e-05	9.7125e-06
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily
+British Columbia	103	4	4	N/A	2.052e-05	8e-07	1333.33333333	615.384615385	400	0.000266666666667	0.000123076923077	8e-05	30	3
+Newfoundland and Labrador	1	0	0	N/A	1.91e-06	0.0	5	2	1.25	9.55e-06	3.82e-06	2.3875e-06	0	0
+Saskatchewan	7	0	0	N/A	5.99e-06	0.0	35	14	8.75	2.995e-05	1.198e-05	7.4875e-06	5	0
+Prince Edward Island	1	0	0	N/A	6.46e-06	0.0	5	2	1.25	3.23e-05	1.292e-05	8.075e-06	0	0
+Ontario	177	0	5	N/A	1.225e-05	0.0	885	354	221.25	6.125e-05	2.45e-05	1.53125e-05	73	0
+Nova Scotia	5	0	0	N/A	5.15e-06	0.0	25	10	6.25	2.575e-05	1.03e-05	6.4375e-06	NA	NA
+Quebec	50	0	0	N/A	5.93e-06	0.0	250	100	62.5	2.965e-05	1.186e-05	7.4125e-06	26	0
+Grand Princess	2	0	0	N/A	N/A	N/A	10	4	2.5	N/A	N/A	N/A	NA	NA
+Alberta	56	0	0	N/A	1.289e-05	0.0	280	112	70	6.445e-05	2.578e-05	1.61125e-05	17	0
+Manitoba	7	0	0	N/A	5.15e-06	0.0	35	14	8.75	2.575e-05	1.03e-05	6.4375e-06	3	0
+New Brunswick	6	0	0	N/A	7.77e-06	0.0	30	12	7.5	3.885e-05	1.554e-05	9.7125e-06	4	0

@@ -14,6 +14,8 @@ library(ggdendro)
 library(dbConnect)
 library(dplyr)
 library(stringi)
+#library(mapview)
+#library(webshot)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
@@ -39,10 +41,19 @@ mround <- function(x,base){
  return(base*round(x/base))
 }
 # Logging & debugging
+date_part <- Sys.time() %>% 
+  as.character() %>% 
+  strsplit(split = " ") %>% 
+  unlist() %>% 
+  paste(collapse = "_")
 log_filename = tryCatch({
-  paste(system("hostname", intern = TRUE), 'log.txt', sep = "_")
+  paste(system("hostname", intern = TRUE),
+        #Add date to log file
+        #date_part,
+        'log.txt', sep = "_")
 }, error = function(e) {
   'log.txt'
+  #paste(date_part,'log.txt', sep = "_")
 })
 if (!exists('logDir') || is.na(logDir) || logDir == '') {
 	logDir = '.'
@@ -63,7 +74,6 @@ shinyServer(function(input, output, session) {
     palette = NULL,
     map = NULL
   )
-  
   #################### OBSERVERS ####################
   observe({
     input$clearFile
@@ -168,7 +178,7 @@ shinyServer(function(input, output, session) {
           if (is.finite(min) && is.finite(max) && min != max) {
             #update_colours(round(seq(min, max, length.out = 8 + 1), num_digits))#input$binNumber
             #Added logarithmic scale if max is 500 times higher than min
-            if (max/max(min,1) > 500){
+            if (max/max(abs(min),1) > 500){
               densityBreaks <- round(10^seq(log10(max(min,1)), log10(max), length.out = 8 + 1), num_digits)
             } else {
               densityBreaks <- round(seq(min, max, length.out = 8 + 1), num_digits)
@@ -335,10 +345,10 @@ shinyServer(function(input, output, session) {
           opacity = 0.7,
           colors = colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from)),
           labels = paste(values$from, "-", values$to),
-          title = 'Person count'
+          title = legend_title
         )#input$legend
     }
-  })
+  }) 
   
   # get hover location over region
   observe({
@@ -428,6 +438,10 @@ shinyServer(function(input, output, session) {
       }
       
       nums_col <- data_file[[col]]
+      #Check if values have python "N/A" symbol, substitute with 0
+      if (grepl(pattern = "N/A",x = nums_col) %>% sum() >= 1){
+        nums_col <- gsub(pattern = "N/A", replacement = 0, x = nums_col)
+      }
       if (debug)
         write(
           paste(
@@ -513,12 +527,40 @@ shinyServer(function(input, output, session) {
               file = log_filename,
               append = TRUE)
       }
-      col_name <- input$colSelect
-      # if (input$radio == "per_capita"){
-      #   col_name <- paste(col_name,input$radio, sep = "_")
-      # }
+      # update the column name when "Per capita" radio button is selected 
+      #col_name <- input$colSelect
+       # if (input$radio == "per_capita"){
+       # col_name <- paste(col_name,input$radio, sep = "_")
+       # }
       
-      nums_col <- get_nums_col(data_file, col_name)
+      
+      # nums_col contains values in the selected column 
+      nums_col <- get_nums_col(data_file, input$colSelect)
+      #Check if it is not per capita column and round to integers, as we cannot have fraction of people
+      if (!grepl("_per_capita", input$colSelect)){
+        nums_col <- round(nums_col, digits = 0)
+      }
+      # set legend title
+      legend_title <<- "Person count"
+      # indicate names of files that contain country-level data to specify per Million adjustment
+      # keyNames <- c("Global-Country_", "North_America_", 
+      #               "Asia_", "Europe_", "Africa_", "South_America_", "Oceania_", "Canada_", "China_", "United_States_of_America")
+      # # adjust per capita number to per Million and adjsut legend title
+      # if (grepl(paste(keyNames, collapse = "|"), file_name) & grepl("_per_capita", input$colSelect)){
+      #    nums_col <- as.numeric(nums_col) * 1000000
+      #    legend_title <<- "Person count (per 1M)"
+      # } else if (grepl("_per_capita", input$colSelect)){
+         # nums_col <- as.numeric(nums_col) * 1000
+         # legend_title <<- "Person count (per 1000)"
+      #  }
+      if(grepl("_per_capita", input$colSelect)){
+        nums_col <- as.numeric(nums_col) * 100000
+        legend_title <<- "Person count (per 100,000)"
+        #Check if % change column to update the legend title
+      } else if (grepl("_change", input$colSelect)){
+        legend_title <<- "% Change"
+      }
+      
       if (debug)
         write(
           paste('  get_density: nums_col:', nums_col, sep = "\t"),
@@ -535,6 +577,7 @@ shinyServer(function(input, output, session) {
           append = TRUE
         )
       return(nums_col)
+      
     },
     warning = function(warning_condition) {
       write('  get_density: caught warning:',
@@ -550,8 +593,8 @@ shinyServer(function(input, output, session) {
             append = TRUE)
       write(paste0(err), file = log_filename, append = TRUE)
       validate(txt = paste(ERR_file_read, dimensions_msg))
-    })
-  })
+    }) 
+  }) # End of get_density, which get the number of person
   
   # read file if chooseInput is changed or file is uploaded
   get_file <- reactive({
@@ -562,7 +605,7 @@ shinyServer(function(input, output, session) {
       append = TRUE
     )
     tryCatch({
-     
+      
       map_file_name <- input$area
       write(paste('  map-file_name:', map_file_name, sep = "\t"),
             file = log_filename,
@@ -621,7 +664,7 @@ shinyServer(function(input, output, session) {
             append = TRUE)
       datepart <- paste0(date, collapse = "-")
       #Create file name
-      file_name <-
+      file_name <<-
         paste(prefix, datepart,".txt", sep = "")
       write(paste('  file_name:', file_name, sep = "\t"),
             file = log_filename,
@@ -630,6 +673,10 @@ shinyServer(function(input, output, session) {
       data_file <- read.csv(file = file_name,
                             sep = "\t",
                             stringsAsFactors = FALSE)
+      
+      if (grepl("Global-Country_", file_name)) {
+        data_file <- data_file[-c((nrow(data_file)-1):nrow(data_file)),]
+      }
       
       # region names should be in lower case
       data_file[[1]] <- tolower(data_file[[1]])
@@ -1013,7 +1060,7 @@ shinyServer(function(input, output, session) {
       densityBreaks <- rangeMin
     }
     densityBreaks
-  }
+  } # End of get_breaks()
   
   # update colours based on density breaks when value changes
   update_colours <- function(densityBreaks) {
@@ -1027,6 +1074,10 @@ shinyServer(function(input, output, session) {
     }
     
     #Rounding the bin limits values for legend
+    mround_bases <- c(0.1,5,50,500,5000,50000)
+    if (grepl("_change", input$colSelect)){
+      mround_bases <- c(0.1,1,10,100,1000,10000)
+    }
     for (i in 1:length(values$from)){
       values$from[i] <- case_when(
         # values$from[i] < 0.0000001 ~ mround(values$from[i], base = 0.00000001),
@@ -1036,12 +1087,12 @@ shinyServer(function(input, output, session) {
         # values$from[i] < 0.001 ~ mround(values$from[i], base = 0.0001),
         # values$from[i] < 0.01 ~ mround(values$from[i], base = 0.001),
         # values$from[i] < 0.1 ~ mround(values$from[i], base = 0.01),
-        # values$from[i] < 1 ~ mround(values$from[i], base = 0.1),
-        values$from[i] < 20 ~ mround(values$from[i], base = 5),
-        values$from[i] < 500 ~ round(values$from[i], digits = -1),
-        values$from[i] < 2000 ~ round(values$from[i], digits = -2),
-        values$from[i] < 20000 ~ round(values$from[i], digits = -3),
-        TRUE ~ round(values$from[i], digits = -4)
+        abs(values$from[i]) <= 1 ~ mround(values$from[i], base = mround_bases[1]),
+        abs(values$from[i]) <= 30 ~ mround(values$from[i], base = mround_bases[2]),
+        abs(values$from[i]) <= 300 ~ mround(values$from[i], base = mround_bases[3]),
+        abs(values$from[i]) <= 3000 ~ mround(values$from[i], base = mround_bases[4]),
+        abs(values$from[i]) <= 30000 ~ mround(values$from[i], base = mround_bases[5]),
+        TRUE ~ mround(values$from[i], base = mround_bases[6])
         )
       values$to[i] <- case_when(
         # values$to[i] < 0.0000001 ~ mround(values$to[i], base = 0.00000001),
@@ -1051,12 +1102,12 @@ shinyServer(function(input, output, session) {
         # values$to[i] < 0.001 ~ mround(values$to[i], base = 0.0001),
         # values$to[i] < 0.01 ~ mround(values$to[i], base = 0.001),
         # values$to[i] < 0.1 ~ mround(values$to[i], base = 0.01),
-        # values$to[i] < 1 ~ mround(values$to[i], base = 0.1),
-        values$to[i] < 20 ~ mround(values$to[i], base = 5),
-        values$to[i] < 500 ~ round(values$to[i], digits = -1),
-        values$to[i] < 2000 ~ round(values$to[i], digits = -2),
-        values$to[i] < 20000 ~ round(values$to[i], digits = -3),
-        TRUE ~ round(values$to[i], digits = -4)
+        abs(values$to[i]) <= 1 ~ mround(values$to[i], base = mround_bases[1]),
+        abs(values$to[i]) <= 30 ~ mround(values$to[i], base = mround_bases[2]),
+        abs(values$to[i]) <= 300 ~ mround(values$to[i], base = mround_bases[3]),
+        abs(values$to[i]) <= 3000 ~ mround(values$to[i], base = mround_bases[4]),
+        abs(values$to[i]) <= 30000 ~ mround(values$to[i], base = mround_bases[5]),
+        TRUE ~ mround(values$to[i], base = mround_bases[6])
       )
     }
     
@@ -1103,7 +1154,7 @@ shinyServer(function(input, output, session) {
       ))],
       names = names(values$density))
     }
-  }
+  } # End of get_colours() function
   
   # The state names that come back from the maps package's state database has
   # state:qualifier format. This function strips off the qualifier.
@@ -1131,7 +1182,6 @@ shinyServer(function(input, output, session) {
     }
     
     mapData$fillColour <- fillArray
-    
     return(mapData)
   })
   
@@ -1186,12 +1236,15 @@ shinyServer(function(input, output, session) {
     })
     latitude_diff <- max(lat)-min(lat)
     longitude_diff <- max(lat)-min(lat)
-    zoom <- case_when(
-      max(latitude_diff,longitude_diff*1.5) < 4 ~ 7,
-      max(latitude_diff,longitude_diff*1.5) < 8 ~ 6,
+    zoom <- case_when( # zoom is assigned based on the max of longitude or latitude diff
+      max(latitude_diff,longitude_diff*1.5) < 1.8 ~ 9,
+      max(latitude_diff,longitude_diff*1.5) < 6 ~ 8,
+      max(latitude_diff,longitude_diff*1.5) < 10 ~ 7,
+      max(latitude_diff,longitude_diff*1.5) < 12 ~ 6,
       max(latitude_diff,longitude_diff*1.5) < 15 ~ 5,
-      max(latitude_diff,longitude_diff*1.5) < 50 ~ 4,
-      TRUE ~ 3
+      max(latitude_diff,longitude_diff*1.5) < 40 ~ 4,
+      max(latitude_diff,longitude_diff*1.5) < 250 ~ 3,
+      TRUE ~ 2
     )
     setView(m, mean(lat), mean(lon), zoom = zoom)
   }
@@ -1317,17 +1370,24 @@ shinyServer(function(input, output, session) {
     }
   )
   
-  # save leaflet html page
-  output$plotDownload <- downloadHandler(
-    filename = function() {
-      "geomap.html"
-    },
+  # save leaflet png page
+  output$geomap <- downloadHandler(
+    filename = paste0( Sys.Date()
+                       , "_customGeomap"
+                       , ".png"
+    ),
     content = function(file) {
-      log_activity('geomap', 'plotDownload')
-      m <- get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
-      #m <- leaflet()
-      saveWidget(m, file = file)
-    }
-  )
-  
+      # mapshot() from mapview package to save the image as png
+      mapshot( x = get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
+               %>% get_view()
+               %>% addLegend(layerId = "legendLayer", position = "bottomright", 
+                             opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
+                             title = legend_title)
+               , file = file
+               , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
+               , selfcontained = TRUE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
+      )# end of mapshot()
+      log_activity('geomap', 'geomap')
+    } # end of content function
+  )# end of downloadHandler
 })

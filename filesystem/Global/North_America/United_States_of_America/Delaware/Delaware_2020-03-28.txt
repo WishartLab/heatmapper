@@ -1,4 +1,4 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
-New Castle	130.0	2.0	0.0	0.0	0.00023242	3.58e-06	666.666666667	307.692307692	200.0	0.00119333333333	0.000550769230769	0.000358
-Sussex	59.0	1.0	0.0	0.0	0.00025732	4.36e-06	333.333333333	153.846153846	100.0	0.00145333333333	0.000670769230769	0.000436
-Kent	25.0	2.0	0.0	0.0	0.00014002	1.12e-05	666.666666667	307.692307692	200.0	0.00373333333333	0.00172307692308	0.00112
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily	Confirmed_change	Deaths_change
+New Castle	130	2	0	0	2.3242e-4	3.58e-6	666.666666667	307.692307692	200	0.00119333333333	5.50769230769e-4	3.58e-4	25	2	31.6	100
+Sussex	59	1	0	0	2.5732e-4	4.36e-6	333.333333333	153.846153846	100	0.00145333333333	6.70769230769e-4	4.36e-4	22	0	120	100
+Kent	25	2	0	0	1.4002e-4	1.12e-5	666.666666667	307.692307692	200	0.00373333333333	0.00172307692308	0.00112	4	2	0	100

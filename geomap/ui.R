@@ -41,8 +41,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		    			"Australia (By State)" = 'data/AUS_1.rds',
 		    			"Canada (By Province)" = 'data/CAN_1.rds',
 		    			"China (By Province)" = 'data/CHN_1.rds',
+		    			#"United Kingdom (By Country)" = 'data/GBR_1.rds',
 		    			"United States (By States)" = 'data/USA_1.rds',
-		    			"Estonia (By County)" = 'data/EST_1.rds',
+		    			#"Estonia (By County)" = 'data/EST_1.rds',
               #"Canada: Level 2" = 'data/CAN_2.rds',
                
               #"USA: Level 2" = 'data/USA_2.rds',
@@ -257,7 +258,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
               # "Uganda" = 'data/UGA_1.rds',
               # "Ukraine" = 'data/UKR_1.rds',
               # "United Arab Emirates" = 'data/ARE_1.rds',
-              # "United Kingdom" = 'data/GBR_1.rds',
+              
               # "United States Minor Outlying Islands" = 'data/UMI_1.rds',
               # "Uruguay" = 'data/URY_1.rds',
               # "Uzbekistan" = 'data/UZB_1.rds',
@@ -330,11 +331,13 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			"Select map to display:",
 			placement = "right"),
 			tipify(fluidRow(
-			  column(4, tags$label("Select Date")),
-			  column(5,
+			  column(5, tags$label("Select Date:")),
+			  column(7,
 			    dateInput("date",
 			              label = NULL,
-			              value = Sys.Date()-1)
+			              value = "2020-04-03",
+			              min = "2020-03-01",
+			              max = Sys.Date()+90)
 			  )),
 			title = NULL
 			  
@@ -343,15 +346,17 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			tipify(
 				selectInput("colSelect", 
 				            label = "Select Data to Display:", 
-				            choices = c("Confirmed" = 'Confirmed',
+				            choices = c("Confirmed COVID-19 Cases" = 'Confirmed',
 				                        #"Recovered" = 'Recovered',
-				                        "Deaths" = 'Deaths',
+				                        "Confirmed Deaths" = 'Deaths',
 				                        #"Active" = 'Active',
-                                                    # "Confirmed Per Capita" = "Confirmed_per_capita",
-                                                    # "Deaths Per Capita" = "Deaths_per_capita",
-				                        "Expected Cases (IFR 0.30%)" = 'IFR_0.30_expected',
-				                        "Expected Cases (IFR 0.65%)" = 'IFR_0.65_expected',
-				                        "Expected Cases (IFR 1.00%)" = 'IFR_1.0_expected'
+                                "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
+                                "COVID-19 Deaths per 100,000" = "Deaths_per_capita",
+				                        "% Daily Change in Confirmed COVID-19 Cases" = "Confirmed_change",
+				                        "% Daily Change in COVID-19 Deaths" = "Deaths_change",
+				                        "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
+				                        "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
+				                        "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected'
                                                     # "Expected Cases Per Capita( IFR 0.30%)" = 'IFR_0.30_expected_per_capita',
                                                     # "Expected Cases Per Capita (IFR 0.65%)" = 'IFR_0.65_expected_per_capita',
                                                     # "Expected Cases Per Capita (IFR 1.00%)" = 'IFR_1.0_expected_per_capita' 
@@ -383,7 +388,13 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			
 			FILL_OPACITY_SLIDER(0.8),
 
-			DOWNLOAD_BUTTONS(),
+			# plotdownload and table download buttons
+			list(
+			  #tags$style("#tableDownload {float:right;}"),
+			  tipify(downloadButton('geomap', DOWNLOAD_PLOT, class = "btn-info"), "Download the heatmap plot", placement = "top"),
+			  tipify(downloadButton('tableDownload', DOWNLOAD_TABLE, class = "btn-info"), "Download the raw data", placement = "top"),
+			  tags$br(), tags$br()
+			),
 
 			hr(),
 			HTML('Want to make your own custom heatmaps? Try our freely accessible <a href="http://heatmapper.ca/" target="_blank">Heatmapper</a> tool.'),
