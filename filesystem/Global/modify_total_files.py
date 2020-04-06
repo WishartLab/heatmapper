@@ -1,8 +1,11 @@
 import os
 import sys
-import csv 
+import csv
+from scipy.signal import medfilt
+from scipy import arange
+from lmfit import Model 
 
-continents = ["Asia", "Europe", "North_America", "South_America", "Oceania","Africa"]
+continents = ["Other","Europe", "North_America", "South_America", "Oceania","Africa","Asia"]
 
 for root, dirs, files in os.walk(os.getcwd()):
     print root
@@ -16,15 +19,17 @@ headers = ["Name", "Confirmed", "Deaths", "Recovered", "Active", "Confirmed_per_
          "IFR_0.30_expected", "IFR_0.65_expected", "IFR_1.0_expected", "IFR_0.30_expected_per_capita", 
          "IFR_0.65_expected_per_capita", "IFR_1.0_expected_per_capita", "Date"]
 for continent in continents:
+    if continent is None:
+        continue
+    print(continent)
     for root, dirs, files in os.walk(os.getcwd()+"/"+continent):
-        print root
         os.chdir(root)
         if files:
             files.sort()
             for file in files:
                 if file[-4:] == ".txt" and file != "accumulated.txt":
                     data = csv.reader(open(root+"/"+file, "rb"), delimiter = '\t')
-                    print file
+                    #print file
                     next(data)
                     for row in data:
                         if not os.path.exists(root+"/"+row[0].replace(" ","_")+"/"):
@@ -35,5 +40,6 @@ for continent in continents:
                                 writer.writerow(headers)
                             row.append(file[-14:-4])
                             writer.writerow(row)
+
         os.chdir("..")
     os.chdir("..")
