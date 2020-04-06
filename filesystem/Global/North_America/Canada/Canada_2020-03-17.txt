@@ -1,12 +1,12 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
-British Columbia	103.0	4.0	4.0	N/A	2.052e-05	8e-07	1333.33333333	615.384615385	400.0	0.000266666666667	0.000123076923077	8e-05
-Newfoundland and Labrador	3.0	0.0	0.0	N/A	5.73e-06	0.0	15.0	6.0	3.75	2.865e-05	1.146e-05	7.1625e-06
-Grand Princess	8.0	0.0	0.0	N/A	N/A	N/A	40.0	16.0	10.0	N/A	N/A	N/A
-Prince Edward Island	1.0	0.0	0.0	N/A	6.46e-06	0.0	5.0	2.0	1.25	3.23e-05	1.292e-05	8.075e-06
-Ontario	185.0	1.0	5.0	N/A	1.281e-05	7e-08	333.333333333	153.846153846	100.0	2.33333333333e-05	1.07692307692e-05	7e-06
-Nova Scotia	7.0	0.0	0.0	N/A	7.21e-06	0.0	35.0	14.0	8.75	3.605e-05	1.442e-05	9.0125e-06
-Quebec	74.0	0.0	0.0	N/A	8.77e-06	0.0	370.0	148.0	92.5	4.385e-05	1.754e-05	1.09625e-05
-Saskatchewan	7.0	0.0	0.0	N/A	5.99e-06	0.0	35.0	14.0	8.75	2.995e-05	1.198e-05	7.4875e-06
-Alberta	74.0	0.0	0.0	N/A	1.703e-05	0.0	370.0	148.0	92.5	8.515e-05	3.406e-05	2.12875e-05
-Manitoba	8.0	0.0	0.0	N/A	5.88e-06	0.0	40.0	16.0	10.0	2.94e-05	1.176e-05	7.35e-06
-New Brunswick	8.0	0.0	0.0	N/A	1.036e-05	0.0	40.0	16.0	10.0	5.18e-05	2.072e-05	1.295e-05
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily	Confirmed_change	Deaths_change
+British Columbia	103	4	4	N/A	2.052e-05	8e-07	1333.33333333	615.384615385	400	0.000266666666667	0.000123076923077	8e-05	0	0	-100	-100
+Newfoundland and Labrador	3	0	0	N/A	5.73e-06	0.0	15	6	3.75	2.865e-05	1.146e-05	7.1625e-06	2	0	100	100
+Grand Princess	8	0	0	N/A	N/A	N/A	40	16	10	N/A	N/A	N/A	6	0	100	100
+Prince Edward Island	1	0	0	N/A	6.46e-06	0.0	5	2	1.25	3.23e-05	1.292e-05	8.075e-06	0	0	100	100
+Ontario	185	1	5	N/A	1.281e-05	7e-08	333.333333333	153.846153846	100	2.33333333333e-05	1.07692307692e-05	7e-06	8	1	-89	100
+Nova Scotia	7	0	0	N/A	7.21e-06	0.0	35	14	8.75	3.605e-05	1.442e-05	9.0125e-06	2	0	100	100
+Quebec	74	0	0	N/A	8.77e-06	0.0	370	148	92.5	4.385e-05	1.754e-05	1.09625e-05	24	0	-7.7	100
+Saskatchewan	7	0	0	N/A	5.99e-06	0.0	35	14	8.75	2.995e-05	1.198e-05	7.4875e-06	0	0	-100	100
+Alberta	74	0	0	N/A	1.703e-05	0.0	370	148	92.5	8.515e-05	3.406e-05	2.12875e-05	18	0	5.9	100
+Manitoba	8	0	0	N/A	5.88e-06	0.0	40	16	10	2.94e-05	1.176e-05	7.35e-06	1	0	-66.7	100
+New Brunswick	8	0	0	N/A	1.036e-05	0.0	40	16	10	5.18e-05	2.072e-05	1.295e-05	2	0	-50	100

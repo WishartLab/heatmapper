@@ -14,7 +14,8 @@ library(ggdendro)
 library(dbConnect)
 library(dplyr)
 library(stringi)
-library(mapview)
+#library(mapview)
+#library(webshot)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
@@ -40,10 +41,19 @@ mround <- function(x,base){
  return(base*round(x/base))
 }
 # Logging & debugging
+date_part <- Sys.time() %>% 
+  as.character() %>% 
+  strsplit(split = " ") %>% 
+  unlist() %>% 
+  paste(collapse = "_")
 log_filename = tryCatch({
-  paste(system("hostname", intern = TRUE), 'log.txt', sep = "_")
+  paste(system("hostname", intern = TRUE),
+        #Add date to log file
+        #date_part,
+        'log.txt', sep = "_")
 }, error = function(e) {
   'log.txt'
+  #paste(date_part,'log.txt', sep = "_")
 })
 if (!exists('logDir') || is.na(logDir) || logDir == '') {
 	logDir = '.'
@@ -168,7 +178,7 @@ shinyServer(function(input, output, session) {
           if (is.finite(min) && is.finite(max) && min != max) {
             #update_colours(round(seq(min, max, length.out = 8 + 1), num_digits))#input$binNumber
             #Added logarithmic scale if max is 500 times higher than min
-            if (max/max(min,1) > 500){
+            if (max/max(abs(min),1) > 500){
               densityBreaks <- round(10^seq(log10(max(min,1)), log10(max), length.out = 8 + 1), num_digits)
             } else {
               densityBreaks <- round(seq(min, max, length.out = 8 + 1), num_digits)
@@ -335,7 +345,7 @@ shinyServer(function(input, output, session) {
           opacity = 0.7,
           colors = colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from)),
           labels = paste(values$from, "-", values$to),
-          title = "Person count"
+          title = legend_title
         )#input$legend
     }
   }) 
@@ -428,6 +438,10 @@ shinyServer(function(input, output, session) {
       }
       
       nums_col <- data_file[[col]]
+      #Check if values have python "N/A" symbol, substitute with 0
+      if (grepl(pattern = "N/A",x = nums_col) %>% sum() >= 1){
+        nums_col <- gsub(pattern = "N/A", replacement = 0, x = nums_col)
+      }
       if (debug)
         write(
           paste(
@@ -514,26 +528,38 @@ shinyServer(function(input, output, session) {
               append = TRUE)
       }
       # update the column name when "Per capita" radio button is selected 
-      col_name <- input$colSelect
+      #col_name <- input$colSelect
        # if (input$radio == "per_capita"){
        # col_name <- paste(col_name,input$radio, sep = "_")
        # }
       
       
       # nums_col contains values in the selected column 
-      nums_col <- get_nums_col(data_file, col_name)
-      
+      nums_col <- get_nums_col(data_file, input$colSelect)
+      #Check if it is not per capita column and round to integers, as we cannot have fraction of people
+      if (!grepl("_per_capita", input$colSelect)){
+        nums_col <- round(nums_col, digits = 0)
+      }
+      # set legend title
+      legend_title <<- "Person count"
       # indicate names of files that contain country-level data to specify per Million adjustment
-      keyNames <- c("Global-Country_", "North_America_", 
-                    "Asia_", "Europe_", "Africa_", "South_America_", "Oceania_")
-      # adjust per capita number to per Million 
-      if (grepl(paste(keyNames, collapse = "|"), file_name) & grepl("_per_capita", col_name)){
-         nums_col <- as.numeric(nums_col) * 1000000
-         #input$legend <<- "Person count (per Million)"
-      } else if (grepl("_per_capita", col_name)){
-         nums_col <- nums_col * 1000
-         #input$legend <<- "Person count (per 1000)"
-       }
+      # keyNames <- c("Global-Country_", "North_America_", 
+      #               "Asia_", "Europe_", "Africa_", "South_America_", "Oceania_", "Canada_", "China_", "United_States_of_America")
+      # # adjust per capita number to per Million and adjsut legend title
+      # if (grepl(paste(keyNames, collapse = "|"), file_name) & grepl("_per_capita", input$colSelect)){
+      #    nums_col <- as.numeric(nums_col) * 1000000
+      #    legend_title <<- "Person count (per 1M)"
+      # } else if (grepl("_per_capita", input$colSelect)){
+         # nums_col <- as.numeric(nums_col) * 1000
+         # legend_title <<- "Person count (per 1000)"
+      #  }
+      if(grepl("_per_capita", input$colSelect)){
+        nums_col <- as.numeric(nums_col) * 100000
+        legend_title <<- "Person count (per 100,000)"
+        #Check if % change column to update the legend title
+      } else if (grepl("_change", input$colSelect)){
+        legend_title <<- "% Change"
+      }
       
       if (debug)
         write(
@@ -1048,6 +1074,10 @@ shinyServer(function(input, output, session) {
     }
     
     #Rounding the bin limits values for legend
+    mround_bases <- c(0.1,5,50,500,5000,50000)
+    if (grepl("_change", input$colSelect)){
+      mround_bases <- c(0.1,1,10,100,1000,10000)
+    }
     for (i in 1:length(values$from)){
       values$from[i] <- case_when(
         # values$from[i] < 0.0000001 ~ mround(values$from[i], base = 0.00000001),
@@ -1057,12 +1087,12 @@ shinyServer(function(input, output, session) {
         # values$from[i] < 0.001 ~ mround(values$from[i], base = 0.0001),
         # values$from[i] < 0.01 ~ mround(values$from[i], base = 0.001),
         # values$from[i] < 0.1 ~ mround(values$from[i], base = 0.01),
-        # values$from[i] < 1 ~ mround(values$from[i], base = 0.1),
-        values$from[i] <= 30 ~ mround(values$from[i], base = 5),
-        values$from[i] <= 300 ~ mround(values$from[i], base = 50),
-        values$from[i] <= 3000 ~ mround(values$from[i], base = 500),
-        values$from[i] <= 30000 ~ mround(values$from[i], base = 5000),
-        TRUE ~ mround(values$from[i], base = 50000)
+        abs(values$from[i]) <= 1 ~ mround(values$from[i], base = mround_bases[1]),
+        abs(values$from[i]) <= 30 ~ mround(values$from[i], base = mround_bases[2]),
+        abs(values$from[i]) <= 300 ~ mround(values$from[i], base = mround_bases[3]),
+        abs(values$from[i]) <= 3000 ~ mround(values$from[i], base = mround_bases[4]),
+        abs(values$from[i]) <= 30000 ~ mround(values$from[i], base = mround_bases[5]),
+        TRUE ~ mround(values$from[i], base = mround_bases[6])
         )
       values$to[i] <- case_when(
         # values$to[i] < 0.0000001 ~ mround(values$to[i], base = 0.00000001),
@@ -1072,12 +1102,12 @@ shinyServer(function(input, output, session) {
         # values$to[i] < 0.001 ~ mround(values$to[i], base = 0.0001),
         # values$to[i] < 0.01 ~ mround(values$to[i], base = 0.001),
         # values$to[i] < 0.1 ~ mround(values$to[i], base = 0.01),
-        # values$to[i] < 1 ~ mround(values$to[i], base = 0.1),
-        values$to[i] <= 30 ~ mround(values$to[i], base = 5),
-        values$to[i] <= 300 ~ mround(values$to[i], base = 50),
-        values$to[i] <= 3000 ~ mround(values$to[i], base = 500),
-        values$to[i] <= 30000 ~ mround(values$to[i], base = 5000),
-        TRUE ~ mround(values$to[i], base = 50000)
+        abs(values$to[i]) <= 1 ~ mround(values$to[i], base = mround_bases[1]),
+        abs(values$to[i]) <= 30 ~ mround(values$to[i], base = mround_bases[2]),
+        abs(values$to[i]) <= 300 ~ mround(values$to[i], base = mround_bases[3]),
+        abs(values$to[i]) <= 3000 ~ mround(values$to[i], base = mround_bases[4]),
+        abs(values$to[i]) <= 30000 ~ mround(values$to[i], base = mround_bases[5]),
+        TRUE ~ mround(values$to[i], base = mround_bases[6])
       )
     }
     
@@ -1352,7 +1382,7 @@ shinyServer(function(input, output, session) {
                %>% get_view()
                %>% addLegend(layerId = "legendLayer", position = "bottomright", 
                              opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
-                             title = "Person count")
+                             title = legend_title)
                , file = file
                , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
                , selfcontained = TRUE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
