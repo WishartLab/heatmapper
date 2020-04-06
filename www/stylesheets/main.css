@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-.centered-box {          
+.centered-box {
   position: absolute;
   width: 100%;
   top: 50%;
@@ -12,8 +12,8 @@
 }
 
 .btn-lg{
-  padding: calc(0.2em + 0.5vw);
-  font-size: calc(0.5em + 1.2vw);
+  padding: calc(0.2em + 0.2vw);
+  font-size: calc(0.5em + 0.8vw);
 }
 
 .btn-white-border {
@@ -22,14 +22,16 @@
 }
 
 .info-box {
-  margin-top: 2em;
-  margin-bottom: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
   padding: 1em;
+  background-color: #C3DAEE;
   border-color: #2D3090;
   border-width: 0.5em;
   border-radius: 1em;
   border-style: ridge;
-  font-size: calc(0.5em + 0.8vw);
+  text-align: left;
+  font-size: calc(0.5em + 0.5vw);
 }
 
 .map-box {
