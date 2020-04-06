@@ -1,14 +1,14 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily	Confirmed_change	Deaths_change
-Brazil	372	3	2	N/A	1.78e-6	1e-8	1000	461.538461538	300	3.33333333333e-6	1.53846153846e-6	1e-6	51	2	-57.9	100
-Chile	238	0	0	N/A	1.271e-5	0	1190	476	297.5	6.355e-5	2.542e-5	1.58875e-5	37	0	-19.6	100
-Suriname	1	0	0	N/A	1.74e-6	0	5	2	1.25	8.7e-6	3.48e-6	2.175e-6	0	0	100	100
-Colombia	93	0	1	N/A	1.87e-6	0	465	186	116.25	9.35e-6	3.74e-6	2.3375e-6	28	0	154.5	100
-Uruguay	50	0	0	N/A	1.45e-5	0	250	100	62.5	7.25e-5	2.9e-5	1.8125e-5	21	0	0	100
-Aruba	4	0	0	N/A	3.779e-5	0	20	8	5	1.8895e-4	7.558e-5	4.72375e-5	1	0	0	100
-Barbados	2	0	0	N/A	6.98e-6	0	10	4	2.5	3.49e-5	1.396e-5	8.725e-6	0	0	100	100
-Peru	145	0	1	N/A	4.53e-6	0	725	290	181.25	2.265e-5	9.06e-6	5.6625e-6	28	0	-9.7	100
-Guyana	7	1	0	N/A	8.99e-6	1.28e-6	333.333333333	153.846153846	100	4.26666666667e-4	1.96923076923e-4	1.28e-4	0	0	-100	100
-Argentina	79	2	3	N/A	1.78e-6	4e-8	666.666666667	307.692307692	200	1.33333333333e-5	6.15384615385e-6	4e-6	11	0	-8.3	100
-Bolivia	12	0	0	N/A	1.06e-6	0	60	24	15	5.3e-6	2.12e-6	1.325e-6	1	0	100	100
-Venezuela	36	0	0	N/A	1.25e-6	0	180	72	45	6.25e-6	2.5e-6	1.5625e-6	3	0	-81.2	100
-Ecuador	111	2	0	N/A	6.5e-6	1.2e-7	666.666666667	307.692307692	200	4e-5	1.84615384615e-5	1.2e-5	53	0	152.4	100
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily	Confirmed_change	Deaths_change	Tests	Tests_per_capita
+Brazil	372	3	2	N/A	1.78e-6	1e-8	1000	461.538461538	300	3.33333333333e-6	1.53846153846e-6	1e-6	51	2	-57.9	100	45708	2.18e-4
+Chile	238	0	0	N/A	1.271e-5	0	1190	476	297.5	6.355e-5	2.542e-5	1.58875e-5	37	0	-19.6	100	NA	NA
+Suriname	1	0	0	N/A	1.74e-6	0	5	2	1.25	8.7e-6	3.48e-6	2.175e-6	0	0	100	100	NA	NA
+Colombia	93	0	1	N/A	1.87e-6	0	465	186	116.25	9.35e-6	3.74e-6	2.3375e-6	28	0	154.5	100	3565	7.4e-5
+Uruguay	50	0	0	N/A	1.45e-5	0	250	100	62.5	7.25e-5	2.9e-5	1.8125e-5	21	0	0	100	NA	NA
+Aruba	4	0	0	N/A	3.779e-5	0	20	8	5	1.8895e-4	7.558e-5	4.72375e-5	1	0	0	100	NA	NA
+Barbados	2	0	0	N/A	6.98e-6	0	10	4	2.5	3.49e-5	1.396e-5	8.725e-6	0	0	100	100	NA	NA
+Peru	145	0	1	N/A	4.53e-6	0	725	290	181.25	2.265e-5	9.06e-6	5.6625e-6	28	0	-9.7	100	NA	NA
+Guyana	7	1	0	N/A	8.99e-6	1.28e-6	333.333333333	153.846153846	100	4.26666666667e-4	1.96923076923e-4	1.28e-4	0	0	-100	100	NA	NA
+Argentina	79	2	3	N/A	1.78e-6	4e-8	666.666666667	307.692307692	200	1.33333333333e-5	6.15384615385e-6	4e-6	11	0	-8.3	100	NA	NA
+Bolivia	12	0	0	N/A	1.06e-6	0	60	24	15	5.3e-6	2.12e-6	1.325e-6	1	0	100	100	NA	NA
+Venezuela	36	0	0	N/A	1.25e-6	0	180	72	45	6.25e-6	2.5e-6	1.5625e-6	3	0	-81.2	100	NA	NA
+Ecuador	111	2	0	N/A	6.5e-6	1.2e-7	666.666666667	307.692307692	200	4e-5	1.84615384615e-5	1.2e-5	53	0	152.4	100	NA	NA

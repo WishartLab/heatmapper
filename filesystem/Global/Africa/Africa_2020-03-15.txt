@@ -1,27 +1,27 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
-Ivory Coast	1.0	0.0	0.0	N/A	4e-08	0.0	5.0	2.0	1.25	2e-07	8e-08	5e-08
-Sudan	1.0	1.0	0.0	N/A	2e-08	2e-08	333.333333333	153.846153846	100.0	6.66666666667e-06	3.07692307692e-06	2e-06
-Guinea	1.0	0.0	0.0	N/A	8e-08	0.0	5.0	2.0	1.25	4e-07	1.6e-07	1e-07
-Ethiopia	1.0	0.0	0.0	N/A	1e-08	0.0	5.0	2.0	1.25	5e-08	2e-08	1.25e-08
-Rwanda	1.0	0.0	0.0	N/A	8e-08	0.0	5.0	2.0	1.25	4e-07	1.6e-07	1e-07
-Swaziland	1.0	0.0	0.0	N/A	8.8e-07	0.0	5.0	2.0	1.25	4.4e-06	1.76e-06	1.1e-06
-Nigeria	2.0	0.0	0.0	N/A	1e-08	0.0	10.0	4.0	2.5	5e-08	2e-08	1.25e-08
-Cameroon	2.0	0.0	0.0	N/A	8e-08	0.0	10.0	4.0	2.5	4e-07	1.6e-07	1e-07
-Burkina Faso	3.0	0.0	0.0	N/A	1.5e-07	0.0	15.0	6.0	3.75	7.5e-07	3e-07	1.875e-07
-Ghana	6.0	0.0	0.0	N/A	2e-07	0.0	30.0	12.0	7.5	1e-06	4e-07	2.5e-07
-Algeria	48.0	4.0	12.0	N/A	1.14e-06	9e-08	1333.33333333	615.384615385	400.0	3e-05	1.38461538462e-05	9e-06
-Republic of the Congo	1.0	0.0	0.0	N/A	1.9e-07	0.0	5.0	2.0	1.25	9.5e-07	3.8e-07	2.375e-07
-Togo	1.0	0.0	0.0	N/A	1.3e-07	0.0	5.0	2.0	1.25	6.5e-07	2.6e-07	1.625e-07
-Mauritania	1.0	0.0	0.0	N/A	2.3e-07	0.0	5.0	2.0	1.25	1.15e-06	4.6e-07	2.875e-07
-Democratic Republic of the Congo	2.0	0.0	0.0	N/A	2e-08	0.0	10.0	4.0	2.5	1e-07	4e-08	2.5e-08
-Central African Republic	1.0	0.0	0.0	N/A	2.1e-07	0.0	5.0	2.0	1.25	1.05e-06	4.2e-07	2.625e-07
-Morocco	28.0	1.0	1.0	N/A	7.8e-07	3e-08	333.333333333	153.846153846	100.0	1e-05	4.61538461538e-06	3e-06
-Namibia	2.0	0.0	0.0	N/A	8.2e-07	0.0	10.0	4.0	2.5	4.1e-06	1.64e-06	1.025e-06
-Kenya	3.0	0.0	0.0	N/A	6e-08	0.0	15.0	6.0	3.75	3e-07	1.2e-07	7.5e-08
-Seychelles	2.0	0.0	0.0	N/A	2.067e-05	0.0	10.0	4.0	2.5	0.00010335	4.134e-05	2.58375e-05
-South Africa	51.0	0.0	0.0	N/A	8.8e-07	0.0	255.0	102.0	63.75	4.4e-06	1.76e-06	1.1e-06
-Egypt	110.0	2.0	21.0	N/A	1.12e-06	2e-08	666.666666667	307.692307692	200.0	6.66666666667e-06	3.07692307692e-06	2e-06
-Equatorial Guinea	1.0	0.0	0.0	N/A	7.6e-07	0.0	5.0	2.0	1.25	3.8e-06	1.52e-06	9.5e-07
-Tunisia	18.0	0.0	0.0	N/A	1.56e-06	0.0	90.0	36.0	22.5	7.8e-06	3.12e-06	1.95e-06
-Senegal	24.0	0.0	1.0	N/A	1.51e-06	0.0	120.0	48.0	30.0	7.55e-06	3.02e-06	1.8875e-06
-Gabon	1.0	0.0	0.0	N/A	4.7e-07	0.0	5.0	2.0	1.25	2.35e-06	9.4e-07	5.875e-07
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Tests	Tests_per_capita
+Ivory Coast	1	0	0	N/A	4e-8	0	5	2	1.25	2e-7	8e-8	5e-8	NA	NA
+Sudan	1	1	0	N/A	2e-8	2e-8	333.333333333	153.846153846	100	6.66666666667e-6	3.07692307692e-6	2e-6	NA	NA
+Guinea	1	0	0	N/A	8e-8	0	5	2	1.25	4e-7	1.6e-7	1e-7	NA	NA
+Ethiopia	1	0	0	N/A	1e-8	0	5	2	1.25	5e-8	2e-8	1.25e-8	NA	NA
+Rwanda	1	0	0	N/A	8e-8	0	5	2	1.25	4e-7	1.6e-7	1e-7	NA	NA
+Swaziland	1	0	0	N/A	8.8e-7	0	5	2	1.25	4.4e-6	1.76e-6	1.1e-6	NA	NA
+Nigeria	2	0	0	N/A	1e-8	0	10	4	2.5	5e-8	2e-8	1.25e-8	NA	NA
+Cameroon	2	0	0	N/A	8e-8	0	10	4	2.5	4e-7	1.6e-7	1e-7	NA	NA
+Burkina Faso	3	0	0	N/A	1.5e-7	0	15	6	3.75	7.5e-7	3e-7	1.875e-7	NA	NA
+Ghana	6	0	0	N/A	2e-7	0	30	12	7.5	1e-6	4e-7	2.5e-7	NA	NA
+Algeria	48	4	12	N/A	1.14e-6	9e-8	1333.33333333	615.384615385	400	3e-5	1.38461538462e-5	9e-6	NA	NA
+Republic of the Congo	1	0	0	N/A	1.9e-7	0	5	2	1.25	9.5e-7	3.8e-7	2.375e-7	NA	NA
+Togo	1	0	0	N/A	1.3e-7	0	5	2	1.25	6.5e-7	2.6e-7	1.625e-7	NA	NA
+Mauritania	1	0	0	N/A	2.3e-7	0	5	2	1.25	1.15e-6	4.6e-7	2.875e-7	NA	NA
+Democratic Republic of the Congo	2	0	0	N/A	2e-8	0	10	4	2.5	1e-7	4e-8	2.5e-8	NA	NA
+Central African Republic	1	0	0	N/A	2.1e-7	0	5	2	1.25	1.05e-6	4.2e-7	2.625e-7	NA	NA
+Morocco	28	1	1	N/A	7.8e-7	3e-8	333.333333333	153.846153846	100	1e-5	4.61538461538e-6	3e-6	NA	NA
+Namibia	2	0	0	N/A	8.2e-7	0	10	4	2.5	4.1e-6	1.64e-6	1.025e-6	NA	NA
+Kenya	3	0	0	N/A	6e-8	0	15	6	3.75	3e-7	1.2e-7	7.5e-8	NA	NA
+Seychelles	2	0	0	N/A	2.067e-5	0	10	4	2.5	1.0335e-4	4.134e-5	2.58375e-5	NA	NA
+South Africa	51	0	0	N/A	8.8e-7	0	255	102	63.75	4.4e-6	1.76e-6	1.1e-6	NA	NA
+Egypt	110	2	21	N/A	1.12e-6	2e-8	666.666666667	307.692307692	200	6.66666666667e-6	3.07692307692e-6	2e-6	NA	NA
+Equatorial Guinea	1	0	0	N/A	7.6e-7	0	5	2	1.25	3.8e-6	1.52e-6	9.5e-7	NA	NA
+Tunisia	18	0	0	N/A	1.56e-6	0	90	36	22.5	7.8e-6	3.12e-6	1.95e-6	NA	NA
+Senegal	24	0	1	N/A	1.51e-6	0	120	48	30	7.55e-6	3.02e-6	1.8875e-6	NA	NA
+Gabon	1	0	0	N/A	4.7e-7	0	5	2	1.25	2.35e-6	9.4e-7	5.875e-7	NA	NA

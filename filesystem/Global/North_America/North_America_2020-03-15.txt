@@ -1,16 +1,16 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
-Canada	250	1	8	N/A	6.75e-06	3e-08	333.333333333	153.846153846	100.0	1e-05	4.61538461538e-06	3e-06
-Jamaica	10.0	0.0	0.0	N/A	3.41e-06	0.0	50.0	20.0	12.5	1.705e-05	6.82e-06	4.2625e-06
-Honduras	3.0	0.0	0.0	N/A	3.1e-07	0.0	15.0	6.0	3.75	1.55e-06	6.2e-07	3.875e-07
-Mexico	41.0	0.0	4.0	N/A	3.2e-07	0.0	205.0	82.0	51.25	1.6e-06	6.4e-07	4e-07
-Panama	43.0	1.0	0.0	N/A	1.029e-05	2.4e-07	333.333333333	153.846153846	100.0	8e-05	3.69230769231e-05	2.4e-05
-Cuba	4.0	0.0	0.0	N/A	3.5e-07	0.0	20.0	8.0	5.0	1.75e-06	7e-07	4.375e-07
-United States of America	3499	63	12	N/A	1.069e-05	1.9e-07	21000.0	9692.30769231	6300.0	6.33333333333e-05	2.92307692308e-05	1.9e-05
-Costa Rica	27.0	0.0	0.0	N/A	5.4e-06	0.0	135.0	54.0	33.75	2.7e-05	1.08e-05	6.75e-06
-Trinidad and Tobago	2.0	0.0	0.0	N/A	1.44e-06	0.0	10.0	4.0	2.5	7.2e-06	2.88e-06	1.8e-06
-Guatemala	1.0	0.0	0.0	N/A	6e-08	0.0	5.0	2.0	1.25	3e-07	1.2e-07	7.5e-08
-Antigua and Barbuda	1.0	0.0	0.0	N/A	1.039e-05	0.0	5.0	2.0	1.25	5.195e-05	2.078e-05	1.29875e-05
-Paraguay	6.0	0.0	0.0	N/A	8.6e-07	0.0	30.0	12.0	7.5	4.3e-06	1.72e-06	1.075e-06
-Saint Vincent and the Grenadines	1.0	0.0	0.0	N/A	9.07e-06	0.0	5.0	2.0	1.25	4.535e-05	1.814e-05	1.13375e-05
-Dominican Republic	11.0	0.0	0.0	N/A	1.04e-06	0.0	55.0	22.0	13.75	5.2e-06	2.08e-06	1.3e-06
-Saint Lucia	2.0	0.0	0.0	N/A	1.1e-05	0.0	10.0	4.0	2.5	5.5e-05	2.2e-05	1.375e-05
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Tests	Tests_per_capita
+Canada	250	1	8	N/A	6.75e-6	3e-8	333.333333333	153.846153846	100	1e-5	4.61538461538e-6	3e-6	NA	NA
+Jamaica	10	0	0	N/A	3.41e-6	0	50	20	12.5	1.705e-5	6.82e-6	4.2625e-6	NA	NA
+Honduras	3	0	0	N/A	3.1e-7	0	15	6	3.75	1.55e-6	6.2e-7	3.875e-7	NA	NA
+Mexico	41	0	4	N/A	3.2e-7	0	205	82	51.25	1.6e-6	6.4e-7	4e-7	NA	NA
+Panama	43	1	0	N/A	1.029e-5	2.4e-7	333.333333333	153.846153846	100	8e-5	3.69230769231e-5	2.4e-5	NA	NA
+Cuba	4	0	0	N/A	3.5e-7	0	20	8	5	1.75e-6	7e-7	4.375e-7	NA	NA
+United States of America	3499	63	12	N/A	1.069e-5	1.9e-7	21000	9692.30769231	6300	6.33333333333e-5	2.92307692308e-5	1.9e-5	NA	NA
+Costa Rica	27	0	0	N/A	5.4e-6	0	135	54	33.75	2.7e-5	1.08e-5	6.75e-6	NA	NA
+Trinidad and Tobago	2	0	0	N/A	1.44e-6	0	10	4	2.5	7.2e-6	2.88e-6	1.8e-6	NA	NA
+Guatemala	1	0	0	N/A	6e-8	0	5	2	1.25	3e-7	1.2e-7	7.5e-8	NA	NA
+Antigua and Barbuda	1	0	0	N/A	1.039e-5	0	5	2	1.25	5.195e-5	2.078e-5	1.29875e-5	NA	NA
+Paraguay	6	0	0	N/A	8.6e-7	0	30	12	7.5	4.3e-6	1.72e-6	1.075e-6	NA	NA
+Saint Vincent and the Grenadines	1	0	0	N/A	9.07e-6	0	5	2	1.25	4.535e-5	1.814e-5	1.13375e-5	NA	NA
+Dominican Republic	11	0	0	N/A	1.04e-6	0	55	22	13.75	5.2e-6	2.08e-6	1.3e-6	NA	NA
+Saint Lucia	2	0	0	N/A	1.1e-5	0	10	4	2.5	5.5e-5	2.2e-5	1.375e-5	NA	NA

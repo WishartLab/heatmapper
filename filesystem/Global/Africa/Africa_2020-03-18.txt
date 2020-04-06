@@ -1,35 +1,35 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily	Confirmed_change	Deaths_change
-Swaziland	1	0	0	N/A	8.8e-7	0	5	2	1.25	4.4e-6	1.76e-6	1.1e-6	0	0	0	0
-Mauritania	1	0	0	N/A	2.3e-7	0	5	2	1.25	1.15e-6	4.6e-7	2.875e-7	0	0	0	0
-Sudan	2	1	0	N/A	5e-8	2e-8	333.333333333	153.846153846	100	6.66666666667e-6	3.07692307692e-6	2e-6	1	0	0	0
-Guinea	1	0	0	N/A	8e-8	0	5	2	1.25	4e-7	1.6e-7	1e-7	0	0	0	0
-Ethiopia	6	0	0	N/A	5e-8	0	30	12	7.5	2.5e-7	1e-7	6.25e-8	1	0	0	0
-Rwanda	8	0	0	N/A	6.5e-7	0	40	16	10	3.25e-6	1.3e-6	8.125e-7	1	0	0	0
-Somalia	1	0	0	N/A	7e-8	0	5	2	1.25	3.5e-7	1.4e-7	8.75e-8	0	0	0	0
-Ivory Coast	6	0	1	N/A	2.4e-7	0	30	12	7.5	1.2e-6	4.8e-7	3e-7	1	0	0	0
-Nigeria	8	0	1	N/A	4e-8	0	40	16	10	2e-7	8e-8	5e-8	5	0	0	0
-Cameroon	10	0	0	N/A	4e-7	0	50	20	12.5	2e-6	8e-7	5e-7	0	0	0	0
-Burkina Faso	20	1	0	N/A	1.01e-6	5e-8	333.333333333	153.846153846	100	1.66666666667e-5	7.69230769231e-6	5e-6	5	1	0	0
-Benin	2	0	0	N/A	1.7e-7	0	10	4	2.5	8.5e-7	3.4e-7	2.125e-7	1	0	0	0
-Ghana	7	0	0	N/A	2.4e-7	0	35	14	8.75	1.2e-6	4.8e-7	3e-7	0	0	0	0
-Algeria	74	7	12	N/A	1.75e-6	1.7e-7	2333.33333333	1076.92307692	700	5.66666666667e-5	2.61538461538e-5	1.7e-5	14	3	0	0
-Zambia	2	0	0	N/A	1.2e-7	0	10	4	2.5	6e-7	2.4e-7	1.5e-7	NA	NA	0	0
-Republic of the Congo	1	0	0	N/A	1.9e-7	0	5	2	1.25	9.5e-7	3.8e-7	2.375e-7	1	0	0	0
-Gabon	1	0	0	N/A	4.7e-7	0	5	2	1.25	2.35e-6	9.4e-7	5.875e-7	0	0	0	0
-Togo	1	0	0	N/A	1.3e-7	0	5	2	1.25	6.5e-7	2.6e-7	1.625e-7	0	0	0	0
-Gambia	1	0	0	N/A	4.4e-7	0	5	2	1.25	2.2e-6	8.8e-7	5.5e-7	0	0	0	0
-Djibouti	1	0	0	N/A	1.04e-6	0	5	2	1.25	5.2e-6	2.08e-6	1.3e-6	NA	NA	0	0
-Liberia	2	0	0	N/A	4.2e-7	0	10	4	2.5	2.1e-6	8.4e-7	5.25e-7	1	0	0	0
-Democratic Republic of the Congo	4	0	0	N/A	5e-8	0	20	8	5	2.5e-7	1e-7	6.25e-8	1	0	0	0
-Central African Republic	1	0	0	N/A	2.1e-7	0	5	2	1.25	1.05e-6	4.2e-7	2.625e-7	0	0	0	0
-Mauritius	3	0	0	N/A	2.37e-6	0	15	6	3.75	1.185e-5	4.74e-6	2.9625e-6	NA	NA	0	0
-Morocco	49	2	1	N/A	1.36e-6	6e-8	666.666666667	307.692307692	200	2e-5	9.23076923077e-6	6e-6	11	0	0	0
-Namibia	2	0	0	N/A	8.2e-7	0	10	4	2.5	4.1e-6	1.64e-6	1.025e-6	0	0	0	0
-United Republic of Tanzania	3	0	0	N/A	5e-8	0	15	6	3.75	2.5e-7	1e-7	6.25e-8	2	0	0	0
-Seychelles	4	0	0	N/A	4.134e-5	0	20	8	5	2.067e-4	8.268e-5	5.1675e-5	0	0	0	0
-South Africa	116	0	0	N/A	2.01e-6	0	580	232	145	1.005e-5	4.02e-6	2.5125e-6	54	0	0	0
-Egypt	196	6	32	N/A	1.99e-6	6e-8	2000	923.076923077	600	2e-5	9.23076923077e-6	6e-6	0	2	0	0
-Equatorial Guinea	4	0	0	N/A	3.06e-6	0	20	8	5	1.53e-5	6.12e-6	3.825e-6	3	0	0	0
-Tunisia	29	0	0	N/A	2.51e-6	0	145	58	36.25	1.255e-5	5.02e-6	3.1375e-6	5	0	0	0
-Senegal	31	0	2	N/A	1.96e-6	0	155	62	38.75	9.8e-6	3.92e-6	2.45e-6	5	0	0	0
-Kenya	3	0	0	N/A	6e-8	0	15	6	3.75	3e-7	1.2e-7	7.5e-8	0	0	0	0
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily	Confirmed_change	Deaths_change	Tests	Tests_per_capita
+Swaziland	1	0	0	N/A	8.8e-7	0	5	2	1.25	4.4e-6	1.76e-6	1.1e-6	0	0	0	0	NA	NA
+Mauritania	1	0	0	N/A	2.3e-7	0	5	2	1.25	1.15e-6	4.6e-7	2.875e-7	0	0	0	0	NA	NA
+Sudan	2	1	0	N/A	5e-8	2e-8	333.333333333	153.846153846	100	6.66666666667e-6	3.07692307692e-6	2e-6	1	0	0	0	NA	NA
+Guinea	1	0	0	N/A	8e-8	0	5	2	1.25	4e-7	1.6e-7	1e-7	0	0	0	0	NA	NA
+Ethiopia	6	0	0	N/A	5e-8	0	30	12	7.5	2.5e-7	1e-7	6.25e-8	1	0	0	0	NA	NA
+Rwanda	8	0	0	N/A	6.5e-7	0	40	16	10	3.25e-6	1.3e-6	8.125e-7	1	0	0	0	NA	NA
+Somalia	1	0	0	N/A	7e-8	0	5	2	1.25	3.5e-7	1.4e-7	8.75e-8	0	0	0	0	NA	NA
+Ivory Coast	6	0	1	N/A	2.4e-7	0	30	12	7.5	1.2e-6	4.8e-7	3e-7	1	0	0	0	NA	NA
+Nigeria	8	0	1	N/A	4e-8	0	40	16	10	2e-7	8e-8	5e-8	5	0	0	0	NA	NA
+Cameroon	10	0	0	N/A	4e-7	0	50	20	12.5	2e-6	8e-7	5e-7	0	0	0	0	NA	NA
+Burkina Faso	20	1	0	N/A	1.01e-6	5e-8	333.333333333	153.846153846	100	1.66666666667e-5	7.69230769231e-6	5e-6	5	1	0	0	NA	NA
+Benin	2	0	0	N/A	1.7e-7	0	10	4	2.5	8.5e-7	3.4e-7	2.125e-7	1	0	0	0	NA	NA
+Ghana	7	0	0	N/A	2.4e-7	0	35	14	8.75	1.2e-6	4.8e-7	3e-7	0	0	0	0	NA	NA
+Algeria	74	7	12	N/A	1.75e-6	1.7e-7	2333.33333333	1076.92307692	700	5.66666666667e-5	2.61538461538e-5	1.7e-5	14	3	0	0	NA	NA
+Zambia	2	0	0	N/A	1.2e-7	0	10	4	2.5	6e-7	2.4e-7	1.5e-7	NA	NA	0	0	NA	NA
+Republic of the Congo	1	0	0	N/A	1.9e-7	0	5	2	1.25	9.5e-7	3.8e-7	2.375e-7	1	0	0	0	NA	NA
+Gabon	1	0	0	N/A	4.7e-7	0	5	2	1.25	2.35e-6	9.4e-7	5.875e-7	0	0	0	0	NA	NA
+Togo	1	0	0	N/A	1.3e-7	0	5	2	1.25	6.5e-7	2.6e-7	1.625e-7	0	0	0	0	NA	NA
+Gambia	1	0	0	N/A	4.4e-7	0	5	2	1.25	2.2e-6	8.8e-7	5.5e-7	0	0	0	0	NA	NA
+Djibouti	1	0	0	N/A	1.04e-6	0	5	2	1.25	5.2e-6	2.08e-6	1.3e-6	NA	NA	0	0	NA	NA
+Liberia	2	0	0	N/A	4.2e-7	0	10	4	2.5	2.1e-6	8.4e-7	5.25e-7	1	0	0	0	NA	NA
+Democratic Republic of the Congo	4	0	0	N/A	5e-8	0	20	8	5	2.5e-7	1e-7	6.25e-8	1	0	0	0	NA	NA
+Central African Republic	1	0	0	N/A	2.1e-7	0	5	2	1.25	1.05e-6	4.2e-7	2.625e-7	0	0	0	0	NA	NA
+Mauritius	3	0	0	N/A	2.37e-6	0	15	6	3.75	1.185e-5	4.74e-6	2.9625e-6	NA	NA	0	0	NA	NA
+Morocco	49	2	1	N/A	1.36e-6	6e-8	666.666666667	307.692307692	200	2e-5	9.23076923077e-6	6e-6	11	0	0	0	NA	NA
+Namibia	2	0	0	N/A	8.2e-7	0	10	4	2.5	4.1e-6	1.64e-6	1.025e-6	0	0	0	0	NA	NA
+United Republic of Tanzania	3	0	0	N/A	5e-8	0	15	6	3.75	2.5e-7	1e-7	6.25e-8	2	0	0	0	NA	NA
+Seychelles	4	0	0	N/A	4.134e-5	0	20	8	5	2.067e-4	8.268e-5	5.1675e-5	0	0	0	0	NA	NA
+South Africa	116	0	0	N/A	2.01e-6	0	580	232	145	1.005e-5	4.02e-6	2.5125e-6	54	0	0	0	NA	NA
+Egypt	196	6	32	N/A	1.99e-6	6e-8	2000	923.076923077	600	2e-5	9.23076923077e-6	6e-6	0	2	0	0	NA	NA
+Equatorial Guinea	4	0	0	N/A	3.06e-6	0	20	8	5	1.53e-5	6.12e-6	3.825e-6	3	0	0	0	NA	NA
+Tunisia	29	0	0	N/A	2.51e-6	0	145	58	36.25	1.255e-5	5.02e-6	3.1375e-6	5	0	0	0	NA	NA
+Senegal	31	0	2	N/A	1.96e-6	0	155	62	38.75	9.8e-6	3.92e-6	2.45e-6	5	0	0	0	NA	NA
+Kenya	3	0	0	N/A	6e-8	0	15	6	3.75	3e-7	1.2e-7	7.5e-8	0	0	0	0	NA	NA
