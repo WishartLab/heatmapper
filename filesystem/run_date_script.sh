@@ -1,6 +1,6 @@
-startdate=20200315
+startdate=20200404
 enddate=$(date -v-1d +%Y%m%d)
-
+startdate=$enddate
 loopdate=$startdate
 
 cd COVID-19
