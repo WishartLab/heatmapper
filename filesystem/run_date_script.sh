@@ -13,3 +13,7 @@ while [ "$loopdate" -ne "$enddate" ]; do
         python daily_task.py $loopdate
         let j=j+1
 done
+
+cd Global
+
+python modify_total_files.py
