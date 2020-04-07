@@ -438,9 +438,9 @@ shinyServer(function(input, output, session) {
       }
       
       nums_col <- data_file[[col]]
-      #Check if values have python "N/A" symbol, substitute with 0
+      #Check if values have python "N/A" symbol and R NA-s, substitute with 0
       if (grepl(pattern = "N/A",x = nums_col) %>% sum() >= 1){
-        nums_col <- gsub(pattern = "N/A", replacement = 0, x = nums_col)
+        nums_col <- gsub(pattern = "N/A|NA", replacement = 0, x = nums_col)
       }
       if (debug)
         write(
