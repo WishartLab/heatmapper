@@ -7,7 +7,8 @@ import numpy as np
 country_convert = {"US":"United States of America", "Bahamas" : "The Bahamas", "Congo (Kinshasa)": "Democratic Republic of the Congo","Congo (Brazzaville)": "Republic of the Congo" , 
         "North Macedonia": "Macedonia", "Serbia" : "Republic of Serbia", "Taiwan*" : "Taiwan", "Tanzania":"United Republic of Tanzania", "Timor-Leste" :"East Timor",
         "Holy See" : "Vatican", "Cabo Verde" : "Cape Verde", "Burma" : "Myanmar", "The Gambia": "Gambia", "Bahamas, The": "The Bahamas", "Czechia" :"Czech Republic",
-        "Eswatini" :"Swaziland", "Korea, South" : "South Korea", "Korea, North" :"North Korea", "Cote d'Ivoire" : "Ivory Coast"}
+        "Eswatini" :"Swaziland", "Korea, South" : "South Korea", "Korea, North" :"North Korea", "Cote d'Ivoire" : "Ivory Coast", "Russian Federation" :"Russia",
+        "Viet Nam" : "Vietnam", "Mainland China" : "China", "UK":"United Kingdom"}
 
 
 us_county_convert = {"DeKalb": "De Kalb", "De Baca" : "Debaca", "De Soto": "Desoto", "DeSoto" : "Desoto", 
@@ -165,6 +166,23 @@ def write_to_file(file, region, list):
     #print("File: " + file.name + " written" )
 
 
+def add_together(data,limiter):
+    new_row = [None,limiter,"",0.0,0.0,0.0,0.0,0.0]
+    for row in data:
+        if row[1] == limiter:
+            if row[3] == '':
+                row[3] = 0
+            if row[4] == '':
+                row[4] = 0
+            if row[5] == '':
+                row[5] = 0  
+            new_row[3] += float(row[3])
+            new_row[4] += float(row[4])
+            new_row[5] += float(row[5])
+            data.remove(row)
+    print new_row
+    data.append(new_row)
+
 date = datetime.strptime(xDate, "%Y%m%d")
 
 year = str(date.year)
@@ -180,10 +198,18 @@ with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/{}-{}-{}.csv'
     reader = csv.reader(csv_file, delimiter=',')
     next(csv_file)
     data = list(reader)
+    if (int(month) < 3) or ((int(month) == 3) and (int(day) < 10)):
+        add_together(data,'US')
+        add_together(data,'Canada')
+        add_together(data,'China')
+        add_together(data,'Italy')
+        add_together(data,'Australia')
+        add_together(data,'UK')
+        add_together(data,'France')
     countries = []
     w_dependencies = []
     if (int(month) < 3) or ((int(month) == 3) and (int(day) < 22)):
-        
+        data = data
         for row in data:
             data[data.index(row)] = ['',''] + row  
     for row in data:
@@ -220,6 +246,13 @@ with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/{}-{}-{}.csv'
         if continent == None:
             continent = "other"
         if (int(month) < 3) or ((int(month) == 3) and (int(day) < 22)):
+            if row[6] == '':
+                row[6] = 0.0
+            if row[7] == '':
+                row[7] =0.0
+            if row[5] == '':
+                row[5] = 0.0
+            print [continent,country,state_province,county_department,row[5],row[6],row[7], "N/A"]
             all_rows.append([continent,country,state_province,county_department,float(row[5]),float(row[6]),float(row[7]), "N/A"])
         else:
             all_rows.append([continent,country,state_province,county_department,float(row[7]),float(row[8]), float(row[9]), float(row[10])])
