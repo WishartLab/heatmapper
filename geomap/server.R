@@ -308,6 +308,34 @@ shinyServer(function(input, output, session) {
     values$map <- readRDS(input$area)
   })
   
+  #If date is changed update dropdown menus
+  observe({
+    if (input$date >= Sys.Date()){
+      updateSelectInput(session,
+                        inputId = "colSelect",
+                        label = "Select Data to Display:",
+                        choices = c("Predicted New COVID-19 Cases" = 'Predicted_New_Cases',
+                                    "Predicted Total COVID-19 Cases" = 'Total_Predicted_New_Cases'))
+    } else {
+      updateSelectInput(session,
+                        inputId = "colSelect",
+                        label = "Select Data to Display:",
+                        choices = c("Confirmed COVID-19 Cases" = 'Confirmed',
+                                    #"Recovered" = 'Recovered',
+                                    "Confirmed Deaths" = 'Deaths',
+                                    #"Active" = 'Active',
+                                    "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
+                                    "COVID-19 Deaths per 100,000" = "Deaths_per_capita",
+                                    "% Daily Change in Confirmed COVID-19 Cases" = "Confirmed_change",
+                                    "% Daily Change in COVID-19 Deaths" = "Deaths_change",
+                                    "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
+                                    "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
+                                    "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected',
+                                    "COVID-19 Tests Performed" = 'Tests',
+                                    "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'))
+    }
+  })
+  
   # if values$density, values$colours, or values$map is changed update the polygons
   observe({
     log_activity('geomap', 'layer/tab changes')
@@ -537,33 +565,6 @@ shinyServer(function(input, output, session) {
        # if (input$radio == "per_capita"){
        # col_name <- paste(col_name,input$radio, sep = "_")
        # }
-      
-      # update the column names when future dates are selected
-      if (input$date >= Sys.Date()){
-      updateSelectInput(session,
-                        inputId = "colSelect",
-                        label = "Select Data to Display:",
-                        choices = c("Predicted New COVID-19 Cases" = 'Predicted_New_Cases',
-                                    "Predicted Total COVID-19 Cases" = 'Total_Predicted_New_Cases'))
-      } else {
-        updateSelectInput(session,
-                          inputId = "colSelect",
-                          label = "Select Data to Display:",
-                          choices = c("Confirmed COVID-19 Cases" = 'Confirmed',
-                                      #"Recovered" = 'Recovered',
-                                      "Confirmed Deaths" = 'Deaths',
-                                      #"Active" = 'Active',
-                                      "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
-                                      "COVID-19 Deaths per 100,000" = "Deaths_per_capita",
-                                      "% Daily Change in Confirmed COVID-19 Cases" = "Confirmed_change",
-                                      "% Daily Change in COVID-19 Deaths" = "Deaths_change",
-                                      "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
-                                      "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
-                                      "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected',
-                                      "COVID-19 Tests Performed" = 'Tests',
-                                      "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'))
-      }
-      
       # nums_col contains values in the selected column 
       nums_col <- get_nums_col(data_file, input$colSelect)
       #Check if it is not per capita column and round to integers, as we cannot have fraction of people
