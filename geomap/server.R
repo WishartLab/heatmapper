@@ -533,6 +533,14 @@ shinyServer(function(input, output, session) {
        # col_name <- paste(col_name,input$radio, sep = "_")
        # }
       
+      # update the column names when future dates are selected
+      if (input$date >= Sys.Date()){
+      updateSelectInput(session,
+                        inputId = "colSelect",
+                        label = "Select Data to Display:",
+                        choices = c("Predicted New COVID-19 Cases" = 'Predicted_New_Cases',
+                                    "Predicted Total COVID-19 Cases" = 'Total_Predicted_New_Cases'))
+      }
       
       # nums_col contains values in the selected column 
       nums_col <- get_nums_col(data_file, input$colSelect)
@@ -631,6 +639,7 @@ shinyServer(function(input, output, session) {
       path_to_dir <- paste("../filesystem/",
                            paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
                            sep = "/")
+      
       filenames_list <- list.files(path_to_dir)
       dates_vec <- NULL
       for (filename in filenames_list){
@@ -645,8 +654,8 @@ shinyServer(function(input, output, session) {
       
       #Check if we do have file with that date
       date_checked <- case_when(
-        input$date < oldest_date ~ oldest_date %>% as.character(),
-        input$date > newest_date ~ newest_date %>% as.character(),
+        input$date < oldest_date ~ oldest_date %>% as.character(), # this should be FALSE
+        input$date > newest_date ~ newest_date %>% as.character(), # this should be FALSE
         TRUE ~ input$date %>% as.character()
       )
       #Update input$date in UI if date has been corrected
@@ -1210,7 +1219,7 @@ shinyServer(function(input, output, session) {
     newest_date <- max(dates_vec, na.rm = T)
 
     validate(
-      need(input$date <= Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
+      #need(input$date <= Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
       need(input$date >= oldest_date,
            paste("No data available for this region on that date.\nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
       need(!is.null(get_file()),
