@@ -13,7 +13,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		               tags$style(HTML("hr {border-top: 1px solid #808080;
 		                                    margin-top: 27px;
 		                                    margin-bottom: 27px
-		                               }"))
+		                               }")),
+		               #Change empty background to white
+		               tags$style(HTML(".leaflet-container { background: #ffffff; }"))
 		             ),
 			
 			#FILE_UPLOAD_PANEL(),
