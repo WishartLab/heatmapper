@@ -538,14 +538,6 @@ shinyServer(function(input, output, session) {
        # col_name <- paste(col_name,input$radio, sep = "_")
        # }
       
-      # update the column names when future dates are selected
-      if (input$date >= Sys.Date()){
-      updateSelectInput(session,
-                        inputId = "colSelect",
-                        label = "Select Data to Display:",
-                        choices = c("Predicted New COVID-19 Cases" = 'Predicted_New_Cases',
-                                    "Predicted Total COVID-19 Cases" = 'Total_Predicted_New_Cases'))
-      }
       
       # nums_col contains values in the selected column 
       nums_col <- get_nums_col(data_file, input$colSelect)
