@@ -331,14 +331,18 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			"Select map to display:",
 			placement = "right"),
 			tipify(fluidRow(
-			  column(5, tags$label("Select Date:")),
-			  column(7,
+			  column(5,
+			         tags$label("Select Date:"),
+			         tags$label("Past, Present, Future",
+			                    style = "font-size: 10px;")),
+			  column(5,
 			    dateInput("date",
 			              label = NULL,
 			              value = Sys.Date()-1,
-			              min = "2020-03-01",
+			              min = "2020-01-01",
 			              max = Sys.Date()+90)
-			  )),
+			  ),
+			  column(1)),
 			title = NULL
 			  
 			),
