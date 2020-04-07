@@ -581,10 +581,6 @@ shinyServer(function(input, output, session) {
        # }
       # nums_col contains values in the selected column 
       nums_col <- get_nums_col(data_file, input$colSelect)
-      #Check if it is not per capita column and round to integers, as we cannot have fraction of people
-      if (!grepl("_per_capita", tolower(input$colSelect))){
-        nums_col <- round(nums_col, digits = 0)
-      }
       # set legend title
       legend_title <<- "Person count"
       # indicate names of files that contain country-level data to specify per Million adjustment
@@ -728,12 +724,17 @@ shinyServer(function(input, output, session) {
       data_file[[1]] <- tolower(data_file[[1]])
       # check if columns have pyhton N/A-s and substitute them with R NA-s
       nr_columns <- length(data_file)
+      col_names <- colnames(data_file)
       for (i in 2:nr_columns){
         if (grepl(pattern = "N/A",x = data_file[[i]]) %>% sum() >= 1){
           data_file[[i]] <- gsub(pattern = "N/A", replacement = NA, x = data_file[[i]])
         }
         
         data_file[[i]] <- as.numeric(data_file[[i]])
+        #Check if it is not per capita column and round to integers, as we cannot have fraction of people
+        if (!grepl("_per_capita", tolower(col_names[i]))){
+          data_file[[i]] <- round(data_file[[i]], digits = 0)
+        }
       }
       return(data_file)
     },
