@@ -454,6 +454,11 @@ shinyServer(function(input, output, session) {
         )
       if (is.null(nums_col)) {
         nums_col <- data_file[[2]]
+        col_names <-colnames(data_file)
+        #Update the selected column name, if we grab the second column to show instead of missing column
+        updateSelectInput(session,
+                          inputId = "colSelect",
+                          selected = col_names[2])
         if (debug)
           write(
             paste(
