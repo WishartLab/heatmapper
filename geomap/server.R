@@ -726,10 +726,15 @@ shinyServer(function(input, output, session) {
       
       # region names should be in lower case
       data_file[[1]] <- tolower(data_file[[1]])
-      
-      # update the column selection options when a new file is uploaded
-      #updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
-      
+      # check if columns have pyhton N/A-s and substitute them with R NA-s
+      nr_columns <- length(data_file)
+      for (i in 2:nr_columns){
+        if (grepl(pattern = "N/A",x = data_file[[i]]) %>% sum() >= 1){
+          data_file[[i]] <- gsub(pattern = "N/A", replacement = NA, x = data_file[[i]])
+        }
+        
+        data_file[[i]] <- as.numeric(data_file[[i]])
+      }
       return(data_file)
     },
     error = function(err) {
