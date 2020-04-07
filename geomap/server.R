@@ -454,6 +454,11 @@ shinyServer(function(input, output, session) {
         )
       if (is.null(nums_col)) {
         nums_col <- data_file[[2]]
+        col_names <-colnames(data_file)
+        #Update the selected column name, if we grab the second column to show instead of missing column
+        updateSelectInput(session,
+                          inputId = "colSelect",
+                          selected = col_names[2])
         if (debug)
           write(
             paste(
@@ -545,7 +550,7 @@ shinyServer(function(input, output, session) {
       # nums_col contains values in the selected column 
       nums_col <- get_nums_col(data_file, input$colSelect)
       #Check if it is not per capita column and round to integers, as we cannot have fraction of people
-      if (!grepl("_per_capita", input$colSelect)){
+      if (!grepl("_per_capita", tolower(input$colSelect))){
         nums_col <- round(nums_col, digits = 0)
       }
       # set legend title

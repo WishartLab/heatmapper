@@ -1,0 +1,7 @@
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily	Confirmed_change	Deaths_change
+Honolulu	266	3	0	0	0.00027141	3.06e-06	1000	461.538461538	300	0.00102	0.000470769230769	0.000306	29	0	-47.3	-100
+Hawaii	22	0	0	0	0.00010946	0.0	110	44	27.5	0.0005473	0.00021892	0.000136825	2	0	0	100
+Unassigned	8	0	0	0	N/A	N/A	40	16	10	N/A	N/A	N/A	-3	0	-57.1	100
+Kauai	15	0	0	0	0.00020795	0.0	75	30	18.75	0.00103975	0.0004159	0.0002599375	2	0	100	100
+Maui	38	0	0	0	0.00022726	0.0	190	76	47.5	0.0011363	0.00045452	0.000284075	2	0	-80	100
+Out of HI	2	0	0	0	N/A	N/A	10	4	2.5	N/A	N/A	N/A	0	0	100	100

@@ -42,7 +42,6 @@ def derivative_slope (lst):
     return np.array(derive)
 
 def get_stretch_factor(italy,region):
-    print("Done")
     print get_slope(0,italy[0],len(italy)-1,italy[-1])
     print get_slope(0,region[0],len(region)-1,region[-1])
     exit(1)
@@ -70,7 +69,6 @@ for continent in continents:
             files.sort()
             for file in files:
                 if file == "accumulated.txt":
-                    print root
                     accumulated = csv.reader(open(root+"/"+file,"rb"), delimiter = '\t')
                     data = list(accumulated)
                     region_confirmed = Extract(data,1,True)
@@ -104,7 +102,6 @@ for continent in continents:
                     i = 0
                     day = 0
                     closest_match = None
-                    print region_median
                     for value in italy_deriv_curve:
                         diff = abs(value-region_median)
                         if not closest_match:
@@ -135,19 +132,18 @@ for continent in continents:
                     # plt.title(name,fontsize=22)
                     # plt.show()
                     with open(root+"/"+"predicted.tsv","wb") as tsv_file:
-                        print diffdate
-                        date = datetime.strptime(diffdate,"%Y-%m-%d")
-                        makeup = datetime.strptime("2020-03-15","%Y-%m-%d")
+                        date = datetime.strptime(diffdate,"%Y-%m-%d").date()
+                        makeup = datetime.strptime("2020-03-15","%Y-%m-%d").date()
                         writer = csv.writer(tsv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                        while makeup < date:
-                            writer.writerow([makeup.date(),0.0])
+                        while makeup <= date:
+                            writer.writerow([makeup,0.0])
                             makeup = makeup + timedelta(1)  
                         for row in original_diff:
-                            writer.writerow([date.date(),row])
                             date = date + timedelta(1)
+                            writer.writerow([date,row])
                         for row in region_projected:
-                            writer.writerow([date.date(),round(row,3)])
                             date = date + timedelta(1)
+                            writer.writerow([date,round(row,3)])
 
         os.chdir("..")
     os.chdir("..")
