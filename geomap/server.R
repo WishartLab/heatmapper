@@ -363,6 +363,20 @@ shinyServer(function(input, output, session) {
   # update legend when needed
   observe({
     get_file()
+    if (length(values$from) == 1){
+      colours <- colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from))
+    } else {
+      colours <- c(
+        "#ffffcc",
+        "#ffeda0",
+        "#fed976",
+        "#feb24c",
+        "#fd8d3c",
+        "#fc4e2a",
+        "#e31a1c",
+        "#b10026"
+      )
+    }
     if(!is.null(values$density) && input$tabSelections == "Heatmap"){
       leafletProxy("map", data = isolate({
         get_map_data()
@@ -371,7 +385,7 @@ shinyServer(function(input, output, session) {
           layerId = "legendLayer",
           position = "bottomright",
           opacity = 0.7,
-          colors = colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from)),
+          colors = colours,
           labels = paste(values$from, "-", values$to),
           title = legend_title
         )#input$legend
