@@ -13,7 +13,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		               tags$style(HTML("hr {border-top: 1px solid #808080;
 		                                    margin-top: 27px;
 		                                    margin-bottom: 27px
-		                               }"))
+		                               }")),
+		               #Change empty background to white
+		               tags$style(HTML(".leaflet-container { background: #ffffff; }"))
 		             ),
 			
 			#FILE_UPLOAD_PANEL(),
@@ -473,7 +475,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 		tabsetPanel(id = "tabSelections", type = "tabs",
 			tabPanel(title = "Heatmap", 
 				tags$br(),
-			  leafletOutput("map", "100%", 600),
+			  leafletOutput("map", "82%", 600),
 				conditionalPanel("output.map",
 					absolutePanel(id = "controls", class = "info legend leaflet-control", right = 30, top = 70, width=200,
 			  		h4(strong("Region Information")),
