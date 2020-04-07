@@ -1189,34 +1189,34 @@ shinyServer(function(input, output, session) {
   output$map <- renderLeaflet({
     
     #Error handling
-    #Retrieveing the oldest date for available datafile
-    # datafile_prefix <- maps_files_to_data_files %>% 
-    #   filter(datafile == input$area) %>% 
-    #   pull(prefix) %>% 
-    #   stri_split(regex = "/") %>% 
-    #   unlist()
-    # path_to_dir <- paste("../filesystem/",
-    #                      paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
-    #                      sep = "/")
-    # filenames_list <- list.files(path_to_dir)
-    # dates_vec <- NULL
-    # for (filename in filenames_list){
-    #   date <- filename %>% 
-    #     stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
-    #     unlist() 
-    #   dates_vec <- c(dates_vec,date)
-    # } 
-    # oldest_date <- min(dates_vec, na.rm = T)
-    # newest_date <- max(dates_vec, na.rm = T)
+    #1Retrieveing the oldest date for available datafile
+    datafile_prefix <- maps_files_to_data_files %>%
+      filter(datafile == input$area) %>%
+      pull(prefix) %>%
+      stri_split(regex = "/") %>%
+      unlist()
+    path_to_dir <- paste("../filesystem/",
+                         paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
+                         sep = "/")
+    filenames_list <- list.files(path_to_dir)
+    dates_vec <- NULL
+    for (filename in filenames_list){
+      date <- filename %>%
+        stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
+        unlist()
+      dates_vec <- c(dates_vec,date)
+    }
+    oldest_date <- min(dates_vec, na.rm = T)
+    newest_date <- max(dates_vec, na.rm = T)
 
-    # validate(
-    #   need(input$date <= Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
-    #   need(input$date >= oldest_date, 
-    #        paste("No data available for this region on that date.\nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
-    #   need(!is.null(get_file()), 
-    #        paste("No data available for this region on that date\nWe can provide data for that region starting from",
-    #              oldest_date,"to",newest_date)) #Error message for data not available
-    #   )
+    validate(
+      need(input$date <= Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
+      need(input$date >= oldest_date,
+           paste("No data available for this region on that date.\nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
+      need(!is.null(get_file()),
+           paste("No data available for this region on that date\nWe can provide data for that region starting from",
+                 oldest_date,"to",newest_date)) #Error message for data not available
+      )
     get_file()
     #Present map
     leaflet(
