@@ -16,6 +16,13 @@
   font-size: calc(0.5em + 0.8vw);
 }
 
+.btn-hg{
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: calc(0.2em + 0.2vw);
+  font-size: calc(0.5em + 1vw);
+}
+
 .btn-white-border {
   border-color: white;
   border-width: medium;
@@ -37,7 +44,7 @@
 }
 
 .map-box {
-  margin-top: 2em;
+  margin-top: 1em;
   margin-bottom: 2em;
   border-width: 0.5em;
 }
