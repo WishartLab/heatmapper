@@ -1,6 +1,5 @@
-startdate=20200404
-enddate=$(date -v-1d +%Y%m%d)
-startdate=$enddate
+startdate=20200405
+enddate=$(date +%Y%m%d)
 loopdate=$startdate
 
 cd COVID-19
@@ -21,3 +20,7 @@ python modify_total_files.py
 cd ..
 
 python convolute_regions.py
+
+cd Global
+
+python generate_regional_prediction.py

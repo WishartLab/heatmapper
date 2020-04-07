@@ -1,0 +1,15 @@
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Date
+Jasper	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	2020-03-22
+Jasper	0	0	0	0	0	0	0	0	0	0	0	0	0	0	2020-03-23
+Jasper	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	2020-03-24
+Jasper	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	2020-03-25
+Jasper	0	0	0	0	0	0	0	0	0	0	0	0	0	0	100	0	2020-03-26
+Jasper	0	0	0	0	0	0	0	0	0	0	0	0	0	0	100	0	2020-03-27
+Jasper	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	2020-03-28
+Jasper	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	2020-03-29
+Jasper	0	0	0	0	0.0	0.0	0	0	0	0.0	0.0	0.0	0	0	0	0	2020-03-30
+Jasper	1	0	0	0	6.087e-5	0	5	2	1.25	3.0435e-4	1.2174e-4	7.60875e-5	NA	NA	100	0	2020-04-01
+Jasper	2	0	0	0	1.2174e-4	0	10	4	2.5	6.087e-4	2.4348e-4	1.52175e-4	1	0	100	0	2020-04-02
+Jasper	3	0	0	0	1.8262e-4	0	15	6	3.75	9.131e-4	3.6524e-4	2.28275e-4	1	0	0	0	2020-04-03
+Jasper	3	0	0	0	1.8262e-4	0	15	6	3.75	9.131e-4	3.6524e-4	2.28275e-4	0	0	-100	0	2020-04-04
+Jasper	3	0	0	0	1.8262e-4	0	15	6	3.75	9.131e-4	3.6524e-4	2.28275e-4	0	0	100	0	2020-04-05
