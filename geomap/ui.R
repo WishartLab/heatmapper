@@ -331,17 +331,21 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			"Select map to display:",
 			placement = "right"),
 			tipify(fluidRow(
-			  column(5, tags$label("Select Date:")),
-			  column(7,
+			  column(5,
+			         tags$label("Select Date:",
+			                    style = "margin-bottom: 1px;"),
+			         tags$div(HTML("<p>Past, Present, Future</p>"),
+			                    style = "font-size: 10px; margin-top: 1px;")),
+			  column(5,
 			    dateInput("date",
 			              label = NULL,
 			              value = Sys.Date()-1,
-			              min = "2020-03-01",
+			              min = "2020-01-01",
 			              max = Sys.Date()+90)
-			  )),
-			title = NULL
-			  
+			    			  ),
+			  column(2,icon("calendar"))
 			),
+			title = "Select past, present or future dates"),
 			
 			tipify(
 				selectInput("colSelect", 
@@ -476,7 +480,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			  		uiOutput("stateInfo")
 					)
 				)
-			),
+			), # End of first tabPanel "Heatmap"
 			tabPanel(title = "Table", 
 				tags$br(),
 				# wellPanel(

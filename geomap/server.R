@@ -438,9 +438,9 @@ shinyServer(function(input, output, session) {
       }
       
       nums_col <- data_file[[col]]
-      #Check if values have python "N/A" symbol, substitute with 0
-      if (grepl(pattern = "N/A",x = nums_col) %>% sum() >= 1){
-        nums_col <- gsub(pattern = "N/A", replacement = 0, x = nums_col)
+      #Check if values have python "N/A" symbol and R NA-s, substitute with 0
+      if (grepl(pattern = "N/A|NA",x = nums_col) %>% sum() >= 1){
+        nums_col <- gsub(pattern = "N/A|NA", replacement = 0, x = nums_col) %>% as.numeric()
       }
       if (debug)
         write(
@@ -664,7 +664,7 @@ shinyServer(function(input, output, session) {
             append = TRUE)
       datepart <- paste0(date, collapse = "-")
       #Create file name
-      file_name <<-
+      file_name <-
         paste(prefix, datepart,".txt", sep = "")
       write(paste('  file_name:', file_name, sep = "\t"),
             file = log_filename,
@@ -1189,34 +1189,34 @@ shinyServer(function(input, output, session) {
   output$map <- renderLeaflet({
     
     #Error handling
-    #Retrieveing the oldest date for available datafile
-    # datafile_prefix <- maps_files_to_data_files %>% 
-    #   filter(datafile == input$area) %>% 
-    #   pull(prefix) %>% 
-    #   stri_split(regex = "/") %>% 
-    #   unlist()
-    # path_to_dir <- paste("../filesystem/",
-    #                      paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
-    #                      sep = "/")
-    # filenames_list <- list.files(path_to_dir)
-    # dates_vec <- NULL
-    # for (filename in filenames_list){
-    #   date <- filename %>% 
-    #     stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
-    #     unlist() 
-    #   dates_vec <- c(dates_vec,date)
-    # } 
-    # oldest_date <- min(dates_vec, na.rm = T)
-    # newest_date <- max(dates_vec, na.rm = T)
+    #1Retrieveing the oldest date for available datafile
+    datafile_prefix <- maps_files_to_data_files %>%
+      filter(datafile == input$area) %>%
+      pull(prefix) %>%
+      stri_split(regex = "/") %>%
+      unlist()
+    path_to_dir <- paste("../filesystem/",
+                         paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
+                         sep = "/")
+    filenames_list <- list.files(path_to_dir)
+    dates_vec <- NULL
+    for (filename in filenames_list){
+      date <- filename %>%
+        stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
+        unlist()
+      dates_vec <- c(dates_vec,date)
+    }
+    oldest_date <- min(dates_vec, na.rm = T)
+    newest_date <- max(dates_vec, na.rm = T)
 
-    # validate(
-    #   need(input$date <= Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
-    #   need(input$date >= oldest_date, 
-    #        paste("No data available for this region on that date.\nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
-    #   need(!is.null(get_file()), 
-    #        paste("No data available for this region on that date\nWe can provide data for that region starting from",
-    #              oldest_date,"to",newest_date)) #Error message for data not available
-    #   )
+    validate(
+      need(input$date <= Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
+      need(input$date >= oldest_date,
+           paste("No data available for this region on that date.\nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
+      need(!is.null(get_file()),
+           paste("No data available for this region on that date\nWe can provide data for that region starting from",
+                 oldest_date,"to",newest_date)) #Error message for data not available
+      )
     get_file()
     #Present map
     leaflet(
@@ -1356,38 +1356,38 @@ shinyServer(function(input, output, session) {
   # }, options = list(pageLength = 10))
   
   # save example file
-  output$tableDownload <- downloadHandler(
-    filename = "table.txt",
-    content = function(file) {
-      log_activity('geomap', 'tableDownload')
-      write.table(
-        values$file,
-        sep = "\t",
-        quote = FALSE,
-        file = file,
-        row.names = FALSE
-      )
-    }
-  )
-  
-  # save leaflet png page
-  output$geomap <- downloadHandler(
-    filename = paste0( Sys.Date()
-                       , "_customGeomap"
-                       , ".png"
-    ),
-    content = function(file) {
-      # mapshot() from mapview package to save the image as png
-      mapshot( x = get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
-               %>% get_view()
-               %>% addLegend(layerId = "legendLayer", position = "bottomright", 
-                             opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
-                             title = legend_title)
-               , file = file
-               , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
-               , selfcontained = TRUE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
-      )# end of mapshot()
-      log_activity('geomap', 'geomap')
-    } # end of content function
-  )# end of downloadHandler
+  # output$tableDownload <- downloadHandler(
+  #   filename = "table.txt",
+  #   content = function(file) {
+  #     log_activity('geomap', 'tableDownload')
+  #     write.table(
+  #       values$file,
+  #       sep = "\t",
+  #       quote = FALSE,
+  #       file = file,
+  #       row.names = FALSE
+  #     )
+  #   }
+  # )
+  # 
+  # # save leaflet png page
+  # output$geomap <- downloadHandler(
+  #   filename = paste0( Sys.Date()
+  #                      , "_customGeomap"
+  #                      , ".png"
+  #   ),
+  #   content = function(file) {
+  #     # mapshot() from mapview package to save the image as png
+  #     mapshot( x = get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
+  #              %>% get_view()
+  #              %>% addLegend(layerId = "legendLayer", position = "bottomright", 
+  #                            opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
+  #                            title = legend_title)
+  #              , file = file
+  #              , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
+  #              , selfcontained = TRUE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
+  #     )# end of mapshot()
+  #     log_activity('geomap', 'geomap')
+  #   } # end of content function
+  # )# end of downloadHandler
 })
