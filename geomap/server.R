@@ -664,7 +664,7 @@ shinyServer(function(input, output, session) {
             append = TRUE)
       datepart <- paste0(date, collapse = "-")
       #Create file name
-      file_name <<-
+      file_name <-
         paste(prefix, datepart,".txt", sep = "")
       write(paste('  file_name:', file_name, sep = "\t"),
             file = log_filename,
@@ -1356,38 +1356,38 @@ shinyServer(function(input, output, session) {
   # }, options = list(pageLength = 10))
   
   # save example file
-  output$tableDownload <- downloadHandler(
-    filename = "table.txt",
-    content = function(file) {
-      log_activity('geomap', 'tableDownload')
-      write.table(
-        values$file,
-        sep = "\t",
-        quote = FALSE,
-        file = file,
-        row.names = FALSE
-      )
-    }
-  )
-  
-  # save leaflet png page
-  output$geomap <- downloadHandler(
-    filename = paste0( Sys.Date()
-                       , "_customGeomap"
-                       , ".png"
-    ),
-    content = function(file) {
-      # mapshot() from mapview package to save the image as png
-      mapshot( x = get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
-               %>% get_view()
-               %>% addLegend(layerId = "legendLayer", position = "bottomright", 
-                             opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
-                             title = legend_title)
-               , file = file
-               , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
-               , selfcontained = TRUE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
-      )# end of mapshot()
-      log_activity('geomap', 'geomap')
-    } # end of content function
-  )# end of downloadHandler
+  # output$tableDownload <- downloadHandler(
+  #   filename = "table.txt",
+  #   content = function(file) {
+  #     log_activity('geomap', 'tableDownload')
+  #     write.table(
+  #       values$file,
+  #       sep = "\t",
+  #       quote = FALSE,
+  #       file = file,
+  #       row.names = FALSE
+  #     )
+  #   }
+  # )
+  # 
+  # # save leaflet png page
+  # output$geomap <- downloadHandler(
+  #   filename = paste0( Sys.Date()
+  #                      , "_customGeomap"
+  #                      , ".png"
+  #   ),
+  #   content = function(file) {
+  #     # mapshot() from mapview package to save the image as png
+  #     mapshot( x = get_shapes(leaflet(data = get_map_data())) %>% get_tiles()
+  #              %>% get_view()
+  #              %>% addLegend(layerId = "legendLayer", position = "bottomright", 
+  #                            opacity = 0.7, colors = values$palette, labels = paste(values$from, "-", values$to),
+  #                            title = legend_title)
+  #              , file = file
+  #              , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
+  #              , selfcontained = TRUE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
+  #     )# end of mapshot()
+  #     log_activity('geomap', 'geomap')
+  #   } # end of content function
+  # )# end of downloadHandler
 })

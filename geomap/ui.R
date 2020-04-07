@@ -476,7 +476,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			  		uiOutput("stateInfo")
 					)
 				)
-			),
+			), # End of first tabPanel "Heatmap"
 			tabPanel(title = "Table", 
 				tags$br(),
 				# wellPanel(
