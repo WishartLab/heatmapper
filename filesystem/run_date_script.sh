@@ -17,3 +17,7 @@ done
 cd Global
 
 python modify_total_files.py
+
+cd ..
+
+python convolute_regions.py
