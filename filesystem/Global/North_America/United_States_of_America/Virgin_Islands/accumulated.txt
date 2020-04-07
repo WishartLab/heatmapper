@@ -1,23 +1,20 @@
 Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Date
-Virgin Islands	1.0	0.0	0.0	N/A	N/A	N/A	5.0	2.0	1.25	N/A	N/A	N/A	2020-03-16
-Virgin Islands	2.0	0.0	0.0	N/A	N/A	N/A	10.0	4.0	2.5	N/A	N/A	N/A	2020-03-17
-Virgin Islands	2.0	0.0	0.0	N/A	N/A	N/A	10.0	4.0	2.5	N/A	N/A	N/A	2020-03-18
-Virgin Islands	3.0	0.0	0.0	N/A	N/A	N/A	15.0	6.0	3.75	N/A	N/A	N/A	2020-03-19
-Virgin Islands	6.0	0.0	0.0	0.0	N/A	N/A	30.0	12.0	7.5	N/A	N/A	N/A	2020-03-22
-Virgin Islands	7.0	0.0	0.0	0.0	N/A	N/A	35.0	14.0	8.75	N/A	N/A	N/A	2020-03-23
-Virgin Islands	17.0	0.0	0.0	0.0	N/A	N/A	85.0	34.0	21.25	N/A	N/A	N/A	2020-03-24
-Virgin Islands	17.0	0.0	0.0	0.0	N/A	N/A	85.0	34.0	21.25	N/A	N/A	N/A	2020-03-25
-Virgin Islands	17.0	0.0	0.0	0.0	N/A	N/A	85.0	34.0	21.25	N/A	N/A	N/A	2020-03-26
-Virgin Islands	19.0	0.0	0.0	0.0	N/A	N/A	95.0	38.0	23.75	N/A	N/A	N/A	2020-03-27
-Virgin Islands	22.0	0.0	0.0	0.0	N/A	N/A	110.0	44.0	27.5	N/A	N/A	N/A	2020-03-28
-Virgin Islands	0.0	0.0	0.0	0.0	N/A	N/A	0.0	0.0	0.0	N/A	N/A	N/A	2020-03-29
-Virgin Islands	0.0	0.0	0.0	0.0	N/A	N/A	0.0	0.0	0.0	N/A	N/A	N/A	2020-03-30
-Virgin Islands	30.0	0.0	0.0	0.0	N/A	N/A	150.0	60.0	37.5	N/A	N/A	N/A	2020-03-31
-Virgin Islands	30.0	0.0	0.0	0.0	N/A	N/A	150.0	60.0	37.5	N/A	N/A	N/A	2020-04-01
-Virgin Islands	30.0	0.0	0.0	0.0	N/A	N/A	150.0	60.0	37.5	N/A	N/A	N/A	2020-04-02
-Virgin Islands	37.0	0.0	0.0	0.0	N/A	N/A	185.0	74.0	46.25	N/A	N/A	N/A	2020-04-03
+Virgin Islands	1	0	0	N/A	N/A	N/A	5	2	1.25	N/A	N/A	N/A	NA	NA	NA	NA	2020-03-16
+Virgin Islands	2	0	0	N/A	N/A	N/A	10	4	2.5	N/A	N/A	N/A	1	0	100	0	NA	NA	2020-03-17
+Virgin Islands	2	0	0	N/A	N/A	N/A	10	4	2.5	N/A	N/A	N/A	0	0	-100	0	NA	NA	2020-03-18
+Virgin Islands	3	0	0	N/A	N/A	N/A	15	6	3.75	N/A	N/A	N/A	1	0	100	100	NA	NA	2020-03-19
+Virgin Islands	6	0	0	0	N/A	N/A	30	12	7.5	N/A	N/A	N/A	NA	NA	100	0	NA	NA	2020-03-22
+Virgin Islands	7	0	0	0	N/A	N/A	35	14	8.75	N/A	N/A	N/A	1	0	100	0	NA	NA	2020-03-23
+Virgin Islands	17	0	0	0	N/A	N/A	85	34	21.25	N/A	N/A	N/A	10	0	900	0	NA	NA	2020-03-24
+Virgin Islands	17	0	0	0	N/A	N/A	85	34	21.25	N/A	N/A	N/A	0	0	-100	100	NA	NA	2020-03-25
+Virgin Islands	17	0	0	0	N/A	N/A	85	34	21.25	N/A	N/A	N/A	0	0	100	100	NA	NA	2020-03-26
+Virgin Islands	19	0	0	0	N/A	N/A	95	38	23.75	N/A	N/A	N/A	2	0	100	100	NA	NA	2020-03-27
+Virgin Islands	22	0	0	0	N/A	N/A	110	44	27.5	N/A	N/A	N/A	3	0	50	100	NA	NA	2020-03-28
+Virgin Islands	0	0	0	0	N/A	N/A	0	0	0	N/A	N/A	N/A	-22	0	-833.3	100	NA	NA	2020-03-29
+Virgin Islands	0	0	0	0	N/A	N/A	0	0	0	N/A	N/A	N/A	0	0	-100	100	NA	NA	2020-03-30
+Virgin Islands	30	0	0	0	N/A	N/A	150	60	37.5	N/A	N/A	N/A	30	0	100	100	NA	NA	2020-03-31
+Virgin Islands	30	0	0	0	N/A	N/A	150	60	37.5	N/A	N/A	N/A	0	0	-100	100	NA	NA	2020-04-01
+Virgin Islands	30	0	0	0	N/A	N/A	150	60	37.5	N/A	N/A	N/A	0	0	100	100	NA	NA	2020-04-02
+Virgin Islands	37	0	0	0	N/A	N/A	185	74	46.25	N/A	N/A	N/A	7	0	100	100	NA	NA	2020-04-03
 Virgin Islands	40.0	0.0	0.0	0.0	N/A	N/A	200.0	80.0	50.0	N/A	N/A	N/A	2020-04-04
 Virgin Islands	42.0	1.0	0.0	0.0	N/A	N/A	333.333333333	153.846153846	100.0	N/A	N/A	N/A	2020-04-05
-Virgin Islands	17	0	0	0	_2020-3-24
-Virgin Islands	17	0	0	0	_2020-3-25
-Virgin Islands	17	0	0	0	_2020-3-26
