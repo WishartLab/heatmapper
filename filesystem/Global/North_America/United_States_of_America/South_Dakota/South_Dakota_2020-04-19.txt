@@ -1,33 +1,33 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Turner	5.04	36.952
-Brown	8.896	54.976
-Minnehaha	58.328	545.018
-Todd	0.0	0.0
-Bon Homme	0.0	1.0
-Butte	0.0	0.0
-Beadle	0.0	0.0
-Fall River	0.0	0.0
-Spink	0.333	6.251
-Deuel	0.0	0.0
-Hamlin	0.0	0.0
-Faulk	0.0	0.0
-Pennington	0.0	0.0
-Lyman	0.0	0.0
-Lawrence	0.0	0.0
-Aurora	0.0	0.0
-Hughes	0.0	0.0
-Hutchinson	0.0	0.0
-Marshall	0.0	0.0
-Yankton	0.842	14.821
-Lake	0.0	0.0
-Clay	0.0	0.0
-Kingsbury	0.0	0.0
-Union	0.0	0.0
-Charles Mix	0.0	0.0
-Codington	8.896	51.976
-Clark	0.0	0.0
-Meade	0.0	0.0
-Roberts	5.04	36.952
-Davison	0.0	0.0
-Brookings	3.446	20.437
-McCook	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Turner	5.04	36.097	0.00059829	0.00428502
+Brown	8.896	50.976	0.00022627	0.00129657
+Minnehaha	58.328	509.018	0.00030241	0.00263909
+Todd	0.0	0.0	0.0	0.0
+Bon Homme	0.0	0.0	0.0	0.0
+Butte	0.0	0.0	0.0	0.0
+Beadle	0.0	0.0	0.0	0.0
+Fall River	0.0	0.0	0.0	0.0
+Spink	0.333	5.699	5.127e-05	0.00087744
+Deuel	0.0	0.0	0.0	0.0
+Hamlin	0.0	0.0	0.0	0.0
+Faulk	0.0	0.0	0.0	0.0
+Pennington	0.0	0.0	0.0	0.0
+Lyman	0.0	0.0	0.0	0.0
+Lawrence	0.0	0.0	0.0	0.0
+Aurora	0.0	0.0	0.0	0.0
+Hughes	0.0	0.0	0.0	0.0
+Hutchinson	0.0	0.0	0.0	0.0
+Marshall	0.0	0.0	0.0	0.0
+Yankton	0.842	13.562	3.682e-05	0.00059303
+Lake	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+Kingsbury	0.0	0.0	0.0	0.0
+Union	0.0	0.0	0.0	0.0
+Charles Mix	0.0	0.0	0.0	0.0
+Codington	8.896	50.976	0.00031754	0.0018196
+Clark	0.0	0.0	0.0	0.0
+Meade	0.0	0.0	0.0	0.0
+Roberts	5.04	36.097	0.00048244	0.00345525
+Davison	0.0	0.0	0.0	0.0
+Brookings	3.446	20.104	9.781e-05	0.00057062
+McCook	0.0	0.0	0.0	0.0

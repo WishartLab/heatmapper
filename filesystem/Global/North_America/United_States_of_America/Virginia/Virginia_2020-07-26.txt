@@ -1,21 +1,21 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Prince Edward	0.0	0.0
-Bedford	0.003	462.891
-Culpeper	0.003	461.891
-Botetourt	0.005	923.786
-Amherst	0.0	0.0
-Accomack	0.0	0.0
-Rockbridge	0.0	0.0
-Stafford	0.02	3697.135
-Isle of Wight	0.018	3237.245
-Spotsylvania	0.035	6468.491
-Henrico	0.147	26802.742
-Goochland	0.015	2773.354
-Danville	0.008	1386.68
-Rockingham	0.005	922.786
-Fluvanna	0.013	2311.457
-Franklin	0.003	461.891
-Charles City	0.0	0.0
-Mecklenburg	0.008	1385.68
-Williamsburg	0.008	1386.68
-Suffolk	0.03	5548.702
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Prince Edward	0.0	0.0	0.0	0.0
+Bedford	0.003	461.891	4e-08	0.00586551
+Culpeper	0.003	461.891	6e-08	0.00890667
+Botetourt	0.005	923.786	1.5e-07	0.0277605
+Amherst	0.0	0.0	0.0	0.0
+Accomack	0.0	0.0	0.0	0.0
+Rockbridge	0.0	0.0	0.0	0.0
+Stafford	0.02	3695.135	1.3e-07	0.0246408
+Isle of Wight	0.018	3233.245	4.9e-07	0.08749614
+Spotsylvania	0.035	6466.491	2.6e-07	0.04817184
+Henrico	0.147	26789.742	4.5e-07	0.08136324
+Goochland	0.015	2771.354	6.5e-07	0.11922879
+Danville	0.008	1385.68	2e-07	0.03405205
+Rockingham	0.005	923.786	6e-08	0.01137051
+Fluvanna	0.013	2309.457	4.9e-07	0.08622847
+Franklin	0.003	461.891	3.7e-07	0.05764271
+Charles City	0.0	0.0	0.0	0.0
+Mecklenburg	0.008	1385.68	2.6e-07	0.04520979
+Williamsburg	0.008	1385.68	5.4e-07	0.09302363
+Suffolk	0.03	5542.702	3.3e-07	0.06078524

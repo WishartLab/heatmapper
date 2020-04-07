@@ -1,46 +1,46 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Brown	1.513	2080.407
-Wood	0.0	0.0
-Richland	0.0	0.0
-Green	0.0	13.032
-Manitowoc	0.2	900.414
-Pierce	0.0	0.0
-Fond du Lac	0.022	100.64
-Chippewa	0.037	118.555
-Douglas	0.0	0.0
-Walworth	0.0	0.0
-Winnebago	0.0	4.0
-Marathon	0.639	457.808
-Iowa	0.0	0.0
-Ashland	0.0	0.0
-Marquette	0.0	0.0
-Columbia	0.001	50.023
-Bayfield	0.0	0.0
-Sheboygan	0.639	457.808
-Pepin	0.0	0.0
-Florence	0.129	895.481
-Dodge	0.0	1.0
-Unassigned	0.0	0.0
-Waupaca	0.0	0.0
-Eau Claire	0.001	35.446
-Shawano	0.129	895.481
-Buffalo	0.0	0.0
-Dunn	0.0	0.0
-Saint Croix	0.0	0.0
-Kenosha	1.042	2167.953
-Iron	0.0	0.0
-Marinette	0.0	0.0
-Oconto	0.0	0.0
-La Crosse	1.278	916.623
-Racine	0.135	606.848
-Rusk	0.141	452.253
-Barron	0.141	452.253
-Juneau	0.0	0.0
-Vilas	0.0	0.0
-Crawford	0.0	0.0
-Calumet	0.0	0.0
-Outagamie	2.556	1832.244
-Oneida	0.0	0.0
-Grant	0.0	0.0
-Door	0.0	0.0
-Jackson	0.59	914.444
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Brown	1.513	2070.407	5.74e-06	0.00786097
+Wood	0.0	0.0	0.0	0.0
+Richland	0.0	0.0	0.0	0.0
+Green	0.0	13.032	0.0	0.00035289
+Manitowoc	0.2	895.352	2.53e-06	0.01132296
+Pierce	0.0	0.0	0.0	0.0
+Fond du Lac	0.022	100.64	2.1e-07	0.00097646
+Chippewa	0.037	118.555	5.8e-07	0.00184852
+Douglas	0.0	0.0	0.0	0.0
+Walworth	0.0	0.0	0.0	0.0
+Winnebago	0.0	0.0	0.0	0.0
+Marathon	0.639	457.808	4.72e-06	0.00338045
+Iowa	0.0	0.0	0.0	0.0
+Ashland	0.0	0.0	0.0	0.0
+Marquette	0.0	0.0	0.0	0.0
+Columbia	0.001	48.023	2e-08	0.00083725
+Bayfield	0.0	0.0	0.0	0.0
+Sheboygan	0.639	457.808	5.53e-06	0.00396522
+Pepin	0.0	0.0	0.0	0.0
+Florence	0.129	889.55	2.985e-05	0.2058667
+Dodge	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Waupaca	0.0	0.0	0.0	0.0
+Eau Claire	0.001	35.446	1e-08	0.00033909
+Shawano	0.129	889.55	3.16e-06	0.02180483
+Buffalo	0.0	0.0	0.0	0.0
+Dunn	0.0	0.0	0.0	0.0
+Saint Croix	0.0	0.0	0.0	0.0
+Kenosha	1.042	2161.953	6.16e-06	0.01277071
+Iron	0.0	0.0	0.0	0.0
+Marinette	0.0	0.0	0.0	0.0
+Oconto	0.0	0.0	0.0	0.0
+La Crosse	1.278	915.623	1.081e-05	0.00774442
+Racine	0.135	603.848	6.9e-07	0.0030717
+Rusk	0.141	450.105	9.97e-06	0.03181629
+Barron	0.141	450.105	3.12e-06	0.00996601
+Juneau	0.0	0.0	0.0	0.0
+Vilas	0.0	0.0	0.0	0.0
+Crawford	0.0	0.0	0.0	0.0
+Calumet	0.0	0.0	0.0	0.0
+Outagamie	2.556	1831.244	1.364e-05	0.00977367
+Oneida	0.0	0.0	0.0	0.0
+Grant	0.0	0.0	0.0	0.0
+Door	0.0	0.0	0.0	0.0
+Jackson	0.59	912.237	2.881e-05	0.04454717

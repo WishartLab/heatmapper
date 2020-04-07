@@ -1,66 +1,66 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Potter	0.0	0.0
-Cumberland	6.288	21.955
-Pike	14.404	38.737
-Forest	0.788	2.425
-Wayne	4.939	10.939
-Fulton	0.0	0.0
-Lackawanna	25.012	66.345
-Dauphin	19.66	50.993
-Huntingdon	1.009	2.588
-Somerset	1.017	2.507
-Cameron	0.0	0.0
-Montgomery	125.165	366.498
-Tioga	0.0	0.0
-Washington	3.752	10.419
-Bedford	0.0	0.0
-Susquehanna	0.63	1.924
-Erie	0.823	9.49
-Bucks	66.625	181.958
-Carbon	10.674	26.317
-Bradford	0.508	1.253
-Fayette	2.972	7.972
-Schuylkill	14.973	40.973
-Northumberland	0.898	2.765
-Monroe	63.534	162.201
-Lawrence	1.605	4.886
-Delaware	90.901	290.901
-Indiana	7.236	18.404
-Mercer	2.728	5.395
-Cambria	0.823	1.49
-Mifflin	4.771	12.226
-Columbia	3.949	11.282
-Blair	0.0	0.0
-Lehigh	121.233	352.566
-Allegheny	50.134	136.134
-Centre	2.961	6.961
-Beaver	10.752	34.085
-Northampton	85.297	237.297
-Mc Kean	0.0	0.0
-Adams	1.364	5.697
-Wyoming	0.263	0.808
-Chester	20.179	78.846
-Venango	0.0	0.0
-Franklin	2.646	6.979
-Butler	4.196	12.529
-Greene	0.0	0.0
-Montour	2.469	4.469
-Union	2.386	6.113
-Lancaster	61.209	149.876
-Westmoreland	17.385	43.052
-Perry	1.009	2.588
-Lycoming	0.642	1.955
-Philadelphia	392.665	1281.665
-Clarion	0.599	1.844
-Clearfield	0.508	1.253
-Berks	43.38	132.047
-Warren	0.0	0.0
-Sullivan	0.0	0.0
-Clinton	0.0	0.0
-Crawford	0.307	1.26
-Snyder	4.036	10.35
-York	25.195	64.528
-Armstrong	1.017	2.507
-Lebanon	23.037	59.704
-Juniata	2.033	5.012
-Luzerne	123.825	332.158
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Potter	0.0	0.0	0.0	0.0
+Cumberland	6.288	11.955	2.501e-05	4.755e-05
+Pike	14.404	27.737	0.00025752	0.0004959
+Forest	0.788	1.596	0.00010826	0.00021926
+Wayne	4.939	8.939	9.632e-05	0.00017433
+Fulton	0.0	0.0	0.0	0.0
+Lackawanna	25.012	48.345	0.00011866	0.00022935
+Dauphin	19.66	36.993	7.095e-05	0.0001335
+Huntingdon	1.009	1.864	2.234e-05	4.127e-05
+Somerset	1.017	1.84	1.375e-05	2.488e-05
+Cameron	0.0	0.0	0.0	0.0
+Montgomery	125.165	247.498	0.00015106	0.00029869
+Tioga	0.0	0.0	0.0	0.0
+Washington	3.752	7.419	1.81e-05	3.578e-05
+Bedford	0.0	0.0	0.0	0.0
+Susquehanna	0.63	1.272	1.552e-05	3.134e-05
+Erie	0.823	1.49	3.03e-06	5.48e-06
+Bucks	66.625	127.958	0.00010606	0.00020369
+Carbon	10.674	19.317	0.00016619	0.00030076
+Bradford	0.508	0.92	8.35e-06	1.512e-05
+Fayette	2.972	5.972	2.278e-05	4.578e-05
+Schuylkill	14.973	27.973	0.00010539	0.0001969
+Northumberland	0.898	1.82	9.86e-06	1.998e-05
+Monroe	63.534	118.201	0.00037482	0.00069732
+Lawrence	1.605	3.235	1.862e-05	3.754e-05
+Delaware	90.901	176.901	0.00016096	0.00031324
+Indiana	7.236	13.344	8.563e-05	0.00015792
+Mercer	2.728	5.395	2.465e-05	4.874e-05
+Cambria	0.823	1.49	6.25e-06	1.131e-05
+Mifflin	4.771	8.807	0.00010322	0.00019054
+Columbia	3.949	7.282	6.033e-05	0.00011125
+Blair	0.0	0.0	0.0	0.0
+Lehigh	121.233	223.566	0.00032935	0.00060735
+Allegheny	50.134	99.134	4.115e-05	8.136e-05
+Centre	2.961	5.961	1.819e-05	3.661e-05
+Beaver	10.752	22.085	6.527e-05	0.00013406
+Northampton	85.297	157.297	0.00027984	0.00051605
+Mc Kean	0.0	0.0	0.0	0.0
+Adams	1.364	2.697	1.327e-05	2.623e-05
+Wyoming	0.263	0.532	9.72e-06	1.967e-05
+Chester	20.179	40.846	3.865e-05	7.824e-05
+Venango	0.0	0.0	0.0	0.0
+Franklin	2.646	4.979	1.709e-05	3.216e-05
+Butler	4.196	8.529	2.233e-05	4.539e-05
+Greene	0.0	0.0	0.0	0.0
+Montour	2.469	4.469	0.00013536	0.00024501
+Union	2.386	4.404	5.328e-05	9.834e-05
+Lancaster	61.209	112.876	0.00011261	0.00020766
+Westmoreland	17.385	33.052	4.958e-05	9.427e-05
+Perry	1.009	1.864	2.187e-05	4.04e-05
+Lycoming	0.642	1.294	5.65e-06	1.138e-05
+Philadelphia	392.665	742.665	0.00024787	0.00046881
+Clarion	0.599	1.214	1.545e-05	3.131e-05
+Clearfield	0.508	0.92	6.4e-06	1.159e-05
+Berks	43.38	82.047	0.00010325	0.00019528
+Warren	0.0	0.0	0.0	0.0
+Sullivan	0.0	0.0	0.0	0.0
+Clinton	0.0	0.0	0.0	0.0
+Crawford	0.307	0.705	3.61e-06	8.29e-06
+Snyder	4.036	7.455	9.956e-05	0.00018389
+York	25.195	46.528	5.62e-05	0.00010379
+Armstrong	1.017	1.84	1.558e-05	2.819e-05
+Lebanon	23.037	41.704	0.00016302	0.00029512
+Juniata	2.033	3.679	8.229e-05	0.00014892
+Luzerne	123.825	224.158	0.00038982	0.00070568

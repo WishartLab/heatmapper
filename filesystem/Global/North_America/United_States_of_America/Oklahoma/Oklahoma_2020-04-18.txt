@@ -1,56 +1,56 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Greer	0.917	15.341
-Logan	0.0	0.0
-Choctaw	0.0	0.0
-Wagoner	8.033	99.64
-Cherokee	1.374	21.575
-Sequoyah	0.0	0.0
-McClain	5.062	28.053
-Comanche	0.036	6.308
-Payne	0.163	3.834
-Washington	2.475	38.954
-Beckham	0.0	0.0
-Noble	0.0	0.0
-Love	0.0	0.0
-Kiowa	0.0	0.0
-Pawnee	2.531	14.026
-Oklahoma	12.705	181.42
-Jefferson	0.0	0.0
-McIntosh	0.0	0.0
-Custer	0.0	0.0
-Cotton	0.0	0.0
-Le Flore	0.0	0.0
-Delaware	0.741	11.353
-Caddo	3.791	24.418
-Carter	0.0	0.0
-Grady	7.593	43.08
-Major	0.0	0.0
-Rogers	1.052	16.948
-Bryan	0.0	0.0
-Washita	0.0	0.0
-Atoka	0.0	0.0
-Pontotoc	0.0	1.0
-Seminole	5.781	37.233
-Mayes	14.827	84.96
-Osage	1.977	30.275
-Okmulgee	5.044	34.829
-Stephens	0.494	7.569
-Woodward	0.0	0.0
-Muskogee	0.648	8.343
-Latimer	0.0	0.0
-Craig	3.97	23.662
-Kingfisher	0.0	0.0
-Pittsburg	9.087	55.396
-Texas	11.563	74.468
-Canadian	3.065	29.002
-Tillman	0.0	0.0
-McCurtain	0.0	0.0
-Tulsa	29.557	311.685
-Cleveland	18.662	159.23
-Nowata	0.439	6.988
-Ottawa	0.715	11.077
-Garvin	2.531	15.026
-Garfield	0.0	0.0
-Grant	0.0	0.0
-Adair	8.958	78.17
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Greer	0.917	13.924	0.00015753	0.00239203
+Logan	0.0	0.0	0.0	0.0
+Choctaw	0.0	0.0	0.0	0.0
+Wagoner	8.033	93.847	0.00010027	0.00117148
+Cherokee	1.374	19.649	2.823e-05	0.00040368
+Sequoyah	0.0	0.0	0.0	0.0
+McClain	5.062	28.053	0.0001266	0.00070159
+Comanche	0.036	4.44	3e-07	3.687e-05
+Payne	0.163	2.834	1.99e-06	3.454e-05
+Washington	2.475	34.954	4.774e-05	0.00067423
+Beckham	0.0	0.0	0.0	0.0
+Noble	0.0	0.0	0.0	0.0
+Love	0.0	0.0	0.0	0.0
+Kiowa	0.0	0.0	0.0	0.0
+Pawnee	2.531	14.026	0.00015442	0.00085577
+Oklahoma	12.705	167.42	1.603e-05	0.00021123
+Jefferson	0.0	0.0	0.0	0.0
+McIntosh	0.0	0.0	0.0	0.0
+Custer	0.0	0.0	0.0	0.0
+Cotton	0.0	0.0	0.0	0.0
+Le Flore	0.0	0.0	0.0	0.0
+Delaware	0.741	10.362	1.734e-05	0.00024248
+Caddo	3.791	23.807	0.00013083	0.00082158
+Carter	0.0	0.0	0.0	0.0
+Grady	7.593	42.08	0.00013669	0.0007575
+Major	0.0	0.0	0.0	0.0
+Rogers	1.052	15.411	1.144e-05	0.00016754
+Bryan	0.0	0.0	0.0	0.0
+Washita	0.0	0.0	0.0	0.0
+Atoka	0.0	0.0	0.0	0.0
+Pontotoc	0.0	0.0	0.0	0.0
+Seminole	5.781	36.302	0.00023521	0.00147701
+Mayes	14.827	83.293	0.00036069	0.00202625
+Osage	1.977	27.633	4.205e-05	0.00058776
+Okmulgee	5.044	33.896	0.00013158	0.00088421
+Stephens	0.494	6.908	1.142e-05	0.00015967
+Woodward	0.0	0.0	0.0	0.0
+Muskogee	0.648	8.343	9.48e-06	0.00012204
+Latimer	0.0	0.0	0.0	0.0
+Craig	3.97	23.154	0.00027751	0.00161848
+Kingfisher	0.0	0.0	0.0	0.0
+Pittsburg	9.087	54.141	0.0002071	0.00123393
+Texas	11.563	72.605	0.00056529	0.0035495
+Canadian	3.065	27.002	2.122e-05	0.00018693
+Tillman	0.0	0.0	0.0	0.0
+McCurtain	0.0	0.0	0.0	0.0
+Tulsa	29.557	302.685	4.559e-05	0.00046685
+Cleveland	18.662	150.23	6.626e-05	0.00053336
+Nowata	0.439	6.358	4.296e-05	0.00062224
+Ottawa	0.715	10.099	2.294e-05	0.00032395
+Garvin	2.531	14.026	9.101e-05	0.00050433
+Garfield	0.0	0.0	0.0	0.0
+Grant	0.0	0.0	0.0	0.0
+Adair	8.958	75.099	0.00040567	0.00340091
+Jackson	0.0	0.0	0.0	0.0

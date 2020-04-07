@@ -1,25 +1,25 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Wexford	0.006	461.88
-Roscommon	0.006	461.88
-Lapeer	0.063	6466.408
-Kalkaska	0.0	0.0
-Ogemaw	0.0	0.0
-Tuscola	0.023	1847.526
-Allegan	0.052	4157.94
-Grand Traverse	0.012	925.765
-Manistee	0.009	923.774
-Cass	0.0	0.0
-Missaukee	0.0	0.0
-Hillsdale	0.072	7390.179
-Chippewa	0.0	0.0
-Isabella	0.023	2309.427
-Marquette	0.032	3233.203
-Iosco	0.007	923.114
-Gladwin	0.012	923.765
-Oceana	0.0	0.0
-Barry	0.017	1386.648
-Leelanau	0.0	1.0
-Charlevoix	0.006	462.88
-Clare	0.0	2.0
-Out of MI	0.098	7859.988
-Newaygo	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Wexford	0.006	461.88	1.8e-07	0.01380147
+Roscommon	0.006	461.88	2.5e-07	0.01933847
+Lapeer	0.063	6461.741	7.2e-07	0.07340552
+Kalkaska	0.0	0.0	0.0	0.0
+Ogemaw	0.0	0.0	0.0	0.0
+Tuscola	0.023	1847.526	4.4e-07	0.03518025
+Allegan	0.052	4156.94	4.4e-07	0.03543038
+Grand Traverse	0.012	923.765	1.3e-07	0.00997877
+Manistee	0.009	923.107	3.7e-07	0.03763483
+Cass	0.0	0.0	0.0	0.0
+Missaukee	0.0	0.0	0.0	0.0
+Hillsdale	0.072	7384.846	1.57e-06	0.16142093
+Chippewa	0.0	0.0	0.0	0.0
+Isabella	0.023	2307.76	3.3e-07	0.03270542
+Marquette	0.032	3230.87	4.8e-07	0.04857282
+Iosco	0.007	922.291	2.8e-07	0.0367725
+Gladwin	0.012	923.765	4.7e-07	0.03645913
+Oceana	0.0	0.0	0.0	0.0
+Barry	0.017	1385.648	2.8e-07	0.02265723
+Leelanau	0.0	0.0	0.0	0.0
+Charlevoix	0.006	461.88	2.3e-07	0.01759945
+Clare	0.0	0.0	0.0	0.0
+Out of MI	0.098	7851.988	N/A	N/A
+Newaygo	0.0	0.0	0.0	0.0

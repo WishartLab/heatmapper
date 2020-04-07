@@ -1,39 +1,39 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	2.611	2296.56
-Mesa	0.027	306.992
-San Miguel	1.567	1376.743
-Delta	0.42	459.466
-Lincoln	0.0	0.0
-Ouray	0.0	0.0
-Washington	0.0	0.0
-Huerfano	0.0	0.0
-Park	0.0	0.0
-Custer	0.064	452.417
-Douglas	0.005	804.341
-Summit	0.062	708.647
-Rio Grande	0.0	0.0
-Fremont	0.0	0.0
-Pueblo	6.267	5508.956
-Grand	0.0	0.0
-La Plata	1.533	2108.222
-Teller	0.0	0.0
-Las Animas	0.0	0.0
-Moffat	0.0	0.0
-Mineral	0.0	0.0
-Yuma	0.0	0.0
-Elbert	1.045	917.828
-Unassigned	0.014	1322.313
-Adams	0.056	2673.263
-Chaffee	1.045	917.828
-Baca	0.0	0.0
-Costilla	0.0	0.0
-Otero	0.0	0.0
-Saguache	0.0	0.0
-Archuleta	0.0	0.0
-Morgan	3.134	2755.48
-Montezuma	0.514	916.821
-Rio Blanco	0.0	0.0
-Clear Creek	0.0	0.0
-Alamosa	0.0	0.0
-Kit Carson	0.0	0.0
-Arapahoe	0.024	2932.507
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	2.611	2294.56	0.00012128	0.10658491
+Mesa	0.027	301.992	1.8e-07	0.00197114
+San Miguel	1.567	1376.743	0.00019131	0.16807997
+Delta	0.42	459.054	1.357e-05	0.01483068
+Lincoln	0.0	0.0	0.0	0.0
+Ouray	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Huerfano	0.0	0.0	0.0	0.0
+Park	0.0	0.0	0.0	0.0
+Custer	0.064	450.269	1.292e-05	0.09088999
+Douglas	0.005	800.341	1e-08	0.00233488
+Summit	0.062	704.647	2e-06	0.02272542
+Rio Grande	0.0	0.0	0.0	0.0
+Fremont	0.0	0.0	0.0	0.0
+Pueblo	6.267	5506.956	3.741e-05	0.03287166
+Grand	0.0	0.0	0.0	0.0
+La Plata	1.533	2105.342	2.722e-05	0.03738842
+Teller	0.0	0.0	0.0	0.0
+Las Animas	0.0	0.0	0.0	0.0
+Moffat	0.0	0.0	0.0	0.0
+Mineral	0.0	0.0	0.0	0.0
+Yuma	0.0	0.0	0.0	0.0
+Elbert	1.045	917.828	3.976e-05	0.0349223
+Unassigned	0.014	1297.313	N/A	N/A
+Adams	0.056	2660.263	1.1e-07	0.00519717
+Chaffee	1.045	917.828	5.218e-05	0.04582953
+Baca	0.0	0.0	0.0	0.0
+Costilla	0.0	0.0	0.0	0.0
+Otero	0.0	0.0	0.0	0.0
+Saguache	0.0	0.0	0.0	0.0
+Archuleta	0.0	0.0	0.0	0.0
+Morgan	3.134	2753.48	0.00010974	0.09641712
+Montezuma	0.514	914.958	1.965e-05	0.03497813
+Rio Blanco	0.0	0.0	0.0	0.0
+Clear Creek	0.0	0.0	0.0	0.0
+Alamosa	0.0	0.0	0.0	0.0
+Kit Carson	0.0	0.0	0.0	0.0
+Arapahoe	0.024	2888.507	4e-08	0.00443557

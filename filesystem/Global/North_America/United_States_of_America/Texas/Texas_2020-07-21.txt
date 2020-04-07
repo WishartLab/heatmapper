@@ -1,68 +1,68 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Potter	0.073	3694.948
-Oldham	0.0	0.0
-Limestone	0.0	0.0
-Lamb	0.0	0.0
-Brown	0.009	461.867
-Montague	0.0	0.0
-Kendall	0.018	922.738
-Austin	0.0	0.0
-Eastland	0.0	0.0
-Wharton	0.0	4.0
-Comanche	0.0	0.0
-Washington	0.0	0.0
-Falls	0.0	0.0
-Tom Green	0.051	3233.13
-Erath	0.0	1.0
-Hunt	0.0	0.0
-Martin	0.0	0.0
-Victoria	0.058	3695.006
-Fayette	0.009	459.867
-San Jacinto	0.0	0.0
-Karnes	0.0	0.0
-Crane	0.0	0.0
-Hopkins	0.0	0.0
-Burleson	0.0	0.0
-Parker	0.009	461.867
-Lamar	0.009	462.867
-Deaf Smith	0.046	2311.339
-Morris	0.0	0.0
-Grayson	0.0	1.0
-Coryell	0.004	604.162
-Dawson	0.007	921.274
-Nacogdoches	0.013	1812.477
-Lavaca	0.0	0.0
-Liberty	0.009	461.867
-Terry	0.0	0.0
-Atascosa	0.0	1.0
-Hidalgo	0.013	2313.855
-Milam	0.0	0.0
-Randall	0.082	4158.822
-San Patricio	0.004	604.162
-Swisher	0.0	0.0
-Lynn	0.0	0.0
-Van Zandt	0.009	462.867
-Gaines	0.0	0.0
-Uvalde	0.0	0.0
-Bastrop	0.0	0.0
-Young	0.0	0.0
-Grimes	0.0	0.0
-Maverick	0.0	1.0
-Robertson	0.0	0.0
-Dewitt	0.009	461.867
-Angelina	0.007	1206.674
-Chambers	0.0	0.0
-Rusk	0.018	923.738
-Medina	0.0	0.0
-Hockley	0.0	0.0
-Castro	0.009	461.867
-Val Verde	0.0	0.0
-Blanco	0.0	0.0
-Hale	0.0	0.0
-Burnet	0.0	0.0
-Llano	0.0	0.0
-Gregg	0.027	1385.609
-Walker	0.036	1847.474
-Polk	0.0	0.0
-Orange	0.0	0.0
-Fannin	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Potter	0.073	3694.948	6.1e-07	0.03088182
+Oldham	0.0	0.0	0.0	0.0
+Limestone	0.0	0.0	0.0	0.0
+Lamb	0.0	0.0	0.0	0.0
+Brown	0.009	461.867	2.4e-07	0.01217875
+Montague	0.0	0.0	0.0	0.0
+Kendall	0.018	923.738	3.9e-07	0.02023921
+Austin	0.0	0.0	0.0	0.0
+Eastland	0.0	0.0	0.0	0.0
+Wharton	0.0	0.0	0.0	0.0
+Comanche	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Falls	0.0	0.0	0.0	0.0
+Tom Green	0.051	3230.797	4.3e-07	0.02733585
+Erath	0.0	0.0	0.0	0.0
+Hunt	0.0	0.0	0.0	0.0
+Martin	0.0	0.0	0.0	0.0
+Victoria	0.058	3692.339	6.3e-07	0.04011886
+Fayette	0.009	461.867	3.6e-07	0.01822032
+San Jacinto	0.0	0.0	0.0	0.0
+Karnes	0.0	0.0	0.0	0.0
+Crane	0.0	0.0	0.0	0.0
+Hopkins	0.0	0.0	0.0	0.0
+Burleson	0.0	0.0	0.0	0.0
+Parker	0.009	461.867	7e-08	0.00333789
+Lamar	0.009	461.867	1.8e-07	0.00928787
+Deaf Smith	0.046	2309.339	2.45e-06	0.12309909
+Morris	0.0	0.0	0.0	0.0
+Grayson	0.0	0.0	0.0	0.0
+Coryell	0.004	603.339	5e-08	0.00806517
+Dawson	0.007	920.019	5.5e-07	0.07290744
+Nacogdoches	0.013	1810.009	2e-07	0.02754499
+Lavaca	0.0	0.0	0.0	0.0
+Liberty	0.009	461.867	1e-07	0.00535045
+Terry	0.0	0.0	0.0	0.0
+Atascosa	0.0	0.0	0.0	0.0
+Hidalgo	0.013	2300.855	2e-08	0.00265706
+Milam	0.0	0.0	0.0	0.0
+Randall	0.082	4156.822	6e-07	0.03050408
+San Patricio	0.004	603.339	6e-08	0.00901946
+Swisher	0.0	0.0	0.0	0.0
+Lynn	0.0	0.0	0.0	0.0
+Van Zandt	0.009	461.867	1.6e-07	0.00824483
+Gaines	0.0	0.0	0.0	0.0
+Uvalde	0.0	0.0	0.0	0.0
+Bastrop	0.0	0.0	0.0	0.0
+Young	0.0	0.0	0.0	0.0
+Grimes	0.0	0.0	0.0	0.0
+Maverick	0.0	0.0	0.0	0.0
+Robertson	0.0	0.0	0.0	0.0
+Dewitt	0.009	461.867	4.5e-07	0.02287943
+Angelina	0.007	1204.65	8e-08	0.01383192
+Chambers	0.0	0.0	0.0	0.0
+Rusk	0.018	923.738	3.3e-07	0.01696489
+Medina	0.0	0.0	0.0	0.0
+Hockley	0.0	0.0	0.0	0.0
+Castro	0.009	461.867	1.17e-06	0.06025662
+Val Verde	0.0	0.0	0.0	0.0
+Blanco	0.0	0.0	0.0	0.0
+Hale	0.0	0.0	0.0	0.0
+Burnet	0.0	0.0	0.0	0.0
+Llano	0.0	0.0	0.0	0.0
+Gregg	0.027	1385.609	2.2e-07	0.01120073
+Walker	0.036	1847.474	5e-07	0.02548943
+Polk	0.0	0.0	0.0	0.0
+Orange	0.0	0.0	0.0	0.0
+Fannin	0.0	0.0	0.0	0.0

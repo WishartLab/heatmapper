@@ -1,32 +1,32 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	13.856	707.709
-Skagit	0.251	65.169
-Walla Walla	13.225	717.934
-Pierce	18.681	2995.809
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	11.123	1205.018
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Jefferson	0.063	18.291
-Kitsap	0.433	93.333
-Douglas	13.856	704.709
-San Juan	13.856	706.709
-Benton	5.664	852.425
-Okanogan	14.204	998.1
-Whitman	0.0	1.0
-Chelan	0.316	73.376
-Unassigned	991.848	53845.004
-Mason	20.785	1058.064
-Adams	9.311	698.863
-Klickitat	0.0	0.0
-Yakima	4.383	1055.061
-Franklin	0.538	158.324
-Ferry	0.0	0.0
-Grays Harbor	13.856	704.709
-Spokane	1.083	244.926
-Kittitas	0.0	2.0
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
-Thurston	0.39	87.091
-Snohomish	0.158	859.167
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	13.856	704.709	0.00017406	0.00885268
+Skagit	0.251	65.169	1.96e-06	0.00050831
+Walla Walla	13.225	717.267	0.00021708	0.01177353
+Pierce	18.681	2966.809	2.096e-05	0.00332863
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	11.123	1197.425	0.00049195	0.05295997
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Jefferson	0.063	16.291	1.99e-06	0.00051344
+Kitsap	0.433	93.333	1.6e-06	0.00034593
+Douglas	13.856	704.709	0.00032293	0.0164241
+San Juan	13.856	704.709	0.00080897	0.04114368
+Benton	5.664	841.425	2.806e-05	0.00416801
+Okanogan	14.204	996.076	0.00033713	0.02364179
+Whitman	0.0	0.0	0.0	0.0
+Chelan	0.316	73.376	4.1e-06	0.00095249
+Unassigned	991.848	53795.004	N/A	N/A
+Mason	20.785	1057.064	0.00031729	0.01613666
+Adams	9.311	695.863	0.00047123	0.03521752
+Klickitat	0.0	0.0	0.0	0.0
+Yakima	4.383	1018.061	1.743e-05	0.00404883
+Franklin	0.538	150.324	5.7e-06	0.00159331
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	13.856	704.709	0.00018749	0.00953585
+Spokane	1.083	241.926	2.1e-06	0.0004701
+Kittitas	0.0	0.0	0.0	0.0
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0
+Thurston	0.39	87.091	1.36e-06	0.00030407
+Snohomish	0.158	815.167	1.9e-07	0.00100033

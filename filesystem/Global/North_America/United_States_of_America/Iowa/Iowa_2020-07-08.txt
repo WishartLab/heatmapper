@@ -1,59 +1,59 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Wright	0.0	0.0
-Black Hawk	1.5	1840.706
-Linn	0.007	1264.757
-Jones	0.0	0.0
-Montgomery	0.0	0.0
-Winneshiek	0.0	0.0
-Webster	0.0	0.0
-Page	0.257	460.315
-Mitchell	0.0	0.0
-Hamilton	0.0	0.0
-Lee	0.0	0.0
-Louisa	0.05	1357.503
-Washington	0.003	255.038
-Hardin	0.0	0.0
-Des Moines	0.0	0.0
-Fayette	0.0	0.0
-Guthrie	0.0	0.0
-Lyon	0.017	452.499
-Marion	0.0	0.0
-Delaware	0.0	0.0
-Iowa	0.0	0.0
-Dickinson	0.0	0.0
-Benton	0.59	920.945
-Cerro Gordo	0.0	2.0
-Poweshiek	0.0	0.0
-Henry	1.125	1381.533
-Mahaska	0.0	0.0
-Madison	0.0	0.0
-Boone	0.0	0.0
-Appanoose	0.0	0.0
-Mills	0.0	0.0
-Allamakee	1.125	1381.533
-Buchanan	0.0	0.0
-Scott	0.003	405.623
-Tama	1.04	2188.318
-Woodbury	0.0	0.0
-Howard	0.0	0.0
-Clarke	0.0	0.0
-Unassigned	0.0	0.0
-Plymouth	0.033	905.0
-Dallas	0.0	49.327
-Sioux	0.375	460.174
-Butler	0.0	0.0
-Hancock	0.0	0.0
-Audubon	0.0	0.0
-Wapello	0.0	1.0
-Keokuk	0.0	0.0
-Warren	1.002	1381.535
-Monona	0.0	0.0
-Harrison	0.0	0.0
-Cedar	0.668	921.022
-Taylor	0.0	0.0
-Crawford	0.0	0.0
-Grundy	0.0	0.0
-Jasper	0.0	0.0
-Story	0.0	0.0
-Pottawattamie	0.75	921.354
-Jackson	0.052	597.838
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Wright	0.0	0.0	0.0	0.0
+Black Hawk	1.5	1840.706	1.133e-05	0.01390177
+Linn	0.007	1249.757	3e-08	0.00553213
+Jones	0.0	0.0	0.0	0.0
+Montgomery	0.0	0.0	0.0	0.0
+Winneshiek	0.0	0.0	0.0	0.0
+Webster	0.0	0.0	0.0	0.0
+Page	0.257	459.807	1.685e-05	0.03015326
+Mitchell	0.0	0.0	0.0	0.0
+Hamilton	0.0	0.0	0.0	0.0
+Lee	0.0	0.0	0.0	0.0
+Louisa	0.05	1351.06	4.48e-06	0.12096517
+Washington	0.003	252.038	1.4e-07	0.01138332
+Hardin	0.0	0.0	0.0	0.0
+Des Moines	0.0	0.0	0.0	0.0
+Fayette	0.0	0.0	0.0	0.0
+Guthrie	0.0	0.0	0.0	0.0
+Lyon	0.017	450.351	1.44e-06	0.03812979
+Marion	0.0	0.0	0.0	0.0
+Delaware	0.0	0.0	0.0	0.0
+Iowa	0.0	0.0	0.0	0.0
+Dickinson	0.0	0.0	0.0	0.0
+Benton	0.59	920.122	2.301e-05	0.03588339
+Cerro Gordo	0.0	0.0	0.0	0.0
+Poweshiek	0.0	0.0	0.0	0.0
+Henry	1.125	1380.533	5.606e-05	0.06879618
+Mahaska	0.0	0.0	0.0	0.0
+Madison	0.0	0.0	0.0	0.0
+Boone	0.0	0.0	0.0	0.0
+Appanoose	0.0	0.0	0.0	0.0
+Mills	0.0	0.0	0.0	0.0
+Allamakee	1.125	1380.533	8.133e-05	0.09980719
+Buchanan	0.0	0.0	0.0	0.0
+Scott	0.003	394.623	2e-08	0.00227733
+Tama	1.04	2183.318	6.152e-05	0.12915984
+Woodbury	0.0	0.0	0.0	0.0
+Howard	0.0	0.0	0.0	0.0
+Clarke	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Plymouth	0.033	900.705	1.32e-06	0.03589181
+Dallas	0.0	49.327	0.0	0.00054698
+Sioux	0.375	460.174	1.074e-05	0.0131821
+Butler	0.0	0.0	0.0	0.0
+Hancock	0.0	0.0	0.0	0.0
+Audubon	0.0	0.0	0.0	0.0
+Wapello	0.0	0.0	0.0	0.0
+Keokuk	0.0	0.0	0.0	0.0
+Warren	1.002	1380.535	1.963e-05	0.02703962
+Monona	0.0	0.0	0.0	0.0
+Harrison	0.0	0.0	0.0	0.0
+Cedar	0.668	920.355	3.586e-05	0.04940973
+Taylor	0.0	0.0	0.0	0.0
+Crawford	0.0	0.0	0.0	0.0
+Grundy	0.0	0.0	0.0	0.0
+Jasper	0.0	0.0	0.0	0.0
+Story	0.0	0.0	0.0	0.0
+Pottawattamie	0.75	920.354	8.02e-06	0.00983989
+Jackson	0.052	595.82	2.68e-06	0.03066179

@@ -1,14 +1,14 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Shasta	0.091	4621.684
-Yuba	0.007	461.874
-Riverside	4.004	202907.31
-Sacramento	0.839	42511.911
-Butte	0.009	461.867
-Kern	0.547	27721.114
-San Benito	0.0	0.0
-San Bernardino	0.102	13714.463
-Siskiyou	0.0	1.0
-Calaveras	0.009	462.867
-Amador	0.0	3.0
-Colusa	0.0	0.0
-Mendocino	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Shasta	0.091	4618.684	5.1e-07	0.02565365
+Yuba	0.007	461.541	9e-08	0.00591408
+Riverside	4.004	202760.31	1.63e-06	0.08273371
+Sacramento	0.839	42491.911	5.4e-07	0.02757469
+Butte	0.009	461.867	4e-08	0.00199721
+Kern	0.547	27712.114	6.1e-07	0.03090235
+San Benito	0.0	0.0	0.0	0.0
+San Bernardino	0.102	13713.463	5e-08	0.0063149
+Siskiyou	0.0	0.0	0.0	0.0
+Calaveras	0.009	461.867	2e-07	0.01012822
+Amador	0.0	0.0	0.0	0.0
+Colusa	0.0	0.0	0.0	0.0
+Mendocino	0.0	0.0	0.0	0.0

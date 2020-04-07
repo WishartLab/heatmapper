@@ -1,45 +1,45 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Linn	0.0	0.0
-Cherokee	0.0	0.0
-Montgomery	0.0	0.0
-Harvey	0.0	0.0
-Ford	0.0	0.0
-Pratt	0.0	0.0
-Riley	0.145	168.579
-Mitchell	0.0	0.0
-Wyandotte	0.112	457.838
-Shawnee	4.694	2422.675
-Jewell	0.0	0.0
-Finney	0.993	590.846
-Osborne	0.639	448.461
-Jefferson	0.0	0.0
-Reno	1.403	447.391
-Gove	0.0	0.0
-Geary	0.0	0.0
-Lyon	5.612	1788.579
-Marion	1.278	896.927
-Leavenworth	0.006	95.196
-Labette	0.458	294.866
-Doniphan	0.0	0.0
-Neosho	0.0	0.0
-Stafford	0.0	0.0
-Saline	0.993	590.846
-Sumner	0.0	0.0
-Osage	0.0	0.0
-Woodson	0.0	0.0
-Atchison	0.0	0.0
-Clay	0.0	0.0
-Coffey	0.001	59.662
-Franklin	0.0	1.0
-Butler	0.0	0.0
-Bourbon	2.806	896.791
-Anderson	0.0	0.0
-Greenwood	0.0	0.0
-Miami	0.0	0.0
-Johnson	0.022	334.123
-Ottawa	2.116	901.696
-Crawford	0.0	-2.0
-Pottawatomie	0.0	1.0
-Sedgwick	0.069	418.643
-McPherson	1.224	592.014
-Wabaunsee	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Linn	0.0	0.0	0.0	0.0
+Cherokee	0.0	0.0	0.0	0.0
+Montgomery	0.0	0.0	0.0	0.0
+Harvey	0.0	0.0	0.0	0.0
+Ford	0.0	0.0	0.0	0.0
+Pratt	0.0	0.0	0.0	0.0
+Riley	0.145	166.821	1.97e-06	0.00226342
+Mitchell	0.0	0.0	0.0	0.0
+Wyandotte	0.112	429.838	6.8e-07	0.00259997
+Shawnee	4.694	2416.752	2.645e-05	0.01361558
+Jewell	0.0	0.0	0.0	0.0
+Finney	0.993	588.828	2.712e-05	0.01608336
+Osborne	0.639	446.313	0.00018388	0.1284354
+Jefferson	0.0	0.0	0.0	0.0
+Reno	1.403	447.391	2.25e-05	0.0071764
+Gove	0.0	0.0	0.0	0.0
+Geary	0.0	0.0	0.0	0.0
+Lyon	5.612	1789.579	0.00016799	0.05357059
+Marion	1.278	892.632	0.00010695	0.07469724
+Leavenworth	0.006	91.196	7e-08	0.00112101
+Labette	0.458	293.673	2.294e-05	0.01471013
+Doniphan	0.0	0.0	0.0	0.0
+Neosho	0.0	0.0	0.0	0.0
+Stafford	0.0	0.0	0.0	0.0
+Saline	0.993	588.828	1.825e-05	0.01082385
+Sumner	0.0	0.0	0.0	0.0
+Osage	0.0	0.0	0.0	0.0
+Woodson	0.0	0.0	0.0	0.0
+Atchison	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+Coffey	0.001	57.094	1.2e-07	0.00693477
+Franklin	0.0	0.0	0.0	0.0
+Butler	0.0	0.0	0.0	0.0
+Bourbon	2.806	894.791	0.0001915	0.06106538
+Anderson	0.0	0.0	0.0	0.0
+Greenwood	0.0	0.0	0.0	0.0
+Miami	0.0	0.0	0.0	0.0
+Johnson	0.022	314.123	4e-08	0.00052568
+Ottawa	2.116	900.441	0.0003647	0.15519493
+Crawford	0.0	0.0	0.0	0.0
+Pottawatomie	0.0	0.0	0.0	0.0
+Sedgwick	0.069	402.643	1.3e-07	0.00078395
+McPherson	1.224	590.792	4.289e-05	0.02070267
+Wabaunsee	0.0	0.0	0.0	0.0

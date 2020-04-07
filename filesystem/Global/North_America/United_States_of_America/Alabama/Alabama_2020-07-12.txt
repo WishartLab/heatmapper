@@ -1,34 +1,34 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Pike	0.126	905.995
-Cherokee	0.042	301.994
-Russell	0.253	1811.992
-Bullock	0.0	0.0
-Washington	0.0	0.0
-Etowah	0.52	6032.254
-Fayette	0.0	0.0
-Barbour	0.006	452.533
-Lamar	0.656	1385.848
-Lawrence	0.5	2304.782
-Autauga	0.0	0.0
-Colbert	0.0	0.0
-Henry	0.017	1357.604
-Tallapoosa	0.001	173.111
-Cullman	0.0	5.0
-Calhoun	1.75	3701.251
-Marshall	0.379	2717.986
-Clay	0.006	163.996
-Crenshaw	0.0	0.0
-Franklin	0.219	461.279
-Butler	0.0	0.0
-Blount	0.042	301.994
-Greene	0.049	903.37
-Escambia	0.0	0.0
-Lauderdale	0.0	0.0
-Perry	0.0	0.0
-Morgan	1.261	3230.23
-Lowndes	0.052	603.228
-Hale	0.0	0.0
-Winston	0.0	0.0
-Marengo	0.052	603.228
-Jackson	1.313	2770.69
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Pike	0.126	904.761	3.78e-06	0.02713903
+Cherokee	0.042	301.583	1.61e-06	0.01158509
+Russell	0.253	1809.524	4.38e-06	0.03131694
+Bullock	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Etowah	0.52	6022.135	5.07e-06	0.05875196
+Fayette	0.0	0.0	0.0	0.0
+Barbour	0.006	450.385	2.4e-07	0.01810156
+Lamar	0.656	1383.848	4.739e-05	0.09996013
+Lawrence	0.5	2302.241	1.517e-05	0.0698559
+Autauga	0.0	0.0	0.0	0.0
+Colbert	0.0	0.0	0.0	0.0
+Henry	0.017	1351.161	9.9e-07	0.07851479
+Tallapoosa	0.001	172.111	2e-08	0.00424997
+Cullman	0.0	0.0	0.0	0.0
+Calhoun	1.75	3690.251	1.531e-05	0.03229216
+Marshall	0.379	2714.284	3.94e-06	0.02824173
+Clay	0.006	163.601	4.5e-07	0.01232399
+Crenshaw	0.0	0.0	0.0	0.0
+Franklin	0.219	461.279	6.98e-06	0.01470774
+Butler	0.0	0.0	0.0	0.0
+Blount	0.042	301.583	7.3e-07	0.00521409
+Greene	0.049	901.538	5.95e-06	0.10950298
+Escambia	0.0	0.0	0.0	0.0
+Lauderdale	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Morgan	1.261	3227.897	1.059e-05	0.02710491
+Lowndes	0.052	602.216	5.21e-06	0.06037858
+Hale	0.0	0.0	0.0	0.0
+Winston	0.0	0.0	0.0	0.0
+Marengo	0.052	602.216	2.73e-06	0.03158586
+Jackson	1.313	2767.69	2.538e-05	0.0534964

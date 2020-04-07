@@ -1,38 +1,38 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	0.0	0.0
-Choctaw	0.0	0.0
-Wagoner	0.008	278.176
-Sequoyah	0.0	0.0
-McClain	1.867	908.055
-Beckham	0.0	0.0
-Noble	0.0	0.0
-Love	0.0	0.0
-Pawnee	0.933	454.023
-Oklahoma	0.005	439.655
-McIntosh	0.0	0.0
-Custer	0.0	0.0
-Cotton	0.0	0.0
-Le Flore	0.0	0.0
-Caddo	0.38	298.864
-Carter	0.0	0.0
-Grady	2.8	1363.084
-Major	0.0	0.0
-Washita	0.0	0.0
-Pontotoc	0.0	1.0
-Seminole	0.58	455.736
-Mayes	4.373	2274.504
-Okmulgee	0.335	325.442
-Muskogee	0.0	21.779
-Latimer	0.0	0.0
-Craig	0.757	455.726
-Pittsburg	1.396	911.838
-Texas	1.16	911.478
-Canadian	0.036	113.94
-Tillman	0.0	0.0
-McCurtain	0.0	0.0
-Tulsa	0.097	1030.926
-Cleveland	0.367	749.351
-Garvin	0.933	455.023
-Grant	0.0	0.0
-Adair	0.139	341.234
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	0.0	0.0	0.0	0.0
+Choctaw	0.0	0.0	0.0	0.0
+Wagoner	0.008	272.383	1e-07	0.00340011
+Sequoyah	0.0	0.0	0.0	0.0
+McClain	1.867	908.055	4.669e-05	0.02270989
+Beckham	0.0	0.0	0.0	0.0
+Noble	0.0	0.0	0.0	0.0
+Love	0.0	0.0	0.0	0.0
+Pawnee	0.933	454.023	5.692e-05	0.02770122
+Oklahoma	0.005	425.655	1e-08	0.00053705
+McIntosh	0.0	0.0	0.0	0.0
+Custer	0.0	0.0	0.0	0.0
+Cotton	0.0	0.0	0.0	0.0
+Le Flore	0.0	0.0	0.0	0.0
+Caddo	0.38	298.253	1.311e-05	0.01029275
+Carter	0.0	0.0	0.0	0.0
+Grady	2.8	1362.084	5.04e-05	0.02451952
+Major	0.0	0.0	0.0	0.0
+Washita	0.0	0.0	0.0	0.0
+Pontotoc	0.0	0.0	0.0	0.0
+Seminole	0.58	454.805	2.36e-05	0.01850456
+Mayes	4.373	2272.837	0.00010638	0.05529075
+Okmulgee	0.335	324.509	8.74e-06	0.00846508
+Muskogee	0.0	21.779	0.0	0.00031858
+Latimer	0.0	0.0	0.0	0.0
+Craig	0.757	455.218	5.291e-05	0.03182008
+Pittsburg	1.396	910.583	3.182e-05	0.02075308
+Texas	1.16	909.615	5.671e-05	0.04446908
+Canadian	0.036	111.94	2.5e-07	0.00077496
+Tillman	0.0	0.0	0.0	0.0
+McCurtain	0.0	0.0	0.0	0.0
+Tulsa	0.097	1021.926	1.5e-07	0.00157617
+Cleveland	0.367	740.351	1.3e-06	0.00262844
+Garvin	0.933	454.023	3.355e-05	0.0163253
+Grant	0.0	0.0	0.0	0.0
+Adair	0.139	338.163	6.29e-06	0.01531397
+Jackson	0.0	0.0	0.0	0.0

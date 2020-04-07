@@ -1,26 +1,26 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Oldham	0.0	0.0
-Montgomery	0.0	0.0
-Henderson	0.0	0.0
-Hardin	0.0	0.0
-Martin	0.0	0.0
-Fayette	0.01	1847.568
-Jefferson	0.025	4618.919
-Pulaski	0.005	923.786
-Lyon	0.0	0.0
-Madison	0.0	0.0
-Breathitt	0.0	0.0
-Christian	0.035	6466.491
-Unassigned	0.0	0.0
-Jessamine	0.005	923.786
-Calloway	0.0	0.0
-Franklin	0.0	0.0
-Bourbon	0.0	0.0
-Anderson	0.0	0.0
-Daviess	0.0	0.0
-Clark	0.0	0.0
-Spencer	0.0	0.0
-Menifee	0.0	0.0
-Warren	0.015	2771.354
-Harrison	0.0	0.0
-Nelson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Oldham	0.0	0.0	0.0	0.0
+Montgomery	0.0	0.0	0.0	0.0
+Henderson	0.0	0.0	0.0	0.0
+Hardin	0.0	0.0	0.0	0.0
+Martin	0.0	0.0	0.0	0.0
+Fayette	0.01	1847.568	3e-08	0.00570624
+Jefferson	0.025	4618.919	3e-08	0.00599457
+Pulaski	0.005	923.786	8e-08	0.014295
+Lyon	0.0	0.0	0.0	0.0
+Madison	0.0	0.0	0.0	0.0
+Breathitt	0.0	0.0	0.0	0.0
+Christian	0.035	6466.491	4.9e-07	0.09022465
+Unassigned	0.0	0.0	N/A	N/A
+Jessamine	0.005	923.786	9e-08	0.01713253
+Calloway	0.0	0.0	0.0	0.0
+Franklin	0.0	0.0	0.0	0.0
+Bourbon	0.0	0.0	0.0	0.0
+Anderson	0.0	0.0	0.0	0.0
+Daviess	0.0	0.0	0.0	0.0
+Clark	0.0	0.0	0.0	0.0
+Spencer	0.0	0.0	0.0	0.0
+Menifee	0.0	0.0	0.0	0.0
+Warren	0.015	2771.354	1.1e-07	0.02111283
+Harrison	0.0	0.0	0.0	0.0
+Nelson	0.0	0.0	0.0	0.0

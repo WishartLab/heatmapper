@@ -1,36 +1,36 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Pike	0.277	905.672
-Cherokee	0.092	301.886
-Montgomery	0.002	368.05
-Russell	0.554	1811.346
-Bullock	0.0	0.0
-Washington	0.0	0.0
-Etowah	1.31	6030.891
-Fayette	0.0	0.0
-Barbour	0.009	452.52
-Lamar	0.886	1384.421
-Lawrence	0.9	2303.578
-Autauga	0.0	0.0
-Colbert	0.0	0.0
-Henry	0.027	1357.565
-Tallapoosa	0.002	173.108
-Cullman	0.0	5.0
-Calhoun	2.362	3697.444
-Marshall	0.831	2717.017
-Clay	0.014	163.981
-Crenshaw	0.0	0.0
-Franklin	0.295	460.803
-Butler	0.0	0.0
-Blount	0.092	301.886
-Greene	0.126	903.243
-Escambia	0.0	0.0
-Lauderdale	0.0	0.0
-Perry	0.0	0.0
-Chambers	0.004	454.34
-Morgan	1.8	3227.438
-Lowndes	0.131	603.092
-Hale	0.0	0.0
-Winston	0.0	0.0
-Marengo	0.131	603.092
-Jackson	1.771	2767.834
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Pike	0.277	904.438	8.31e-06	0.02712934
+Cherokee	0.092	301.475	3.53e-06	0.01158094
+Montgomery	0.002	364.05	1e-08	0.00161253
+Russell	0.554	1808.878	9.59e-06	0.03130576
+Bullock	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Etowah	1.31	6020.772	1.278e-05	0.05873867
+Fayette	0.0	0.0	0.0	0.0
+Barbour	0.009	450.372	3.6e-07	0.01810104
+Lamar	0.886	1382.421	6.4e-05	0.09985705
+Lawrence	0.9	2301.037	2.731e-05	0.06981937
+Autauga	0.0	0.0	0.0	0.0
+Colbert	0.0	0.0	0.0	0.0
+Henry	0.027	1351.122	1.57e-06	0.07851252
+Tallapoosa	0.002	172.108	5e-08	0.0042499
+Cullman	0.0	0.0	0.0	0.0
+Calhoun	2.362	3686.444	2.067e-05	0.03225884
+Marshall	0.831	2713.315	8.65e-06	0.02823164
+Clay	0.014	163.586	1.05e-06	0.01232286
+Crenshaw	0.0	0.0	0.0	0.0
+Franklin	0.295	460.803	9.41e-06	0.01469257
+Butler	0.0	0.0	0.0	0.0
+Blount	0.092	301.475	1.59e-06	0.00521222
+Greene	0.126	901.411	1.53e-05	0.10948755
+Escambia	0.0	0.0	0.0	0.0
+Lauderdale	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Chambers	0.004	449.34	1.2e-07	0.01336725
+Morgan	1.8	3225.105	1.511e-05	0.02708147
+Lowndes	0.131	602.08	1.313e-05	0.06036495
+Hale	0.0	0.0	0.0	0.0
+Winston	0.0	0.0	0.0	0.0
+Marengo	0.131	602.08	6.87e-06	0.03157873
+Jackson	1.771	2764.834	3.423e-05	0.0534412

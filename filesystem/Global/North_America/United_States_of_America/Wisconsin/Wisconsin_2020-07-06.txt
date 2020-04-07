@@ -1,44 +1,44 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Brown	0.991	2083.901
-Wood	0.0	0.0
-Richland	0.0	0.0
-Manitowoc	0.05	900.672
-Pierce	0.0	0.0
-Fond du Lac	0.006	100.669
-Chippewa	0.01	118.608
-Douglas	0.0	0.0
-Walworth	0.0	0.0
-Winnebago	0.0	4.0
-Marathon	0.469	459.379
-Iowa	0.0	0.0
-Ashland	0.0	0.0
-Marquette	0.0	0.0
-Bayfield	0.0	0.0
-Sheboygan	0.469	459.379
-Pepin	0.0	0.0
-Florence	0.033	895.643
-Dodge	0.0	1.0
-Unassigned	0.0	0.0
-Waupaca	0.0	0.0
-Eau Claire	0.0	35.446
-Shawano	0.033	895.643
-Buffalo	0.0	0.0
-Dunn	0.0	0.0
-Saint Croix	0.0	0.0
-Kenosha	0.476	2169.957
-Iron	0.0	0.0
-Marinette	0.0	0.0
-Oconto	0.0	0.0
-La Crosse	0.937	919.765
-Racine	0.034	607.022
-Rusk	0.04	452.457
-Barron	0.04	452.457
-Juneau	0.0	0.0
-Vilas	0.0	0.0
-Crawford	0.0	0.0
-Calumet	0.0	0.0
-Outagamie	1.875	1838.527
-Oneida	0.0	0.0
-Grant	0.0	0.0
-Door	0.0	0.0
-Jackson	0.36	915.756
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Brown	0.991	2073.901	3.76e-06	0.00787424
+Wood	0.0	0.0	0.0	0.0
+Richland	0.0	0.0	0.0	0.0
+Manitowoc	0.05	895.61	6.3e-07	0.01132623
+Pierce	0.0	0.0	0.0	0.0
+Fond du Lac	0.006	100.669	6e-08	0.00097674
+Chippewa	0.01	118.608	1.6e-07	0.00184935
+Douglas	0.0	0.0	0.0	0.0
+Walworth	0.0	0.0	0.0	0.0
+Winnebago	0.0	0.0	0.0	0.0
+Marathon	0.469	459.379	3.46e-06	0.00339205
+Iowa	0.0	0.0	0.0	0.0
+Ashland	0.0	0.0	0.0	0.0
+Marquette	0.0	0.0	0.0	0.0
+Bayfield	0.0	0.0	0.0	0.0
+Sheboygan	0.469	459.379	4.06e-06	0.00397882
+Pepin	0.0	0.0	0.0	0.0
+Florence	0.033	889.712	7.64e-06	0.20590419
+Dodge	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Waupaca	0.0	0.0	0.0	0.0
+Eau Claire	0.0	35.446	0.0	0.00033909
+Shawano	0.033	889.712	8.1e-07	0.0218088
+Buffalo	0.0	0.0	0.0	0.0
+Dunn	0.0	0.0	0.0	0.0
+Saint Croix	0.0	0.0	0.0	0.0
+Kenosha	0.476	2163.957	2.81e-06	0.01278254
+Iron	0.0	0.0	0.0	0.0
+Marinette	0.0	0.0	0.0	0.0
+Oconto	0.0	0.0	0.0	0.0
+La Crosse	0.937	918.765	7.93e-06	0.007771
+Racine	0.034	604.022	1.7e-07	0.00307259
+Rusk	0.04	450.309	2.83e-06	0.03183071
+Barron	0.04	450.309	8.9e-07	0.00997053
+Juneau	0.0	0.0	0.0	0.0
+Vilas	0.0	0.0	0.0	0.0
+Crawford	0.0	0.0	0.0	0.0
+Calumet	0.0	0.0	0.0	0.0
+Outagamie	1.875	1837.527	1.001e-05	0.00980721
+Oneida	0.0	0.0	0.0	0.0
+Grant	0.0	0.0	0.0	0.0
+Door	0.0	0.0	0.0	0.0
+Jackson	0.36	913.549	1.758e-05	0.04461124

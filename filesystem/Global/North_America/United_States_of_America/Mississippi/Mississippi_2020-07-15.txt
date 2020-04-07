@@ -1,43 +1,43 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Jones	0.599	2772.213
-Webster	0.1	462.7
-George	0.0	0.0
-Kemper	0.033	921.189
-Quitman	0.075	1383.262
-Alcorn	0.0	0.0
-Leake	0.3	1386.11
-Tallahatchie	0.0	0.0
-Jefferson	0.033	921.189
-Newton	0.129	923.534
-Smith	0.2	924.405
-Panola	0.4	1846.809
-Monroe	0.3	1388.11
-Lamar	0.3	1387.11
-Lawrence	0.0	1.0
-Marion	0.3	1386.11
-Benton	0.0	0.0
-Simpson	0.0	1.0
-Calhoun	0.0	0.0
-Leflore	0.2	924.405
-Claiborne	0.0	0.0
-Clay	0.0	2.0
-Chickasaw	0.0	0.0
-Itawamba	0.0	1.0
-Franklin	0.2	923.405
-Humphreys	0.0	0.0
-Union	0.1	461.7
-Perry	0.3	1385.11
-Sharkey	0.0	0.0
-Grenada	0.0	0.0
-Copiah	0.2	923.405
-Noxubee	0.0	0.0
-Yazoo	1.299	6003.129
-Lowndes	0.3	1385.11
-Warren	0.018	918.433
-Neshoba	0.03	1505.735
-Prentiss	0.0	0.0
-Walthall	0.1	461.7
-Amite	0.006	301.144
-Winston	0.3	1388.11
-Tishomingo	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Jones	0.599	2770.213	8.75e-06	0.0404641
+Webster	0.1	461.7	1.022e-05	0.04717
+George	0.0	0.0	0.0	0.0
+Kemper	0.033	919.934	3.29e-06	0.09174569
+Quitman	0.075	1381.737	1.064e-05	0.19596327
+Alcorn	0.0	0.0	0.0	0.0
+Leake	0.3	1385.11	1.318e-05	0.06084919
+Tallahatchie	0.0	0.0	0.0	0.0
+Jefferson	0.033	919.934	4.64e-06	0.12945877
+Newton	0.129	922.867	6.02e-06	0.04303815
+Smith	0.2	923.405	1.25e-05	0.0577056
+Panola	0.4	1846.809	1.17e-05	0.05403502
+Monroe	0.3	1385.11	8.44e-06	0.03894697
+Lamar	0.3	1385.11	4.8e-06	0.02218057
+Lawrence	0.0	0.0	0.0	0.0
+Marion	0.3	1385.11	1.214e-05	0.05604329
+Benton	0.0	0.0	0.0	0.0
+Simpson	0.0	0.0	0.0	0.0
+Calhoun	0.0	0.0	0.0	0.0
+Leflore	0.2	923.405	6.92e-06	0.03193074
+Claiborne	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+Chickasaw	0.0	0.0	0.0	0.0
+Itawamba	0.0	0.0	0.0	0.0
+Franklin	0.2	923.405	2.568e-05	0.11856767
+Humphreys	0.0	0.0	0.0	0.0
+Union	0.1	461.7	3.5e-06	0.01613997
+Perry	0.3	1385.11	2.514e-05	0.11609337
+Sharkey	0.0	0.0	0.0	0.0
+Grenada	0.0	0.0	0.0	0.0
+Copiah	0.2	923.405	7.01e-06	0.03235136
+Noxubee	0.0	0.0	0.0	0.0
+Yazoo	1.299	6002.129	4.599e-05	0.21247979
+Lowndes	0.3	1385.11	5.09e-06	0.02350433
+Warren	0.018	916.57	3.9e-07	0.01984949
+Neshoba	0.03	1502.681	1.03e-06	0.0515942
+Prentiss	0.0	0.0	0.0	0.0
+Walthall	0.1	461.7	6.91e-06	0.03191842
+Amite	0.006	300.533	4.9e-07	0.02438204
+Winston	0.3	1385.11	1.652e-05	0.07625158
+Tishomingo	0.0	0.0	0.0	0.0

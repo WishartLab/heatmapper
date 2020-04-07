@@ -1,25 +1,25 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Indian River	0.012	1254.945
-Washington	0.0	0.0
-Levy	0.0	0.0
-Desoto	0.4	1848.809
-Bradford	0.3	1386.11
-Bay	0.104	1209.427
-Columbia	0.599	2770.213
-Walton	0.5	2309.507
-Gadsden	0.2	924.405
-Charlotte	0.03	1158.343
-Hernando	0.025	1250.937
-Wakulla	0.006	597.945
-Putnam	0.2	923.405
-Franklin	0.003	452.544
-Gulf	0.0	0.0
-Union	0.0	0.0
-Holmes	0.0	0.0
-Glades	0.0	0.0
-Duval	0.157	12408.156
-Polk	0.199	7742.733
-Manatee	0.01	1787.466
-Suwannee	0.066	3312.624
-Volusia	0.009	1542.202
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Indian River	0.012	1248.945	8e-08	0.00793419
+Washington	0.0	0.0	0.0	0.0
+Levy	0.0	0.0	0.0	0.0
+Desoto	0.4	1846.809	1.067e-05	0.04926269
+Bradford	0.3	1385.11	1.082e-05	0.04994627
+Bay	0.104	1209.427	5.6e-07	0.00652732
+Columbia	0.599	2770.213	8.5e-06	0.03929213
+Walton	0.5	2308.507	7.01e-06	0.03234336
+Gadsden	0.2	923.405	4.36e-06	0.02012039
+Charlotte	0.03	1150.343	1.6e-07	0.00621814
+Hernando	0.025	1245.937	1.3e-07	0.00652784
+Wakulla	0.006	595.927	1.8e-07	0.01835825
+Putnam	0.2	923.405	2.7e-06	0.01245102
+Franklin	0.003	450.396	2.6e-07	0.0383773
+Gulf	0.0	0.0	0.0	0.0
+Union	0.0	0.0	0.0	0.0
+Holmes	0.0	0.0	0.0	0.0
+Glades	0.0	0.0	0.0	0.0
+Duval	0.157	12346.156	1.7e-07	0.01299348
+Polk	0.199	7723.733	2.8e-07	0.01090909
+Manatee	0.01	1779.466	3e-08	0.00450663
+Suwannee	0.066	3305.905	1.49e-06	0.07480946
+Volusia	0.009	1542.202	2e-08	0.00281661
+Jackson	0.0	0.0	0.0	0.0

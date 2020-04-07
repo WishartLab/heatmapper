@@ -1,43 +1,43 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Kenya	13.182	11193.774
-Botswana	0.0	0.0
-Benin	9.311	5154.743
-Tunisia	0.183	2051.407
-Mauritius	0.692	1749.492
-Namibia	0.0	0.0
-Zambia	6.807	3762.455
-Republic of the Congo	0.0	0.0
-Gabon	5.587	3094.039
-Malawi	1.605	889.363
-Morocco	0.632	4785.42
-Seychelles	0.0	2.0
-Guinea-Bissau	2.76	1754.682
-Liberia	3.147	1741.255
-Zimbabwe	1.349	747.391
-Swaziland	0.128	73.004
-Sudan	4.11	2271.674
-Democratic Republic of the Congo	0.617	1544.625
-Mali	0.002	122.236
-Nigeria	0.653	1814.087
-Somalia	0.064	35.49
-Algeria	9.913	18404.683
-United Republic of Tanzania	1.734	962.352
-Mozambique	0.0	0.0
-Angola	1.926	1068.85
-Senegal	0.041	715.911
-Ethiopia	14.706	8130.312
-Chad	4.11	2271.674
-Niger	49.613	31675.475
-Equatorial Guinea	0.771	425.945
-Gambia	0.0	0.0
-Guinea	57.217	31639.875
-Ivory Coast	0.074	935.222
-Cameroon	3.786	7691.468
-Central African Republic	0.0	0.0
-Sierra Leone	0.001	67.575
-Mauritania	0.064	35.49
-Cape Verde	0.193	106.481
-Rwanda	0.017	287.013
-Egypt	0.929	5225.119
-Djibouti	15.421	9864.811
-Burundi	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Kenya	13.182	11161.774	2.6e-07	0.00021718
+Botswana	0.0	0.0	0.0	0.0
+Benin	9.311	5146.743	8.1e-07	0.00044813
+Tunisia	0.183	2007.407	2e-08	0.00017357
+Mauritius	0.692	1715.492	5.5e-07	0.0013558
+Namibia	0.0	0.0	0.0	0.0
+Zambia	6.807	3762.455	3.9e-07	0.00021683
+Republic of the Congo	0.0	0.0	0.0	0.0
+Gabon	5.587	3088.039	2.64e-06	0.00145712
+Malawi	1.605	887.363	9e-08	4.891e-05
+Morocco	0.632	4587.42	2e-08	0.00012733
+Seychelles	0.0	0.0	0.0	0.0
+Guinea-Bissau	2.76	1754.682	1.47e-06	0.00093618
+Liberia	3.147	1739.255	6.5e-07	0.00036092
+Zimbabwe	1.349	745.391	9e-08	5.162e-05
+Swaziland	0.128	71.004	1.1e-07	6.249e-05
+Sudan	4.11	2271.674	1e-07	5.434e-05
+Democratic Republic of the Congo	0.617	1530.625	1e-08	1.821e-05
+Mali	0.002	118.236	0.0	6.2e-06
+Nigeria	0.653	1802.087	0.0	9.2e-06
+Somalia	0.064	35.49	0.0	2.36e-06
+Algeria	9.913	18198.683	2.3e-07	0.00043096
+United Republic of Tanzania	1.734	958.352	3e-08	1.702e-05
+Mozambique	0.0	0.0	0.0	0.0
+Angola	1.926	1064.85	6e-08	3.456e-05
+Senegal	0.041	707.911	0.0	4.465e-05
+Ethiopia	14.706	8128.312	1.3e-07	7.442e-05
+Chad	4.11	2271.674	2.7e-07	0.00014677
+Niger	49.613	31537.475	2.21e-06	0.00140523
+Equatorial Guinea	0.771	425.945	5.9e-07	0.0003254
+Gambia	0.0	0.0	0.0	0.0
+Guinea	57.217	31625.875	4.61e-06	0.00254753
+Ivory Coast	0.074	811.222	0.0	3.236e-05
+Cameroon	3.786	7675.468	1.5e-07	0.00030439
+Central African Republic	0.0	0.0	0.0	0.0
+Sierra Leone	0.001	67.575	0.0	8.83e-06
+Mauritania	0.064	35.49	1e-08	8.06e-06
+Cape Verde	0.193	106.481	3.5e-07	0.00019582
+Rwanda	0.017	285.013	0.0	2.317e-05
+Egypt	0.929	4927.119	1e-08	5.006e-05
+Djibouti	15.421	9802.811	1.608e-05	0.01022276
+Burundi	0.0	0.0	0.0	0.0

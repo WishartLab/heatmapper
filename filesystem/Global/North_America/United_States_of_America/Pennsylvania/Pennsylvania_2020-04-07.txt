@@ -1,66 +1,66 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Potter	0.0	0.0
-Cumberland	5.667	15.667
-Pike	13.333	24.333
-Forest	0.808	1.637
-Wayne	4.0	6.0
-Fulton	0.0	0.0
-Lackawanna	23.333	41.333
-Dauphin	17.333	31.333
-Huntingdon	0.855	1.579
-Somerset	0.823	1.49
-Cameron	0.0	0.0
-Montgomery	122.333	241.333
-Tioga	0.0	0.0
-Washington	3.667	6.667
-Bedford	0.0	0.0
-Susquehanna	0.642	1.294
-Erie	0.667	8.667
-Bucks	61.333	115.333
-Carbon	8.643	15.643
-Bradford	0.412	0.745
-Fayette	3.0	5.0
-Schuylkill	13.0	26.0
-Northumberland	0.922	1.867
-Monroe	54.667	98.667
-Lawrence	1.63	3.281
-Delaware	86.0	200.0
-Indiana	6.108	11.168
-Mercer	2.667	2.667
-Cambria	0.667	0.667
-Mifflin	4.036	7.455
-Columbia	3.333	7.333
-Blair	0.0	0.0
-Lehigh	102.333	231.333
-Allegheny	49.0	86.0
-Centre	3.0	4.0
-Beaver	11.333	23.333
-Northampton	72.0	152.0
-Mc Kean	0.0	0.0
-Adams	1.333	4.333
-Wyoming	0.269	0.545
-Chester	20.667	58.667
-Venango	0.0	0.0
-Franklin	2.333	4.333
-Butler	4.333	8.333
-Greene	0.0	0.0
-Montour	2.0	2.0
-Union	2.018	3.727
-Lancaster	51.667	88.667
-Westmoreland	15.667	25.667
-Perry	0.855	1.579
-Lycoming	0.652	1.313
-Philadelphia	350.0	889.0
-Clarion	0.615	1.245
-Clearfield	0.412	0.745
-Berks	38.667	88.667
-Warren	0.0	0.0
-Sullivan	0.0	0.0
-Clinton	0.0	0.0
-Crawford	0.398	0.953
-Snyder	3.419	6.314
-York	21.333	39.333
-Armstrong	0.823	1.49
-Lebanon	18.667	36.667
-Juniata	1.646	2.979
-Luzerne	100.333	208.333
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Potter	0.0	0.0	0.0	0.0
+Cumberland	5.667	5.667	2.254e-05	2.254e-05
+Pike	13.333	13.333	0.00023837	0.00023837
+Forest	0.808	0.808	0.000111	0.000111
+Wayne	4.0	4.0	7.801e-05	7.801e-05
+Fulton	0.0	0.0	0.0	0.0
+Lackawanna	23.333	23.333	0.00011069	0.00011069
+Dauphin	17.333	17.333	6.255e-05	6.255e-05
+Huntingdon	0.855	0.855	1.893e-05	1.893e-05
+Somerset	0.823	0.823	1.113e-05	1.113e-05
+Cameron	0.0	0.0	0.0	0.0
+Montgomery	122.333	122.333	0.00014764	0.00014764
+Tioga	0.0	0.0	0.0	0.0
+Washington	3.667	3.667	1.769e-05	1.769e-05
+Bedford	0.0	0.0	0.0	0.0
+Susquehanna	0.642	0.642	1.582e-05	1.582e-05
+Erie	0.667	0.667	2.45e-06	2.45e-06
+Bucks	61.333	61.333	9.763e-05	9.763e-05
+Carbon	8.643	8.643	0.00013457	0.00013457
+Bradford	0.412	0.412	6.77e-06	6.77e-06
+Fayette	3.0	3.0	2.3e-05	2.3e-05
+Schuylkill	13.0	13.0	9.151e-05	9.151e-05
+Northumberland	0.922	0.922	1.012e-05	1.012e-05
+Monroe	54.667	54.667	0.00032251	0.00032251
+Lawrence	1.63	1.63	1.891e-05	1.891e-05
+Delaware	86.0	86.0	0.00015228	0.00015228
+Indiana	6.108	6.108	7.228e-05	7.228e-05
+Mercer	2.667	2.667	2.41e-05	2.41e-05
+Cambria	0.667	0.667	5.06e-06	5.06e-06
+Mifflin	4.036	4.036	8.732e-05	8.732e-05
+Columbia	3.333	3.333	5.092e-05	5.092e-05
+Blair	0.0	0.0	0.0	0.0
+Lehigh	102.333	102.333	0.000278	0.000278
+Allegheny	49.0	49.0	4.021e-05	4.021e-05
+Centre	3.0	3.0	1.843e-05	1.843e-05
+Beaver	11.333	11.333	6.879e-05	6.879e-05
+Northampton	72.0	72.0	0.00023622	0.00023622
+Mc Kean	0.0	0.0	0.0	0.0
+Adams	1.333	1.333	1.297e-05	1.297e-05
+Wyoming	0.269	0.269	9.95e-06	9.95e-06
+Chester	20.667	20.667	3.959e-05	3.959e-05
+Venango	0.0	0.0	0.0	0.0
+Franklin	2.333	2.333	1.507e-05	1.507e-05
+Butler	4.333	4.333	2.306e-05	2.306e-05
+Greene	0.0	0.0	0.0	0.0
+Montour	2.0	2.0	0.00010965	0.00010965
+Union	2.018	2.018	4.506e-05	4.506e-05
+Lancaster	51.667	51.667	9.505e-05	9.505e-05
+Westmoreland	15.667	15.667	4.468e-05	4.468e-05
+Perry	0.855	0.855	1.853e-05	1.853e-05
+Lycoming	0.652	0.652	5.74e-06	5.74e-06
+Philadelphia	350.0	350.0	0.00022094	0.00022094
+Clarion	0.615	0.615	1.586e-05	1.586e-05
+Clearfield	0.412	0.412	5.19e-06	5.19e-06
+Berks	38.667	38.667	9.203e-05	9.203e-05
+Warren	0.0	0.0	0.0	0.0
+Sullivan	0.0	0.0	0.0	0.0
+Clinton	0.0	0.0	0.0	0.0
+Crawford	0.398	0.398	4.68e-06	4.68e-06
+Snyder	3.419	3.419	8.434e-05	8.434e-05
+York	21.333	21.333	4.759e-05	4.759e-05
+Armstrong	0.823	0.823	1.261e-05	1.261e-05
+Lebanon	18.667	18.667	0.0001321	0.0001321
+Juniata	1.646	1.646	6.663e-05	6.663e-05
+Luzerne	100.333	100.333	0.00031586	0.00031586

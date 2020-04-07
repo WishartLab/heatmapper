@@ -1,57 +1,57 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Schoolcraft	0.0	0.0
-Eaton	0.042	281.961
-Wayne	1.159	40798.356
-Wexford	0.816	455.714
-Roscommon	0.816	455.714
-Antrim	0.0	0.0
-Saginaw	10.772	8502.069
-Houghton	0.0	0.0
-Macomb	6.487	20493.31
-Lapeer	10.595	6390.641
-Kalkaska	0.0	0.0
-Branch	0.003	230.364
-Ogemaw	0.0	0.0
-Tuscola	3.263	1822.869
-Allegan	7.341	4102.463
-Grand Traverse	1.631	913.435
-Kalamazoo	0.003	213.505
-Manistee	1.514	912.949
-Cass	0.0	0.0
-Missaukee	0.0	0.0
-Ontonagon	0.0	0.0
-Bay	0.295	603.28
-Hillsdale	12.109	7303.59
-Monroe	0.003	257.773
-Gratiot	0.0	0.0
-Chippewa	0.0	0.0
-Washtenaw	0.005	649.357
-Isabella	3.784	2282.366
-Livingston	0.003	268.618
-Marquette	5.298	3195.318
-Oscoda	0.0	0.0
-Benzie	0.0	0.0
-Iosco	1.396	913.678
-Kent	0.004	404.121
-Emmet	0.0	21.779
-Midland	0.752	595.703
-Calhoun	0.001	90.211
-Gladwin	1.631	911.435
-Oceana	0.0	0.0
-Gogebic	0.0	0.0
-Barry	2.447	1368.155
-Montcalm	0.0	36.538
-Leelanau	0.0	1.0
-Ingham	4.859	4251.29
-Charlevoix	0.816	456.714
-Clare	0.0	2.0
-Out of MI	13.867	7755.199
-Huron	0.0	0.0
-Clinton	0.569	689.801
-Crawford	0.0	0.0
-Presque Isle	0.219	449.784
-Newaygo	0.0	0.0
-Genesee	2.16	5394.457
-Oakland	0.585	15085.813
-Saint Clair	9.52	7510.899
-Jackson	0.011	493.178
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Schoolcraft	0.0	0.0	0.0	0.0
+Eaton	0.042	279.961	3.8e-07	0.00254913
+Wayne	1.159	40046.356	6.6e-07	0.02283284
+Wexford	0.816	455.714	2.438e-05	0.01361722
+Roscommon	0.816	455.714	3.417e-05	0.0190803
+Antrim	0.0	0.0	0.0	0.0
+Saginaw	10.772	8481.069	5.646e-05	0.04445005
+Houghton	0.0	0.0	0.0	0.0
+Macomb	6.487	20337.31	7.42e-06	0.02324904
+Lapeer	10.595	6385.974	0.00012036	0.0725448
+Kalkaska	0.0	0.0	0.0	0.0
+Branch	0.003	225.036	7e-08	0.00515877
+Ogemaw	0.0	0.0	0.0	0.0
+Tuscola	3.263	1822.869	6.213e-05	0.03471074
+Allegan	7.341	4101.463	6.257e-05	0.03495754
+Grand Traverse	1.631	911.435	1.762e-05	0.00984558
+Kalamazoo	0.003	208.505	1e-08	0.0007872
+Manistee	1.514	912.282	6.173e-05	0.03719349
+Cass	0.0	0.0	0.0	0.0
+Missaukee	0.0	0.0	0.0	0.0
+Ontonagon	0.0	0.0	0.0	0.0
+Bay	0.295	603.28	2.84e-06	0.00580507
+Hillsdale	12.109	7298.257	0.00026468	0.15952823
+Monroe	0.003	248.773	2e-08	0.00165365
+Gratiot	0.0	0.0	0.0	0.0
+Chippewa	0.0	0.0	0.0	0.0
+Washtenaw	0.005	628.357	1e-08	0.00169385
+Isabella	3.784	2280.699	5.363e-05	0.03232192
+Livingston	0.003	260.618	2e-08	0.00136289
+Marquette	5.298	3192.985	7.965e-05	0.04800326
+Oscoda	0.0	0.0	0.0	0.0
+Benzie	0.0	0.0	0.0	0.0
+Iosco	1.396	912.855	5.566e-05	0.03639628
+Kent	0.004	392.121	1e-08	0.00059977
+Emmet	0.0	21.779	0.0	0.00065387
+Midland	0.752	591.703	9.04e-06	0.00711105
+Calhoun	0.001	91.211	1e-08	0.00067821
+Gladwin	1.631	911.435	6.437e-05	0.03597249
+Oceana	0.0	0.0	0.0	0.0
+Gogebic	0.0	0.0	0.0	0.0
+Barry	2.447	1367.155	4.001e-05	0.02235484
+Montcalm	0.0	35.538	0.0	0.00055556
+Leelanau	0.0	0.0	0.0	0.0
+Ingham	4.859	4245.29	1.66e-05	0.01450216
+Charlevoix	0.816	455.714	3.109e-05	0.0173645
+Clare	0.0	0.0	0.0	0.0
+Out of MI	13.867	7747.199	N/A	N/A
+Huron	0.0	0.0	0.0	0.0
+Clinton	0.569	688.801	7.17e-06	0.00868251
+Crawford	0.0	0.0	0.0	0.0
+Presque Isle	0.219	447.253	1.719e-05	0.03511171
+Newaygo	0.0	0.0	0.0	0.0
+Genesee	2.16	5330.457	5.31e-06	0.01310042
+Oakland	0.585	14740.813	4.6e-07	0.01170648
+Saint Clair	9.52	7494.899	5.975e-05	0.04703803
+Jackson	0.011	480.178	7e-08	0.00302335

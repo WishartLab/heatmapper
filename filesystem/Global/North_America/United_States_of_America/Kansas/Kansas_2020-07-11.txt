@@ -1,39 +1,39 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Linn	0.0	0.0
-Cherokee	0.0	0.0
-Montgomery	0.0	0.0
-Harvey	0.0	0.0
-Ford	0.0	0.0
-Pratt	0.0	0.0
-Mitchell	0.0	0.0
-Shawnee	0.134	2459.872
-Jewell	0.0	0.0
-Finney	0.016	597.909
-Osborne	0.007	452.527
-Jefferson	0.0	0.0
-Reno	0.257	461.06
-Gove	0.0	0.0
-Geary	0.0	0.0
-Lyon	1.028	1843.251
-Marion	0.015	905.057
-Labette	0.006	297.945
-Doniphan	0.0	0.0
-Neosho	0.0	0.0
-Stafford	0.0	0.0
-Saline	0.016	597.909
-Sumner	0.0	0.0
-Osage	0.0	0.0
-Woodson	0.0	0.0
-Atchison	0.0	0.0
-Clay	0.0	0.0
-Franklin	0.0	1.0
-Butler	0.0	0.0
-Bourbon	0.514	924.126
-Anderson	0.0	0.0
-Greenwood	0.0	0.0
-Miami	0.0	0.0
-Ottawa	0.2	920.898
-Crawford	0.0	-2.0
-Pottawatomie	0.0	1.0
-McPherson	0.052	602.216
-Wabaunsee	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Linn	0.0	0.0	0.0	0.0
+Cherokee	0.0	0.0	0.0	0.0
+Montgomery	0.0	0.0	0.0	0.0
+Harvey	0.0	0.0	0.0	0.0
+Ford	0.0	0.0	0.0	0.0
+Pratt	0.0	0.0	0.0	0.0
+Mitchell	0.0	0.0	0.0	0.0
+Shawnee	0.134	2453.949	7.5e-07	0.01382514
+Jewell	0.0	0.0	0.0	0.0
+Finney	0.016	595.891	4.4e-07	0.01627628
+Osborne	0.007	450.379	2.01e-06	0.12960547
+Jefferson	0.0	0.0	0.0	0.0
+Reno	0.257	461.06	4.12e-06	0.00739566
+Gove	0.0	0.0	0.0	0.0
+Geary	0.0	0.0	0.0	0.0
+Lyon	1.028	1844.251	3.077e-05	0.05520718
+Marion	0.015	900.762	1.26e-06	0.07537757
+Labette	0.006	296.752	3e-07	0.01486436
+Doniphan	0.0	0.0	0.0	0.0
+Neosho	0.0	0.0	0.0	0.0
+Stafford	0.0	0.0	0.0	0.0
+Saline	0.016	595.891	2.9e-07	0.01095368
+Sumner	0.0	0.0	0.0	0.0
+Osage	0.0	0.0	0.0	0.0
+Woodson	0.0	0.0	0.0	0.0
+Atchison	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+Franklin	0.0	0.0	0.0	0.0
+Butler	0.0	0.0	0.0	0.0
+Bourbon	0.514	922.126	3.508e-05	0.06293087
+Anderson	0.0	0.0	0.0	0.0
+Greenwood	0.0	0.0	0.0	0.0
+Miami	0.0	0.0	0.0	0.0
+Ottawa	0.2	919.643	3.447e-05	0.15850448
+Crawford	0.0	0.0	0.0	0.0
+Pottawatomie	0.0	0.0	0.0	0.0
+McPherson	0.052	600.994	1.82e-06	0.02106017
+Wabaunsee	0.0	0.0	0.0	0.0

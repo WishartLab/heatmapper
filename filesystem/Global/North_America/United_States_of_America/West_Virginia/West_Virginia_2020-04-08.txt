@@ -1,34 +1,34 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Hardy	0.0	0.0
-Monongalia	3.971	12.638
-Logan	0.315	0.962
-Cabell	0.0	0.0
-Wood	3.054	7.641
-Berkeley	8.242	21.119
-Pendleton	0.0	0.0
-Lewis	0.0	0.0
-Wetzel	0.0	0.0
-Greenbrier	0.0	0.0
-Roane	0.0	0.0
-Jefferson	3.704	7.704
-Ohio	0.315	0.962
-Barbour	0.0	0.0
-Raleigh	0.0	0.0
-Marion	1.259	3.847
-Mercer	0.0	1.0
-Tucker	0.0	0.0
-Upshur	0.0	0.0
-Kanawha	4.069	12.736
-Mineral	0.0	0.0
-Marshall	0.0	0.0
-Preston	0.321	0.977
-Randolph	0.0	0.0
-Pleasants	0.0	0.0
-Mason	0.0	0.0
-Putnam	0.823	3.49
-Wirt	0.0	0.0
-Hancock	0.0	0.0
-Morgan	0.0	0.0
-Harrison	2.541	6.266
-Taylor	0.0	0.0
-Jackson	1.201	4.534
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Hardy	0.0	0.0	0.0	0.0
+Monongalia	3.971	8.638	3.731e-05	8.117e-05
+Logan	0.315	0.636	9.66e-06	1.951e-05
+Cabell	0.0	0.0	0.0	0.0
+Wood	3.054	5.584	3.627e-05	6.632e-05
+Berkeley	8.242	15.214	7.037e-05	0.0001299
+Pendleton	0.0	0.0	0.0	0.0
+Lewis	0.0	0.0	0.0	0.0
+Wetzel	0.0	0.0	0.0	0.0
+Greenbrier	0.0	0.0	0.0	0.0
+Roane	0.0	0.0	0.0	0.0
+Jefferson	3.704	6.704	6.52e-05	0.00011801
+Ohio	0.315	0.636	7.54e-06	1.523e-05
+Barbour	0.0	0.0	0.0	0.0
+Raleigh	0.0	0.0	0.0	0.0
+Marion	1.259	2.543	2.244e-05	4.533e-05
+Mercer	0.0	0.0	0.0	0.0
+Tucker	0.0	0.0	0.0	0.0
+Upshur	0.0	0.0	0.0	0.0
+Kanawha	4.069	7.736	2.255e-05	4.287e-05
+Mineral	0.0	0.0	0.0	0.0
+Marshall	0.0	0.0	0.0	0.0
+Preston	0.321	0.647	9.49e-06	1.912e-05
+Randolph	0.0	0.0	0.0	0.0
+Pleasants	0.0	0.0	0.0	0.0
+Mason	0.0	0.0	0.0	0.0
+Putnam	0.823	1.49	1.452e-05	2.629e-05
+Wirt	0.0	0.0	0.0	0.0
+Hancock	0.0	0.0	0.0	0.0
+Morgan	0.0	0.0	0.0	0.0
+Harrison	2.541	4.599	3.761e-05	6.808e-05
+Taylor	0.0	0.0	0.0	0.0
+Jackson	1.201	2.534	4.184e-05	8.827e-05

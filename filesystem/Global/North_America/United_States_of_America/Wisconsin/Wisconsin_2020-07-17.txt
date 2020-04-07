@@ -1,34 +1,34 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Brown	0.026	2086.621
-Wood	0.0	0.0
-Richland	0.0	0.0
-Pierce	0.0	0.0
-Douglas	0.0	0.0
-Walworth	0.0	0.0
-Winnebago	0.0	4.0
-Marathon	0.04	461.804
-Iowa	0.0	0.0
-Ashland	0.0	0.0
-Marquette	0.0	0.0
-Bayfield	0.0	0.0
-Sheboygan	0.04	461.804
-Dodge	0.0	1.0
-Unassigned	0.0	0.0
-Waupaca	0.0	0.0
-Buffalo	0.0	0.0
-Dunn	0.0	0.0
-Saint Croix	0.0	0.0
-Kenosha	0.012	2170.862
-Iron	0.0	0.0
-Marinette	0.0	0.0
-Oconto	0.0	0.0
-La Crosse	0.079	924.613
-Juneau	0.0	0.0
-Vilas	0.0	0.0
-Crawford	0.0	0.0
-Calumet	0.0	0.0
-Outagamie	0.159	1848.225
-Oneida	0.0	0.0
-Grant	0.0	0.0
-Door	0.0	0.0
-Jackson	0.009	916.606
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Brown	0.026	2076.621	1e-07	0.00788457
+Wood	0.0	0.0	0.0	0.0
+Richland	0.0	0.0	0.0	0.0
+Pierce	0.0	0.0	0.0	0.0
+Douglas	0.0	0.0	0.0	0.0
+Walworth	0.0	0.0	0.0	0.0
+Winnebago	0.0	0.0	0.0	0.0
+Marathon	0.04	461.804	3e-07	0.00340996
+Iowa	0.0	0.0	0.0	0.0
+Ashland	0.0	0.0	0.0	0.0
+Marquette	0.0	0.0	0.0	0.0
+Bayfield	0.0	0.0	0.0	0.0
+Sheboygan	0.04	461.804	3.5e-07	0.00399983
+Dodge	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Waupaca	0.0	0.0	0.0	0.0
+Buffalo	0.0	0.0	0.0	0.0
+Dunn	0.0	0.0	0.0	0.0
+Saint Croix	0.0	0.0	0.0	0.0
+Kenosha	0.012	2164.862	7e-08	0.01278789
+Iron	0.0	0.0	0.0	0.0
+Marinette	0.0	0.0	0.0	0.0
+Oconto	0.0	0.0	0.0	0.0
+La Crosse	0.079	923.613	6.7e-07	0.007812
+Juneau	0.0	0.0	0.0	0.0
+Vilas	0.0	0.0	0.0	0.0
+Crawford	0.0	0.0	0.0	0.0
+Calumet	0.0	0.0	0.0	0.0
+Outagamie	0.159	1847.225	8.5e-07	0.00985897
+Oneida	0.0	0.0	0.0	0.0
+Grant	0.0	0.0	0.0	0.0
+Door	0.0	0.0	0.0	0.0
+Jackson	0.009	914.399	4.4e-07	0.04465275

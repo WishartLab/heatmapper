@@ -1,14 +1,14 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Hampden	62.259	17126.15
-Middlesex	21.069	12509.353
-Norfolk	2.725	2877.825
-Worcester	7.356	4355.464
-Hampshire	1.821	805.261
-Bristol	7.338	4040.055
-Unassigned	-39.1	-7344.142
-Plymouth	14.773	7212.557
-Essex	6.167	5030.199
-Berkshire	0.081	226.638
-Franklin	0.284	213.889
-Barnstable	0.363	481.821
-Suffolk	30.555	15848.053
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Hampden	62.259	17005.15	0.00013235	0.03614994
+Middlesex	21.069	12191.353	1.305e-05	0.00755016
+Norfolk	2.725	2766.825	3.86e-06	0.00392242
+Worcester	7.356	4256.464	8.85e-06	0.00512309
+Hampshire	1.821	786.261	1.129e-05	0.00487286
+Bristol	7.338	3977.055	1.301e-05	0.00705124
+Unassigned	-39.1	-7375.142	N/A	N/A
+Plymouth	14.773	7108.557	2.851e-05	0.01371959
+Essex	6.167	4883.199	7.8e-06	0.00617628
+Berkshire	0.081	216.638	6.4e-07	0.00171461
+Franklin	0.284	206.889	4e-06	0.00291545
+Barnstable	0.363	445.821	1.7e-06	0.00208901
+Suffolk	30.555	15577.053	3.785e-05	0.01929639

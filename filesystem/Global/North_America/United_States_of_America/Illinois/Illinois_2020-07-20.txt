@@ -1,31 +1,31 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Kendall	0.008	1390.446
-Williamson	0.002	301.664
-Montgomery	0.0	0.0
-McHenry	0.052	6913.516
-La Salle	0.027	1385.609
-Woodford	0.012	461.858
-Peoria	0.0	-2.0
-Washington	0.0	1.0
-Fayette	0.0	0.0
-Bureau	0.0	0.0
-Bond	0.0	0.0
-Monroe	0.035	1386.582
-Winnebago	0.225	8782.327
-Livingston	0.035	1387.582
-Tazewell	0.012	2108.144
-Rock Island	0.091	5752.662
-Iroquois	0.005	903.489
-Christian	0.071	2773.157
-Marshall	0.0	0.0
-Adams	0.012	466.858
-Stephenson	0.0	2.0
-De Kalb	0.071	2771.157
-Franklin	0.0	0.0
-Jo Daviess	0.035	1386.582
-Sangamon	0.048	3026.032
-Knox	0.0	0.0
-Whiteside	0.071	2771.157
-Champaign	0.016	1596.953
-Grundy	0.018	923.738
-Jackson	0.071	2773.157
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Kendall	0.008	1384.446	6e-08	0.01082317
+Williamson	0.002	301.158	3e-08	0.00449114
+Montgomery	0.0	0.0	0.0	0.0
+McHenry	0.052	6902.516	1.7e-07	0.02236937
+La Salle	0.027	1384.609	2.5e-07	0.01265292
+Woodford	0.012	461.858	3.1e-07	0.01200785
+Peoria	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Fayette	0.0	0.0	0.0	0.0
+Bureau	0.0	0.0	0.0	0.0
+Bond	0.0	0.0	0.0	0.0
+Monroe	0.035	1385.582	1.02e-06	0.0403548
+Winnebago	0.225	8775.327	7.9e-07	0.03089023
+Livingston	0.035	1385.582	9.8e-07	0.03874562
+Tazewell	0.012	2103.868	9e-08	0.01589889
+Rock Island	0.091	5745.662	6.3e-07	0.04004587
+Iroquois	0.005	901.657	1.8e-07	0.032664
+Christian	0.071	2771.157	2.17e-06	0.08484605
+Marshall	0.0	0.0	0.0	0.0
+Adams	0.012	461.858	1.8e-07	0.00703077
+Stephenson	0.0	0.0	0.0	0.0
+De Kalb	0.071	2771.157	6.8e-07	0.02660915
+Franklin	0.0	0.0	0.0	0.0
+Jo Daviess	0.035	1385.582	1.64e-06	0.06484985
+Sangamon	0.048	3024.032	2.5e-07	0.01548023
+Knox	0.0	0.0	0.0	0.0
+Whiteside	0.071	2771.157	1.28e-06	0.04981766
+Champaign	0.016	1589.953	8e-08	0.00757182
+Grundy	0.018	923.071	3.5e-07	0.01810937
+Jackson	0.071	2771.157	1.24e-06	0.04826202

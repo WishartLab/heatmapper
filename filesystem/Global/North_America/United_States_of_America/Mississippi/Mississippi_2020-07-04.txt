@@ -1,50 +1,50 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Jones	3.479	2752.346
-Webster	0.58	459.388
-George	0.0	0.0
-Lincoln	0.003	114.006
-Kemper	0.75	917.847
-Quitman	1.259	1377.173
-Hinds	0.002	321.056
-Alcorn	0.0	0.0
-Leake	1.74	1376.176
-Tallahatchie	0.0	0.0
-Jefferson	0.75	917.847
-Newton	1.045	917.828
-Smith	1.16	917.783
-Panola	2.319	1833.563
-Monroe	1.74	1378.176
-Lamar	1.74	1377.176
-Lawrence	0.0	1.0
-Marion	1.74	1376.176
-Benton	0.0	0.0
-Simpson	0.0	1.0
-Wilkinson	0.004	197.304
-Scott	0.001	78.622
-Calhoun	0.0	0.0
-Leflore	1.16	917.783
-Claiborne	0.0	0.0
-Clay	0.0	2.0
-Chickasaw	0.0	0.0
-Itawamba	0.0	1.0
-Forrest	0.006	299.951
-Franklin	1.16	916.783
-Humphreys	0.0	0.0
-Stone	0.0	0.0
-Hancock	0.002	83.007
-Union	0.58	458.388
-Perry	1.74	1375.176
-Sharkey	0.0	0.0
-Grenada	0.0	0.0
-Copiah	1.16	916.783
-Noxubee	0.0	0.0
-Yazoo	7.538	5960.082
-Lowndes	1.74	1375.176
-Warren	0.59	916.307
-Neshoba	0.968	1502.25
-Prentiss	0.0	0.0
-Walthall	0.58	458.388
-Amite	0.194	300.447
-Winston	1.74	1378.176
-Tishomingo	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Jones	3.479	2750.346	5.082e-05	0.04017391
+Webster	0.58	458.388	5.926e-05	0.04683163
+George	0.0	0.0	0.0	0.0
+Lincoln	0.003	112.006	9e-08	0.00327455
+Kemper	0.75	916.592	7.48e-05	0.09141239
+Quitman	1.259	1375.648	0.00017856	0.1950997
+Hinds	0.002	317.056	1e-08	0.00133731
+Alcorn	0.0	0.0	0.0	0.0
+Leake	1.74	1375.176	7.644e-05	0.06041278
+Tallahatchie	0.0	0.0	0.0	0.0
+Jefferson	0.75	916.592	0.00010554	0.12898846
+Newton	1.045	917.161	4.873e-05	0.04277205
+Smith	1.16	916.783	7.249e-05	0.05729178
+Panola	2.319	1833.563	6.785e-05	0.05364746
+Monroe	1.74	1375.176	4.893e-05	0.03866764
+Lamar	1.74	1375.176	2.786e-05	0.02202149
+Lawrence	0.0	0.0	0.0	0.0
+Marion	1.74	1375.176	7.04e-05	0.05564135
+Benton	0.0	0.0	0.0	0.0
+Simpson	0.0	0.0	0.0	0.0
+Wilkinson	0.004	197.304	4.5e-07	0.02244131
+Scott	0.001	78.622	4e-08	0.00277944
+Calhoun	0.0	0.0	0.0	0.0
+Leflore	1.16	916.783	4.011e-05	0.03170175
+Claiborne	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+Chickasaw	0.0	0.0	0.0	0.0
+Itawamba	0.0	0.0	0.0	0.0
+Forrest	0.006	295.951	8e-08	0.00394412
+Franklin	1.16	916.783	0.00014895	0.11771739
+Humphreys	0.0	0.0	0.0	0.0
+Stone	0.0	0.0	0.0	0.0
+Hancock	0.002	84.007	4e-08	0.00177477
+Union	0.58	458.388	2.028e-05	0.01602419
+Perry	1.74	1375.176	0.00014584	0.11526075
+Sharkey	0.0	0.0	0.0	0.0
+Grenada	0.0	0.0	0.0	0.0
+Copiah	1.16	916.783	4.064e-05	0.03211936
+Noxubee	0.0	0.0	0.0	0.0
+Yazoo	7.538	5959.082	0.00026685	0.21095589
+Lowndes	1.74	1375.176	2.953e-05	0.02333575
+Warren	0.59	914.444	1.278e-05	0.01980345
+Neshoba	0.968	1499.196	3.324e-05	0.05147454
+Prentiss	0.0	0.0	0.0	0.0
+Walthall	0.58	458.388	4.01e-05	0.03168946
+Amite	0.194	299.836	1.574e-05	0.02432549
+Winston	1.74	1375.176	9.579e-05	0.07570471
+Tishomingo	0.0	0.0	0.0	0.0

@@ -1,14 +1,14 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Valencia	0.0	0.0
-Curry	0.0	0.0
-Rio Arriba	0.009	461.534
-Cibola	0.142	5542.312
-Socorro	0.066	1848.391
-Chaves	0.0	1.0
-San Juan	0.09	7198.724
-Eddy	0.0	0.0
-Taos	0.0	0.0
-Roosevelt	0.0	0.0
-Unassigned	-0.033	-923.696
-Lea	0.0	0.0
-McKinley	0.126	6356.363
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Valencia	0.0	0.0	0.0	0.0
+Curry	0.0	0.0	0.0	0.0
+Rio Arriba	0.009	461.122	2.3e-07	0.01182182
+Cibola	0.142	5538.312	5.31e-06	0.20707066
+Socorro	0.066	1847.391	3.94e-06	0.11039086
+Chaves	0.0	0.0	0.0	0.0
+San Juan	0.09	7154.724	7.2e-07	0.05721811
+Eddy	0.0	0.0	0.0	0.0
+Taos	0.0	0.0	0.0	0.0
+Roosevelt	0.0	0.0	0.0	0.0
+Unassigned	-0.033	-923.696	N/A	N/A
+Lea	0.0	0.0	0.0	0.0
+McKinley	0.126	6350.363	1.74e-06	0.08784566

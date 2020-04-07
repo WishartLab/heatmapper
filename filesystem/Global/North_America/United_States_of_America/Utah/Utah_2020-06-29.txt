@@ -1,15 +1,15 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Davis	0.008	428.998
-Washington	0.993	601.726
-Cache	3.082	2692.888
-Uintah	0.0	0.0
-Carbon	0.0	0.0
-Utah	1.545	3143.823
-Grand	0.0	0.0
-Box Elder	0.0	0.0
-Tooele	0.001	63.81
-Emery	0.0	0.0
-Salt Lake	0.04	2618.432
-Washington County	1.749	909.804
-Garfield	0.0	0.0
-Out of UT	1.027	897.629
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Davis	0.008	416.998	2e-08	0.00118562
+Washington	0.993	597.726	5.78e-06	0.00348122
+Cache	3.082	2687.391	2.425e-05	0.02114924
+Uintah	0.0	0.0	0.0	0.0
+Carbon	0.0	0.0	0.0	0.0
+Utah	1.545	3136.823	2.48e-06	0.0050414
+Grand	0.0	0.0	0.0	0.0
+Box Elder	0.0	0.0	0.0	0.0
+Tooele	0.001	60.81	1e-08	0.00086987
+Emery	0.0	0.0	0.0	0.0
+Salt Lake	0.04	2582.432	3e-08	0.00224046
+Washington County	1.749	909.804	N/A	N/A
+Garfield	0.0	0.0	0.0	0.0
+Out of UT	1.027	895.797	N/A	N/A

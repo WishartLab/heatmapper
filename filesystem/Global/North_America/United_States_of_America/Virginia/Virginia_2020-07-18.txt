@@ -1,61 +1,61 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Greensville	0.0	0.0
-Brunswick	0.0	0.0
-Prince Edward	0.0	0.0
-Poquoson	0.0	0.0
-Montgomery	0.007	460.621
-Page	0.0	0.0
-Nottoway	0.0	0.0
-Radford	0.0	0.0
-Chesapeake	0.38	10622.495
-Washington	0.009	461.122
-Bedford	0.025	462.829
-Norfolk	0.015	1523.864
-Culpeper	0.025	461.829
-Surry	0.0	0.0
-Fredericksburg	0.01	604.144
-Northumberland	0.0	0.0
-Halifax	0.0	0.0
-Alleghany	0.0	0.0
-Botetourt	0.05	923.663
-Bristol	0.0	0.0
-Amherst	0.0	0.0
-Accomack	0.0	0.0
-Madison	0.033	923.696
-Mathews	0.0	0.0
-Waynesboro	0.0	0.0
-Manassas Park	0.0	0.0
-Tazewell	0.0	0.0
-Rockbridge	0.0	0.0
-Stafford	0.2	3696.648
-Isle of Wight	0.175	3236.816
-Northampton	0.0	0.0
-New Kent	0.011	1502.75
-Spotsylvania	0.35	6467.638
-Henrico	1.449	26799.204
-Goochland	0.15	2772.987
-Danville	0.075	1386.497
-Rockingham	0.05	922.663
-Fluvanna	0.125	2311.151
-Franklin	0.025	461.829
-King George	0.012	1204.634
-King and Queen	0.0	0.0
-Greene	0.022	1381.871
-Campbell	0.0	0.0
-Lancaster	0.0	0.0
-Wythe	0.0	0.0
-Carroll	0.0	0.0
-Galax	0.0	0.0
-Charles City	0.0	0.0
-Pittsylvania	0.009	461.122
-Warren	0.0	0.0
-Mecklenburg	0.075	1385.497
-Williamsburg	0.075	1386.497
-Smyth	0.0	0.0
-Southampton	0.003	301.156
-Suffolk	0.3	5547.972
-Powhatan	0.0	0.0
-Orange	0.0	0.0
-Virginia Beach	0.11	6963.894
-King William	0.0	0.0
-Nelson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Greensville	0.0	0.0	0.0	0.0
+Brunswick	0.0	0.0	0.0	0.0
+Prince Edward	0.0	0.0	0.0	0.0
+Poquoson	0.0	0.0	0.0	0.0
+Montgomery	0.007	459.994	7e-08	0.00464711
+Page	0.0	0.0	0.0	0.0
+Nottoway	0.0	0.0	0.0	0.0
+Radford	0.0	0.0	0.0	0.0
+Chesapeake	0.38	10614.828	1.57e-06	0.04374831
+Washington	0.009	460.614	1.7e-07	0.00846686
+Bedford	0.025	461.829	3.2e-07	0.00586472
+Norfolk	0.015	1522.864	6e-08	0.0062393
+Culpeper	0.025	461.829	4.8e-07	0.00890547
+Surry	0.0	0.0	0.0	0.0
+Fredericksburg	0.01	603.321	3.4e-07	0.02070138
+Northumberland	0.0	0.0	0.0	0.0
+Halifax	0.0	0.0	0.0	0.0
+Alleghany	0.0	0.0	0.0	0.0
+Botetourt	0.05	923.663	1.5e-06	0.0277568
+Bristol	0.0	0.0	0.0	0.0
+Amherst	0.0	0.0	0.0	0.0
+Accomack	0.0	0.0	0.0	0.0
+Madison	0.033	923.029	2.48e-06	0.06942678
+Mathews	0.0	0.0	0.0	0.0
+Waynesboro	0.0	0.0	0.0	0.0
+Manassas Park	0.0	0.0	0.0	0.0
+Tazewell	0.0	0.0	0.0	0.0
+Rockbridge	0.0	0.0	0.0	0.0
+Stafford	0.2	3694.648	1.33e-06	0.02463756
+Isle of Wight	0.175	3232.816	4.74e-06	0.08748453
+Northampton	0.0	0.0	0.0	0.0
+New Kent	0.011	1499.132	4.9e-07	0.06695244
+Spotsylvania	0.35	6465.638	2.61e-06	0.04816548
+Henrico	1.449	26786.204	4.4e-06	0.0813525
+Goochland	0.15	2770.987	6.45e-06	0.119213
+Danville	0.075	1385.497	1.84e-06	0.03404755
+Rockingham	0.05	923.663	6.2e-07	0.011369
+Fluvanna	0.125	2309.151	4.67e-06	0.08621704
+Franklin	0.025	461.829	3.12e-06	0.05763497
+King George	0.012	1202.191	4.5e-07	0.04523767
+King and Queen	0.0	0.0	0.0	0.0
+Greene	0.022	1379.989	1.11e-06	0.06977041
+Campbell	0.0	0.0	0.0	0.0
+Lancaster	0.0	0.0	0.0	0.0
+Wythe	0.0	0.0	0.0	0.0
+Carroll	0.0	0.0	0.0	0.0
+Galax	0.0	0.0	0.0	0.0
+Charles City	0.0	0.0	0.0	0.0
+Pittsylvania	0.009	460.614	1.5e-07	0.00755737
+Warren	0.0	0.0	0.0	0.0
+Mecklenburg	0.075	1385.497	2.45e-06	0.04520382
+Williamsburg	0.075	1385.497	5.03e-06	0.09301135
+Smyth	0.0	0.0	0.0	0.0
+Southampton	0.003	300.545	1.7e-07	0.01709001
+Suffolk	0.3	5541.972	3.29e-06	0.06077723
+Powhatan	0.0	0.0	0.0	0.0
+Orange	0.0	0.0	0.0	0.0
+Virginia Beach	0.11	6955.894	2.4e-07	0.01545105
+King William	0.0	0.0	0.0	0.0
+Nelson	0.0	0.0	0.0	0.0

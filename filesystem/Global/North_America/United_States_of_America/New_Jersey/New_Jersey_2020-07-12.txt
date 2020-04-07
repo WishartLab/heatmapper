@@ -1,9 +1,9 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Cumberland	0.013	1268.531
-Atlantic	0.43	7901.287
-Hudson	0.487	63680.545
-Camden	0.075	9770.516
-Burlington	0.085	11071.388
-Union	0.246	43394.464
-Cape May	2.399	7865.818
-Warren	0.05	3934.732
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Cumberland	0.013	1258.531	9e-08	0.00833619
+Atlantic	0.43	7890.287	1.62e-06	0.02972654
+Hudson	0.487	63209.545	7.2e-07	0.09349681
+Camden	0.075	9681.516	1.5e-07	0.01909275
+Burlington	0.085	10972.388	1.9e-07	0.02463579
+Union	0.246	42925.464	4.4e-07	0.07691812
+Cape May	2.399	7857.818	2.592e-05	0.08489432
+Warren	0.05	3914.732	4.7e-07	0.03700859

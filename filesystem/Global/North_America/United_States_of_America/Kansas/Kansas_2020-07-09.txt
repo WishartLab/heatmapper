@@ -1,40 +1,40 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Linn	0.0	0.0
-Cherokee	0.0	0.0
-Montgomery	0.0	0.0
-Harvey	0.0	0.0
-Ford	0.0	0.0
-Pratt	0.0	0.0
-Riley	0.001	169.242
-Mitchell	0.0	0.0
-Shawnee	0.345	2459.525
-Jewell	0.0	0.0
-Finney	0.033	597.871
-Osborne	0.012	452.511
-Jefferson	0.0	0.0
-Reno	0.334	460.508
-Gove	0.0	0.0
-Geary	0.0	0.0
-Lyon	1.336	1841.042
-Marion	0.024	905.024
-Labette	0.011	297.931
-Doniphan	0.0	0.0
-Neosho	0.0	0.0
-Stafford	0.0	0.0
-Saline	0.033	597.871
-Sumner	0.0	0.0
-Osage	0.0	0.0
-Woodson	0.0	0.0
-Atchison	0.0	0.0
-Clay	0.0	0.0
-Franklin	0.0	1.0
-Butler	0.0	0.0
-Bourbon	0.668	923.022
-Anderson	0.0	0.0
-Greenwood	0.0	0.0
-Miami	0.0	0.0
-Ottawa	0.36	920.417
-Crawford	0.0	-2.0
-Pottawatomie	0.0	1.0
-McPherson	0.131	602.08
-Wabaunsee	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Linn	0.0	0.0	0.0	0.0
+Cherokee	0.0	0.0	0.0	0.0
+Montgomery	0.0	0.0	0.0	0.0
+Harvey	0.0	0.0	0.0	0.0
+Ford	0.0	0.0	0.0	0.0
+Pratt	0.0	0.0	0.0	0.0
+Riley	0.001	167.484	1e-08	0.00227242
+Mitchell	0.0	0.0	0.0	0.0
+Shawnee	0.345	2453.602	1.94e-06	0.01382319
+Jewell	0.0	0.0	0.0	0.0
+Finney	0.033	595.853	9e-07	0.01627525
+Osborne	0.012	450.363	3.45e-06	0.12960086
+Jefferson	0.0	0.0	0.0	0.0
+Reno	0.334	460.508	5.36e-06	0.0073868
+Gove	0.0	0.0	0.0	0.0
+Geary	0.0	0.0	0.0	0.0
+Lyon	1.336	1842.042	3.999e-05	0.05514105
+Marion	0.024	900.729	2.01e-06	0.07537481
+Labette	0.011	296.738	5.5e-07	0.01486365
+Doniphan	0.0	0.0	0.0	0.0
+Neosho	0.0	0.0	0.0	0.0
+Stafford	0.0	0.0	0.0	0.0
+Saline	0.033	595.853	6.1e-07	0.01095298
+Sumner	0.0	0.0	0.0	0.0
+Osage	0.0	0.0	0.0	0.0
+Woodson	0.0	0.0	0.0	0.0
+Atchison	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+Franklin	0.0	0.0	0.0	0.0
+Butler	0.0	0.0	0.0	0.0
+Bourbon	0.668	921.022	4.559e-05	0.06285552
+Anderson	0.0	0.0	0.0	0.0
+Greenwood	0.0	0.0	0.0	0.0
+Miami	0.0	0.0	0.0	0.0
+Ottawa	0.36	919.162	6.205e-05	0.15842158
+Crawford	0.0	0.0	0.0	0.0
+Pottawatomie	0.0	0.0	0.0	0.0
+McPherson	0.131	600.858	4.59e-06	0.0210554
+Wabaunsee	0.0	0.0	0.0	0.0

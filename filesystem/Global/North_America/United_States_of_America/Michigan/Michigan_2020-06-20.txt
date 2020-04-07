@@ -1,68 +1,68 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Schoolcraft	0.0	0.0
-Eaton	0.303	280.418
-Wayne	28.943	40695.05
-Wexford	1.605	444.484
-Roscommon	1.605	444.484
-Antrim	0.0	0.0
-Saginaw	22.536	8344.543
-Houghton	0.0	0.0
-Berrien	0.003	69.571
-Van Buren	0.001	32.457
-Macomb	26.73	20345.265
-Lapeer	21.06	6243.89
-Kalkaska	0.0	0.0
-Branch	0.106	230.117
-Ogemaw	0.0	0.0
-Tuscola	6.422	1777.95
-Allegan	14.449	4001.395
-Mecosta	0.0	7.777
-Grand Traverse	3.211	890.976
-Kalamazoo	0.098	213.276
-Sanilac	0.001	24.338
-Manistee	3.009	891.985
-Cass	0.0	0.0
-Missaukee	0.0	0.0
-Ontonagon	0.0	0.0
-Bay	0.941	597.738
-Hillsdale	24.068	7135.874
-Muskegon	0.002	21.155
-Monroe	0.094	257.583
-Gratiot	0.0	0.0
-Chippewa	0.0	0.0
-Washtenaw	0.115	649.133
-Isabella	7.521	2229.956
-Livingston	0.098	268.42
-Marquette	10.53	3121.941
-Oscoda	0.0	0.0
-Lenawee	0.001	56.789
-Benzie	0.0	0.0
-Cheboygan	0.0	13.641
-Iosco	2.806	894.124
-Kent	0.108	403.918
-Emmet	0.006	21.769
-Ionia	0.0	7.777
-Midland	1.572	584.712
-Calhoun	0.017	90.18
-Gladwin	3.211	888.976
-Oceana	0.0	0.0
-Unassigned	0.067	898.258
-Osceola	0.0	0.0
-Gogebic	0.0	0.0
-Barry	4.816	1334.466
-Montcalm	0.013	36.51
-Leelanau	0.0	1.0
-Ingham	10.527	4178.063
-Charlevoix	1.605	445.484
-Clare	0.0	2.0
-Out of MI	27.292	7564.292
-Ottawa	0.002	35.055
-Huron	0.0	0.0
-Clinton	1.415	680.475
-Crawford	0.0	0.0
-Presque Isle	0.698	445.674
-Newaygo	0.0	0.0
-Genesee	7.662	5350.674
-Oakland	11.845	15038.377
-Saint Clair	19.915	7371.69
-Jackson	0.308	492.212
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Schoolcraft	0.0	0.0	0.0	0.0
+Eaton	0.303	278.418	2.76e-06	0.00253508
+Wayne	28.943	39943.05	1.65e-05	0.02277394
+Wexford	1.605	444.484	4.796e-05	0.01328166
+Roscommon	1.605	444.484	6.72e-05	0.01861012
+Antrim	0.0	0.0	0.0	0.0
+Saginaw	22.536	8323.543	0.00011811	0.04362444
+Houghton	0.0	0.0	0.0	0.0
+Berrien	0.003	67.571	2e-08	0.00043837
+Van Buren	0.001	31.136	1e-08	0.00041268
+Macomb	26.73	20189.265	3.056e-05	0.0230798
+Lapeer	21.06	6239.223	0.00023924	0.07087771
+Kalkaska	0.0	0.0	0.0	0.0
+Branch	0.106	224.789	2.43e-06	0.00515311
+Ogemaw	0.0	0.0	0.0	0.0
+Tuscola	6.422	1777.95	0.00012229	0.0338554
+Allegan	14.449	4000.395	0.00012315	0.03409612
+Mecosta	0.0	7.451	0.0	0.00017111
+Grand Traverse	3.211	888.976	3.469e-05	0.00960297
+Kalamazoo	0.098	208.276	3.7e-07	0.00078633
+Sanilac	0.001	23.347	2e-08	0.00056692
+Manistee	3.009	891.318	0.00012268	0.0363388
+Cass	0.0	0.0	0.0	0.0
+Missaukee	0.0	0.0	0.0	0.0
+Ontonagon	0.0	0.0	0.0	0.0
+Bay	0.941	597.738	9.05e-06	0.00575174
+Hillsdale	24.068	7130.541	0.00052609	0.15586223
+Muskegon	0.002	19.155	1e-08	0.00011035
+Monroe	0.094	248.583	6.2e-07	0.00165238
+Gratiot	0.0	0.0	0.0	0.0
+Chippewa	0.0	0.0	0.0	0.0
+Washtenaw	0.115	628.133	3.1e-07	0.00169325
+Isabella	7.521	2228.289	0.00010659	0.03157916
+Livingston	0.098	260.42	5.1e-07	0.00136186
+Marquette	10.53	3119.608	0.00015831	0.04690011
+Oscoda	0.0	0.0	0.0	0.0
+Lenawee	0.001	54.477	1e-08	0.00055438
+Benzie	0.0	0.0	0.0	0.0
+Cheboygan	0.0	13.026	0.0	0.00051257
+Iosco	2.806	893.301	0.00011188	0.03561664
+Kent	0.108	391.918	1.7e-07	0.00059946
+Emmet	0.006	21.769	1.8e-07	0.00065357
+Ionia	0.0	7.451	0.0	0.00011604
+Midland	1.572	580.712	1.889e-05	0.00697896
+Calhoun	0.017	91.18	1.3e-07	0.00067798
+Gladwin	3.211	888.976	0.00012673	0.03508608
+Oceana	0.0	0.0	0.0	0.0
+Unassigned	0.067	876.258	N/A	N/A
+Osceola	0.0	0.0	0.0	0.0
+Gogebic	0.0	0.0	0.0	0.0
+Barry	4.816	1333.466	7.875e-05	0.02180398
+Montcalm	0.013	35.51	2e-07	0.00055512
+Leelanau	0.0	0.0	0.0	0.0
+Ingham	10.527	4172.063	3.596e-05	0.01425201
+Charlevoix	1.605	444.484	6.116e-05	0.0169366
+Clare	0.0	0.0	0.0	0.0
+Out of MI	27.292	7556.292	N/A	N/A
+Ottawa	0.002	35.055	1e-08	0.00012067
+Huron	0.0	0.0	0.0	0.0
+Clinton	1.415	679.475	1.784e-05	0.00856495
+Crawford	0.0	0.0	0.0	0.0
+Presque Isle	0.698	443.143	5.48e-05	0.03478906
+Newaygo	0.0	0.0	0.0	0.0
+Genesee	7.662	5286.674	1.883e-05	0.01299282
+Oakland	11.845	14693.377	9.41e-06	0.01166881
+Saint Clair	19.915	7355.69	0.00012499	0.04616436
+Jackson	0.308	479.212	1.94e-06	0.00301727

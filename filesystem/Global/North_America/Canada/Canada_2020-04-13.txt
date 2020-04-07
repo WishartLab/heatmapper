@@ -1,13 +1,13 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Prince Edward Island	1.481	5.091
-Newfoundland and Labrador	1.916	56.366
-Yukon	0.0	0.0
-Saskatchewan	1.709	54.28
-British Columbia	36.689	311.087
-Manitoba	28.642	126.432
-Northwest Territories	1.303	5.989
-Ontario	503.836	3195.455
-Grand Princess	0.0	0.0
-Nova Scotia	16.881	172.474
-Quebec	895.946	5907.786
-Alberta	53.818	520.472
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Prince Edward Island	1.481	5.091	9.57e-06	3.29e-05
+Newfoundland and Labrador	1.916	56.366	3.66e-06	0.00010761
+Yukon	0.0	0.0	0.0	0.0
+Saskatchewan	1.709	54.28	1.46e-06	4.646e-05
+British Columbia	36.689	311.087	7.31e-06	6.197e-05
+Manitoba	28.642	126.432	2.105e-05	9.294e-05
+Northwest Territories	1.303	5.656	2.922e-05	0.00012682
+Ontario	503.836	2820.455	3.488e-05	0.00019523
+Grand Princess	0.0	0.0	N/A	N/A
+Nova Scotia	16.881	143.474	1.738e-05	0.0001477
+Quebec	895.946	5271.786	0.00010624	0.00062512
+Alberta	53.818	414.472	1.238e-05	9.537e-05

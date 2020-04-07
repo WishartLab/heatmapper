@@ -1,74 +1,74 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Vermilion	0.0	0.0
-Logan	0.0	0.0
-Pike	0.0	0.0
-Kendall	4.648	17.918
-Williamson	0.855	2.696
-Montgomery	0.0	0.0
-Ford	0.0	0.0
-McHenry	19.588	61.174
-La Salle	1.882	5.642
-Woodford	0.508	1.253
-Peoria	0.0	-2.0
-Lee	0.0	0.0
-Washington	0.0	1.0
-Jersey	10.339	33.271
-Kankakee	8.347	34.043
-Massac	0.0	0.0
-Macon	5.964	18.9
-Effingham	0.0	0.0
-Fayette	0.0	0.0
-Jefferson	0.0	0.0
-Bureau	0.0	0.0
-Bond	0.0	0.0
-Monroe	1.525	4.76
-Douglas	0.0	0.0
-Marion	0.0	0.0
-Winnebago	9.658	30.811
-Mercer	0.0	0.0
-McLean	4.462	11.669
-Livingston	1.525	5.76
-Henry	0.898	3.728
-Madison	3.123	12.168
-Boone	9.087	29.85
-Tazewell	7.063	22.386
-Rock Island	9.613	30.762
-Ogle	9.041	29.093
-Calhoun	0.0	0.0
-Iroquois	3.027	9.594
-Saline	0.0	0.0
-Christian	3.05	9.519
-Marshall	0.0	0.0
-Lake	82.999	297.459
-Unassigned	0.71	6.504
-Will	84.424	268.065
-Randolph	16.38	52.71
-Macoupin	1.021	4.255
-Mason	0.0	0.0
-Adams	0.508	6.253
-Stephenson	0.0	2.0
-Cook	669.432	2645.717
-De Kalb	3.05	7.519
-Franklin	0.0	0.0
-Gallatin	0.0	0.0
-Jo Daviess	1.525	4.76
-Moultrie	0.0	0.0
-Clark	0.0	0.0
-Menard	0.0	0.0
-Dewitt	10.339	33.271
-Sangamon	5.06	14.507
-Piatt	0.0	0.0
-Carroll	0.0	0.0
-Dupage	70.111	260.073
-Morgan	0.049	0.286
-Knox	0.0	0.0
-Whiteside	3.05	7.519
-Clinton	0.295	1.942
-Crawford	4.98	15.811
-Kane	16.926	63.97
-Champaign	3.814	16.7
-Grundy	1.255	3.762
-Jasper	11.909	38.737
-Wabash	0.0	0.0
-Saint Clair	6.607	24.949
-Jackson	3.05	9.519
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Vermilion	0.0	0.0	0.0	0.0
+Logan	0.0	0.0	0.0	0.0
+Pike	0.0	0.0	0.0	0.0
+Kendall	4.648	11.918	3.634e-05	9.317e-05
+Williamson	0.855	2.19	1.275e-05	3.266e-05
+Montgomery	0.0	0.0	0.0	0.0
+Ford	0.0	0.0	0.0	0.0
+McHenry	19.588	50.174	6.348e-05	0.0001626
+La Salle	1.882	4.642	1.72e-05	4.242e-05
+Woodford	0.508	1.253	1.321e-05	3.258e-05
+Peoria	0.0	0.0	0.0	0.0
+Lee	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Jersey	10.339	26.828	0.00047325	0.00122799
+Kankakee	8.347	25.043	7.587e-05	0.00022761
+Massac	0.0	0.0	0.0	0.0
+Macon	5.964	15.282	5.696e-05	0.00014594
+Effingham	0.0	0.0	0.0	0.0
+Fayette	0.0	0.0	0.0	0.0
+Jefferson	0.0	0.0	0.0	0.0
+Bureau	0.0	0.0	0.0	0.0
+Bond	0.0	0.0	0.0	0.0
+Monroe	1.525	3.76	4.442e-05	0.00010951
+Douglas	0.0	0.0	0.0	0.0
+Marion	0.0	0.0	0.0	0.0
+Winnebago	9.658	23.811	3.4e-05	8.382e-05
+Mercer	0.0	0.0	0.0	0.0
+McLean	4.462	11.669	2.582e-05	6.752e-05
+Livingston	1.525	3.76	4.264e-05	0.00010514
+Henry	0.898	2.765	1.829e-05	5.633e-05
+Madison	3.123	8.168	1.181e-05	3.089e-05
+Boone	9.087	23.919	0.00016961	0.00044644
+Tazewell	7.063	18.11	5.337e-05	0.00013686
+Rock Island	9.613	23.762	6.7e-05	0.00016562
+Ogle	9.041	23.459	0.00017754	0.00046068
+Calhoun	0.0	0.0	0.0	0.0
+Iroquois	3.027	7.762	0.00010966	0.00028119
+Saline	0.0	0.0	0.0	0.0
+Christian	3.05	7.519	9.338e-05	0.00023021
+Marshall	0.0	0.0	0.0	0.0
+Lake	82.999	224.459	0.00011843	0.00032028
+Unassigned	0.71	3.664	N/A	N/A
+Will	84.424	219.065	0.00012195	0.00031643
+Randolph	16.38	42.503	0.00051019	0.00132383
+Macoupin	1.021	3.15	2.253e-05	6.952e-05
+Mason	0.0	0.0	0.0	0.0
+Adams	0.508	1.253	7.73e-06	1.907e-05
+Stephenson	0.0	0.0	0.0	0.0
+Cook	669.432	1951.717	0.00012922	0.00037674
+De Kalb	3.05	7.519	2.929e-05	7.22e-05
+Franklin	0.0	0.0	0.0	0.0
+Gallatin	0.0	0.0	0.0	0.0
+Jo Daviess	1.525	3.76	7.138e-05	0.00017598
+Moultrie	0.0	0.0	0.0	0.0
+Clark	0.0	0.0	0.0	0.0
+Menard	0.0	0.0	0.0	0.0
+Dewitt	10.339	26.828	0.00065565	0.00170131
+Sangamon	5.06	12.507	2.59e-05	6.402e-05
+Piatt	0.0	0.0	0.0	0.0
+Carroll	0.0	0.0	0.0	0.0
+Dupage	70.111	201.073	7.55e-05	0.00021654
+Morgan	0.049	0.187	1.44e-06	5.5e-06
+Knox	0.0	0.0	0.0	0.0
+Whiteside	3.05	7.519	5.483e-05	0.00013517
+Clinton	0.295	0.942	7.84e-06	2.503e-05
+Crawford	4.98	12.784	0.0002648	0.00067975
+Kane	16.926	49.97	3.168e-05	9.354e-05
+Champaign	3.814	9.7	1.816e-05	4.619e-05
+Grundy	1.255	3.095	2.462e-05	6.072e-05
+Jasper	11.909	31.144	0.0012391	0.00324045
+Wabash	0.0	0.0	0.0	0.0
+Saint Clair	6.607	18.949	2.531e-05	7.259e-05
+Jackson	3.05	7.519	5.312e-05	0.00013095

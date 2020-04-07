@@ -1,36 +1,36 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	0.0	0.0
-Choctaw	0.0	0.0
-Wagoner	0.003	278.194
-Sequoyah	0.0	0.0
-McClain	1.396	914.345
-Beckham	0.0	0.0
-Noble	0.0	0.0
-Love	0.0	0.0
-Pawnee	0.698	457.169
-McIntosh	0.0	0.0
-Custer	0.0	0.0
-Cotton	0.0	0.0
-Le Flore	0.0	0.0
-Caddo	0.246	300.034
-Carter	0.0	0.0
-Grady	2.094	1372.519
-Major	0.0	0.0
-Washita	0.0	0.0
-Pontotoc	0.0	1.0
-Seminole	0.375	457.522
-Mayes	3.195	2289.05
-Okmulgee	0.211	326.46
-Latimer	0.0	0.0
-Craig	0.522	458.165
-Pittsburg	0.937	916.258
-Texas	0.75	915.049
-Canadian	0.006	113.999
-Tillman	0.0	0.0
-McCurtain	0.0	0.0
-Tulsa	0.022	1031.079
-Cleveland	0.108	750.165
-Garvin	0.698	458.169
-Grant	0.0	0.0
-Adair	0.031	341.501
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	0.0	0.0	0.0	0.0
+Choctaw	0.0	0.0	0.0	0.0
+Wagoner	0.003	272.401	4e-08	0.00340034
+Sequoyah	0.0	0.0	0.0	0.0
+McClain	1.396	914.345	3.491e-05	0.0228672
+Beckham	0.0	0.0	0.0	0.0
+Noble	0.0	0.0	0.0	0.0
+Love	0.0	0.0	0.0	0.0
+Pawnee	0.698	457.169	4.259e-05	0.02789317
+McIntosh	0.0	0.0	0.0	0.0
+Custer	0.0	0.0	0.0	0.0
+Cotton	0.0	0.0	0.0	0.0
+Le Flore	0.0	0.0	0.0	0.0
+Caddo	0.246	299.423	8.49e-06	0.01033313
+Carter	0.0	0.0	0.0	0.0
+Grady	2.094	1371.519	3.77e-05	0.02468937
+Major	0.0	0.0	0.0	0.0
+Washita	0.0	0.0	0.0	0.0
+Pontotoc	0.0	0.0	0.0	0.0
+Seminole	0.375	456.591	1.526e-05	0.01857722
+Mayes	3.195	2287.383	7.772e-05	0.05564461
+Okmulgee	0.211	325.527	5.5e-06	0.00849164
+Latimer	0.0	0.0	0.0	0.0
+Craig	0.522	457.657	3.649e-05	0.03199056
+Pittsburg	0.937	915.003	2.136e-05	0.02085382
+Texas	0.75	913.186	3.667e-05	0.04464366
+Canadian	0.006	111.999	4e-08	0.00077536
+Tillman	0.0	0.0	0.0	0.0
+McCurtain	0.0	0.0	0.0	0.0
+Tulsa	0.022	1022.079	3e-08	0.00157641
+Cleveland	0.108	741.165	3.8e-07	0.00263133
+Garvin	0.698	457.169	2.51e-05	0.01643842
+Grant	0.0	0.0	0.0	0.0
+Adair	0.031	338.43	1.4e-06	0.01532606
+Jackson	0.0	0.0	0.0	0.0

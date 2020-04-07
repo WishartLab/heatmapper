@@ -1,74 +1,74 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Transylvania	0.0	0.0
-Cumberland	3.665	1771.891
-Brunswick	0.0	11.129
-Wayne	12.628	4034.561
-Onslow	9.822	3135.763
-Cherokee	0.0	1.0
-Beaufort	1.304	448.695
-Wilson	0.017	66.128
-Montgomery	2.806	894.791
-Currituck	0.0	0.0
-Buncombe	0.0	2.0
-Ashe	0.0	0.0
-Lincoln	0.0	0.0
-Columbus	2.867	1479.838
-Alexander	0.0	0.0
-Henderson	0.17	196.252
-Mitchell	0.0	0.0
-Wilkes	0.0	0.0
-Lee	0.0	0.0
-Caldwell	5.214	1794.793
-Washington	0.0	0.0
-Yadkin	1.147	591.939
-Robeson	0.0	0.0
-Surry	0.0	0.0
-Martin	0.0	0.0
-Davidson	2.684	1387.84
-Person	2.426	899.157
-Perquimans	0.0	0.0
-Catawba	7.015	2237.971
-Lenoir	0.0	0.0
-McDowell	1.304	448.695
-Cabarrus	0.004	159.043
-Carteret	0.0	9.0
-Duplin	1.304	448.695
-Rowan	0.158	260.024
-Alleghany	0.0	0.0
-Bertie	0.0	0.0
-Wake	0.013	384.264
-Guilford	0.017	160.452
-Scotland	0.0	0.0
-Northampton	16.837	5372.739
-Pasquotank	0.0	0.0
-Johnston	0.652	503.486
-Davie	0.043	99.938
-Hertford	0.0	0.0
-Randolph	0.001	79.55
-Hoke	2.806	895.791
-Rockingham	0.915	589.743
-Stanly	0.0	0.0
-Vance	5.612	1789.579
-Clay	0.0	0.0
-Pender	0.0	0.0
-Franklin	2.806	895.791
-Craven	4.209	1345.188
-New Hanover	0.0	0.0
-Union	0.002	109.36
-Swain	0.0	0.0
-Dare	0.0	16.226
-Forsyth	0.008	172.828
-Durham	5.92	2862.441
-Pitt	0.01	39.071
-Burke	9.021	3843.578
-Gaston	0.001	103.914
-Warren	1.917	1345.392
-Mecklenburg	0.081	1211.901
-Cleveland	0.089	145.699
-Granville	39.286	12566.065
-Sampson	0.0	3.0
-Caswell	0.0	0.0
-Watauga	0.0	0.0
-Orange	0.003	141.701
-Nash	7.015	2236.971
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Transylvania	0.0	0.0	0.0	0.0
+Cumberland	3.665	1768.891	1.103e-05	0.00532269
+Brunswick	0.0	9.129	0.0	6.676e-05
+Wayne	12.628	4026.561	0.00010246	0.0326704
+Onslow	9.822	3131.763	4.969e-05	0.01584235
+Cherokee	0.0	0.0	0.0	0.0
+Beaufort	1.304	448.362	2.77e-05	0.00952361
+Wilson	0.017	65.128	2.1e-07	0.00079956
+Montgomery	2.806	894.791	0.00010289	0.03281108
+Currituck	0.0	0.0	0.0	0.0
+Buncombe	0.0	0.0	0.0	0.0
+Ashe	0.0	0.0	0.0	0.0
+Lincoln	0.0	0.0	0.0	0.0
+Columbus	2.867	1476.22	5.151e-05	0.02652448
+Alexander	0.0	0.0	0.0	0.0
+Henderson	0.17	195.252	1.46e-06	0.00167242
+Mitchell	0.0	0.0	0.0	0.0
+Wilkes	0.0	0.0	0.0	0.0
+Lee	0.0	0.0	0.0	0.0
+Caldwell	5.214	1793.46	6.356e-05	0.02186373
+Washington	0.0	0.0	0.0	0.0
+Yadkin	1.147	590.492	3.055e-05	0.01572842
+Robeson	0.0	0.0	0.0	0.0
+Surry	0.0	0.0	0.0	0.0
+Martin	0.0	0.0	0.0	0.0
+Davidson	2.684	1381.84	1.611e-05	0.00829366
+Person	2.426	898.334	6.141e-05	0.0227386
+Perquimans	0.0	0.0	0.0	0.0
+Catawba	7.015	2236.971	4.422e-05	0.01409986
+Lenoir	0.0	0.0	0.0	0.0
+McDowell	1.304	448.362	2.865e-05	0.00985259
+Cabarrus	0.004	152.043	2e-08	0.00071942
+Carteret	0.0	0.0	0.0	0.0
+Duplin	1.304	448.362	2.216e-05	0.00761795
+Rowan	0.158	255.024	1.12e-06	0.00180533
+Alleghany	0.0	0.0	0.0	0.0
+Bertie	0.0	0.0	0.0	0.0
+Wake	0.013	374.264	1e-08	0.00034264
+Guilford	0.017	152.452	3e-08	0.00028567
+Scotland	0.0	0.0	0.0	0.0
+Northampton	16.837	5368.739	0.00085571	0.27285724
+Pasquotank	0.0	0.0	0.0	0.0
+Johnston	0.652	499.486	3.22e-06	0.00246447
+Davie	0.043	95.938	1.01e-06	0.00224506
+Hertford	0.0	0.0	0.0	0.0
+Randolph	0.001	75.55	1e-08	0.00052703
+Hoke	2.806	894.791	5.124e-05	0.01633904
+Rockingham	0.915	587.357	1.009e-05	0.00647654
+Stanly	0.0	0.0	0.0	0.0
+Vance	5.612	1789.579	0.00012588	0.04014129
+Clay	0.0	0.0	0.0	0.0
+Pender	0.0	0.0	0.0	0.0
+Franklin	2.806	894.791	4.153e-05	0.01324439
+Craven	4.209	1342.188	4.09e-05	0.01304209
+New Hanover	0.0	0.0	0.0	0.0
+Union	0.002	101.36	1e-08	0.00042966
+Swain	0.0	0.0	0.0	0.0
+Dare	0.0	15.565	0.0	0.00042643
+Forsyth	0.008	162.828	2e-08	0.00042951
+Durham	5.92	2857.441	1.869e-05	0.00902144
+Pitt	0.01	39.071	6e-08	0.00021716
+Burke	9.021	3838.23	9.981e-05	0.04246675
+Gaston	0.001	92.914	0.0	0.00041694
+Warren	1.917	1338.949	9.678e-05	0.06759979
+Mecklenburg	0.081	1134.901	7e-08	0.00103748
+Cleveland	0.089	143.48	9.1e-07	0.0014694
+Granville	39.286	12527.065	0.00065351	0.20838501
+Sampson	0.0	0.0	0.0	0.0
+Caswell	0.0	0.0	0.0	0.0
+Watauga	0.0	0.0	0.0	0.0
+Orange	0.003	126.701	2e-08	0.00086765
+Nash	7.015	2236.971	7.461e-05	0.02379351
+Jackson	0.0	0.0	0.0	0.0

@@ -1,148 +1,148 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Potter	96.321	1258.827
-Oldham	0.0	0.0
-Limestone	0.0	0.0
-Lamb	0.0	0.0
-McLennan	0.008	13.547
-Brown	12.04	157.353
-Tyler	0.0	0.0
-Wood	13.059	342.307
-Brazos	0.96	53.366
-Montague	0.0	0.0
-Kendall	24.08	313.705
-Dallam	0.0	0.0
-Gray	0.238	19.626
-Austin	0.0	0.0
-Williamson	0.823	45.741
-Ellis	0.265	18.264
-Cameron	37.252	1086.681
-Harris	329.137	10957.529
-Montgomery	4.437	251.799
-Eastland	0.0	0.0
-Jim Wells	0.0	0.0
-Wharton	0.0	4.0
-Comanche	0.0	0.0
-Wichita	0.21	14.151
-Gonzales	0.0	0.0
-Kerr	0.0	0.0
-Henderson	0.0	0.0
-Yoakum	0.0	0.0
-Trinity	9.715	268.886
-Lee	0.0	0.0
-Caldwell	14.158	307.237
-Washington	0.0	0.0
-Lampasas	0.0	0.0
-Reeves	0.0	0.0
-Falls	0.0	0.0
-Tom Green	84.122	1185.595
-Erath	0.0	1.0
-Hunt	0.0	0.0
-Hardin	0.137	7.623
-Hansford	0.0	0.0
-Hays	15.353	426.543
-Bowie	0.055	1.839
-Martin	0.0	0.0
-Victoria	96.139	1354.966
-Fayette	12.04	155.353
-Jefferson	6.936	235.034
-San Jacinto	0.0	0.0
-Newton	0.0	0.0
-Colorado	0.0	0.0
-Karnes	0.0	0.0
-Tarrant	16.829	760.302
-Crane	0.0	0.0
-Hopkins	0.0	0.0
-Burleson	0.0	0.0
-Smith	0.553	48.959
-Fort Bend	10.146	614.16
-Matagorda	0.592	31.974
-Parker	12.04	157.353
-Donley	0.137	10.714
-Lamar	12.04	158.353
-Deaf Smith	60.201	788.764
-Morris	0.0	0.0
-Grayson	0.0	1.0
-Leon	0.0	0.0
-Coryell	15.181	266.71
-Willacy	0.0	0.0
-Brazoria	31.144	970.522
-Live Oak	0.0	0.0
-Dawson	23.15	406.701
-Camp	0.0	0.0
-Nacogdoches	45.544	800.129
-Starr	0.194	13.057
-Gillespie	6.529	171.153
-Lavaca	0.0	0.0
-Lubbock	28.312	1032.916
-Upshur	0.0	0.0
-El Paso	7.744	397.157
-Aransas	0.0	0.0
-Comal	0.224	20.709
-Titus	0.0	0.0
-Webb	7.797	432.341
-San Augustine	0.0	0.0
-Liberty	12.04	157.353
-Terry	0.0	0.0
-Kleberg	0.0	0.0
-Atascosa	0.0	1.0
-Hidalgo	56.874	1081.681
-Milam	0.0	0.0
-Randall	108.361	1418.179
-Hutchinson	0.0	0.0
-Hemphill	0.0	0.0
-San Patricio	15.181	266.71
-Mason	0.0	0.0
-Dallas	22.74	1233.997
-Andrews	0.0	0.0
-Swisher	0.0	0.0
-Waller	7.315	180.772
-Clay	0.0	0.0
-Lynn	0.0	0.0
-Shelby	0.194	13.057
-Van Zandt	12.04	158.353
-Franklin	0.0	0.0
-Gaines	0.0	0.0
-Anderson	0.0	0.0
-Uvalde	0.0	0.0
-Bastrop	0.0	0.0
-Bell	1.427	79.661
-Young	0.0	0.0
-Grimes	0.0	0.0
-Wise	0.0	0.0
-Maverick	0.0	1.0
-Robertson	0.0	0.0
-Dewitt	12.04	157.353
-Goliad	0.0	0.0
-Angelina	29.778	561.553
-Crosby	0.0	0.0
-Chambers	0.0	0.0
-Kaufman	0.103	6.757
-Moore	0.0	0.0
-Rusk	24.08	314.705
-Medina	0.0	0.0
-Hockley	0.0	0.0
-Bexar	19.881	1032.891
-Harrison	0.194	13.057
-Castro	12.04	157.353
-Pecos	0.0	0.0
-Palo Pinto	0.0	0.0
-Val Verde	0.0	0.0
-Blanco	0.0	0.0
-Hale	0.0	0.0
-Taylor	1.821	95.355
-Galveston	17.343	697.897
-Burnet	0.0	0.0
-Guadalupe	5.322	153.813
-Jasper	0.0	0.0
-Collin	23.14	1017.669
-Llano	0.0	0.0
-Gregg	36.12	472.059
-Zapata	0.0	0.0
-Walker	48.16	629.412
-Polk	0.0	0.0
-Orange	0.0	0.0
-Travis	18.637	1025.159
-Hood	0.097	6.524
-Navarro	0.091	6.289
-Fannin	0.0	0.0
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Potter	96.321	1258.827	0.00080504	0.01052109
+Oldham	0.0	0.0	0.0	0.0
+Limestone	0.0	0.0	0.0	0.0
+Lamb	0.0	0.0	0.0	0.0
+McLennan	0.008	11.547	3e-08	4.535e-05
+Brown	12.04	157.353	0.00031748	0.00414917
+Tyler	0.0	0.0	0.0	0.0
+Wood	13.059	339.921	0.00028937	0.00753221
+Brazos	0.96	53.366	4.23e-06	0.00023534
+Montague	0.0	0.0	0.0	0.0
+Kendall	24.08	314.705	0.0005276	0.00689523
+Dallam	0.0	0.0	0.0	0.0
+Gray	0.238	18.521	1.087e-05	0.0008459
+Austin	0.0	0.0	0.0	0.0
+Williamson	0.823	45.741	1.45e-06	8.071e-05
+Ellis	0.265	21.264	1.48e-06	0.0001185
+Cameron	37.252	1076.681	8.788e-05	0.00253989
+Harris	329.137	10543.529	7.005e-05	0.00224396
+Montgomery	4.437	239.799	7.51e-06	0.0004058
+Eastland	0.0	0.0	0.0	0.0
+Jim Wells	0.0	0.0	0.0	0.0
+Wharton	0.0	0.0	0.0	0.0
+Comanche	0.0	0.0	0.0	0.0
+Wichita	0.21	13.151	1.59e-06	9.958e-05
+Gonzales	0.0	0.0	0.0	0.0
+Kerr	0.0	0.0	0.0	0.0
+Henderson	0.0	0.0	0.0	0.0
+Yoakum	0.0	0.0	0.0	0.0
+Trinity	9.715	266.738	0.00065909	0.0180962
+Lee	0.0	0.0	0.0	0.0
+Caldwell	14.158	305.79	0.00032738	0.00707078
+Washington	0.0	0.0	0.0	0.0
+Lampasas	0.0	0.0	0.0	0.0
+Reeves	0.0	0.0	0.0	0.0
+Falls	0.0	0.0	0.0	0.0
+Tom Green	84.122	1183.262	0.00071176	0.01001161
+Erath	0.0	0.0	0.0	0.0
+Hunt	0.0	0.0	0.0	0.0
+Hardin	0.137	7.623	2.39e-06	0.00013325
+Hansford	0.0	0.0	0.0	0.0
+Hays	15.353	421.543	6.896e-05	0.00189346
+Bowie	0.055	4.839	5.8e-07	5.13e-05
+Martin	0.0	0.0	0.0	0.0
+Victoria	96.139	1352.299	0.00104459	0.01469331
+Fayette	12.04	157.353	0.00047497	0.00620746
+Jefferson	6.936	234.034	2.72e-05	0.00091778
+San Jacinto	0.0	0.0	0.0	0.0
+Newton	0.0	0.0	0.0	0.0
+Colorado	0.0	0.0	0.0	0.0
+Karnes	0.0	0.0	0.0	0.0
+Tarrant	16.829	726.302	8.07e-06	0.00034836
+Crane	0.0	0.0	0.0	0.0
+Hopkins	0.0	0.0	0.0	0.0
+Burleson	0.0	0.0	0.0	0.0
+Smith	0.553	43.959	2.4e-06	0.00019094
+Fort Bend	10.146	564.16	1.288e-05	0.00071607
+Matagorda	0.592	31.974	1.62e-05	0.00087475
+Parker	12.04	157.353	8.701e-05	0.00113718
+Donley	0.137	10.131	4.128e-05	0.00305243
+Lamar	12.04	157.353	0.00024212	0.00316427
+Deaf Smith	60.201	786.764	0.00320901	0.04193838
+Morris	0.0	0.0	0.0	0.0
+Grayson	0.0	0.0	0.0	0.0
+Leon	0.0	0.0	0.0	0.0
+Coryell	15.181	265.887	0.00020293	0.00355426
+Willacy	0.0	0.0	0.0	0.0
+Brazoria	31.144	947.522	8.413e-05	0.00255949
+Live Oak	0.0	0.0	0.0	0.0
+Dawson	23.15	405.446	0.00183454	0.0321298
+Camp	0.0	0.0	0.0	0.0
+Nacogdoches	45.544	797.661	0.0006931	0.01213893
+Starr	0.194	12.405	3.01e-06	0.00019225
+Gillespie	6.529	169.96	0.00024358	0.00634084
+Lavaca	0.0	0.0	0.0	0.0
+Lubbock	28.312	1006.916	9.21e-05	0.00327546
+Upshur	0.0	0.0	0.0	0.0
+El Paso	7.744	378.157	9.21e-06	0.00044978
+Aransas	0.0	0.0	0.0	0.0
+Comal	0.224	19.709	1.51e-06	0.00013283
+Titus	0.0	0.0	0.0	0.0
+Webb	7.797	408.341	2.826e-05	0.00147998
+San Augustine	0.0	0.0	0.0	0.0
+Liberty	12.04	157.353	0.00013948	0.00182284
+Terry	0.0	0.0	0.0	0.0
+Kleberg	0.0	0.0	0.0	0.0
+Atascosa	0.0	0.0	0.0	0.0
+Hidalgo	56.874	1068.681	6.568e-05	0.00123413
+Milam	0.0	0.0	0.0	0.0
+Randall	108.361	1416.179	0.00079519	0.01039237
+Hutchinson	0.0	0.0	0.0	0.0
+Hemphill	0.0	0.0	0.0	0.0
+San Patricio	15.181	265.887	0.00022694	0.00397481
+Mason	0.0	0.0	0.0	0.0
+Dallas	22.74	1190.997	8.62e-06	0.00045152
+Andrews	0.0	0.0	0.0	0.0
+Swisher	0.0	0.0	0.0	0.0
+Waller	7.315	179.671	0.00013769	0.00338198
+Clay	0.0	0.0	0.0	0.0
+Lynn	0.0	0.0	0.0	0.0
+Shelby	0.194	12.405	7.63e-06	0.00048804
+Van Zandt	12.04	157.353	0.00021493	0.00280892
+Franklin	0.0	0.0	0.0	0.0
+Gaines	0.0	0.0	0.0	0.0
+Anderson	0.0	0.0	0.0	0.0
+Uvalde	0.0	0.0	0.0	0.0
+Bastrop	0.0	0.0	0.0	0.0
+Bell	1.427	69.661	4.01e-06	0.00019587
+Young	0.0	0.0	0.0	0.0
+Grimes	0.0	0.0	0.0	0.0
+Wise	0.0	0.0	0.0	0.0
+Maverick	0.0	0.0	0.0	0.0
+Robertson	0.0	0.0	0.0	0.0
+Dewitt	12.04	157.353	0.00059642	0.00779477
+Goliad	0.0	0.0	0.0	0.0
+Angelina	29.778	559.529	0.00034191	0.00642457
+Crosby	0.0	0.0	0.0	0.0
+Chambers	0.0	0.0	0.0	0.0
+Kaufman	0.103	6.427	8e-07	4.997e-05
+Moore	0.0	0.0	0.0	0.0
+Rusk	24.08	314.705	0.00044224	0.00577971
+Medina	0.0	0.0	0.0	0.0
+Hockley	0.0	0.0	0.0	0.0
+Bexar	19.881	1006.891	1.001e-05	0.00050698
+Harrison	0.194	12.405	2.91e-06	0.00018591
+Castro	12.04	157.353	0.00157078	0.02052877
+Pecos	0.0	0.0	0.0	0.0
+Palo Pinto	0.0	0.0	0.0	0.0
+Val Verde	0.0	0.0	0.0	0.0
+Blanco	0.0	0.0	0.0	0.0
+Hale	0.0	0.0	0.0	0.0
+Taylor	1.821	92.222	1.323e-05	0.00067002
+Galveston	17.343	681.897	5.133e-05	0.0020181
+Burnet	0.0	0.0	0.0	0.0
+Guadalupe	5.322	153.813	3.251e-05	0.00093964
+Jasper	0.0	0.0	0.0	0.0
+Collin	23.14	998.669	2.302e-05	0.00099356
+Llano	0.0	0.0	0.0	0.0
+Gregg	36.12	472.059	0.00029198	0.00381594
+Zapata	0.0	0.0	0.0	0.0
+Walker	48.16	629.412	0.00066446	0.00868394
+Polk	0.0	0.0	0.0	0.0
+Orange	0.0	0.0	0.0	0.0
+Travis	18.637	1007.159	1.492e-05	0.00080654
+Hood	0.097	6.198	1.6e-06	0.00010238
+Navarro	0.091	5.968	1.84e-06	0.00012041
+Fannin	0.0	0.0	0.0	0.0
+Jackson	0.0	0.0	0.0	0.0

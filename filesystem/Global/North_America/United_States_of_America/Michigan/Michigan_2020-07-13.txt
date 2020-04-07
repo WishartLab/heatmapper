@@ -1,43 +1,43 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Schoolcraft	0.0	0.0
-Wexford	0.18	461.459
-Roscommon	0.18	461.459
-Antrim	0.0	0.0
-Saginaw	0.736	8565.516
-Houghton	0.0	0.0
-Lapeer	1.97	6462.434
-Kalkaska	0.0	0.0
-Ogemaw	0.0	0.0
-Tuscola	0.72	1845.846
-Allegan	1.621	4154.16
-Grand Traverse	0.36	924.924
-Manistee	0.281	923.205
-Cass	0.0	0.0
-Missaukee	0.0	0.0
-Ontonagon	0.0	0.0
-Bay	0.005	604.101
-Hillsdale	2.251	7385.637
-Gratiot	0.0	0.0
-Chippewa	0.0	0.0
-Isabella	0.704	2308.007
-Marquette	0.985	3231.215
-Oscoda	0.0	0.0
-Benzie	0.0	0.0
-Iosco	0.2	922.738
-Midland	0.051	600.128
-Gladwin	0.36	922.924
-Oceana	0.0	0.0
-Gogebic	0.0	0.0
-Barry	0.54	1385.388
-Leelanau	0.0	1.0
-Ingham	0.232	4278.441
-Charlevoix	0.18	462.459
-Clare	0.0	2.0
-Out of MI	3.061	7852.847
-Huron	0.0	0.0
-Clinton	0.014	692.367
-Crawford	0.0	0.0
-Presque Isle	0.003	450.393
-Newaygo	0.0	0.0
-Genesee	0.03	5399.619
-Saint Clair	0.651	7566.968
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Schoolcraft	0.0	0.0	0.0	0.0
+Wexford	0.18	461.459	5.38e-06	0.01378889
+Roscommon	0.18	461.459	7.54e-06	0.01932084
+Antrim	0.0	0.0	0.0	0.0
+Saginaw	0.736	8544.516	3.86e-06	0.04478258
+Houghton	0.0	0.0	0.0	0.0
+Lapeer	1.97	6457.767	2.238e-05	0.07336037
+Kalkaska	0.0	0.0	0.0	0.0
+Ogemaw	0.0	0.0	0.0	0.0
+Tuscola	0.72	1845.846	1.371e-05	0.03514826
+Allegan	1.621	4153.16	1.382e-05	0.03539816
+Grand Traverse	0.36	922.924	3.89e-06	0.00996969
+Manistee	0.281	922.538	1.146e-05	0.03761163
+Cass	0.0	0.0	0.0	0.0
+Missaukee	0.0	0.0	0.0	0.0
+Ontonagon	0.0	0.0	0.0	0.0
+Bay	0.005	604.101	5e-08	0.00581297
+Hillsdale	2.251	7380.304	4.92e-05	0.16132165
+Gratiot	0.0	0.0	0.0	0.0
+Chippewa	0.0	0.0	0.0	0.0
+Isabella	0.704	2306.34	9.98e-06	0.0326853
+Marquette	0.985	3228.882	1.481e-05	0.04854294
+Oscoda	0.0	0.0	0.0	0.0
+Benzie	0.0	0.0	0.0	0.0
+Iosco	0.2	921.915	7.97e-06	0.03675751
+Midland	0.051	596.128	6.1e-07	0.00716423
+Gladwin	0.36	922.924	1.421e-05	0.03642594
+Oceana	0.0	0.0	0.0	0.0
+Gogebic	0.0	0.0	0.0	0.0
+Barry	0.54	1384.388	8.83e-06	0.02263662
+Leelanau	0.0	0.0	0.0	0.0
+Ingham	0.232	4272.441	7.9e-07	0.01459491
+Charlevoix	0.18	461.459	6.86e-06	0.01758341
+Clare	0.0	0.0	0.0	0.0
+Out of MI	3.061	7844.847	N/A	N/A
+Huron	0.0	0.0	0.0	0.0
+Clinton	0.014	691.367	1.8e-07	0.00871486
+Crawford	0.0	0.0	0.0	0.0
+Presque Isle	0.003	447.862	2.4e-07	0.03515952
+Newaygo	0.0	0.0	0.0	0.0
+Genesee	0.03	5335.619	7e-08	0.01311311
+Saint Clair	0.651	7550.968	4.09e-06	0.04738992

@@ -1,51 +1,51 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	0.0	0.0
-Brown	0.0	0.0
-Pike	0.0	0.0
-Richland	3.0	3683.411
-Sandusky	0.0	0.0
-Fulton	0.092	300.969
-Seneca	0.334	460.508
-Fairfield	6.678	9210.206
-Coshocton	1.125	1381.533
-Wyandot	0.0	0.0
-Hamilton	0.04	3911.53
-Washington	2.25	2768.06
-Pickaway	2.009	4223.528
-Erie	1.875	2302.877
-Fayette	0.0	0.0
-Monroe	0.0	0.0
-Lawrence	0.574	1206.718
-Marion	0.002	291.032
-Ashland	0.0	0.0
-Darke	1.5	1840.706
-Defiance	0.0	1.0
-Clermont	1.355	2117.91
-Mahoning	0.007	1107.283
-Gallia	0.0	0.0
-Williams	0.0	0.0
-Auglaize	0.197	901.285
-Tuscarawas	1.125	1383.533
-Adams	0.024	900.729
-Highland	0.375	462.174
-Shelby	0.001	219.69
-Allen	0.459	2102.995
-Butler	0.033	1265.456
-Greene	2.25	2763.06
-Hancock	0.968	1511.504
-Union	0.75	920.354
-Ashtabula	1.5	1843.706
-Preble	0.052	597.838
-Clark	0.75	922.354
-Columbiana	0.306	2183.373
-Carroll	0.375	461.174
-Holmes	0.0	0.0
-Knox	0.75	920.354
-Lucas	0.034	2554.512
-Huron	0.75	923.354
-Clinton	0.75	920.354
-Crawford	0.334	460.508
-Stark	0.013	829.476
-Champaign	0.0	0.0
-Athens	0.0	0.0
-Van Wert	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	0.0	0.0	0.0	0.0
+Brown	0.0	0.0	0.0	0.0
+Pike	0.0	0.0	0.0	0.0
+Richland	3.0	3681.411	2.477e-05	0.03040001
+Sandusky	0.0	0.0	0.0	0.0
+Fulton	0.092	300.358	2.18e-06	0.00710469
+Seneca	0.334	460.175	6.05e-06	0.00833545
+Fairfield	6.678	9203.539	4.287e-05	0.0590796
+Coshocton	1.125	1380.533	3.071e-05	0.03768962
+Wyandot	0.0	0.0	0.0	0.0
+Hamilton	0.04	3836.53	5e-08	0.00469769
+Washington	2.25	2761.06	3.74e-05	0.04589909
+Pickaway	2.009	4217.769	3.459e-05	0.07261249
+Erie	1.875	2300.877	2.513e-05	0.03083665
+Fayette	0.0	0.0	0.0	0.0
+Monroe	0.0	0.0	0.0	0.0
+Lawrence	0.574	1205.072	9.59e-06	0.02012949
+Marion	0.002	285.032	3e-08	0.0043679
+Ashland	0.0	0.0	0.0	0.0
+Darke	1.5	1840.706	2.923e-05	0.03586513
+Defiance	0.0	0.0	0.0	0.0
+Clermont	1.355	2111.91	6.59e-06	0.01027863
+Mahoning	0.007	1096.283	3e-08	0.00477388
+Gallia	0.0	0.0	0.0	0.0
+Williams	0.0	0.0	0.0	0.0
+Auglaize	0.197	899.114	4.3e-06	0.0196296
+Tuscarawas	1.125	1380.533	1.22e-05	0.01497714
+Adams	0.024	895.667	8.7e-07	0.03230656
+Highland	0.375	460.174	8.71e-06	0.01068731
+Shelby	0.001	216.721	2e-08	0.0044568
+Allen	0.459	2097.93	4.47e-06	0.02043511
+Butler	0.033	1258.456	9e-08	0.00329113
+Greene	2.25	2761.06	1.339e-05	0.01643537
+Hancock	0.968	1508.504	1.275e-05	0.01986704
+Union	0.75	920.354	1.297e-05	0.01591344
+Ashtabula	1.5	1840.706	1.539e-05	0.01888039
+Preble	0.052	595.82	1.27e-06	0.01453326
+Clark	0.75	920.354	5.57e-06	0.00683846
+Columbiana	0.306	2172.373	2.98e-06	0.02115982
+Carroll	0.375	460.174	1.385e-05	0.0169925
+Holmes	0.0	0.0	0.0	0.0
+Knox	0.75	920.354	1.212e-05	0.01487008
+Lucas	0.034	2535.512	8e-08	0.00589792
+Huron	0.75	920.354	1.282e-05	0.01573147
+Clinton	0.75	920.354	1.783e-05	0.02188349
+Crawford	0.334	460.175	8.04e-06	0.01107521
+Stark	0.013	815.476	3e-08	0.00219465
+Champaign	0.0	0.0	0.0	0.0
+Athens	0.0	0.0	0.0	0.0
+Van Wert	0.0	0.0	0.0	0.0

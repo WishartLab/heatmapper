@@ -1,37 +1,37 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Jones	0.055	2773.212
-Webster	0.009	462.867
-George	0.0	0.0
-Kemper	0.007	921.274
-Quitman	0.014	1383.427
-Leake	0.027	1386.609
-Tallahatchie	0.0	0.0
-Jefferson	0.007	921.274
-Newton	0.015	923.753
-Smith	0.018	924.738
-Panola	0.036	1847.474
-Monroe	0.027	1388.609
-Lamar	0.027	1387.609
-Lawrence	0.0	1.0
-Marion	0.027	1386.609
-Benton	0.0	0.0
-Simpson	0.0	1.0
-Calhoun	0.0	0.0
-Leflore	0.018	924.738
-Clay	0.0	2.0
-Chickasaw	0.0	0.0
-Itawamba	0.0	1.0
-Franklin	0.018	923.738
-Humphreys	0.0	0.0
-Union	0.009	461.867
-Perry	0.027	1385.609
-Sharkey	0.0	0.0
-Grenada	0.0	0.0
-Copiah	0.018	923.738
-Noxubee	0.0	0.0
-Yazoo	0.119	6005.293
-Lowndes	0.027	1385.609
-Prentiss	0.0	0.0
-Walthall	0.009	461.867
-Winston	0.027	1388.609
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Jones	0.055	2771.212	8e-07	0.0404787
+Webster	0.009	461.867	9.2e-07	0.04718707
+George	0.0	0.0	0.0	0.0
+Kemper	0.007	920.019	7e-07	0.09175416
+Quitman	0.014	1381.902	1.99e-06	0.19598667
+Leake	0.027	1385.609	1.19e-06	0.06087111
+Tallahatchie	0.0	0.0	0.0	0.0
+Jefferson	0.007	920.019	9.9e-07	0.12947073
+Newton	0.015	923.086	7e-07	0.04304836
+Smith	0.018	923.738	1.12e-06	0.05772641
+Panola	0.036	1847.474	1.05e-06	0.05405448
+Monroe	0.027	1385.609	7.6e-07	0.038961
+Lamar	0.027	1385.609	4.3e-07	0.02218856
+Lawrence	0.0	0.0	0.0	0.0
+Marion	0.027	1385.609	1.09e-06	0.05606348
+Benton	0.0	0.0	0.0	0.0
+Simpson	0.0	0.0	0.0	0.0
+Calhoun	0.0	0.0	0.0	0.0
+Leflore	0.018	923.738	6.2e-07	0.03194225
+Clay	0.0	0.0	0.0	0.0
+Chickasaw	0.0	0.0	0.0	0.0
+Itawamba	0.0	0.0	0.0	0.0
+Franklin	0.018	923.738	2.31e-06	0.11861043
+Humphreys	0.0	0.0	0.0	0.0
+Union	0.009	461.867	3.1e-07	0.01614581
+Perry	0.027	1385.609	2.26e-06	0.11613519
+Sharkey	0.0	0.0	0.0	0.0
+Grenada	0.0	0.0	0.0	0.0
+Copiah	0.018	923.738	6.3e-07	0.03236303
+Noxubee	0.0	0.0	0.0	0.0
+Yazoo	0.119	6004.293	4.21e-06	0.21255639
+Lowndes	0.027	1385.609	4.6e-07	0.02351279
+Prentiss	0.0	0.0	0.0	0.0
+Walthall	0.009	461.867	6.2e-07	0.03192997
+Winston	0.027	1385.609	1.49e-06	0.07627905

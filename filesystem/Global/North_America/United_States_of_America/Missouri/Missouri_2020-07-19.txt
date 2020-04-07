@@ -1,50 +1,50 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Wright	0.0	0.0
-Pike	0.0	0.0
-Pemiscot	0.0	0.0
-Montgomery	0.009	461.534
-Reynolds	0.0	0.0
-Taney	0.033	925.696
-Ralls	0.0	0.0
-Camden	0.05	1388.547
-Macon	0.0	0.0
-Dunklin	0.017	462.846
-Bates	0.0	0.0
-Cass	0.017	465.846
-Jefferson	0.142	5542.312
-Newton	0.0	0.0
-Pulaski	0.017	462.846
-Ripley	0.0	0.0
-Maries	0.0	0.0
-Saint Francois	0.066	1849.391
-Pettis	0.0	0.0
-McDonald	0.0	0.0
-Livingston	0.0	0.0
-Benton	0.0	0.0
-Henry	0.0	1.0
-Carter	-0.007	-461.129
-Buchanan	0.0	0.0
-Scott	0.017	464.846
-Cole	0.05	1388.547
-Christian	0.017	462.846
-Stoddard	0.0	0.0
-Osage	0.0	0.0
-Randolph	0.0	0.0
-Barry	0.0	0.0
-Atchison	0.0	0.0
-Shelby	0.0	0.0
-Cooper	0.0	0.0
-Stone	0.0	0.0
-Chariton	0.0	0.0
-Texas	0.0	0.0
-Moniteau	0.0	2.0
-Morgan	0.0	0.0
-Kansas City	0.545	15280.975
-Cedar	0.0	0.0
-Clinton	0.017	462.846
-Crawford	0.003	458.308
-Ray	0.006	460.627
-Jasper	0.066	1849.391
-Callaway	0.0	1.0
-Bollinger	0.0	0.0
-Adair	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Wright	0.0	0.0	0.0	0.0
+Pike	0.0	0.0	0.0	0.0
+Pemiscot	0.0	0.0	0.0	0.0
+Montgomery	0.009	461.122	7.8e-07	0.03997937
+Reynolds	0.0	0.0	0.0	0.0
+Taney	0.033	923.696	5.9e-07	0.01653828
+Ralls	0.0	0.0	0.0	0.0
+Camden	0.05	1385.547	1.09e-06	0.03024221
+Macon	0.0	0.0	0.0	0.0
+Dunklin	0.017	461.846	5.8e-07	0.01569677
+Bates	0.0	0.0	0.0	0.0
+Cass	0.017	461.846	1.6e-07	0.00440046
+Jefferson	0.142	5538.312	6.3e-07	0.02468637
+Newton	0.0	0.0	0.0	0.0
+Pulaski	0.017	461.846	3.3e-07	0.00887926
+Ripley	0.0	0.0	0.0	0.0
+Maries	0.0	0.0	0.0	0.0
+Saint Francois	0.066	1847.391	9.9e-07	0.02770034
+Pettis	0.0	0.0	0.0	0.0
+McDonald	0.0	0.0	0.0	0.0
+Livingston	0.0	0.0	0.0	0.0
+Benton	0.0	0.0	0.0	0.0
+Henry	0.0	0.0	0.0	0.0
+Carter	-0.007	-460.621	-1.16e-06	-0.0760854
+Buchanan	0.0	0.0	0.0	0.0
+Scott	0.017	461.846	4.4e-07	0.0120091
+Cole	0.05	1385.547	6.5e-07	0.01804192
+Christian	0.017	461.846	2e-07	0.00530961
+Stoddard	0.0	0.0	0.0	0.0
+Osage	0.0	0.0	0.0	0.0
+Randolph	0.0	0.0	0.0	0.0
+Barry	0.0	0.0	0.0	0.0
+Atchison	0.0	0.0	0.0	0.0
+Shelby	0.0	0.0	0.0	0.0
+Cooper	0.0	0.0	0.0	0.0
+Stone	0.0	0.0	0.0	0.0
+Chariton	0.0	0.0	0.0	0.0
+Texas	0.0	0.0	0.0	0.0
+Moniteau	0.0	0.0	0.0	0.0
+Morgan	0.0	0.0	0.0	0.0
+Kansas City	0.545	15240.975	N/A	N/A
+Cedar	0.0	0.0	0.0	0.0
+Clinton	0.017	461.846	8.3e-07	0.02256209
+Crawford	0.003	457.205	1.3e-07	0.0190844
+Ray	0.006	460.0	2.6e-07	0.02010226
+Jasper	0.066	1847.391	5.5e-07	0.01531376
+Callaway	0.0	0.0	0.0	0.0
+Bollinger	0.0	0.0	0.0	0.0
+Adair	0.0	0.0	0.0	0.0

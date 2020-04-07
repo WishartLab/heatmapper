@@ -1,33 +1,33 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	22.168	457.08
-Skagit	0.635	59.587
-Walla Walla	21.59	475.67
-Pierce	43.239	2585.913
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	22.759	980.03
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Jefferson	0.159	16.896
-Kitsap	1.059	83.875
-Douglas	22.168	454.08
-San Juan	22.168	456.08
-Benton	12.792	730.245
-Okanogan	25.483	724.912
-Whitman	0.0	1.0
-Chelan	0.787	66.458
-Unassigned	1619.229	35675.253
-Mason	33.251	682.12
-Adams	17.162	517.955
-Klickitat	0.0	0.0
-Yakima	10.917	959.065
-Whatcom	0.653	179.025
-Franklin	1.321	146.381
-Ferry	0.0	0.0
-Grays Harbor	22.168	454.08
-Spokane	2.669	221.299
-Kittitas	0.0	2.0
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
-Thurston	0.961	78.586
-Snohomish	5.015	830.987
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	22.168	454.08	0.00027848	0.00570424
+Skagit	0.635	59.587	4.95e-06	0.00046478
+Walla Walla	21.59	475.003	0.00035439	0.0077969
+Pierce	43.239	2556.913	4.851e-05	0.00286875
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	22.759	972.437	0.00100659	0.04300916
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Jefferson	0.159	14.896	5.01e-06	0.00046948
+Kitsap	1.059	83.875	3.93e-06	0.00031087
+Douglas	22.168	454.08	0.00051665	0.01058289
+San Juan	22.168	454.08	0.00129426	0.02651098
+Benton	12.792	719.245	6.337e-05	0.00356279
+Okanogan	25.483	722.888	0.00060484	0.01715769
+Whitman	0.0	0.0	0.0	0.0
+Chelan	0.787	66.458	1.022e-05	0.00086269
+Unassigned	1619.229	35625.253	N/A	N/A
+Mason	33.251	681.12	0.00050759	0.01039767
+Adams	17.162	514.955	0.00086857	0.02606179
+Klickitat	0.0	0.0	0.0	0.0
+Yakima	10.917	922.065	4.342e-05	0.00366705
+Whatcom	0.653	175.025	2.89e-06	0.00077553
+Franklin	1.321	138.381	1.4e-05	0.00146672
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	22.168	454.08	0.00029997	0.00614444
+Spokane	2.669	218.299	5.19e-06	0.00042419
+Kittitas	0.0	0.0	0.0	0.0
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0
+Thurston	0.961	78.586	3.36e-06	0.00027437
+Snohomish	5.015	786.987	6.15e-06	0.00096575

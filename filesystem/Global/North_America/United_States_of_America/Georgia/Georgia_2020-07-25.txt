@@ -1,45 +1,45 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Turner	0.0	2.0
-Harris	0.008	1385.68
-Catoosa	0.0	0.0
-Chattooga	0.0	0.0
-Pierce	0.014	1852.558
-Lincoln	0.0	0.0
-Colquitt	0.045	8314.055
-Meriwether	0.008	1385.68
-Camden	0.0	0.0
-Mitchell	0.02	3695.135
-Washington	0.003	461.888
-Laurens	0.0	1.0
-Baldwin	0.017	2310.444
-Macon	0.0	0.0
-Effingham	0.017	2313.444
-Pulaski	0.005	923.786
-Twiggs	0.0	0.0
-Clinch	0.0	0.0
-Lumpkin	0.0	0.0
-Baker	0.0	0.0
-Monroe	0.01	1386.672
-Irwin	0.0	0.0
-Lamar	0.007	930.781
-Dawson	0.027	3698.115
-Columbia	0.031	4161.012
-Madison	0.003	461.888
-Crisp	0.02	3695.135
-Bryan	0.015	2771.354
-Liberty	0.01	1847.568
-Miller	0.017	2313.444
-Ben Hill	0.003	461.891
-Randolph	0.041	5548.672
-Stephens	0.005	923.786
-Charlton	0.0	0.0
-Tattnall	0.0	0.0
-Coffee	0.0	0.0
-Heard	0.0	0.0
-Greene	0.01	1847.568
-Morgan	0.0	3.0
-Burke	0.005	923.786
-Jasper	0.0	0.0
-Polk	0.007	925.781
-Peach	0.021	2773.339
-Pickens	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Turner	0.0	0.0	0.0	0.0
+Harris	0.008	1384.68	2.3e-07	0.04016476
+Catoosa	0.0	0.0	0.0	0.0
+Chattooga	0.0	0.0	0.0	0.0
+Pierce	0.014	1847.558	7.2e-07	0.09528898
+Lincoln	0.0	0.0	0.0	0.0
+Colquitt	0.045	8308.055	9.9e-07	0.18222616
+Meriwether	0.008	1384.68	3.8e-07	0.06572432
+Camden	0.0	0.0	0.0	0.0
+Mitchell	0.02	3692.468	9e-07	0.16638735
+Washington	0.003	461.888	1.5e-07	0.02265712
+Laurens	0.0	0.0	0.0	0.0
+Baldwin	0.017	2309.444	3.8e-07	0.05152364
+Macon	0.0	0.0	0.0	0.0
+Effingham	0.017	2309.444	2.7e-07	0.0371353
+Pulaski	0.005	923.119	4.5e-07	0.08339678
+Twiggs	0.0	0.0	0.0	0.0
+Clinch	0.0	0.0	0.0	0.0
+Lumpkin	0.0	0.0	0.0	0.0
+Baker	0.0	0.0	0.0	0.0
+Monroe	0.01	1385.672	3.6e-07	0.05035145
+Irwin	0.0	0.0	0.0	0.0
+Lamar	0.007	923.781	3.7e-07	0.04862005
+Dawson	0.027	3695.115	1.08e-06	0.14731551
+Columbia	0.031	4157.012	2e-07	0.02694267
+Madison	0.003	461.888	1e-07	0.01557801
+Crisp	0.02	3692.468	8.8e-07	0.16337631
+Bryan	0.015	2769.354	3.9e-07	0.07266929
+Liberty	0.01	1846.235	1.6e-07	0.03002155
+Miller	0.017	2309.444	2.99e-06	0.40616321
+Ben Hill	0.003	461.558	1.8e-07	0.02749497
+Randolph	0.041	5542.672	6e-06	0.8111623
+Stephens	0.005	923.119	1.9e-07	0.03545685
+Charlton	0.0	0.0	0.0	0.0
+Tattnall	0.0	0.0	0.0	0.0
+Coffee	0.0	0.0	0.0	0.0
+Heard	0.0	0.0	0.0	0.0
+Greene	0.01	1846.235	5.7e-07	0.10431885
+Morgan	0.0	0.0	0.0	0.0
+Burke	0.005	923.119	2.2e-07	0.0411684
+Jasper	0.0	0.0	0.0	0.0
+Polk	0.007	923.781	1.6e-07	0.02175138
+Peach	0.021	2771.339	7.7e-07	0.10152541
+Pickens	0.0	0.0	0.0	0.0

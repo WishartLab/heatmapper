@@ -1,41 +1,41 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	4.078	2280.582
-Mesa	0.148	306.639
-San Miguel	2.447	1367.155
-Delta	0.698	456.836
-Weld	0.014	1493.556
-Lincoln	0.0	0.0
-Ouray	0.0	0.0
-Washington	0.0	0.0
-Huerfano	0.0	0.0
-Park	0.0	0.0
-Custer	0.257	451.713
-Douglas	0.018	804.293
-Summit	0.344	707.823
-Rio Grande	0.0	0.0
-Fremont	0.0	0.0
-Pueblo	9.788	5470.607
-Grand	0.0	0.0
-La Plata	2.662	2098.493
-Teller	0.0	0.0
-Las Animas	0.0	0.0
-Moffat	0.0	0.0
-Mineral	0.0	0.0
-Yuma	0.0	0.0
-Elbert	1.631	911.435
-Unassigned	0.052	1322.193
-Adams	0.395	2672.635
-Chaffee	1.631	911.435
-Baca	0.0	0.0
-Costilla	0.0	0.0
-Otero	0.0	0.0
-Saguache	0.0	0.0
-Archuleta	0.0	0.0
-Pitkin	0.001	40.091
-Morgan	4.894	2736.306
-Montezuma	0.937	913.46
-Rio Blanco	0.0	0.0
-Clear Creek	0.0	0.0
-Alamosa	0.0	0.0
-Kit Carson	0.0	0.0
-Arapahoe	0.084	2932.295
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	4.078	2278.582	0.00018943	0.10584272
+Mesa	0.148	301.639	9.7e-07	0.00196883
+San Miguel	2.447	1367.155	0.00029874	0.16690941
+Delta	0.698	456.424	2.255e-05	0.01474571
+Weld	0.014	1459.556	4e-08	0.00464376
+Lincoln	0.0	0.0	0.0	0.0
+Ouray	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Huerfano	0.0	0.0	0.0	0.0
+Park	0.0	0.0	0.0	0.0
+Custer	0.257	449.565	5.188e-05	0.09074788
+Douglas	0.018	800.293	5e-08	0.00233474
+Summit	0.344	703.823	1.109e-05	0.02269884
+Rio Grande	0.0	0.0	0.0	0.0
+Fremont	0.0	0.0	0.0	0.0
+Pueblo	9.788	5468.607	5.843e-05	0.03264275
+Grand	0.0	0.0	0.0	0.0
+La Plata	2.662	2095.613	4.727e-05	0.03721565
+Teller	0.0	0.0	0.0	0.0
+Las Animas	0.0	0.0	0.0	0.0
+Moffat	0.0	0.0	0.0	0.0
+Mineral	0.0	0.0	0.0	0.0
+Yuma	0.0	0.0	0.0	0.0
+Elbert	1.631	911.435	6.206e-05	0.03467906
+Unassigned	0.052	1297.193	N/A	N/A
+Adams	0.395	2659.635	7.7e-07	0.00519594
+Chaffee	1.631	911.435	8.144e-05	0.04551031
+Baca	0.0	0.0	0.0	0.0
+Costilla	0.0	0.0	0.0	0.0
+Otero	0.0	0.0	0.0	0.0
+Saguache	0.0	0.0	0.0	0.0
+Archuleta	0.0	0.0	0.0	0.0
+Pitkin	0.001	39.091	6e-08	0.00217777
+Morgan	4.894	2734.306	0.00017137	0.09574571
+Montezuma	0.937	911.597	3.582e-05	0.03484964
+Rio Blanco	0.0	0.0	0.0	0.0
+Clear Creek	0.0	0.0	0.0	0.0
+Alamosa	0.0	0.0	0.0	0.0
+Kit Carson	0.0	0.0	0.0	0.0
+Arapahoe	0.084	2888.295	1.3e-07	0.00443524

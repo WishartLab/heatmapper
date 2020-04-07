@@ -1,59 +1,59 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Brown	24.535	1726.38
-Wood	0.0	0.0
-Richland	0.0	0.0
-Green	0.065	12.267
-Manitowoc	7.849	795.93
-Pierce	0.0	0.0
-Fond du Lac	0.882	88.898
-Ozaukee	0.585	136.9
-Washington	0.18	41.994
-Jefferson	0.001	5.157
-Trempealeau	0.0	0.0
-Monroe	0.059	15.683
-Chippewa	1.093	103.786
-Douglas	0.0	0.0
-Walworth	0.0	0.0
-Waukesha	0.841	208.87
-Winnebago	0.0	4.0
-Marathon	7.254	345.424
-Iowa	0.0	0.0
-Ashland	0.0	0.0
-Marquette	0.0	0.0
-Columbia	0.257	46.852
-Bayfield	0.0	0.0
-Sheboygan	7.254	345.424
-Pepin	0.0	0.0
-Florence	7.415	798.283
-Dodge	0.0	1.0
-Unassigned	0.0	0.0
-Kewaunee	0.0	0.0
-Waupaca	0.0	0.0
-Eau Claire	0.199	32.965
-Adams	0.0	0.0
-Shawano	7.415	798.283
-Buffalo	0.0	0.0
-Dunn	0.0	0.0
-Saint Croix	0.0	0.0
-Kenosha	22.013	1861.717
-Iron	0.0	0.0
-Marinette	0.0	0.0
-Oconto	0.0	0.0
-Sauk	0.0	0.0
-La Crosse	14.508	691.853
-Racine	5.293	536.383
-Rusk	4.148	396.186
-Barron	4.148	396.186
-Juneau	0.0	0.0
-Milwaukee	14.64	3018.108
-Vilas	0.0	0.0
-Crawford	0.0	0.0
-Menominee	0.0	0.0
-Calumet	0.0	0.0
-Outagamie	29.015	1382.703
-Waushara	0.0	0.0
-Portage	0.0	0.0
-Oneida	0.0	0.0
-Grant	0.0	0.0
-Door	0.0	0.0
-Jackson	10.274	767.864
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Brown	24.535	1716.38	9.316e-05	0.00651679
+Wood	0.0	0.0	0.0	0.0
+Richland	0.0	0.0	0.0	0.0
+Green	0.065	12.267	1.76e-06	0.00033218
+Manitowoc	7.849	790.868	9.926e-05	0.01000162
+Pierce	0.0	0.0	0.0	0.0
+Fond du Lac	0.882	88.898	8.56e-06	0.00086253
+Ozaukee	0.585	130.9	6.56e-06	0.00146836
+Washington	0.18	41.994	1.33e-06	0.00030948
+Jefferson	0.001	5.157	1e-08	6.058e-05
+Trempealeau	0.0	0.0	0.0	0.0
+Monroe	0.059	15.022	1.28e-06	0.0003262
+Chippewa	1.093	103.786	1.704e-05	0.00161824
+Douglas	0.0	0.0	0.0	0.0
+Walworth	0.0	0.0	0.0	0.0
+Waukesha	0.841	202.87	2.09e-06	0.00050331
+Winnebago	0.0	0.0	0.0	0.0
+Marathon	7.254	345.424	5.356e-05	0.00255061
+Iowa	0.0	0.0	0.0	0.0
+Ashland	0.0	0.0	0.0	0.0
+Marquette	0.0	0.0	0.0	0.0
+Columbia	0.257	44.852	4.48e-06	0.00078197
+Bayfield	0.0	0.0	0.0	0.0
+Sheboygan	7.254	345.424	6.283e-05	0.00299182
+Pepin	0.0	0.0	0.0	0.0
+Florence	7.415	792.352	0.00171604	0.18337237
+Dodge	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Kewaunee	0.0	0.0	0.0	0.0
+Waupaca	0.0	0.0	0.0	0.0
+Eau Claire	0.199	32.965	1.9e-06	0.00031535
+Adams	0.0	0.0	0.0	0.0
+Shawano	7.415	792.352	0.00018176	0.0194223
+Buffalo	0.0	0.0	0.0	0.0
+Dunn	0.0	0.0	0.0	0.0
+Saint Croix	0.0	0.0	0.0	0.0
+Kenosha	22.013	1855.717	0.00013003	0.01096176
+Iron	0.0	0.0	0.0	0.0
+Marinette	0.0	0.0	0.0	0.0
+Oconto	0.0	0.0	0.0	0.0
+Sauk	0.0	0.0	0.0	0.0
+La Crosse	14.508	690.853	0.00012271	0.0058433
+Racine	5.293	533.383	2.692e-05	0.00271326
+Rusk	4.148	394.038	0.00029321	0.02785311
+Barron	4.148	394.038	9.184e-05	0.0087246
+Juneau	0.0	0.0	0.0	0.0
+Milwaukee	14.64	2952.108	1.544e-05	0.00311338
+Vilas	0.0	0.0	0.0	0.0
+Crawford	0.0	0.0	0.0	0.0
+Menominee	0.0	0.0	0.0	0.0
+Calumet	0.0	0.0	0.0	0.0
+Outagamie	29.015	1381.703	0.00015486	0.00737439
+Waushara	0.0	0.0	0.0	0.0
+Portage	0.0	0.0	0.0	0.0
+Oneida	0.0	0.0	0.0	0.0
+Grant	0.0	0.0	0.0	0.0
+Door	0.0	0.0	0.0	0.0
+Jackson	10.274	765.657	0.00050171	0.03738925

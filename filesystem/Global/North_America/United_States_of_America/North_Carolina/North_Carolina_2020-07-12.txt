@@ -1,57 +1,57 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Transylvania	0.0	0.0
-Cumberland	0.098	1802.535
-Wayne	1.969	4159.539
-Onslow	1.531	3232.969
-Cherokee	0.0	1.0
-Beaufort	0.18	461.459
-Montgomery	0.438	922.564
-Currituck	0.0	0.0
-Buncombe	0.0	2.0
-Ashe	0.0	0.0
-Lincoln	0.0	0.0
-Columbus	0.054	1502.612
-Alexander	0.0	0.0
-Mitchell	0.0	0.0
-Wilkes	0.0	0.0
-Lee	0.0	0.0
-Caldwell	0.72	1845.846
-Washington	0.0	0.0
-Yadkin	0.022	601.049
-Robeson	0.0	0.0
-Surry	0.0	0.0
-Martin	0.0	0.0
-Davidson	0.051	1409.16
-Person	0.281	922.538
-Perquimans	0.0	0.0
-Catawba	1.094	2307.403
-Lenoir	0.0	0.0
-McDowell	0.18	461.459
-Carteret	0.0	9.0
-Duplin	0.18	461.459
-Alleghany	0.0	0.0
-Bertie	0.0	0.0
-Scotland	0.0	0.0
-Northampton	2.625	5539.376
-Pasquotank	0.0	0.0
-Johnston	0.005	507.414
-Hertford	0.0	0.0
-Hoke	0.438	923.564
-Rockingham	0.01	595.913
-Stanly	0.0	0.0
-Vance	0.875	1845.126
-Clay	0.0	0.0
-Pender	0.0	0.0
-Franklin	0.438	923.564
-Craven	0.656	1386.848
-New Hanover	0.0	0.0
-Swain	0.0	0.0
-Durham	0.158	2911.946
-Burke	0.548	3925.976
-Warren	0.017	1357.604
-Granville	6.126	12954.884
-Sampson	0.0	3.0
-Caswell	0.0	0.0
-Watauga	0.0	0.0
-Nash	1.094	2306.403
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Transylvania	0.0	0.0	0.0	0.0
+Cumberland	0.098	1799.535	2.9e-07	0.0054149
+Wayne	1.969	4151.539	1.598e-05	0.03368443
+Onslow	1.531	3228.969	7.74e-06	0.01633408
+Cherokee	0.0	0.0	0.0	0.0
+Beaufort	0.18	461.126	3.82e-06	0.00979473
+Montgomery	0.438	922.564	1.606e-05	0.03382949
+Currituck	0.0	0.0	0.0	0.0
+Buncombe	0.0	0.0	0.0	0.0
+Ashe	0.0	0.0	0.0	0.0
+Lincoln	0.0	0.0	0.0	0.0
+Columbus	0.054	1498.994	9.7e-07	0.02693368
+Alexander	0.0	0.0	0.0	0.0
+Mitchell	0.0	0.0	0.0	0.0
+Wilkes	0.0	0.0	0.0	0.0
+Lee	0.0	0.0	0.0	0.0
+Caldwell	0.72	1844.513	8.78e-06	0.02248611
+Washington	0.0	0.0	0.0	0.0
+Yadkin	0.022	599.602	5.9e-07	0.01597107
+Robeson	0.0	0.0	0.0	0.0
+Surry	0.0	0.0	0.0	0.0
+Martin	0.0	0.0	0.0	0.0
+Davidson	0.051	1403.16	3.1e-07	0.00842162
+Person	0.281	921.715	7.11e-06	0.02333042
+Perquimans	0.0	0.0	0.0	0.0
+Catawba	1.094	2306.403	6.9e-06	0.0145375
+Lenoir	0.0	0.0	0.0	0.0
+McDowell	0.18	461.126	3.96e-06	0.01013308
+Carteret	0.0	0.0	0.0	0.0
+Duplin	0.18	461.126	3.06e-06	0.00783482
+Alleghany	0.0	0.0	0.0	0.0
+Bertie	0.0	0.0	0.0	0.0
+Scotland	0.0	0.0	0.0	0.0
+Northampton	2.625	5535.376	0.00013341	0.28132629
+Pasquotank	0.0	0.0	0.0	0.0
+Johnston	0.005	503.414	2e-08	0.00248385
+Hertford	0.0	0.0	0.0	0.0
+Hoke	0.438	922.564	8e-06	0.01684618
+Rockingham	0.01	593.527	1.1e-07	0.00654457
+Stanly	0.0	0.0	0.0	0.0
+Vance	0.875	1845.126	1.963e-05	0.04138724
+Clay	0.0	0.0	0.0	0.0
+Pender	0.0	0.0	0.0	0.0
+Franklin	0.438	922.564	6.48e-06	0.01365548
+Craven	0.656	1383.848	6.37e-06	0.01344691
+New Hanover	0.0	0.0	0.0	0.0
+Swain	0.0	0.0	0.0	0.0
+Durham	0.158	2906.946	5e-07	0.00917773
+Burke	0.548	3920.628	6.06e-06	0.04337842
+Warren	0.017	1351.161	8.6e-07	0.06821634
+Granville	6.126	12915.884	0.0001019	0.21485293
+Sampson	0.0	0.0	0.0	0.0
+Caswell	0.0	0.0	0.0	0.0
+Watauga	0.0	0.0	0.0	0.0
+Nash	1.094	2306.403	1.164e-05	0.02453203
+Jackson	0.0	0.0	0.0	0.0

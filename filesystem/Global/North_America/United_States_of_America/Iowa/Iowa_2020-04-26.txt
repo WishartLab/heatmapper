@@ -1,71 +1,71 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Wright	0.0	0.0
-Black Hawk	28.19	213.398
-Linn	31.115	632.333
-Jones	0.0	0.0
-Montgomery	0.0	0.0
-Winneshiek	0.0	0.0
-Webster	0.0	0.0
-Page	9.079	77.716
-Van Buren	0.135	4.582
-Mitchell	0.0	0.0
-Hamilton	0.0	0.0
-Lee	0.0	0.0
-Louisa	36.052	480.067
-Washington	6.452	118.32
-Hardin	0.0	0.0
-Des Moines	0.0	0.0
-Clayton	0.166	5.266
-Fayette	0.0	0.0
-Jefferson	0.115	4.073
-Guthrie	0.0	0.0
-Lyon	12.017	160.023
-Marion	0.0	0.0
-Delaware	0.0	0.0
-Winnebago	0.0	0.0
-Iowa	0.0	0.0
-Dickinson	0.0	0.0
-Benton	16.695	138.096
-Cerro Gordo	0.0	2.0
-Poweshiek	0.0	0.0
-Henry	21.143	161.049
-Mahaska	0.0	0.0
-Madison	0.0	0.0
-Boone	0.0	0.0
-Appanoose	0.0	0.0
-Mills	0.0	0.0
-Allamakee	21.143	161.049
-Buchanan	0.0	0.0
-Scott	9.958	198.938
-Tama	46.611	415.563
-Woodbury	0.0	0.0
-Howard	0.0	0.0
-Clarke	0.0	0.0
-O'Brien	0.0	0.0
-Unassigned	0.0	0.0
-Plymouth	24.035	320.044
-Dallas	1.245	23.493
-Chickasaw	0.0	0.0
-Shelby	0.15	4.927
-Franklin	0.0	0.0
-Sioux	7.048	53.349
-Butler	0.0	0.0
-Hancock	0.0	0.0
-Audubon	0.0	0.0
-Muscatine	8.218	178.671
-Wapello	0.0	1.0
-Keokuk	0.0	0.0
-Warren	23.054	183.103
-Monona	0.0	0.0
-Johnson	0.691	115.859
-Harrison	0.0	0.0
-Cedar	15.369	122.068
-Taylor	0.0	0.0
-Crawford	0.0	0.0
-Grundy	0.0	0.0
-Jasper	0.0	0.0
-Bremer	0.0	0.0
-Story	0.0	0.0
-Polk	5.944	156.152
-Pottawattamie	14.095	107.699
-Jackson	15.735	182.732
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Wright	0.0	0.0	0.0	0.0
+Black Hawk	28.19	213.398	0.0002129	0.00161167
+Linn	31.115	617.333	0.00013773	0.00273266
+Jones	0.0	0.0	0.0	0.0
+Montgomery	0.0	0.0	0.0	0.0
+Winneshiek	0.0	0.0	0.0	0.0
+Webster	0.0	0.0	0.0	0.0
+Page	9.079	77.208	0.00059538	0.00506315
+Van Buren	0.135	4.283	1.923e-05	0.00061011
+Mitchell	0.0	0.0	0.0	0.0
+Hamilton	0.0	0.0	0.0	0.0
+Lee	0.0	0.0	0.0	0.0
+Louisa	36.052	473.624	0.00322786	0.04240523
+Washington	6.452	115.32	0.00029141	0.00520844
+Hardin	0.0	0.0	0.0	0.0
+Des Moines	0.0	0.0	0.0	0.0
+Clayton	0.166	4.94	9.46e-06	0.00028139
+Fayette	0.0	0.0	0.0	0.0
+Jefferson	0.115	3.797	6.26e-06	0.00020657
+Guthrie	0.0	0.0	0.0	0.0
+Lyon	12.017	157.875	0.00101744	0.01336678
+Marion	0.0	0.0	0.0	0.0
+Delaware	0.0	0.0	0.0	0.0
+Winnebago	0.0	0.0	0.0	0.0
+Iowa	0.0	0.0	0.0	0.0
+Dickinson	0.0	0.0	0.0	0.0
+Benton	16.695	137.273	0.00065108	0.00535344
+Cerro Gordo	0.0	0.0	0.0	0.0
+Poweshiek	0.0	0.0	0.0	0.0
+Henry	21.143	160.049	0.00105362	0.00797573
+Mahaska	0.0	0.0	0.0	0.0
+Madison	0.0	0.0	0.0	0.0
+Boone	0.0	0.0	0.0	0.0
+Appanoose	0.0	0.0	0.0	0.0
+Mills	0.0	0.0	0.0	0.0
+Allamakee	21.143	160.049	0.00152856	0.01157092
+Buchanan	0.0	0.0	0.0	0.0
+Scott	9.958	187.938	5.747e-05	0.00108457
+Tama	46.611	410.563	0.00275739	0.02428792
+Woodbury	0.0	0.0	0.0	0.0
+Howard	0.0	0.0	0.0	0.0
+Clarke	0.0	0.0	0.0	0.0
+O'Brien	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Plymouth	24.035	315.749	0.00095776	0.01258215
+Dallas	1.245	23.493	1.381e-05	0.00026051
+Chickasaw	0.0	0.0	0.0	0.0
+Shelby	0.15	4.612	1.296e-05	0.00039834
+Franklin	0.0	0.0	0.0	0.0
+Sioux	7.048	53.349	0.0002019	0.00152823
+Butler	0.0	0.0	0.0	0.0
+Hancock	0.0	0.0	0.0	0.0
+Audubon	0.0	0.0	0.0	0.0
+Muscatine	8.218	170.671	0.00019143	0.00397566
+Wapello	0.0	0.0	0.0	0.0
+Keokuk	0.0	0.0	0.0	0.0
+Warren	23.054	182.103	0.00045154	0.00356673
+Monona	0.0	0.0	0.0	0.0
+Johnson	0.691	103.859	4.57e-06	0.00068663
+Harrison	0.0	0.0	0.0	0.0
+Cedar	15.369	121.401	0.00082509	0.00651747
+Taylor	0.0	0.0	0.0	0.0
+Crawford	0.0	0.0	0.0	0.0
+Grundy	0.0	0.0	0.0	0.0
+Jasper	0.0	0.0	0.0	0.0
+Bremer	0.0	0.0	0.0	0.0
+Story	0.0	0.0	0.0	0.0
+Polk	5.944	153.152	1.22e-05	0.00031435
+Pottawattamie	14.095	106.699	0.0001507	0.00114076
+Jackson	15.735	180.714	0.00080975	0.00929981

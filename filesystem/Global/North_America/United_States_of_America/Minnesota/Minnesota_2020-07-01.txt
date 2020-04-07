@@ -1,44 +1,44 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Wright	1.514	912.949
-Brown	0.169	297.417
-Lincoln	0.0	0.0
-Washington	0.002	146.346
-Pipestone	0.0	0.0
-Goodhue	0.537	653.595
-Rice	0.0	0.0
-Sibley	0.0	0.0
-Martin	0.0	1.0
-Steele	0.0	0.0
-Saint Louis	1.514	913.949
-Big Stone	0.0	0.0
-Douglas	0.0	0.0
-Mahnomen	0.0	0.0
-Faribault	0.0	0.0
-Anoka	0.002	82.618
-Yellow Medicine	0.0	0.0
-Houston	0.0	0.0
-Nicollet	0.0	0.0
-Meeker	0.0	0.0
-Olmsted	0.001	197.061
-Clearwater	0.0	0.0
-Dodge	0.0	0.0
-Itasca	0.0	0.0
-Renville	0.0	0.0
-Unassigned	0.438	903.868
-McLeod	0.0	0.0
-Waseca	0.0	0.0
-Clay	3.784	2288.366
-Stearns	0.0	0.0
-Wilkin	0.0	0.0
-Fillmore	0.0	0.0
-Otter Tail	0.0	0.0
-Traverse	0.0	0.0
-Kandiyohi	0.0	0.0
-Chisago	0.0	1.0
-Ramsey	0.018	465.384
-Mower	0.0	0.0
-Wabasha	0.0	0.0
-Carlton	0.003	158.04
-Polk	0.0	0.0
-Carver	0.0	0.0
-Lac qui Parle	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Wright	1.514	912.949	1.11e-05	0.00669568
+Brown	0.169	296.224	6.73e-06	0.01179658
+Lincoln	0.0	0.0	0.0	0.0
+Washington	0.002	143.346	1e-08	0.00055303
+Pipestone	0.0	0.0	0.0	0.0
+Goodhue	0.537	652.015	1.157e-05	0.01405114
+Rice	0.0	0.0	0.0	0.0
+Sibley	0.0	0.0	0.0	0.0
+Martin	0.0	0.0	0.0	0.0
+Steele	0.0	0.0	0.0	0.0
+Saint Louis	1.514	912.949	7.58e-06	0.00457037
+Big Stone	0.0	0.0	0.0	0.0
+Douglas	0.0	0.0	0.0	0.0
+Mahnomen	0.0	0.0	0.0	0.0
+Faribault	0.0	0.0	0.0	0.0
+Anoka	0.002	78.618	1e-08	0.0002222
+Yellow Medicine	0.0	0.0	0.0	0.0
+Houston	0.0	0.0	0.0	0.0
+Nicollet	0.0	0.0	0.0	0.0
+Meeker	0.0	0.0	0.0	0.0
+Olmsted	0.001	196.061	1e-08	0.00125457
+Clearwater	0.0	0.0	0.0	0.0
+Dodge	0.0	0.0	0.0	0.0
+Itasca	0.0	0.0	0.0	0.0
+Renville	0.0	0.0	0.0	0.0
+Unassigned	0.438	899.573	N/A	N/A
+McLeod	0.0	0.0	0.0	0.0
+Waseca	0.0	0.0	0.0	0.0
+Clay	3.784	2282.366	5.917e-05	0.03568706
+Stearns	0.0	0.0	0.0	0.0
+Wilkin	0.0	0.0	0.0	0.0
+Fillmore	0.0	0.0	0.0	0.0
+Otter Tail	0.0	0.0	0.0	0.0
+Traverse	0.0	0.0	0.0	0.0
+Kandiyohi	0.0	0.0	0.0	0.0
+Chisago	0.0	0.0	0.0	0.0
+Ramsey	0.018	460.384	3e-08	0.00083674
+Mower	0.0	0.0	0.0	0.0
+Wabasha	0.0	0.0	0.0	0.0
+Carlton	0.003	155.067	8e-08	0.00432701
+Polk	0.0	0.0	0.0	0.0
+Carver	0.0	0.0	0.0	0.0
+Lac qui Parle	0.0	0.0	0.0	0.0

@@ -1,59 +1,59 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-New York	4741.667	9371.667
-Wayne	2.0	4.0
-Fulton	0.667	2.667
-Seneca	0.552	1.119
-Lewis	2.817	5.203
-Montgomery	1.333	1.333
-Schenectady	9.667	19.667
-Tioga	0.0	0.0
-Washington	1.333	2.333
-Rockland	456.333	833.333
-Chenango	3.667	6.667
-Cayuga	1.235	2.235
-Erie	98.333	187.333
-Ulster	26.0	50.0
-Jefferson	5.0	12.0
-Broome	6.667	11.667
-Nassau	1197.333	2415.333
-Monroe	35.333	61.333
-Chautauqua	0.823	1.49
-Chemung	2.0	11.0
-Niagara	6.0	10.0
-Delaware	1.667	3.667
-Livingston	0.0	0.0
-Steuben	9.333	11.333
-Saint Lawrence	7.408	13.408
-Columbia	4.333	5.333
-Madison	5.0	8.0
-Ontario	1.0	1.0
-Dutchess	126.667	238.667
-Schuyler	0.0	0.0
-Herkimer	3.667	6.667
-Cortland	0.0	0.0
-Unassigned	0.0	0.0
-Essex	0.0	0.0
-Wyoming	2.333	3.333
-Saratoga	5.0	8.0
-Putnam	31.0	62.0
-Onondaga	16.333	29.333
-Franklin	0.0	0.0
-Tompkins	4.667	11.667
-Greene	0.333	0.333
-Orleans	1.284	2.588
-Albany	13.333	27.333
-Cattaraugus	0.922	1.867
-Yates	0.0	0.0
-Otsego	2.0	2.0
-Allegany	1.0	2.0
-Warren	1.0	2.0
-Westchester	647.667	1218.667
-Sullivan	16.667	76.667
-Clinton	2.0	5.0
-Suffolk	1226.667	2282.667
-Schoharie	0.0	0.0
-Oswego	2.667	4.667
-Rensselaer	2.333	2.333
-Oneida	8.0	13.0
-Genesee	1.667	2.667
-Orange	365.333	711.333
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+New York	4741.667	4741.667	0.00291132	0.00291132
+Wayne	2.0	2.0	2.221e-05	2.221e-05
+Fulton	0.667	0.667	1.245e-05	1.245e-05
+Seneca	0.552	0.552	1.609e-05	1.609e-05
+Lewis	2.817	2.817	0.00010651	0.00010651
+Montgomery	1.333	1.333	2.695e-05	2.695e-05
+Schenectady	9.667	9.667	6.223e-05	6.223e-05
+Tioga	0.0	0.0	0.0	0.0
+Washington	1.333	1.333	2.178e-05	2.178e-05
+Rockland	456.333	456.333	0.00140111	0.00140111
+Chenango	3.667	3.667	7.714e-05	7.714e-05
+Cayuga	1.235	1.235	1.601e-05	1.601e-05
+Erie	98.333	98.333	0.00010692	0.00010692
+Ulster	26.0	26.0	0.00014558	0.00014558
+Jefferson	5.0	5.0	4.474e-05	4.474e-05
+Broome	6.667	6.667	3.479e-05	3.479e-05
+Nassau	1197.333	1197.333	0.00088147	0.00088147
+Monroe	35.333	35.333	4.759e-05	4.759e-05
+Chautauqua	0.823	0.823	6.43e-06	6.43e-06
+Chemung	2.0	2.0	2.374e-05	2.374e-05
+Niagara	6.0	6.0	2.851e-05	2.851e-05
+Delaware	1.667	1.667	3.744e-05	3.744e-05
+Livingston	0.0	0.0	0.0	0.0
+Steuben	9.333	9.333	9.743e-05	9.743e-05
+Saint Lawrence	7.408	7.408	6.856e-05	6.856e-05
+Columbia	4.333	4.333	7.232e-05	7.232e-05
+Madison	5.0	5.0	7.063e-05	7.063e-05
+Ontario	1.0	1.0	9.1e-06	9.1e-06
+Dutchess	126.667	126.667	0.00043125	0.00043125
+Schuyler	0.0	0.0	0.0	0.0
+Herkimer	3.667	3.667	5.93e-05	5.93e-05
+Cortland	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Essex	0.0	0.0	0.0	0.0
+Wyoming	2.333	2.333	5.82e-05	5.82e-05
+Saratoga	5.0	5.0	2.172e-05	2.172e-05
+Putnam	31.0	31.0	0.00031347	0.00031347
+Onondaga	16.333	16.333	3.537e-05	3.537e-05
+Franklin	0.0	0.0	0.0	0.0
+Tompkins	4.667	4.667	4.54e-05	4.54e-05
+Greene	0.333	0.333	7.01e-06	7.01e-06
+Orleans	1.284	1.284	3.162e-05	3.162e-05
+Albany	13.333	13.333	4.341e-05	4.341e-05
+Cattaraugus	0.922	0.922	1.2e-05	1.2e-05
+Yates	0.0	0.0	0.0	0.0
+Otsego	2.0	2.0	3.347e-05	3.347e-05
+Allegany	1.0	1.0	2.154e-05	2.154e-05
+Warren	1.0	1.0	1.556e-05	1.556e-05
+Westchester	647.667	647.667	0.00066935	0.00066935
+Sullivan	16.667	16.667	0.00022076	0.00022076
+Clinton	2.0	2.0	2.478e-05	2.478e-05
+Suffolk	1226.667	1226.667	0.00082822	0.00082822
+Schoharie	0.0	0.0	0.0	0.0
+Oswego	2.667	2.667	2.262e-05	2.262e-05
+Rensselaer	2.333	2.333	1.463e-05	1.463e-05
+Oneida	8.0	8.0	3.485e-05	3.485e-05
+Genesee	1.667	1.667	2.899e-05	2.899e-05
+Orange	365.333	365.333	0.00095649	0.00095649

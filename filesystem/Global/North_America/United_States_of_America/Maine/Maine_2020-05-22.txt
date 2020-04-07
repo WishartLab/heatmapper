@@ -1,17 +1,17 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Cumberland	1.374	248.158
-Somerset	7.476	488.269
-Lincoln	0.0	1.0
-Penobscot	0.071	26.077
-Washington	0.0	0.0
-Oxford	8.258	322.662
-Sagadahoc	8.258	322.662
-Kennebec	0.053	18.312
-Androscoggin	0.095	20.202
-Unassigned	7.922	330.584
-Franklin	0.0	0.0
-Hancock	0.0	0.0
-Aroostook	0.0	0.0
-Knox	0.0	0.0
-York	1.225	205.138
-Waldo	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Cumberland	1.374	237.158	4.68e-06	0.00080788
+Somerset	7.476	486.56	0.00014777	0.00961733
+Lincoln	0.0	0.0	0.0	0.0
+Penobscot	0.071	23.077	4.7e-07	0.00015273
+Washington	0.0	0.0	0.0	0.0
+Oxford	8.258	322.662	0.00014332	0.00560002
+Sagadahoc	8.258	322.662	0.00023174	0.00905489
+Kennebec	0.053	17.312	4.3e-07	0.00014181
+Androscoggin	0.095	17.202	8.8e-07	0.00015975
+Unassigned	7.922	330.251	N/A	N/A
+Franklin	0.0	0.0	0.0	0.0
+Hancock	0.0	0.0	0.0	0.0
+Aroostook	0.0	0.0	0.0	0.0
+Knox	0.0	0.0	0.0	0.0
+York	1.225	198.138	5.94e-06	0.00096077
+Waldo	0.0	0.0	0.0	0.0

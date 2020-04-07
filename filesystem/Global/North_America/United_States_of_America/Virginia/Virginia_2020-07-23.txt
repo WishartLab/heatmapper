@@ -1,33 +1,33 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Prince Edward	0.0	0.0
-Poquoson	0.0	0.0
-Nottoway	0.0	0.0
-Radford	0.0	0.0
-Chesapeake	0.104	10623.381
-Washington	0.003	461.146
-Bedford	0.006	462.88
-Culpeper	0.006	461.88
-Halifax	0.0	0.0
-Botetourt	0.012	923.765
-Amherst	0.0	0.0
-Accomack	0.0	0.0
-Madison	0.009	923.774
-Mathews	0.0	0.0
-Rockbridge	0.0	0.0
-Stafford	0.046	3697.052
-Isle of Wight	0.041	3237.171
-Spotsylvania	0.081	6468.345
-Henrico	0.336	26802.134
-Goochland	0.035	2773.291
-Danville	0.017	1386.648
-Rockingham	0.012	922.765
-Fluvanna	0.029	2311.404
-Franklin	0.006	461.88
-Charles City	0.0	0.0
-Pittsylvania	0.003	461.146
-Warren	0.0	0.0
-Mecklenburg	0.017	1385.648
-Williamsburg	0.017	1386.648
-Suffolk	0.069	5548.577
-Orange	0.0	0.0
-Nelson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Prince Edward	0.0	0.0	0.0	0.0
+Poquoson	0.0	0.0	0.0	0.0
+Nottoway	0.0	0.0	0.0	0.0
+Radford	0.0	0.0	0.0	0.0
+Chesapeake	0.104	10615.714	4.3e-07	0.04375196
+Washington	0.003	460.638	6e-08	0.0084673
+Bedford	0.006	461.88	8e-08	0.00586537
+Culpeper	0.006	461.88	1.2e-07	0.00890646
+Halifax	0.0	0.0	0.0	0.0
+Botetourt	0.012	923.765	3.6e-07	0.02775986
+Amherst	0.0	0.0	0.0	0.0
+Accomack	0.0	0.0	0.0	0.0
+Madison	0.009	923.107	6.8e-07	0.06943264
+Mathews	0.0	0.0	0.0	0.0
+Rockbridge	0.0	0.0	0.0	0.0
+Stafford	0.046	3695.052	3.1e-07	0.02464025
+Isle of Wight	0.041	3233.171	1.11e-06	0.08749414
+Spotsylvania	0.081	6466.345	6e-07	0.04817075
+Henrico	0.336	26789.134	1.02e-06	0.08136139
+Goochland	0.035	2771.291	1.51e-06	0.11922608
+Danville	0.017	1385.648	4.2e-07	0.03405126
+Rockingham	0.012	923.765	1.5e-07	0.01137026
+Fluvanna	0.029	2309.404	1.08e-06	0.08622649
+Franklin	0.006	461.88	7.5e-07	0.05764133
+Charles City	0.0	0.0	0.0	0.0
+Pittsylvania	0.003	460.638	5e-08	0.00755776
+Warren	0.0	0.0	0.0	0.0
+Mecklenburg	0.017	1385.648	5.5e-07	0.04520874
+Williamsburg	0.017	1385.648	1.14e-06	0.09302148
+Suffolk	0.069	5542.577	7.6e-07	0.06078387
+Orange	0.0	0.0	0.0	0.0
+Nelson	0.0	0.0	0.0	0.0

@@ -1,11 +1,11 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Hillsborough	57.971	50939.363
-Coos	0.0	0.0
-Strafford	0.002	140.592
-Belknap	1.74	1376.176
-Merrimack	0.003	210.321
-Unassigned	-3.518	-11351.838
-Cheshire	1.74	1378.176
-Carroll	1.16	918.783
-Sullivan	0.0	1.0
-Grafton	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Hillsborough	57.971	50902.363	0.00013961	0.12258334
+Coos	0.0	0.0	0.0	0.0
+Strafford	0.002	137.592	2e-08	0.00105767
+Belknap	1.74	1375.176	2.851e-05	0.02253574
+Merrimack	0.003	197.321	2e-08	0.00130562
+Unassigned	-3.518	-11306.364	N/A	N/A
+Cheshire	1.74	1375.176	2.275e-05	0.0179778
+Carroll	1.16	916.783	2.378e-05	0.01879462
+Sullivan	0.0	0.0	0.0	0.0
+Grafton	0.0	0.0	0.0	0.0

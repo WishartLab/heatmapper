@@ -1,10 +1,10 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Tolland	1.145	281.213
-Fairfield	23.144	6935.436
-Middlesex	1.637	398.206
-Windham	56.705	3295.408
-Unassigned	1.267	419.341
-New London	0.597	175.731
-Hartford	9.856	2123.545
-New Haven	65.948	11072.511
-Litchfield	0.497	308.976
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Tolland	1.145	272.213	7.59e-06	0.00180368
+Fairfield	23.144	6266.436	2.452e-05	0.00663942
+Middlesex	1.637	373.206	1.006e-05	0.00229408
+Windham	56.705	3287.408	0.00048455	0.02809102
+Unassigned	1.267	377.341	N/A	N/A
+New London	0.597	167.731	2.24e-06	0.00062871
+Hartford	9.856	1992.545	1.104e-05	0.00223205
+New Haven	65.948	10766.511	7.69e-05	0.01255394
+Litchfield	0.497	275.976	2.74e-06	0.00152379

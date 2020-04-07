@@ -1,39 +1,39 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Pike	0.657	903.524
-Cherokee	0.219	301.17
-Montgomery	0.008	368.03
-Russell	1.314	1807.048
-Bullock	0.0	0.0
-Washington	0.0	0.0
-Etowah	3.872	6019.132
-Fayette	0.0	0.0
-Barbour	0.064	452.417
-Lamar	1.567	1378.743
-Lawrence	1.875	2297.152
-Autauga	0.0	0.0
-Talladega	0.003	175.645
-Colbert	0.0	0.0
-Henry	0.193	1357.259
-Tallapoosa	0.01	173.088
-Cullman	0.0	5.0
-Calhoun	4.178	3682.304
-Marshall	1.971	2710.571
-Clay	0.078	163.794
-Mobile	0.007	666.651
-De Kalb	0.001	94.153
-Crenshaw	0.0	0.0
-Franklin	0.522	458.91
-Butler	0.0	0.0
-Blount	0.219	301.17
-Greene	0.506	901.859
-Escambia	0.0	0.0
-Lauderdale	0.0	0.0
-Perry	0.0	0.0
-Chambers	0.012	454.309
-Morgan	3.281	3215.671
-Lowndes	0.387	601.916
-Hale	0.0	0.0
-Winston	0.0	0.0
-Marengo	0.387	601.916
-Jackson	3.134	2756.48
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Pike	0.657	902.29	1.971e-05	0.02706491
+Cherokee	0.219	300.759	8.41e-06	0.01155343
+Montgomery	0.008	364.03	4e-08	0.00161244
+Russell	1.314	1804.58	2.274e-05	0.03123137
+Bullock	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Etowah	3.872	6009.013	3.778e-05	0.05862395
+Fayette	0.0	0.0	0.0	0.0
+Barbour	0.064	450.269	2.57e-06	0.0180969
+Lamar	1.567	1376.743	0.00011319	0.09944691
+Lawrence	1.875	2294.611	5.689e-05	0.06962439
+Autauga	0.0	0.0	0.0	0.0
+Talladega	0.003	172.645	4e-08	0.00216271
+Colbert	0.0	0.0	0.0	0.0
+Henry	0.193	1350.816	1.122e-05	0.07849474
+Tallapoosa	0.01	172.088	2.5e-07	0.0042494
+Cullman	0.0	0.0	0.0	0.0
+Calhoun	4.178	3671.304	3.656e-05	0.03212636
+Marshall	1.971	2706.869	2.051e-05	0.02816457
+Clay	0.078	163.399	5.88e-06	0.01230878
+Mobile	0.007	648.651	2e-08	0.00156771
+De Kalb	0.001	92.881	1e-08	0.00130113
+Crenshaw	0.0	0.0	0.0	0.0
+Franklin	0.522	458.91	1.664e-05	0.01463221
+Butler	0.0	0.0	0.0	0.0
+Blount	0.219	300.759	3.79e-06	0.00519984
+Greene	0.506	900.027	6.146e-05	0.10931945
+Escambia	0.0	0.0	0.0	0.0
+Lauderdale	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Chambers	0.012	449.309	3.6e-07	0.01336632
+Morgan	3.281	3213.338	2.755e-05	0.02698266
+Lowndes	0.387	600.904	3.88e-05	0.06024704
+Hale	0.0	0.0	0.0	0.0
+Winston	0.0	0.0	0.0	0.0
+Marengo	0.387	600.904	2.03e-05	0.03151705
+Jackson	3.134	2753.48	6.058e-05	0.05322174

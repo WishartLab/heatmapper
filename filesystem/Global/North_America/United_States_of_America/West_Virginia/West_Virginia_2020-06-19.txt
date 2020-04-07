@@ -1,30 +1,30 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Hardy	0.0	0.0
-Logan	0.0	7.777
-Cabell	0.0	0.0
-Wood	4.274	1467.14
-Berkeley	4.498	2031.802
-Pendleton	0.0	0.0
-Wetzel	0.0	0.0
-Greenbrier	0.0	0.0
-Roane	0.0	0.0
-Jefferson	15.358	3986.946
-Ohio	0.0	7.777
-Barbour	0.0	0.0
-Raleigh	0.0	0.0
-Marion	0.001	31.136
-Mercer	0.0	1.0
-Tucker	0.0	0.0
-Upshur	0.0	0.0
-Kanawha	0.297	274.716
-Mineral	0.0	0.0
-Marshall	0.0	0.0
-Preston	0.0	8.107
-Randolph	0.0	0.0
-Pleasants	0.0	0.0
-Mason	0.0	0.0
-Putnam	3.413	887.765
-Wirt	0.0	0.0
-Hancock	0.0	0.0
-Morgan	0.0	0.0
-Harrison	8.027	2222.435
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Hardy	0.0	0.0	0.0	0.0
+Logan	0.0	7.451	0.0	0.00022851
+Cabell	0.0	0.0	0.0	0.0
+Wood	4.274	1465.083	5.076e-05	0.01739942
+Berkeley	4.498	2025.897	3.84e-05	0.01729717
+Pendleton	0.0	0.0	0.0	0.0
+Wetzel	0.0	0.0	0.0	0.0
+Greenbrier	0.0	0.0	0.0	0.0
+Roane	0.0	0.0	0.0	0.0
+Jefferson	15.358	3985.946	0.00027033	0.07016152
+Ohio	0.0	7.451	0.0	0.00017845
+Barbour	0.0	0.0	0.0	0.0
+Raleigh	0.0	0.0	0.0	0.0
+Marion	0.001	29.832	2e-08	0.00053179
+Mercer	0.0	0.0	0.0	0.0
+Tucker	0.0	0.0	0.0	0.0
+Upshur	0.0	0.0	0.0	0.0
+Kanawha	0.297	269.716	1.65e-06	0.00149465
+Mineral	0.0	0.0	0.0	0.0
+Marshall	0.0	0.0	0.0	0.0
+Preston	0.0	7.777	0.0	0.00022982
+Randolph	0.0	0.0	0.0	0.0
+Pleasants	0.0	0.0	0.0	0.0
+Mason	0.0	0.0	0.0	0.0
+Putnam	3.413	885.765	6.021e-05	0.01562692
+Wirt	0.0	0.0	0.0	0.0
+Hancock	0.0	0.0	0.0	0.0
+Morgan	0.0	0.0	0.0	0.0
+Harrison	8.027	2220.768	0.00011882	0.03287397

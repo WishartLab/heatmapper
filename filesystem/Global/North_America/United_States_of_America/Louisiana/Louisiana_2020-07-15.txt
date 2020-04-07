@@ -1,36 +1,36 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Saint Mary	0.338	3936.647
-Richland	0.3	1386.11
-East Carroll	0.0	0.0
-La Salle	0.024	919.958
-Terrebonne	1.144	13337.731
-Washington	0.624	7267.58
-Saint John the Baptist	0.121	6112.246
-East Feliciana	0.116	4524.715
-Lafourche	1.819	21242.023
-Jefferson	0.279	50207.729
-Red River	0.0	0.0
-Saint Bernard	0.307	8570.287
-Morehouse	0.054	1510.253
-Iberia	0.078	921.073
-Livingston	0.572	6663.865
-Saint Charles	1.638	19073.519
-Madison	0.0	0.0
-Natchitoches	0.999	4625.021
-Catahoula	0.4	1849.809
-Bienville	0.5	2310.507
-Evangeline	0.2	927.405
-Claiborne	0.234	2728.22
-Allen	0.286	3337.931
-Franklin	0.072	4508.126
-Saint Helena	0.011	1489.814
-Saint Landry	0.017	835.626
-West Feliciana	0.011	1463.405
-Vernon	0.064	461.764
-Winn	0.0	0.0
-Beauregard	1.099	5082.722
-Tangipahoa	2.469	28738.962
-Saint Martin	2.378	17085.36
-Grant	0.2	925.405
-Acadia	0.468	5446.434
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Saint Mary	0.338	3930.647	6.79e-06	0.07896988
+Richland	0.3	1385.11	1.486e-05	0.06859697
+East Carroll	0.0	0.0	0.0	0.0
+La Salle	0.024	918.415	1.61e-06	0.06156834
+Terrebonne	1.144	13303.731	1.03e-05	0.11983076
+Washington	0.624	7256.58	1.34e-05	0.15578077
+Saint John the Baptist	0.121	6091.246	2.8e-06	0.14105331
+East Feliciana	0.116	4517.126	6.01e-06	0.23398736
+Lafourche	1.819	21165.023	1.854e-05	0.21571649
+Jefferson	0.279	49765.729	6.4e-07	0.11465411
+Red River	0.0	0.0	0.0	0.0
+Saint Bernard	0.307	8545.287	6.57e-06	0.18290034
+Morehouse	0.054	1508.196	2.13e-06	0.05938247
+Iberia	0.078	907.073	1.1e-06	0.0127863
+Livingston	0.572	6651.865	4.1e-06	0.04766073
+Saint Charles	1.638	19048.519	3.098e-05	0.36022843
+Madison	0.0	0.0	0.0	0.0
+Natchitoches	0.999	4617.021	2.584e-05	0.1194294
+Catahoula	0.4	1846.809	4.163e-05	0.19221576
+Bienville	0.5	2308.507	3.757e-05	0.17346761
+Evangeline	0.2	923.405	5.98e-06	0.02761131
+Claiborne	0.234	2721.22	1.468e-05	0.17067361
+Allen	0.286	3325.931	1.117e-05	0.12989381
+Franklin	0.072	4497.271	3.57e-06	0.22312319
+Saint Helena	0.011	1483.85	1.07e-06	0.14459657
+Saint Landry	0.017	830.626	2.1e-07	0.01003608
+West Feliciana	0.011	1457.546	7.1e-07	0.09427853
+Vernon	0.064	461.431	1.31e-06	0.00944394
+Winn	0.0	0.0	0.0	0.0
+Beauregard	1.099	5078.722	2.95e-05	0.13633055
+Tangipahoa	2.469	28723.962	1.846e-05	0.21471525
+Saint Martin	2.378	17073.027	4.435e-05	0.31840188
+Grant	0.2	923.405	8.9e-06	0.04107308
+Acadia	0.468	5442.434	7.53e-06	0.08751301
+Jackson	0.0	0.0	0.0	0.0

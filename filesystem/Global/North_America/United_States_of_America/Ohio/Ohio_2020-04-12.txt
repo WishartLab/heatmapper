@@ -1,81 +1,81 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	0.0	0.0
-Licking	4.581	28.286
-Brown	0.0	0.0
-Wood	4.457	31.719
-Pike	0.0	0.0
-Richland	7.452	30.668
-Wayne	0.874	6.571
-Sandusky	0.0	0.0
-Fulton	1.66	7.46
-Seneca	1.103	4.686
-Montgomery	20.884	129.251
-Fairfield	22.069	93.739
-Coshocton	2.794	11.751
-Wyandot	0.0	0.0
-Hamilton	73.975	433.281
-Cuyahoga	46.281	322.465
-Washington	5.589	28.501
-Pickaway	16.7	74.316
-Hardin	0.0	0.0
-Erie	4.657	19.918
-Fayette	0.0	0.0
-Morrow	0.954	7.331
-Jefferson	0.0	0.0
-Guernsey	0.0	0.0
-Monroe	0.0	0.0
-Summit	4.612	33.995
-Belmont	1.39	14.071
-Lawrence	4.771	21.234
-Marion	6.624	38.677
-Delaware	5.768	40.88
-Mercer	0.874	6.571
-Ashland	0.0	0.0
-Madison	1.989	9.929
-Darke	3.726	14.333
-Muskingum	0.0	0.0
-Defiance	0.0	1.0
-Scioto	0.0	0.0
-Clermont	5.982	30.078
-Mahoning	25.478	136.685
-Trumbull	7.931	59.584
-Gallia	0.0	0.0
-Williams	0.0	0.0
-Lorain	4.076	35.784
-Lake	4.093	34.274
-Geauga	0.0	2.0
-Auglaize	5.834	26.38
-Tuscarawas	2.794	13.751
-Adams	11.563	56.782
-Paulding	0.0	0.0
-Highland	0.931	5.583
-Shelby	5.037	27.815
-Allen	13.613	61.551
-Putnam	0.0	0.0
-Franklin	57.492	367.368
-Butler	16.246	79.668
-Greene	5.589	23.501
-Hancock	4.273	20.199
-Union	1.863	7.168
-Ashtabula	3.726	17.333
-Perry	0.247	1.884
-Preble	5.207	24.157
-Clark	1.863	9.168
-Miami	6.171	50.996
-Columbiana	16.427	79.865
-Carroll	0.931	4.583
-Morgan	0.0	0.0
-Holmes	0.0	0.0
-Knox	1.863	7.168
-Medina	4.326	30.41
-Warren	1.563	11.668
-Lucas	44.539	231.277
-Huron	1.863	10.168
-Clinton	1.863	7.168
-Crawford	1.103	4.686
-Stark	13.019	74.797
-Champaign	0.0	0.0
-Athens	0.0	0.0
-Portage	11.453	75.714
-Ross	0.255	1.936
-Van Wert	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	0.0	0.0	0.0	0.0
+Licking	4.581	26.286	2.606e-05	0.00014955
+Brown	0.0	0.0	0.0	0.0
+Wood	4.457	26.719	3.41e-05	0.00020444
+Pike	0.0	0.0	0.0	0.0
+Richland	7.452	28.668	6.154e-05	0.00023673
+Wayne	0.874	5.58	7.54e-06	4.812e-05
+Sandusky	0.0	0.0	0.0	0.0
+Fulton	1.66	6.849	3.927e-05	0.00016201
+Seneca	1.103	4.353	1.998e-05	7.885e-05
+Montgomery	20.884	104.251	3.923e-05	0.00019584
+Fairfield	22.069	87.072	0.00014167	0.00055893
+Coshocton	2.794	10.751	7.628e-05	0.00029351
+Wyandot	0.0	0.0	0.0	0.0
+Hamilton	73.975	358.281	9.058e-05	0.0004387
+Cuyahoga	46.281	277.465	3.721e-05	0.00022307
+Washington	5.589	21.501	9.291e-05	0.00035743
+Pickaway	16.7	68.557	0.0002875	0.00118027
+Hardin	0.0	0.0	0.0	0.0
+Erie	4.657	17.918	6.241e-05	0.00024014
+Fayette	0.0	0.0	0.0	0.0
+Morrow	0.954	6.197	2.717e-05	0.00017649
+Jefferson	0.0	0.0	0.0	0.0
+Guernsey	0.0	0.0	0.0	0.0
+Monroe	0.0	0.0	0.0	0.0
+Summit	4.612	28.995	8.51e-06	5.35e-05
+Belmont	1.39	12.071	2.059e-05	0.00017882
+Lawrence	4.771	19.588	7.969e-05	0.0003272
+Marion	6.624	32.677	0.00010151	0.00050075
+Delaware	5.768	33.88	2.816e-05	0.00016541
+Mercer	0.874	5.58	2.134e-05	0.00013623
+Ashland	0.0	0.0	0.0	0.0
+Madison	1.989	9.929	4.478e-05	0.00022356
+Darke	3.726	14.333	7.26e-05	0.00027927
+Muskingum	0.0	0.0	0.0	0.0
+Defiance	0.0	0.0	0.0	0.0
+Scioto	0.0	0.0	0.0	0.0
+Clermont	5.982	24.078	2.911e-05	0.00011719
+Mahoning	25.478	125.685	0.00011095	0.00054731
+Trumbull	7.931	46.584	3.993e-05	0.00023453
+Gallia	0.0	0.0	0.0	0.0
+Williams	0.0	0.0	0.0	0.0
+Lorain	4.076	28.784	1.317e-05	9.301e-05
+Lake	4.093	26.274	1.776e-05	0.00011398
+Geauga	0.0	0.0	0.0	0.0
+Auglaize	5.834	24.209	0.00012737	0.00052853
+Tuscarawas	2.794	10.751	3.031e-05	0.00011664
+Adams	11.563	51.72	0.00041708	0.00186553
+Paulding	0.0	0.0	0.0	0.0
+Highland	0.931	3.583	2.162e-05	8.321e-05
+Shelby	5.037	24.846	0.00010358	0.00051095
+Allen	13.613	56.486	0.0001326	0.00055021
+Putnam	0.0	0.0	0.0	0.0
+Franklin	57.492	320.368	4.388e-05	0.0002445
+Butler	16.246	72.668	4.249e-05	0.00019004
+Greene	5.589	21.501	3.327e-05	0.00012799
+Hancock	4.273	17.199	5.628e-05	0.00022651
+Union	1.863	7.168	3.221e-05	0.00012394
+Ashtabula	3.726	14.333	3.822e-05	0.00014702
+Perry	0.247	1.593	6.85e-06	4.421e-05
+Preble	5.207	22.139	0.00012701	0.00054002
+Clark	1.863	7.168	1.384e-05	5.326e-05
+Miami	6.171	36.996	5.81e-05	0.00034829
+Columbiana	16.427	68.865	0.00016001	0.00067077
+Carroll	0.931	3.583	3.438e-05	0.00013231
+Morgan	0.0	0.0	0.0	0.0
+Holmes	0.0	0.0	0.0	0.0
+Knox	1.863	7.168	3.01e-05	0.00011581
+Medina	4.326	25.41	2.415e-05	0.00014184
+Warren	1.563	10.668	6.73e-06	4.595e-05
+Lucas	44.539	212.277	0.0001036	0.00049378
+Huron	1.863	7.168	3.184e-05	0.00012252
+Clinton	1.863	7.168	4.43e-05	0.00017044
+Crawford	1.103	4.353	2.655e-05	0.00010477
+Stark	13.019	60.797	3.504e-05	0.00016362
+Champaign	0.0	0.0	0.0	0.0
+Athens	0.0	0.0	0.0	0.0
+Portage	11.453	65.714	7.03e-05	0.00040333
+Ross	0.255	1.637	3.31e-06	2.128e-05
+Van Wert	0.0	0.0	0.0	0.0

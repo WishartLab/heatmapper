@@ -1,8 +1,8 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Elko County	0.0	0.0
-Lyon	0.092	301.886
-Douglas	0.0	0.0
-Carson City	0.295	461.803
-Unassigned	-0.036	-156.277
-Nye	0.257	461.06
-White Pine	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Elko County	0.0	0.0	N/A	N/A
+Lyon	0.092	301.475	1.65e-06	0.005402
+Douglas	0.0	0.0	0.0	0.0
+Carson City	0.295	460.803	5.32e-06	0.00831564
+Unassigned	-0.036	-164.277	N/A	N/A
+Nye	0.257	460.727	5.67e-06	0.01016026
+White Pine	0.0	0.0	0.0	0.0

@@ -1,81 +1,81 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Jones	2.0	4.0
-Pike	2.0	4.0
-Wayne	0.539	1.091
-Oktibbeha	1.333	1.333
-Montgomery	0.333	0.333
-Rankin	3.333	5.333
-Webster	0.333	1.333
-Attala	0.333	0.333
-George	0.0	0.0
-Lincoln	1.333	3.333
-Kemper	1.543	2.798
-Quitman	1.882	3.407
-Hinds	7.333	11.333
-Lee	1.333	1.333
-Washington	2.0	4.0
-Alcorn	0.0	0.0
-Leake	1.0	2.0
-Desoto	6.333	10.333
-Yalobusha	0.642	1.294
-Tallahatchie	0.0	0.0
-Jefferson	1.543	2.798
-Newton	0.823	1.49
-Smith	0.667	1.667
-Covington	0.307	0.622
-Panola	1.333	1.333
-Monroe	1.0	4.0
-Lamar	1.0	3.0
-Lawrence	0.0	1.0
-Marion	1.0	2.0
-Benton	0.0	0.0
-Simpson	0.0	1.0
-Madison	3.0	5.0
-Wilkinson	2.667	2.667
-Bolivar	5.667	11.667
-Scott	1.333	1.333
-Pearl River	3.667	6.667
-Calhoun	0.0	0.0
-Pontotoc	0.333	0.333
-Clarke	0.307	0.622
-Marshall	0.667	3.667
-Coahoma	1.0	2.0
-Leflore	0.667	1.667
-Adams	1.333	1.333
-Claiborne	0.0	0.0
-Clay	0.0	2.0
-Chickasaw	0.0	0.0
-Itawamba	0.0	1.0
-Forrest	4.0	8.0
-Franklin	0.667	0.667
-Humphreys	0.0	0.0
-Greene	0.0	0.0
-Lafayette	0.333	0.333
-Lauderdale	4.678	9.297
-Stone	0.0	0.0
-Hancock	1.0	0.0
-Union	0.333	0.333
-Perry	1.0	1.0
-Sharkey	0.0	0.0
-Tunica	1.0	2.0
-Carroll	0.0	0.0
-Grenada	0.0	0.0
-Tate	1.0	2.0
-Copiah	0.667	0.667
-Noxubee	0.0	0.0
-Holmes	1.667	3.667
-Yazoo	4.333	5.333
-Lowndes	1.0	1.0
-Tippah	1.0	2.0
-Warren	2.207	4.07
-Neshoba	3.618	6.672
-Harrison	3.0	9.0
-Prentiss	0.0	0.0
-Walthall	0.333	0.333
-Jasper	0.0	0.0
-Amite	0.724	1.335
-Winston	1.0	4.0
-Tishomingo	0.0	0.0
-Sunflower	0.667	0.667
-Jackson	7.0	19.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Jones	2.0	2.0	2.921e-05	2.921e-05
+Pike	2.0	2.0	5.055e-05	5.055e-05
+Wayne	0.539	0.539	2.655e-05	2.655e-05
+Oktibbeha	1.333	1.333	2.688e-05	2.688e-05
+Montgomery	0.333	0.333	3.322e-05	3.322e-05
+Rankin	3.333	3.333	2.166e-05	2.166e-05
+Webster	0.333	0.333	3.402e-05	3.402e-05
+Attala	0.333	0.333	1.813e-05	1.813e-05
+George	0.0	0.0	0.0	0.0
+Lincoln	1.333	1.333	3.897e-05	3.897e-05
+Kemper	1.543	1.543	0.00015388	0.00015388
+Quitman	1.882	1.882	0.00026691	0.00026691
+Hinds	7.333	7.333	3.093e-05	3.093e-05
+Lee	1.333	1.333	1.565e-05	1.565e-05
+Washington	2.0	2.0	4.438e-05	4.438e-05
+Alcorn	0.0	0.0	0.0	0.0
+Leake	1.0	1.0	4.393e-05	4.393e-05
+Desoto	6.333	6.333	3.48e-05	3.48e-05
+Yalobusha	0.642	0.642	5.181e-05	5.181e-05
+Tallahatchie	0.0	0.0	0.0	0.0
+Jefferson	1.543	1.543	0.00021714	0.00021714
+Newton	0.823	0.823	3.838e-05	3.838e-05
+Smith	0.667	0.667	4.168e-05	4.168e-05
+Covington	0.307	0.307	1.628e-05	1.628e-05
+Panola	1.333	1.333	3.9e-05	3.9e-05
+Monroe	1.0	1.0	2.812e-05	2.812e-05
+Lamar	1.0	1.0	1.601e-05	1.601e-05
+Lawrence	0.0	0.0	0.0	0.0
+Marion	1.0	1.0	4.046e-05	4.046e-05
+Benton	0.0	0.0	0.0	0.0
+Simpson	0.0	0.0	0.0	0.0
+Madison	3.0	3.0	2.84e-05	2.84e-05
+Wilkinson	2.667	2.667	0.00030334	0.00030334
+Bolivar	5.667	5.667	0.00018086	0.00018086
+Scott	1.333	1.333	4.712e-05	4.712e-05
+Pearl River	3.667	3.667	6.621e-05	6.621e-05
+Calhoun	0.0	0.0	0.0	0.0
+Pontotoc	0.333	0.333	1.046e-05	1.046e-05
+Clarke	0.307	0.307	1.967e-05	1.967e-05
+Marshall	0.667	0.667	1.881e-05	1.881e-05
+Coahoma	1.0	1.0	4.419e-05	4.419e-05
+Leflore	0.667	0.667	2.306e-05	2.306e-05
+Adams	1.333	1.333	4.274e-05	4.274e-05
+Claiborne	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+Chickasaw	0.0	0.0	0.0	0.0
+Itawamba	0.0	0.0	0.0	0.0
+Forrest	4.0	4.0	5.331e-05	5.331e-05
+Franklin	0.667	0.667	8.564e-05	8.564e-05
+Humphreys	0.0	0.0	0.0	0.0
+Greene	0.0	0.0	0.0	0.0
+Lafayette	0.333	0.333	6.08e-06	6.08e-06
+Lauderdale	4.678	4.678	6.211e-05	6.211e-05
+Stone	0.0	0.0	0.0	0.0
+Hancock	1.0	1.0	2.113e-05	2.113e-05
+Union	0.333	0.333	1.164e-05	1.164e-05
+Perry	1.0	1.0	8.382e-05	8.382e-05
+Sharkey	0.0	0.0	0.0	0.0
+Tunica	1.0	1.0	0.00010056	0.00010056
+Carroll	0.0	0.0	0.0	0.0
+Grenada	0.0	0.0	0.0	0.0
+Tate	1.0	1.0	3.477e-05	3.477e-05
+Copiah	0.667	0.667	2.337e-05	2.337e-05
+Noxubee	0.0	0.0	0.0	0.0
+Holmes	1.667	1.667	9.46e-05	9.46e-05
+Yazoo	4.333	4.333	0.00015339	0.00015339
+Lowndes	1.0	1.0	1.697e-05	1.697e-05
+Tippah	1.0	1.0	4.546e-05	4.546e-05
+Warren	2.207	2.207	4.78e-05	4.78e-05
+Neshoba	3.618	3.618	0.00012422	0.00012422
+Harrison	3.0	3.0	1.452e-05	1.452e-05
+Prentiss	0.0	0.0	0.0	0.0
+Walthall	0.333	0.333	2.302e-05	2.302e-05
+Jasper	0.0	0.0	0.0	0.0
+Amite	0.724	0.724	5.874e-05	5.874e-05
+Winston	1.0	1.0	5.505e-05	5.505e-05
+Tishomingo	0.0	0.0	0.0	0.0
+Sunflower	0.667	0.667	2.592e-05	2.592e-05
+Jackson	7.0	7.0	4.886e-05	4.886e-05

@@ -1,36 +1,36 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	1.476	2306.023
-Mesa	0.005	307.039
-San Miguel	0.886	1382.421
-Delta	0.219	460.946
-Lincoln	0.0	0.0
-Ouray	0.0	0.0
-Washington	0.0	0.0
-Huerfano	0.0	0.0
-Park	0.0	0.0
-Custer	0.009	452.52
-Summit	0.011	708.756
-Rio Grande	0.0	0.0
-Fremont	0.0	0.0
-Pueblo	3.543	5531.666
-Grand	0.0	0.0
-La Plata	0.646	2113.234
-Teller	0.0	0.0
-Las Animas	0.0	0.0
-Moffat	0.0	0.0
-Mineral	0.0	0.0
-Yuma	0.0	0.0
-Elbert	0.59	921.612
-Adams	0.016	2673.409
-Chaffee	0.59	921.612
-Baca	0.0	0.0
-Costilla	0.0	0.0
-Otero	0.0	0.0
-Saguache	0.0	0.0
-Archuleta	0.0	0.0
-Morgan	1.771	2766.834
-Montezuma	0.129	918.229
-Rio Blanco	0.0	0.0
-Clear Creek	0.0	0.0
-Alamosa	0.0	0.0
-Kit Carson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	1.476	2304.023	6.856e-05	0.10702448
+Mesa	0.005	302.039	3e-08	0.00197144
+San Miguel	0.886	1382.421	0.00010817	0.16877317
+Delta	0.219	460.534	7.08e-06	0.01487849
+Lincoln	0.0	0.0	0.0	0.0
+Ouray	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Huerfano	0.0	0.0	0.0	0.0
+Park	0.0	0.0	0.0	0.0
+Custer	0.009	450.372	1.82e-06	0.09091078
+Summit	0.011	704.756	3.5e-07	0.02272893
+Rio Grande	0.0	0.0	0.0	0.0
+Fremont	0.0	0.0	0.0	0.0
+Pueblo	3.543	5529.666	2.115e-05	0.03300722
+Grand	0.0	0.0	0.0	0.0
+La Plata	0.646	2110.354	1.147e-05	0.03747743
+Teller	0.0	0.0	0.0	0.0
+Las Animas	0.0	0.0	0.0	0.0
+Moffat	0.0	0.0	0.0	0.0
+Mineral	0.0	0.0	0.0	0.0
+Yuma	0.0	0.0	0.0	0.0
+Elbert	0.59	921.612	2.245e-05	0.03506628
+Adams	0.016	2660.409	3e-08	0.00519745
+Chaffee	0.59	921.612	2.946e-05	0.04601848
+Baca	0.0	0.0	0.0	0.0
+Costilla	0.0	0.0	0.0	0.0
+Otero	0.0	0.0	0.0	0.0
+Saguache	0.0	0.0	0.0	0.0
+Archuleta	0.0	0.0	0.0	0.0
+Morgan	1.771	2764.834	6.201e-05	0.09681469
+Montezuma	0.129	916.366	4.93e-06	0.03503196
+Rio Blanco	0.0	0.0	0.0	0.0
+Clear Creek	0.0	0.0	0.0	0.0
+Alamosa	0.0	0.0	0.0	0.0
+Kit Carson	0.0	0.0	0.0	0.0

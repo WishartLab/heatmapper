@@ -1,46 +1,46 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Georgetown	1.004	5.004
-McCormick	0.0	0.0
-Richland	21.116	52.449
-Berkeley	2.431	10.764
-Clarendon	8.853	20.186
-Cherokee	0.263	0.808
-Beaufort	8.775	23.442
-Fairfield	2.244	6.244
-Barnwell	0.0	0.0
-Horry	5.179	21.846
-Abbeville	0.0	0.0
-Lee	2.058	4.725
-Laurens	0.0	0.0
-Sumter	3.543	16.543
-Marlboro	0.0	0.0
-Saluda	0.0	0.0
-Chesterfield	1.017	2.507
-Lexington	15.741	36.408
-Marion	0.0	0.0
-Oconee	0.0	0.0
-Newberry	0.412	0.745
-Calhoun	0.823	1.49
-Florence	2.618	7.951
-Greenville	7.853	32.853
-Kershaw	5.8	15.133
-Dorchester	3.622	14.622
-Edgefield	0.412	0.745
-Chester	1.235	4.235
-Colleton	0.823	3.49
-Hampton	0.525	1.616
-Anderson	3.487	9.487
-Union	3.054	7.641
-Lancaster	3.702	8.702
-Darlington	1.646	10.979
-Greenwood	0.823	2.49
-Allendale	0.0	0.0
-Aiken	1.646	2.979
-Williamsburg	0.963	2.932
-Charleston	14.586	54.586
-Spartanburg	9.154	30.487
-Jasper	0.823	3.49
-York	7.028	23.361
-Bamberg	0.0	0.0
-Orangeburg	0.975	2.975
-Pickens	1.057	4.057
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Georgetown	1.004	2.004	1.613e-05	3.219e-05
+McCormick	0.0	0.0	0.0	0.0
+Richland	21.116	39.449	5.093e-05	9.516e-05
+Berkeley	2.431	4.764	1.1e-05	2.155e-05
+Clarendon	8.853	16.186	0.0002627	0.0004803
+Cherokee	0.263	0.532	4.61e-06	9.32e-06
+Beaufort	8.775	16.442	4.65e-05	8.713e-05
+Fairfield	2.244	4.244	0.00010017	0.00018945
+Barnwell	0.0	0.0	0.0	0.0
+Horry	5.179	9.846	1.505e-05	2.861e-05
+Abbeville	0.0	0.0	0.0	0.0
+Lee	2.058	3.725	0.00012006	0.0002173
+Laurens	0.0	0.0	0.0	0.0
+Sumter	3.543	6.543	3.326e-05	6.143e-05
+Marlboro	0.0	0.0	0.0	0.0
+Saluda	0.0	0.0	0.0	0.0
+Chesterfield	1.017	1.84	2.223e-05	4.022e-05
+Lexington	15.741	29.408	5.335e-05	9.968e-05
+Marion	0.0	0.0	0.0	0.0
+Oconee	0.0	0.0	0.0	0.0
+Newberry	0.412	0.745	1.07e-05	1.934e-05
+Calhoun	0.823	1.49	5.668e-05	0.00010262
+Florence	2.618	4.951	1.895e-05	3.584e-05
+Greenville	7.853	14.853	1.527e-05	2.888e-05
+Kershaw	5.8	11.133	8.843e-05	0.00016973
+Dorchester	3.622	6.622	2.255e-05	4.122e-05
+Edgefield	0.412	0.745	1.523e-05	2.754e-05
+Chester	1.235	2.235	3.829e-05	6.93e-05
+Colleton	0.823	1.49	2.185e-05	3.956e-05
+Hampton	0.525	1.064	2.713e-05	5.498e-05
+Anderson	3.487	6.487	1.739e-05	3.236e-05
+Union	3.054	5.584	0.00011142	0.00020372
+Lancaster	3.702	6.702	3.881e-05	7.027e-05
+Darlington	1.646	2.979	2.464e-05	4.459e-05
+Greenwood	0.823	1.49	1.163e-05	2.106e-05
+Allendale	0.0	0.0	0.0	0.0
+Aiken	1.646	2.979	9.72e-06	1.759e-05
+Williamsburg	0.963	1.941	3.146e-05	6.342e-05
+Charleston	14.586	28.586	3.593e-05	7.043e-05
+Spartanburg	9.154	17.487	2.916e-05	5.571e-05
+Jasper	0.823	1.49	2.841e-05	5.143e-05
+York	7.028	13.361	2.564e-05	4.874e-05
+Bamberg	0.0	0.0	0.0	0.0
+Orangeburg	0.975	1.975	1.122e-05	2.272e-05
+Pickens	1.057	2.057	8.46e-06	1.646e-05

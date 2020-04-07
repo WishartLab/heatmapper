@@ -1,22 +1,22 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Honduras	129.229	2129.441
-Haiti	7.781	93.901
-Saint Vincent and the Grenadines	4.287	48.435
-Guatemala	2.505	104.579
-Dominican Republic	131.084	4403.27
-Dominica	3.97	46.844
-The Bahamas	3.908	99.938
-Jamaica	2.903	96.081
-Nicaragua	0.0	0.0
-Mexico	205.351	6183.639
-El Salvador	3.773	142.703
-Saint Lucia	5.716	64.58
-Panama	115.668	4202.106
-Costa Rica	8.116	411.734
-United States of America	26416.835	894055.017
-Cuba	50.444	1256.554
-Saint Kitts and Nevis	0.0	0.0
-Trinidad and Tobago	3.08	107.072
-Antigua and Barbuda	6.669	75.341
-Canada	1153.845	37772.959
-Paraguay	3.838	156.638
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Honduras	129.229	2069.441	1.348e-05	0.00021585
+Haiti	7.781	87.901	7e-07	7.9e-06
+Saint Vincent and the Grenadines	4.287	48.435	3.89e-05	0.00043948
+Guatemala	2.505	86.579	1.5e-07	5.02e-06
+Dominican Republic	131.084	4237.27	1.233e-05	0.00039872
+Dominica	3.97	44.844	5.543e-05	0.00062609
+The Bahamas	3.908	97.938	1.013e-05	0.00025396
+Jamaica	2.903	96.081	9.9e-07	3.274e-05
+Nicaragua	0.0	0.0	0.0	0.0
+Mexico	205.351	5677.639	1.63e-06	4.499e-05
+El Salvador	3.773	128.703	5.9e-07	2.004e-05
+Saint Lucia	5.716	64.58	3.143e-05	0.00035505
+Panama	115.668	3828.106	2.769e-05	0.0009165
+Costa Rica	8.116	385.734	1.62e-06	7.716e-05
+United States of America	26416.835	837611.017	8.074e-05	0.00256019
+Cuba	50.444	1196.554	4.45e-06	0.00010553
+Saint Kitts and Nevis	0.0	0.0	0.0	0.0
+Trinidad and Tobago	3.08	105.072	2.22e-06	7.56e-05
+Antigua and Barbuda	6.669	75.341	6.926e-05	0.00078247
+Canada	1153.845	36158.959	3.114e-05	0.00097572
+Paraguay	3.838	138.638	5.5e-07	1.993e-05

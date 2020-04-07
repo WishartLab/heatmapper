@@ -1,82 +1,82 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	0.0	0.0
-Licking	4.0	6.0
-Brown	0.0	0.0
-Wood	4.333	9.333
-Pike	0.0	0.0
-Richland	2.667	4.667
-Wayne	0.978	1.969
-Sandusky	0.0	0.0
-Fulton	0.724	1.335
-Seneca	0.412	0.745
-Montgomery	14.0	39.0
-Fairfield	8.232	14.899
-Coshocton	1.0	2.0
-Wyandot	0.0	0.0
-Hamilton	45.667	120.667
-Cuyahoga	45.0	90.0
-Washington	2.0	9.0
-Pickaway	7.083	12.842
-Hardin	0.0	0.0
-Erie	1.667	3.667
-Fayette	0.0	0.0
-Morrow	1.105	2.239
-Jefferson	0.0	0.0
-Guernsey	0.0	0.0
-Monroe	0.0	0.0
-Summit	5.0	10.0
-Belmont	2.667	4.667
-Lawrence	2.024	3.67
-Marion	4.333	10.333
-Delaware	5.333	12.333
-Mercer	0.978	1.969
-Ashland	0.0	0.0
-Madison	1.333	1.333
-Darke	1.333	1.333
-Muskingum	0.0	0.0
-Defiance	0.0	1.0
-Scioto	0.0	0.0
-Clermont	2.333	8.333
-Mahoning	16.667	27.667
-Trumbull	7.333	20.333
-Gallia	0.0	0.0
-Williams	0.0	0.0
-Lorain	5.667	12.667
-Lake	4.667	12.667
-Geauga	0.0	2.0
-Auglaize	2.564	4.735
-Tuscarawas	1.0	4.0
-Adams	5.931	10.993
-Paulding	0.0	0.0
-Highland	0.333	2.333
-Shelby	3.295	6.264
-Allen	5.982	11.047
-Putnam	0.0	0.0
-Franklin	47.0	94.0
-Butler	8.333	15.333
-Greene	2.0	4.0
-Hancock	1.667	4.667
-Union	0.667	0.667
-Ashtabula	1.333	4.333
-Perry	0.283	0.574
-Preble	2.386	4.404
-Clark	0.667	2.667
-Miami	6.0	20.0
-Columbiana	7.333	18.333
-Carroll	0.333	1.333
-Morgan	0.0	0.0
-Holmes	0.0	0.0
-Knox	0.667	0.667
-Medina	4.0	9.0
-Warren	2.0	3.0
-Lucas	26.333	45.333
-Ottawa	0.0	0.0
-Huron	0.667	3.667
-Clinton	0.667	0.667
-Crawford	0.412	0.745
-Stark	7.333	21.333
-Champaign	0.0	0.0
-Athens	0.0	0.0
-Portage	10.0	20.0
-Ross	0.291	0.59
-Van Wert	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	0.0	0.0	0.0	0.0
+Licking	4.0	4.0	2.276e-05	2.276e-05
+Brown	0.0	0.0	0.0	0.0
+Wood	4.333	4.333	3.315e-05	3.315e-05
+Pike	0.0	0.0	0.0	0.0
+Richland	2.667	2.667	2.202e-05	2.202e-05
+Wayne	0.978	0.978	8.43e-06	8.43e-06
+Sandusky	0.0	0.0	0.0	0.0
+Fulton	0.724	0.724	1.713e-05	1.713e-05
+Seneca	0.412	0.412	7.46e-06	7.46e-06
+Montgomery	14.0	14.0	2.63e-05	2.63e-05
+Fairfield	8.232	8.232	5.284e-05	5.284e-05
+Coshocton	1.0	1.0	2.73e-05	2.73e-05
+Wyandot	0.0	0.0	0.0	0.0
+Hamilton	45.667	45.667	5.592e-05	5.592e-05
+Cuyahoga	45.0	45.0	3.618e-05	3.618e-05
+Washington	2.0	2.0	3.325e-05	3.325e-05
+Pickaway	7.083	7.083	0.00012194	0.00012194
+Hardin	0.0	0.0	0.0	0.0
+Erie	1.667	1.667	2.234e-05	2.234e-05
+Fayette	0.0	0.0	0.0	0.0
+Morrow	1.105	1.105	3.147e-05	3.147e-05
+Jefferson	0.0	0.0	0.0	0.0
+Guernsey	0.0	0.0	0.0	0.0
+Monroe	0.0	0.0	0.0	0.0
+Summit	5.0	5.0	9.23e-06	9.23e-06
+Belmont	2.667	2.667	3.951e-05	3.951e-05
+Lawrence	2.024	2.024	3.381e-05	3.381e-05
+Marion	4.333	4.333	6.64e-05	6.64e-05
+Delaware	5.333	5.333	2.604e-05	2.604e-05
+Mercer	0.978	0.978	2.388e-05	2.388e-05
+Ashland	0.0	0.0	0.0	0.0
+Madison	1.333	1.333	3.001e-05	3.001e-05
+Darke	1.333	1.333	2.597e-05	2.597e-05
+Muskingum	0.0	0.0	0.0	0.0
+Defiance	0.0	0.0	0.0	0.0
+Scioto	0.0	0.0	0.0	0.0
+Clermont	2.333	2.333	1.135e-05	1.135e-05
+Mahoning	16.667	16.667	7.258e-05	7.258e-05
+Trumbull	7.333	7.333	3.692e-05	3.692e-05
+Gallia	0.0	0.0	0.0	0.0
+Williams	0.0	0.0	0.0	0.0
+Lorain	5.667	5.667	1.831e-05	1.831e-05
+Lake	4.667	4.667	2.025e-05	2.025e-05
+Geauga	0.0	0.0	0.0	0.0
+Auglaize	2.564	2.564	5.598e-05	5.598e-05
+Tuscarawas	1.0	1.0	1.085e-05	1.085e-05
+Adams	5.931	5.931	0.00021393	0.00021393
+Paulding	0.0	0.0	0.0	0.0
+Highland	0.333	0.333	7.73e-06	7.73e-06
+Shelby	3.295	3.295	6.776e-05	6.776e-05
+Allen	5.982	5.982	5.827e-05	5.827e-05
+Putnam	0.0	0.0	0.0	0.0
+Franklin	47.0	47.0	3.587e-05	3.587e-05
+Butler	8.333	8.333	2.179e-05	2.179e-05
+Greene	2.0	2.0	1.191e-05	1.191e-05
+Hancock	1.667	1.667	2.195e-05	2.195e-05
+Union	0.667	0.667	1.153e-05	1.153e-05
+Ashtabula	1.333	1.333	1.367e-05	1.367e-05
+Perry	0.283	0.283	7.85e-06	7.85e-06
+Preble	2.386	2.386	5.82e-05	5.82e-05
+Clark	0.667	0.667	4.96e-06	4.96e-06
+Miami	6.0	6.0	5.649e-05	5.649e-05
+Columbiana	7.333	7.333	7.143e-05	7.143e-05
+Carroll	0.333	0.333	1.23e-05	1.23e-05
+Morgan	0.0	0.0	0.0	0.0
+Holmes	0.0	0.0	0.0	0.0
+Knox	0.667	0.667	1.078e-05	1.078e-05
+Medina	4.0	4.0	2.233e-05	2.233e-05
+Warren	2.0	2.0	8.61e-06	8.61e-06
+Lucas	26.333	26.333	6.125e-05	6.125e-05
+Ottawa	0.0	0.0	0.0	0.0
+Huron	0.667	0.667	1.14e-05	1.14e-05
+Clinton	0.667	0.667	1.586e-05	1.586e-05
+Crawford	0.412	0.412	9.92e-06	9.92e-06
+Stark	7.333	7.333	1.973e-05	1.973e-05
+Champaign	0.0	0.0	0.0	0.0
+Athens	0.0	0.0	0.0	0.0
+Portage	10.0	10.0	6.138e-05	6.138e-05
+Ross	0.291	0.291	3.78e-06	3.78e-06
+Van Wert	0.0	0.0	0.0	0.0

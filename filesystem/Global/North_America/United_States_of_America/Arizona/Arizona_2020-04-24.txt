@@ -1,16 +1,16 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Pima	25.707	688.12
-Cochise	17.344	120.659
-Coconino	39.735	689.937
-Yavapai	2.402	54.586
-Greenlee	0.0	0.0
-La Paz	0.0	0.0
-Graham	0.0	0.0
-Gila	0.0	0.0
-Yuma	0.0	0.0
-Navajo	133.982	1646.94
-Mohave	65.49	552.421
-Santa Cruz	0.0	0.0
-Pinal	5.483	136.073
-Maricopa	96.87	2193.019
-Apache	2.484	66.489
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Pima	25.707	645.12	2.474e-05	0.00062086
+Cochise	17.344	119.659	0.00013681	0.00094391
+Coconino	39.735	670.937	0.00027815	0.00469666
+Yavapai	2.402	50.586	1.035e-05	0.00021805
+Greenlee	0.0	0.0	0.0	0.0
+La Paz	0.0	0.0	0.0	0.0
+Graham	0.0	0.0	0.0	0.0
+Gila	0.0	0.0	0.0	0.0
+Yuma	0.0	0.0	N/A	N/A
+Navajo	133.982	1594.94	0.00121311	0.01444103
+Mohave	65.49	546.856	0.00031253	0.00260967
+Santa Cruz	0.0	0.0	0.0	0.0
+Pinal	5.483	133.073	1.226e-05	0.00029761
+Maricopa	96.87	2086.019	2.196e-05	0.00047293
+Apache	2.484	53.489	3.459e-05	0.00074479

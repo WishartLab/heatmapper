@@ -1,23 +1,23 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Torrance	0.0	0.0
-Los Alamos	0.0	0.0
-Sandoval	19.504	1821.839
-Valencia	0.0	0.0
-Santa Fe	0.153	58.217
-Curry	0.0	0.0
-Lincoln	0.0	0.0
-Catron	0.0	0.0
-Rio Arriba	7.586	337.837
-Cibola	95.069	3967.028
-Socorro	33.033	1291.652
-Chaves	0.0	1.0
-San Juan	107.759	5495.169
-Eddy	0.0	0.0
-Taos	0.0	0.0
-Roosevelt	0.0	0.0
-Unassigned	-16.517	-645.327
-Bernalillo	39.469	3287.705
-Lea	0.0	0.0
-Otero	0.045	11.502
-McKinley	104.477	4652.879
-Grant	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Torrance	0.0	0.0	0.0	0.0
+Los Alamos	0.0	0.0	0.0	0.0
+Sandoval	19.504	1810.839	0.00013434	0.01247315
+Valencia	0.0	0.0	0.0	0.0
+Santa Fe	0.153	56.217	1.02e-06	0.00037464
+Curry	0.0	0.0	0.0	0.0
+Lincoln	0.0	0.0	0.0	0.0
+Catron	0.0	0.0	0.0	0.0
+Rio Arriba	7.586	337.425	0.00019448	0.00865059
+Cibola	95.069	3963.028	0.00355451	0.14817274
+Socorro	33.033	1290.652	0.00197389	0.07712292
+Chaves	0.0	0.0	0.0	0.0
+San Juan	107.759	5451.169	0.00086178	0.04359436
+Eddy	0.0	0.0	0.0	0.0
+Taos	0.0	0.0	0.0	0.0
+Roosevelt	0.0	0.0	0.0	0.0
+Unassigned	-16.517	-645.327	N/A	N/A
+Bernalillo	39.469	3271.705	5.815e-05	0.00482054
+Lea	0.0	0.0	0.0	0.0
+Otero	0.045	10.935	6.7e-07	0.00016374
+McKinley	104.477	4646.879	0.00144525	0.06428108
+Grant	0.0	0.0	0.0	0.0

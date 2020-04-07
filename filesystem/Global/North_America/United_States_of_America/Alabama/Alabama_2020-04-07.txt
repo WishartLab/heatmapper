@@ -1,65 +1,65 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Limestone	0.667	2.667
-Pike	1.518	2.752
-Cherokee	0.506	0.917
-Montgomery	4.333	8.333
-Tuscaloosa	1.667	30.667
-Russell	3.036	5.504
-Bullock	0.0	0.0
-Lee	5.0	9.0
-Washington	0.0	0.0
-Etowah	12.217	22.336
-Wilcox	0.652	1.313
-Baldwin	0.667	9.667
-Macon	0.0	0.0
-Coosa	0.963	1.941
-Fayette	0.0	0.0
-Jefferson	22.0	29.0
-Bibb	0.076	0.173
-Barbour	2.531	4.679
-Covington	0.0	0.0
-Monroe	0.0	0.0
-Lamar	1.0	3.0
-Lawrence	3.137	5.678
-Marion	0.667	2.667
-Dale	0.269	0.545
-Elmore	0.0	0.0
-Autauga	0.0	0.0
-Talladega	2.333	5.333
-Houston	1.667	8.667
-Colbert	0.0	0.0
-Henry	7.593	14.036
-Madison	7.0	14.0
-Conecuh	0.0	0.0
-Tallapoosa	1.333	2.333
-Cullman	0.0	5.0
-Calhoun	2.667	13.667
-Clarke	1.347	2.728
-Marshall	4.554	8.256
-Randolph	0.63	1.272
-Dallas	0.0	0.0
-Clay	0.466	0.861
-Mobile	11.0	29.0
-De Kalb	1.412	2.684
-Shelby	12.667	20.667
-Chilton	0.0	0.0
-Crenshaw	0.0	0.0
-Franklin	0.333	0.333
-Coffee	0.829	1.679
-Butler	0.0	0.0
-Blount	0.506	0.917
-Greene	2.171	4.003
-Escambia	0.0	0.0
-Lauderdale	0.0	0.0
-Perry	0.0	0.0
-Chambers	4.667	9.667
-Morgan	2.881	5.214
-Cleburne	0.0	0.0
-Lowndes	1.222	2.234
-Hale	0.0	0.0
-Winston	0.0	0.0
-Walker	0.667	5.667
-Marengo	1.222	2.234
-Saint Clair	1.667	6.667
-Jackson	2.0	5.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Limestone	0.667	0.667	6.94e-06	6.94e-06
+Pike	1.518	1.518	4.553e-05	4.553e-05
+Cherokee	0.506	0.506	1.944e-05	1.944e-05
+Montgomery	4.333	4.333	1.919e-05	1.919e-05
+Tuscaloosa	1.667	1.667	7.98e-06	7.98e-06
+Russell	3.036	3.036	5.254e-05	5.254e-05
+Bullock	0.0	0.0	0.0	0.0
+Lee	5.0	5.0	3.05e-05	3.05e-05
+Washington	0.0	0.0	0.0	0.0
+Etowah	12.217	12.217	0.00011919	0.00011919
+Wilcox	0.652	0.652	6.135e-05	6.135e-05
+Baldwin	0.667	0.667	3.06e-06	3.06e-06
+Macon	0.0	0.0	0.0	0.0
+Coosa	0.963	0.963	8.987e-05	8.987e-05
+Fayette	0.0	0.0	0.0	0.0
+Jefferson	22.0	22.0	3.337e-05	3.337e-05
+Bibb	0.076	0.076	3.39e-06	3.39e-06
+Barbour	2.531	2.531	0.00010172	0.00010172
+Covington	0.0	0.0	0.0	0.0
+Monroe	0.0	0.0	0.0	0.0
+Lamar	1.0	1.0	7.223e-05	7.223e-05
+Lawrence	3.137	3.137	9.518e-05	9.518e-05
+Marion	0.667	0.667	2.241e-05	2.241e-05
+Dale	0.269	0.269	5.49e-06	5.49e-06
+Elmore	0.0	0.0	0.0	0.0
+Autauga	0.0	0.0	0.0	0.0
+Talladega	2.333	2.333	2.923e-05	2.923e-05
+Houston	1.667	1.667	1.592e-05	1.592e-05
+Colbert	0.0	0.0	0.0	0.0
+Henry	7.593	7.593	0.00044122	0.00044122
+Madison	7.0	7.0	1.91e-05	1.91e-05
+Conecuh	0.0	0.0	0.0	0.0
+Tallapoosa	1.333	1.333	3.292e-05	3.292e-05
+Cullman	0.0	0.0	0.0	0.0
+Calhoun	2.667	2.667	2.334e-05	2.334e-05
+Clarke	1.347	1.347	5.631e-05	5.631e-05
+Marshall	4.554	4.554	4.738e-05	4.738e-05
+Randolph	0.63	0.63	2.772e-05	2.772e-05
+Dallas	0.0	0.0	0.0	0.0
+Clay	0.466	0.466	3.51e-05	3.51e-05
+Mobile	11.0	11.0	2.659e-05	2.659e-05
+De Kalb	1.412	1.412	1.978e-05	1.978e-05
+Shelby	12.667	12.667	5.872e-05	5.872e-05
+Chilton	0.0	0.0	0.0	0.0
+Crenshaw	0.0	0.0	0.0	0.0
+Franklin	0.333	0.333	1.062e-05	1.062e-05
+Coffee	0.829	0.829	1.597e-05	1.597e-05
+Butler	0.0	0.0	0.0	0.0
+Blount	0.506	0.506	8.75e-06	8.75e-06
+Greene	2.171	2.171	0.00026369	0.00026369
+Escambia	0.0	0.0	0.0	0.0
+Lauderdale	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Chambers	4.667	4.667	0.00013884	0.00013884
+Morgan	2.881	2.881	2.419e-05	2.419e-05
+Cleburne	0.0	0.0	0.0	0.0
+Lowndes	1.222	1.222	0.00012252	0.00012252
+Hale	0.0	0.0	0.0	0.0
+Winston	0.0	0.0	0.0	0.0
+Walker	0.667	0.667	1.047e-05	1.047e-05
+Marengo	1.222	1.222	6.409e-05	6.409e-05
+Saint Clair	1.667	1.667	1.88e-05	1.88e-05
+Jackson	2.0	2.0	3.866e-05	3.866e-05

@@ -1,55 +1,55 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Belarus	14.983	98578.822
-Vatican	0.0	0.0
-Liechtenstein	1.25	8198.06
-Kosovo	0.502	18496.814
-Honduras	0.056	11185.378
-Haiti	0.276	1815.494
-Saint Vincent and the Grenadines	0.152	997.052
-Dominica	0.141	925.2
-Nicaragua	0.0	0.0
-Saint Lucia	0.203	1329.42
-Saint Kitts and Nevis	0.0	0.0
-Antigua and Barbuda	0.236	1550.976
-Guyana	0.889	5848.65
-Belize	0.422	2773.62
-Suriname	0.141	923.2
-Grenada	0.0	0.0
-Fiji	0.135	890.272
-Papua New Guinea	0.0	2.0
-Kenya	0.147	11450.08
-Botswana	0.0	0.0
-Benin	0.816	5362.582
-Namibia	0.0	0.0
-Zambia	0.597	3914.396
-Republic of the Congo	0.0	0.0
-Gabon	0.49	3218.746
-Malawi	0.141	925.2
-Seychelles	0.0	2.0
-Guinea-Bissau	0.126	1813.99
-Liberia	0.276	1811.494
-Zimbabwe	0.118	777.496
-Swaziland	0.011	75.872
-Sudan	0.36	2363.408
-Somalia	0.006	36.924
-United Republic of Tanzania	0.152	1001.052
-Mozambique	0.0	0.0
-Angola	0.169	1111.854
-Ethiopia	1.289	8458.554
-Chad	0.36	2363.408
-Niger	2.273	32741.432
-Equatorial Guinea	0.068	443.144
-Gambia	0.0	0.0
-Guinea	5.015	32917.022
-Central African Republic	0.0	0.0
-Mauritania	0.006	36.924
-Cape Verde	0.017	110.784
-Djibouti	0.706	10196.142
-Burundi	0.0	0.0
-Bhutan	0.017	110.784
-Syria	0.0	0.0
-Nepal	0.073	480.068
-Kuwait	0.046	12379.986
-Qatar	13.023	187272.65
-Mongolia	0.006	38.924
-Maldives	0.208	1366.342
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Belarus	14.983	98302.822	1.58e-06	0.01036361
+Vatican	0.0	0.0	0.0	0.0
+Liechtenstein	1.25	8198.06	3.297e-05	0.21625059
+Kosovo	0.502	18471.622	2.7e-07	0.01001009
+Honduras	0.056	11125.378	1e-08	0.0011604
+Haiti	0.276	1809.494	2e-08	0.00016268
+Saint Vincent and the Grenadines	0.152	997.052	1.38e-06	0.00904684
+Dominica	0.141	923.2	1.97e-06	0.01288935
+Nicaragua	0.0	0.0	0.0	0.0
+Saint Lucia	0.203	1329.42	1.12e-06	0.00730896
+Saint Kitts and Nevis	0.0	0.0	0.0	0.0
+Antigua and Barbuda	0.236	1550.976	2.45e-06	0.01610801
+Guyana	0.889	5834.65	1.14e-06	0.00748988
+Belize	0.422	2769.62	1.1e-06	0.00723004
+Suriname	0.141	923.2	2.4e-07	0.0016028
+Grenada	0.0	0.0	0.0	0.0
+Fiji	0.135	886.272	1.5e-07	0.00100316
+Papua New Guinea	0.0	0.0	0.0	0.0
+Kenya	0.147	11418.08	0.0	0.00022217
+Botswana	0.0	0.0	0.0	0.0
+Benin	0.816	5354.582	7e-08	0.00046622
+Namibia	0.0	0.0	0.0	0.0
+Zambia	0.597	3914.396	3e-08	0.00022559
+Republic of the Congo	0.0	0.0	0.0	0.0
+Gabon	0.49	3212.746	2.3e-07	0.00151596
+Malawi	0.141	923.2	1e-08	5.088e-05
+Seychelles	0.0	0.0	0.0	0.0
+Guinea-Bissau	0.126	1813.99	7e-08	0.00096782
+Liberia	0.276	1809.494	6e-08	0.00037549
+Zimbabwe	0.118	775.496	1e-08	5.371e-05
+Swaziland	0.011	73.872	1e-08	6.502e-05
+Sudan	0.36	2363.408	1e-08	5.654e-05
+Somalia	0.006	36.924	0.0	2.46e-06
+United Republic of Tanzania	0.152	997.052	0.0	1.77e-05
+Mozambique	0.0	0.0	0.0	0.0
+Angola	0.169	1107.854	1e-08	3.596e-05
+Ethiopia	1.289	8456.554	1e-08	7.742e-05
+Chad	0.36	2363.408	2e-08	0.0001527
+Niger	2.273	32603.432	1e-07	0.00145273
+Equatorial Guinea	0.068	443.144	5e-08	0.00033854
+Gambia	0.0	0.0	0.0	0.0
+Guinea	5.015	32903.022	4e-07	0.00265041
+Central African Republic	0.0	0.0	0.0	0.0
+Mauritania	0.006	36.924	0.0	8.39e-06
+Cape Verde	0.017	110.784	3e-08	0.00020373
+Djibouti	0.706	10134.142	7.4e-07	0.01056829
+Burundi	0.0	0.0	0.0	0.0
+Bhutan	0.017	110.784	2e-08	0.00014685
+Syria	0.0	0.0	0.0	0.0
+Nepal	0.073	480.068	0.0	1.709e-05
+Kuwait	0.046	12161.986	1e-08	0.00293959
+Qatar	13.023	186816.65	4.68e-06	0.06715972
+Mongolia	0.006	36.924	0.0	1.165e-05
+Maldives	0.208	1366.342	4e-07	0.00264951

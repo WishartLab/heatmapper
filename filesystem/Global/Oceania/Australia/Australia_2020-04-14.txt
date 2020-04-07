@@ -1,8 +1,8 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Queensland	17.93	234.657
-Western Australia	6.652	111.964
-Victoria	51.245	466.782
-Australian Capital Territory	0.221	10.784
-New South Wales	98.591	987.361
-South Australia	14.07	142.013
-Northern Territory	1.586	13.386
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Queensland	17.93	220.657	3.52e-06	4.331e-05
+Western Australia	6.652	104.964	2.54e-06	4.004e-05
+Victoria	51.245	443.782	7.77e-06	6.729e-05
+Australian Capital Territory	0.221	10.784	5.2e-07	2.527e-05
+New South Wales	98.591	930.361	1.219e-05	0.00011501
+South Australia	14.07	138.013	5.37e-06	5.264e-05
+Northern Territory	1.586	12.386	6.45e-06	5.038e-05

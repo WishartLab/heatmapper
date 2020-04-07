@@ -1,56 +1,56 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	0.0	0.0
-Pike	0.0	0.0
-Kendall	0.892	1387.163
-Williamson	0.219	300.759
-Montgomery	0.0	0.0
-Ford	0.0	0.0
-McHenry	5.019	6892.785
-La Salle	1.567	1376.743
-Woodford	0.58	458.388
-Peoria	0.0	-2.0
-Lee	0.0	0.0
-Washington	0.0	1.0
-Jersey	0.3	1357.066
-Macon	0.843	1500.039
-Effingham	0.0	0.0
-Fayette	0.0	0.0
-Jefferson	0.0	0.0
-Bureau	0.0	0.0
-Bond	0.0	0.0
-Monroe	1.74	1376.176
-Marion	0.0	0.0
-Winnebago	11.017	8716.423
-McLean	0.072	503.279
-Livingston	1.74	1377.176
-Madison	0.051	356.292
-Boone	0.079	895.56
-Tazewell	1.355	2103.155
-Rock Island	5.84	5721.585
-Ogle	0.262	1186.587
-Calhoun	0.0	0.0
-Iroquois	0.581	901.353
-Saline	0.0	0.0
-Christian	3.479	2752.346
-Marshall	0.0	0.0
-Lake	0.153	5673.428
-Will	2.447	11077.03
-Randolph	0.475	2149.829
-Mason	0.0	0.0
-Adams	0.58	463.388
-Stephenson	0.0	2.0
-De Kalb	3.479	2750.346
-Franklin	0.0	0.0
-Gallatin	0.0	0.0
-Jo Daviess	1.74	1376.176
-Clark	0.0	0.0
-Menard	0.0	0.0
-Dewitt	0.3	1357.066
-Sangamon	3.073	3009.676
-Knox	0.0	0.0
-Whiteside	3.479	2750.346
-Crawford	0.354	896.076
-Champaign	1.296	1591.045
-Grundy	1.045	917.828
-Jasper	0.193	1350.816
-Jackson	3.479	2752.346
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	0.0	0.0	0.0	0.0
+Pike	0.0	0.0	0.0	0.0
+Kendall	0.892	1381.163	6.97e-06	0.01079751
+Williamson	0.219	300.253	3.27e-06	0.00447765
+Montgomery	0.0	0.0	0.0	0.0
+Ford	0.0	0.0	0.0	0.0
+McHenry	5.019	6881.785	1.627e-05	0.02230218
+La Salle	1.567	1375.743	1.432e-05	0.0125719
+Woodford	0.58	458.388	1.508e-05	0.01191764
+Peoria	0.0	0.0	0.0	0.0
+Lee	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Jersey	0.3	1350.623	1.373e-05	0.0618219
+Macon	0.843	1496.421	8.05e-06	0.01429083
+Effingham	0.0	0.0	0.0	0.0
+Fayette	0.0	0.0	0.0	0.0
+Jefferson	0.0	0.0	0.0	0.0
+Bureau	0.0	0.0	0.0	0.0
+Bond	0.0	0.0	0.0	0.0
+Monroe	1.74	1375.176	5.068e-05	0.04005173
+Marion	0.0	0.0	0.0	0.0
+Winnebago	11.017	8709.423	3.878e-05	0.03065824
+McLean	0.072	503.279	4.2e-07	0.00291202
+Livingston	1.74	1375.176	4.866e-05	0.03845463
+Madison	0.051	352.292	1.9e-07	0.00133211
+Boone	0.079	889.629	1.47e-06	0.01660468
+Tazewell	1.355	2098.879	1.024e-05	0.01586119
+Rock Island	5.84	5714.585	4.07e-05	0.03982928
+Ogle	0.262	1180.953	5.15e-06	0.02319095
+Calhoun	0.0	0.0	0.0	0.0
+Iroquois	0.581	899.521	2.105e-05	0.03258662
+Saline	0.0	0.0	0.0	0.0
+Christian	3.479	2750.346	0.00010652	0.08420887
+Marshall	0.0	0.0	0.0	0.0
+Lake	0.153	5600.428	2.2e-07	0.00799111
+Will	2.447	11028.03	3.53e-06	0.01592932
+Randolph	0.475	2139.622	1.479e-05	0.06664243
+Mason	0.0	0.0	0.0	0.0
+Adams	0.58	458.388	8.83e-06	0.00697794
+Stephenson	0.0	0.0	0.0	0.0
+De Kalb	3.479	2750.346	3.341e-05	0.02640932
+Franklin	0.0	0.0	0.0	0.0
+Gallatin	0.0	0.0	0.0	0.0
+Jo Daviess	1.74	1375.176	8.144e-05	0.06436282
+Clark	0.0	0.0	0.0	0.0
+Menard	0.0	0.0	0.0	0.0
+Dewitt	0.3	1350.623	1.902e-05	0.08565052
+Sangamon	3.073	3007.676	1.573e-05	0.0153965
+Knox	0.0	0.0	0.0	0.0
+Whiteside	3.479	2750.346	6.254e-05	0.04944353
+Crawford	0.354	893.049	1.882e-05	0.04748493
+Champaign	1.296	1584.045	6.17e-06	0.00754368
+Grundy	1.045	917.161	2.05e-05	0.01799343
+Jasper	0.193	1343.223	2.008e-05	0.13975892
+Jackson	3.479	2750.346	6.059e-05	0.04789958

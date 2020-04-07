@@ -1,25 +1,25 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lincoln	0.0	0.0
-Silver Bow	0.0	0.0
-Yellowstone	0.007	9.377
-Carbon	0.0	0.0
-Jefferson	0.0	0.0
-Park	0.0	0.0
-Glacier	0.0	0.0
-Broadwater	0.0	0.0
-Hill	0.0	0.0
-Madison	0.0	0.0
-Liberty	0.0	0.0
-Ravalli	0.0	0.0
-Deer Lodge	0.0	0.0
-Lake	0.0	0.0
-Lewis and Clark	0.0	0.0
-Unassigned	0.0	0.0
-Cascade	0.0	0.0
-Toole	5.113	120.384
-Gallatin	3.845	132.871
-Missoula	0.577	20.258
-Beaverhead	0.0	0.0
-Meagher	0.0	0.0
-Flathead	2.586	60.394
-Musselshell	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lincoln	0.0	0.0	0.0	0.0
+Silver Bow	0.0	0.0	0.0	0.0
+Yellowstone	0.007	7.377	4e-08	4.607e-05
+Carbon	0.0	0.0	0.0	0.0
+Jefferson	0.0	0.0	0.0	0.0
+Park	0.0	0.0	0.0	0.0
+Glacier	0.0	0.0	0.0	0.0
+Broadwater	0.0	0.0	0.0	0.0
+Hill	0.0	0.0	0.0	0.0
+Madison	0.0	0.0	0.0	0.0
+Liberty	0.0	0.0	0.0	0.0
+Ravalli	0.0	0.0	0.0	0.0
+Deer Lodge	0.0	0.0	0.0	0.0
+Lake	0.0	0.0	0.0	0.0
+Lewis and Clark	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Cascade	0.0	0.0	0.0	0.0
+Toole	5.113	117.415	0.00105358	0.02419431
+Gallatin	3.845	126.871	3.437e-05	0.00113403
+Missoula	0.577	18.258	4.86e-06	0.0001537
+Beaverhead	0.0	0.0	0.0	0.0
+Meagher	0.0	0.0	0.0	0.0
+Flathead	2.586	59.394	2.533e-05	0.00058169
+Musselshell	0.0	0.0	0.0	0.0

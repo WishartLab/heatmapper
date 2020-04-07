@@ -1,35 +1,35 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Pike	0.197	905.869
-Cherokee	0.066	301.952
-Russell	0.393	1811.739
-Bullock	0.0	0.0
-Washington	0.0	0.0
-Etowah	0.843	6031.734
-Fayette	0.0	0.0
-Barbour	0.007	452.527
-Lamar	0.771	1385.192
-Lawrence	0.704	2304.282
-Autauga	0.0	0.0
-Colbert	0.0	0.0
-Henry	0.022	1357.587
-Tallapoosa	0.002	173.11
-Cullman	0.0	5.0
-Calhoun	2.057	3699.501
-Marshall	0.59	2717.607
-Clay	0.009	163.99
-Crenshaw	0.0	0.0
-Franklin	0.257	461.06
-Butler	0.0	0.0
-Blount	0.066	301.952
-Greene	0.078	903.321
-Escambia	0.0	0.0
-Lauderdale	0.0	0.0
-Perry	0.0	0.0
-Chambers	0.003	454.343
-Morgan	1.531	3228.969
-Lowndes	0.084	603.176
-Hale	0.0	0.0
-Winston	0.0	0.0
-Marengo	0.084	603.176
-Jackson	1.543	2769.377
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Pike	0.197	904.635	5.91e-06	0.02713525
+Cherokee	0.066	301.541	2.54e-06	0.01158347
+Russell	0.393	1809.271	6.8e-06	0.03131256
+Bullock	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Etowah	0.843	6021.615	8.22e-06	0.05874689
+Fayette	0.0	0.0	0.0	0.0
+Barbour	0.007	450.379	2.8e-07	0.01810132
+Lamar	0.771	1383.192	5.569e-05	0.09991274
+Lawrence	0.704	2301.741	2.136e-05	0.06984073
+Autauga	0.0	0.0	0.0	0.0
+Colbert	0.0	0.0	0.0	0.0
+Henry	0.022	1351.144	1.28e-06	0.0785138
+Tallapoosa	0.002	172.11	5e-08	0.00424994
+Cullman	0.0	0.0	0.0	0.0
+Calhoun	2.057	3688.501	1.8e-05	0.03227684
+Marshall	0.59	2713.905	6.14e-06	0.02823778
+Clay	0.009	163.595	6.8e-07	0.01232354
+Crenshaw	0.0	0.0	0.0	0.0
+Franklin	0.257	461.06	8.19e-06	0.01470076
+Butler	0.0	0.0	0.0	0.0
+Blount	0.066	301.541	1.14e-06	0.00521336
+Greene	0.078	901.489	9.47e-06	0.10949702
+Escambia	0.0	0.0	0.0	0.0
+Lauderdale	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Chambers	0.003	449.343	9e-08	0.01336734
+Morgan	1.531	3226.636	1.286e-05	0.02709432
+Lowndes	0.084	602.164	8.42e-06	0.06037337
+Hale	0.0	0.0	0.0	0.0
+Winston	0.0	0.0	0.0	0.0
+Marengo	0.084	602.164	4.41e-06	0.03158313
+Jackson	1.543	2766.377	2.982e-05	0.05347103

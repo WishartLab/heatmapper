@@ -1,33 +1,33 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Shasta	6.979	4574.721
-Yuba	0.639	457.808
-Alpine	0.0	0.0
-San Mateo	0.032	1478.499
-Riverside	306.374	200845.586
-Sacramento	64.206	42079.842
-Butte	0.698	457.169
-Ventura	0.003	426.469
-Kern	41.873	27439.33
-San Benito	0.0	0.0
-San Bernardino	13.971	13639.703
-Fresno	0.006	280.176
-Glenn	0.0	0.0
-Tulare	2.12	3759.043
-Santa Barbara	0.003	420.625
-Placer	0.005	238.865
-Siskiyou	0.0	1.0
-Del Norte	0.18	452.112
-Humboldt	0.007	172.633
-Calaveras	0.698	458.169
-Unassigned	0.0	0.0
-Stanislaus	0.002	242.931
-Amador	0.0	3.0
-Los Angeles	1.299	34085.296
-Monterey	0.004	176.894
-Tuolumne	0.0	0.0
-Colusa	0.0	0.0
-Santa Cruz	0.0	59.232
-Tehama	0.0	0.0
-San Diego	0.203	7373.809
-Imperial	0.001	123.291
-Mendocino	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Shasta	6.979	4571.721	3.876e-05	0.02539281
+Yuba	0.639	457.475	8.19e-06	0.00586198
+Alpine	0.0	0.0	0.0	0.0
+San Mateo	0.032	1454.499	4e-08	0.00189008
+Riverside	306.374	200698.586	0.00012501	0.08189245
+Sacramento	64.206	42059.842	4.167e-05	0.02729431
+Butte	0.698	457.169	3.02e-06	0.0019769
+Ventura	0.003	426.469	0.0	0.00050116
+Kern	41.873	27430.33	4.669e-05	0.03058813
+San Benito	0.0	0.0	0.0	0.0
+San Bernardino	13.971	13638.703	6.43e-06	0.00628048
+Fresno	0.006	275.176	1e-08	0.00027673
+Glenn	0.0	0.0	0.0	0.0
+Tulare	2.12	3740.043	4.55e-06	0.00802824
+Santa Barbara	0.003	414.625	1e-08	0.00092856
+Placer	0.005	235.865	1e-08	0.00059994
+Siskiyou	0.0	0.0	0.0	0.0
+Del Norte	0.18	449.964	6.47e-06	0.01616947
+Humboldt	0.007	172.633	5e-08	0.00126589
+Calaveras	0.698	457.169	1.531e-05	0.0100252
+Unassigned	0.0	0.0	N/A	N/A
+Stanislaus	0.002	236.931	0.0	0.00043093
+Amador	0.0	0.0	0.0	0.0
+Los Angeles	1.299	33663.296	1.3e-07	0.00333118
+Monterey	0.004	176.894	1e-08	0.0004061
+Tuolumne	0.0	0.0	0.0	0.0
+Colusa	0.0	0.0	0.0	0.0
+Santa Cruz	0.0	59.232	0.0	0.00021597
+Tehama	0.0	0.0	0.0	0.0
+San Diego	0.203	7256.809	6e-08	0.00217051
+Imperial	0.001	115.291	1e-08	0.00063407
+Mendocino	0.0	0.0	0.0	0.0

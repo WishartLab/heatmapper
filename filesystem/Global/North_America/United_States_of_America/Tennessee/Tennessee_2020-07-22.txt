@@ -1,40 +1,40 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Cumberland	0.029	1847.503
-Lewis	0.0	0.0
-Montgomery	0.039	3934.33
-Overton	0.012	923.765
-Out of TN	0.634	40208.2
-Lincoln	0.007	461.874
-Maury	0.015	926.753
-Hamilton	0.08	5089.632
-Loudon	0.007	461.874
-Washington	0.022	1386.631
-Hardin	0.0	0.0
-Roane	0.0	0.0
-Fayette	0.029	1848.503
-Jefferson	0.0	1.0
-McMinn	0.0	0.0
-Smith	0.0	0.0
-Monroe	0.0	0.0
-Benton	0.0	0.0
-Houston	0.0	0.0
-Madison	0.023	1847.526
-Unicoi	0.0	0.0
-Scott	0.0	0.0
-Unassigned	0.233	14763.028
-Claiborne	0.0	0.0
-Chester	0.007	461.874
-Greene	0.0	0.0
-Anderson	0.0	0.0
-Campbell	0.0	0.0
-Weakley	0.0	0.0
-Perry	0.0	0.0
-Dyer	0.029	1847.503
-Cannon	0.007	922.291
-Carroll	0.022	1386.631
-Meigs	0.0	0.0
-White	0.0	0.0
-Hamblen	0.0	0.0
-Gibson	0.022	1386.631
-Grundy	0.012	923.765
-Cheatham	0.015	923.753
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Cumberland	0.029	1847.503	4.9e-07	0.03096045
+Lewis	0.0	0.0	0.0	0.0
+Montgomery	0.039	3931.33	1.9e-07	0.01908876
+Overton	0.012	923.098	5.4e-07	0.04182971
+Out of TN	0.634	40183.2	N/A	N/A
+Lincoln	0.007	461.874	2.1e-07	0.01353794
+Maury	0.015	923.753	1.6e-07	0.00979174
+Hamilton	0.08	5080.632	2.2e-07	0.01394682
+Loudon	0.007	461.874	1.3e-07	0.00870573
+Washington	0.022	1385.631	1.7e-07	0.01077415
+Hardin	0.0	0.0	0.0	0.0
+Roane	0.0	0.0	0.0	0.0
+Fayette	0.029	1847.503	7.2e-07	0.04560947
+Jefferson	0.0	0.0	0.0	0.0
+McMinn	0.0	0.0	0.0	0.0
+Smith	0.0	0.0	0.0	0.0
+Monroe	0.0	0.0	0.0	0.0
+Benton	0.0	0.0	0.0	0.0
+Houston	0.0	0.0	0.0	0.0
+Madison	0.023	1846.193	2.4e-07	0.01891494
+Unicoi	0.0	0.0	0.0	0.0
+Scott	0.0	0.0	0.0	0.0
+Unassigned	0.233	14780.028	N/A	N/A
+Claiborne	0.0	0.0	0.0	0.0
+Chester	0.007	461.874	4.1e-07	0.02673501
+Greene	0.0	0.0	0.0	0.0
+Anderson	0.0	0.0	0.0	0.0
+Campbell	0.0	0.0	0.0	0.0
+Weakley	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Dyer	0.029	1847.503	7.8e-07	0.04950437
+Cannon	0.007	921.274	4.8e-07	0.06370308
+Carroll	0.022	1385.631	7.9e-07	0.0494515
+Meigs	0.0	0.0	0.0	0.0
+White	0.0	0.0	0.0	0.0
+Hamblen	0.0	0.0	0.0	0.0
+Gibson	0.022	1385.631	4.5e-07	0.02825224
+Grundy	0.012	923.098	9e-07	0.06916664
+Cheatham	0.015	923.753	3.7e-07	0.02284312

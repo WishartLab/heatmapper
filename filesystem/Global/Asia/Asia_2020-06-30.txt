@@ -1,20 +1,20 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Bhutan	0.098	109.272
-Afghanistan	0.012	1961.706
-Syria	0.0	0.0
-Kyrgyzstan	0.022	1268.498
-Nepal	0.424	473.518
-Kuwait	3.472	12354.188
-Indonesia	0.029	8607.845
-Iraq	0.016	3611.55
-Uzbekistan	0.298	4240.986
-Qatar	141.401	185269.511
-Mongolia	0.033	38.419
-Japan	1.3	29081.18
-United Arab Emirates	0.225	16081.839
-Maldives	1.207	1347.713
-India	13.416	86486.748
-Philippines	1.903	41904.643
-Iran	0.635	181567.049
-Kazakhstan	0.07	4975.678
-Pakistan	0.091	16236.927
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Bhutan	0.098	109.272	1.3e-07	0.00014485
+Afghanistan	0.012	1925.706	0.0	5.18e-05
+Syria	0.0	0.0	0.0	0.0
+Kyrgyzstan	0.022	1130.498	0.0	0.000179
+Nepal	0.424	473.518	2e-08	1.686e-05
+Kuwait	3.472	12136.188	8.4e-07	0.00293335
+Indonesia	0.029	8171.845	0.0	3.053e-05
+Iraq	0.016	3471.55	0.0	9.033e-05
+Uzbekistan	0.298	4010.986	1e-08	0.00012171
+Qatar	141.401	184813.511	5.083e-05	0.0664396
+Mongolia	0.033	36.419	1e-08	1.149e-05
+Japan	1.3	28051.18	1e-08	0.0002217
+United Arab Emirates	0.225	15527.839	2e-08	0.00161228
+Maldives	1.207	1347.713	2.34e-06	0.00261339
+India	13.416	84106.748	1e-08	6.218e-05
+Philippines	1.903	41076.643	2e-08	0.00038515
+Iran	0.635	177019.049	1e-08	0.00216404
+Kazakhstan	0.07	4819.678	0.0	0.00026371
+Pakistan	0.091	15018.927	0.0	7.077e-05

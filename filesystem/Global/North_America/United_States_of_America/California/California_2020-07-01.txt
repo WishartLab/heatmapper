@@ -1,34 +1,34 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Shasta	7.568	4567.742
-Yuba	0.698	457.169
-Alpine	0.0	0.0
-San Mateo	0.041	1478.467
-Riverside	332.239	200539.212
-Sacramento	69.626	42015.636
-Butte	0.757	456.471
-Ventura	0.004	426.466
-Kern	45.409	27397.457
-San Benito	0.0	0.0
-San Bernardino	15.569	13625.732
-Fresno	0.008	280.17
-Glenn	0.0	0.0
-Tulare	2.435	3756.923
-Santa Barbara	0.004	420.622
-Placer	0.007	238.86
-Siskiyou	0.0	1.0
-Contra Costa	0.009	1327.182
-Del Norte	0.219	451.932
-Humboldt	0.01	172.626
-Calaveras	0.757	457.471
-Unassigned	0.0	0.0
-Stanislaus	0.002	242.929
-Amador	0.0	3.0
-Los Angeles	1.966	34083.997
-Monterey	0.005	176.89
-Tuolumne	0.0	0.0
-Colusa	0.0	0.0
-Santa Cruz	0.001	59.232
-Tehama	0.0	0.0
-San Diego	0.284	7373.606
-Imperial	0.002	123.29
-Mendocino	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Shasta	7.568	4564.742	4.204e-05	0.02535404
+Yuba	0.698	456.836	8.94e-06	0.00585379
+Alpine	0.0	0.0	0.0	0.0
+San Mateo	0.041	1454.467	5e-08	0.00189004
+Riverside	332.239	200392.212	0.00013557	0.08176744
+Sacramento	69.626	41995.636	4.518e-05	0.02725264
+Butte	0.757	456.471	3.27e-06	0.00197388
+Ventura	0.004	426.466	0.0	0.00050115
+Kern	45.409	27388.457	5.064e-05	0.03054143
+San Benito	0.0	0.0	0.0	0.0
+San Bernardino	15.569	13624.732	7.17e-06	0.00627404
+Fresno	0.008	275.17	1e-08	0.00027672
+Glenn	0.0	0.0	0.0	0.0
+Tulare	2.435	3737.923	5.23e-06	0.00802369
+Santa Barbara	0.004	414.622	1e-08	0.00092855
+Placer	0.007	235.86	2e-08	0.00059993
+Siskiyou	0.0	0.0	0.0	0.0
+Contra Costa	0.009	1296.182	1e-08	0.0011269
+Del Norte	0.219	449.784	7.87e-06	0.016163
+Humboldt	0.01	172.626	7e-08	0.00126584
+Calaveras	0.757	456.471	1.66e-05	0.01000989
+Unassigned	0.0	0.0	N/A	N/A
+Stanislaus	0.002	236.929	0.0	0.00043092
+Amador	0.0	0.0	0.0	0.0
+Los Angeles	1.966	33661.997	1.9e-07	0.00333105
+Monterey	0.005	176.89	1e-08	0.00040609
+Tuolumne	0.0	0.0	0.0	0.0
+Colusa	0.0	0.0	0.0	0.0
+Santa Cruz	0.001	59.232	0.0	0.00021597
+Tehama	0.0	0.0	0.0	0.0
+San Diego	0.284	7256.606	8e-08	0.00217045
+Imperial	0.002	115.29	1e-08	0.00063406
+Mendocino	0.0	0.0	0.0	0.0

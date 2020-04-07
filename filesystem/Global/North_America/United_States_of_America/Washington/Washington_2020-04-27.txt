@@ -1,34 +1,34 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	15.369	125.068
-Skagit	1.467	44.737
-Walla Walla	16.695	138.763
-Pierce	77.526	1687.772
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	35.256	544.601
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Jefferson	0.367	13.184
-Kitsap	2.23	60.444
-Douglas	15.369	122.068
-San Juan	15.369	124.068
-Benton	22.413	468.019
-Okanogan	29.149	283.334
-Whitman	0.0	1.0
-Chelan	1.708	48.787
-Unassigned	1252.152	10407.311
-Mason	23.054	184.103
-Adams	20.983	216.667
-Klickitat	0.0	0.0
-Yakima	23.697	713.892
-Whatcom	3.382	152.081
-Franklin	3.283	113.938
-Ferry	0.0	0.0
-Grays Harbor	15.369	122.068
-Spokane	5.703	161.855
-Kittitas	0.0	2.0
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
-Thurston	2.053	57.186
-Grant	0.021	26.741
-Snohomish	15.417	692.456
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	15.369	122.068	0.00019307	0.00153344
+Skagit	1.467	44.737	1.144e-05	0.00034895
+Walla Walla	16.695	138.096	0.00027404	0.00226677
+Pierce	77.526	1658.772	8.698e-05	0.00186107
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	35.256	537.008	0.00155931	0.02375091
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Jefferson	0.367	11.184	1.157e-05	0.00035249
+Kitsap	2.23	60.444	8.27e-06	0.00022403
+Douglas	15.369	122.068	0.00035819	0.00284494
+San Juan	15.369	122.068	0.0008973	0.00712681
+Benton	22.413	457.019	0.00011102	0.00226385
+Okanogan	29.149	281.31	0.00069185	0.00667687
+Whitman	0.0	0.0	0.0	0.0
+Chelan	1.708	48.787	2.217e-05	0.0006333
+Unassigned	1252.152	10357.311	N/A	N/A
+Mason	23.054	183.103	0.00035193	0.00279517
+Adams	20.983	213.667	0.00106195	0.01081365
+Klickitat	0.0	0.0	0.0	0.0
+Yakima	23.697	676.892	9.424e-05	0.002692
+Whatcom	3.382	148.081	1.499e-05	0.00065614
+Franklin	3.283	105.938	3.48e-05	0.00112285
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	15.369	122.068	0.00020797	0.00165178
+Spokane	5.703	158.855	1.108e-05	0.00030868
+Kittitas	0.0	0.0	0.0	0.0
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0
+Thurston	2.053	57.186	7.17e-06	0.00019966
+Grant	0.021	18.741	2.2e-07	0.00019255
+Snohomish	15.417	648.456	1.892e-05	0.00079575

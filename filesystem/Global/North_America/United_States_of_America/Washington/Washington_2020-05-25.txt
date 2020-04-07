@@ -1,33 +1,33 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	14.508	693.853
-Skagit	0.269	64.918
-Walla Walla	13.856	704.709
-Pierce	20.139	2977.128
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	11.773	1193.895
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Jefferson	0.067	18.228
-Kitsap	0.461	92.9
-Douglas	14.508	690.853
-San Juan	14.508	692.853
-Benton	6.106	846.761
-Okanogan	14.952	983.896
-Whitman	0.0	1.0
-Chelan	0.339	73.06
-Unassigned	1039.232	52853.156
-Mason	21.762	1037.279
-Adams	9.814	689.552
-Klickitat	0.0	0.0
-Yakima	4.699	1050.678
-Whatcom	0.009	180.585
-Franklin	0.572	157.786
-Ferry	0.0	0.0
-Grays Harbor	14.508	690.853
-Spokane	1.156	243.843
-Kittitas	0.0	2.0
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
-Thurston	0.416	86.701
-Snohomish	0.24	859.009
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	14.508	690.853	0.00018225	0.00867862
+Skagit	0.269	64.918	2.1e-06	0.00050636
+Walla Walla	13.856	704.042	0.00022744	0.01155645
+Pierce	20.139	2948.128	2.26e-05	0.00330768
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	11.773	1186.302	0.0005207	0.05246802
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Jefferson	0.067	16.228	2.11e-06	0.00051146
+Kitsap	0.461	92.9	1.71e-06	0.00034432
+Douglas	14.508	690.853	0.00033813	0.01610117
+San Juan	14.508	690.853	0.00084703	0.04033472
+Benton	6.106	835.761	3.025e-05	0.00413995
+Okanogan	14.952	981.872	0.00035488	0.02330466
+Whitman	0.0	0.0	0.0	0.0
+Chelan	0.339	73.06	4.4e-06	0.00094839
+Unassigned	1039.232	52803.156	N/A	N/A
+Mason	21.762	1036.279	0.00033221	0.01581936
+Adams	9.814	686.552	0.00049669	0.03474629
+Klickitat	0.0	0.0	0.0	0.0
+Yakima	4.699	1013.678	1.869e-05	0.00403139
+Whatcom	0.009	176.585	4e-08	0.00078244
+Franklin	0.572	149.786	6.06e-06	0.00158761
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	14.508	690.853	0.00019632	0.00934836
+Spokane	1.156	240.843	2.25e-06	0.00046799
+Kittitas	0.0	0.0	0.0	0.0
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0
+Thurston	0.416	86.701	1.45e-06	0.00030271
+Snohomish	0.24	815.009	2.9e-07	0.00100013
