@@ -543,8 +543,8 @@ shinyServer(function(input, output, session) {
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
-                        choices = c("Predicted New COVID-19 Cases" = 'Predicted_New_Cases',
-                                    "Predicted Total COVID-19 Cases" = 'Total_Predicted_New_Cases'))
+                        choices = c("Predicted New Confirmed COVID-19 Cases" = 'Predicted_New_Cases',
+                                    "Predicted Total New Confirmed COVID-19 Cases" = 'Total_Predicted_New_Cases'))
       } else {
         updateSelectInput(session,
                           inputId = "colSelect",
