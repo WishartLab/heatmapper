@@ -1,36 +1,47 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Brown	0.291	0.59	1.159e-05	2.35e-05
-Winona	0.642	1.294	1.263e-05	2.546e-05
+Wright	0.93	1.717	6.82e-06	1.259e-05
+Brown	0.283	0.574	1.127e-05	2.286e-05
+Winona	1.197	2.243	2.355e-05	4.413e-05
+Cottonwood	0.0	0.0	0.0	0.0
 Lincoln	0.0	0.0	0.0	0.0
-Freeborn	0.85	1.724	2.792e-05	5.663e-05
-Crow Wing	0.567	1.15	8.74e-06	1.772e-05
+Freeborn	0.829	1.679	2.723e-05	5.515e-05
+Crow Wing	0.552	1.119	8.51e-06	1.724e-05
+Washington	2.84	5.76	1.096e-05	2.222e-05
 Pipestone	0.0	0.0	0.0	0.0
-Goodhue	2.443	4.467	5.265e-05	9.627e-05
+Goodhue	2.895	5.338	6.239e-05	0.00011504
 Watonwan	0.0	0.0	0.0	0.0
 Sherburne	0.0	0.0	0.0	0.0
 Rice	0.0	0.0	0.0	0.0
 Sibley	0.0	0.0	0.0	0.0
+Martin	0.184	0.423	9.3e-06	2.138e-05
 Steele	0.0	0.0	0.0	0.0
 Cass	0.0	0.0	0.0	0.0
-Saint Louis	0.363	0.696	1.82e-06	3.48e-06
+Saint Louis	0.139	0.349	7e-07	1.75e-06
 Big Stone	0.0	0.0	0.0	0.0
+Lyon	0.0	0.0	0.0	0.0
 Douglas	0.0	0.0	0.0	0.0
 Mahnomen	0.0	0.0	0.0	0.0
 Faribault	0.0	0.0	0.0	0.0
+Anoka	1.355	2.705	3.83e-06	7.65e-06
 Yellow Medicine	0.0	0.0	0.0	0.0
 Benton	0.0	0.0	0.0	0.0
 Houston	0.0	0.0	0.0	0.0
 Nicollet	0.0	0.0	0.0	0.0
-Dakota	3.523	6.856	8.28e-06	1.612e-05
+Dakota	2.47	5.373	5.81e-06	1.263e-05
+Scott	0.555	1.336	3.77e-06	9.06e-06
 Meeker	0.0	0.0	0.0	0.0
 Koochiching	0.0	0.0	0.0	0.0
+Blue Earth	1.036	2.059	1.536e-05	3.054e-05
 Le Sueur	0.0	0.0	0.0	0.0
+Olmsted	5.665	11.025	3.625e-05	7.055e-05
 Clearwater	0.0	0.0	0.0	0.0
+Dodge	0.0	0.0	0.0	0.0
 Itasca	0.0	0.0	0.0	0.0
 Renville	0.0	0.0	0.0	0.0
 Unassigned	0.0	0.0	N/A	N/A
 McLeod	0.0	0.0	0.0	0.0
 Waseca	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
 Stearns	0.0	0.0	0.0	0.0
 Redwood	0.0	0.0	0.0	0.0
 Wilkin	0.0	0.0	0.0	0.0
@@ -40,10 +51,14 @@ Traverse	0.0	0.0	0.0	0.0
 Murray	0.0	0.0	0.0	0.0
 Kandiyohi	0.0	0.0	0.0	0.0
 Chisago	0.0	0.0	0.0	0.0
+Ramsey	5.008	10.026	9.1e-06	1.822e-05
+Mower	0.0	0.0	0.0	0.0
+Hennepin	12.557	25.361	9.97e-06	2.014e-05
 Wabasha	0.0	0.0	0.0	0.0
-Carlton	3.777	7.107	0.00010539	0.00019831
+Carlton	4.238	8.015	0.00011826	0.00022365
 Beltrami	0.0	0.0	0.0	0.0
 Polk	0.0	0.0	0.0	0.0
 Isanti	0.0	0.0	0.0	0.0
+Carver	0.0	0.0	0.0	0.0
 Lac qui Parle	0.0	0.0	0.0	0.0
 Jackson	0.0	0.0	0.0	0.0

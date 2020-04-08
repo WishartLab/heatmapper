@@ -7,11 +7,11 @@ Montgomery	0.0	0.0	0.0	0.0
 Platte	0.0	0.0	0.0	0.0
 Webster	0.0	0.0	0.0	0.0
 Reynolds	0.0	0.0	0.0	0.0
-St. Louis City	30.667	30.667	N/A	N/A
+St. Louis City	33.352	33.352	N/A	N/A
 Taney	0.0	0.0	0.0	0.0
-Lincoln	1.284	1.284	2.226e-05	2.226e-05
+Lincoln	1.259	1.259	2.183e-05	2.183e-05
 Ralls	0.0	0.0	0.0	0.0
-Camden	0.667	0.667	1.456e-05	1.456e-05
+Camden	0.521	0.521	1.137e-05	1.137e-05
 New Madrid	0.0	0.0	0.0	0.0
 Howell	0.0	0.0	0.0	0.0
 Caldwell	0.0	0.0	0.0	0.0
@@ -19,27 +19,32 @@ Gasconade	0.0	0.0	0.0	0.0
 Macon	0.0	0.0	0.0	0.0
 Dunklin	0.0	0.0	0.0	0.0
 Bates	0.0	0.0	0.0	0.0
-Jefferson	7.64	7.64	3.405e-05	3.405e-05
+Cass	0.0	0.0	0.0	0.0
+Jefferson	9.52	9.52	4.243e-05	4.243e-05
 Newton	0.0	0.0	0.0	0.0
-Pulaski	0.333	0.333	6.4e-06	6.4e-06
+Pulaski	0.352	0.352	6.77e-06	6.77e-06
 Ripley	0.0	0.0	0.0	0.0
 Maries	0.0	0.0	0.0	0.0
-Saint Francois	1.667	1.667	2.5e-05	2.5e-05
+Saint Louis	110.076	110.076	0.00011041	0.00011041
+Saint Francois	2.057	2.057	3.084e-05	3.084e-05
 Pettis	0.0	0.0	0.0	0.0
 McDonald	0.0	0.0	0.0	0.0
 Livingston	0.0	0.0	0.0	0.0
 Benton	0.0	0.0	0.0	0.0
+Saint Charles	22.088	22.088	5.533e-05	5.533e-05
 Henry	0.0	0.0	0.0	0.0
 Carter	0.0	0.0	0.0	0.0
 Madison	0.0	0.0	0.0	0.0
-Boone	0.667	0.667	3.71e-06	3.71e-06
-Buchanan	0.945	0.945	1.067e-05	1.067e-05
+Boone	0.491	0.491	2.73e-06	2.73e-06
+Buchanan	0.922	0.922	1.041e-05	1.041e-05
 Scott	0.0	0.0	0.0	0.0
 Nodaway	0.0	0.0	0.0	0.0
-Cole	0.333	0.333	4.34e-06	4.34e-06
-Saline	0.269	0.269	1.175e-05	1.175e-05
+Cole	0.265	0.265	3.45e-06	3.45e-06
+Saline	0.263	0.263	1.149e-05	1.149e-05
+Christian	0.0	0.0	0.0	0.0
 Stoddard	0.0	0.0	0.0	0.0
 Osage	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
 Randolph	0.0	0.0	0.0	0.0
 Dallas	0.0	0.0	0.0	0.0
 Barry	0.0	0.0	0.0	0.0
@@ -48,10 +53,10 @@ Atchison	0.0	0.0	0.0	0.0
 Clay	0.0	0.0	0.0	0.0
 De Kalb	0.0	0.0	0.0	0.0
 Shelby	0.0	0.0	0.0	0.0
-Franklin	1.176	1.176	1.134e-05	1.134e-05
+Franklin	1.574	1.574	1.518e-05	1.518e-05
 Cooper	0.0	0.0	0.0	0.0
 Butler	0.0	0.0	0.0	0.0
-Greene	2.0	2.0	6.85e-06	6.85e-06
+Greene	1.901	1.901	6.51e-06	6.51e-06
 Lafayette	0.0	0.0	0.0	0.0
 Stone	0.0	0.0	0.0	0.0
 Sainte Genevieve	0.0	0.0	0.0	0.0
@@ -62,16 +67,18 @@ Worth	0.0	0.0	0.0	0.0
 Clark	0.0	0.0	0.0	0.0
 Moniteau	0.0	0.0	0.0	0.0
 Morgan	0.0	0.0	0.0	0.0
-Johnson	0.667	0.667	1.243e-05	1.243e-05
-Kansas City	14.0	14.0	N/A	N/A
+Warren	0.0	0.0	0.0	0.0
+Johnson	0.643	0.643	1.198e-05	1.198e-05
+Kansas City	13.974	13.974	N/A	N/A
 Harrison	0.0	0.0	0.0	0.0
 Phelps	0.0	0.0	0.0	0.0
 Cedar	0.0	0.0	0.0	0.0
 Clinton	0.0	0.0	0.0	0.0
 Crawford	0.0	0.0	0.0	0.0
 Gentry	0.0	0.0	0.0	0.0
-Ray	0.315	0.315	1.377e-05	1.377e-05
-Jasper	1.333	1.333	1.105e-05	1.105e-05
+Ray	0.307	0.307	1.342e-05	1.342e-05
+Jasper	1.409	1.409	1.168e-05	1.168e-05
 Callaway	0.0	0.0	0.0	0.0
 Bollinger	0.0	0.0	0.0	0.0
 Adair	0.0	0.0	0.0	0.0
+Jackson	4.775	4.775	6.82e-06	6.82e-06

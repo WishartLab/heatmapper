@@ -22,8 +22,10 @@ alberta_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Albert
 salvador_data = [csv.reader(open(os.getcwd()+"/Global/North_America/El_Salvador/accumulated.txt","rb"), delimiter = '\t'), "El Salvador"]
 quebec_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Quebec/accumulated.txt","rb"), delimiter = '\t'), "Quebec"]
 sask_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Saskatchewan/accumulated.txt","rb"), delimiter = '\t'), "Saskatchewan"]
+bc_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/British_Columbia/accumulated.txt","rb"), delimiter = '\t'), "British Columbia"]
+germany_data = [csv.reader(open(os.getcwd()+"/Global/Europe/Germany/accumulated.txt","rb"), delimiter = '\t'), "Germany"]
 
-cases = [ontario_data,sask_data, alberta_data, quebec_data, canada_data, us_data, cali_data, italian_data]
+cases = [alberta_data]
 
 def Extract(lst, index,date):
     if date:
@@ -59,25 +61,19 @@ print cases
 for region,name in cases: 
     data = list(region)
     region_confirmed = Extract(data,1,True)
-    #active_cases = Extract(data,4)
-    #active_cases = filter(lambda item: item != 'N/A' and item != '0.0' and item != 0.0 and item != '0', active_cases)
-    #if active_cases:
-    #   region_confirmed = active_cases
     region_confirmed = [item for item in filter(lambda item: item[0] != 'N/A' and item[0] != "NA" and item[0] != 0.0 and item[0] != '0', region_confirmed)]
-    if all(v == 0 for v in region_confirmed):
-        continue
     if len(region_confirmed) < 5:
         continue
-    if region_confirmed[0] > region_confirmed[-1]:
-        continue
+    print region_confirmed
+    region_confirmed.sort(key=lambda L: datetime.strptime(L[1], "%Y-%m-%d"))
+    print region_confirmed
     diffdate = region_confirmed[0][1] 
     original_diff = np.diff([float(item[0]) for item in region_confirmed])
     confirmed_diff = medfilt(original_diff,3)
     confirmed_diff = medfilt(original_diff,5)
     confirmed_diff = np.convolve(confirmed_diff, np.ones((3,))/3, mode='valid')
     region_curve = np.diff(confirmed_diff)/confirmed_diff[1:]
-    print confirmed_diff
-    print region_curve
+    region_curve = np.nan_to_num(region_curve)
     if len(confirmed_diff) > 14:
         confirmed_diff = np.convolve(confirmed_diff, np.ones((3,))/3, mode='valid') 
         confirmed_diff = np.convolve(confirmed_diff, np.ones((5,))/5, mode='valid')
@@ -88,12 +84,13 @@ for region,name in cases:
     if len(region_curve) > 10:
         region_curve = np.convolve(medfilt(region_curve), np.ones((3,))/3, mode='valid')
         region_curve = medfilt(region_curve,3)
-
+        region_curve = np.convolve(medfilt(region_curve), np.ones((5,))/5, mode='valid')
     else:
         region_curve = medfilt(region_curve,3)
         region_curve = medfilt(region_curve,5)
     print region_curve
-    region_median = np.median(region_curve[-3:-1])
+    region_median = np.median(region_curve[-1])
+    print region_median
 
     i = 0
     day = 0
@@ -128,19 +125,25 @@ for region,name in cases:
     plt.ylabel("New Cases",fontsize=16)
     plt.title(name,fontsize=22)
     plt.show()
-    # with open("predicted.tsv","wb") as tsv_file:
-    #     date = datetime.strptime(diffdate,"%Y-%m-%d")
-    #     makeup = datetime.strptime("2020-03-15","%Y-%m-%d")
-    #     while makeup < date:
-    #         writer.writerow([makeup,0.0])
-    #         makeup = makeup + timedelta(1)
-    #     writer = csv.writer(tsv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    #     for row in original_diff:
-    #         writer.writerow([date,row])
-    #         date = date + timedelta(1)
-    #     for row in region_projected:
-    #         writer.writerow([date,round(row,3)])
-    #         date = date + timedelta(1)
+    with open("predicted.tsv","wb") as tsv_file:
+        date = datetime.strptime(diffdate,"%Y-%m-%d")
+        makeup = datetime.strptime("2020-03-15","%Y-%m-%d")
+        while makeup < date:
+            writer.writerow([makeup,0.0])
+            makeup = makeup + timedelta(1)
+        writer = csv.writer(tsv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        for row in original_diff:
+            writer.writerow([date,row])
+            date = date + timedelta(1)
+        for row in region_projected:
+            writer.writerow([date,round(row,3)])
+            date = date + timedelta(1)
+        print date
+        august = datetime.strptime("2020-08-31","%Y-%m-%d").date()
+        print august
+        while date.date() < august:
+            writer.writerow([date,0.0])
+            date = date + timedelta(1)
 
 
 
