@@ -82,30 +82,40 @@ for continent in continents:
                     if len(region_confirmed) < 5:
                         continue
                     region_confirmed.sort(key=lambda L: datetime.strptime(L[1], "%Y-%m-%d"))
-                    print region_confirmed
+                    #print region_confirmed
                     diffdate = region_confirmed[0][1] 
-                    original_diff = np.diff([float(item[0]) for item in region_confirmed])
-                    confirmed_diff = medfilt(original_diff,3)
-                    confirmed_diff = medfilt(original_diff,5)
-                    confirmed_diff = np.convolve(confirmed_diff, np.ones((3,))/3, mode='valid')
-                    region_curve = np.diff(confirmed_diff)/confirmed_diff[1:]
-                    region_curve = np.nan_to_num(region_curve)
+                    original_diff = [float(item[0]) for item in region_confirmed]
+                    original_diff = medfilt(original_diff,3)
+                    #original_diff = medfilt(original_diff,5)
+                    
+                    if len(original_diff) > 14:
+                        original_diff = np.convolve(original_diff, np.ones((3,))/3, mode='valid') 
+                        original_diff = np.convolve(original_diff, np.ones((5,))/5, mode='valid')
+                    else:
+                        original_diff = medfilt(confirmed_diff,3)
+                        #original_diff = medfilt(confirmed_diff,5)
+                    print original_diff
+                    confirmed_diff = np.diff(original_diff)
                     if len(confirmed_diff) > 14:
                         confirmed_diff = np.convolve(confirmed_diff, np.ones((3,))/3, mode='valid') 
-                        confirmed_diff = np.convolve(confirmed_diff, np.ones((5,))/5, mode='valid')
-                    else:
+                        confirmed_diff = medfilt(confirmed_diff,5)
+                    elif len(confirmed_diff) > 11:
                         confirmed_diff = medfilt(confirmed_diff,3)
                         confirmed_diff = medfilt(confirmed_diff,5)
-
-                    if len(region_curve) > 10:
-                        region_curve = np.convolve(medfilt(region_curve), np.ones((3,))/3, mode='valid')
-                        region_curve = medfilt(region_curve,3)
-                        region_curve = np.convolve(medfilt(region_curve), np.ones((5,))/5, mode='valid')
-                    else:
+                    elif len(confirmed_diff) > 9:
+                            confirmed_diff = medfilt(confirmed_diff,3)
+                    print confirmed_diff
+                    region_curve = np.diff(confirmed_diff)/confirmed_diff[:-1]
+                    
+                    region_curve = np.nan_to_num(region_curve)
+                    if len(region_curve) > 7:
                         region_curve = medfilt(region_curve,3)
                         region_curve = medfilt(region_curve,5)
-                    print region_curve
-                    region_median = np.median(region_curve[-3:-1])
+                    if region_curve.any():
+                        
+                        region_median = np.median(region_curve[-1])
+                    else:
+                        region_median = 0.0
                     print region_median
                     i = 0
                     day = 0
@@ -124,12 +134,13 @@ for continent in continents:
                     #print region_curve
                     #get_stretch_factor(italy_deriv_curve[(day-7):day],region_curve[-8:])
                     #print projected_rates
-                    for rate in projected_rates:
-                        if not region_projected:
-                            new_value = confirmed_diff[-1]
-                        else:
-                            new_value = region_projected[-1] + region_projected[-1]*rate
-                        region_projected.append(new_value)
+                    if confirmed_diff.any():
+                        for rate in projected_rates:
+                            if not region_projected:
+                                new_value = confirmed_diff[-1]
+                            else:
+                                new_value = region_projected[-1] + region_projected[-1]*rate
+                            region_projected.append(new_value)
 
                     # plt.plot(np.array(get_day_count(region_curve,0)), np.array(region_curve), 'k--', label='outbreak rate')
                     # plt.show()
@@ -147,10 +158,10 @@ for continent in continents:
                             writer.writerow([makeup.date(),0.0])
                             makeup = makeup + timedelta(1)
                         for row in original_diff:
-                            writer.writerow([date.date(),row])
+                            writer.writerow([date.date(),round(row,5)])
                             date = date + timedelta(1)
                         for row in region_projected:
-                            writer.writerow([date.date(),round(row,3)])
+                            writer.writerow([date.date(),round(row,5)])
                             date = date + timedelta(1)
                         august = datetime.strptime("2020-08-31","%Y-%m-%d").date()
                         while date.date() < august:
