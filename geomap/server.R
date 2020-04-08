@@ -588,23 +588,7 @@ shinyServer(function(input, output, session) {
               file = log_filename,
               append = TRUE)
       }
-      # update the column name when "Per capita" radio button is selected 
-      #col_name <- input$colSelect
-       # if (input$radio == "per_capita"){
-       # col_name <- paste(col_name,input$radio, sep = "_")
-       # }
       
-      # update the column names when future dates are selected
-      #if (input$date >= Sys.Date()){
-      #updateSelectInput(session,
-      #                  inputId = "colSelect",
-      #                  label = "Select Data to Display:",
-      #                  choices = c("Predicted New Confirmed Cases" = 'Predicted_New_Cases',
-      #                              "Predicted Accumulative New Cases" = 'Total_Predicted_New_Cases',
-      #                              "Predicted New Cases per 100000" = 'Predicted_New_per_capita',
-      #                              "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'))
-      #}
-
       # nums_col contains values in the selected column 
       nums_col <- get_nums_col(data_file, input$colSelect)
       # set legend title
@@ -670,6 +654,13 @@ shinyServer(function(input, output, session) {
       file = log_filename,
       append = TRUE
     )
+     #We need input$colSelect only determine which file it is, 
+    # so we do not need to trigger loading file, on every change.
+    #This is the reason for this 
+      # isolate({
+      #   selected_col <- input$colSelect
+      # })
+      selected_col <- input$colSelect
     tryCatch({
       
       map_file_name <- input$area
@@ -723,16 +714,18 @@ shinyServer(function(input, output, session) {
                                 "Deaths_per_capita", "IFR_0.30_expected", "IFR_0.65_expected", "IFR_1.0_expected",
                                 "IFR_0.30_expected_per_capita", "IFR_0.65_expected_per_capita", "IFR_1.0_expected_per_capita",
                                 "Confirmed_daily", "Deaths_daily", "Confirmed_change", "Deaths_change", "Tests", "Tests_per_capita")
-      if (input$colSelect %in% actual_data_colnames){
+   
+      if (selected_col %in% actual_data_colnames){
         #Check if we do have file with that date
-        date_checked <- case_when(
-          input$date < oldest_date ~ oldest_date %>% as.character(), 
-          input$date > newest_date ~ newest_date %>% as.character(), 
-          TRUE ~ input$date %>% as.character()
+          date_checked <- case_when(
+            input$date < oldest_date ~ oldest_date %>% as.character(), 
+            input$date > newest_date ~ newest_date %>% as.character(), 
+            TRUE ~ input$date %>% as.character()
         )
       } else {
         date_checked <- input$date %>% as.character()
       }
+      
       #Update input$date in UI if date has been corrected
       isolate({
         if (date_checked != input$date){
@@ -781,7 +774,7 @@ shinyServer(function(input, output, session) {
           #nums_col <- as.numeric(nums_col) * 100000
         }
       }
-      #Sort by region name the rows 
+      #Sort the rows by region name  
       data_file <- data_file %>% 
         arrange(Name)
       return(data_file)
