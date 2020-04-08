@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta charset="UTF-8">
+
+		<title>Methods</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../www/stylesheets/main.css">
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+		<script>
+			$(function(){ 
+				$("#navbar").load("../../../www/navbar.html", function(){ 
+					$('#aboutTab').addClass('active');
+					$('#heatmapper-logo').on('click', function(){ window.location.href = '/'; });
+				});
+			}); 
+		</script>
+
+		<script type="text/javascript" src="../../../www/js/google-analytics.js"></script>
+
+  </head>
+
+  <body>
+		<div id="navbar"></div>
+
+    <div class="container left-box">
+		  <h2>Methods</h2>
+    </div>
+
+    <div class="container">
+      <div class="card-container">
+        <div class="card-container-2">
+          <div class="well card-box">
+            <h4>Past and Present COVID-19 Data</h4>
+
+            <p>
+              All data presented in COVIDmapper is (and has been) obtained from a variety of reliable primary or secondary sources including the <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports" target="_blank">World Health Organization</a>, the <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">U.S. Centers for Disease Control and Prevention</a>, the <a href="https://www.ecdc.europa.eu/en/geographical-distribution-2019-ncov-cases" target="_blank">European Center for Disease Prevention and Control</a>, <a href="https://www.worldometers.info/coronavirus/" target="_blank">Worldometer</a>, Wikipedia, <font color="red">PLEASE LIST OTHER SOURCES AND LINKS</font>, state and national government health departments, and local media reports. The data are collected on a daily basis, processed and reformatted to fit the COVIDmapper format, and displayed via the COVIDmapper software. Population data for each country, state, province, or county is obtained from <font color="red">XXXXX</font> and is current to 2020.  COVIDmapper displays a variety of data including
+            </p>
+
+            <ol>
+              <li>Confirmed COVID-19 Cases</li>
+              <li>COVID-19 Deaths</li>
+              <li>Confirmed COVID-19 Cases per 100 000</li>
+              <li>COVID-19 Deaths per 100 000</li>
+              <li>% Daily Change in Confirmed COVID-19 Cases</li>
+              <li>% Daily Change in COVID-19 Deaths</li>
+              <li>Likely COVID-19 Cases (IFR 0.30%)</li>
+              <li>Likely COVID-19 Cases (IFR 0.65%)</li>
+              <li>Likely COVID-19 Cases (IFR (1.00%)</li>
+              <li>COVID-19 Tests Performed</li>
+              <li>COVID-19 Tests Performed per 100 000</li>
+            </ol>
+
+            <p>
+              Additional data is being gathered by the COVIDmapper team as time and funds permit. These data will be displayed as quickly as possible. All of the COVIDmapper data is freely downloadable (see Download options).
+            </p>
+          </div>
+
+          <div class="well card-box">
+            <h4>Projected COVID-19 Data</h4>
+
+            <p>
+              COVIDmapper uses convolution mapping to project COVID-19 case and fatality data. Case frequency functions were derived from those countries (China, South Korea, Singapore, etc.) for which the COVID-19 epidemic had largely completed its course. The resulting curves were then fit to a single consensus time-course function. That function is then convolved (scaled vertically and horizontally) to fit the smoothed past/present data for each jurisdiction (country, state, province, county) tracked by COVIDmapper. The projected COVID case and fatality data are then mapped to each calendar day for that jurisdiction for up to 90 days. The convolution and projection process is updated every day as new data is gathered from each jurisdiction being tracked by the COVIDmapper team. For the most part, these models are reproducing observed COVID data with an error of less than 20%. The COVIDmapper team is developing additional COVID projection models using machine learning, simulations and other techniques. These will be made available soon. Please remember the following aphorism from George Box (1978) when looking at epidemiological models: <b>“All models are wrong, but some are useful.”</b>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      
+    <div class="container left-box">
+      <div class="support-logo">
+        <a href="http://www.metabolomicscentre.ca" target="_blank">
+          <img src="../../www/images/tmic.png" class="logo-img">
+        </a>
+      </div>
+
+      <div class="support-logo">
+        <a href="http://www.ualberta.ca" target="_blank">
+          <img src="../../www/images/ualberta.svg" class="logo-img">
+        </a>
+      </div>
+    </div>
+	</body>
+</html>
