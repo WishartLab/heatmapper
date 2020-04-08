@@ -589,15 +589,15 @@ shinyServer(function(input, output, session) {
        # }
       
       # update the column names when future dates are selected
-      if (input$date >= Sys.Date()){
-      updateSelectInput(session,
-                        inputId = "colSelect",
-                        label = "Select Data to Display:",
-                        choices = c("Predicted New Confirmed Cases" = 'Predicted_New_Cases',
-                                    "Predicted Accumulative New Cases" = 'Total_Predicted_New_Cases',
-                                    "Predicted New Cases per 100000" = 'Predicted_New_per_capita',
-                                    "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'))
-      }
+      #if (input$date >= Sys.Date()){
+      #updateSelectInput(session,
+      #                  inputId = "colSelect",
+      #                  label = "Select Data to Display:",
+      #                  choices = c("Predicted New Confirmed Cases" = 'Predicted_New_Cases',
+      #                              "Predicted Accumulative New Cases" = 'Total_Predicted_New_Cases',
+      #                              "Predicted New Cases per 100000" = 'Predicted_New_per_capita',
+      #                              "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'))
+      #}
 
       # nums_col contains values in the selected column 
       nums_col <- get_nums_col(data_file, input$colSelect)
@@ -1074,7 +1074,7 @@ shinyServer(function(input, output, session) {
       
       # # update the column selection options when new DB data is loaded
       # updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
-      
+      debug = TRUE
       if (debug) {
         write(
           'get_db_data: completed without exception',
