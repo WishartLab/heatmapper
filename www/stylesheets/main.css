@@ -8,10 +8,21 @@
   margin-bottom: 1.5em;
 }
 
-.contact-box {
+.card-container {
+  display: inline-block;
+}
+
+.card-container-2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.card-box {
   text-align: left;
-  border-style: dotted;
-  max-width: 600px;
+  max-width: 550px;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
 .centered-box {

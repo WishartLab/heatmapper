@@ -682,17 +682,26 @@ shinyServer(function(input, output, session) {
       write(paste('  prefix:', prefix, sep = "\t"),
             file = log_filename,
             append = TRUE)
-      #Retrieveing the the datafiles for that region
+      #Retrieving the datafiles for that region
       datafile_prefix <- datafile_mapping %>% 
         stri_split(regex = "/") %>% 
         unlist()
-      path_to_dir <- paste("../filesystem/",
+      path_to_dir <- paste("../filesystem",
                            paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
                            sep = "/")
       
       filenames_list <- list.files(path_to_dir)
+      #Select only .txt files
+      filenames_list <- filenames_list[grep(pattern = ".txt", x = filenames_list)]
+      filenames_list <- filenames_list[!grepl(pattern = "accumulated.txt", x = filenames_list)]
       dates_vec <- NULL
       for (filename in filenames_list){
+        file <- read.csv(paste(path_to_dir,filename, sep = "/"))
+        col_names <- colnames(file)
+        #Assumption the file with confirmed data does not have columns with namepart predicted
+        if ("Predicted" %in% col_names){
+          next
+        }
         date <- filename %>% 
           stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
           unlist() 
@@ -702,12 +711,20 @@ shinyServer(function(input, output, session) {
       oldest_date <- min(dates_vec, na.rm = T)
       newest_date <- max(dates_vec, na.rm = T)
       
-      #Check if we do have file with that date
-      date_checked <- case_when(
-        input$date < oldest_date ~ oldest_date %>% as.character(), # this should be FALSE
-        input$date > newest_date ~ newest_date %>% as.character(), # this should be FALSE
-        TRUE ~ input$date %>% as.character()
-      )
+      actual_data_colnames <- c("Confirmed", "Deaths", "Recovered", "Active", "Confirmed_per_capita",
+                                "Deaths_per_capita", "IFR_0.30_expected", "IFR_0.65_expected", "IFR_1.0_expected",
+                                "IFR_0.30_expected_per_capita", "IFR_0.65_expected_per_capita", "IFR_1.0_expected_per_capita",
+                                "Confirmed_daily", "Deaths_daily", "Confirmed_change", "Deaths_change", "Tests", "Tests_per_capita")
+      if (input$colSelect %in% actual_data_colnames){
+        #Check if we do have file with that date
+        date_checked <- case_when(
+          input$date < oldest_date ~ oldest_date %>% as.character(), 
+          input$date > newest_date ~ newest_date %>% as.character(), 
+          TRUE ~ input$date %>% as.character()
+        )
+      } else {
+        date_checked <- input$date %>% as.character()
+      }
       #Update input$date in UI if date has been corrected
       isolate({
         if (date_checked != input$date){
@@ -1264,7 +1281,7 @@ shinyServer(function(input, output, session) {
   output$map <- renderLeaflet({
     
     #Error handling
-    #1Retrieveing the oldest date for available datafile
+    #Retrieveing the oldest date for available datafile
     datafile_prefix <- maps_files_to_data_files %>%
       filter(datafile == input$area) %>%
       pull(prefix) %>%
