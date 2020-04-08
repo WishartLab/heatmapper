@@ -1,90 +1,90 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Floyd	2.667	2.667
-Wells	0.0	0.0
-Brown	0.823	1.49
-Wayne	3.036	5.504
-Kosciusko	4.342	8.007
-Fulton	0.772	1.399
-Hendricks	18.333	37.333
-Montgomery	1.235	2.235
-Fountain	0.0	0.0
-Blackford	0.808	1.637
-Hamilton	35.0	70.0
-Washington	1.333	1.333
-Noble	1.333	1.333
-Martin	2.965	5.496
-Fayette	1.0	1.0
-Cass	0.0	0.0
-Bartholomew	6.0	6.0
-Newton	0.0	0.0
-Tippecanoe	1.667	6.667
-Ripley	8.667	18.667
-Decatur	7.82	14.153
-Ohio	0.0	0.0
-Monroe	2.333	2.333
-Lawrence	5.351	9.684
-Marion	173.667	369.667
-Rush	1.399	2.584
-Delaware	3.333	6.333
-Warrick	2.53	4.587
-Parke	5.062	9.357
-Benton	0.0	0.0
-Steuben	6.621	12.21
-Henry	1.574	3.179
-Madison	11.0	26.0
-Boone	7.0	14.0
-Dearborn	4.527	8.194
-Vanderburgh	2.0	5.0
-Dubois	1.0	2.0
-Switzerland	5.128	9.47
-Scott	0.667	0.667
-Posey	0.0	0.0
-Howard	1.0	6.0
-Jennings	2.0	4.0
-Marshall	2.509	4.542
-LaPorte	1.333	1.333
-Vermillion	0.0	0.0
-Lake	28.333	62.333
-LaGrange	0.0	0.0
-Unassigned	0.0	0.0
-Randolph	0.855	1.579
-Adams	0.0	0.0
-Clay	2.018	3.727
-De Kalb	0.326	0.656
-Whitley	0.922	1.867
-Shelby	5.333	13.333
-Owen	0.333	0.333
-Allen	4.0	28.0
-Huntington	0.0	0.0
-Tipton	0.0	0.0
-Putnam	2.667	6.667
-Franklin	2.333	4.333
-Greene	0.315	0.636
-Daviess	0.0	0.0
-Hancock	6.333	17.333
-Union	5.931	10.993
-Jay	0.276	0.559
-Starke	0.667	1.667
-Porter	9.878	17.878
-Clark	5.333	10.333
-Miami	0.333	0.333
-Elkhart	1.667	2.667
-Carroll	0.0	0.0
-Vigo	5.0	12.0
-Morgan	6.0	17.0
-Spencer	0.0	0.0
-Knox	0.898	1.82
-Warren	0.0	0.0
-Johnson	15.0	43.0
-White	0.0	0.0
-Harrison	5.06	9.174
-Sullivan	0.0	0.0
-Clinton	0.772	1.399
-Crawford	1.709	3.156
-Gibson	0.0	0.0
-Jasper	1.304	2.625
-Saint Joseph	12.0	22.0
-Wabash	0.0	0.0
-Orange	3.665	6.701
-Grant	2.667	4.667
-Jackson	4.116	7.449
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Floyd	2.667	2.667	3.429e-05	3.429e-05
+Wells	0.0	0.0	0.0	0.0
+Brown	0.823	0.823	5.402e-05	5.402e-05
+Wayne	3.036	3.036	4.604e-05	4.604e-05
+Kosciusko	4.342	4.342	5.472e-05	5.472e-05
+Fulton	0.772	0.772	3.842e-05	3.842e-05
+Hendricks	18.333	18.333	0.00010977	0.00010977
+Montgomery	1.235	1.235	3.221e-05	3.221e-05
+Fountain	0.0	0.0	0.0	0.0
+Blackford	0.808	0.808	6.773e-05	6.773e-05
+Hamilton	35.0	35.0	0.00010603	0.00010603
+Washington	1.333	1.333	4.77e-05	4.77e-05
+Noble	1.333	1.333	2.804e-05	2.804e-05
+Martin	2.965	2.965	0.0002902	0.0002902
+Fayette	1.0	1.0	4.339e-05	4.339e-05
+Cass	0.0	0.0	0.0	0.0
+Bartholomew	6.0	6.0	7.25e-05	7.25e-05
+Newton	0.0	0.0	0.0	0.0
+Tippecanoe	1.667	1.667	8.64e-06	8.64e-06
+Ripley	8.667	8.667	0.00030386	0.00030386
+Decatur	7.82	7.82	0.00029186	0.00029186
+Ohio	0.0	0.0	0.0	0.0
+Monroe	2.333	2.333	1.588e-05	1.588e-05
+Lawrence	5.351	5.351	0.00011717	0.00011717
+Marion	173.667	173.667	0.00018191	0.00018191
+Rush	1.399	1.399	8.396e-05	8.396e-05
+Delaware	3.333	3.333	2.904e-05	2.904e-05
+Warrick	2.53	2.53	4.044e-05	4.044e-05
+Parke	5.062	5.062	0.00029905	0.00029905
+Benton	0.0	0.0	0.0	0.0
+Steuben	6.621	6.621	0.00019144	0.00019144
+Henry	1.574	1.574	3.261e-05	3.261e-05
+Madison	11.0	11.0	8.485e-05	8.485e-05
+Boone	7.0	7.0	0.00010448	0.00010448
+Dearborn	4.527	4.527	9.133e-05	9.133e-05
+Vanderburgh	2.0	2.0	1.105e-05	1.105e-05
+Dubois	1.0	1.0	2.349e-05	2.349e-05
+Switzerland	5.128	5.128	0.00047849	0.00047849
+Scott	0.667	0.667	2.793e-05	2.793e-05
+Posey	0.0	0.0	0.0	0.0
+Howard	1.0	1.0	1.214e-05	1.214e-05
+Jennings	2.0	2.0	7.243e-05	7.243e-05
+Marshall	2.509	2.509	5.425e-05	5.425e-05
+LaPorte	1.333	1.333	1.212e-05	1.212e-05
+Vermillion	0.0	0.0	0.0	0.0
+Lake	28.333	28.333	5.849e-05	5.849e-05
+LaGrange	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Randolph	0.855	0.855	3.441e-05	3.441e-05
+Adams	0.0	0.0	0.0	0.0
+Clay	2.018	2.018	7.711e-05	7.711e-05
+De Kalb	0.326	0.326	7.54e-06	7.54e-06
+Whitley	0.922	0.922	2.706e-05	2.706e-05
+Shelby	5.333	5.333	0.00011959	0.00011959
+Owen	0.333	0.333	1.598e-05	1.598e-05
+Allen	4.0	4.0	1.066e-05	1.066e-05
+Huntington	0.0	0.0	0.0	0.0
+Tipton	0.0	0.0	0.0	0.0
+Putnam	2.667	2.667	7.059e-05	7.059e-05
+Franklin	2.333	2.333	0.00010261	0.00010261
+Greene	0.315	0.315	9.84e-06	9.84e-06
+Daviess	0.0	0.0	0.0	0.0
+Hancock	6.333	6.333	8.295e-05	8.295e-05
+Union	5.931	5.931	0.00084283	0.00084283
+Jay	0.276	0.276	1.329e-05	1.329e-05
+Starke	0.667	0.667	2.908e-05	2.908e-05
+Porter	9.878	9.878	5.824e-05	5.824e-05
+Clark	5.333	5.333	4.544e-05	4.544e-05
+Miami	0.333	0.333	9.36e-06	9.36e-06
+Elkhart	1.667	1.667	8.11e-06	8.11e-06
+Carroll	0.0	0.0	0.0	0.0
+Vigo	5.0	5.0	4.656e-05	4.656e-05
+Morgan	6.0	6.0	8.557e-05	8.557e-05
+Spencer	0.0	0.0	0.0	0.0
+Knox	0.898	0.898	2.434e-05	2.434e-05
+Warren	0.0	0.0	0.0	0.0
+Johnson	15.0	15.0	9.602e-05	9.602e-05
+White	0.0	0.0	0.0	0.0
+Harrison	5.06	5.06	0.0001254	0.0001254
+Sullivan	0.0	0.0	0.0	0.0
+Clinton	0.772	0.772	2.394e-05	2.394e-05
+Crawford	1.709	1.709	0.00016187	0.00016187
+Gibson	0.0	0.0	0.0	0.0
+Jasper	1.304	1.304	3.908e-05	3.908e-05
+Saint Joseph	12.0	12.0	4.432e-05	4.432e-05
+Wabash	0.0	0.0	0.0	0.0
+Orange	3.665	3.665	0.00018805	0.00018805
+Grant	2.667	2.667	4.045e-05	4.045e-05
+Jackson	4.116	4.116	9.331e-05	9.331e-05

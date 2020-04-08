@@ -1,17 +1,17 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Goshen	0.0	0.0
-Laramie	0.064	25.111
-Lincoln	8.587	1249.606
-Natrona	0.154	47.867
-Uinta	0.008	5.606
-Teton	0.182	63.379
-Carbon	0.0	0.0
-Washakie	4.38	400.132
-Sweetwater	0.039	15.965
-Sheridan	0.031	14.615
-Crook	0.0	0.0
-Campbell	5.415	384.376
-Albany	0.0	0.0
-Johnson	0.0	0.0
-Converse	0.0	0.0
-Sublette	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Goshen	0.0	0.0	0.0	0.0
+Laramie	0.064	24.111	6.5e-07	0.0002436
+Lincoln	8.587	1243.163	0.00044185	0.06396846
+Natrona	0.154	45.867	1.95e-06	0.00057975
+Uinta	0.008	5.33	3.9e-07	0.00026257
+Teton	0.182	62.379	7.89e-06	0.00270261
+Carbon	0.0	0.0	0.0	0.0
+Washakie	4.38	399.505	0.00055549	0.05066646
+Sweetwater	0.039	15.304	9.1e-07	0.00035549
+Sheridan	0.031	14.615	1.03e-06	0.00048341
+Crook	0.0	0.0	0.0	0.0
+Campbell	5.415	382.376	0.00011736	0.0082873
+Albany	0.0	0.0	0.0	0.0
+Johnson	0.0	0.0	0.0	0.0
+Converse	0.0	0.0	0.0	0.0
+Sublette	0.0	0.0	0.0	0.0

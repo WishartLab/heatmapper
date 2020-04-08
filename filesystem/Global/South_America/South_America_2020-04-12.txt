@@ -1,16 +1,16 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Guyana	5.887	53.409
-Brazil	1381.645	14474.181
-Ecuador	265.553	3120.515
-Uruguay	9.234	153.804
-Venezuela	2.841	55.089
-Argentina	77.78	1126.804
-Belize	2.794	22.708
-Bolivia	9.763	161.127
-Colombia	109.675	1366.767
-Suriname	0.931	6.235
-Peru	247.481	2623.939
-Grenada	0.0	0.0
-Barbados	2.327	35.551
-Chile	340.431	4346.895
-Aruba	19.615	197.035
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Guyana	5.887	39.409	7.56e-06	5.059e-05
+Brazil	1381.645	12412.181	6.6e-06	5.926e-05
+Ecuador	265.553	2918.515	1.554e-05	0.00017083
+Uruguay	9.234	141.804	2.68e-06	4.111e-05
+Venezuela	2.841	43.089	1e-07	1.49e-06
+Argentina	77.78	920.804	1.75e-06	2.069e-05
+Belize	2.794	18.708	7.29e-06	4.884e-05
+Bolivia	9.763	109.127	8.6e-07	9.61e-06
+Colombia	109.675	1178.767	2.21e-06	2.374e-05
+Suriname	0.931	6.235	1.62e-06	1.082e-05
+Peru	247.481	2063.939	7.74e-06	6.452e-05
+Grenada	0.0	0.0	0.0	0.0
+Barbados	2.327	27.551	8.12e-06	9.612e-05
+Chile	340.431	3658.895	1.818e-05	0.00019536
+Aruba	19.615	173.909	0.00018532	0.00164305

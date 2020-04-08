@@ -1,33 +1,33 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Highlands	0.002	296.552
-Dixie	0.0	0.0
-Indian River	0.025	1254.897
-Citrus	0.007	706.772
-Palm Beach	0.045	7890.478
-Washington	0.0	0.0
-Levy	0.0	0.0
-Miami-Dade	0.543	54149.826
-Desoto	0.875	1847.126
-Bradford	0.656	1384.848
-Jefferson	0.005	450.39
-Bay	0.369	1208.892
-Columbia	1.313	2767.69
-Walton	1.094	2307.403
-Gadsden	0.438	923.564
-Charlotte	0.099	1158.209
-Hernando	0.068	1250.835
-Wakulla	0.012	597.921
-Pinellas	0.015	1896.272
-Putnam	0.438	922.564
-Franklin	0.006	452.533
-Gulf	0.0	0.0
-Union	0.0	0.0
-Holmes	0.0	0.0
-Glades	0.0	0.0
-Saint Johns	0.014	1364.216
-Duval	0.32	12407.555
-Polk	0.667	7741.836
-Manatee	0.023	1787.424
-Suwannee	0.18	3312.354
-Volusia	0.02	1542.166
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Highlands	0.002	296.552	2e-08	0.00281295
+Dixie	0.0	0.0	0.0	0.0
+Indian River	0.025	1248.897	1.6e-07	0.00793389
+Citrus	0.007	704.772	5e-08	0.00476426
+Palm Beach	0.045	7821.478	3e-08	0.00526365
+Washington	0.0	0.0	0.0	0.0
+Levy	0.0	0.0	0.0	0.0
+Miami-Dade	0.543	53814.826	2e-07	0.01948696
+Desoto	0.875	1845.126	2.334e-05	0.0492178
+Bradford	0.656	1383.848	2.365e-05	0.04990076
+Jefferson	0.005	447.859	3.5e-07	0.03134511
+Bay	0.369	1208.892	1.99e-06	0.00652443
+Columbia	1.313	2767.69	1.862e-05	0.03925634
+Walton	1.094	2306.403	1.533e-05	0.03231388
+Gadsden	0.438	922.564	9.54e-06	0.02010206
+Charlotte	0.099	1150.209	5.4e-07	0.00621741
+Hernando	0.068	1245.835	3.6e-07	0.00652731
+Wakulla	0.012	595.903	3.7e-07	0.01835751
+Pinellas	0.015	1893.272	2e-08	0.00194126
+Putnam	0.438	922.564	5.91e-06	0.01243968
+Franklin	0.006	450.385	5.1e-07	0.03837636
+Gulf	0.0	0.0	0.0	0.0
+Union	0.0	0.0	0.0	0.0
+Holmes	0.0	0.0	0.0	0.0
+Glades	0.0	0.0	0.0	0.0
+Saint Johns	0.014	1359.216	6e-08	0.00534575
+Duval	0.32	12345.555	3.4e-07	0.01299285
+Polk	0.667	7722.836	9.4e-07	0.01090782
+Manatee	0.023	1779.424	6e-08	0.00450653
+Suwannee	0.18	3305.635	4.07e-06	0.07480335
+Volusia	0.02	1542.166	4e-08	0.00281655
+Jackson	0.0	0.0	0.0	0.0

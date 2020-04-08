@@ -1,33 +1,33 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	18.401	596.805
-Skagit	0.401	62.98
-Walla Walla	17.817	611.622
-Pierce	29.768	2832.415
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	16.244	1112.65
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Jefferson	0.1	17.744
-Kitsap	0.665	89.692
-Douglas	18.401	593.805
-San Juan	18.401	595.805
-Benton	8.848	803.356
-Okanogan	19.9	882.141
-Whitman	0.0	1.0
-Chelan	0.483	70.684
-Unassigned	1336.271	45871.64
-Mason	27.601	891.708
-Adams	13.147	622.577
-Klickitat	0.0	0.0
-Yakima	6.703	1017.716
-Whatcom	0.043	180.468
-Franklin	0.866	153.695
-Ferry	0.0	0.0
-Grays Harbor	18.401	593.805
-Spokane	1.651	235.786
-Kittitas	0.0	2.0
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
-Thurston	0.594	83.801
-Snohomish	2.101	853.732
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	18.401	593.805	0.00023116	0.00745949
+Skagit	0.401	62.98	3.13e-06	0.00049124
+Walla Walla	17.817	610.955	0.00029246	0.01002848
+Pierce	29.768	2803.415	3.34e-05	0.00314531
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	16.244	1105.057	0.00071844	0.0488747
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Jefferson	0.1	15.744	3.15e-06	0.0004962
+Kitsap	0.665	89.692	2.46e-06	0.00033243
+Douglas	18.401	593.805	0.00042886	0.01383935
+San Juan	18.401	593.805	0.00107432	0.03466867
+Benton	8.848	792.356	4.383e-05	0.00392494
+Okanogan	19.9	880.117	0.00047233	0.02088951
+Whitman	0.0	0.0	0.0	0.0
+Chelan	0.483	70.684	6.27e-06	0.00091755
+Unassigned	1336.271	45821.64	N/A	N/A
+Mason	27.601	890.708	0.00042134	0.01359714
+Adams	13.147	619.577	0.00066537	0.0313567
+Klickitat	0.0	0.0	0.0	0.0
+Yakima	6.703	980.716	2.666e-05	0.0039003
+Whatcom	0.043	176.468	1.9e-07	0.00078192
+Franklin	0.866	145.695	9.18e-06	0.00154425
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	18.401	593.805	0.000249	0.00803514
+Spokane	1.651	232.786	3.21e-06	0.00045234
+Kittitas	0.0	0.0	0.0	0.0
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0
+Thurston	0.594	83.801	2.07e-06	0.00029258
+Snohomish	2.101	809.732	2.58e-06	0.00099366

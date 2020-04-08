@@ -1,56 +1,56 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Pike	0.0	0.0
-Sevier	0.0	0.0
-Searcy	0.0	0.0
-Baxter	0.0	0.0
-Van Buren	0.0	0.0
-Lincoln	0.0	0.0
-Hot Spring	0.0	0.0
-Lee	0.0	0.0
-Washington	0.094	11.074
-Desha	0.0	0.0
-Jefferson	3.867	83.317
-Newton	0.0	0.0
-Pulaski	5.796	157.001
-Independence	0.0	0.0
-Ouachita	0.0	0.0
-Mississippi	0.0	0.0
-Monroe	0.0	0.0
-Yell	0.0	0.0
-Lawrence	0.0	0.0
-Hempstead	0.0	0.0
-Cross	0.0	0.0
-Arkansas	0.0	0.0
-Craighead	42.285	322.097
-Scott	0.0	0.0
-Howard	0.0	0.0
-Saline	49.333	375.448
-Unassigned	76.64	640.158
-Randolph	0.0	0.0
-Dallas	0.0	0.0
-Drew	0.0	0.0
-Phillips	0.0	0.0
-Saint Francis	15.791	196.505
-Crittenden	3.344	91.272
-Pope	42.285	322.097
-Chicot	0.0	0.0
-Lafayette	0.0	0.0
-Stone	0.0	0.0
-Union	0.0	0.0
-Perry	0.0	0.0
-Carroll	0.0	0.0
-Poinsett	0.0	0.0
-Garland	0.269	9.093
-Johnson	0.0	0.0
-White	14.095	106.699
-Cleveland	0.0	2.0
-Ashley	0.0	0.0
-Crawford	0.0	0.0
-Nevada	0.0	0.0
-Sebastian	0.0	0.0
-Lonoke	0.333	10.539
-Sharp	0.0	0.0
-Prairie	0.0	0.0
-Polk	0.0	0.0
-Grant	0.0	0.0
-Bradley	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Pike	0.0	0.0	0.0	0.0
+Sevier	0.0	0.0	0.0	0.0
+Searcy	0.0	0.0	0.0	0.0
+Baxter	0.0	0.0	0.0	0.0
+Van Buren	0.0	0.0	0.0	0.0
+Lincoln	0.0	0.0	0.0	0.0
+Hot Spring	0.0	0.0	0.0	0.0
+Lee	0.0	0.0	0.0	0.0
+Washington	0.094	10.074	4e-07	4.251e-05
+Desha	0.0	0.0	0.0	0.0
+Jefferson	3.867	80.317	5.677e-05	0.00117916
+Newton	0.0	0.0	0.0	0.0
+Pulaski	5.796	153.001	1.476e-05	0.00038963
+Independence	0.0	0.0	0.0	0.0
+Ouachita	0.0	0.0	0.0	0.0
+Mississippi	0.0	0.0	0.0	0.0
+Monroe	0.0	0.0	0.0	0.0
+Yell	0.0	0.0	0.0	0.0
+Lawrence	0.0	0.0	0.0	0.0
+Hempstead	0.0	0.0	0.0	0.0
+Cross	0.0	0.0	0.0	0.0
+Arkansas	0.0	0.0	0.0	0.0
+Craighead	42.285	320.097	0.00038952	0.00294863
+Scott	0.0	0.0	0.0	0.0
+Howard	0.0	0.0	0.0	0.0
+Saline	49.333	373.448	0.0004063	0.00307565
+Unassigned	76.64	630.158	N/A	N/A
+Randolph	0.0	0.0	0.0	0.0
+Dallas	0.0	0.0	0.0	0.0
+Drew	0.0	0.0	0.0	0.0
+Phillips	0.0	0.0	0.0	0.0
+Saint Francis	15.791	194.119	0.00062074	0.00763076
+Crittenden	3.344	88.272	6.917e-05	0.00182599
+Pope	42.285	320.097	0.0006607	0.00500152
+Chicot	0.0	0.0	0.0	0.0
+Lafayette	0.0	0.0	0.0	0.0
+Stone	0.0	0.0	0.0	0.0
+Union	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Carroll	0.0	0.0	0.0	0.0
+Poinsett	0.0	0.0	0.0	0.0
+Garland	0.269	9.093	2.71e-06	9.171e-05
+Johnson	0.0	0.0	0.0	0.0
+White	14.095	106.699	0.00017904	0.0013553
+Cleveland	0.0	0.0	0.0	0.0
+Ashley	0.0	0.0	0.0	0.0
+Crawford	0.0	0.0	0.0	0.0
+Nevada	0.0	0.0	0.0	0.0
+Sebastian	0.0	0.0	0.0	0.0
+Lonoke	0.333	9.887	4.52e-06	0.00013423
+Sharp	0.0	0.0	0.0	0.0
+Prairie	0.0	0.0	0.0	0.0
+Polk	0.0	0.0	0.0	0.0
+Grant	0.0	0.0	0.0	0.0
+Bradley	0.0	0.0	0.0	0.0

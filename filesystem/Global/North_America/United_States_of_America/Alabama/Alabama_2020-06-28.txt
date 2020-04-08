@@ -1,41 +1,41 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Pike	1.373	896.956
-Cherokee	0.458	298.982
-Montgomery	0.118	367.806
-Russell	2.746	1793.914
-Bullock	0.0	0.0
-Lee	0.001	140.942
-Washington	0.0	0.0
-Etowah	8.38	5979.856
-Fayette	0.0	0.0
-Barbour	0.334	451.161
-Lamar	2.8	1364.084
-Lawrence	3.784	2278.641
-Autauga	0.0	0.0
-Talladega	0.04	175.574
-Colbert	0.0	0.0
-Henry	1.002	1353.491
-Tallapoosa	0.099	172.79
-Cullman	0.0	5.0
-Calhoun	7.466	3643.218
-Marshall	4.119	2690.869
-Clay	0.187	162.947
-Mobile	0.062	666.527
-De Kalb	0.014	94.127
-Crenshaw	0.0	0.0
-Franklin	0.933	454.023
-Butler	0.0	0.0
-Blount	0.458	298.982
-Greene	1.141	896.602
-Escambia	0.0	0.0
-Lauderdale	0.0	0.0
-Perry	0.0	0.0
-Chambers	0.185	453.899
-Morgan	6.122	3184.31
-Lowndes	0.838	597.989
-Hale	0.0	0.0
-Winston	0.0	0.0
-Marengo	0.838	597.989
-Saint Clair	0.0	50.649
-Jackson	5.6	2727.165
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Pike	1.373	895.722	4.118e-05	0.0268679
+Cherokee	0.458	298.571	1.759e-05	0.01146938
+Montgomery	0.118	363.806	5.2e-07	0.00161145
+Russell	2.746	1791.446	4.752e-05	0.03100407
+Bullock	0.0	0.0	0.0	0.0
+Lee	0.001	136.942	1e-08	0.00083531
+Washington	0.0	0.0	0.0	0.0
+Etowah	8.38	5969.737	8.176e-05	0.05824077
+Fayette	0.0	0.0	0.0	0.0
+Barbour	0.334	449.013	1.342e-05	0.01804642
+Lamar	2.8	1362.084	0.00020225	0.09838804
+Lawrence	3.784	2276.1	0.00011482	0.06906272
+Autauga	0.0	0.0	0.0	0.0
+Talladega	0.04	172.574	5e-07	0.00216182
+Colbert	0.0	0.0	0.0	0.0
+Henry	1.002	1347.048	5.823e-05	0.07827579
+Tallapoosa	0.099	171.79	2.44e-06	0.00424204
+Cullman	0.0	0.0	0.0	0.0
+Calhoun	7.466	3632.218	6.533e-05	0.03178433
+Marshall	4.119	2687.167	4.286e-05	0.02795958
+Clay	0.187	162.552	1.409e-05	0.01224497
+Mobile	0.062	648.527	1.5e-07	0.00156741
+De Kalb	0.014	92.855	2e-07	0.00130076
+Crenshaw	0.0	0.0	0.0	0.0
+Franklin	0.933	454.023	2.975e-05	0.01447639
+Butler	0.0	0.0	0.0	0.0
+Blount	0.458	298.571	7.92e-06	0.00516202
+Greene	1.141	894.77	0.00013859	0.10868092
+Escambia	0.0	0.0	0.0	0.0
+Lauderdale	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Chambers	0.185	448.899	5.5e-06	0.01335413
+Morgan	6.122	3181.977	5.141e-05	0.02671932
+Lowndes	0.838	596.977	8.402e-05	0.05985332
+Hale	0.0	0.0	0.0	0.0
+Winston	0.0	0.0	0.0	0.0
+Marengo	0.838	596.977	4.395e-05	0.03131108
+Saint Clair	0.0	45.649	0.0	0.0005147
+Jackson	5.6	2724.165	0.00010824	0.05265511

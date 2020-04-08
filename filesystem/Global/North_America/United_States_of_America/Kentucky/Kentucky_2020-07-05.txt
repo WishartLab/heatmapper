@@ -1,83 +1,83 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Cumberland	0.0	0.0
-Floyd	0.0	0.0
-Logan	0.0	0.0
-Oldham	0.0	0.0
-Pike	0.0	0.0
-Wayne	0.0	0.0
-Powell	0.0	0.0
-Pendleton	0.0	0.0
-Lewis	0.0	0.0
-Montgomery	0.0	0.0
-McCreary	0.0	0.0
-Webster	0.0	0.0
-Bath	0.0	0.0
-Larue	0.0	0.0
-Russell	0.0	0.0
-Henderson	0.0	0.0
-Caldwell	0.0	0.0
-Washington	0.0	0.0
-Graves	0.0	0.0
-Breckinridge	0.0	0.0
-Hardin	0.0	0.0
-Martin	0.0	0.0
-Fayette	2.089	1835.652
-Jefferson	5.223	4589.131
-Pulaski	1.045	917.828
-Ohio	0.0	0.0
-Lyon	0.0	0.0
-Lawrence	0.0	0.0
-Marion	0.0	0.0
-Grayson	0.0	0.0
-Mercer	0.514	916.821
-McLean	0.0	0.0
-Laurel	0.0	0.0
-McCracken	1.875	1837.527
-Simpson	0.0	0.0
-Henry	0.0	0.0
-Carter	0.0	0.0
-Madison	0.0	0.0
-Boone	0.937	918.765
-Edmonson	0.0	0.0
-Scott	1.875	1837.527
-Bullitt	0.0	0.0
-Breathitt	0.0	0.0
-Christian	7.312	6424.786
-Marshall	0.131	595.684
-Muhlenberg	0.0	0.0
-Unassigned	0.0	0.0
-Mason	0.0	0.0
-Jessamine	1.045	917.828
-Boyle	0.0	0.0
-Calloway	0.0	0.0
-Shelby	0.0	0.0
-Allen	0.0	0.0
-Franklin	0.0	0.0
-Butler	0.0	0.0
-Crittenden	0.0	0.0
-Bourbon	0.0	0.0
-Anderson	0.0	0.0
-Campbell	0.0	0.0
-Daviess	0.0	0.0
-Hancock	0.0	0.0
-Union	0.0	0.0
-Perry	0.0	0.0
-Clark	0.0	0.0
-Meade	0.0	0.0
-Greenup	0.0	0.0
-Bracken	0.0	0.0
-Carroll	0.0	0.0
-Nicholas	0.0	0.0
-Spencer	0.0	0.0
-Barren	0.0	0.0
-Menifee	0.0	0.0
-Warren	3.134	2753.48
-Johnson	0.0	0.0
-Harrison	0.0	0.0
-Taylor	0.0	0.0
-Clinton	0.0	0.0
-Boyd	0.0	0.0
-Grant	0.0	0.0
-Rockcastle	0.0	0.0
-Adair	0.0	0.0
-Nelson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Cumberland	0.0	0.0	0.0	0.0
+Floyd	0.0	0.0	0.0	0.0
+Logan	0.0	0.0	0.0	0.0
+Oldham	0.0	0.0	0.0	0.0
+Pike	0.0	0.0	0.0	0.0
+Wayne	0.0	0.0	0.0	0.0
+Powell	0.0	0.0	0.0	0.0
+Pendleton	0.0	0.0	0.0	0.0
+Lewis	0.0	0.0	0.0	0.0
+Montgomery	0.0	0.0	0.0	0.0
+McCreary	0.0	0.0	0.0	0.0
+Webster	0.0	0.0	0.0	0.0
+Bath	0.0	0.0	0.0	0.0
+Larue	0.0	0.0	0.0	0.0
+Russell	0.0	0.0	0.0	0.0
+Henderson	0.0	0.0	0.0	0.0
+Caldwell	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Graves	0.0	0.0	0.0	0.0
+Breckinridge	0.0	0.0	0.0	0.0
+Hardin	0.0	0.0	0.0	0.0
+Martin	0.0	0.0	0.0	0.0
+Fayette	2.089	1835.652	6.45e-06	0.00566944
+Jefferson	5.223	4589.131	6.78e-06	0.00595591
+Pulaski	1.045	917.828	1.617e-05	0.01420281
+Ohio	0.0	0.0	0.0	0.0
+Lyon	0.0	0.0	0.0	0.0
+Lawrence	0.0	0.0	0.0	0.0
+Marion	0.0	0.0	0.0	0.0
+Grayson	0.0	0.0	0.0	0.0
+Mercer	0.514	914.958	2.361e-05	0.04202067
+McLean	0.0	0.0	0.0	0.0
+Laurel	0.0	0.0	0.0	0.0
+McCracken	1.875	1836.194	2.869e-05	0.02809956
+Simpson	0.0	0.0	0.0	0.0
+Henry	0.0	0.0	0.0	0.0
+Carter	0.0	0.0	0.0	0.0
+Madison	0.0	0.0	0.0	0.0
+Boone	0.937	918.098	7.12e-06	0.00697998
+Edmonson	0.0	0.0	0.0	0.0
+Scott	1.875	1836.194	3.346e-05	0.03277104
+Bullitt	0.0	0.0	0.0	0.0
+Breathitt	0.0	0.0	0.0	0.0
+Christian	7.312	6424.786	0.00010202	0.08964276
+Marshall	0.131	593.298	4.2e-06	0.01902145
+Muhlenberg	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Mason	0.0	0.0	0.0	0.0
+Jessamine	1.045	917.828	1.938e-05	0.01702203
+Boyle	0.0	0.0	0.0	0.0
+Calloway	0.0	0.0	0.0	0.0
+Shelby	0.0	0.0	0.0	0.0
+Allen	0.0	0.0	0.0	0.0
+Franklin	0.0	0.0	0.0	0.0
+Butler	0.0	0.0	0.0	0.0
+Crittenden	0.0	0.0	0.0	0.0
+Bourbon	0.0	0.0	0.0	0.0
+Anderson	0.0	0.0	0.0	0.0
+Campbell	0.0	0.0	0.0	0.0
+Daviess	0.0	0.0	0.0	0.0
+Hancock	0.0	0.0	0.0	0.0
+Union	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Clark	0.0	0.0	0.0	0.0
+Meade	0.0	0.0	0.0	0.0
+Greenup	0.0	0.0	0.0	0.0
+Bracken	0.0	0.0	0.0	0.0
+Carroll	0.0	0.0	0.0	0.0
+Nicholas	0.0	0.0	0.0	0.0
+Spencer	0.0	0.0	0.0	0.0
+Barren	0.0	0.0	0.0	0.0
+Menifee	0.0	0.0	0.0	0.0
+Warren	3.134	2753.48	2.388e-05	0.02097666
+Johnson	0.0	0.0	0.0	0.0
+Harrison	0.0	0.0	0.0	0.0
+Taylor	0.0	0.0	0.0	0.0
+Clinton	0.0	0.0	0.0	0.0
+Boyd	0.0	0.0	0.0	0.0
+Grant	0.0	0.0	0.0	0.0
+Rockcastle	0.0	0.0	0.0	0.0
+Adair	0.0	0.0	0.0	0.0
+Nelson	0.0	0.0	0.0	0.0

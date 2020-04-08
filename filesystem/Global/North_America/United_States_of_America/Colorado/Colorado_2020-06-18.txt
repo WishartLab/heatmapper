@@ -1,45 +1,45 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	9.038	2207.876
-Mesa	0.55	302.887
-San Miguel	5.423	1323.531
-Delta	1.605	444.151
-Weld	0.724	1491.836
-Lincoln	0.0	0.0
-Ouray	0.0	0.0
-Washington	0.0	0.0
-Huerfano	0.0	0.0
-Jefferson	0.091	1127.355
-Park	0.0	0.0
-Custer	0.875	445.551
-Douglas	0.667	801.582
-Summit	1.284	699.068
-Rio Grande	0.0	0.0
-Fremont	0.0	0.0
-Pueblo	21.69	5296.108
-Grand	0.0	0.0
-La Plata	6.441	2048.018
-Teller	0.0	0.0
-Las Animas	0.0	0.0
-El Paso	0.208	714.499
-Moffat	0.0	0.0
-Mineral	0.0	0.0
-Yuma	0.0	0.0
-Elbert	3.615	882.352
-Lake	0.0	0.0
-Unassigned	1.31	1315.805
-Adams	3.563	2651.892
-Chaffee	3.615	882.352
-Baca	0.0	0.0
-Costilla	0.0	0.0
-Phillips	0.0	6.209
-Otero	0.0	0.0
-Saguache	0.0	0.0
-Archuleta	0.0	0.0
-Pitkin	0.026	40.007
-Morgan	10.845	2649.056
-Montezuma	2.426	894.519
-Rio Blanco	0.0	0.0
-Clear Creek	0.0	0.0
-Alamosa	0.0	0.0
-Kit Carson	0.0	0.0
-Arapahoe	2.651	2920.396
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	9.038	2205.876	0.00041983	0.10246544
+Mesa	0.55	297.887	3.59e-06	0.00194434
+San Miguel	5.423	1323.531	0.00066207	0.16158357
+Delta	1.605	443.739	5.185e-05	0.0143359
+Weld	0.724	1457.836	2.3e-06	0.00463828
+Lincoln	0.0	0.0	0.0	0.0
+Ouray	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Huerfano	0.0	0.0	0.0	0.0
+Jefferson	0.091	1106.355	1.6e-07	0.00190674
+Park	0.0	0.0	0.0	0.0
+Custer	0.875	443.403	0.00017662	0.08950404
+Douglas	0.667	797.582	1.95e-06	0.00232683
+Summit	1.284	695.068	4.141e-05	0.02241649
+Rio Grande	0.0	0.0	0.0	0.0
+Fremont	0.0	0.0	0.0	0.0
+Pueblo	21.69	5294.108	0.00012947	0.03160114
+Grand	0.0	0.0	0.0	0.0
+La Plata	6.441	2045.138	0.00011438	0.03631927
+Teller	0.0	0.0	0.0	0.0
+Las Animas	0.0	0.0	0.0	0.0
+El Paso	0.208	708.499	2.9e-07	0.0009925
+Moffat	0.0	0.0	0.0	0.0
+Mineral	0.0	0.0	0.0	0.0
+Yuma	0.0	0.0	0.0	0.0
+Elbert	3.615	882.352	0.00013755	0.03357248
+Lake	0.0	0.0	0.0	0.0
+Unassigned	1.31	1290.805	N/A	N/A
+Adams	3.563	2638.892	6.96e-06	0.00515542
+Chaffee	3.615	882.352	0.00018051	0.04405812
+Baca	0.0	0.0	0.0	0.0
+Costilla	0.0	0.0	0.0	0.0
+Phillips	0.0	5.918	0.0	0.00138077
+Otero	0.0	0.0	0.0	0.0
+Saguache	0.0	0.0	0.0	0.0
+Archuleta	0.0	0.0	0.0	0.0
+Pitkin	0.026	39.007	1.45e-06	0.00217309
+Morgan	10.845	2647.056	0.00037975	0.09269052
+Montezuma	2.426	892.656	9.274e-05	0.03412554
+Rio Blanco	0.0	0.0	0.0	0.0
+Clear Creek	0.0	0.0	0.0	0.0
+Alamosa	0.0	0.0	0.0	0.0
+Kit Carson	0.0	0.0	0.0	0.0
+Arapahoe	2.651	2876.396	4.07e-06	0.00441697

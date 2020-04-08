@@ -1,26 +1,26 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Wayne	0.003	149.982
-Fulton	1.045	919.828
-Lewis	0.131	595.684
-Montgomery	2.089	1835.652
-Tioga	0.0	0.0
-Rockland	0.138	22290.255
-Chenango	0.003	244.177
-Cayuga	1.406	1378.149
-Monroe	0.045	2640.321
-Chautauqua	0.937	918.765
-Livingston	0.0	0.0
-Steuben	0.125	1411.305
-Saint Lawrence	8.436	8268.872
-Columbia	0.005	321.621
-Dutchess	0.918	16460.856
-Unassigned	0.0	0.0
-Essex	0.0	0.0
-Wyoming	3.656	3213.39
-Putnam	0.02	1859.03
-Greene	0.0	24.659
-Allegany	1.567	1377.743
-Warren	1.567	1377.743
-Schoharie	0.0	0.0
-Oswego	0.036	404.66
-Oneida	0.021	775.245
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Wayne	0.003	147.982	3e-08	0.00164308
+Fulton	1.045	917.828	1.95e-05	0.01712653
+Lewis	0.131	593.298	4.95e-06	0.02243347
+Montgomery	2.089	1835.652	4.224e-05	0.03711762
+Tioga	0.0	0.0	0.0	0.0
+Rockland	0.138	21913.255	4.2e-07	0.06728152
+Chenango	0.003	241.177	6e-08	0.00507357
+Cayuga	1.406	1377.149	1.823e-05	0.01785144
+Monroe	0.045	2614.321	6e-08	0.00352109
+Chautauqua	0.937	918.098	7.32e-06	0.00717606
+Livingston	0.0	0.0	0.0	0.0
+Steuben	0.125	1409.305	1.3e-06	0.01471152
+Saint Lawrence	8.436	8262.872	7.808e-05	0.07647479
+Columbia	0.005	320.621	8e-08	0.00535117
+Dutchess	0.918	16348.856	3.13e-06	0.05566174
+Unassigned	0.0	0.0	N/A	N/A
+Essex	0.0	0.0	0.0	0.0
+Wyoming	3.656	3212.39	9.121e-05	0.08013945
+Putnam	0.02	1828.03	2e-07	0.01848512
+Greene	0.0	24.659	0.0	0.00051924
+Allegany	1.567	1376.743	3.375e-05	0.02965201
+Warren	1.567	1376.743	2.438e-05	0.02142291
+Schoharie	0.0	0.0	0.0	0.0
+Oswego	0.036	402.66	3.1e-07	0.00341533
+Oneida	0.021	770.245	9e-08	0.00335506

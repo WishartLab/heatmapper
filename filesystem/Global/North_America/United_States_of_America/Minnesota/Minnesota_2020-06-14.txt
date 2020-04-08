@@ -1,52 +1,52 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Wright	4.586	866.587
-Brown	0.795	290.105
-Winona	0.004	16.22
-Lincoln	0.0	0.0
-Freeborn	0.0	17.767
-Crow Wing	0.0	11.844
-Washington	0.157	145.568
-Pipestone	0.0	0.0
-Goodhue	2.153	633.289
-Rice	0.0	0.0
-Sibley	0.0	0.0
-Martin	0.0	1.0
-Steele	0.0	0.0
-Saint Louis	4.586	867.587
-Big Stone	0.0	0.0
-Douglas	0.0	0.0
-Mahnomen	0.0	0.0
-Faribault	0.0	0.0
-Anoka	0.121	81.852
-Yellow Medicine	0.0	0.0
-Houston	0.0	0.0
-Nicollet	0.0	0.0
-Meeker	0.0	0.0
-Koochiching	0.0	0.0
-Le Sueur	0.006	9.113
-Olmsted	0.18	196.317
-Clearwater	0.0	0.0
-Dodge	0.0	0.0
-Itasca	0.0	0.0
-Renville	0.0	0.0
-Unassigned	2.263	883.391
-McLeod	0.0	0.0
-Waseca	0.0	0.0
-Clay	11.466	2172.464
-Stearns	0.0	0.0
-Wilkin	0.0	0.0
-Fillmore	0.0	0.0
-Otter Tail	0.0	0.0
-Traverse	0.0	0.0
-Kandiyohi	0.0	0.0
-Chisago	0.0	1.0
-Ramsey	0.761	460.283
-Mower	0.0	0.0
-Hennepin	0.041	291.652
-Wabasha	0.0	0.0
-Carlton	0.202	156.894
-Beltrami	0.001	14.91
-Polk	0.0	0.0
-Isanti	0.001	13.64
-Carver	0.0	0.0
-Lac qui Parle	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Wright	4.586	866.587	3.363e-05	0.00635565
+Brown	0.795	288.912	3.166e-05	0.0115054
+Winona	0.004	15.559	8e-08	0.00030613
+Lincoln	0.0	0.0	0.0	0.0
+Freeborn	0.0	16.917	0.0	0.00055568
+Crow Wing	0.0	11.277	0.0	0.00017379
+Washington	0.157	142.568	6.1e-07	0.00055003
+Pipestone	0.0	0.0	0.0	0.0
+Goodhue	2.153	631.709	4.64e-05	0.01361354
+Rice	0.0	0.0	0.0	0.0
+Sibley	0.0	0.0	0.0	0.0
+Martin	0.0	0.0	0.0	0.0
+Steele	0.0	0.0	0.0	0.0
+Saint Louis	4.586	866.587	2.296e-05	0.00433827
+Big Stone	0.0	0.0	0.0	0.0
+Douglas	0.0	0.0	0.0	0.0
+Mahnomen	0.0	0.0	0.0	0.0
+Faribault	0.0	0.0	0.0	0.0
+Anoka	0.121	77.852	3.4e-07	0.00022004
+Yellow Medicine	0.0	0.0	0.0	0.0
+Houston	0.0	0.0	0.0	0.0
+Nicollet	0.0	0.0	0.0	0.0
+Meeker	0.0	0.0	0.0	0.0
+Koochiching	0.0	0.0	0.0	0.0
+Le Sueur	0.006	9.113	2.1e-07	0.00031982
+Olmsted	0.18	195.317	1.15e-06	0.00124981
+Clearwater	0.0	0.0	0.0	0.0
+Dodge	0.0	0.0	0.0	0.0
+Itasca	0.0	0.0	0.0	0.0
+Renville	0.0	0.0	0.0	0.0
+Unassigned	2.263	879.096	N/A	N/A
+McLeod	0.0	0.0	0.0	0.0
+Waseca	0.0	0.0	0.0	0.0
+Clay	11.466	2166.464	0.00017928	0.03387482
+Stearns	0.0	0.0	0.0	0.0
+Wilkin	0.0	0.0	0.0	0.0
+Fillmore	0.0	0.0	0.0	0.0
+Otter Tail	0.0	0.0	0.0	0.0
+Traverse	0.0	0.0	0.0	0.0
+Kandiyohi	0.0	0.0	0.0	0.0
+Chisago	0.0	0.0	0.0	0.0
+Ramsey	0.761	455.283	1.38e-06	0.00082747
+Mower	0.0	0.0	0.0	0.0
+Hennepin	0.041	278.652	3e-08	0.00022125
+Wabasha	0.0	0.0	0.0	0.0
+Carlton	0.202	153.921	5.64e-06	0.00429503
+Beltrami	0.001	14.268	2e-08	0.00030457
+Polk	0.0	0.0	0.0	0.0
+Isanti	0.001	13.025	3e-08	0.0003259
+Carver	0.0	0.0	0.0	0.0
+Lac qui Parle	0.0	0.0	0.0	0.0

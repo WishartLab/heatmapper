@@ -1,33 +1,33 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Potter	0.0	0.0
-Wayne	1.199	5542.425
-Huntingdon	0.005	300.538
-Somerset	0.129	923.534
-Cameron	0.0	0.0
-Tioga	0.0	0.0
-Bedford	0.0	0.0
-Erie	0.2	931.405
-Carbon	1.35	9697.098
-Bradford	0.064	461.764
-Indiana	0.078	3016.477
-Cambria	0.2	923.405
-Mifflin	0.015	1199.284
-Columbia	0.042	1647.345
-Blair	0.0	0.0
-Lehigh	1.299	50579.766
-Northampton	0.914	35576.305
-Mc Kean	0.0	0.0
-Venango	0.0	0.0
-Montour	0.599	2770.213
-Union	0.008	599.648
-Lancaster	0.656	25508.882
-Perry	0.005	300.538
-Clearfield	0.064	461.764
-Warren	0.0	0.0
-Clinton	0.0	0.0
-Snyder	0.019	1202.164
-York	0.176	8877.987
-Armstrong	0.129	923.534
-Lebanon	1.456	16950.015
-Juniata	0.257	1847.066
-Luzerne	7.824	91117.593
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Potter	0.0	0.0	0.0	0.0
+Wayne	1.199	5540.425	2.338e-05	0.10805104
+Huntingdon	0.005	299.814	1.1e-07	0.00663775
+Somerset	0.129	922.867	1.74e-06	0.01247927
+Cameron	0.0	0.0	0.0	0.0
+Tioga	0.0	0.0	0.0	0.0
+Bedford	0.0	0.0	0.0	0.0
+Erie	0.2	923.405	7.4e-07	0.00339411
+Carbon	1.35	9690.098	2.102e-05	0.15087265
+Bradford	0.064	461.431	1.05e-06	0.00758521
+Indiana	0.078	3011.417	9.2e-07	0.03563765
+Cambria	0.2	923.405	1.52e-06	0.00700983
+Mifflin	0.015	1195.865	3.2e-07	0.0258722
+Columbia	0.042	1643.345	6.4e-07	0.0251061
+Blair	0.0	0.0	0.0	0.0
+Lehigh	1.299	50450.766	3.53e-06	0.13705723
+Northampton	0.914	35496.305	3e-06	0.11645502
+Mc Kean	0.0	0.0	0.0	0.0
+Venango	0.0	0.0	0.0	0.0
+Montour	0.599	2770.213	3.284e-05	0.15187571
+Union	0.008	597.939	1.8e-07	0.01335132
+Lancaster	0.656	25471.882	1.21e-06	0.04686147
+Perry	0.005	299.814	1.1e-07	0.00649806
+Clearfield	0.064	461.431	8.1e-07	0.00581235
+Warren	0.0	0.0	0.0	0.0
+Clinton	0.0	0.0	0.0	0.0
+Snyder	0.019	1199.269	4.7e-07	0.02958236
+York	0.176	8859.987	3.9e-07	0.01976471
+Armstrong	0.129	922.867	1.98e-06	0.01414074
+Lebanon	1.456	16932.015	1.03e-05	0.11981838
+Juniata	0.257	1845.733	1.04e-05	0.07471393
+Luzerne	7.824	91009.593	2.463e-05	0.28651264

@@ -1,34 +1,34 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	12.831	95.604
-Skagit	1.61	41.733
-Walla Walla	14.095	106.699
-Pierce	81.885	1530.547
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	36.052	473.624
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Jefferson	0.402	12.433
-Kitsap	2.405	55.894
-Douglas	12.831	92.604
-San Juan	12.831	94.604
-Benton	23.644	422.578
-Okanogan	25.727	226.608
-Whitman	0.0	1.0
-Chelan	1.859	45.295
-Unassigned	1057.13	8002.455
-Mason	19.247	139.906
-Adams	19.055	175.544
-Klickitat	0.0	0.0
-Yakima	25.796	665.448
-Whatcom	3.835	145.101
-Franklin	3.629	107.201
-Ferry	0.0	0.0
-Grays Harbor	12.831	92.604
-Spokane	6.186	150.208
-Kittitas	0.0	2.0
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
-Thurston	2.227	52.993
-Grant	0.033	26.693
-Snohomish	17.358	660.651
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	12.831	92.604	0.00016119	0.00116331
+Skagit	1.61	41.733	1.256e-05	0.00032552
+Walla Walla	14.095	106.032	0.00023136	0.00174046
+Pierce	81.885	1501.547	9.187e-05	0.00168467
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	36.052	466.031	0.00159452	0.02061172
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Jefferson	0.402	10.433	1.267e-05	0.00032882
+Kitsap	2.405	55.894	8.91e-06	0.00020716
+Douglas	12.831	92.604	0.00029904	0.00215825
+San Juan	12.831	92.604	0.00074912	0.00540659
+Benton	23.644	411.578	0.00011712	0.00203876
+Okanogan	25.727	224.584	0.00061063	0.00533049
+Whitman	0.0	0.0	0.0	0.0
+Chelan	1.859	45.295	2.413e-05	0.00058797
+Unassigned	1057.13	7952.455	N/A	N/A
+Mason	19.247	138.906	0.00029382	0.00212048
+Adams	19.055	172.544	0.00096437	0.00873243
+Klickitat	0.0	0.0	0.0	0.0
+Yakima	25.796	628.448	0.00010259	0.00249934
+Whatcom	3.835	141.101	1.699e-05	0.00062521
+Franklin	3.629	99.201	3.846e-05	0.00105145
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	12.831	92.604	0.00017362	0.00125308
+Spokane	6.186	147.208	1.202e-05	0.00028605
+Kittitas	0.0	0.0	0.0	0.0
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0
+Thurston	2.227	52.993	7.78e-06	0.00018502
+Grant	0.033	18.693	3.4e-07	0.00019206
+Snohomish	17.358	616.651	2.13e-05	0.00075672

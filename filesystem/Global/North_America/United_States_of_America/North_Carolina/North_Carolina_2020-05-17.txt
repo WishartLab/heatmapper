@@ -1,85 +1,85 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Transylvania	0.0	0.0
-Cumberland	31.111	1287.137
-Brunswick	0.064	10.336
-Wayne	87.434	2512.101
-Onslow	68.004	1951.634
-Anson	0.067	11.762
-Cherokee	0.0	1.0
-Gates	0.0	0.0
-Beaufort	9.469	287.702
-Wilson	0.558	59.029
-Montgomery	19.43	556.466
-Currituck	0.0	0.0
-Buncombe	0.0	2.0
-Ashe	0.0	0.0
-Lincoln	0.0	0.0
-Columbus	24.875	1097.093
-Alexander	0.0	0.0
-Henderson	2.206	165.559
-Mitchell	0.0	0.0
-Wilkes	0.0	0.0
-Lee	0.0	0.0
-Caldwell	37.876	1150.807
-Washington	0.0	0.0
-Richmond	0.0	0.0
-Yadkin	9.95	438.837
-Robeson	0.0	0.0
-Surry	0.0	0.0
-Macon	0.0	0.0
-Martin	0.0	0.0
-Davidson	23.285	1029.564
-Person	18.401	593.138
-Perquimans	0.0	0.0
-Catawba	48.574	1392.163
-Lenoir	0.0	0.0
-McDowell	9.469	287.702
-Cabarrus	1.008	146.852
-Carteret	0.0	9.0
-Duplin	9.469	287.702
-Rowan	2.55	225.881
-Bladen	0.0	0.0
-Alleghany	0.0	0.0
-Bertie	0.0	0.0
-Wake	2.612	351.725
-Edgecombe	0.0	0.0
-Stokes	0.094	16.866
-Guilford	1.202	145.367
-Scotland	0.0	0.0
-Northampton	116.578	3342.797
-Pasquotank	0.0	0.0
-Johnston	6.74	405.552
-Davie	0.888	88.368
-Hertford	0.0	0.0
-Randolph	0.471	74.439
-Pamlico	0.0	0.0
-Hoke	19.43	557.466
-Rockingham	8.673	460.937
-Stanly	0.0	0.0
-Vance	38.859	1112.931
-Clay	0.0	0.0
-Pender	0.0	0.0
-Franklin	19.43	557.466
-Rutherford	0.325	55.336
-Craven	29.145	837.7
-Greene	0.083	13.389
-New Hanover	0.0	0.0
-Union	0.672	101.233
-Swain	0.0	0.0
-Haywood	0.0	0.0
-Dare	0.1	15.077
-Forsyth	1.178	158.072
-Durham	50.257	2079.375
-Pitt	0.335	34.816
-Burke	73.267	2669.687
-Gaston	0.59	97.342
-Warren	18.902	1067.759
-Mecklenburg	8.561	1104.54
-Cleveland	1.435	126.491
-Granville	272.016	7829.533
-Sampson	0.0	3.0
-Caswell	0.0	0.0
-Watauga	0.0	0.0
-Orange	0.84	131.542
-Nash	48.574	1391.163
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Transylvania	0.0	0.0	0.0	0.0
+Cumberland	31.111	1284.137	9.361e-05	0.00386404
+Brunswick	0.064	8.336	4.7e-07	6.096e-05
+Wayne	87.434	2504.101	0.00070942	0.02031758
+Onslow	68.004	1947.634	0.00034401	0.00985231
+Anson	0.067	11.179	2.69e-06	0.00044937
+Cherokee	0.0	0.0	0.0	0.0
+Gates	0.0	0.0	0.0	0.0
+Beaufort	9.469	287.369	0.00020113	0.00610397
+Wilson	0.558	58.029	6.85e-06	0.00071241
+Montgomery	19.43	556.466	0.00071248	0.02040505
+Currituck	0.0	0.0	0.0	0.0
+Buncombe	0.0	0.0	0.0	0.0
+Ashe	0.0	0.0	0.0	0.0
+Lincoln	0.0	0.0	0.0	0.0
+Columbus	24.875	1093.475	0.00044695	0.01964738
+Alexander	0.0	0.0	0.0	0.0
+Henderson	2.206	164.559	1.89e-05	0.00140952
+Mitchell	0.0	0.0	0.0	0.0
+Wilkes	0.0	0.0	0.0	0.0
+Lee	0.0	0.0	0.0	0.0
+Caldwell	37.876	1149.474	0.00046174	0.01401302
+Washington	0.0	0.0	0.0	0.0
+Richmond	0.0	0.0	0.0	0.0
+Yadkin	9.95	437.39	0.00026503	0.01165037
+Robeson	0.0	0.0	0.0	0.0
+Surry	0.0	0.0	0.0	0.0
+Macon	0.0	0.0	0.0	0.0
+Martin	0.0	0.0	0.0	0.0
+Davidson	23.285	1023.564	0.00013975	0.00614333
+Person	18.401	592.315	0.00046577	0.01499266
+Perquimans	0.0	0.0	0.0	0.0
+Catawba	48.574	1391.163	0.00030617	0.00876864
+Lenoir	0.0	0.0	0.0	0.0
+McDowell	9.469	287.369	0.00020808	0.00631483
+Cabarrus	1.008	139.852	4.77e-06	0.00066173
+Carteret	0.0	0.0	0.0	0.0
+Duplin	9.469	287.369	0.00016088	0.00488258
+Rowan	2.55	220.881	1.805e-05	0.00156363
+Bladen	0.0	0.0	0.0	0.0
+Alleghany	0.0	0.0	0.0	0.0
+Bertie	0.0	0.0	0.0	0.0
+Wake	2.612	341.725	2.39e-06	0.00031285
+Edgecombe	0.0	0.0	0.0	0.0
+Stokes	0.094	16.016	2.07e-06	0.00035226
+Guilford	1.202	137.367	2.25e-06	0.0002574
+Scotland	0.0	0.0	0.0	0.0
+Northampton	116.578	3338.797	0.00592488	0.16968881
+Pasquotank	0.0	0.0	0.0	0.0
+Johnston	6.74	401.552	3.326e-05	0.00198126
+Davie	0.888	84.368	2.078e-05	0.00197431
+Hertford	0.0	0.0	0.0	0.0
+Randolph	0.471	70.439	3.29e-06	0.00049137
+Pamlico	0.0	0.0	0.0	0.0
+Hoke	19.43	556.466	0.0003548	0.01016116
+Rockingham	8.673	458.551	9.563e-05	0.00505625
+Stanly	0.0	0.0	0.0	0.0
+Vance	38.859	1112.931	0.00087163	0.02496368
+Clay	0.0	0.0	0.0	0.0
+Pender	0.0	0.0	0.0	0.0
+Franklin	19.43	556.466	0.0002876	0.00823662
+Rutherford	0.325	52.641	4.86e-06	0.00078773
+Craven	29.145	834.7	0.0002832	0.00811081
+Greene	0.083	12.759	3.95e-06	0.00060722
+New Hanover	0.0	0.0	0.0	0.0
+Union	0.672	93.233	2.85e-06	0.00039521
+Swain	0.0	0.0	0.0	0.0
+Haywood	0.0	0.0	0.0	0.0
+Dare	0.1	14.416	2.74e-06	0.00039495
+Forsyth	1.178	148.072	3.11e-06	0.00039059
+Durham	50.257	2074.375	0.00015867	0.00654916
+Pitt	0.335	34.816	1.86e-06	0.00019351
+Burke	73.267	2664.339	0.00081064	0.02947865
+Gaston	0.59	86.342	2.65e-06	0.00038745
+Warren	18.902	1061.316	0.00095431	0.05358287
+Mecklenburg	8.561	1027.54	7.83e-06	0.00093934
+Cleveland	1.435	124.272	1.47e-05	0.00127269
+Granville	272.016	7790.533	0.00452493	0.12959383
+Sampson	0.0	0.0	0.0	0.0
+Caswell	0.0	0.0	0.0	0.0
+Watauga	0.0	0.0	0.0	0.0
+Orange	0.84	116.542	5.75e-06	0.00079809
+Nash	48.574	1391.163	0.00051666	0.01479709
+Jackson	0.0	0.0	0.0	0.0

@@ -1,44 +1,44 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Missouri	0.197	11442.236
-Puerto Rico	0.592	4104.011
-Illinois	8.202	91515.991
-South Carolina	0.324	11754.437
-Virginia	1.951	21768.786
-Washington	0.216	19372.76
-South Dakota	0.024	1122.758
-Georgia	1.567	41287.87
-Connecticut	0.824	30656.385
-Northern Mariana Islands	0.0	0.0
-New Hampshire	0.048	2292.261
-Oklahoma	0.105	5983.667
-Ohio	0.315	18070.086
-Utah	0.043	4874.725
-Delaware	0.826	5784.331
-Indiana	3.36	37622.517
-Iowa	0.133	4819.58
-New Jersey	15.893	278963.592
-United States Virgin Islands	0.05	874.847
-Michigan	6.445	113172.729
-Arizona	0.191	10988.07
-Massachusetts	1.375	64005.508
-Grand Princess	0.0	0.0
-Diamond Princess	0.0	0.0
-North Carolina	0.05	7671.95
-District of Columbia	0.086	4902.146
-Florida	33.871	151740.769
-North Dakota	0.004	537.343
-Louisiana	5.562	98236.316
-Maryland	1.505	26509.731
-Texas	0.258	23342.934
-Hawaii	5.278	8147.198
-Virgin Islands	0.001	94.312
-Rhode Island	2.315	10463.677
-Kansas	0.115	4188.997
-Pennsylvania	8.829	98968.213
-Nebraska	19.949	19526.693
-Tennessee	0.107	12084.597
-Idaho	0.283	7354.444
-Nevada	0.173	7987.68
-California	3.202	83967.863
-West Virginia	0.048	1731.064
-New Mexico	0.139	3678.74
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Missouri	0.197	11053.236	3e-08	0.00180096
+Puerto Rico	0.592	4066.011	1.9e-07	0.00127314
+Illinois	8.202	90512.991	6.5e-07	0.00714286
+South Carolina	0.324	11571.437	6e-08	0.00224744
+Virginia	1.951	21530.786	2.3e-07	0.00252249
+Washington	0.216	18794.76	3e-08	0.00246816
+South Dakota	0.024	1074.758	3e-08	0.00121488
+Georgia	1.567	40620.87	1.5e-07	0.00382587
+Connecticut	0.824	29425.385	2.3e-07	0.0082533
+Northern Mariana Islands	0.0	0.0	N/A	N/A
+New Hampshire	0.048	2198.261	4e-08	0.00161671
+Oklahoma	0.105	5908.667	3e-08	0.00149323
+Ohio	0.315	17660.086	3e-08	0.00151082
+Utah	0.043	4797.725	1e-08	0.0014965
+Delaware	0.826	5674.331	8.5e-07	0.00582721
+Indiana	3.36	37077.517	5e-07	0.00550747
+Iowa	0.133	4742.58	4e-08	0.00150316
+New Jersey	15.893	275378.592	1.79e-06	0.03100346
+United States Virgin Islands	0.05	865.76	N/A	N/A
+Michigan	6.445	111669.729	6.5e-07	0.01118167
+Arizona	0.191	10742.07	3e-08	0.00147582
+Massachusetts	1.375	62668.508	2e-07	0.00909227
+Grand Princess	0.0	0.0	N/A	N/A
+Diamond Princess	0.0	0.0	N/A	N/A
+North Carolina	0.05	7358.95	0.0	0.00070165
+District of Columbia	0.086	4819.013	1.2e-07	0.00682823
+Florida	33.871	150766.769	1.58e-06	0.00701968
+North Dakota	0.004	519.343	1e-08	0.0006815
+Louisiana	5.562	96379.316	1.2e-06	0.02073211
+Maryland	1.505	26081.731	2.5e-07	0.00431411
+Texas	0.258	22689.934	1e-08	0.00078252
+Hawaii	5.278	8131.198	3.73e-06	0.00574289
+Virgin Islands	0.001	92.131	1e-08	0.00085889
+Rhode Island	2.315	10303.677	2.19e-06	0.00972631
+Kansas	0.115	4090.997	4e-08	0.00140424
+Pennsylvania	8.829	97430.213	6.9e-07	0.00761055
+Nebraska	19.949	19473.693	1.031e-05	0.010067
+Tennessee	0.107	11915.597	2e-08	0.00174481
+Idaho	0.283	7331.444	1.6e-07	0.00410251
+Nevada	0.173	7889.68	6e-08	0.00256145
+California	3.202	82982.863	8e-08	0.00210018
+West Virginia	0.048	1710.064	3e-08	0.0009542
+New Mexico	0.139	3591.74	7e-08	0.00171294

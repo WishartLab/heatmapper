@@ -1,49 +1,49 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	60.087	848.851
-Mesa	6.205	195.777
-San Miguel	36.052	508.111
-Delta	11.752	192.696
-Weld	20.649	1194.602
-Lincoln	0.0	0.0
-Ouray	0.0	0.0
-Washington	0.0	0.0
-Huerfano	0.0	0.0
-Jefferson	14.26	937.06
-Park	0.0	0.0
-Custer	9.469	278.355
-Douglas	12.58	611.423
-Summit	14.478	449.149
-Rio Grande	0.0	0.0
-Fremont	0.0	0.0
-Pueblo	144.209	2034.447
-Grand	0.0	0.0
-Eagle	2.348	228.774
-La Plata	52.111	985.595
-Teller	0.0	0.0
-Las Animas	0.0	0.0
-El Paso	9.621	579.781
-Moffat	0.0	0.0
-Mineral	0.0	0.0
-Yuma	0.0	0.0
-Elbert	24.035	338.74
-Larimer	2.299	194.493
-Lake	0.0	0.0
-Unassigned	21.628	980.39
-Adams	48.683	1866.531
-Chaffee	24.035	338.74
-Baca	0.0	0.0
-Costilla	0.0	0.0
-Phillips	0.064	5.417
-Otero	0.0	0.0
-Saguache	0.0	0.0
-Denver	11.002	956.159
-Archuleta	0.0	0.0
-Pitkin	0.581	31.433
-Morgan	72.105	1018.224
-Montezuma	21.59	470.365
-Rio Blanco	0.0	0.0
-Clear Creek	0.0	0.0
-Alamosa	0.0	0.0
-Boulder	2.148	217.417
-Kit Carson	0.0	0.0
-Arapahoe	46.751	2204.811
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	60.087	846.851	0.00279111	0.03933719
+Mesa	6.205	190.777	4.05e-05	0.00124522
+San Miguel	36.052	508.111	0.00440142	0.06203284
+Delta	11.752	192.284	0.00037967	0.00621213
+Weld	20.649	1160.602	6.57e-05	0.0036926
+Lincoln	0.0	0.0	0.0	0.0
+Ouray	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Huerfano	0.0	0.0	0.0	0.0
+Jefferson	14.26	916.06	2.458e-05	0.00157878
+Park	0.0	0.0	0.0	0.0
+Custer	9.469	276.207	0.00191138	0.05575434
+Douglas	12.58	607.423	3.67e-05	0.00177207
+Summit	14.478	445.149	0.00046693	0.0143564
+Rio Grande	0.0	0.0	0.0	0.0
+Fremont	0.0	0.0	0.0	0.0
+Pueblo	144.209	2032.447	0.0008608	0.01213191
+Grand	0.0	0.0	0.0	0.0
+Eagle	2.348	212.774	4.27e-05	0.00386911
+La Plata	52.111	982.715	0.00092543	0.01745187
+Teller	0.0	0.0	0.0	0.0
+Las Animas	0.0	0.0	0.0	0.0
+El Paso	9.621	573.781	1.348e-05	0.00080378
+Moffat	0.0	0.0	0.0	0.0
+Mineral	0.0	0.0	0.0	0.0
+Yuma	0.0	0.0	0.0	0.0
+Elbert	24.035	338.74	0.0009145	0.01288867
+Larimer	2.299	189.493	6.56e-06	0.00054061
+Lake	0.0	0.0	0.0	0.0
+Unassigned	21.628	955.39	N/A	N/A
+Adams	48.683	1853.531	9.511e-05	0.00362111
+Chaffee	24.035	338.74	0.00120013	0.01691417
+Baca	0.0	0.0	0.0	0.0
+Costilla	0.0	0.0	0.0	0.0
+Phillips	0.064	5.126	1.493e-05	0.00119599
+Otero	0.0	0.0	0.0	0.0
+Saguache	0.0	0.0	0.0	0.0
+Denver	11.002	934.159	1.536e-05	0.0013038
+Archuleta	0.0	0.0	0.0	0.0
+Pitkin	0.581	30.433	3.237e-05	0.00169543
+Morgan	72.105	1016.224	0.00252486	0.03558456
+Montezuma	21.59	468.502	0.00082537	0.01791047
+Rio Blanco	0.0	0.0	0.0	0.0
+Clear Creek	0.0	0.0	0.0	0.0
+Alamosa	0.0	0.0	0.0	0.0
+Boulder	2.148	205.417	6.59e-06	0.00062996
+Kit Carson	0.0	0.0	0.0	0.0
+Arapahoe	46.751	2160.811	7.179e-05	0.00331812

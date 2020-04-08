@@ -1,13 +1,13 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Somerset	0.0	0.0
-Caroline	0.0	2.0
-Queen Anne's	0.2	925.405
-Garrett	0.0	0.0
-Worcester	0.5	2309.507
-Talbot	0.3	1386.11
-Kent	0.0	0.0
-Dorchester	0.0	0.0
-Wicomico	0.2	923.405
-Charles	0.203	7906.068
-Saint Mary's	0.064	1789.549
-Carroll	0.102	3952.038
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Somerset	0.0	0.0	0.0	0.0
+Caroline	0.0	0.0	0.0	0.0
+Queen Anne's	0.2	923.405	3.98e-06	0.01837585
+Garrett	0.0	0.0	0.0	0.0
+Worcester	0.5	2308.507	9.65e-06	0.04454599
+Talbot	0.3	1385.11	8.12e-06	0.03746781
+Kent	0.0	0.0	0.0	0.0
+Dorchester	0.0	0.0	0.0	0.0
+Wicomico	0.2	923.405	1.94e-06	0.00894816
+Charles	0.203	7888.068	1.26e-06	0.04884162
+Saint Mary's	0.064	1788.549	5.7e-07	0.01587507
+Carroll	0.102	3944.038	6.1e-07	0.02341662

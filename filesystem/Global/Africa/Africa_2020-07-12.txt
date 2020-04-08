@@ -1,30 +1,30 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Kenya	0.311	11449.063
-Botswana	0.0	0.0
-Benin	1.269	5357.593
-Namibia	0.0	0.0
-Zambia	0.928	3910.746
-Republic of the Congo	0.0	0.0
-Gabon	0.761	3215.751
-Malawi	0.219	924.339
-Seychelles	0.0	2.0
-Guinea-Bissau	0.277	1813.067
-Liberia	0.429	1809.807
-Zimbabwe	0.184	776.774
-Swaziland	0.018	75.804
-Sudan	0.56	2361.206
-Somalia	0.009	36.889
-United Republic of Tanzania	0.236	1000.124
-Mozambique	0.0	0.0
-Angola	0.263	1110.821
-Ethiopia	2.004	8450.674
-Chad	0.56	2361.206
-Niger	4.976	32724.844
-Equatorial Guinea	0.105	442.731
-Gambia	0.0	0.0
-Guinea	7.797	32886.359
-Central African Republic	0.0	0.0
-Mauritania	0.009	36.889
-Cape Verde	0.026	110.68
-Djibouti	1.547	10190.987
-Burundi	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Kenya	0.311	11417.063	1e-08	0.00022215
+Botswana	0.0	0.0	0.0	0.0
+Benin	1.269	5349.593	1.1e-07	0.00046579
+Namibia	0.0	0.0	0.0	0.0
+Zambia	0.928	3910.746	5e-08	0.00022538
+Republic of the Congo	0.0	0.0	0.0	0.0
+Gabon	0.761	3209.751	3.6e-07	0.00151455
+Malawi	0.219	922.339	1e-08	5.084e-05
+Seychelles	0.0	0.0	0.0	0.0
+Guinea-Bissau	0.277	1813.067	1.5e-07	0.00096733
+Liberia	0.429	1807.807	9e-08	0.00037514
+Zimbabwe	0.184	774.774	1e-08	5.366e-05
+Swaziland	0.018	73.804	2e-08	6.496e-05
+Sudan	0.56	2361.206	1e-08	5.649e-05
+Somalia	0.009	36.889	0.0	2.46e-06
+United Republic of Tanzania	0.236	996.124	0.0	1.769e-05
+Mozambique	0.0	0.0	0.0	0.0
+Angola	0.263	1106.821	1e-08	3.592e-05
+Ethiopia	2.004	8448.674	2e-08	7.735e-05
+Chad	0.56	2361.206	4e-08	0.00015255
+Niger	4.976	32586.844	2.2e-07	0.00145199
+Equatorial Guinea	0.105	442.731	8e-08	0.00033823
+Gambia	0.0	0.0	0.0	0.0
+Guinea	7.797	32872.359	6.3e-07	0.00264794
+Central African Republic	0.0	0.0	0.0	0.0
+Mauritania	0.009	36.889	0.0	8.38e-06
+Cape Verde	0.026	110.68	5e-08	0.00020354
+Djibouti	1.547	10128.987	1.61e-06	0.01056291
+Burundi	0.0	0.0	0.0	0.0

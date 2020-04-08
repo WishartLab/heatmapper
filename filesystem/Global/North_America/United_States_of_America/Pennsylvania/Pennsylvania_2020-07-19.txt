@@ -1,29 +1,29 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Potter	0.0	0.0
-Wayne	0.198	5544.17
-Huntingdon	0.002	300.549
-Somerset	0.024	923.72
-Cameron	0.0	0.0
-Tioga	0.0	0.0
-Erie	0.033	931.696
-Carbon	0.248	9699.05
-Bradford	0.012	461.858
-Indiana	0.03	3016.653
-Cambria	0.033	923.696
-Columbia	0.016	1647.441
-Blair	0.0	0.0
-Lehigh	0.497	50582.701
-Northampton	0.349	35578.369
-Mc Kean	0.0	0.0
-Venango	0.0	0.0
-Montour	0.099	2771.086
-Lancaster	0.251	25510.364
-Perry	0.002	300.549
-Clearfield	0.012	461.858
-Warren	0.0	0.0
-Snyder	0.007	1202.207
-York	0.066	8878.393
-Armstrong	0.024	923.72
-Lebanon	0.335	16952.307
-Juniata	0.047	1847.438
-Luzerne	1.8	91129.915
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Potter	0.0	0.0	0.0	0.0
+Wayne	0.198	5542.17	3.86e-06	0.10808507
+Huntingdon	0.002	299.825	4e-08	0.006638
+Somerset	0.024	923.053	3.2e-07	0.01248179
+Cameron	0.0	0.0	0.0	0.0
+Tioga	0.0	0.0	0.0	0.0
+Erie	0.033	923.696	1.2e-07	0.00339518
+Carbon	0.248	9692.05	3.86e-06	0.15090305
+Bradford	0.012	461.525	2e-07	0.00758675
+Indiana	0.03	3011.593	3.6e-07	0.03563973
+Cambria	0.033	923.696	2.5e-07	0.00701204
+Columbia	0.016	1643.441	2.4e-07	0.02510757
+Blair	0.0	0.0	0.0	0.0
+Lehigh	0.497	50453.701	1.35e-06	0.1370652
+Northampton	0.349	35498.369	1.14e-06	0.11646179
+Mc Kean	0.0	0.0	0.0	0.0
+Venango	0.0	0.0	0.0	0.0
+Montour	0.099	2771.086	5.43e-06	0.15192357
+Lancaster	0.251	25473.364	4.6e-07	0.0468642
+Perry	0.002	299.825	4e-08	0.0064983
+Clearfield	0.012	461.525	1.5e-07	0.00581354
+Warren	0.0	0.0	0.0	0.0
+Snyder	0.007	1199.312	1.7e-07	0.02958342
+York	0.066	8860.393	1.5e-07	0.01976562
+Armstrong	0.024	923.053	3.7e-07	0.01414359
+Lebanon	0.335	16934.307	2.37e-06	0.1198346
+Juniata	0.047	1846.105	1.9e-06	0.07472899
+Luzerne	1.8	91021.915	5.67e-06	0.28655143

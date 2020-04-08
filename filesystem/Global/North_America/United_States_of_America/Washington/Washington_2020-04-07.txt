@@ -1,37 +1,37 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	0.667	3.667
-Skagit	2.667	2.667
-Walla Walla	0.823	1.49
-Pierce	48.667	77.667
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	8.896	16.489
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Jefferson	0.667	2.667
-Kitsap	3.0	3.0
-Douglas	0.667	0.667
-San Juan	0.667	2.667
-Benton	12.333	23.333
-Okanogan	2.443	4.467
-Whitman	0.0	1.0
-Chelan	2.667	2.667
-Unassigned	61.737	111.737
-Mason	1.0	2.0
-Adams	2.0	5.0
-Klickitat	0.0	0.0
-Yakima	37.0	74.0
-Whatcom	12.667	16.667
-Franklin	6.667	14.667
-Ferry	0.0	0.0
-Grays Harbor	0.667	0.667
-Spokane	8.333	11.333
-Clark	0.0	31.0
-Kittitas	0.0	2.0
-Island	7.0	18.0
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
-King	153.0	317.0
-Thurston	3.0	3.0
-Grant	2.667	10.667
-Snohomish	52.0	96.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	0.667	0.667	8.38e-06	8.38e-06
+Skagit	2.667	2.667	2.08e-05	2.08e-05
+Walla Walla	0.823	0.823	1.351e-05	1.351e-05
+Pierce	48.667	48.667	5.46e-05	5.46e-05
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	8.896	8.896	0.00039345	0.00039345
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Jefferson	0.667	0.667	2.102e-05	2.102e-05
+Kitsap	3.0	3.0	1.112e-05	1.112e-05
+Douglas	0.667	0.667	1.555e-05	1.555e-05
+San Juan	0.667	0.667	3.894e-05	3.894e-05
+Benton	12.333	12.333	6.109e-05	6.109e-05
+Okanogan	2.443	2.443	5.798e-05	5.798e-05
+Whitman	0.0	0.0	0.0	0.0
+Chelan	2.667	2.667	3.462e-05	3.462e-05
+Unassigned	61.737	61.737	N/A	N/A
+Mason	1.0	1.0	1.527e-05	1.527e-05
+Adams	2.0	2.0	0.00010122	0.00010122
+Klickitat	0.0	0.0	0.0	0.0
+Yakima	37.0	37.0	0.00014715	0.00014715
+Whatcom	12.667	12.667	5.613e-05	5.613e-05
+Franklin	6.667	6.667	7.066e-05	7.066e-05
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	0.667	0.667	9.03e-06	9.03e-06
+Spokane	8.333	8.333	1.619e-05	1.619e-05
+Clark	0.0	0.0	0.0	0.0
+Kittitas	0.0	0.0	0.0	0.0
+Island	7.0	7.0	8.288e-05	8.288e-05
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0
+King	153.0	153.0	6.851e-05	6.851e-05
+Thurston	3.0	3.0	1.047e-05	1.047e-05
+Grant	2.667	2.667	2.74e-05	2.74e-05
+Snohomish	52.0	52.0	6.381e-05	6.381e-05

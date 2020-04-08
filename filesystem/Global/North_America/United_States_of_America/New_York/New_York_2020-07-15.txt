@@ -1,14 +1,14 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Fulton	0.2	925.405
-Lewis	0.004	595.931
-Montgomery	0.4	1846.809
-Tioga	0.0	0.0
-Cayuga	0.193	1385.303
-Chautauqua	0.129	923.534
-Livingston	0.0	0.0
-Saint Lawrence	1.157	8311.795
-Essex	0.0	0.0
-Wyoming	0.699	3232.914
-Allegany	0.3	1386.11
-Warren	0.3	1386.11
-Schoharie	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Fulton	0.2	923.405	3.73e-06	0.0172306
+Lewis	0.004	593.545	1.5e-07	0.02244281
+Montgomery	0.4	1846.809	8.09e-06	0.03734322
+Tioga	0.0	0.0	0.0	0.0
+Cayuga	0.193	1384.303	2.5e-06	0.01794417
+Chautauqua	0.129	922.867	1.01e-06	0.00721334
+Livingston	0.0	0.0	0.0	0.0
+Saint Lawrence	1.157	8305.795	1.071e-05	0.07687206
+Essex	0.0	0.0	0.0	0.0
+Wyoming	0.699	3231.914	1.744e-05	0.08062652
+Allegany	0.3	1385.11	6.46e-06	0.02983222
+Warren	0.3	1385.11	4.67e-06	0.0215531
+Schoharie	0.0	0.0	0.0	0.0

@@ -1,59 +1,59 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Missouri	207.92	596.92
-Puerto Rico	36.573	74.573
-New York	8566.68	17221.68
-Alaska	12.947	-35.053
-Illinois	940.213	1943.213
-South Carolina	175.933	358.933
-Virginia	223.653	461.653
-Washington	486.0	1064.0
-Vermont	32.667	63.667
-South Dakota	18.227	66.227
-Georgia	549.04	1216.04
-Connecticut	447.387	1678.387
-Alabama	120.493	307.493
-Guam	5.8	6.8
-Northern Mariana Islands	0.0	0.0
-New Hampshire	37.28	131.28
-Oklahoma	111.147	186.147
-Colorado	336.16	569.16
-Ohio	332.2	742.2
-Maine	35.693	64.693
-Mississippi	109.333	209.333
-Utah	122.72	199.72
-Delaware	51.04	161.04
-Indiana	385.147	930.147
-Arkansas	51.627	89.627
-Iowa	72.107	149.107
-New Jersey	3278.28	6863.28
-Wisconsin	165.027	294.027
-United States Virgin Islands	10.307	19.394
-Michigan	1329.387	2832.387
-Arizona	202.067	448.067
-Massachusetts	1062.787	2399.787
-Grand Princess	0.0	0.0
-Diamond Princess	0.0	0.0
-North Carolina	207.067	520.067
-Montana	20.0	33.0
-District of Columbia	90.649	173.782
-Wyoming	15.32	28.32
-Minnesota	57.88	108.88
-Florida	1168.44	2142.44
-Kentucky	64.12	64.12
-North Dakota	14.613	32.613
-Louisiana	1147.36	3004.36
-Maryland	310.493	738.493
-Texas	834.0	1487.0
-Hawaii	27.507	43.507
-Virgin Islands	2.357	4.538
-Rhode Island	79.853	239.853
-Kansas	62.2	160.2
-Pennsylvania	1012.067	2550.067
-Nebraska	32.84	85.84
-Tennessee	304.787	473.787
-Idaho	99.093	122.093
-Oregon	67.04	67.04
-Nevada	133.8	231.8
-California	1121.613	2106.613
-West Virginia	26.0	47.0
-New Mexico	48.547	135.547
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Missouri	207.92	207.92	3.388e-05	3.388e-05
+Puerto Rico	36.573	36.573	1.145e-05	1.145e-05
+New York	8566.68	8566.68	0.00044037	0.00044037
+Alaska	12.947	12.947	1.77e-05	1.77e-05
+Illinois	940.213	940.213	7.42e-05	7.42e-05
+South Carolina	175.933	175.933	3.417e-05	3.417e-05
+Virginia	223.653	223.653	2.62e-05	2.62e-05
+Washington	486.0	486.0	6.382e-05	6.382e-05
+Vermont	32.667	32.667	5.235e-05	5.235e-05
+South Dakota	18.227	18.227	2.06e-05	2.06e-05
+Georgia	549.04	549.04	5.171e-05	5.171e-05
+Connecticut	447.387	447.387	0.00012548	0.00012548
+Alabama	120.493	120.493	2.457e-05	2.457e-05
+Guam	5.8	5.8	3.532e-05	3.532e-05
+Northern Mariana Islands	0.0	0.0	N/A	N/A
+New Hampshire	37.28	37.28	2.742e-05	2.742e-05
+Oklahoma	111.147	111.147	2.809e-05	2.809e-05
+Colorado	336.16	336.16	5.837e-05	5.837e-05
+Ohio	332.2	332.2	2.842e-05	2.842e-05
+Maine	35.693	35.693	2.655e-05	2.655e-05
+Mississippi	109.333	109.333	3.674e-05	3.674e-05
+Utah	122.72	122.72	3.828e-05	3.828e-05
+Delaware	51.04	51.04	5.242e-05	5.242e-05
+Indiana	385.147	385.147	5.721e-05	5.721e-05
+Arkansas	51.627	51.627	1.711e-05	1.711e-05
+Iowa	72.107	72.107	2.285e-05	2.285e-05
+New Jersey	3278.28	3278.28	0.00036908	0.00036908
+Wisconsin	165.027	165.027	2.834e-05	2.834e-05
+United States Virgin Islands	10.307	10.307	N/A	N/A
+Michigan	1329.387	1329.387	0.00013311	0.00013311
+Arizona	202.067	202.067	2.776e-05	2.776e-05
+Massachusetts	1062.787	1062.787	0.00015419	0.00015419
+Grand Princess	0.0	0.0	N/A	N/A
+Diamond Princess	0.0	0.0	N/A	N/A
+North Carolina	207.067	207.067	1.974e-05	1.974e-05
+Montana	20.0	20.0	1.871e-05	1.871e-05
+District of Columbia	90.649	90.649	0.00012844	0.00012844
+Wyoming	15.32	15.32	2.647e-05	2.647e-05
+Minnesota	57.88	57.88	1.026e-05	1.026e-05
+Florida	1168.44	1168.44	5.44e-05	5.44e-05
+Kentucky	64.12	64.12	1.435e-05	1.435e-05
+North Dakota	14.613	14.613	1.918e-05	1.918e-05
+Louisiana	1147.36	1147.36	0.00024681	0.00024681
+Maryland	310.493	310.493	5.136e-05	5.136e-05
+Texas	834.0	834.0	2.876e-05	2.876e-05
+Hawaii	27.507	27.507	1.943e-05	1.943e-05
+Virgin Islands	2.357	2.357	2.197e-05	2.197e-05
+Rhode Island	79.853	79.853	7.538e-05	7.538e-05
+Kansas	62.2	62.2	2.135e-05	2.135e-05
+Pennsylvania	1012.067	1012.067	7.906e-05	7.906e-05
+Nebraska	32.84	32.84	1.698e-05	1.698e-05
+Tennessee	304.787	304.787	4.463e-05	4.463e-05
+Idaho	99.093	99.093	5.545e-05	5.545e-05
+Oregon	67.04	67.04	1.589e-05	1.589e-05
+Nevada	133.8	133.8	4.344e-05	4.344e-05
+California	1121.613	1121.613	2.839e-05	2.839e-05
+West Virginia	26.0	26.0	1.451e-05	1.451e-05
+New Mexico	48.547	48.547	2.315e-05	2.315e-05

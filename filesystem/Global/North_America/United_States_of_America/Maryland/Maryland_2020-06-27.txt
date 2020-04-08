@@ -1,22 +1,22 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Baltimore City	1.055	3245.188
-Somerset	0.0	0.0
-Montgomery	0.056	2409.886
-Caroline	0.0	2.0
-Queen Anne's	1.985	908.188
-Frederick	0.652	1584.677
-Washington	0.314	475.168
-Prince George's	1.07	7048.002
-Calvert	0.017	178.174
-Garrett	0.0	0.0
-Worcester	4.963	2266.465
-Talbot	2.978	1360.284
-Kent	0.0	0.0
-Howard	0.013	536.208
-Dorchester	0.0	0.0
-Wicomico	1.985	906.188
-Charles	11.988	7825.551
-Baltimore	4.232	7309.798
-Saint Mary's	2.943	1768.656
-Carroll	5.994	3911.779
-Anne Arundel	0.488	2084.079
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Baltimore City	1.055	3204.188	N/A	N/A
+Somerset	0.0	0.0	0.0	0.0
+Montgomery	0.056	2309.886	5e-08	0.00219453
+Caroline	0.0	0.0	0.0	0.0
+Queen Anne's	1.985	906.188	3.95e-05	0.01803323
+Frederick	0.652	1566.677	2.55e-06	0.00612826
+Washington	0.314	472.168	2.08e-06	0.00312847
+Prince George's	1.07	6917.002	1.18e-06	0.00760689
+Calvert	0.017	177.174	1.8e-07	0.00192574
+Garrett	0.0	0.0	0.0	0.0
+Worcester	4.963	2265.465	9.577e-05	0.04371544
+Talbot	2.978	1359.284	8.056e-05	0.03676921
+Kent	0.0	0.0	0.0	0.0
+Howard	0.013	521.208	4e-08	0.00161267
+Dorchester	0.0	0.0	0.0	0.0
+Wicomico	1.985	906.188	1.924e-05	0.00878132
+Charles	11.988	7807.551	7.423e-05	0.04834307
+Baltimore	4.232	7251.798	5.11e-06	0.00875365
+Saint Mary's	2.943	1767.656	2.612e-05	0.01568963
+Carroll	5.994	3903.779	3.559e-05	0.02317759
+Anne Arundel	0.488	2060.079	8.5e-07	0.00357633

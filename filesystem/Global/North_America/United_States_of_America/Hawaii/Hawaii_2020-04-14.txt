@@ -1,6 +1,6 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Kauai	3.91	18.971
-Unassigned	-1.166	-8.095
-Maui	2.82	23.617
-Hawaii	1.818	12.186
-Honolulu	40.878	245.279
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Kauai	3.91	17.971	5.421e-05	0.00024914
+Unassigned	-1.166	-10.095	N/A	N/A
+Maui	2.82	22.617	1.687e-05	0.00013526
+Hawaii	1.818	11.186	9.05e-06	5.566e-05
+Honolulu	40.878	234.279	4.171e-05	0.00023904

@@ -1,41 +1,41 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Potter	0.0	0.0
-Wayne	3.543	5531.666
-Fulton	0.0	0.0
-Dauphin	0.013	1682.974
-Huntingdon	0.026	300.492
-Somerset	0.514	922.126
-Cameron	0.0	0.0
-Tioga	0.0	0.0
-Bedford	0.0	0.0
-Erie	0.59	929.612
-Carbon	5.4	9682.319
-Bradford	0.257	461.06
-Schuylkill	0.022	1691.098
-Monroe	0.134	8299.783
-Indiana	0.655	3015.446
-Cambria	0.59	921.612
-Mifflin	0.066	1199.152
-Columbia	0.358	1646.783
-Blair	0.0	0.0
-Lehigh	10.976	50562.493
-Northampton	7.723	35564.152
-Mc Kean	0.0	0.0
-Venango	0.0	0.0
-Franklin	0.002	226.668
-Montour	1.771	2764.834
-Union	0.033	599.58
-Lancaster	5.542	25500.161
-Perry	0.026	300.492
-Philadelphia	0.172	29943.469
-Clearfield	0.257	461.06
-Berks	0.019	3298.498
-Warren	0.0	0.0
-Sullivan	0.0	0.0
-Clinton	0.0	0.0
-Snyder	0.104	1201.981
-York	1.243	8876.014
-Armstrong	0.514	922.126
-Lebanon	8.034	16930.749
-Juniata	1.028	1844.251
-Luzerne	43.185	91014.04
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Potter	0.0	0.0	0.0	0.0
+Wayne	3.543	5529.666	6.91e-05	0.10784121
+Fulton	0.0	0.0	0.0	0.0
+Dauphin	0.013	1668.974	5e-08	0.00602307
+Huntingdon	0.026	299.768	5.8e-07	0.00663673
+Somerset	0.514	921.459	6.95e-06	0.01246023
+Cameron	0.0	0.0	0.0	0.0
+Tioga	0.0	0.0	0.0	0.0
+Bedford	0.0	0.0	0.0	0.0
+Erie	0.59	921.612	2.17e-06	0.00338752
+Carbon	5.4	9675.319	8.408e-05	0.15064255
+Bradford	0.257	460.727	4.22e-06	0.00757364
+Schuylkill	0.022	1678.098	1.5e-07	0.01181202
+Monroe	0.134	8255.783	7.9e-07	0.04870467
+Indiana	0.655	3010.386	7.75e-06	0.03562545
+Cambria	0.59	921.612	4.48e-06	0.00699622
+Mifflin	0.066	1195.733	1.43e-06	0.02586935
+Columbia	0.358	1642.783	5.47e-06	0.02509752
+Blair	0.0	0.0	0.0	0.0
+Lehigh	10.976	50433.493	2.982e-05	0.1370103
+Northampton	7.723	35484.152	2.534e-05	0.11641515
+Mc Kean	0.0	0.0	0.0	0.0
+Venango	0.0	0.0	0.0	0.0
+Franklin	0.002	224.668	1e-08	0.00145102
+Montour	1.771	2764.834	9.709e-05	0.15158081
+Union	0.033	597.871	7.4e-07	0.0133498
+Lancaster	5.542	25463.161	1.02e-05	0.04684543
+Perry	0.026	299.768	5.6e-07	0.00649706
+Philadelphia	0.172	29404.469	1.1e-07	0.01856181
+Clearfield	0.257	460.727	3.24e-06	0.00580348
+Berks	0.019	3248.498	5e-08	0.00773172
+Warren	0.0	0.0	0.0	0.0
+Sullivan	0.0	0.0	0.0	0.0
+Clinton	0.0	0.0	0.0	0.0
+Snyder	0.104	1199.086	2.57e-06	0.02957785
+York	1.243	8858.014	2.77e-06	0.01976031
+Armstrong	0.514	921.459	7.88e-06	0.01411916
+Lebanon	8.034	16912.749	5.685e-05	0.11968205
+Juniata	1.028	1842.918	4.161e-05	0.07459998
+Luzerne	43.185	90906.04	0.00013595	0.28618664

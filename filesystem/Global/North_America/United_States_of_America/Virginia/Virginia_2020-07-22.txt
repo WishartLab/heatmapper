@@ -1,41 +1,41 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Prince Edward	0.0	0.0
-Poquoson	0.0	0.0
-Montgomery	0.003	460.638
-Nottoway	0.0	0.0
-Radford	0.0	0.0
-Chesapeake	0.133	10623.277
-Washington	0.003	461.143
-Bedford	0.007	462.874
-Culpeper	0.007	461.874
-Fredericksburg	0.003	604.165
-Northumberland	0.0	0.0
-Halifax	0.0	0.0
-Botetourt	0.015	923.753
-Bristol	0.0	0.0
-Amherst	0.0	0.0
-Accomack	0.0	0.0
-Madison	0.012	923.765
-Mathews	0.0	0.0
-Rockbridge	0.0	0.0
-Stafford	0.058	3697.006
-Isle of Wight	0.051	3237.13
-Northampton	0.0	0.0
-Spotsylvania	0.102	6468.264
-Henrico	0.422	26801.798
-Goochland	0.044	2773.256
-Danville	0.022	1386.631
-Rockingham	0.015	922.753
-Fluvanna	0.036	2311.375
-Franklin	0.007	461.874
-Greene	0.008	1381.92
-Galax	0.0	0.0
-Charles City	0.0	0.0
-Pittsylvania	0.003	461.143
-Warren	0.0	0.0
-Mecklenburg	0.022	1385.631
-Williamsburg	0.022	1386.631
-Suffolk	0.087	5548.508
-Orange	0.0	0.0
-Virginia Beach	0.038	6964.14
-Nelson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Prince Edward	0.0	0.0	0.0	0.0
+Poquoson	0.0	0.0	0.0	0.0
+Montgomery	0.003	460.011	3e-08	0.00464728
+Nottoway	0.0	0.0	0.0	0.0
+Radford	0.0	0.0	0.0	0.0
+Chesapeake	0.133	10615.61	5.5e-07	0.04375154
+Washington	0.003	460.635	6e-08	0.00846724
+Bedford	0.007	461.874	9e-08	0.00586529
+Culpeper	0.007	461.874	1.3e-07	0.00890634
+Fredericksburg	0.003	603.342	1e-07	0.0207021
+Northumberland	0.0	0.0	0.0	0.0
+Halifax	0.0	0.0	0.0	0.0
+Botetourt	0.015	923.753	4.5e-07	0.0277595
+Bristol	0.0	0.0	0.0	0.0
+Amherst	0.0	0.0	0.0	0.0
+Accomack	0.0	0.0	0.0	0.0
+Madison	0.012	923.098	9e-07	0.06943197
+Mathews	0.0	0.0	0.0	0.0
+Rockbridge	0.0	0.0	0.0	0.0
+Stafford	0.058	3695.006	3.9e-07	0.02463994
+Isle of Wight	0.051	3233.13	1.38e-06	0.08749303
+Northampton	0.0	0.0	0.0	0.0
+Spotsylvania	0.102	6466.264	7.6e-07	0.04817015
+Henrico	0.422	26788.798	1.28e-06	0.08136037
+Goochland	0.044	2771.256	1.89e-06	0.11922457
+Danville	0.022	1385.631	5.4e-07	0.03405084
+Rockingham	0.015	923.753	1.8e-07	0.01137011
+Fluvanna	0.036	2309.375	1.34e-06	0.0862254
+Franklin	0.007	461.874	8.7e-07	0.05764058
+Greene	0.008	1380.038	4e-07	0.06977289
+Galax	0.0	0.0	0.0	0.0
+Charles City	0.0	0.0	0.0	0.0
+Pittsylvania	0.003	460.635	5e-08	0.00755771
+Warren	0.0	0.0	0.0	0.0
+Mecklenburg	0.022	1385.631	7.2e-07	0.04520819
+Williamsburg	0.022	1385.631	1.48e-06	0.09302034
+Suffolk	0.087	5542.508	9.5e-07	0.06078311
+Orange	0.0	0.0	0.0	0.0
+Virginia Beach	0.038	6956.14	8e-08	0.0154516
+Nelson	0.0	0.0	0.0	0.0

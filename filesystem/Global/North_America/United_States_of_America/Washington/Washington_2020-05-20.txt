@@ -1,33 +1,33 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	17.817	614.622
-Skagit	0.379	63.359
-Walla Walla	17.188	628.81
-Pierce	28.124	2860.539
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	15.411	1128.061
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Jefferson	0.095	17.839
-Kitsap	0.619	90.311
-Douglas	17.817	611.622
-San Juan	17.817	613.622
-Benton	8.372	811.728
-Okanogan	19.028	901.169
-Whitman	0.0	1.0
-Chelan	0.455	71.139
-Unassigned	1289.127	47160.767
-Mason	26.725	918.433
-Adams	12.557	635.134
-Klickitat	0.0	0.0
-Yakima	6.307	1024.023
-Whatcom	0.033	180.501
-Franklin	0.808	154.503
-Ferry	0.0	0.0
-Grays Harbor	17.817	611.622
-Spokane	1.545	237.331
-Kittitas	0.0	2.0
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
-Thurston	0.556	84.357
-Snohomish	1.729	855.461
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	17.817	611.622	0.00022382	0.00768331
+Skagit	0.379	63.359	2.96e-06	0.0004942
+Walla Walla	17.188	628.143	0.00028213	0.01031061
+Pierce	28.124	2831.539	3.155e-05	0.00317687
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	15.411	1120.468	0.0006816	0.0495563
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Jefferson	0.095	15.839	2.99e-06	0.0004992
+Kitsap	0.619	90.311	2.29e-06	0.00033473
+Douglas	17.817	611.622	0.00041525	0.0142546
+San Juan	17.817	611.622	0.00104023	0.0357089
+Benton	8.372	800.728	4.147e-05	0.00396642
+Okanogan	19.028	899.145	0.00045163	0.02134114
+Whitman	0.0	0.0	0.0	0.0
+Chelan	0.455	71.139	5.91e-06	0.00092345
+Unassigned	1289.127	47110.767	N/A	N/A
+Mason	26.725	917.433	0.00040797	0.01400511
+Adams	12.557	632.134	0.00063551	0.03199221
+Klickitat	0.0	0.0	0.0	0.0
+Yakima	6.307	987.023	2.508e-05	0.00392539
+Whatcom	0.033	176.501	1.5e-07	0.00078207
+Franklin	0.808	146.503	8.56e-06	0.00155281
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	17.817	611.622	0.00024109	0.00827623
+Spokane	1.545	234.331	3e-06	0.00045534
+Kittitas	0.0	0.0	0.0	0.0
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0
+Thurston	0.556	84.357	1.94e-06	0.00029452
+Snohomish	1.729	811.461	2.12e-06	0.00099578

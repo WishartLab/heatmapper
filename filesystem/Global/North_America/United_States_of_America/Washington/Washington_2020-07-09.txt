@@ -1,22 +1,22 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	0.668	924.022
-Walla Walla	0.59	921.612
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	0.027	1351.122
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Douglas	0.668	921.022
-San Juan	0.668	923.022
-Benton	0.005	923.578
-Okanogan	0.369	1205.913
-Whitman	0.0	1.0
-Unassigned	44.287	69120.85
-Mason	1.002	1382.535
-Adams	0.181	833.325
-Klickitat	0.0	0.0
-Ferry	0.0	0.0
-Grays Harbor	0.668	921.022
-Kittitas	0.0	2.0
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	0.668	921.022	8.39e-06	0.01157005
+Walla Walla	0.59	920.945	9.68e-06	0.01511679
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	0.027	1343.529	1.19e-06	0.05942189
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Douglas	0.668	921.022	1.557e-05	0.02146554
+San Juan	0.668	921.022	3.9e-05	0.05377289
+Benton	0.005	912.578	2e-08	0.00452047
+Okanogan	0.369	1203.889	8.76e-06	0.02857422
+Whitman	0.0	0.0	0.0	0.0
+Unassigned	44.287	69070.85	N/A	N/A
+Mason	1.002	1381.535	1.53e-05	0.02108988
+Adams	0.181	830.325	9.16e-06	0.04202262
+Klickitat	0.0	0.0	0.0	0.0
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	0.668	921.022	9.04e-06	0.01246292
+Kittitas	0.0	0.0	0.0	0.0
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0

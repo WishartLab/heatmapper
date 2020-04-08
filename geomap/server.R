@@ -84,6 +84,7 @@ shinyServer(function(input, output, session) {
   observe({
     values$inputFile <- input$file
     log_activity('geomap', 'input$file')
+    debug = TRUE
     if (debug)
       write('observe input$file run',
             file = log_filename,
@@ -314,8 +315,10 @@ shinyServer(function(input, output, session) {
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
-                        choices = c("Predicted New COVID-19 Cases" = 'Predicted_New_Cases',
-                                    "Predicted Total COVID-19 Cases" = 'Total_Predicted_New_Cases'))
+                        choices = c("Predicted New Confirmed Cases" = 'Predicted_New_Cases',
+                                    "Predicted Accumulative New Cases" = 'Total_Predicted_New_Cases',
+                                    "Predicted New Cases per 100000" = 'Predicted_New_per_capita',
+                                    "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'))
     } else {
       updateSelectInput(session,
                         inputId = "colSelect",
@@ -591,10 +594,6 @@ shinyServer(function(input, output, session) {
 
       # nums_col contains values in the selected column 
       nums_col <- get_nums_col(data_file, input$colSelect)
-      #Check if it is not per capita column and round to integers, as we cannot have fraction of people
-      if (!grepl("_per_capita", tolower(input$colSelect))){
-        nums_col <- round(nums_col, digits = 0)
-      }
       # set legend title
       legend_title <<- "Person count"
       # indicate names of files that contain country-level data to specify per Million adjustment
@@ -736,10 +735,20 @@ shinyServer(function(input, output, session) {
       
       # region names should be in lower case
       data_file[[1]] <- tolower(data_file[[1]])
-      
-      # update the column selection options when a new file is uploaded
-      #updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
-      
+      # check if columns have pyhton N/A-s and substitute them with R NA-s
+      nr_columns <- length(data_file)
+      col_names <- colnames(data_file)
+      for (i in 2:nr_columns){
+        if (grepl(pattern = "N/A",x = data_file[[i]]) %>% sum() >= 1){
+          data_file[[i]] <- gsub(pattern = "N/A", replacement = NA, x = data_file[[i]])
+        }
+        
+        data_file[[i]] <- as.numeric(data_file[[i]])
+        #Check if it is not per capita column and round to integers, as we cannot have fraction of people
+        if (!grepl("_per_capita", tolower(col_names[i]))){
+          data_file[[i]] <- round(data_file[[i]], digits = 0)
+        }
+      }
       return(data_file)
     },
     error = function(err) {

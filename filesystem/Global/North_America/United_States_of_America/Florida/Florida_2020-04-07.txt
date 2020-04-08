@@ -1,65 +1,65 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Highlands	2.667	2.667
-Dixie	0.0	0.0
-Hillsborough	36.333	71.333
-Collier	14.333	29.333
-Indian River	5.0	11.0
-Santa Rosa	2.667	5.667
-Citrus	4.667	6.667
-Palm Beach	70.333	139.333
-Hamilton	0.0	0.0
-Lee	26.667	44.667
-Washington	0.0	0.0
-Sumter	3.0	8.0
-Levy	0.0	0.0
-Hardee	0.0	0.0
-Miami-Dade	356.333	691.333
-Saint Lucie	11.333	29.333
-Martin	8.667	31.667
-Desoto	1.333	3.333
-Bradford	1.0	2.0
-Jefferson	2.965	5.496
-Bay	1.333	1.333
-Nassau	1.333	5.333
-Baker	0.667	1.667
-Monroe	1.667	2.667
-Marion	4.0	7.0
-Leon	2.0	19.0
-Columbia	2.0	2.0
-Madison	1.347	2.728
-Alachua	7.0	15.0
-Brevard	8.667	17.667
-Walton	1.667	2.667
-Calhoun	0.283	0.574
-Gadsden	0.667	1.667
-Charlotte	2.333	10.333
-Seminole	10.333	13.333
-Hernando	3.0	8.0
-Lake	5.0	8.0
-Unassigned	2.04	4.136
-Osceola	12.667	22.667
-Broward	136.333	317.333
-Clay	4.0	6.0
-Wakulla	2.386	4.404
-Sarasota	11.0	22.0
-Pinellas	14.667	17.667
-Putnam	0.667	0.667
-Franklin	2.531	4.679
-Hendry	0.898	1.82
-Gulf	0.0	0.0
-Escambia	7.0	18.0
-Union	0.0	0.0
-Pasco	10.667	18.667
-Okaloosa	3.0	6.0
-Flagler	1.333	2.333
-Holmes	0.0	0.0
-Glades	0.0	0.0
-Saint Johns	9.0	14.0
-Duval	41.667	103.667
-Polk	15.667	34.667
-Okeechobee	0.269	0.545
-Manatee	10.0	18.0
-Orange	47.333	78.333
-Suwannee	7.96	14.679
-Volusia	8.667	8.667
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Highlands	2.667	2.667	2.53e-05	2.53e-05
+Dixie	0.0	0.0	0.0	0.0
+Hillsborough	36.333	36.333	2.529e-05	2.529e-05
+Collier	14.333	14.333	3.787e-05	3.787e-05
+Indian River	5.0	5.0	3.176e-05	3.176e-05
+Santa Rosa	2.667	2.667	1.487e-05	1.487e-05
+Citrus	4.667	4.667	3.155e-05	3.155e-05
+Palm Beach	70.333	70.333	4.733e-05	4.733e-05
+Hamilton	0.0	0.0	0.0	0.0
+Lee	26.667	26.667	3.534e-05	3.534e-05
+Washington	0.0	0.0	0.0	0.0
+Sumter	3.0	3.0	2.33e-05	2.33e-05
+Levy	0.0	0.0	0.0	0.0
+Hardee	0.0	0.0	0.0	0.0
+Miami-Dade	356.333	356.333	0.00012903	0.00012903
+Saint Lucie	11.333	11.333	3.529e-05	3.529e-05
+Martin	8.667	8.667	5.386e-05	5.386e-05
+Desoto	1.333	1.333	3.556e-05	3.556e-05
+Bradford	1.0	1.0	3.606e-05	3.606e-05
+Jefferson	2.965	2.965	0.00020752	0.00020752
+Bay	1.333	1.333	7.19e-06	7.19e-06
+Nassau	1.333	1.333	1.553e-05	1.553e-05
+Baker	0.667	0.667	2.352e-05	2.352e-05
+Monroe	1.667	1.667	2.222e-05	2.222e-05
+Marion	4.0	4.0	1.111e-05	1.111e-05
+Leon	2.0	2.0	6.84e-06	6.84e-06
+Columbia	2.0	2.0	2.837e-05	2.837e-05
+Madison	1.347	1.347	7.27e-05	7.27e-05
+Alachua	7.0	7.0	2.593e-05	2.593e-05
+Brevard	8.667	8.667	1.452e-05	1.452e-05
+Walton	1.667	1.667	2.336e-05	2.336e-05
+Calhoun	0.283	0.283	1.94e-05	1.94e-05
+Gadsden	0.667	0.667	1.453e-05	1.453e-05
+Charlotte	2.333	2.333	1.261e-05	1.261e-05
+Seminole	10.333	10.333	2.209e-05	2.209e-05
+Hernando	3.0	3.0	1.572e-05	1.572e-05
+Lake	5.0	5.0	1.403e-05	1.403e-05
+Unassigned	2.04	2.04	N/A	N/A
+Osceola	12.667	12.667	3.442e-05	3.442e-05
+Broward	136.333	136.333	6.987e-05	6.987e-05
+Clay	4.0	4.0	1.851e-05	1.851e-05
+Wakulla	2.386	2.386	7.35e-05	7.35e-05
+Sarasota	11.0	11.0	2.578e-05	2.578e-05
+Pinellas	14.667	14.667	1.504e-05	1.504e-05
+Putnam	0.667	0.667	8.99e-06	8.99e-06
+Franklin	2.531	2.531	0.00021566	0.00021566
+Hendry	0.898	0.898	2.161e-05	2.161e-05
+Gulf	0.0	0.0	0.0	0.0
+Escambia	7.0	7.0	2.218e-05	2.218e-05
+Union	0.0	0.0	0.0	0.0
+Pasco	10.667	10.667	1.977e-05	1.977e-05
+Okaloosa	3.0	3.0	1.447e-05	1.447e-05
+Flagler	1.333	1.333	1.189e-05	1.189e-05
+Holmes	0.0	0.0	0.0	0.0
+Glades	0.0	0.0	0.0	0.0
+Saint Johns	9.0	9.0	3.54e-05	3.54e-05
+Duval	41.667	41.667	4.385e-05	4.385e-05
+Polk	15.667	15.667	2.213e-05	2.213e-05
+Okeechobee	0.269	0.269	6.48e-06	6.48e-06
+Manatee	10.0	10.0	2.533e-05	2.533e-05
+Orange	47.333	47.333	3.428e-05	3.428e-05
+Suwannee	7.96	7.96	0.00018013	0.00018013
+Volusia	8.667	8.667	1.583e-05	1.583e-05
+Jackson	0.0	0.0	0.0	0.0

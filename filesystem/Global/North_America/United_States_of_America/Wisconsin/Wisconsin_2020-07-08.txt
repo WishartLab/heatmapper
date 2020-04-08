@@ -1,43 +1,43 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Brown	0.638	2085.355
-Wood	0.0	0.0
-Richland	0.0	0.0
-Manitowoc	0.024	900.729
-Pierce	0.0	0.0
-Fond du Lac	0.003	100.676
-Chippewa	0.004	118.619
-Douglas	0.0	0.0
-Walworth	0.0	0.0
-Winnebago	0.0	4.0
-Marathon	0.375	460.174
-Iowa	0.0	0.0
-Ashland	0.0	0.0
-Marquette	0.0	0.0
-Bayfield	0.0	0.0
-Sheboygan	0.375	460.174
-Pepin	0.0	0.0
-Florence	0.018	895.685
-Dodge	0.0	1.0
-Unassigned	0.0	0.0
-Waupaca	0.0	0.0
-Shawano	0.018	895.685
-Buffalo	0.0	0.0
-Dunn	0.0	0.0
-Saint Croix	0.0	0.0
-Kenosha	0.189	2170.452
-Iron	0.0	0.0
-Marinette	0.0	0.0
-Oconto	0.0	0.0
-La Crosse	0.75	921.354
-Racine	0.016	607.06
-Rusk	0.017	452.499
-Barron	0.017	452.499
-Juneau	0.0	0.0
-Vilas	0.0	0.0
-Crawford	0.0	0.0
-Calumet	0.0	0.0
-Outagamie	1.5	1841.706
-Oneida	0.0	0.0
-Grant	0.0	0.0
-Door	0.0	0.0
-Jackson	0.2	916.237
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Brown	0.638	2075.355	2.42e-06	0.00787976
+Wood	0.0	0.0	0.0	0.0
+Richland	0.0	0.0	0.0	0.0
+Manitowoc	0.024	895.667	3e-07	0.01132695
+Pierce	0.0	0.0	0.0	0.0
+Fond du Lac	0.003	100.676	3e-08	0.00097681
+Chippewa	0.004	118.619	6e-08	0.00184952
+Douglas	0.0	0.0	0.0	0.0
+Walworth	0.0	0.0	0.0	0.0
+Winnebago	0.0	0.0	0.0	0.0
+Marathon	0.375	460.174	2.77e-06	0.00339792
+Iowa	0.0	0.0	0.0	0.0
+Ashland	0.0	0.0	0.0	0.0
+Marquette	0.0	0.0	0.0	0.0
+Bayfield	0.0	0.0	0.0	0.0
+Sheboygan	0.375	460.174	3.25e-06	0.00398571
+Pepin	0.0	0.0	0.0	0.0
+Florence	0.018	889.754	4.17e-06	0.20591391
+Dodge	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Waupaca	0.0	0.0	0.0	0.0
+Shawano	0.018	889.754	4.4e-07	0.02180983
+Buffalo	0.0	0.0	0.0	0.0
+Dunn	0.0	0.0	0.0	0.0
+Saint Croix	0.0	0.0	0.0	0.0
+Kenosha	0.189	2164.452	1.12e-06	0.01278547
+Iron	0.0	0.0	0.0	0.0
+Marinette	0.0	0.0	0.0	0.0
+Oconto	0.0	0.0	0.0	0.0
+La Crosse	0.75	920.354	6.34e-06	0.00778444
+Racine	0.016	604.06	8e-08	0.00307278
+Rusk	0.017	450.351	1.2e-06	0.03183367
+Barron	0.017	450.351	3.8e-07	0.00997146
+Juneau	0.0	0.0	0.0	0.0
+Vilas	0.0	0.0	0.0	0.0
+Crawford	0.0	0.0	0.0	0.0
+Calumet	0.0	0.0	0.0	0.0
+Outagamie	1.5	1840.706	8.01e-06	0.00982417
+Oneida	0.0	0.0	0.0	0.0
+Grant	0.0	0.0	0.0	0.0
+Door	0.0	0.0	0.0	0.0
+Jackson	0.2	914.03	9.77e-06	0.04463473

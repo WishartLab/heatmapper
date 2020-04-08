@@ -1,33 +1,33 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	18.938	578.404
-Skagit	0.424	62.579
-Walla Walla	18.401	593.805
-Pierce	31.464	2802.647
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	17.101	1096.406
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Jefferson	0.106	17.644
-Kitsap	0.717	89.027
-Douglas	18.938	575.404
-San Juan	18.938	577.404
-Benton	9.343	794.508
-Okanogan	20.782	862.241
-Whitman	0.0	1.0
-Chelan	0.516	70.201
-Unassigned	1380.043	44535.369
-Mason	28.407	864.107
-Adams	13.75	609.43
-Klickitat	0.0	0.0
-Yakima	7.163	1011.013
-Whatcom	0.06	180.425
-Franklin	0.925	152.829
-Ferry	0.0	0.0
-Grays Harbor	18.938	575.404
-Spokane	1.773	234.135
-Kittitas	0.0	2.0
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
-Thurston	0.638	83.207
-Snohomish	2.469	851.631
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	18.938	575.404	0.0002379	0.00722833
+Skagit	0.424	62.579	3.31e-06	0.00048811
+Walla Walla	18.401	593.138	0.00030204	0.00973602
+Pierce	31.464	2773.647	3.53e-05	0.00311192
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	17.101	1088.813	0.00075635	0.04815626
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Jefferson	0.106	15.644	3.34e-06	0.00049305
+Kitsap	0.717	89.027	2.66e-06	0.00032997
+Douglas	18.938	575.404	0.00044137	0.01341049
+San Juan	18.938	575.404	0.00110567	0.03359435
+Benton	9.343	783.508	4.628e-05	0.00388112
+Okanogan	20.782	860.217	0.00049326	0.02041719
+Whitman	0.0	0.0	0.0	0.0
+Chelan	0.516	70.201	6.7e-06	0.00091128
+Unassigned	1380.043	44485.369	N/A	N/A
+Mason	28.407	863.107	0.00043365	0.0131758
+Adams	13.75	606.43	0.00069589	0.03069133
+Klickitat	0.0	0.0	0.0	0.0
+Yakima	7.163	974.013	2.849e-05	0.00387365
+Whatcom	0.06	176.425	2.7e-07	0.00078173
+Franklin	0.925	144.829	9.8e-06	0.00153507
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	18.938	575.404	0.00025626	0.00778615
+Spokane	1.773	231.135	3.45e-06	0.00044913
+Kittitas	0.0	0.0	0.0	0.0
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0
+Thurston	0.638	83.207	2.23e-06	0.00029051
+Snohomish	2.469	807.631	3.03e-06	0.00099108

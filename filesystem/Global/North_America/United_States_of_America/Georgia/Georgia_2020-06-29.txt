@@ -1,113 +1,113 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Turner	0.0	2.0
-Floyd	0.001	63.23
-Gilmer	0.0	0.0
-Pike	0.922	896.719
-Wayne	0.438	894.511
-Fulton	0.034	1876.331
-Glynn	0.789	687.719
-Cherokee	0.003	294.769
-Gwinnett	0.011	1190.355
-Harris	2.447	1367.155
-Early	0.025	424.726
-Webster	0.438	594.121
-Catoosa	0.0	0.0
-Jeff Davis	0.0	0.0
-Chattooga	0.0	0.0
-Pierce	3.498	1824.606
-Lincoln	0.0	0.0
-Colquitt	14.682	8202.913
-Habersham	0.0	0.0
-Meriwether	2.447	1367.155
-Camden	0.0	0.0
-Quitman	0.0	0.0
-Mitchell	6.525	3645.739
-Wilkes	0.0	0.0
-Lee	0.006	390.075
-Washington	0.875	454.898
-Richmond	0.002	44.306
-Laurens	0.0	1.0
-Wilcox	0.0	0.0
-Sumter	5.797	4140.656
-Baldwin	4.373	2275.504
-Macon	0.0	0.0
-Effingham	4.373	2278.504
-Clayton	0.023	790.268
-Fayette	0.001	150.697
-Jefferson	0.0	0.0
-Pulaski	1.631	911.435
-Twiggs	0.0	0.0
-Clinch	0.0	0.0
-Decatur	1.579	1379.884
-McIntosh	0.0	0.0
-Bibb	0.001	76.64
-Muscogee	0.006	163.468
-Rockdale	0.002	176.289
-Lumpkin	0.0	0.0
-Baker	0.0	0.0
-Talbot	0.657	891.178
-Monroe	2.624	1365.708
-Stewart	0.0	0.0
-Irwin	0.0	0.0
-Lamar	1.749	916.804
-Marion	0.295	451.456
-Wheeler	0.0	0.0
-Emanuel	0.0	0.0
-Houston	0.071	309.914
-Dawson	6.996	3642.214
-Henry	0.006	501.151
-Columbia	7.871	4098.122
-Madison	0.875	454.898
-Crisp	6.525	3645.739
-Bryan	4.894	2734.306
-Troup	0.013	219.189
-Liberty	3.263	1822.869
-Miller	4.373	2278.504
-Ben Hill	0.816	455.714
-Candler	0.0	0.0
-Screven	0.0	0.0
-Dade	0.0	0.0
-Elbert	0.0	0.0
-Long	0.0	0.0
-Randolph	10.494	5464.819
-Stephens	1.631	911.435
-Butts	1.489	902.583
-Charlton	0.0	0.0
-Cook	0.0	0.0
-Tattnall	0.0	0.0
-Terrell	4.417	3158.738
-Chatham	1.503	2633.935
-Schley	0.246	297.844
-Franklin	0.0	0.0
-Coffee	0.0	0.0
-Heard	0.0	0.0
-Chattahoochee	0.0	0.0
-Greene	3.263	1822.869
-Hart	0.0	0.0
-Bleckley	0.0	0.0
-Forsyth	0.005	304.151
-Carroll	0.003	222.841
-Towns	0.0	0.0
-Upson	3.425	2992.096
-Jenkins	0.0	0.0
-Morgan	0.0	3.0
-Oglethorpe	0.0	0.0
-Burke	1.631	911.435
-Warren	0.0	0.0
-Johnson	0.0	0.0
-White	0.0	0.0
-Bacon	0.0	0.0
-Rabun	0.0	0.0
-Hall	0.002	349.287
-Banks	0.0	0.0
-Taylor	0.0	0.0
-Crawford	0.0	0.0
-Spalding	0.039	182.955
-Coweta	0.1	674.747
-Jasper	0.0	0.0
-Cobb	0.017	1387.84
-Polk	1.749	911.804
-Tift	0.001	86.186
-Peach	5.247	2731.412
-Pickens	0.0	0.0
-Jackson	0.839	815.576
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Turner	0.0	0.0	0.0	0.0
+Floyd	0.001	59.23	1e-08	0.00060484
+Gilmer	0.0	0.0	0.0	0.0
+Pike	0.922	894.548	4.948e-05	0.04800623
+Wayne	0.438	888.58	1.469e-05	0.02981012
+Fulton	0.034	1811.331	3e-08	0.00172489
+Glynn	0.789	687.719	9.26e-06	0.00807002
+Cherokee	0.003	283.769	1e-08	0.00111655
+Gwinnett	0.011	1155.355	1e-08	0.00124529
+Harris	2.447	1366.155	7.098e-05	0.03962741
+Early	0.025	412.726	2.44e-06	0.04027774
+Webster	0.438	591.735	0.00016775	0.22663156
+Catoosa	0.0	0.0	0.0	0.0
+Jeff Davis	0.0	0.0	0.0	0.0
+Chattooga	0.0	0.0	0.0	0.0
+Pierce	3.498	1819.606	0.00018041	0.09384734
+Lincoln	0.0	0.0	0.0	0.0
+Colquitt	14.682	8196.913	0.00032203	0.17978841
+Habersham	0.0	0.0	0.0	0.0
+Meriwether	2.447	1366.155	0.00011615	0.06484503
+Camden	0.0	0.0	0.0	0.0
+Quitman	0.0	0.0	0.0	0.0
+Mitchell	6.525	3643.072	0.00029402	0.1641615
+Wilkes	0.0	0.0	0.0	0.0
+Lee	0.006	379.075	2e-07	0.01273602
+Washington	0.875	454.898	4.292e-05	0.02231424
+Richmond	0.002	39.306	1e-08	0.00019501
+Laurens	0.0	0.0	0.0	0.0
+Wilcox	0.0	0.0	0.0	0.0
+Sumter	5.797	4136.656	0.00019497	0.13912676
+Baldwin	4.373	2274.504	9.756e-05	0.05074413
+Macon	0.0	0.0	0.0	0.0
+Effingham	4.373	2274.504	7.032e-05	0.03657347
+Clayton	0.023	784.268	8e-08	0.00270797
+Fayette	0.001	143.697	1e-08	0.00126651
+Jefferson	0.0	0.0	0.0	0.0
+Pulaski	1.631	910.768	0.00014735	0.08228096
+Twiggs	0.0	0.0	0.0	0.0
+Clinch	0.0	0.0	0.0	0.0
+Decatur	1.579	1377.067	5.942e-05	0.05181814
+McIntosh	0.0	0.0	0.0	0.0
+Bibb	0.001	76.64	1e-08	0.0005006
+Muscogee	0.006	159.468	3e-08	0.00082132
+Rockdale	0.002	172.289	2e-08	0.00190177
+Lumpkin	0.0	0.0	0.0	0.0
+Baker	0.0	0.0	0.0	0.0
+Talbot	0.657	887.599	0.00010475	0.1415177
+Monroe	2.624	1364.708	9.535e-05	0.04958968
+Stewart	0.0	0.0	0.0	0.0
+Irwin	0.0	0.0	0.0	0.0
+Lamar	1.749	909.804	9.205e-05	0.04788442
+Marion	0.295	449.308	3.533e-05	0.0538029
+Wheeler	0.0	0.0	0.0	0.0
+Emanuel	0.0	0.0	0.0	0.0
+Houston	0.071	307.914	4.6e-07	0.00198055
+Dawson	6.996	3639.214	0.00027891	0.14508687
+Henry	0.006	490.151	3e-08	0.00212905
+Columbia	7.871	4094.122	5.101e-05	0.02653507
+Madison	0.875	454.898	2.951e-05	0.01534226
+Crisp	6.525	3643.072	0.0002887	0.16119074
+Bryan	4.894	2732.306	0.00012842	0.07169713
+Troup	0.013	216.189	1.9e-07	0.00308691
+Liberty	3.263	1821.536	5.306e-05	0.02961992
+Miller	4.373	2274.504	0.00076908	0.40001829
+Ben Hill	0.816	455.381	4.861e-05	0.027127
+Candler	0.0	0.0	0.0	0.0
+Screven	0.0	0.0	0.0	0.0
+Dade	0.0	0.0	0.0	0.0
+Elbert	0.0	0.0	0.0	0.0
+Long	0.0	0.0	0.0	0.0
+Randolph	10.494	5458.819	0.00153578	0.79889053
+Stephens	1.631	910.768	6.265e-05	0.03498245
+Butts	1.489	896.583	6.155e-05	0.0370596
+Charlton	0.0	0.0	0.0	0.0
+Cook	0.0	0.0	0.0	0.0
+Tattnall	0.0	0.0	0.0	0.0
+Terrell	4.417	3151.738	0.00051295	0.36601301
+Chatham	1.503	2612.935	5.2e-06	0.0090352
+Schley	0.246	296.835	4.698e-05	0.05669118
+Franklin	0.0	0.0	0.0	0.0
+Coffee	0.0	0.0	0.0	0.0
+Heard	0.0	0.0	0.0	0.0
+Chattahoochee	0.0	0.0	0.0	0.0
+Greene	3.263	1821.536	0.00018437	0.10292327
+Hart	0.0	0.0	0.0	0.0
+Bleckley	0.0	0.0	0.0	0.0
+Forsyth	0.005	296.151	2e-08	0.00125163
+Carroll	0.003	217.841	3e-08	0.00184422
+Towns	0.0	0.0	0.0	0.0
+Upson	3.425	2985.988	0.00013065	0.1139038
+Jenkins	0.0	0.0	0.0	0.0
+Morgan	0.0	0.0	0.0	0.0
+Oglethorpe	0.0	0.0	0.0	0.0
+Burke	1.631	910.768	7.274e-05	0.04061758
+Warren	0.0	0.0	0.0	0.0
+Johnson	0.0	0.0	0.0	0.0
+White	0.0	0.0	0.0	0.0
+Bacon	0.0	0.0	0.0	0.0
+Rabun	0.0	0.0	0.0	0.0
+Hall	0.002	335.287	1e-08	0.00165862
+Banks	0.0	0.0	0.0	0.0
+Taylor	0.0	0.0	0.0	0.0
+Crawford	0.0	0.0	0.0	0.0
+Spalding	0.039	167.955	5.9e-07	0.00254092
+Coweta	0.1	665.747	6.9e-07	0.00456416
+Jasper	0.0	0.0	0.0	0.0
+Cobb	0.017	1328.84	2e-08	0.00175572
+Polk	1.749	909.804	4.118e-05	0.02142227
+Tift	0.001	78.186	2e-08	0.00192714
+Peach	5.247	2729.412	0.00019222	0.09998945
+Pickens	0.0	0.0	0.0	0.0
+Jackson	0.839	813.602	1.191e-05	0.01155324

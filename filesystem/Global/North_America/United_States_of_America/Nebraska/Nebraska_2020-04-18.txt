@@ -1,35 +1,35 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	0.0	0.0
-Platte	0.402	6.566
-Lincoln	5.062	29.053
-Hamilton	0.35	5.918
-Gosper	0.0	0.0
-Washington	0.0	0.0
-Antelope	0.0	0.0
-Cass	0.0	0.0
-Scotts Bluff	0.0	0.0
-Custer	0.0	0.0
-Douglas	62.702	397.701
-Sarpy	9.041	51.66
-Dawson	0.0	0.0
-Cherry	0.0	0.0
-Madison	0.0	0.0
-Otoe	0.0	0.0
-Kearney	0.0	0.0
-Gage	4.544	27.698
-Colfax	9.079	69.114
-Stanton	0.0	0.0
-Seward	0.0	0.0
-Dodge	0.439	6.988
-Unassigned	0.0	0.0
-Cuming	0.0	0.0
-Adams	15.186	86.158
-Buffalo	17.718	99.186
-Merrick	0.0	0.0
-Cheyenne	0.0	0.0
-Lancaster	15.186	98.158
-Saunders	0.0	0.0
-Johnson	0.0	0.0
-Hall	100.976	672.342
-Phelps	0.0	0.0
-York	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	0.0	0.0	0.0	0.0
+Platte	0.402	5.967	1.205e-05	0.00017885
+Lincoln	5.062	28.053	0.00014387	0.0007973
+Hamilton	0.35	5.366	3.772e-05	0.00057823
+Gosper	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Antelope	0.0	0.0	0.0	0.0
+Cass	0.0	0.0	0.0	0.0
+Scotts Bluff	0.0	0.0	0.0	0.0
+Custer	0.0	0.0	0.0	0.0
+Douglas	62.702	382.701	0.00011061	0.0006751
+Sarpy	9.041	51.66	4.901e-05	0.00028006
+Dawson	0.0	0.0	0.0	0.0
+Cherry	0.0	0.0	0.0	0.0
+Madison	0.0	0.0	0.0	0.0
+Otoe	0.0	0.0	0.0	0.0
+Kearney	0.0	0.0	0.0	0.0
+Gage	4.544	27.071	0.00021142	0.00125953
+Colfax	9.079	66.966	0.00083439	0.0061544
+Stanton	0.0	0.0	0.0	0.0
+Seward	0.0	0.0	0.0	0.0
+Dodge	0.439	6.358	1.193e-05	0.00017281
+Unassigned	0.0	0.0	N/A	N/A
+Cuming	0.0	0.0	0.0	0.0
+Adams	15.186	84.158	0.00048193	0.00267075
+Buffalo	17.718	98.186	0.00035711	0.00197896
+Merrick	0.0	0.0	0.0	0.0
+Cheyenne	0.0	0.0	0.0	0.0
+Lancaster	15.186	84.158	4.786e-05	0.00026526
+Saunders	0.0	0.0	0.0	0.0
+Johnson	0.0	0.0	0.0	0.0
+Hall	100.976	654.975	0.00163903	0.0106315
+Phelps	0.0	0.0	0.0	0.0
+York	0.0	0.0	0.0	0.0

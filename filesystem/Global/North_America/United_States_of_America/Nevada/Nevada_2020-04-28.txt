@@ -1,12 +1,12 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Elko County	0.0	0.0
-Lyon	7.287	71.245
-Douglas	0.0	0.0
-Carson City	8.348	70.382
-Humboldt	0.57	21.58
-Unassigned	-4.143	-34.521
-Clark	86.146	2534.086
-Washoe	20.692	475.15
-Nye	9.079	78.461
-Elko	0.15	5.574
-White Pine	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Elko County	0.0	0.0	N/A	N/A
+Lyon	7.287	70.834	0.00013057	0.00126924
+Douglas	0.0	0.0	0.0	0.0
+Carson City	8.348	69.382	0.00015065	0.00125207
+Humboldt	0.57	20.296	3.396e-05	0.0012091
+Unassigned	-4.143	-42.521	N/A	N/A
+Clark	86.146	2445.086	3.86e-05	0.00109564
+Washoe	20.692	475.15	4.443e-05	0.00102022
+Nye	9.079	78.128	0.00020022	0.00172293
+Elko	0.15	5.248	2.86e-06	0.00010004
+White Pine	0.0	0.0	0.0	0.0

@@ -1,40 +1,40 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Linn	0.0	0.0
-Cherokee	0.0	0.0
-Montgomery	0.0	0.0
-Harvey	0.0	0.0
-Ford	0.0	0.0
-Pratt	0.0	0.0
-Riley	0.003	169.237
-Mitchell	0.0	0.0
-Shawnee	0.967	2457.889
-Jewell	0.0	0.0
-Finney	0.131	597.702
-Osborne	0.04	452.457
-Jefferson	0.0	0.0
-Reno	0.469	459.379
-Gove	0.0	0.0
-Geary	0.0	0.0
-Lyon	1.875	1836.527
-Marion	0.079	904.917
-Labette	0.042	297.878
-Doniphan	0.0	0.0
-Neosho	0.0	0.0
-Stafford	0.0	0.0
-Saline	0.131	597.702
-Sumner	0.0	0.0
-Osage	0.0	0.0
-Woodson	0.0	0.0
-Atchison	0.0	0.0
-Clay	0.0	0.0
-Franklin	0.0	1.0
-Butler	0.0	0.0
-Bourbon	0.937	920.765
-Anderson	0.0	0.0
-Greenwood	0.0	0.0
-Miami	0.0	0.0
-Ottawa	0.59	919.105
-Crawford	0.0	-2.0
-Pottawatomie	0.0	1.0
-McPherson	0.287	601.528
-Wabaunsee	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Linn	0.0	0.0	0.0	0.0
+Cherokee	0.0	0.0	0.0	0.0
+Montgomery	0.0	0.0	0.0	0.0
+Harvey	0.0	0.0	0.0	0.0
+Ford	0.0	0.0	0.0	0.0
+Pratt	0.0	0.0	0.0	0.0
+Riley	0.003	167.479	4e-08	0.00227235
+Mitchell	0.0	0.0	0.0	0.0
+Shawnee	0.967	2451.966	5.45e-06	0.01381397
+Jewell	0.0	0.0	0.0	0.0
+Finney	0.131	595.684	3.58e-06	0.01627063
+Osborne	0.04	450.309	1.151e-05	0.12958532
+Jefferson	0.0	0.0	0.0	0.0
+Reno	0.469	459.379	7.52e-06	0.00736869
+Gove	0.0	0.0	0.0	0.0
+Geary	0.0	0.0	0.0	0.0
+Lyon	1.875	1837.527	5.613e-05	0.0550059
+Marion	0.079	900.622	6.61e-06	0.07536586
+Labette	0.042	296.685	2.1e-06	0.014861
+Doniphan	0.0	0.0	0.0	0.0
+Neosho	0.0	0.0	0.0	0.0
+Stafford	0.0	0.0	0.0	0.0
+Saline	0.131	595.684	2.41e-06	0.01094987
+Sumner	0.0	0.0	0.0	0.0
+Osage	0.0	0.0	0.0	0.0
+Woodson	0.0	0.0	0.0	0.0
+Atchison	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+Franklin	0.0	0.0	0.0	0.0
+Butler	0.0	0.0	0.0	0.0
+Bourbon	0.937	918.765	6.395e-05	0.06270149
+Anderson	0.0	0.0	0.0	0.0
+Greenwood	0.0	0.0	0.0	0.0
+Miami	0.0	0.0	0.0	0.0
+Ottawa	0.59	917.85	0.00010169	0.15819545
+Crawford	0.0	0.0	0.0	0.0
+Pottawatomie	0.0	0.0	0.0	0.0
+McPherson	0.287	600.306	1.006e-05	0.02103606
+Wabaunsee	0.0	0.0	0.0	0.0

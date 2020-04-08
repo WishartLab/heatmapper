@@ -1,24 +1,24 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Davis	11.434	34.101
-Weber	4.042	12.375
-Washington	0.823	5.49
-Cache	7.692	19.702
-Uintah	0.0	0.0
-Carbon	0.0	0.0
-Utah	28.027	59.36
-San Juan	0.0	0.0
-Summit	9.397	23.397
-Grand	0.0	0.0
-Wasatch	3.327	7.66
-Beaver	0.0	0.0
-Unassigned	0.0	-2.0
-Box Elder	0.0	0.0
-Tooele	2.046	7.046
-Iron	0.85	2.622
-Emery	0.0	0.0
-Salt Lake	76.808	185.475
-Duchesne	0.0	0.0
-Washington County	0.823	1.49
-Kane	0.0	0.0
-Garfield	0.0	0.0
-Out of UT	2.564	6.567
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Davis	11.434	22.101	3.251e-05	6.284e-05
+Weber	4.042	8.375	1.577e-05	3.267e-05
+Washington	0.823	1.49	4.79e-06	8.68e-06
+Cache	7.692	14.205	6.053e-05	0.00011179
+Uintah	0.0	0.0	0.0	0.0
+Carbon	0.0	0.0	0.0	0.0
+Utah	28.027	52.36	4.504e-05	8.415e-05
+San Juan	0.0	0.0	0.0	0.0
+Summit	9.397	19.397	0.0002241	0.00046257
+Grand	0.0	0.0	0.0	0.0
+Wasatch	3.327	6.66	0.00010009	0.00020036
+Beaver	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Box Elder	0.0	0.0	0.0	0.0
+Tooele	2.046	4.046	2.927e-05	5.788e-05
+Iron	0.85	1.724	1.611e-05	3.267e-05
+Emery	0.0	0.0	0.0	0.0
+Salt Lake	76.808	149.475	6.664e-05	0.00012968
+Duchesne	0.0	0.0	0.0	0.0
+Washington County	0.823	1.49	N/A	N/A
+Kane	0.0	0.0	0.0	0.0
+Garfield	0.0	0.0	0.0	0.0
+Out of UT	2.564	4.735	N/A	N/A

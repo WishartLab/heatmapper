@@ -1,38 +1,38 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	0.0	0.0
-Choctaw	0.0	0.0
-Wagoner	0.006	278.182
-Sequoyah	0.0	0.0
-McClain	1.749	909.804
-Beckham	0.0	0.0
-Noble	0.0	0.0
-Love	0.0	0.0
-Pawnee	0.875	454.898
-Oklahoma	0.004	439.659
-McIntosh	0.0	0.0
-Custer	0.0	0.0
-Cotton	0.0	0.0
-Le Flore	0.0	0.0
-Caddo	0.342	299.206
-Carter	0.0	0.0
-Grady	2.624	1365.708
-Major	0.0	0.0
-Washita	0.0	0.0
-Pontotoc	0.0	1.0
-Seminole	0.522	456.258
-Mayes	4.078	2278.582
-Okmulgee	0.3	325.742
-Muskogee	0.0	21.779
-Latimer	0.0	0.0
-Craig	0.698	456.424
-Pittsburg	1.278	913.116
-Texas	1.045	912.523
-Canadian	0.026	113.966
-Tillman	0.0	0.0
-McCurtain	0.0	0.0
-Tulsa	0.061	1030.987
-Cleveland	0.302	749.653
-Garvin	0.875	455.898
-Grant	0.0	0.0
-Adair	0.109	341.343
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	0.0	0.0	0.0	0.0
+Choctaw	0.0	0.0	0.0	0.0
+Wagoner	0.006	272.389	7e-08	0.00340019
+Sequoyah	0.0	0.0	0.0	0.0
+McClain	1.749	909.804	4.374e-05	0.02275363
+Beckham	0.0	0.0	0.0	0.0
+Noble	0.0	0.0	0.0	0.0
+Love	0.0	0.0	0.0	0.0
+Pawnee	0.875	454.898	5.339e-05	0.02775461
+Oklahoma	0.004	425.659	1e-08	0.00053705
+McIntosh	0.0	0.0	0.0	0.0
+Custer	0.0	0.0	0.0	0.0
+Cotton	0.0	0.0	0.0	0.0
+Le Flore	0.0	0.0	0.0	0.0
+Caddo	0.342	298.595	1.18e-05	0.01030455
+Carter	0.0	0.0	0.0	0.0
+Grady	2.624	1364.708	4.724e-05	0.02456676
+Major	0.0	0.0	0.0	0.0
+Washita	0.0	0.0	0.0	0.0
+Pontotoc	0.0	0.0	0.0	0.0
+Seminole	0.522	455.327	2.124e-05	0.0185258
+Mayes	4.078	2276.915	9.92e-05	0.05538996
+Okmulgee	0.3	324.809	7.83e-06	0.00847291
+Muskogee	0.0	21.779	0.0	0.00031858
+Latimer	0.0	0.0	0.0	0.0
+Craig	0.698	455.916	4.879e-05	0.03186887
+Pittsburg	1.278	911.861	2.913e-05	0.02078221
+Texas	1.045	910.66	5.109e-05	0.04452017
+Canadian	0.026	111.966	1.8e-07	0.00077514
+Tillman	0.0	0.0	0.0	0.0
+McCurtain	0.0	0.0	0.0	0.0
+Tulsa	0.061	1021.987	9e-08	0.00157626
+Cleveland	0.302	740.653	1.07e-06	0.00262952
+Garvin	0.875	454.898	3.146e-05	0.01635677
+Grant	0.0	0.0	0.0	0.0
+Adair	0.109	338.272	4.94e-06	0.0153189
+Jackson	0.0	0.0	0.0	0.0

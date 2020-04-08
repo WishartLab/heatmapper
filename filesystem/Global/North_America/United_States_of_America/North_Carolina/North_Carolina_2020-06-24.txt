@@ -1,72 +1,72 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Transylvania	0.0	0.0
-Cumberland	3.203	1778.528
-Brunswick	0.0	11.129
-Wayne	10.917	4057.211
-Onslow	8.491	3153.379
-Cherokee	0.0	1.0
-Beaufort	1.131	451.039
-Wilson	0.007	66.146
-Montgomery	2.426	899.824
-Currituck	0.0	0.0
-Buncombe	0.0	2.0
-Ashe	0.0	0.0
-Lincoln	0.0	0.0
-Columbus	2.482	1484.995
-Alexander	0.0	0.0
-Henderson	0.134	196.537
-Mitchell	0.0	0.0
-Wilkes	0.0	0.0
-Lee	0.0	0.0
-Caldwell	4.526	1804.171
-Washington	0.0	0.0
-Yadkin	0.993	594.002
-Robeson	0.0	0.0
-Surry	0.0	0.0
-Martin	0.0	0.0
-Davidson	2.323	1392.667
-Person	2.116	903.536
-Perquimans	0.0	0.0
-Catawba	6.065	2250.554
-Lenoir	0.0	0.0
-McDowell	1.131	451.039
-Cabarrus	0.002	159.048
-Carteret	0.0	9.0
-Duplin	1.131	451.039
-Rowan	0.111	260.27
-Alleghany	0.0	0.0
-Bertie	0.0	0.0
-Wake	0.008	384.282
-Guilford	0.007	160.469
-Scotland	0.0	0.0
-Northampton	14.556	5402.938
-Pasquotank	0.0	0.0
-Johnston	0.527	504.6
-Davie	0.024	99.996
-Hertford	0.0	0.0
-Hoke	2.426	900.824
-Rockingham	0.76	591.341
-Stanly	0.0	0.0
-Vance	4.852	1799.645
-Clay	0.0	0.0
-Pender	0.0	0.0
-Franklin	2.426	900.824
-Craven	3.639	1352.738
-New Hanover	0.0	0.0
-Union	0.002	109.364
-Swain	0.0	0.0
-Dare	0.0	16.226
-Forsyth	0.004	172.838
-Durham	5.174	2873.163
-Pitt	0.004	39.082
-Burke	7.957	3859.998
-Warren	1.567	1348.699
-Mecklenburg	0.038	1211.992
-Cleveland	0.062	145.837
-Granville	33.965	12636.531
-Sampson	0.0	3.0
-Caswell	0.0	0.0
-Watauga	0.0	0.0
-Orange	0.002	141.705
-Nash	6.065	2249.554
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Transylvania	0.0	0.0	0.0	0.0
+Cumberland	3.203	1775.528	9.64e-06	0.00534267
+Brunswick	0.0	9.129	0.0	6.676e-05
+Wayne	10.917	4049.211	8.858e-05	0.03285417
+Onslow	8.491	3149.379	4.295e-05	0.01593146
+Cherokee	0.0	0.0	0.0	0.0
+Beaufort	1.131	450.706	2.402e-05	0.0095734
+Wilson	0.007	65.146	9e-08	0.00079978
+Montgomery	2.426	899.824	8.896e-05	0.03299564
+Currituck	0.0	0.0	0.0	0.0
+Buncombe	0.0	0.0	0.0	0.0
+Ashe	0.0	0.0	0.0	0.0
+Lincoln	0.0	0.0	0.0	0.0
+Columbus	2.482	1481.377	4.46e-05	0.02661714
+Alexander	0.0	0.0	0.0	0.0
+Henderson	0.134	195.537	1.15e-06	0.00167486
+Mitchell	0.0	0.0	0.0	0.0
+Wilkes	0.0	0.0	0.0	0.0
+Lee	0.0	0.0	0.0	0.0
+Caldwell	4.526	1802.838	5.518e-05	0.02197806
+Washington	0.0	0.0	0.0	0.0
+Yadkin	0.993	592.555	2.645e-05	0.01578337
+Robeson	0.0	0.0	0.0	0.0
+Surry	0.0	0.0	0.0	0.0
+Martin	0.0	0.0	0.0	0.0
+Davidson	2.323	1386.667	1.394e-05	0.00832263
+Person	2.116	902.713	5.356e-05	0.02284944
+Perquimans	0.0	0.0	0.0	0.0
+Catawba	6.065	2249.554	3.823e-05	0.01417917
+Lenoir	0.0	0.0	0.0	0.0
+McDowell	1.131	450.706	2.485e-05	0.0099041
+Cabarrus	0.002	152.048	1e-08	0.00071944
+Carteret	0.0	0.0	0.0	0.0
+Duplin	1.131	450.706	1.922e-05	0.00765777
+Rowan	0.111	255.27	7.9e-07	0.00180707
+Alleghany	0.0	0.0	0.0	0.0
+Bertie	0.0	0.0	0.0	0.0
+Wake	0.008	374.282	1e-08	0.00034265
+Guilford	0.007	152.469	1e-08	0.0002857
+Scotland	0.0	0.0	0.0	0.0
+Northampton	14.556	5398.938	0.00073978	0.27439205
+Pasquotank	0.0	0.0	0.0	0.0
+Johnston	0.527	500.6	2.6e-06	0.00246996
+Davie	0.024	95.996	5.6e-07	0.00224641
+Hertford	0.0	0.0	0.0	0.0
+Hoke	2.426	899.824	4.43e-05	0.01643094
+Rockingham	0.76	588.955	8.38e-06	0.00649416
+Stanly	0.0	0.0	0.0	0.0
+Vance	4.852	1799.645	0.00010883	0.04036708
+Clay	0.0	0.0	0.0	0.0
+Pender	0.0	0.0	0.0	0.0
+Franklin	2.426	899.824	3.591e-05	0.01331889
+Craven	3.639	1349.738	3.536e-05	0.01311546
+New Hanover	0.0	0.0	0.0	0.0
+Union	0.002	101.364	1e-08	0.00042968
+Swain	0.0	0.0	0.0	0.0
+Dare	0.0	15.565	0.0	0.00042643
+Forsyth	0.004	162.838	1e-08	0.00042954
+Durham	5.174	2868.163	1.634e-05	0.00905529
+Pitt	0.004	39.082	2e-08	0.00021723
+Burke	7.957	3854.65	8.804e-05	0.04264843
+Warren	1.567	1342.256	7.911e-05	0.06776675
+Mecklenburg	0.038	1134.992	3e-08	0.00103756
+Cleveland	0.062	143.618	6.3e-07	0.00147082
+Granville	33.965	12597.531	0.000565	0.2095572
+Sampson	0.0	0.0	0.0	0.0
+Caswell	0.0	0.0	0.0	0.0
+Watauga	0.0	0.0	0.0	0.0
+Orange	0.002	126.705	1e-08	0.00086768
+Nash	6.065	2249.554	6.451e-05	0.02392735
+Jackson	0.0	0.0	0.0	0.0

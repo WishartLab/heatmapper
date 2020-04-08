@@ -1,32 +1,32 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Puerto Rico	0.084	4104.951
-Illinois	1.507	91530.416
-South Carolina	0.094	11755.264
-Virginia	0.358	21772.217
-South Dakota	0.007	1122.82
-Georgia	0.429	41291.529
-Connecticut	0.239	30658.487
-Northern Mariana Islands	0.0	0.0
-New Hampshire	0.013	2292.386
-Delaware	0.117	5785.643
-Indiana	0.617	37628.426
-Iowa	0.039	4819.92
-New Jersey	3.682	278995.727
-United States Virgin Islands	0.012	874.949
-Michigan	1.493	113185.76
-Massachusetts	0.381	64009.059
-Grand Princess	0.0	0.0
-Diamond Princess	0.0	0.0
-Florida	4.007	151794.068
-Louisiana	1.289	98247.563
-Maryland	0.349	26512.775
-Hawaii	1.786	8163.227
-Rhode Island	0.274	10467.319
-Kansas	0.033	4189.289
-Pennsylvania	1.622	98983.741
-Nebraska	10.944	19598.242
-Idaho	0.077	7355.104
-Nevada	0.048	7988.127
-California	0.877	83975.339
-West Virginia	0.014	1731.186
-New Mexico	0.038	3679.064
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Puerto Rico	0.084	4066.951	3e-08	0.00127343
+Illinois	1.507	90527.416	1.2e-07	0.00714399
+South Carolina	0.094	11572.264	2e-08	0.0022476
+Virginia	0.358	21534.217	4e-08	0.00252289
+South Dakota	0.007	1074.82	1e-08	0.00121495
+Georgia	0.429	40624.529	4e-08	0.00382621
+Connecticut	0.239	29427.487	7e-08	0.00825389
+Northern Mariana Islands	0.0	0.0	N/A	N/A
+New Hampshire	0.013	2198.386	1e-08	0.0016168
+Delaware	0.117	5675.643	1.2e-07	0.00582856
+Indiana	0.617	37083.426	9e-08	0.00550835
+Iowa	0.039	4742.92	1e-08	0.00150327
+New Jersey	3.682	275410.727	4.1e-07	0.03100707
+United States Virgin Islands	0.012	865.862	N/A	N/A
+Michigan	1.493	111682.76	1.5e-07	0.01118297
+Massachusetts	0.381	62672.059	6e-08	0.00909279
+Grand Princess	0.0	0.0	N/A	N/A
+Diamond Princess	0.0	0.0	N/A	N/A
+Florida	4.007	150820.068	1.9e-07	0.00702216
+Louisiana	1.289	96390.563	2.8e-07	0.02073453
+Maryland	0.349	26084.775	6e-08	0.00431461
+Hawaii	1.786	8147.227	1.26e-06	0.00575421
+Rhode Island	0.274	10307.319	2.6e-07	0.00972975
+Kansas	0.033	4091.289	1e-08	0.00140434
+Pennsylvania	1.622	97445.741	1.3e-07	0.00761177
+Nebraska	10.944	19545.242	5.66e-06	0.01010399
+Idaho	0.077	7332.104	4e-08	0.00410287
+Nevada	0.048	7890.127	2e-08	0.0025616
+California	0.877	82990.339	2e-08	0.00210037
+West Virginia	0.014	1710.186	1e-08	0.00095427
+New Mexico	0.038	3592.064	2e-08	0.00171309

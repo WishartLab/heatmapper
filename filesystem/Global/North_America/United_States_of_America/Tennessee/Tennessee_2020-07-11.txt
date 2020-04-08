@@ -1,70 +1,70 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Cumberland	1.028	1844.251
-Wayne	0.0	0.0
-Williamson	0.467	5400.322
-Lewis	0.0	0.0
-Montgomery	1.535	3930.709
-Overton	0.438	922.564
-Out of TN	22.369	40137.461
-Lincoln	0.257	461.06
-Maury	0.514	925.126
-Henderson	0.0	0.0
-Hamilton	2.828	5080.687
-Loudon	0.257	461.06
-Washington	0.771	1384.192
-Hardin	0.0	0.0
-Macon	0.035	981.617
-Davidson	0.025	4318.84
-Roane	0.0	0.0
-Fayette	1.028	1845.251
-Jefferson	0.0	1.0
-McMinn	0.0	0.0
-Smith	0.0	0.0
-Monroe	0.0	0.0
-Stewart	0.012	900.774
-Lawrence	0.0	0.0
-Benton	0.0	0.0
-Houston	0.0	0.0
-Henry	0.0	0.0
-Grainger	0.0	0.0
-Carter	0.0	0.0
-Madison	0.875	1845.126
-Unicoi	0.0	0.0
-Sequatchie	0.0	0.0
-McNairy	0.0	0.0
-Scott	0.0	0.0
-Marshall	0.01	961.645
-Unassigned	8.228	14737.01
-Claiborne	0.0	0.0
-Clay	0.0	0.0
-De Kalb	0.0	0.0
-Chester	0.257	461.06
-Hickman	0.0	0.0
-Coffee	0.032	899.399
-Humphreys	0.0	0.0
-Hardeman	0.016	300.508
-Greene	0.0	0.0
-Anderson	0.0	0.0
-Giles	0.0	0.0
-Campbell	0.0	0.0
-Union	0.0	0.0
-Weakley	0.0	0.0
-Perry	0.0	0.0
-Haywood	0.079	918.308
-Dyer	1.028	1844.251
-Obion	0.0	0.0
-Cannon	0.281	921.715
-Bledsoe	0.0	0.0
-Carroll	0.771	1384.192
-Morgan	0.033	601.027
-Meigs	0.0	0.0
-Warren	0.0	0.0
-Johnson	0.0	0.0
-White	0.0	0.0
-Hamblen	0.0	0.0
-Rhea	0.0	0.0
-Gibson	0.771	1384.192
-Grundy	0.438	922.564
-Fentress	0.0	0.0
-Cheatham	0.514	922.126
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Cumberland	1.028	1844.251	1.723e-05	0.03090595
+Wayne	0.0	0.0	0.0	0.0
+Williamson	0.467	5398.322	2.02e-06	0.02329584
+Lewis	0.0	0.0	0.0	0.0
+Montgomery	1.535	3927.709	7.45e-06	0.01907118
+Overton	0.438	921.897	1.985e-05	0.04177529
+Out of TN	22.369	40112.461	N/A	N/A
+Lincoln	0.257	461.06	7.53e-06	0.01351408
+Maury	0.514	922.126	5.45e-06	0.0097745
+Henderson	0.0	0.0	0.0	0.0
+Hamilton	2.828	5071.687	7.76e-06	0.01392227
+Loudon	0.257	461.06	4.84e-06	0.00869039
+Washington	0.771	1383.192	6e-06	0.01075518
+Hardin	0.0	0.0	0.0	0.0
+Macon	0.035	978.819	1.44e-06	0.04033872
+Davidson	0.025	4300.84	4e-08	0.00620982
+Roane	0.0	0.0	0.0	0.0
+Fayette	1.028	1844.251	2.538e-05	0.04552919
+Jefferson	0.0	0.0	0.0	0.0
+McMinn	0.0	0.0	0.0	0.0
+Smith	0.0	0.0	0.0	0.0
+Monroe	0.0	0.0	0.0	0.0
+Stewart	0.012	895.712	8.8e-07	0.06605059
+Lawrence	0.0	0.0	0.0	0.0
+Benton	0.0	0.0	0.0	0.0
+Houston	0.0	0.0	0.0	0.0
+Henry	0.0	0.0	0.0	0.0
+Grainger	0.0	0.0	0.0	0.0
+Carter	0.0	0.0	0.0	0.0
+Madison	0.875	1843.793	8.96e-06	0.01889035
+Unicoi	0.0	0.0	0.0	0.0
+Sequatchie	0.0	0.0	0.0	0.0
+McNairy	0.0	0.0	0.0	0.0
+Scott	0.0	0.0	0.0	0.0
+Marshall	0.01	955.278	3e-07	0.02836083
+Unassigned	8.228	14754.01	N/A	N/A
+Claiborne	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+De Kalb	0.0	0.0	0.0	0.0
+Chester	0.257	461.06	1.488e-05	0.02668789
+Hickman	0.0	0.0	0.0	0.0
+Coffee	0.032	896.835	5.7e-07	0.01610117
+Humphreys	0.0	0.0	0.0	0.0
+Hardeman	0.016	299.784	6.3e-07	0.01188676
+Greene	0.0	0.0	0.0	0.0
+Anderson	0.0	0.0	0.0	0.0
+Giles	0.0	0.0	0.0	0.0
+Campbell	0.0	0.0	0.0	0.0
+Union	0.0	0.0	0.0	0.0
+Weakley	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Haywood	0.079	916.445	4.56e-06	0.05286674
+Dyer	1.028	1844.251	2.755e-05	0.04941723
+Obion	0.0	0.0	0.0	0.0
+Cannon	0.281	920.698	1.943e-05	0.06366326
+Bledsoe	0.0	0.0	0.0	0.0
+Carroll	0.771	1383.192	2.752e-05	0.04936445
+Morgan	0.033	599.58	1.53e-06	0.02778535
+Meigs	0.0	0.0	0.0	0.0
+Warren	0.0	0.0	0.0	0.0
+Johnson	0.0	0.0	0.0	0.0
+White	0.0	0.0	0.0	0.0
+Hamblen	0.0	0.0	0.0	0.0
+Rhea	0.0	0.0	0.0	0.0
+Gibson	0.771	1383.192	1.572e-05	0.02820251
+Grundy	0.438	921.897	3.282e-05	0.06907665
+Fentress	0.0	0.0	0.0	0.0
+Cheatham	0.514	922.126	1.271e-05	0.02280289
+Jackson	0.0	0.0	0.0	0.0

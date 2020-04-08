@@ -1,23 +1,23 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Puerto Rico	0.053	4105.071
-Illinois	0.935	91532.549
-Virginia	0.223	21772.725
-Georgia	0.24	41292.095
-Northern Mariana Islands	0.0	0.0
-Delaware	0.074	5785.811
-Indiana	0.383	37629.3
-New Jersey	2.182	279000.785
-United States Virgin Islands	0.007	874.965
-Michigan	0.885	113187.811
-Grand Princess	0.0	0.0
-Diamond Princess	0.0	0.0
-Florida	2.469	151799.629
-Louisiana	0.764	98249.334
-Maryland	0.207	26513.254
-Hawaii	0.709	8165.085
-Rhode Island	0.169	10467.699
-Pennsylvania	1.007	98986.037
-Nebraska	7.665	19615.219
-Idaho	0.043	7355.206
-California	0.49	83976.495
-New Mexico	0.021	3679.114
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Puerto Rico	0.053	4067.071	2e-08	0.00127347
+Illinois	0.935	90529.549	7e-08	0.00714416
+Virginia	0.223	21534.725	3e-08	0.00252295
+Georgia	0.24	40625.095	2e-08	0.00382627
+Northern Mariana Islands	0.0	0.0	N/A	N/A
+Delaware	0.074	5675.811	8e-08	0.00582873
+Indiana	0.383	37084.3	6e-08	0.00550848
+New Jersey	2.182	275415.785	2.5e-07	0.03100764
+United States Virgin Islands	0.007	865.878	N/A	N/A
+Michigan	0.885	111684.811	9e-08	0.01118318
+Grand Princess	0.0	0.0	N/A	N/A
+Diamond Princess	0.0	0.0	N/A	N/A
+Florida	2.469	150825.629	1.1e-07	0.00702242
+Louisiana	0.764	96392.334	1.6e-07	0.02073491
+Maryland	0.207	26085.254	3e-08	0.00431469
+Hawaii	0.709	8149.085	5e-07	0.00575552
+Rhode Island	0.169	10307.699	1.6e-07	0.00973011
+Pennsylvania	1.007	97448.037	8e-08	0.00761195
+Nebraska	7.665	19562.219	3.96e-06	0.01011277
+Idaho	0.043	7332.206	2e-08	0.00410293
+California	0.49	82991.495	1e-08	0.0021004
+New Mexico	0.021	3592.114	1e-08	0.00171312

@@ -1,109 +1,109 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Cumberland	0.0	0.0
-Greensville	0.0	0.0
-Brunswick	0.0	0.0
-Prince Edward	0.0	0.0
-Poquoson	0.0	0.0
-Winchester	0.031	20.32
-Montgomery	3.924	408.204
-Page	0.0	0.0
-Fauquier	0.029	15.4
-Caroline	0.0	0.0
-Nottoway	0.0	0.0
-Russell	0.0	0.0
-Radford	0.0	0.0
-Appomattox	0.0	0.0
-Sussex	0.014	11.798
-Chesapeake	106.264	9131.193
-Manassas	0.023	14.155
-Frederick	1.377	334.05
-Washington	4.148	404.788
-Richmond	0.0	0.0
-Bedford	4.872	393.385
-Norfolk	11.613	1373.594
-Culpeper	4.872	392.385
-Emporia	2.463	421.65
-Surry	0.0	0.0
-Fredericksburg	5.147	535.395
-Pulaski	0.0	0.0
-Chesterfield	0.802	251.492
-Roanoke City	0.012	7.074
-Northumberland	0.0	0.0
-Halifax	0.0	0.0
-Covington	0.0	0.0
-Lexington	2.463	421.65
-Alleghany	0.0	0.0
-Prince George	0.66	160.132
-Fairfax	3.925	1411.702
-Botetourt	9.745	784.777
-Bristol	0.0	0.0
-Amherst	0.0	0.0
-Accomack	0.0	0.0
-Madison	9.24	794.017
-Mathews	0.0	0.0
-Staunton	0.0	0.0
-Waynesboro	0.0	0.0
-Manassas Park	0.0	0.0
-Tazewell	0.0	0.0
-Harrisonburg	0.235	82.749
-Rockbridge	0.0	0.0
-Augusta	0.029	23.605
-Stafford	38.98	3141.109
-Isle of Wight	34.107	2750.716
-Northampton	0.0	0.0
-Loudoun	4.504	1156.153
-Charlotte	0.0	0.0
-Amelia	0.014	7.696
-New Kent	10.769	1365.227
-Clarke	0.0	0.0
-Spotsylvania	68.215	5495.437
-Henrico	282.604	22771.522
-Goochland	29.235	2356.331
-Unassigned	0.0	-3.0
-Shenandoah	0.048	24.049
-Danville	14.617	1178.165
-Arlington	1.757	649.074
-James City	0.345	132.361
-Rockingham	9.745	783.777
-Salem	0.0	0.0
-Alexandria	0.68	287.737
-Fluvanna	24.362	1963.938
-Franklin	4.872	392.385
-Newport News	0.298	109.285
-Portsmouth	0.026	14.774
-King George	9.168	1086.008
-King and Queen	0.0	0.0
-Hampton	0.174	92.412
-Greene	11.773	1224.622
-Giles	0.0	0.0
-Hopewell	0.035	21.234
-Campbell	0.0	0.0
-Lancaster	0.0	0.0
-Westmoreland	4.925	843.305
-Petersburg	0.019	12.95
-Wise	0.0	0.0
-Wythe	0.0	0.0
-Buena Vista	2.463	421.65
-Carroll	0.0	0.0
-Galax	0.0	0.0
-Hanover	0.0	1.0
-Charles City	0.0	0.0
-Franklin City	0.008	6.18
-Pittsylvania	4.148	404.788
-Buckingham	0.008	6.18
-Warren	0.0	0.0
-Mecklenburg	14.617	1177.165
-Williamsburg	14.617	1178.165
-Fairfax City	0.0	0.0
-Smyth	0.0	0.0
-Southampton	2.292	271.502
-Suffolk	58.47	4714.659
-Powhatan	0.0	0.0
-Richmond City	2.063	554.232
-York	0.001	17.335
-Albemarle	0.159	64.708
-Orange	0.0	0.0
-Prince William	1.678	594.795
-Virginia Beach	59.343	6171.283
-King William	0.0	0.0
-Nelson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Cumberland	0.0	0.0	0.0	0.0
+Greensville	0.0	0.0	0.0	0.0
+Brunswick	0.0	0.0	0.0	0.0
+Prince Edward	0.0	0.0	0.0	0.0
+Poquoson	0.0	0.0	0.0	0.0
+Winchester	0.031	19.398	1.1e-06	0.00069012
+Montgomery	3.924	407.577	3.964e-05	0.00411756
+Page	0.0	0.0	0.0	0.0
+Fauquier	0.029	14.748	4.1e-07	0.00020867
+Caroline	0.0	0.0	0.0	0.0
+Nottoway	0.0	0.0	0.0	0.0
+Russell	0.0	0.0	0.0	0.0
+Radford	0.0	0.0	0.0	0.0
+Appomattox	0.0	0.0	0.0	0.0
+Sussex	0.014	11.231	1.25e-06	0.00099947
+Chesapeake	106.264	9123.526	0.00043796	0.03760201
+Manassas	0.023	13.525	5.5e-07	0.0003248
+Frederick	1.377	329.891	1.558e-05	0.0037337
+Washington	4.148	404.28	7.625e-05	0.00743134
+Richmond	0.0	0.0	0.0	0.0
+Bedford	4.872	392.385	6.187e-05	0.00498286
+Norfolk	11.613	1372.594	4.758e-05	0.00562363
+Culpeper	4.872	392.385	9.395e-05	0.00756638
+Emporia	2.463	419.502	0.00048096	0.08191798
+Surry	0.0	0.0	0.0	0.0
+Fredericksburg	5.147	534.572	0.00017661	0.01834244
+Pulaski	0.0	0.0	0.0	0.0
+Chesterfield	0.802	251.492	2.3e-06	0.00072153
+Roanoke City	0.012	6.759	N/A	N/A
+Northumberland	0.0	0.0	0.0	0.0
+Halifax	0.0	0.0	0.0	0.0
+Covington	0.0	0.0	0.0	0.0
+Lexington	2.463	419.502	0.00034515	0.05878672
+Alleghany	0.0	0.0	0.0	0.0
+Prince George	0.66	158.138	1.733e-05	0.00415257
+Fairfax	3.925	1349.702	3.41e-06	0.00117284
+Botetourt	9.745	784.777	0.00029284	0.02358317
+Bristol	0.0	0.0	0.0	0.0
+Amherst	0.0	0.0	0.0	0.0
+Accomack	0.0	0.0	0.0	0.0
+Madison	9.24	793.35	0.000695	0.05967281
+Mathews	0.0	0.0	0.0	0.0
+Staunton	0.0	0.0	0.0	0.0
+Waynesboro	0.0	0.0	0.0	0.0
+Manassas Park	0.0	0.0	0.0	0.0
+Tazewell	0.0	0.0	0.0	0.0
+Harrisonburg	0.235	80.749	4.35e-06	0.00149444
+Rockbridge	0.0	0.0	0.0	0.0
+Augusta	0.029	22.471	3.8e-07	0.0002978
+Stafford	38.98	3139.109	0.00025994	0.02093298
+Isle of Wight	34.107	2746.716	0.00092298	0.07432999
+Northampton	0.0	0.0	0.0	0.0
+Loudoun	4.504	1135.153	1.107e-05	0.0027901
+Charlotte	0.0	0.0	0.0	0.0
+Amelia	0.014	7.37	1.08e-06	0.00056636
+New Kent	10.769	1361.609	0.00048095	0.06081055
+Clarke	0.0	0.0	0.0	0.0
+Spotsylvania	68.215	5493.437	0.00050816	0.04092311
+Henrico	282.604	22758.522	0.0008583	0.06912001
+Goochland	29.235	2354.331	0.00125774	0.10128769
+Unassigned	0.0	0.0	N/A	N/A
+Shenandoah	0.048	23.058	1.1e-06	0.00053011
+Danville	14.617	1177.165	0.0003592	0.02892795
+Arlington	1.757	627.074	7.4e-06	0.00264008
+James City	0.345	131.361	4.52e-06	0.00171945
+Rockingham	9.745	784.777	0.00011995	0.00965951
+Salem	0.0	0.0	0.0	0.0
+Alexandria	0.68	268.737	4.24e-06	0.00167406
+Fluvanna	24.362	1961.938	0.00090961	0.07325311
+Franklin	4.872	392.385	0.00060801	0.04896855
+Newport News	0.298	106.285	1.67e-06	0.00059501
+Portsmouth	0.026	14.132	2.7e-07	0.00014934
+King George	9.168	1083.565	0.00034499	0.04077385
+King and Queen	0.0	0.0	0.0	0.0
+Hampton	0.174	88.5	1.3e-06	0.00065891
+Greene	11.773	1222.74	0.00059523	0.06182011
+Giles	0.0	0.0	0.0	0.0
+Hopewell	0.035	20.289	1.55e-06	0.0008979
+Campbell	0.0	0.0	0.0	0.0
+Lancaster	0.0	0.0	0.0	0.0
+Westmoreland	4.925	839.01	0.00027622	0.04705609
+Petersburg	0.019	12.351	6e-07	0.00039126
+Wise	0.0	0.0	0.0	0.0
+Wythe	0.0	0.0	0.0	0.0
+Buena Vista	2.463	419.502	0.0003949	0.06726022
+Carroll	0.0	0.0	0.0	0.0
+Galax	0.0	0.0	0.0	0.0
+Hanover	0.0	0.0	0.0	0.0
+Charles City	0.0	0.0	0.0	0.0
+Franklin City	0.008	5.889	1.4e-07	0.0001048
+Pittsylvania	4.148	404.28	6.806e-05	0.00663309
+Buckingham	0.008	5.889	4.7e-07	0.00034643
+Warren	0.0	0.0	0.0	0.0
+Mecklenburg	14.617	1177.165	0.0004769	0.03840669
+Williamsburg	14.617	1177.165	0.00098127	0.07902558
+Fairfax City	0.0	0.0	N/A	N/A
+Smyth	0.0	0.0	0.0	0.0
+Southampton	2.292	270.891	0.00013033	0.01540379
+Suffolk	58.47	4708.659	0.00064122	0.05163853
+Powhatan	0.0	0.0	0.0	0.0
+Richmond City	2.063	548.232	N/A	N/A
+York	0.001	16.335	1e-08	0.00024077
+Albemarle	0.159	62.708	1.46e-06	0.0005768
+Orange	0.0	0.0	0.0	0.0
+Prince William	1.678	576.795	3.59e-06	0.00123244
+Virginia Beach	59.343	6163.283	0.00013182	0.01369043
+King William	0.0	0.0	0.0	0.0
+Nelson	0.0	0.0	0.0	0.0

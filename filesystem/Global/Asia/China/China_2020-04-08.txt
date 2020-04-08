@@ -1,27 +1,27 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Heilongjiang	1.548	22.801
-Shanghai	5.323	16.79
-Nei Mongol	3.507	7.347
-Shandong	0.806	2.686
-Henan	0.0	0.0
-Shaanxi	0.0	0.0
-Fujian	1.556	3.343
-Jiangxi	0.0	0.0
-Yunnan	0.593	1.073
-Hubei	0.0	0.0
-Macau	0.392	0.939
-Tianjin	1.562	3.562
-Guangxi	0.0	0.0
-Liaoning	1.416	2.563
-Sichuan	0.796	2.876
-Guizhou	0.0	0.0
-Chongqing	0.0	0.0
-Shanxi	0.0	0.0
-Guangdong	7.501	23.248
-Hunan	0.0	0.0
-Jiangsu	0.793	1.66
-Jilin	0.165	0.298
-Hebei	1.465	2.652
-Hong Kong	39.233	102.54
-Zhejiang	1.395	4.035
-Gansu	0.0	1.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Heilongjiang	1.548	2.801	4e-08	7e-08
+Shanghai	5.323	11.79	2.3e-07	5.1e-07
+Nei Mongol	3.507	6.347	1.4e-07	2.6e-07
+Shandong	0.806	1.686	1e-08	2e-08
+Henan	0.0	0.0	0.0	0.0
+Shaanxi	0.0	0.0	0.0	0.0
+Fujian	1.556	3.343	4e-08	9e-08
+Jiangxi	0.0	0.0	0.0	0.0
+Yunnan	0.593	1.073	1e-08	2e-08
+Hubei	0.0	0.0	0.0	0.0
+Macau	0.392	0.939	7.1e-07	1.7e-06
+Tianjin	1.562	3.562	1.2e-07	2.8e-07
+Guangxi	0.0	0.0	0.0	0.0
+Liaoning	1.416	2.563	3e-08	6e-08
+Sichuan	0.796	1.876	1e-08	2e-08
+Guizhou	0.0	0.0	0.0	0.0
+Chongqing	0.0	0.0	0.0	0.0
+Shanxi	0.0	0.0	0.0	0.0
+Guangdong	7.501	15.248	7e-08	1.4e-07
+Hunan	0.0	0.0	0.0	0.0
+Jiangsu	0.793	1.66	1e-08	2e-08
+Jilin	0.165	0.298	1e-08	1e-08
+Hebei	1.465	2.652	2e-08	4e-08
+Hong Kong	39.233	78.54	5.56e-06	1.112e-05
+Zhejiang	1.395	3.035	3e-08	6e-08
+Gansu	0.0	0.0	0.0	0.0

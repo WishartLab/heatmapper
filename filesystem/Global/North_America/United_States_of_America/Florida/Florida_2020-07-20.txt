@@ -1,15 +1,15 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Washington	0.0	0.0
-Levy	0.0	0.0
-Desoto	0.047	1849.438
-Bradford	0.035	1386.582
-Bay	0.019	1209.61
-Columbia	0.071	2771.157
-Walton	0.059	2310.293
-Gadsden	0.024	924.72
-Charlotte	0.009	1158.418
-Hernando	0.007	1251.001
-Putnam	0.024	923.72
-Polk	0.058	7743.239
-Suwannee	0.018	3312.795
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Washington	0.0	0.0	0.0	0.0
+Levy	0.0	0.0	0.0	0.0
+Desoto	0.047	1847.438	1.25e-06	0.04927947
+Bradford	0.035	1385.582	1.26e-06	0.04996329
+Bay	0.019	1209.61	1e-07	0.0065283
+Columbia	0.071	2771.157	1.01e-06	0.03930552
+Walton	0.059	2309.293	8.3e-07	0.03235437
+Gadsden	0.024	923.72	5.2e-07	0.02012725
+Charlotte	0.009	1150.418	5e-08	0.00621854
+Hernando	0.007	1246.001	4e-08	0.00652818
+Putnam	0.024	923.72	3.2e-07	0.01245527
+Polk	0.058	7724.239	8e-08	0.0109098
+Suwannee	0.018	3306.076	4.1e-07	0.07481333
+Jackson	0.0	0.0	0.0	0.0

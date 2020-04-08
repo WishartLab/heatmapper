@@ -1,34 +1,34 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Richland	0.088	2379.372
-Clarendon	2.806	4366.101
-Beaufort	0.023	859.518
-Fairfield	0.003	170.023
-Barnwell	0.0	0.0
-Horry	0.005	357.296
-Abbeville	0.0	0.0
-Lee	2.343	2297.903
-Sumter	0.595	1254.339
-Marlboro	0.0	0.0
-Saluda	0.0	0.0
-Chesterfield	0.839	919.604
-Lexington	0.065	1771.02
-Marion	0.0	0.0
-Oconee	0.0	0.0
-Newberry	0.469	459.379
-Calhoun	0.937	918.765
-Florence	0.003	199.02
-Greenville	0.01	606.067
-Dorchester	1.148	1792.498
-Edgefield	0.469	459.379
-Chester	1.406	1380.149
-Colleton	0.937	920.765
-Anderson	0.025	456.015
-Union	0.968	1506.837
-Lancaster	2.213	2713.6
-Darlington	1.875	1845.527
-Greenwood	0.937	919.765
-Allendale	0.0	0.0
-Aiken	0.984	1205.153
-Spartanburg	0.006	561.131
-Jasper	0.937	920.765
-York	0.006	478.615
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Richland	0.088	2366.372	2.1e-07	0.00570793
+Clarendon	2.806	4362.101	8.326e-05	0.1294392
+Beaufort	0.023	852.518	1.2e-07	0.00451749
+Fairfield	0.003	168.023	1.3e-07	0.00750036
+Barnwell	0.0	0.0	0.0	0.0
+Horry	0.005	345.296	1e-08	0.00100334
+Abbeville	0.0	0.0	0.0	0.0
+Lee	2.343	2296.903	0.00013668	0.13399271
+Sumter	0.595	1244.339	5.59e-06	0.01168262
+Marlboro	0.0	0.0	0.0	0.0
+Saluda	0.0	0.0	0.0	0.0
+Chesterfield	0.839	918.937	1.834e-05	0.0200843
+Lexington	0.065	1764.02	2.2e-07	0.00597908
+Marion	0.0	0.0	0.0	0.0
+Oconee	0.0	0.0	0.0	0.0
+Newberry	0.469	459.379	1.218e-05	0.01192573
+Calhoun	0.937	918.765	6.453e-05	0.06327583
+Florence	0.003	196.02	2e-08	0.0014188
+Greenville	0.01	588.067	2e-08	0.00114363
+Dorchester	1.148	1784.498	7.15e-06	0.01110819
+Edgefield	0.469	459.379	1.734e-05	0.01698133
+Chester	1.406	1378.149	4.36e-05	0.04273198
+Colleton	0.937	918.765	2.488e-05	0.02439631
+Anderson	0.025	453.015	1.2e-07	0.00225963
+Union	0.968	1504.78	3.532e-05	0.05489894
+Lancaster	2.213	2711.6	2.32e-05	0.02842944
+Darlington	1.875	1837.527	2.807e-05	0.02750707
+Greenwood	0.937	918.765	1.325e-05	0.01298773
+Allendale	0.0	0.0	0.0	0.0
+Aiken	0.984	1205.153	5.81e-06	0.0071142
+Spartanburg	0.006	548.131	2e-08	0.00174626
+Jasper	0.937	918.765	3.234e-05	0.03171326
+York	0.006	468.615	2e-08	0.00170954

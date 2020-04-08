@@ -1,11 +1,11 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Curry	0.0	0.0
-Rio Arriba	0.003	461.558
-Cibola	0.041	5542.672
-Socorro	0.018	1848.544
-Chaves	0.0	1.0
-Eddy	0.0	0.0
-Taos	0.0	0.0
-Unassigned	-0.009	-923.774
-Lea	0.0	0.0
-McKinley	0.035	6356.687
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Curry	0.0	0.0	0.0	0.0
+Rio Arriba	0.003	461.146	8e-08	0.01182244
+Cibola	0.041	5538.672	1.53e-06	0.20708412
+Socorro	0.018	1847.544	1.08e-06	0.1104
+Chaves	0.0	0.0	0.0	0.0
+Eddy	0.0	0.0	0.0	0.0
+Taos	0.0	0.0	0.0	0.0
+Unassigned	-0.009	-923.774	N/A	N/A
+Lea	0.0	0.0	0.0	0.0
+McKinley	0.035	6350.687	4.8e-07	0.08785015

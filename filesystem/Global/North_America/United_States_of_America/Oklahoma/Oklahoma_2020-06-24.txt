@@ -1,42 +1,42 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	0.0	0.0
-Choctaw	0.0	0.0
-Wagoner	0.045	278.112
-Sequoyah	0.0	0.0
-McClain	2.426	899.824
-Beckham	0.0	0.0
-Noble	0.0	0.0
-Love	0.0	0.0
-Pawnee	1.213	449.908
-Oklahoma	0.014	439.623
-McIntosh	0.0	0.0
-Custer	0.0	0.0
-Cotton	0.0	0.0
-Le Flore	0.0	0.0
-Delaware	0.0	24.338
-Caddo	0.535	297.111
-Carter	0.0	0.0
-Grady	3.639	1350.738
-Major	0.0	0.0
-Bryan	0.0	0.0
-Washita	0.0	0.0
-Pontotoc	0.0	1.0
-Seminole	0.816	453.062
-Mayes	5.657	2255.211
-Osage	0.001	64.912
-Okmulgee	0.5	323.861
-Stephens	0.0	16.226
-Muskogee	0.001	21.777
-Latimer	0.0	0.0
-Craig	0.993	452.345
-Pittsburg	1.867	905.548
-Texas	1.631	906.13
-Canadian	0.076	113.733
-Tillman	0.0	0.0
-McCurtain	0.0	0.0
-Tulsa	0.443	1030.079
-Cleveland	0.63	747.495
-Garvin	1.213	450.908
-Grant	0.0	0.0
-Adair	0.258	340.499
-Jackson	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	0.0	0.0	0.0	0.0
+Choctaw	0.0	0.0	0.0	0.0
+Wagoner	0.045	272.319	5.6e-07	0.00339931
+Sequoyah	0.0	0.0	0.0	0.0
+McClain	2.426	899.824	6.067e-05	0.02250404
+Beckham	0.0	0.0	0.0	0.0
+Noble	0.0	0.0	0.0	0.0
+Love	0.0	0.0	0.0	0.0
+Pawnee	1.213	449.908	7.401e-05	0.02745015
+Oklahoma	0.014	425.623	2e-08	0.00053701
+McIntosh	0.0	0.0	0.0	0.0
+Custer	0.0	0.0	0.0	0.0
+Cotton	0.0	0.0	0.0	0.0
+Le Flore	0.0	0.0	0.0	0.0
+Delaware	0.0	23.347	0.0	0.00054635
+Caddo	0.535	296.5	1.846e-05	0.01023225
+Carter	0.0	0.0	0.0	0.0
+Grady	3.639	1349.738	6.551e-05	0.02429728
+Major	0.0	0.0	0.0	0.0
+Bryan	0.0	0.0	0.0	0.0
+Washita	0.0	0.0	0.0	0.0
+Pontotoc	0.0	0.0	0.0	0.0
+Seminole	0.816	452.131	3.32e-05	0.01839576
+Mayes	5.657	2253.544	0.00013762	0.05482142
+Osage	0.001	62.27	2e-08	0.0013245
+Okmulgee	0.5	322.928	1.304e-05	0.00842384
+Stephens	0.0	15.565	0.0	0.00035976
+Muskogee	0.001	21.777	1e-08	0.00031855
+Latimer	0.0	0.0	0.0	0.0
+Craig	0.993	451.837	6.941e-05	0.03158374
+Pittsburg	1.867	904.293	4.255e-05	0.02060973
+Texas	1.631	904.267	7.974e-05	0.04420763
+Canadian	0.076	111.733	5.3e-07	0.00077352
+Tillman	0.0	0.0	0.0	0.0
+McCurtain	0.0	0.0	0.0	0.0
+Tulsa	0.443	1021.079	6.8e-07	0.00157486
+Cleveland	0.63	738.495	2.24e-06	0.00262185
+Garvin	1.213	449.908	4.362e-05	0.01617734
+Grant	0.0	0.0	0.0	0.0
+Adair	0.258	337.428	1.168e-05	0.01528068
+Jackson	0.0	0.0	0.0	0.0

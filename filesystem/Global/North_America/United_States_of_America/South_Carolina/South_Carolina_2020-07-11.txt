@@ -1,28 +1,28 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Richland	0.024	2379.578
-Clarendon	0.95	4374.624
-Beaufort	0.007	859.577
-Barnwell	0.0	0.0
-Abbeville	0.0	0.0
-Lee	1.286	2306.309
-Sumter	0.108	1255.767
-Marlboro	0.0	0.0
-Saluda	0.0	0.0
-Chesterfield	0.438	922.564
-Lexington	0.018	1771.173
-Marion	0.0	0.0
-Oconee	0.0	0.0
-Newberry	0.257	461.06
-Calhoun	0.514	922.126
-Dorchester	0.388	1795.984
-Edgefield	0.257	461.06
-Chester	0.771	1385.192
-Colleton	0.514	924.126
-Anderson	0.006	456.066
-Union	0.328	1509.776
-Lancaster	1.063	2721.186
-Darlington	1.028	1852.251
-Greenwood	0.514	923.126
-Allendale	0.0	0.0
-Aiken	0.472	1208.523
-Jasper	0.514	924.126
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Richland	0.024	2366.578	6e-08	0.00570843
+Clarendon	0.95	4370.624	2.819e-05	0.12969211
+Beaufort	0.007	852.577	4e-08	0.0045178
+Barnwell	0.0	0.0	0.0	0.0
+Abbeville	0.0	0.0	0.0	0.0
+Lee	1.286	2305.309	7.502e-05	0.13448308
+Sumter	0.108	1245.767	1.01e-06	0.01169602
+Marlboro	0.0	0.0	0.0	0.0
+Saluda	0.0	0.0	0.0	0.0
+Chesterfield	0.438	921.897	9.57e-06	0.02014899
+Lexington	0.018	1764.173	6e-08	0.0059796
+Marion	0.0	0.0	0.0	0.0
+Oconee	0.0	0.0	0.0	0.0
+Newberry	0.257	461.06	6.67e-06	0.01196937
+Calhoun	0.514	922.126	3.54e-05	0.0635073
+Dorchester	0.388	1787.984	2.42e-06	0.01112989
+Edgefield	0.257	461.06	9.5e-06	0.01704347
+Chester	0.771	1383.192	2.391e-05	0.04288834
+Colleton	0.514	922.126	1.365e-05	0.02448555
+Anderson	0.006	453.066	3e-08	0.00225988
+Union	0.328	1507.719	1.197e-05	0.05500617
+Lancaster	1.063	2719.186	1.114e-05	0.02850897
+Darlington	1.028	1844.251	1.539e-05	0.02760772
+Greenwood	0.514	922.126	7.27e-06	0.01303524
+Allendale	0.0	0.0	0.0	0.0
+Aiken	0.472	1208.523	2.79e-06	0.0071341
+Jasper	0.514	922.126	1.774e-05	0.03182928

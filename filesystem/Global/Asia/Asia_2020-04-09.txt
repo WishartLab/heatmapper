@@ -1,37 +1,37 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Bhutan	0.061	0.239
-Afghanistan	29.836	177.296
-Syria	0.0	0.0
-Kyrgyzstan	11.355	189.435
-South Korea	94.859	572.177
-Brunei	1.346	8.978
-Nepal	0.264	1.038
-Kuwait	46.533	412.957
-Malaysia	162.57	1086.474
-Indonesia	139.26	1119.03
-Iraq	56.625	413.551
-Uzbekistan	29.73	361.072
-Qatar	156.319	1072.493
-Sri Lanka	5.557	31.565
-Laos	0.652	5.308
-Bahrain	25.054	241.196
-Mongolia	0.02	2.078
-Taiwan	8.417	68.001
-Oman	17.722	155.334
-Japan	231.12	2061.12
-United Arab Emirates	172.545	1335.959
-China	72.585	511.199
-Maldives	0.752	2.956
-Singapore	53.609	404.763
-India	491.307	4494.589
-Saudi Arabia	147.263	1136.495
-Philippines	338.44	2337.918
-Thailand	115.729	680.691
-Iran	3016.653	19343.815
-Vietnam	7.533	47.665
-Kazakhstan	53.556	398.71
-Bangladesh	2.284	85.232
-Pakistan	232.696	2320.006
-Cambodia	1.255	7.591
-Jordan	5.393	48.023
-Lebanon	12.35	98.436
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Bhutan	0.061	0.239	8e-08	3.2e-07
+Afghanistan	29.836	141.296	8e-07	3.8e-06
+Syria	0.0	0.0	0.0	0.0
+Kyrgyzstan	11.355	51.435	1.8e-06	8.14e-06
+South Korea	94.859	478.177	1.84e-06	9.26e-06
+Brunei	1.346	8.978	3.14e-06	2.093e-05
+Nepal	0.264	1.038	1e-08	4e-08
+Kuwait	46.533	194.957	1.125e-05	4.712e-05
+Malaysia	162.57	824.474	5.14e-06	2.607e-05
+Indonesia	139.26	683.03	5.2e-07	2.55e-06
+Iraq	56.625	273.551	1.47e-06	7.12e-06
+Uzbekistan	29.73	131.072	9e-07	3.98e-06
+Qatar	156.319	616.493	5.62e-05	0.00022163
+Sri Lanka	5.557	27.565	2.6e-07	1.27e-06
+Laos	0.652	3.308	9e-08	4.7e-07
+Bahrain	25.054	129.196	1.596e-05	8.232e-05
+Mongolia	0.02	0.078	1e-08	2e-08
+Taiwan	8.417	48.001	3.5e-07	2.02e-06
+Oman	17.722	89.334	3.67e-06	1.85e-05
+Japan	231.12	1031.12	1.83e-06	8.15e-06
+United Arab Emirates	172.545	781.959	1.792e-05	8.119e-05
+China	72.585	385.199	5e-08	2.8e-07
+Maldives	0.752	2.956	1.46e-06	5.73e-06
+Singapore	53.609	272.763	9.51e-06	4.837e-05
+India	491.307	2114.589	3.6e-07	1.56e-06
+Saudi Arabia	147.263	730.495	4.37e-06	2.168e-05
+Philippines	338.44	1509.918	3.17e-06	1.416e-05
+Thailand	115.729	578.691	1.67e-06	8.34e-06
+Iran	3016.653	14795.815	3.688e-05	0.00018088
+Vietnam	7.533	39.665	8e-08	4.2e-07
+Kazakhstan	53.556	242.71	2.93e-06	1.328e-05
+Bangladesh	2.284	15.232	1e-08	9e-08
+Pakistan	232.696	1102.006	1.1e-06	5.19e-06
+Cambodia	1.255	7.591	8e-08	4.7e-07
+Jordan	5.393	40.023	5.4e-07	4.02e-06
+Lebanon	12.35	70.436	1.8e-06	1.028e-05

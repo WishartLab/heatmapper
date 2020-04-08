@@ -1,72 +1,72 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Vermilion	0.0	0.0
-Logan	0.0	0.0
-Pike	0.0	0.0
-Kendall	10.411	56.916
-Williamson	1.945	9.911
-Montgomery	0.0	0.0
-Ford	0.0	0.0
-McHenry	44.572	226.535
-La Salle	4.616	22.587
-Woodford	1.303	5.989
-Peoria	0.0	-2.0
-Lee	0.0	0.0
-Washington	0.0	1.0
-Jersey	19.247	110.862
-Kankakee	7.699	74.101
-Massac	0.0	0.0
-Macon	13.016	68.282
-Effingham	0.0	0.0
-Fayette	0.0	0.0
-Jefferson	0.0	0.0
-Bureau	0.0	0.0
-Bond	0.0	0.0
-Monroe	3.91	18.971
-Douglas	0.0	0.0
-Marion	0.0	0.0
-Winnebago	24.761	120.813
-Mercer	0.0	0.0
-McLean	7.922	44.201
-Livingston	3.91	19.971
-Henry	0.788	7.877
-Madison	5.545	34.94
-Boone	15.369	94.015
-Tazewell	15.821	81.648
-Rock Island	22.664	114.19
-Ogle	16.829	96.937
-Calhoun	0.0	0.0
-Iroquois	6.78	34.992
-Saline	0.0	0.0
-Christian	7.819	37.941
-Marshall	0.0	0.0
-Lake	126.879	840.365
-Unassigned	0.165	7.94
-Will	157.156	901.609
-Randolph	30.491	175.628
-Macoupin	0.842	8.834
-Mason	0.0	0.0
-Adams	1.303	10.989
-Stephenson	0.0	2.0
-Cook	664.167	6020.414
-De Kalb	7.819	35.941
-Franklin	0.0	0.0
-Gallatin	0.0	0.0
-Jo Daviess	3.91	18.971
-Moultrie	0.0	0.0
-Clark	0.0	0.0
-Menard	0.0	0.0
-Dewitt	19.247	110.862
-Sangamon	11.929	58.416
-Piatt	0.0	0.0
-Dupage	72.108	622.261
-Knox	0.0	0.0
-Whiteside	7.819	35.941
-Clinton	0.206	3.141
-Crawford	10.138	55.312
-Kane	16.33	147.618
-Champaign	8.748	48.98
-Grundy	3.077	15.058
-Jasper	21.143	125.562
-Wabash	0.0	0.0
-Saint Clair	6.796	59.083
-Jackson	7.819	37.941
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Vermilion	0.0	0.0	0.0	0.0
+Logan	0.0	0.0	0.0	0.0
+Pike	0.0	0.0	0.0	0.0
+Kendall	10.411	50.916	8.139e-05	0.00039805
+Williamson	1.945	9.405	2.901e-05	0.00014026
+Montgomery	0.0	0.0	0.0	0.0
+Ford	0.0	0.0	0.0	0.0
+McHenry	44.572	215.535	0.00014445	0.0006985
+La Salle	4.616	21.587	4.218e-05	0.00019727
+Woodford	1.303	5.989	3.388e-05	0.00015571
+Peoria	0.0	0.0	0.0	0.0
+Lee	0.0	0.0	0.0	0.0
+Washington	0.0	0.0	0.0	0.0
+Jersey	19.247	104.419	0.00088099	0.00477956
+Kankakee	7.699	65.101	6.998e-05	0.0005917
+Massac	0.0	0.0	0.0	0.0
+Macon	13.016	64.664	0.0001243	0.00061754
+Effingham	0.0	0.0	0.0	0.0
+Fayette	0.0	0.0	0.0	0.0
+Jefferson	0.0	0.0	0.0	0.0
+Bureau	0.0	0.0	0.0	0.0
+Bond	0.0	0.0	0.0	0.0
+Monroe	3.91	17.971	0.00011388	0.0005234
+Douglas	0.0	0.0	0.0	0.0
+Marion	0.0	0.0	0.0	0.0
+Winnebago	24.761	113.813	8.716e-05	0.00040064
+Mercer	0.0	0.0	0.0	0.0
+McLean	7.922	44.201	4.584e-05	0.00025575
+Livingston	3.91	17.971	0.00010934	0.00050253
+Henry	0.788	6.914	1.605e-05	0.00014084
+Madison	5.545	30.94	2.097e-05	0.00011699
+Boone	15.369	88.084	0.00028686	0.00164406
+Tazewell	15.821	77.372	0.00011956	0.0005847
+Rock Island	22.664	107.19	0.00015796	0.00074709
+Ogle	16.829	91.303	0.00033048	0.00179296
+Calhoun	0.0	0.0	0.0	0.0
+Iroquois	6.78	33.16	0.00024562	0.00120128
+Saline	0.0	0.0	0.0	0.0
+Christian	7.819	35.941	0.0002394	0.00110043
+Marshall	0.0	0.0	0.0	0.0
+Lake	126.879	767.365	0.00018104	0.00109493
+Unassigned	0.165	5.1	N/A	N/A
+Will	157.156	852.609	0.000227	0.00123154
+Randolph	30.491	165.421	0.0009497	0.00515234
+Macoupin	0.842	7.729	1.858e-05	0.00017057
+Mason	0.0	0.0	0.0	0.0
+Adams	1.303	5.989	1.984e-05	9.117e-05
+Stephenson	0.0	0.0	0.0	0.0
+Cook	664.167	5326.414	0.00012821	0.00102817
+De Kalb	7.819	35.941	7.508e-05	0.00034511
+Franklin	0.0	0.0	0.0	0.0
+Gallatin	0.0	0.0	0.0	0.0
+Jo Daviess	3.91	17.971	0.000183	0.0008411
+Moultrie	0.0	0.0	0.0	0.0
+Clark	0.0	0.0	0.0	0.0
+Menard	0.0	0.0	0.0	0.0
+Dewitt	19.247	104.419	0.00122056	0.00662179
+Sangamon	11.929	56.416	6.107e-05	0.0002888
+Piatt	0.0	0.0	0.0	0.0
+Dupage	72.108	563.261	7.765e-05	0.00060658
+Knox	0.0	0.0	0.0	0.0
+Whiteside	7.819	35.941	0.00014056	0.00064612
+Clinton	0.206	2.141	5.47e-06	5.688e-05
+Crawford	10.138	52.285	0.00053905	0.00278008
+Kane	16.33	133.618	3.057e-05	0.00025012
+Champaign	8.748	41.98	4.166e-05	0.00019992
+Grundy	3.077	14.391	6.037e-05	0.00028233
+Jasper	21.143	117.969	0.00219988	0.01227437
+Wabash	0.0	0.0	0.0	0.0
+Saint Clair	6.796	53.083	2.603e-05	0.00020334
+Jackson	7.819	35.941	0.00013617	0.00062594

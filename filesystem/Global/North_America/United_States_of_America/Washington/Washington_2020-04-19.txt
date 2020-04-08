@@ -1,36 +1,36 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Lewis	5.931	36.984
-Skagit	2.042	30.965
-Walla Walla	6.893	40.877
-Pierce	91.159	1011.208
-Pend Oreille	0.0	0.0
-Clallam	0.0	0.0
-Asotin	31.539	261.857
-Stevens	0.0	0.0
-Wahkiakum	0.0	0.0
-Jefferson	0.51	9.742
-Kitsap	2.837	40.379
-Douglas	5.931	33.984
-San Juan	5.931	35.984
-Benton	25.685	273.919
-Okanogan	15.166	99.696
-Whitman	0.0	1.0
-Chelan	2.241	33.105
-Unassigned	516.975	3065.775
-Mason	8.896	51.976
-Adams	11.628	80.427
-Klickitat	0.0	0.0
-Yakima	31.1	496.32
-Whatcom	5.818	117.508
-Franklin	4.756	82.663
-Ferry	0.0	0.0
-Grays Harbor	5.931	33.984
-Spokane	7.357	110.012
-Kittitas	0.0	2.0
-Island	0.133	34.638
-Cowlitz	0.0	0.0
-Skamania	0.0	0.0
-King	3.774	871.601
-Thurston	2.648	38.523
-Grant	0.296	26.191
-Snohomish	25.497	539.283
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Lewis	5.931	33.984	7.451e-05	0.00042691
+Skagit	2.042	30.965	1.593e-05	0.00024153
+Walla Walla	6.893	40.21	0.00011314	0.00066002
+Pierce	91.159	982.208	0.00010228	0.001102
+Pend Oreille	0.0	0.0	0.0	0.0
+Clallam	0.0	0.0	0.0	0.0
+Asotin	31.539	254.264	0.00139491	0.01124564
+Stevens	0.0	0.0	0.0	0.0
+Wahkiakum	0.0	0.0	0.0	0.0
+Jefferson	0.51	7.742	1.607e-05	0.000244
+Kitsap	2.837	40.379	1.052e-05	0.00014966
+Douglas	5.931	33.984	0.00013823	0.00079204
+San Juan	5.931	33.984	0.00034628	0.00198412
+Benton	25.685	262.919	0.00012723	0.00130237
+Okanogan	15.166	97.672	0.00035996	0.00231824
+Whitman	0.0	0.0	0.0	0.0
+Chelan	2.241	33.105	2.909e-05	0.00042973
+Unassigned	516.975	3015.775	N/A	N/A
+Mason	8.896	50.976	0.0001358	0.00077818
+Adams	11.628	77.427	0.00058849	0.00391857
+Klickitat	0.0	0.0	0.0	0.0
+Yakima	31.1	459.32	0.00012368	0.00182671
+Whatcom	5.818	113.508	2.578e-05	0.00050295
+Franklin	4.756	74.663	5.041e-05	0.00079137
+Ferry	0.0	0.0	0.0	0.0
+Grays Harbor	5.931	33.984	8.026e-05	0.00045986
+Spokane	7.357	107.012	1.43e-05	0.00020794
+Kittitas	0.0	0.0	0.0	0.0
+Island	0.133	23.638	1.57e-06	0.00027987
+Cowlitz	0.0	0.0	0.0	0.0
+Skamania	0.0	0.0	0.0	0.0
+King	3.774	707.601	1.69e-06	0.00031686
+Thurston	2.648	38.523	9.25e-06	0.0001345
+Grant	0.296	18.191	3.04e-06	0.0001869
+Snohomish	25.497	495.283	3.129e-05	0.00060778

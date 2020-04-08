@@ -1,44 +1,44 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Choctaw	0.0	0.0
-Jones	1.08	2770.77
-Webster	0.18	462.459
-George	0.0	0.0
-Kemper	0.079	921.106
-Quitman	0.193	1383.068
-Alcorn	0.0	0.0
-Leake	0.54	1385.388
-Tallahatchie	0.0	0.0
-Jefferson	0.079	921.106
-Newton	0.281	923.205
-Smith	0.36	923.924
-Panola	0.72	1845.846
-Monroe	0.54	1387.388
-Lamar	0.54	1386.388
-Lawrence	0.0	1.0
-Marion	0.54	1385.388
-Benton	0.0	0.0
-Simpson	0.0	1.0
-Calhoun	0.0	0.0
-Leflore	0.36	923.924
-Claiborne	0.0	0.0
-Clay	0.0	2.0
-Chickasaw	0.0	0.0
-Itawamba	0.0	1.0
-Franklin	0.36	922.924
-Humphreys	0.0	0.0
-Stone	0.0	0.0
-Union	0.18	461.459
-Perry	0.54	1384.388
-Sharkey	0.0	0.0
-Grenada	0.0	0.0
-Copiah	0.36	922.924
-Noxubee	0.0	0.0
-Yazoo	2.341	6000.001
-Lowndes	0.54	1384.388
-Warren	0.033	918.391
-Neshoba	0.054	1505.666
-Prentiss	0.0	0.0
-Walthall	0.18	461.459
-Amite	0.011	301.13
-Winston	0.54	1387.388
-Tishomingo	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Choctaw	0.0	0.0	0.0	0.0
+Jones	1.08	2768.77	1.578e-05	0.04044303
+Webster	0.18	461.459	1.839e-05	0.04714538
+George	0.0	0.0	0.0	0.0
+Kemper	0.079	919.851	7.88e-06	0.09173741
+Quitman	0.193	1381.543	2.737e-05	0.19593575
+Alcorn	0.0	0.0	0.0	0.0
+Leake	0.54	1384.388	2.372e-05	0.06081747
+Tallahatchie	0.0	0.0	0.0	0.0
+Jefferson	0.079	919.851	1.112e-05	0.12944709
+Newton	0.281	922.538	1.31e-05	0.0430228
+Smith	0.36	922.924	2.25e-05	0.05767554
+Panola	0.72	1845.846	2.107e-05	0.05400685
+Monroe	0.54	1384.388	1.518e-05	0.03892667
+Lamar	0.54	1384.388	8.65e-06	0.02216901
+Lawrence	0.0	0.0	0.0	0.0
+Marion	0.54	1384.388	2.185e-05	0.05601408
+Benton	0.0	0.0	0.0	0.0
+Simpson	0.0	0.0	0.0	0.0
+Calhoun	0.0	0.0	0.0	0.0
+Leflore	0.36	922.924	1.245e-05	0.0319141
+Claiborne	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+Chickasaw	0.0	0.0	0.0	0.0
+Itawamba	0.0	0.0	0.0	0.0
+Franklin	0.36	922.924	4.622e-05	0.11850591
+Humphreys	0.0	0.0	0.0	0.0
+Stone	0.0	0.0	0.0	0.0
+Union	0.18	461.459	6.29e-06	0.01613155
+Perry	0.54	1384.388	4.526e-05	0.11603286
+Sharkey	0.0	0.0	0.0	0.0
+Grenada	0.0	0.0	0.0	0.0
+Copiah	0.36	922.924	1.261e-05	0.03233451
+Noxubee	0.0	0.0	0.0	0.0
+Yazoo	2.341	5999.001	8.287e-05	0.21236905
+Lowndes	0.54	1384.388	9.16e-06	0.02349208
+Warren	0.033	916.528	7.1e-07	0.01984858
+Neshoba	0.054	1502.612	1.85e-06	0.05159183
+Prentiss	0.0	0.0	0.0	0.0
+Walthall	0.18	461.459	1.244e-05	0.03190176
+Amite	0.011	300.519	8.9e-07	0.0243809
+Winston	0.54	1384.388	2.973e-05	0.07621184
+Tishomingo	0.0	0.0	0.0	0.0

@@ -1,78 +1,78 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Wright	0.0	0.0
-Linn	0.0	0.0
-Pike	0.0	0.0
-Pemiscot	0.0	0.0
-Montgomery	7.586	337.837
-Platte	0.068	14.008
-Webster	0.0	0.0
-Reynolds	0.0	0.0
-St. Louis City	5.058	902.738
-Taney	16.517	647.327
-Ralls	0.0	0.0
-Camden	24.775	970.991
-New Madrid	0.0	0.0
-Howell	0.0	0.0
-Caldwell	0.0	0.0
-Gasconade	0.0	0.0
-Macon	0.0	0.0
-Dunklin	8.258	323.662
-Bates	0.0	0.0
-Cass	8.258	326.662
-Jefferson	95.069	3967.028
-Newton	0.0	0.0
-Pulaski	8.258	323.662
-Ripley	0.0	0.0
-Maries	0.0	0.0
-Saint Louis	18.872	2625.183
-Saint Francois	33.033	1292.652
-Pettis	0.0	0.0
-McDonald	0.0	0.0
-Livingston	0.0	0.0
-Benton	0.0	0.0
-Saint Charles	6.313	767.614
-Henry	0.0	1.0
-Carter	-7.254	-344.679
-Madison	0.0	0.0
-Buchanan	0.0	0.0
-Scott	8.258	325.662
-Nodaway	4.872	383.038
-Cole	24.775	970.991
-Saline	4.62	385.51
-Christian	8.258	323.662
-Stoddard	0.0	0.0
-Osage	0.0	0.0
-Unassigned	-10.274	-759.974
-Randolph	0.0	0.0
-Dallas	0.0	0.0
-Barry	0.0	0.0
-Atchison	0.0	0.0
-Clay	0.237	48.008
-De Kalb	0.0	0.0
-Shelby	0.0	0.0
-Franklin	0.181	38.739
-Cooper	0.0	0.0
-Butler	0.0	0.0
-Stone	0.0	0.0
-Sainte Genevieve	0.0	0.0
-Chariton	0.0	0.0
-Perry	0.001	19.646
-Texas	0.0	0.0
-Worth	0.0	0.0
-Clark	0.0	0.0
-Moniteau	0.0	2.0
-Morgan	0.0	0.0
-Johnson	0.133	27.85
-Kansas City	272.525	10687.891
-Harrison	0.0	0.0
-Phelps	0.0	0.0
-Cedar	0.0	0.0
-Clinton	8.258	323.662
-Crawford	5.996	367.678
-Gentry	0.0	0.0
-Ray	6.928	351.099
-Jasper	33.033	1292.652
-Callaway	0.0	1.0
-Bollinger	0.0	0.0
-Adair	0.0	0.0
-Jackson	1.211	223.187
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Wright	0.0	0.0	0.0	0.0
+Linn	0.0	0.0	0.0	0.0
+Pike	0.0	0.0	0.0	0.0
+Pemiscot	0.0	0.0	0.0	0.0
+Montgomery	7.586	337.425	0.00065771	0.02925481
+Platte	0.068	11.008	6.6e-07	0.00010689
+Webster	0.0	0.0	0.0	0.0
+Reynolds	0.0	0.0	0.0	0.0
+St. Louis City	5.058	872.738	N/A	N/A
+Taney	16.517	645.327	0.00029573	0.01155423
+Ralls	0.0	0.0	0.0	0.0
+Camden	24.775	967.991	0.00054076	0.02112825
+New Madrid	0.0	0.0	0.0	0.0
+Howell	0.0	0.0	0.0	0.0
+Caldwell	0.0	0.0	0.0	0.0
+Gasconade	0.0	0.0	0.0	0.0
+Macon	0.0	0.0	0.0	0.0
+Dunklin	8.258	322.662	0.00028066	0.01096632
+Bates	0.0	0.0	0.0	0.0
+Cass	8.258	322.662	7.868e-05	0.00307432
+Jefferson	95.069	3963.028	0.00042376	0.01766472
+Newton	0.0	0.0	0.0	0.0
+Pulaski	8.258	322.662	0.00015876	0.00620337
+Ripley	0.0	0.0	0.0	0.0
+Maries	0.0	0.0	0.0	0.0
+Saint Louis	18.872	2456.183	1.893e-05	0.00246371
+Saint Francois	33.033	1290.652	0.00049531	0.01935243
+Pettis	0.0	0.0	0.0	0.0
+McDonald	0.0	0.0	0.0	0.0
+Livingston	0.0	0.0	0.0	0.0
+Benton	0.0	0.0	0.0	0.0
+Saint Charles	6.313	730.614	1.581e-05	0.00183028
+Henry	0.0	0.0	0.0	0.0
+Carter	-7.254	-344.171	-0.00119822	-0.05685018
+Madison	0.0	0.0	0.0	0.0
+Buchanan	0.0	0.0	0.0	0.0
+Scott	8.258	322.662	0.00021473	0.00838998
+Nodaway	4.872	380.89	0.00021844	0.01707721
+Cole	24.775	967.991	0.00032261	0.01260471
+Saline	4.62	382.979	0.00020179	0.01672763
+Christian	8.258	322.662	9.494e-05	0.00370948
+Stoddard	0.0	0.0	0.0	0.0
+Osage	0.0	0.0	0.0	0.0
+Unassigned	-10.274	-756.336	N/A	N/A
+Randolph	0.0	0.0	0.0	0.0
+Dallas	0.0	0.0	0.0	0.0
+Barry	0.0	0.0	0.0	0.0
+Atchison	0.0	0.0	0.0	0.0
+Clay	0.237	43.008	9.6e-07	0.00017457
+De Kalb	0.0	0.0	0.0	0.0
+Shelby	0.0	0.0	0.0	0.0
+Franklin	0.181	37.088	1.75e-06	0.00035775
+Cooper	0.0	0.0	0.0	0.0
+Butler	0.0	0.0	0.0	0.0
+Stone	0.0	0.0	0.0	0.0
+Sainte Genevieve	0.0	0.0	0.0	0.0
+Chariton	0.0	0.0	0.0	0.0
+Perry	0.001	13.646	5e-08	0.00071258
+Texas	0.0	0.0	0.0	0.0
+Worth	0.0	0.0	0.0	0.0
+Clark	0.0	0.0	0.0	0.0
+Moniteau	0.0	0.0	0.0	0.0
+Morgan	0.0	0.0	0.0	0.0
+Johnson	0.133	24.85	2.48e-06	0.00046317
+Kansas City	272.525	10647.891	N/A	N/A
+Harrison	0.0	0.0	0.0	0.0
+Phelps	0.0	0.0	0.0	0.0
+Cedar	0.0	0.0	0.0	0.0
+Clinton	8.258	322.662	0.00040342	0.01576268
+Crawford	5.996	366.575	0.00025028	0.01530137
+Gentry	0.0	0.0	0.0	0.0
+Ray	6.928	350.472	0.00030276	0.01531582
+Jasper	33.033	1290.652	0.00027382	0.01069873
+Callaway	0.0	0.0	0.0	0.0
+Bollinger	0.0	0.0	0.0	0.0
+Adair	0.0	0.0	0.0	0.0
+Jackson	1.211	203.187	1.73e-06	0.00029014

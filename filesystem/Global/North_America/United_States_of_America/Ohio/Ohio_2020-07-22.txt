@@ -1,32 +1,32 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Logan	0.0	0.0
-Richland	0.058	3697.006
-Sandusky	0.0	0.0
-Seneca	0.006	461.88
-Fairfield	0.116	9237.63
-Coshocton	0.022	1386.631
-Wyandot	0.0	0.0
-Washington	0.044	2778.256
-Pickaway	0.023	4229.134
-Erie	0.036	2311.375
-Fayette	0.0	0.0
-Lawrence	0.007	1208.32
-Ashland	0.0	0.0
-Darke	0.029	1847.503
-Defiance	0.0	1.0
-Clermont	0.021	2122.871
-Gallia	0.0	0.0
-Tuscarawas	0.022	1388.631
-Highland	0.007	463.874
-Greene	0.044	2773.256
-Hancock	0.015	1515.047
-Union	0.015	923.753
-Ashtabula	0.029	1850.503
-Clark	0.015	925.753
-Carroll	0.007	462.874
-Knox	0.015	923.753
-Huron	0.015	926.753
-Clinton	0.015	923.753
-Crawford	0.006	461.88
-Champaign	0.0	0.0
-Athens	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Logan	0.0	0.0	0.0	0.0
+Richland	0.058	3695.006	4.8e-07	0.03051228
+Sandusky	0.0	0.0	0.0	0.0
+Seneca	0.006	461.547	1.1e-07	0.0083603
+Fairfield	0.116	9230.963	7.4e-07	0.05925565
+Coshocton	0.022	1385.631	6e-07	0.0378288
+Wyandot	0.0	0.0	0.0	0.0
+Washington	0.044	2771.256	7.3e-07	0.04606859
+Pickaway	0.023	4223.375	4e-07	0.072709
+Erie	0.036	2309.375	4.8e-07	0.03095055
+Fayette	0.0	0.0	0.0	0.0
+Lawrence	0.007	1206.674	1.2e-07	0.02015625
+Ashland	0.0	0.0	0.0	0.0
+Darke	0.029	1847.503	5.7e-07	0.03599756
+Defiance	0.0	0.0	0.0	0.0
+Clermont	0.021	2116.871	1e-07	0.01030278
+Gallia	0.0	0.0	0.0	0.0
+Tuscarawas	0.022	1385.631	2.4e-07	0.01503245
+Highland	0.007	461.874	1.6e-07	0.01072679
+Greene	0.044	2771.256	2.6e-07	0.01649606
+Hancock	0.015	1512.047	2e-07	0.0199137
+Union	0.015	923.753	2.6e-07	0.01597221
+Ashtabula	0.029	1847.503	3e-07	0.01895011
+Clark	0.015	923.753	1.1e-07	0.00686371
+Carroll	0.007	461.874	2.6e-07	0.01705528
+Knox	0.015	923.753	2.4e-07	0.014925
+Huron	0.015	923.753	2.6e-07	0.01578957
+Clinton	0.015	923.753	3.6e-07	0.02196431
+Crawford	0.006	461.547	1.4e-07	0.01110823
+Champaign	0.0	0.0	0.0	0.0
+Athens	0.0	0.0	0.0	0.0

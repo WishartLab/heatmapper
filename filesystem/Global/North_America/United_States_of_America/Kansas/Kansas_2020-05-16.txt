@@ -1,51 +1,51 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Linn	0.0	0.0
-Cowley	0.0	0.0
-Cherokee	0.0	0.0
-Montgomery	0.0	0.0
-Republic	0.0	0.0
-Harvey	0.0	0.0
-Ford	0.0	0.0
-Pratt	0.0	0.0
-Riley	1.987	140.472
-Mitchell	0.0	0.0
-Wyandotte	3.92	407.32
-Shawnee	42.527	1755.345
-Jewell	0.0	0.0
-Finney	9.514	445.195
-Stevens	0.0	0.0
-Osborne	6.612	349.617
-Morton	0.0	0.0
-Jefferson	0.0	0.0
-Reno	9.956	268.518
-Gove	0.0	0.0
-Geary	0.0	0.0
-Lyon	39.826	1073.072
-Chautauqua	0.036	5.845
-Marion	13.225	699.238
-Leavenworth	0.742	85.881
-Labette	4.543	226.131
-Doniphan	0.0	0.0
-Neosho	0.0	0.0
-Stafford	0.0	0.0
-Saline	9.514	445.195
-Sumner	0.0	0.0
-Osage	0.0	0.0
-Woodson	0.0	0.0
-Atchison	0.0	0.0
-Clay	0.0	0.0
-Coffey	0.379	55.442
-Franklin	0.0	1.0
-Cloud	0.0	0.0
-Butler	0.0	0.0
-Bourbon	19.913	539.036
-Anderson	0.0	0.0
-Greenwood	0.0	0.0
-Miami	0.0	0.0
-Johnson	2.555	302.038
-Ottawa	17.817	609.115
-Crawford	0.0	-2.0
-Pottawatomie	0.0	1.0
-Sedgwick	3.54	373.56
-McPherson	10.831	419.718
-Wabaunsee	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Linn	0.0	0.0	0.0	0.0
+Cowley	0.0	0.0	0.0	0.0
+Cherokee	0.0	0.0	0.0	0.0
+Montgomery	0.0	0.0	0.0	0.0
+Republic	0.0	0.0	0.0	0.0
+Harvey	0.0	0.0	0.0	0.0
+Ford	0.0	0.0	0.0	0.0
+Pratt	0.0	0.0	0.0	0.0
+Riley	1.987	138.714	2.696e-05	0.00188207
+Mitchell	0.0	0.0	0.0	0.0
+Wyandotte	3.92	379.32	2.371e-05	0.0022944
+Shawnee	42.527	1749.422	0.00023959	0.00985595
+Jewell	0.0	0.0	0.0	0.0
+Finney	9.514	443.177	0.00025987	0.01210502
+Stevens	0.0	0.0	0.0	0.0
+Osborne	6.612	347.469	0.00190273	0.09999108
+Morton	0.0	0.0	0.0	0.0
+Jefferson	0.0	0.0	0.0	0.0
+Reno	9.956	268.518	0.0001597	0.00430718
+Gove	0.0	0.0	0.0	0.0
+Geary	0.0	0.0	0.0	0.0
+Lyon	39.826	1074.072	0.00119218	0.03215207
+Chautauqua	0.036	5.554	1.088e-05	0.00167845
+Marion	13.225	694.943	0.00110669	0.05815423
+Leavenworth	0.742	81.881	9.12e-06	0.0010065
+Labette	4.543	224.938	0.00022756	0.01126718
+Doniphan	0.0	0.0	0.0	0.0
+Neosho	0.0	0.0	0.0	0.0
+Stafford	0.0	0.0	0.0	0.0
+Saline	9.514	443.177	0.00017489	0.00814649
+Sumner	0.0	0.0	0.0	0.0
+Osage	0.0	0.0	0.0	0.0
+Woodson	0.0	0.0	0.0	0.0
+Atchison	0.0	0.0	0.0	0.0
+Clay	0.0	0.0	0.0	0.0
+Coffey	0.379	52.874	4.603e-05	0.0064222
+Franklin	0.0	0.0	0.0	0.0
+Cloud	0.0	0.0	0.0	0.0
+Butler	0.0	0.0	0.0	0.0
+Bourbon	19.913	537.036	0.00135897	0.03665024
+Anderson	0.0	0.0	0.0	0.0
+Greenwood	0.0	0.0	0.0	0.0
+Miami	0.0	0.0	0.0	0.0
+Johnson	2.555	282.038	4.28e-06	0.00047199
+Ottawa	17.817	607.86	0.00307084	0.10476732
+Crawford	0.0	0.0	0.0	0.0
+Pottawatomie	0.0	0.0	0.0	0.0
+Sedgwick	3.54	357.56	6.89e-06	0.00069617
+McPherson	10.831	418.496	0.00037954	0.01466503
+Wabaunsee	0.0	0.0	0.0	0.0

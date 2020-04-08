@@ -1,12 +1,12 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Chittenden	3.303	554.612
-Rutland	80.176	2753.3
-Addison	0.455	71.139
-Washington	0.057	8.89
-Caledonia	17.817	611.622
-Windham	106.902	3673.729
-Unassigned	48.741	1907.989
-Franklin	0.722	97.185
-Orleans	0.0	0.0
-Windsor	17.817	611.622
-Orange	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Chittenden	3.303	540.612	2.007e-05	0.00328496
+Rutland	80.176	2752.3	0.00136651	0.04690994
+Addison	0.455	71.139	1.231e-05	0.00192408
+Washington	0.057	8.89	9.8e-07	0.00015291
+Caledonia	17.817	611.622	0.00058798	0.02018421
+Windham	106.902	3669.729	0.00250028	0.08582957
+Unassigned	48.741	1899.989	N/A	N/A
+Franklin	0.722	95.185	1.461e-05	0.001926
+Orleans	0.0	0.0	0.0	0.0
+Windsor	17.817	611.622	0.00032227	0.01106287
+Orange	0.0	0.0	0.0	0.0

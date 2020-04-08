@@ -1,46 +1,46 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Shasta	21.459	4357.395
-Yuba	2.019	437.455
-Alpine	0.0	0.0
-San Mateo	2.029	1466.327
-Riverside	942.05	191304.945
-Sacramento	197.423	40080.438
-Butte	2.146	435.436
-Ventura	0.381	424.892
-Kern	128.754	26135.369
-San Benito	0.0	0.0
-San Bernardino	50.873	13147.832
-Madera	0.0	0.0
-Fresno	0.384	277.873
-Glenn	0.0	0.0
-Tulare	10.003	3667.086
-Santa Barbara	0.371	419.092
-San Joaquin	0.05	166.956
-Alameda	0.948	1316.196
-Placer	0.329	236.892
-Siskiyou	0.0	1.0
-Contra Costa	1.054	1323.304
-Del Norte	1.058	442.75
-Humboldt	0.282	170.746
-Calaveras	2.146	436.436
-Santa Clara	0.59	1075.851
-Unassigned	0.0	0.0
-Stanislaus	0.212	242.055
-Amador	0.0	3.0
-Plumas	0.0	11.844
-Los Angeles	54.924	33717.337
-Monterey	0.247	175.412
-Sonoma	0.074	105.108
-Tuolumne	0.0	0.0
-Colusa	0.0	0.0
-Santa Cruz	0.053	59.012
-Marin	0.148	206.22
-El Dorado	0.0	7.248
-Tehama	0.0	0.0
-Inyo	0.001	8.106
-San Diego	10.987	7304.187
-Imperial	0.123	122.679
-Merced	0.031	72.054
-Nevada	0.015	21.225
-Napa	0.01	20.234
-Mendocino	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Shasta	21.459	4354.395	0.00011919	0.02418571
+Yuba	2.019	437.122	2.587e-05	0.00560118
+Alpine	0.0	0.0	0.0	0.0
+San Mateo	2.029	1442.327	2.64e-06	0.00187426
+Riverside	942.05	191157.945	0.00038439	0.07799952
+Sacramento	197.423	40060.438	0.00012812	0.02599681
+Butte	2.146	435.436	9.28e-06	0.00188292
+Ventura	0.381	424.892	4.5e-07	0.0004993
+Kern	128.754	26126.369	0.00014358	0.02913405
+San Benito	0.0	0.0	0.0	0.0
+San Bernardino	50.873	13146.832	2.343e-05	0.00605398
+Madera	0.0	0.0	0.0	0.0
+Fresno	0.384	272.873	3.9e-07	0.00027441
+Glenn	0.0	0.0	0.0	0.0
+Tulare	10.003	3648.086	2.147e-05	0.00783085
+Santa Barbara	0.371	413.092	8.3e-07	0.00092512
+San Joaquin	0.05	151.956	7e-08	0.00020189
+Alameda	0.948	1294.196	5.7e-07	0.00077648
+Placer	0.329	233.892	8.4e-07	0.00059492
+Siskiyou	0.0	0.0	0.0	0.0
+Contra Costa	1.054	1292.304	9.2e-07	0.00112353
+Del Norte	1.058	440.602	3.802e-05	0.01583305
+Humboldt	0.282	170.746	2.07e-06	0.00125205
+Calaveras	2.146	435.436	4.706e-05	0.00954862
+Santa Clara	0.59	1075.851	3e-07	0.00055526
+Unassigned	0.0	0.0	N/A	N/A
+Stanislaus	0.212	236.055	3.9e-07	0.00042934
+Amador	0.0	0.0	0.0	0.0
+Plumas	0.0	11.277	0.0	0.00059971
+Los Angeles	54.924	33295.337	5.44e-06	0.00329477
+Monterey	0.247	175.412	5.7e-07	0.0004027
+Sonoma	0.074	101.108	1.5e-07	0.00020224
+Tuolumne	0.0	0.0	0.0	0.0
+Colusa	0.0	0.0	0.0	0.0
+Santa Cruz	0.053	59.012	1.9e-07	0.00021517
+Marin	0.148	202.22	5.7e-07	0.00077877
+El Dorado	0.0	7.248	0.0	3.801e-05
+Tehama	0.0	0.0	0.0	0.0
+Inyo	0.001	7.776	6e-08	0.00043231
+San Diego	10.987	7187.187	3.29e-06	0.00214969
+Imperial	0.123	114.679	6.8e-07	0.0006307
+Merced	0.031	70.054	1.1e-07	0.00025496
+Nevada	0.015	20.225	1.5e-07	0.00020287
+Napa	0.01	18.234	7e-08	0.00013079
+Mendocino	0.0	0.0	0.0	0.0

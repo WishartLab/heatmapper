@@ -1,24 +1,24 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Shasta	3.749	4604.764
-Yuba	0.334	460.508
-Alpine	0.0	0.0
-Riverside	164.601	202164.485
-Sacramento	34.495	42356.24
-Butte	0.375	460.174
-Kern	22.497	27619.59
-San Benito	0.0	0.0
-San Bernardino	6.522	13696.336
-Glenn	0.0	0.0
-Tulare	0.327	3765.173
-Siskiyou	0.0	1.0
-Del Norte	0.017	452.499
-Humboldt	0.001	172.65
-Calaveras	0.375	461.174
-Unassigned	0.0	0.0
-Amador	0.0	3.0
-Los Angeles	0.27	34088.598
-Tuolumne	0.0	0.0
-Colusa	0.0	0.0
-Tehama	0.0	0.0
-San Diego	0.043	7374.371
-Mendocino	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Shasta	3.749	4601.764	2.082e-05	0.02555968
+Yuba	0.334	460.175	4.28e-06	0.00589658
+Alpine	0.0	0.0	0.0	0.0
+Riverside	164.601	202017.485	6.716e-05	0.08243061
+Sacramento	34.495	42336.24	2.239e-05	0.02747367
+Butte	0.375	460.174	1.62e-06	0.00198989
+Kern	22.497	27610.59	2.509e-05	0.03078914
+San Benito	0.0	0.0	0.0	0.0
+San Bernardino	6.522	13695.336	3e-06	0.00630656
+Glenn	0.0	0.0	0.0	0.0
+Tulare	0.327	3746.173	7e-07	0.0080414
+Siskiyou	0.0	0.0	0.0	0.0
+Del Norte	0.017	450.351	6.1e-07	0.01618338
+Humboldt	0.001	172.65	1e-08	0.00126601
+Calaveras	0.375	460.174	8.22e-06	0.01009109
+Unassigned	0.0	0.0	N/A	N/A
+Amador	0.0	0.0	0.0	0.0
+Los Angeles	0.27	33666.598	3e-08	0.00333151
+Tuolumne	0.0	0.0	0.0	0.0
+Colusa	0.0	0.0	0.0	0.0
+Tehama	0.0	0.0	0.0	0.0
+San Diego	0.043	7257.371	1e-08	0.00217068
+Mendocino	0.0	0.0	0.0	0.0

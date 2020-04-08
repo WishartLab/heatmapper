@@ -1,34 +1,34 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Valley	0.0	-1.0
-Kootenai	1.105	46.894
-Ada	28.231	839.372
-Lewis	0.0	0.0
-Bonner	0.0	0.0
-Lincoln	16.25	298.356
-Washington	0.0	0.0
-Teton	0.0	0.0
-Canyon	12.011	323.668
-Jefferson	0.0	0.0
-Gooding	0.0	0.0
-Custer	0.0	0.0
-Blaine	15.213	520.784
-Bonneville	15.617	233.058
-Bingham	0.0	0.0
-Fremont	0.0	0.0
-Elmore	0.194	9.919
-Madison	0.0	0.0
-Minidoka	0.0	0.0
-Unassigned	0.0	0.0
-Cassia	10.513	98.782
-Adams	0.0	0.0
-Camas	0.0	0.0
-Latah	0.0	0.0
-Nez Perce	0.0	0.0
-Owyhee	0.0	0.0
-Bannock	0.0	0.0
-Idaho	23.691	265.141
-Jerome	0.388	19.843
-Twin Falls	21.026	197.561
-Payette	0.0	0.0
-Caribou	0.0	0.0
-Gem	0.115	5.568
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Valley	0.0	0.0	0.0	0.0
+Kootenai	1.105	44.894	6.84e-06	0.00027797
+Ada	28.231	822.372	6.007e-05	0.00174985
+Lewis	0.0	0.0	0.0	0.0
+Bonner	0.0	0.0	0.0	0.0
+Lincoln	16.25	295.752	0.00303172	0.05517761
+Washington	0.0	0.0	0.0	0.0
+Teton	0.0	0.0	0.0	0.0
+Canyon	12.011	321.668	5.374e-05	0.00143924
+Jefferson	0.0	0.0	0.0	0.0
+Gooding	0.0	0.0	0.0	0.0
+Custer	0.0	0.0	0.0	0.0
+Blaine	15.213	520.784	0.00067311	0.02304252
+Bonneville	15.617	231.611	0.00013365	0.00198205
+Bingham	0.0	0.0	0.0	0.0
+Fremont	0.0	0.0	0.0	0.0
+Elmore	0.194	9.336	7.12e-06	0.00034249
+Madison	0.0	0.0	0.0	0.0
+Minidoka	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	N/A	N/A
+Cassia	10.513	98.782	0.00044054	0.00413937
+Adams	0.0	0.0	0.0	0.0
+Camas	0.0	0.0	0.0	0.0
+Latah	0.0	0.0	0.0	0.0
+Nez Perce	0.0	0.0	0.0	0.0
+Owyhee	0.0	0.0	0.0	0.0
+Bannock	0.0	0.0	0.0	0.0
+Idaho	23.691	264.124	0.00143469	0.01599491
+Jerome	0.388	18.677	1.616e-05	0.00077772
+Twin Falls	21.026	197.561	0.00024426	0.00229506
+Payette	0.0	0.0	0.0	0.0
+Caribou	0.0	0.0	0.0	0.0
+Gem	0.115	5.253	6.52e-06	0.00029789

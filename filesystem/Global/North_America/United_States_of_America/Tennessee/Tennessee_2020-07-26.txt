@@ -1,28 +1,28 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Cumberland	0.01	1847.568
-Out of TN	0.22	40209.615
-Lincoln	0.003	461.891
-Maury	0.005	926.786
-Hamilton	0.028	5089.812
-Loudon	0.003	461.891
-Washington	0.008	1386.68
-Hardin	0.0	0.0
-Roane	0.0	0.0
-Fayette	0.01	1848.568
-Jefferson	0.0	1.0
-McMinn	0.0	0.0
-Monroe	0.0	0.0
-Houston	0.0	0.0
-Scott	0.0	0.0
-Unassigned	0.081	14763.549
-Claiborne	0.0	0.0
-Chester	0.003	461.891
-Greene	0.0	0.0
-Anderson	0.0	0.0
-Campbell	0.0	0.0
-Perry	0.0	0.0
-Dyer	0.01	1847.568
-Carroll	0.008	1386.68
-Hamblen	0.0	0.0
-Gibson	0.008	1386.68
-Cheatham	0.005	923.786
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Cumberland	0.01	1847.568	1.7e-07	0.03096154
+Out of TN	0.22	40184.615	N/A	N/A
+Lincoln	0.003	461.891	9e-08	0.01353844
+Maury	0.005	923.786	5e-08	0.00979209
+Hamilton	0.028	5080.812	8e-08	0.01394732
+Loudon	0.003	461.891	6e-08	0.00870605
+Washington	0.008	1385.68	6e-08	0.01077453
+Hardin	0.0	0.0	0.0	0.0
+Roane	0.0	0.0	0.0	0.0
+Fayette	0.01	1847.568	2.5e-07	0.04561108
+Jefferson	0.0	0.0	0.0	0.0
+McMinn	0.0	0.0	0.0	0.0
+Monroe	0.0	0.0	0.0	0.0
+Houston	0.0	0.0	0.0	0.0
+Scott	0.0	0.0	0.0	0.0
+Unassigned	0.081	14780.549	N/A	N/A
+Claiborne	0.0	0.0	0.0	0.0
+Chester	0.003	461.891	1.7e-07	0.02673599
+Greene	0.0	0.0	0.0	0.0
+Anderson	0.0	0.0	0.0	0.0
+Campbell	0.0	0.0	0.0	0.0
+Perry	0.0	0.0	0.0	0.0
+Dyer	0.01	1847.568	2.7e-07	0.04950611
+Carroll	0.008	1385.68	2.9e-07	0.04945325
+Hamblen	0.0	0.0	0.0	0.0
+Gibson	0.008	1385.68	1.6e-07	0.02825324
+Cheatham	0.005	923.786	1.2e-07	0.02284394

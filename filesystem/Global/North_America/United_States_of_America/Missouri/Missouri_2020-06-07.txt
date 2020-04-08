@@ -1,77 +1,77 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases
-Wright	0.0	0.0
-Linn	0.0	0.0
-Pike	0.0	0.0
-Pemiscot	0.0	0.0
-Montgomery	3.284	419.611
-Platte	0.024	14.675
-Webster	0.0	0.0
-Reynolds	0.0	0.0
-St. Louis City	1.692	951.591
-Taney	7.415	828.336
-Ralls	0.0	0.0
-Camden	11.123	1242.505
-New Madrid	0.0	0.0
-Howell	0.0	0.0
-Caldwell	0.0	0.0
-Gasconade	0.0	0.0
-Macon	0.0	0.0
-Dunklin	3.708	414.165
-Bates	0.0	0.0
-Cass	3.708	417.165
-Jefferson	41.94	4999.954
-Newton	0.0	0.0
-Pulaski	3.708	414.165
-Ripley	0.0	0.0
-Maries	0.0	0.0
-Saint Louis	6.545	2804.593
-Saint Francois	14.831	1654.67
-Pettis	0.0	0.0
-McDonald	0.0	0.0
-Livingston	0.0	0.0
-Benton	0.0	0.0
-Saint Charles	2.175	827.391
-Henry	0.0	1.0
-Carter	-3.073	-422.272
-Madison	0.0	0.0
-Buchanan	0.0	0.0
-Scott	3.708	416.165
-Nodaway	1.808	431.826
-Cole	11.123	1242.505
-Saline	1.706	431.384
-Christian	3.708	414.165
-Stoddard	0.0	0.0
-Osage	0.0	0.0
-Unassigned	-3.819	-863.679
-Randolph	0.0	0.0
-Dallas	0.0	0.0
-Barry	0.0	0.0
-Atchison	0.0	0.0
-Clay	0.073	50.236
-De Kalb	0.0	0.0
-Shelby	0.0	0.0
-Franklin	0.046	40.376
-Cooper	0.0	0.0
-Butler	0.0	0.0
-Stone	0.0	0.0
-Sainte Genevieve	0.0	0.0
-Chariton	0.0	0.0
-Texas	0.0	0.0
-Worth	0.0	0.0
-Clark	0.0	0.0
-Moniteau	0.0	2.0
-Morgan	0.0	0.0
-Johnson	0.039	29.088
-Kansas City	122.352	13674.541
-Harrison	0.0	0.0
-Phelps	0.0	0.0
-Cedar	0.0	0.0
-Clinton	3.708	414.165
-Crawford	2.293	429.707
-Gentry	0.0	0.0
-Ray	2.862	424.626
-Jasper	14.831	1654.67
-Callaway	0.0	1.0
-Bollinger	0.0	0.0
-Adair	0.0	0.0
-Jackson	0.419	235.015
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
+Wright	0.0	0.0	0.0	0.0
+Linn	0.0	0.0	0.0	0.0
+Pike	0.0	0.0	0.0	0.0
+Pemiscot	0.0	0.0	0.0	0.0
+Montgomery	3.284	419.199	0.00028472	0.03634463
+Platte	0.024	11.675	2.3e-07	0.00011337
+Webster	0.0	0.0	0.0	0.0
+Reynolds	0.0	0.0	0.0	0.0
+St. Louis City	1.692	921.591	N/A	N/A
+Taney	7.415	826.336	0.00013276	0.0147951
+Ralls	0.0	0.0	0.0	0.0
+Camden	11.123	1239.505	0.00024278	0.02705457
+New Madrid	0.0	0.0	0.0	0.0
+Howell	0.0	0.0	0.0	0.0
+Caldwell	0.0	0.0	0.0	0.0
+Gasconade	0.0	0.0	0.0	0.0
+Macon	0.0	0.0	0.0	0.0
+Dunklin	3.708	413.165	0.00012602	0.01404225
+Bates	0.0	0.0	0.0	0.0
+Cass	3.708	413.165	3.533e-05	0.00393663
+Jefferson	41.94	4995.954	0.00018694	0.02226887
+Newton	0.0	0.0	0.0	0.0
+Pulaski	3.708	413.165	7.129e-05	0.00794334
+Ripley	0.0	0.0	0.0	0.0
+Maries	0.0	0.0	0.0	0.0
+Saint Louis	6.545	2635.593	6.57e-06	0.00264367
+Saint Francois	14.831	1652.67	0.00022238	0.02478063
+Pettis	0.0	0.0	0.0	0.0
+McDonald	0.0	0.0	0.0	0.0
+Livingston	0.0	0.0	0.0	0.0
+Benton	0.0	0.0	0.0	0.0
+Saint Charles	2.175	790.391	5.45e-06	0.00198003
+Henry	0.0	0.0	0.0	0.0
+Carter	-3.073	-421.764	-0.0005076	-0.069667
+Madison	0.0	0.0	0.0	0.0
+Buchanan	0.0	0.0	0.0	0.0
+Scott	3.708	413.165	9.642e-05	0.01074328
+Nodaway	1.808	429.678	8.106e-05	0.01926462
+Cole	11.123	1239.505	0.00014484	0.01614023
+Saline	1.706	428.853	7.451e-05	0.0187313
+Christian	3.708	413.165	4.263e-05	0.00474995
+Stoddard	0.0	0.0	0.0	0.0
+Osage	0.0	0.0	0.0	0.0
+Unassigned	-3.819	-860.041	N/A	N/A
+Randolph	0.0	0.0	0.0	0.0
+Dallas	0.0	0.0	0.0	0.0
+Barry	0.0	0.0	0.0	0.0
+Atchison	0.0	0.0	0.0	0.0
+Clay	0.073	45.236	3e-07	0.00018361
+De Kalb	0.0	0.0	0.0	0.0
+Shelby	0.0	0.0	0.0	0.0
+Franklin	0.046	38.725	4.4e-07	0.00037354
+Cooper	0.0	0.0	0.0	0.0
+Butler	0.0	0.0	0.0	0.0
+Stone	0.0	0.0	0.0	0.0
+Sainte Genevieve	0.0	0.0	0.0	0.0
+Chariton	0.0	0.0	0.0	0.0
+Texas	0.0	0.0	0.0	0.0
+Worth	0.0	0.0	0.0	0.0
+Clark	0.0	0.0	0.0	0.0
+Moniteau	0.0	0.0	0.0	0.0
+Morgan	0.0	0.0	0.0	0.0
+Johnson	0.039	26.088	7.3e-07	0.00048624
+Kansas City	122.352	13634.541	N/A	N/A
+Harrison	0.0	0.0	0.0	0.0
+Phelps	0.0	0.0	0.0	0.0
+Cedar	0.0	0.0	0.0	0.0
+Clinton	3.708	413.165	0.00018114	0.02018393
+Crawford	2.293	428.604	9.571e-05	0.01789055
+Gentry	0.0	0.0	0.0	0.0
+Ray	2.862	423.999	0.00012507	0.018529
+Jasper	14.831	1652.67	0.00012294	0.01369964
+Callaway	0.0	0.0	0.0	0.0
+Bollinger	0.0	0.0	0.0	0.0
+Adair	0.0	0.0	0.0	0.0
+Jackson	0.419	215.015	6e-07	0.00030703
