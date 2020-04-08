@@ -3,6 +3,17 @@
   text-align: center;
 }
 
+.left-box {
+  text-align: left;
+  margin-bottom: 1.5em;
+}
+
+.contact-box {
+  text-align: left;
+  border-style: dotted;
+  max-width: 600px;
+}
+
 .centered-box {
   position: absolute;
   width: 100%;
@@ -65,13 +76,14 @@ footer {
 
 .footer-container-2 {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .footer-left {
   float: left;
   text-align: left;
-  width: 500px;
-  color: #74736E;
+  width: 524px;
   padding: 1.0em;
 }
 
