@@ -40,20 +40,25 @@ dimensions_msg <- "Input data can have up to 50 data columns."
 mround <- function(x,base){
  return(base*round(x/base))
 }
+#Idea from: https://rstudio-pubs-static.s3.amazonaws.com/408658_512da947714740b99253228f084a08a9.html
+CapStr <- function(y) {
+  c <- strsplit(y, " ")[[1]]
+  capitalized_string <- paste(toupper(substring(c, 1,1)), substring(c, 2),
+                              sep="", collapse=" ")
+  capitalized_string <- gsub(pattern = " And ", replacement = " and ",capitalized_string)
+  capitalized_string <- gsub(pattern = " Of ", replacement = " of ",capitalized_string)
+  capitalized_string <- gsub(pattern = " The ", replacement = " the ",capitalized_string)
+  return(capitalized_string)
+}
+capitalize_str <- function(charcter_string){
+  sapply(charcter_string, CapStr)
+}
 # Logging & debugging
-date_part <- Sys.time() %>% 
-  as.character() %>% 
-  strsplit(split = " ") %>% 
-  unlist() %>% 
-  paste(collapse = "_")
 log_filename = tryCatch({
   paste(system("hostname", intern = TRUE),
-        #Add date to log file
-        #date_part,
         'log.txt', sep = "_")
 }, error = function(e) {
   'log.txt'
-  #paste(date_part,'log.txt', sep = "_")
 })
 if (!exists('logDir') || is.na(logDir) || logDir == '') {
 	logDir = '.'
@@ -749,6 +754,9 @@ shinyServer(function(input, output, session) {
           data_file[[i]] <- round(data_file[[i]], digits = 0)
         }
       }
+      #Sort by region name the rows 
+      data_file <- data_file %>% 
+        arrange(Name)
       return(data_file)
     },
     error = function(err) {
@@ -1370,6 +1378,8 @@ shinyServer(function(input, output, session) {
   
   ################# OUTPUT FUNCTIONS #################
   output$table <- DT::renderDataTable({
+    values$file[[1]] <- capitalize_str(values$file[[1]])
+    
     x <- datatable(
       rownames = FALSE,
       values$file,
