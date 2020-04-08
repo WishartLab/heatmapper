@@ -311,7 +311,7 @@ shinyServer(function(input, output, session) {
   
   #If date is changed update dropdown menus
   observe({
-    if (input$date > Sys.Date()){
+    if (input$date >= Sys.Date()){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
