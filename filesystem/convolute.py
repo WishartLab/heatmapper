@@ -20,8 +20,11 @@ italian_data = [csv.reader(open(os.getcwd()+"/Global/Europe/Italy/accumulated.tx
 mexican_data =[csv.reader(open(os.getcwd()+"/Global/North_America/Mexico/accumulated.txt","rb"), delimiter = '\t'), "Mexico"]
 alberta_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Alberta/accumulated.txt","rb"), delimiter = '\t'), "Alberta"]
 salvador_data = [csv.reader(open(os.getcwd()+"/Global/North_America/El_Salvador/accumulated.txt","rb"), delimiter = '\t'), "El Salvador"]
+quebec_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Quebec/accumulated.txt","rb"), delimiter = '\t'), "Quebec"]
+sask_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Saskatchewan/accumulated.txt","rb"), delimiter = '\t'), "Saskatchewan"]
 
-cases = [ontario_data]
+cases = [ontario_data,sask_data, alberta_data, quebec_data, canada_data, us_data, cali_data, italian_data]
+
 def Extract(lst, index,date):
     if date:
         return [(item[index],item[-1]) for item in lst[1:]]
@@ -51,7 +54,9 @@ italy_curve = np.array([float(item) for item in  Extract(list(italy_data),5,Fals
 italy_deriv_curve =  np.diff(italy_curve)/italy_curve[1:]
 italy_deriv_curve = np.convolve(medfilt(italy_deriv_curve), np.ones((5,))/5, mode='valid')
 
-for region,name in cases:
+print cases
+
+for region,name in cases: 
     data = list(region)
     region_confirmed = Extract(data,1,True)
     #active_cases = Extract(data,4)
@@ -68,19 +73,28 @@ for region,name in cases:
     diffdate = region_confirmed[0][1] 
     original_diff = np.diff([float(item[0]) for item in region_confirmed])
     confirmed_diff = medfilt(original_diff,3)
+    confirmed_diff = medfilt(original_diff,5)
     confirmed_diff = np.convolve(confirmed_diff, np.ones((3,))/3, mode='valid')
     region_curve = np.diff(confirmed_diff)/confirmed_diff[1:]
+    print confirmed_diff
+    print region_curve
     if len(confirmed_diff) > 14:
-        confirmed_diff = np.convolve(confirmed_diff, np.ones((5,))/5, mode='valid') 
+        confirmed_diff = np.convolve(confirmed_diff, np.ones((3,))/3, mode='valid') 
         confirmed_diff = np.convolve(confirmed_diff, np.ones((5,))/5, mode='valid')
+    else:
+        confirmed_diff = medfilt(confirmed_diff,3)
+        confirmed_diff = medfilt(confirmed_diff,5)
+
     if len(region_curve) > 10:
         region_curve = np.convolve(medfilt(region_curve), np.ones((3,))/3, mode='valid')
-        region_curve = np.convolve(medfilt(region_curve), np.ones((5,))/5, mode='valid')
-        region_curve = np.convolve(medfilt(region_curve), np.ones((5,))/5, mode='valid')
+        region_curve = medfilt(region_curve,3)
+
     else:
         region_curve = medfilt(region_curve,3)
         region_curve = medfilt(region_curve,5)
-    region_median = np.median(region_curve[-4:-1])
+    print region_curve
+    region_median = np.median(region_curve[-3:-1])
+
     i = 0
     day = 0
     closest_match = None
@@ -106,27 +120,27 @@ for region,name in cases:
             new_value = region_projected[-1] + region_projected[-1]*rate
         region_projected.append(new_value)
 
-    # plt.plot(np.array(get_day_count(region_curve,0)), np.array(region_curve), 'k--', label='outbreak rate')
-    # plt.show()
-    # plt.plot(np.array(get_day_count(confirmed_diff,0)), np.array(confirmed_diff), 'k--', label='actual')
-    # plt.plot(np.array(get_day_count(region_projected,len(confirmed_diff)-1)), np.array(region_projected), 'r-', label='projected')
-    # plt.xlabel("Day",fontsize=18)
-    # plt.ylabel("New Cases",fontsize=16)
-    # plt.title(name,fontsize=22)
-    # plt.show()
-    with open("predicted.tsv","wb") as tsv_file:
-        date = datetime.strptime(diffdate,"%Y-%m-%d")
-        makeup = datetime.strptime("2020-03-15","%Y-%m-%d")
-        while makeup < date:
-            writer.writerow([makeup,0.0])
-            makeup = makeup + timedelta(1)
-        writer = csv.writer(tsv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        for row in original_diff:
-            writer.writerow([date,row])
-            date = date + timedelta(1)
-        for row in region_projected:
-            writer.writerow([date,round(row,3)])
-            date = date + timedelta(1)
+    plt.plot(np.array(get_day_count(region_curve,0)), np.array(region_curve), 'k--', label='outbreak rate')
+    plt.show()
+    plt.plot(np.array(get_day_count(confirmed_diff,0)), np.array(confirmed_diff), 'r-', label='actual')
+    plt.plot(np.array(get_day_count(region_projected,len(confirmed_diff)-1)), np.array(region_projected), 'k--', label='projected')
+    plt.xlabel("Day",fontsize=18)
+    plt.ylabel("New Cases",fontsize=16)
+    plt.title(name,fontsize=22)
+    plt.show()
+    # with open("predicted.tsv","wb") as tsv_file:
+    #     date = datetime.strptime(diffdate,"%Y-%m-%d")
+    #     makeup = datetime.strptime("2020-03-15","%Y-%m-%d")
+    #     while makeup < date:
+    #         writer.writerow([makeup,0.0])
+    #         makeup = makeup + timedelta(1)
+    #     writer = csv.writer(tsv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    #     for row in original_diff:
+    #         writer.writerow([date,row])
+    #         date = date + timedelta(1)
+    #     for row in region_projected:
+    #         writer.writerow([date,round(row,3)])
+    #         date = date + timedelta(1)
 
 
 

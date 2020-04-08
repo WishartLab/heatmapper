@@ -78,27 +78,37 @@ for continent in continents:
                     #   region_confirmed = active_cases
                     #print region_confirmed
                     region_confirmed = [item for item in filter(lambda item: item[0] != 'N/A' and item[0] != "NA" and item[0] != 0.0 and item[0] != '0', region_confirmed)]
-                    if not region_confirmed:
+                    if all(v == 0 for v in region_confirmed):
+                        continue
+                    if len(region_confirmed) < 5:
+                        continue
+                    if region_confirmed[0] > region_confirmed[-1]:
                         continue
                     diffdate = region_confirmed[0][1] 
                     original_diff = np.diff([float(item[0]) for item in region_confirmed])
-                    if not original_diff.any():
-                        continue
-
                     confirmed_diff = medfilt(original_diff,3)
+                    confirmed_diff = medfilt(original_diff,5)
                     confirmed_diff = np.convolve(confirmed_diff, np.ones((3,))/3, mode='valid')
                     region_curve = np.diff(confirmed_diff)/confirmed_diff[1:]
+                    region_curve = np.nan_to_num(region_curve)
                     if len(confirmed_diff) > 14:
-                        confirmed_diff = np.convolve(confirmed_diff, np.ones((5,))/5, mode='valid') 
+                        confirmed_diff = np.convolve(confirmed_diff, np.ones((3,))/3, mode='valid') 
                         confirmed_diff = np.convolve(confirmed_diff, np.ones((5,))/5, mode='valid')
+                    else:
+                        confirmed_diff = medfilt(confirmed_diff,3)
+                        confirmed_diff = medfilt(confirmed_diff,5)
+
                     if len(region_curve) > 10:
                         region_curve = np.convolve(medfilt(region_curve), np.ones((3,))/3, mode='valid')
-                        region_curve = np.convolve(medfilt(region_curve), np.ones((5,))/5, mode='valid')
-                        region_curve = np.convolve(medfilt(region_curve), np.ones((5,))/5, mode='valid')
+                        region_curve = medfilt(region_curve,3)
+
                     else:
                         region_curve = medfilt(region_curve,3)
                         region_curve = medfilt(region_curve,5)
-                    region_median = np.median(region_curve[-4:-1])
+                    print region_curve
+                    region_median = np.median(region_curve[-3:-1])
+                    print root
+                    print region_median
                     i = 0
                     day = 0
                     closest_match = None

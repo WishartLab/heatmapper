@@ -1,7 +1,7 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily	Confirmed_change	Deaths_change
-Bristol	21	0	0	0	0.00043166	0.0	105	42	26.25	0.0021583	0.00086332	0.000539575	3	0	-25	0
-Washington	46	0	0	0	0.00036456	0.0	230	92	57.5	0.0018228	0.00072912	0.0004557	21	0	-800	0
-Providence	418	0	0	0	0.00065715	0.0	2090	836	522.5	0.00328575	0.0013143	0.0008214375	117	0	25.8	0
-Unassigned	80	12	0	0	N/A	N/A	4000	1846.15384615	1200	N/A	N/A	N/A	-80	2	233.3	0
-Newport	33	0	0	0	0.0003998	0.0	165	66	41.25	0.001999	0.0007996	0.00049975	10	0	100	0
-Kent	59	0	0	0	0.00036006	0.0	295	118	73.75	0.0018003	0.00072012	0.000450075	20	0	150	0
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Bristol	21.0	0.0	0.0	0.0	0.00043166	0.0	105.0	42.0	26.25	0.0021583	0.00086332	0.000539575
+Washington	46.0	0.0	0.0	0.0	0.00036456	0.0	230.0	92.0	57.5	0.0018228	0.00072912	0.0004557
+Providence	418.0	0.0	0.0	0.0	0.00065715	0.0	2090.0	836.0	522.5	0.00328575	0.0013143	0.0008214375
+Unassigned	80.0	12.0	0.0	0.0	N/A	N/A	4000.0	1846.15384615	1200.0	N/A	N/A	N/A
+Newport	33.0	0.0	0.0	0.0	0.0003998	0.0	165.0	66.0	41.25	0.001999	0.0007996	0.00049975
+Kent	59.0	0.0	0.0	0.0	0.00036006	0.0	295.0	118.0	73.75	0.0018003	0.00072012	0.000450075

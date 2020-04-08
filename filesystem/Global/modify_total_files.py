@@ -4,7 +4,7 @@ import csv
 from scipy.signal import medfilt
 from scipy import arange
 from lmfit import Model 
-
+from datetime import timedelta, datetime
 continents = ["Other","Europe", "North_America", "South_America", "Oceania","Africa","Asia"]
 
 for root, dirs, files in os.walk(os.getcwd()):
@@ -27,6 +27,10 @@ for continent in continents:
             files.sort()
             for file in files:
                 if file[-4:] == ".txt" and file != "accumulated.txt":
+                    startdate = datetime.date(datetime.now())
+                    filedate = datetime.strptime(file[-14:-4],"%Y-%m-%d").date()
+                    if filedate >= startdate:
+                        continue
                     data = csv.reader(open(root+"/"+file, "rb"), delimiter = '\t')
                     #print file
                     next(data)

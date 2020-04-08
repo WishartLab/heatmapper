@@ -1,4 +1,4 @@
-startdate=20200405
+startdate=20200329
 enddate=$(date +%Y%m%d)
 loopdate=$startdate
 
@@ -23,4 +23,4 @@ python convolute_regions.py
 
 cd Global
 
-python generate_regional_prediction.py
+python generate_future_files.py
