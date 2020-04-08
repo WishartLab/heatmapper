@@ -656,11 +656,12 @@ shinyServer(function(input, output, session) {
     )
      #We need input$colSelect only determine which file it is, 
     # so we do not need to trigger loading file, on every change.
-    #This is the reason for this 
-      # isolate({
-      #   selected_col <- input$colSelect
-      # })
-      selected_col <- input$colSelect
+    #This is the reason for this isolate
+      isolate({
+        selected_col <- input$colSelect
+      })
+      date_checked <- input$date
+      
     tryCatch({
       
       map_file_name <- input$area
@@ -718,12 +719,12 @@ shinyServer(function(input, output, session) {
       if (selected_col %in% actual_data_colnames){
         #Check if we do have file with that date
           date_checked <- case_when(
-            input$date < oldest_date ~ oldest_date %>% as.character(), 
-            input$date > newest_date ~ newest_date %>% as.character(), 
-            TRUE ~ input$date %>% as.character()
+            date_checked < oldest_date ~ oldest_date %>% as.character(), 
+            date_checked > newest_date ~ newest_date %>% as.character(), 
+            TRUE ~ date_checked %>% as.character()
         )
       } else {
-        date_checked <- input$date %>% as.character()
+        date_checked <- date_checked %>% as.character()
       }
       
       #Update input$date in UI if date has been corrected
