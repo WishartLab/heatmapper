@@ -613,7 +613,6 @@ shinyServer(function(input, output, session) {
          # legend_title <<- "Person count (per 1000)"
       #  }
       if(grepl("_per_capita", input$colSelect)){
-        nums_col <- as.numeric(nums_col) * 100000
         legend_title <<- "Person count (per 100,000)"
         #Check if % change column to update the legend title
       } else if (grepl("_change", input$colSelect)){
@@ -752,6 +751,9 @@ shinyServer(function(input, output, session) {
         #Check if it is not per capita column and round to integers, as we cannot have fraction of people
         if (!grepl("_per_capita", tolower(col_names[i]))){
           data_file[[i]] <- round(data_file[[i]], digits = 0)
+        } else {
+          data_file[[i]] <- as.numeric(data_file[[i]]) * 100000
+          #nums_col <- as.numeric(nums_col) * 100000
         }
       }
       #Sort by region name the rows 
@@ -1378,8 +1380,19 @@ shinyServer(function(input, output, session) {
   
   ################# OUTPUT FUNCTIONS #################
   output$table <- DT::renderDataTable({
+    #Correct region  names
     values$file[[1]] <- capitalize_str(values$file[[1]])
-    
+    #Cahnge column names to per 100000, original fiels have per capita, and numeric values are multiplied by 100000 in get_file()
+    nr_columns <- length(values$file)
+    col_names <- colnames(values$file)
+    for (i in 1:nr_columns){
+      if (grepl("_per_capita", tolower(col_names[i]))) {
+        col_name <- gsub(pattern = "_per_capita", replacement = "_per_100000", x = col_names[i])
+        names(values$file)[i] <- col_name
+      } else {
+        next
+      }
+    }
     x <- datatable(
       rownames = FALSE,
       values$file,
