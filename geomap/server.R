@@ -593,8 +593,10 @@ shinyServer(function(input, output, session) {
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
-                        choices = c("Predicted New COVID-19 Cases" = 'Predicted_New_Cases',
-                                    "Predicted Total COVID-19 Cases" = 'Total_Predicted_New_Cases'))
+                        choices = c("Predicted New Confirmed Cases" = 'Predicted_New_Cases',
+                                    "Predicted Accumulative New Cases" = 'Total_Predicted_New_Cases',
+                                    "Predicted New Cases per 100000" = 'Predicted_New_per_capita',
+                                    "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'))
       }
 
       # nums_col contains values in the selected column 
