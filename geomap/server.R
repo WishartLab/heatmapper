@@ -316,6 +316,9 @@ shinyServer(function(input, output, session) {
   
   #If date is changed update dropdown menus
   observe({
+    isolate({
+      col_selected <- input$colSelect
+    })
     if (input$date >= Sys.Date()){
       updateSelectInput(session,
                         inputId = "colSelect",
@@ -323,7 +326,8 @@ shinyServer(function(input, output, session) {
                         choices = c("Predicted New Confirmed Cases" = 'Predicted_New_Cases',
                                     "Predicted Accumulative New Cases" = 'Total_Predicted_New_Cases',
                                     "Predicted New Cases per 100000" = 'Predicted_New_per_capita',
-                                    "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'))
+                                    "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'),
+                        selected = col_selected)
     } else {
       updateSelectInput(session,
                         inputId = "colSelect",
@@ -340,7 +344,9 @@ shinyServer(function(input, output, session) {
                                     "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
                                     "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected',
                                     "COVID-19 Tests Performed" = 'Tests',
-                                    "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'))
+                                    "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'),
+                        selected = col_selected
+                        )
     }
   })
   
