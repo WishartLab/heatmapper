@@ -143,6 +143,54 @@ shinyServer(function(input, output, session) {
                 append = TRUE)
         }
         max <- ceiling(max(values$density, na.rm = TRUE))
+        #Setting values of larger countries as thresholds for max value
+        col_names <- names(values$density)
+        #World map
+        if ("united states of america" %in% col_names &&
+            "spain" %in% col_names &&
+            "france" %in% col_names &&
+            "italy" %in% col_names &&
+            "south africa" %in% col_names &&
+            "china" %in% col_names &&
+            "brazil" %in% col_names &&
+            "australia" %in% col_names ) {
+          max <- ceiling(max(values$density[names(values$density) %in% c("united states of america",
+                                                                         "spain",
+                                                                         "france",
+                                                                         "italy",
+                                                                         "south africa",
+                                                                         "china",
+                                                                         "brazil",
+                                                                         "australia")]))
+        } else if ("united states of america" %in% col_names){
+          #Northern America
+          max <- ceiling(values$density[names(values$density) == "united states of america"])
+        } else if ("spain" %in% col_names &&
+                   "france" %in% col_names &&
+                   "italy" %in% col_names){
+          #Europe
+          max <- ceiling(max(values$density[names(values$density) %in% c("spain",
+                                                                         "france",
+                                                                         "italy")]))
+        } else if ("china" %in% col_names &&
+                   "iran" %in% col_names){
+          #Asia
+          max <- ceiling(max(values$density[names(values$density) %in% c("china",
+                                                                         "iran")]))
+        } else if ("brazil" %in% col_names) {
+          #South America
+          max <- ceiling(values$density[names(values$density) == "brazil"])
+        } else if ("australia" %in% col_names) {
+          # Oceania
+          max <- ceiling(values$density[names(values$density) == "australia"])
+        } else if ("algeria" %in% col_names &&
+                   "egypt" %in% col_names &&
+                   "south africa" %in% col_names) {
+          #Africa
+          max <- ceiling(max(values$density[names(values$density) %in% c("algeria",
+                                                                         "egypt",
+                                                                         "south africa")]))
+        }
         if (is.infinite(max)){
           max <- 0
         }
@@ -1257,6 +1305,8 @@ shinyServer(function(input, output, session) {
         ordered = TRUE
       ))],
       names = names(values$density))
+      #Adding the most red colour to countries with higher value than max restircted to large area country
+      values$colours[is.na(values$colours)] <- values$palette[length(values$palette)]
     }
   } # End of get_colours() function
   
