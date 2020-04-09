@@ -319,7 +319,7 @@ shinyServer(function(input, output, session) {
     isolate({
       col_selected <- input$colSelect
     })
-    if (input$date >= Sys.Date()){
+    if (input$date >= as.Date(Sys.time()+21600)){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
@@ -698,10 +698,10 @@ shinyServer(function(input, output, session) {
       filenames_list <- filenames_list[!grepl(pattern = "accumulated.txt", x = filenames_list)]
       dates_vec <- NULL
       for (filename in filenames_list){
-        file <- read.csv(paste(path_to_dir,filename, sep = "/"))
+        file <- read.csv(paste(path_to_dir,filename, sep = "/"), sep = "\t")
         col_names <- colnames(file)
         #Assumption the file with confirmed data does not have columns with namepart predicted
-        if ("Predicted" %in% col_names){
+        if ("Predicted_New_Cases" %in% col_names){
           next
         }
         date <- filename %>% 
@@ -710,15 +710,13 @@ shinyServer(function(input, output, session) {
         dates_vec <- c(dates_vec,date)
       }
       
+            file = log_filename,
+            append = TRUE)
       oldest_date <- min(dates_vec, na.rm = T)
       newest_date <- max(dates_vec, na.rm = T)
-      
-      actual_data_colnames <- c("Confirmed", "Deaths", "Recovered", "Active", "Confirmed_per_capita",
-                                "Deaths_per_capita", "IFR_0.30_expected", "IFR_0.65_expected", "IFR_1.0_expected",
-                                "IFR_0.30_expected_per_capita", "IFR_0.65_expected_per_capita", "IFR_1.0_expected_per_capita",
-                                "Confirmed_daily", "Deaths_daily", "Confirmed_change", "Deaths_change", "Tests", "Tests_per_capita")
    
-      if (selected_col %in% actual_data_colnames){
+      if (date_checked <= as.Date(Sys.time()+21600)){
+        #
         #Check if we do have file with that date
           date_checked <- case_when(
             date_checked < oldest_date ~ oldest_date %>% as.character(), 
@@ -1478,6 +1476,8 @@ shinyServer(function(input, output, session) {
   #     )
   #   }
   # )
+    }
+  )
   # 
   # # save leaflet png page
   # output$geomap <- downloadHandler(
