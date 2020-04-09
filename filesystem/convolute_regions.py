@@ -92,7 +92,7 @@ for continent in continents:
                         original_diff = np.convolve(original_diff, np.ones((3,))/3, mode='valid') 
                         original_diff = np.convolve(original_diff, np.ones((5,))/5, mode='valid')
                     else:
-                        original_diff = medfilt(confirmed_diff,3)
+                        original_diff = medfilt(original_diff,3)
                         #original_diff = medfilt(confirmed_diff,5)
                     print original_diff
                     confirmed_diff = np.diff(original_diff)
@@ -106,13 +106,11 @@ for continent in continents:
                             confirmed_diff = medfilt(confirmed_diff,3)
                     print confirmed_diff
                     region_curve = np.diff(confirmed_diff)/confirmed_diff[:-1]
-                    
                     region_curve = np.nan_to_num(region_curve)
                     if len(region_curve) > 7:
                         region_curve = medfilt(region_curve,3)
                         region_curve = medfilt(region_curve,5)
-                    if region_curve.any():
-                        
+                    if region_curve.any(): 
                         region_median = np.median(region_curve[-1])
                     else:
                         region_median = 0.0
@@ -141,7 +139,13 @@ for continent in continents:
                             else:
                                 new_value = region_projected[-1] + region_projected[-1]*rate
                             region_projected.append(new_value)
-
+                    elif original_diff.any():
+                        for rate in projected_rates:
+                            if not region_projected:
+                                new_value = original_diff[-1]
+                            else:
+                                new_value = region_projected[-1] + region_projected[-1]*rate
+                            region_projected.append(new_value)
                     # plt.plot(np.array(get_day_count(region_curve,0)), np.array(region_curve), 'k--', label='outbreak rate')
                     # plt.show()
                     # plt.plot(np.array(get_day_count(confirmed_diff,0)), np.array(confirmed_diff), 'k--', label='actual')

@@ -24,8 +24,8 @@ quebec_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Quebec/
 sask_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Saskatchewan/accumulated.txt","rb"), delimiter = '\t'), "Saskatchewan"]
 bc_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/British_Columbia/accumulated.txt","rb"), delimiter = '\t'), "British Columbia"]
 germany_data = [csv.reader(open(os.getcwd()+"/Global/Europe/Germany/accumulated.txt","rb"), delimiter = '\t'), "Germany"]
-
-cases = [canada_data,alberta_data,bc_data,sask_data,quebec_data,italian_data,us_data,ontario_data,germany_data]
+yukon_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Yukon/accumulated.txt","rb"), delimiter = '\t'), "Yukon"]
+cases = [yukon_data]
 
 def Extract(lst, index,date):
     if date:
@@ -64,36 +64,43 @@ for region,name in cases:
     region_confirmed = [item for item in filter(lambda item: item[0] != 'N/A' and item[0] != "NA" and item[0] != 0.0 and item[0] != '0', region_confirmed)]
     if len(region_confirmed) < 5:
         continue
-    #print region_confirmed
     region_confirmed.sort(key=lambda L: datetime.strptime(L[1], "%Y-%m-%d"))
     #print region_confirmed
     diffdate = region_confirmed[0][1] 
     original_diff = [float(item[0]) for item in region_confirmed]
     original_diff = medfilt(original_diff,3)
     #original_diff = medfilt(original_diff,5)
+    
     if len(original_diff) > 14:
         original_diff = np.convolve(original_diff, np.ones((3,))/3, mode='valid') 
-        #original_diff = np.convolve(original_diff, np.ones((5,))/5, mode='valid')
+        original_diff = np.convolve(original_diff, np.ones((5,))/5, mode='valid')
     else:
-        original_diff = medfilt(confirmed_diff,3)
+        original_diff = medfilt(original_diff,3)
         #original_diff = medfilt(confirmed_diff,5)
     print original_diff
     confirmed_diff = np.diff(original_diff)
-    confirmed_diff = np.convolve(confirmed_diff, np.ones((3,))/3, mode='valid') 
-    confirmed_diff  = np.convolve(confirmed_diff, np.ones((5,))/5, mode='valid')
+    if len(confirmed_diff) > 14:
+        confirmed_diff = np.convolve(confirmed_diff, np.ones((3,))/3, mode='valid') 
+        confirmed_diff = medfilt(confirmed_diff,5)
+    elif len(confirmed_diff) > 11:
+        confirmed_diff = medfilt(confirmed_diff,3)
+        confirmed_diff = medfilt(confirmed_diff,5)
+    elif len(confirmed_diff) > 9:
+            confirmed_diff = medfilt(confirmed_diff,3)
     print confirmed_diff
     region_curve = np.diff(confirmed_diff)/confirmed_diff[:-1]
     region_curve = np.nan_to_num(region_curve)
-    region_curve = medfilt(region_curve,3)
-    region_curve = medfilt(region_curve,5)
-    region_median = np.median(region_curve[-1])
-    print region_curve
+    if len(region_curve) > 7:
+        region_curve = medfilt(region_curve,3)
+        region_curve = medfilt(region_curve,5)
+    if region_curve.any(): 
+        region_median = np.median(region_curve[-1])
+    else:
+        region_median = 0.0
     print region_median
-
     i = 0
     day = 0
     closest_match = None
-    print region_median
     for value in italy_deriv_curve:
         diff = abs(value-region_median)
         if not closest_match:
@@ -108,19 +115,25 @@ for region,name in cases:
     #print region_curve
     #get_stretch_factor(italy_deriv_curve[(day-7):day],region_curve[-8:])
     #print projected_rates
-    for rate in projected_rates:
-        if not region_projected:
-            new_value = confirmed_diff[-1]
-        else:
-            new_value = region_projected[-1] + region_projected[-1]*rate
-        region_projected.append(new_value)
-    confirmed_diff = medfilt(confirmed_diff,3) 
-    confirmed_diff  = medfilt(confirmed_diff,5)
-    print confirmed_diff
+    if confirmed_diff.any():
+        for rate in projected_rates:
+            if not region_projected:
+                new_value = confirmed_diff[-1]
+            else:
+                new_value = region_projected[-1] + region_projected[-1]*rate
+            region_projected.append(new_value)
+    elif original_diff.any():
+        for rate in projected_rates:
+            if not region_projected:
+                new_value = original_diff[-1]
+            else:
+                new_value = region_projected[-1] + region_projected[-1]*rate
+            region_projected.append(new_value)
+    print region_projected
     plt.plot(np.array(get_day_count(region_curve,0)), np.array(region_curve), 'k--', label='outbreak rate')
     plt.show()
-    plt.plot(np.array(get_day_count(confirmed_diff,0)), np.array(confirmed_diff), 'r-', label='actual')
-    plt.plot(np.array(get_day_count(region_projected,len(confirmed_diff)-1)), np.array(region_projected), 'k--', label='projected')
+    plt.plot(np.array(get_day_count(original_diff,0)), np.array(original_diff), 'r-', label='actual')
+    plt.plot(np.array(get_day_count(region_projected,len(original_diff)-1)), np.array(region_projected), 'k--', label='projected')
     plt.xlabel("Day",fontsize=18)
     plt.ylabel("New Cases",fontsize=16)
     plt.title(name,fontsize=22)
