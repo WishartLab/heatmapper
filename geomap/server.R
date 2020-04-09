@@ -709,9 +709,6 @@ shinyServer(function(input, output, session) {
           unlist() 
         dates_vec <- c(dates_vec,date)
       }
-      
-            file = log_filename,
-            append = TRUE)
       oldest_date <- min(dates_vec, na.rm = T)
       newest_date <- max(dates_vec, na.rm = T)
    
@@ -1476,8 +1473,8 @@ shinyServer(function(input, output, session) {
   #     )
   #   }
   # )
-    }
-  )
+  #   }
+  # )
   # 
   # # save leaflet png page
   # output$geomap <- downloadHandler(
