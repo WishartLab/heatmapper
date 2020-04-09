@@ -316,14 +316,19 @@ shinyServer(function(input, output, session) {
   
   #If date is changed update dropdown menus
   observe({
-    if (input$date >= Sys.Date()){
+    isolate({
+      col_selected <- input$colSelect
+    })
+    #TODO Hack for ALberta
+    if (input$date >= as.Date(Sys.time()+21600)){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
                         choices = c("Predicted New Confirmed Cases" = 'Predicted_New_Cases',
                                     "Predicted Accumulative New Cases" = 'Total_Predicted_New_Cases',
                                     "Predicted New Cases per 100000" = 'Predicted_New_per_capita',
-                                    "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'))
+                                    "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'),
+                        selected = col_selected)
     } else {
       updateSelectInput(session,
                         inputId = "colSelect",
@@ -334,13 +339,17 @@ shinyServer(function(input, output, session) {
                                     #"Active" = 'Active',
                                     "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
                                     "COVID-19 Deaths per 100,000" = "Deaths_per_capita",
-                                    "% Daily Change in Confirmed COVID-19 Cases" = "Confirmed_change",
-                                    "% Daily Change in COVID-19 Deaths" = "Deaths_change",
+                                    # "% Daily Change in Confirmed COVID-19 Cases" = "Confirmed_change",
+                                    # "% Daily Change in COVID-19 Deaths" = "Deaths_change",
                                     "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
                                     "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
-                                    "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected',
-                                    "COVID-19 Tests Performed" = 'Tests',
-                                    "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'))
+                                    "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected'
+                                    #,
+                                    # "COVID-19 Tests Performed" = 'Tests',
+                                    # "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
+                                    ),
+                        selected = col_selected
+                        )
     }
   })
   
@@ -582,21 +591,7 @@ shinyServer(function(input, output, session) {
               file = log_filename,
               append = TRUE)
       }
-      # update the column name when "Per capita" radio button is selected 
-      #col_name <- input$colSelect
-       # if (input$radio == "per_capita"){
-       # col_name <- paste(col_name,input$radio, sep = "_")
-       # }
       
-      # update the column names when future dates are selected
-      if (input$date >= Sys.Date()){
-      updateSelectInput(session,
-                        inputId = "colSelect",
-                        label = "Select Data to Display:",
-                        choices = c("Predicted New COVID-19 Cases" = 'Predicted_New_Cases',
-                                    "Predicted Total COVID-19 Cases" = 'Total_Predicted_New_Cases'))
-      }
-
       # nums_col contains values in the selected column 
       nums_col <- get_nums_col(data_file, input$colSelect)
       # set legend title
@@ -662,6 +657,14 @@ shinyServer(function(input, output, session) {
       file = log_filename,
       append = TRUE
     )
+     #We need input$colSelect only determine which file it is, 
+    # so we do not need to trigger loading file, on every change.
+    #This is the reason for this isolate
+      isolate({
+        selected_col <- input$colSelect
+      })
+      date_checked <- input$date
+      
     tryCatch({
       
       map_file_name <- input$area
@@ -682,32 +685,46 @@ shinyServer(function(input, output, session) {
       write(paste('  prefix:', prefix, sep = "\t"),
             file = log_filename,
             append = TRUE)
-      #Retrieveing the the datafiles for that region
+      #Retrieving the datafiles for that region
       datafile_prefix <- datafile_mapping %>% 
         stri_split(regex = "/") %>% 
         unlist()
-      path_to_dir <- paste("../filesystem/",
+      path_to_dir <- paste("../filesystem",
                            paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
                            sep = "/")
       
       filenames_list <- list.files(path_to_dir)
+      #Select only .txt files
+      filenames_list <- filenames_list[grep(pattern = ".txt", x = filenames_list)]
+      filenames_list <- filenames_list[!grepl(pattern = "accumulated.txt", x = filenames_list)]
       dates_vec <- NULL
       for (filename in filenames_list){
+        file <- read.csv(paste(path_to_dir,filename, sep = "/"), sep = "\t")
+        col_names <- colnames(file)
+        #Assumption the file with confirmed data does not have columns with namepart predicted
+        if ("Predicted_New_Cases" %in% col_names){
+          next
+        }
         date <- filename %>% 
           stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
           unlist() 
         dates_vec <- c(dates_vec,date)
       }
-      
       oldest_date <- min(dates_vec, na.rm = T)
       newest_date <- max(dates_vec, na.rm = T)
+      #TODO Hack for ALberta
+      if (date_checked <= as.Date(Sys.time()+21600)){
+        #
+        #Check if we do have file with that date
+          date_checked <- case_when(
+            date_checked < oldest_date ~ oldest_date %>% as.character(), 
+            date_checked > newest_date ~ newest_date %>% as.character(), 
+            TRUE ~ date_checked %>% as.character()
+        )
+      } else {
+        date_checked <- date_checked %>% as.character()
+      }
       
-      #Check if we do have file with that date
-      date_checked <- case_when(
-        input$date < oldest_date ~ oldest_date %>% as.character(), # this should be FALSE
-        input$date > newest_date ~ newest_date %>% as.character(), # this should be FALSE
-        TRUE ~ input$date %>% as.character()
-      )
       #Update input$date in UI if date has been corrected
       isolate({
         if (date_checked != input$date){
@@ -756,7 +773,7 @@ shinyServer(function(input, output, session) {
           #nums_col <- as.numeric(nums_col) * 100000
         }
       }
-      #Sort by region name the rows 
+      #Sort the rows by region name  
       data_file <- data_file %>% 
         arrange(Name)
       return(data_file)
@@ -1055,7 +1072,7 @@ shinyServer(function(input, output, session) {
       
       # # update the column selection options when new DB data is loaded
       # updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
-      
+      debug = TRUE
       if (debug) {
         write(
           'get_db_data: completed without exception',
@@ -1264,7 +1281,7 @@ shinyServer(function(input, output, session) {
   output$map <- renderLeaflet({
     
     #Error handling
-    #1Retrieveing the oldest date for available datafile
+    #Retrieveing the oldest date for available datafile
     datafile_prefix <- maps_files_to_data_files %>%
       filter(datafile == input$area) %>%
       pull(prefix) %>%
@@ -1455,6 +1472,8 @@ shinyServer(function(input, output, session) {
   #       file = file,
   #       row.names = FALSE
   #     )
+  #   }
+  # )
   #   }
   # )
   # 

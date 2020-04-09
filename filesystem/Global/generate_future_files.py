@@ -56,10 +56,13 @@ for continent in continents:
                     data = csv.reader(open(root+"/"+file, "rb"), delimiter = '\t')
                     startdate = datetime.date(datetime.now())
                     max_data = 90
-                    #print startdate
                     total_new_cases = 0                
                     for row in data:
-                        #print row
+                        print root
+                        print file
+                        print startdate
+                        print row[0]
+                        print datetime.strptime(row[0],"%Y-%m-%d").date()
                         if datetime.strptime(row[0],"%Y-%m-%d").date() < startdate:
                             continue
                         print parent.split("/")[-1]

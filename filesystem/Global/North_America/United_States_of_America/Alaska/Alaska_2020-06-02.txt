@@ -1,8 +1,11 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Southeast Fairbanks	0.0	0.0	0.0	0.0
-Kenai Peninsula	2.24	247.451	3.827e-05	0.00422755
-Yukon-Koyukuk	0.0	0.0	0.0	0.0
-Unassigned	0.0	0.0	N/A	N/A
+Southeast Fairbanks	-0.012	19.315	-1.79e-06	0.002792
+Kenai Peninsula	0.035	19.369	6e-07	0.0003309
+Fairbanks North Star	0.126	69.727	1.27e-06	0.00070452
+Yukon-Koyukuk	0.0	-0.088	0.0	-1.654e-05
+Unassigned	0.975	78.411	N/A	N/A
 Matanuska-Susitna	0.0	0.0	0.0	0.0
 Petersburg	0.0	0.0	0.0	0.0
-Anchorage	0.273	107.857	9.4e-07	0.00036996
+Anchorage	0.158	87.805	5.4e-07	0.00030118
+Juneau	0.042	23.242	1.31e-06	0.00072377
+Ketchikan Gateway	0.0	0.0	0.0	0.0
