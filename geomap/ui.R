@@ -363,9 +363,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				                        "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
 				                        "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
 				                        "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected'
-				                        # ,
-				                        # "COVID-19 Tests Performed" = 'Tests',
-				                        # "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
+				                        ,
+				                        "COVID-19 Tests Performed" = 'Tests',
+				                        "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
                                                     # "Expected Cases Per Capita( IFR 0.30%)" = 'IFR_0.30_expected_per_capita',
                                                     # "Expected Cases Per Capita (IFR 0.65%)" = 'IFR_0.65_expected_per_capita',
                                                     # "Expected Cases Per Capita (IFR 1.00%)" = 'IFR_1.0_expected_per_capita' 
