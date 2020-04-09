@@ -1,134 +1,135 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Cumberland	0.641	923.75	6.535e-05	0.09417371
+Cumberland	0.0	0.0	0.0	0.0
 Floyd	0.0	0.0	0.0	0.0
 Greensville	0.0	0.0	0.0	0.0
-Brunswick	0.0	0.0	0.0	0.0
-Prince Edward	0.006	3.886	2.4e-07	0.00016931
-Poquoson	0.0	0.0	0.0	0.0
-Winchester	-0.572	-83.979	-2.037e-05	-0.00298771
+Brunswick	0.031	19.4	1.9e-06	0.00118407
+Prince Edward	0.006	3.88	2.7e-07	0.00016906
+Poquoson	0.003	2.247	2.3e-07	0.00018431
+Winchester	0.0	0.0	0.0	0.0
 Montgomery	0.0	0.0	0.0	0.0
 Rappahannock	0.0	0.0	0.0	0.0
-Page	0.0	0.0	0.0	0.0
-Fauquier	0.0	0.0	0.0	0.0
+Page	0.094	58.2	3.91e-06	0.00243177
+Fauquier	6.783	1155.443	9.597e-05	0.01634868
 Bath	0.0	0.0	0.0	0.0
 Caroline	0.0	0.0	0.0	0.0
-Nottoway	0.0	0.0	0.0	0.0
+Nottoway	0.007	4.715	4.2e-07	0.00030574
 Russell	0.0	0.0	0.0	0.0
 Radford	0.0	0.0	0.0	0.0
 Appomattox	0.0	0.0	0.0	0.0
 Falls Church	0.0	0.0	0.0	0.0
 Sussex	0.0	0.0	0.0	0.0
-Chesapeake	0.218	164.512	9e-07	0.00067802
+Chesapeake	0.217	144.529	8.9e-07	0.00059567
 Middlesex	0.0	0.0	0.0	0.0
-Manassas	0.0	-0.017	0.0	-4.1e-07
-Frederick	0.097	63.227	1.1e-06	0.0007156
-Lee	0.0	0.0	0.0	0.0
-Louisa	0.0	4.724	0.0	0.00012846
-Washington	-0.005	-3.711	-9e-08	-6.821e-05
+Manassas	0.0	0.0	0.0	0.0
+Frederick	0.546	208.172	6.18e-06	0.00235608
+Lee	0.062	38.8	2.65e-06	0.00164818
+Louisa	0.0	0.0	0.0	0.0
+Washington	5.814	990.38	0.00010687	0.01820484
 Richmond	0.0	0.0	0.0	0.0
 Patrick	0.0	0.0	0.0	0.0
-Bedford	0.011	7.771	1.4e-07	9.868e-05
-Norfolk	0.152	106.204	6.2e-07	0.00043513
-Culpeper	0.019	12.952	3.6e-07	0.00024975
-Emporia	-0.005	-3.711	-9.6e-07	-0.00072463
-Surry	0.0	0.0	0.0	0.0
-Colonial Heights	0.399	68.298	2.237e-05	0.00382988
+Bedford	0.019	11.64	2.4e-07	0.00014781
+Norfolk	0.189	117.692	7.8e-07	0.0004822
+Culpeper	0.0	3.218	0.0	6.205e-05
+Emporia	0.0	0.0	0.0	0.0
+Surry	0.094	58.2	1.446e-05	0.00898975
+Colonial Heights	0.0	0.0	0.0	0.0
 Martinsville	0.0	0.0	0.0	0.0
-Fredericksburg	0.0	8.742	0.0	0.00029996
+Fredericksburg	0.026	18.858	9e-07	0.00064707
 Pulaski	0.0	0.0	0.0	0.0
-Chesterfield	0.276	192.981	7.9e-07	0.00055366
-Roanoke City	-0.082	-61.846	N/A	N/A
-Northumberland	0.0	0.0	0.0	0.0
-Halifax	1.045	165.655	3.062e-05	0.00485507
-Covington	0.0	0.0	0.0	0.0
-Lexington	-0.531	-84.202	-7.441e-05	-0.01179958
-Gloucester	0.017	11.657	4.5e-07	0.0003121
+Chesterfield	0.0	10.946	0.0	3.14e-05
+Roanoke City	0.0	0.0	N/A	N/A
+Northumberland	0.117	63.602	9.63e-06	0.00523603
+Halifax	0.006	3.706	1.6e-07	0.00010861
+Covington	0.028	18.529	5.09e-06	0.00339366
+Lexington	0.0	0.0	0.0	0.0
+Gloucester	0.029	18.107	7.8e-07	0.00048479
 Grayson	0.0	0.0	0.0	0.0
-Alleghany	0.0	0.0	0.0	0.0
+Alleghany	0.062	38.8	4.19e-06	0.00260226
 Prince George	0.0	0.0	0.0	0.0
-Fairfax	1.004	701.986	8.7e-07	0.00061
+Fairfax	1.173	729.435	1.02e-06	0.00063385
 Henry	0.0	0.0	0.0	0.0
-Botetourt	0.048	33.675	1.45e-06	0.00101195
-Bristol	0.0	0.0	0.0	0.0
-Amherst	0.0	0.635	0.0	2.007e-05
-Accomack	0.019	12.952	5.7e-07	0.0003996
-Madison	0.0	0.035	0.0	2.65e-06
+Botetourt	0.06	37.506	1.81e-06	0.0011271
+Bristol	0.039	21.201	2.37e-06	0.00128629
+Amherst	0.0	0.131	0.0	4.14e-06
+Accomack	0.021	12.933	6.4e-07	0.00039903
+Madison	0.004	2.471	2.8e-07	0.00018583
 Mathews	0.0	0.0	0.0	0.0
 Staunton	0.0	0.0	0.0	0.0
-Waynesboro	0.0	0.0	0.0	0.0
-Manassas Park	0.0	0.0	0.0	0.0
+Waynesboro	0.062	38.8	2.76e-06	0.00171468
+Manassas Park	0.125	77.599	7.21e-06	0.0044837
 Tazewell	0.0	0.0	0.0	0.0
-Harrisonburg	0.089	62.168	1.65e-06	0.00115056
-Buchanan	0.0	-0.062	0.0	-2.92e-06
-Rockbridge	0.006	3.886	2.4e-07	0.00017078
+Harrisonburg	0.071	43.973	1.31e-06	0.00081382
+Buchanan	0.0	0.0	0.0	0.0
+Rockbridge	0.006	3.88	2.7e-07	0.00017053
 Scott	0.0	0.0	0.0	0.0
-Augusta	-0.572	-83.979	-7.59e-06	-0.00111293
-Stafford	0.089	62.168	5.9e-07	0.00041457
-Isle of Wight	0.083	58.283	2.26e-06	0.00157722
-Roanoke	0.0	0.0	0.0	0.0
-Northampton	-0.002	-2.249	-2.1e-07	-0.00019166
-Loudoun	0.426	297.891	1.05e-06	0.00073219
-Charlotte	0.0	-0.141	0.0	-1.181e-05
-Amelia	0.0	0.0	0.0	0.0
+Augusta	0.0	0.0	0.0	0.0
+Stafford	0.11	68.546	7.4e-07	0.0004571
+Isle of Wight	0.092	56.906	2.48e-06	0.00153996
+Roanoke	0.013	9.429	1.4e-07	0.00010023
+Northampton	0.078	42.401	6.65e-06	0.00361324
+Loudoun	0.52	323.331	1.28e-06	0.00079472
+Charlotte	0.0	0.0	0.0	0.0
+Amelia	0.0	0.078	0.0	6.03e-06
 New Kent	0.0	0.0	0.0	0.0
 Clarke	0.0	0.0	0.0	0.0
-Spotsylvania	0.087	60.873	6.5e-07	0.00045347
-Henrico	0.706	493.462	2.14e-06	0.0014987
-Goochland	0.041	28.494	1.75e-06	0.00122586
+Spotsylvania	0.114	71.133	8.5e-07	0.0005299
+Henrico	0.917	570.356	2.79e-06	0.00173223
+Goochland	0.067	41.386	2.86e-06	0.00178052
 Unassigned	0.0	0.0	N/A	N/A
-Dickenson	-2.862	-419.893	-0.00019709	-0.02891225
-Shenandoah	0.02	16.521	4.6e-07	0.00037982
-Danville	0.043	29.789	1.05e-06	0.00073204
+Dickenson	0.0	0.0	0.0	0.0
+Shenandoah	0.02	14.144	4.5e-07	0.00032516
+Danville	0.048	29.746	1.18e-06	0.000731
 Essex	0.0	0.0	0.0	0.0
-Arlington	0.417	291.415	1.75e-06	0.0012269
-James City	0.003	59.82	3e-08	0.00078302
-Rockingham	0.039	27.199	4.8e-07	0.00033478
-Bland	0.0	-0.106	0.0	-1.68e-05
+Arlington	0.562	349.198	2.36e-06	0.00147018
+James City	0.0	3.471	0.0	4.544e-05
+Rockingham	0.035	21.986	4.4e-07	0.00027062
+Bland	0.0	0.0	0.0	0.0
 Highland	0.0	0.0	0.0	0.0
-Salem	1.062	168.404	4.141e-05	0.00656723
-Alexandria	0.272	190.391	1.7e-06	0.00118601
-Fluvanna	0.022	15.542	8.3e-07	0.0005803
-Franklin	0.026	18.132	3.24e-06	0.00226288
-Newport News	0.137	95.843	7.7e-07	0.00053656
-Lynchburg	0.0	0.0	0.0	0.0
-Portsmouth	-1.203	-221.287	-1.271e-05	-0.0023384
+Salem	0.0	0.0	0.0	0.0
+Alexandria	0.412	256.078	2.57e-06	0.0015952
+Fluvanna	0.031	19.4	1.16e-06	0.00072434
+Franklin	0.025	15.52	3.11e-06	0.00193684
+Newport News	0.144	89.239	8e-07	0.00049959
+Lynchburg	0.043	30.645	5.2e-07	0.00037314
+Portsmouth	0.0	0.0	0.0	0.0
 King George	0.0	0.0	0.0	0.0
-King and Queen	0.348	68.259	4.936e-05	0.00969318
-Hampton	0.0	0.0	0.0	0.0
+Craig	0.0	0.0	0.0	0.0
+King and Queen	0.031	19.4	4.43e-06	0.00275488
+Hampton	0.0	0.677	0.0	5.04e-06
 Greene	0.0	0.0	0.0	0.0
 Norton	0.0	0.0	0.0	0.0
 Giles	0.0	0.0	0.0	0.0
 Hopewell	0.0	0.0	0.0	0.0
 Campbell	0.0	0.0	0.0	0.0
-Lancaster	0.0	0.0	0.0	0.0
+Lancaster	0.035	20.291	3.24e-06	0.00188176
 Westmoreland	0.0	0.0	0.0	0.0
 Petersburg	0.0	0.0	0.0	0.0
 Wise	0.0	0.0	0.0	0.0
-Wythe	0.0	0.0	0.0	0.0
+Wythe	0.094	58.2	3.26e-06	0.00202405
 Buena Vista	0.0	0.0	0.0	0.0
-Charlottesville	0.037	25.904	7.7e-07	0.00053835
-Dinwiddie	-0.002	-1.237	-6e-08	-4.336e-05
-Carroll	0.0	0.0	0.0	0.0
-Galax	0.0	0.0	0.0	0.0
-Hanover	0.033	23.313	3.1e-07	0.00021739
-Charles City	0.009	6.476	1.33e-06	0.00093299
-Franklin City	-0.005	-3.711	-9e-08	-6.603e-05
-Pittsylvania	0.0	0.0	0.0	0.0
-Buckingham	0.399	68.298	2.347e-05	0.00401778
+Charlottesville	0.04	24.573	8.2e-07	0.0005107
+Dinwiddie	0.0	0.0	0.0	0.0
+Carroll	0.062	38.8	2.11e-06	0.00130921
+Galax	0.039	21.201	6.07e-06	0.00330074
+Hanover	0.05	31.04	4.7e-07	0.00028944
+Charles City	0.0	0.116	0.0	1.667e-05
+Franklin City	0.0	0.0	0.0	0.0
+Pittsylvania	0.867	179.085	1.423e-05	0.00293827
+Buckingham	0.0	0.0	0.0	0.0
 Lunenburg	0.0	0.0	0.0	0.0
-Warren	-0.0	0.0	-0.0	0.0
-Mecklenburg	0.037	25.904	1.21e-06	0.00084514
-Williamsburg	0.02	14.247	1.37e-06	0.00095643
+Warren	0.164	51.525	4.11e-06	0.00128803
+Mecklenburg	0.042	25.866	1.36e-06	0.00084393
+Williamsburg	0.027	16.813	1.82e-06	0.00112871
 Fairfax City	0.0	0.0	N/A	N/A
 Smyth	0.0	0.0	0.0	0.0
 Southampton	0.0	0.0	0.0	0.0
-Suffolk	0.107	75.12	1.18e-06	0.00082382
-Powhatan	0.0	0.0	0.0	0.0
-Richmond City	0.367	256.445	N/A	N/A
-York	0.0	11.708	0.0	0.00017257
-Albemarle	0.059	41.446	5.5e-07	0.00038122
-Orange	0.008	6.185	2.2e-07	0.00016878
-Prince William	0.452	316.023	9.7e-07	0.00067525
-Virginia Beach	0.485	339.336	1.08e-06	0.00075376
-King William	0.0	-0.529	0.0	-3.121e-05
+Suffolk	0.135	84.066	1.48e-06	0.00092193
+Powhatan	0.14	81.164	4.79e-06	0.00278063
+Richmond City	0.341	212.105	N/A	N/A
+York	0.04	24.573	5.8e-07	0.00036219
+Albemarle	0.081	50.44	7.5e-07	0.00046395
+Orange	0.013	8.647	3.5e-07	0.00023597
+Prince William	0.597	371.184	1.28e-06	0.00079311
+Virginia Beach	0.522	324.624	1.16e-06	0.00072108
+King William	0.062	38.8	3.68e-06	0.00229056
 Nelson	0.0	0.0	0.0	0.0
