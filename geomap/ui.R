@@ -341,9 +341,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			  column(5,
 			    dateInput("date",
 			              label = NULL,
-			              value = Sys.Date()-1,
-			              min = "2020-01-01",
-			              max = Sys.Date()+90)
+			              value = Sys.Date(),
+			              min = "2020-01-22",
+			              max = min(Sys.Date()+90,"2020-08-31"))
 			    			  ),
 			  column(2,icon("calendar"))
 			),
@@ -421,6 +421,10 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>.
 				<br>
 				Questions or comments? Please use our <a href="http://feedback.wishartlab.com/?site=covidmapper" target="_blank">feedback page</a>.')
+			),
+			hr(),
+			tags$div(style = "font-size: 11px;",
+			         HTML("Disclaimer: Today's data before 6 pm MST is projected data.")
 			)
 			
 		# 	ADVANCED_OPTIONS_PANEL(

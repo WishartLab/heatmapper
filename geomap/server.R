@@ -316,11 +316,29 @@ shinyServer(function(input, output, session) {
   
   #If date is changed update dropdown menus
   observe({
+    datepart <- input$date
     isolate({
       col_selected <- input$colSelect
+      #reading file and updating based on file
+      map_file_name <- input$area
+      #Retrieve datafile mapping string
+      datafile_mapping <- maps_files_to_data_files %>% 
+        filter(datafile == input$area) %>% 
+        pull(prefix)
+      #Extract region name
+      region_name <- datafile_mapping %>% 
+        paste("_",sep = "")
+      prefix <- paste("../filesystem/",region_name,sep = "")
+      file_name <-
+        paste(prefix, datepart,".txt", sep = "")
+      #read file
+      data_file <- read.csv(file = file_name,
+                            sep = "\t",
+                            stringsAsFactors = FALSE)
+      col_names <- colnames(data_file)
     })
-    #TODO Hack for ALberta
-    if (input$date >= as.Date(Sys.time()+21600)){
+    #TODO Hack for Alberta
+    if ("Predicted_New_Cases" %in% col_names){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
@@ -657,12 +675,6 @@ shinyServer(function(input, output, session) {
       file = log_filename,
       append = TRUE
     )
-     #We need input$colSelect only determine which file it is, 
-    # so we do not need to trigger loading file, on every change.
-    #This is the reason for this isolate
-      isolate({
-        selected_col <- input$colSelect
-      })
       date_checked <- input$date
       
     tryCatch({
@@ -685,53 +697,53 @@ shinyServer(function(input, output, session) {
       write(paste('  prefix:', prefix, sep = "\t"),
             file = log_filename,
             append = TRUE)
-      #Retrieving the datafiles for that region
-      datafile_prefix <- datafile_mapping %>% 
-        stri_split(regex = "/") %>% 
-        unlist()
-      path_to_dir <- paste("../filesystem",
-                           paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
-                           sep = "/")
-      
-      filenames_list <- list.files(path_to_dir)
-      #Select only .txt files
-      filenames_list <- filenames_list[grep(pattern = ".txt", x = filenames_list)]
-      filenames_list <- filenames_list[!grepl(pattern = "accumulated.txt", x = filenames_list)]
-      dates_vec <- NULL
-      for (filename in filenames_list){
-        file <- read.csv(paste(path_to_dir,filename, sep = "/"), sep = "\t")
-        col_names <- colnames(file)
-        #Assumption the file with confirmed data does not have columns with namepart predicted
-        if ("Predicted_New_Cases" %in% col_names){
-          next
-        }
-        date <- filename %>% 
-          stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
-          unlist() 
-        dates_vec <- c(dates_vec,date)
-      }
-      oldest_date <- min(dates_vec, na.rm = T)
-      newest_date <- max(dates_vec, na.rm = T)
-      #TODO Hack for ALberta
-      if (date_checked <= as.Date(Sys.time()+21600)){
-        #
-        #Check if we do have file with that date
-          date_checked <- case_when(
-            date_checked < oldest_date ~ oldest_date %>% as.character(), 
-            date_checked > newest_date ~ newest_date %>% as.character(), 
-            TRUE ~ date_checked %>% as.character()
-        )
-      } else {
-        date_checked <- date_checked %>% as.character()
-      }
-      
-      #Update input$date in UI if date has been corrected
-      isolate({
-        if (date_checked != input$date){
-          #Update input$date in UI
-          updateDateInput(session, inputId="date", value = date_checked %>% as.Date())
-        }
-      })
+      # #Retrieving the datafiles for that region
+      # datafile_prefix <- datafile_mapping %>% 
+      #   stri_split(regex = "/") %>% 
+      #   unlist()
+      # path_to_dir <- paste("../filesystem",
+      #                      paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
+      #                      sep = "/")
+      # 
+      # filenames_list <- list.files(path_to_dir)
+      # #Select only .txt files
+      # filenames_list <- filenames_list[grep(pattern = ".txt", x = filenames_list)]
+      # filenames_list <- filenames_list[!grepl(pattern = "accumulated.txt", x = filenames_list)]
+      # dates_vec <- NULL
+      # for (filename in filenames_list){
+      #   file <- read.csv(paste(path_to_dir,filename, sep = "/"), sep = "\t")
+      #   col_names <- colnames(file)
+      #   #Assumption the file with confirmed data does not have columns with namepart predicted
+      #   if ("Predicted_New_Cases" %in% col_names){
+      #     next
+      #   }
+      #   date <- filename %>% 
+      #     stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
+      #     unlist() 
+      #   dates_vec <- c(dates_vec,date)
+      # }
+      # oldest_date <- min(dates_vec, na.rm = T)
+      # newest_date <- max(dates_vec, na.rm = T)
+      # #TODO Hack for ALberta
+      # if (date_checked <= as.Date(Sys.time()+21600)){
+      #   #
+      #   #Check if we do have file with that date
+      #     date_checked <- case_when(
+      #       date_checked < oldest_date ~ oldest_date %>% as.character(), 
+      #       date_checked > newest_date ~ newest_date %>% as.character(), 
+      #       TRUE ~ date_checked %>% as.character()
+      #   )
+      # } else {
+      #   date_checked <- date_checked %>% as.character()
+      # }
+      # 
+      # #Update input$date in UI if date has been corrected
+      # isolate({
+      #   if (date_checked != input$date){
+      #     #Update input$date in UI
+      #     updateDateInput(session, inputId="date", value = date_checked %>% as.Date())
+      #   }
+      # })
       
       #Extract date information from string this part maybe obsolete as we have now same format as default format
       date <- date_checked %>% stri_split(regex = "-") %>% unlist()
