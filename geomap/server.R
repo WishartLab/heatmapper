@@ -319,6 +319,7 @@ shinyServer(function(input, output, session) {
     isolate({
       col_selected <- input$colSelect
     })
+    #TODO Hack for ALberta
     if (input$date >= as.Date(Sys.time()+21600)){
       updateSelectInput(session,
                         inputId = "colSelect",
@@ -711,7 +712,7 @@ shinyServer(function(input, output, session) {
       }
       oldest_date <- min(dates_vec, na.rm = T)
       newest_date <- max(dates_vec, na.rm = T)
-   
+      #TODO Hack for ALberta
       if (date_checked <= as.Date(Sys.time()+21600)){
         #
         #Check if we do have file with that date
