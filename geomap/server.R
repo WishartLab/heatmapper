@@ -395,7 +395,8 @@ shinyServer(function(input, output, session) {
                                     "Predicted New Cases per 100000" = 'Predicted_New_per_capita',
                                     "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'),
                         selected = col_selected)
-    } else {
+    } 
+    else if ("Tests" %in% col_names){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
@@ -413,6 +414,25 @@ shinyServer(function(input, output, session) {
                                     ,
                                     "COVID-19 Tests Performed" = 'Tests',
                                     "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
+                        ),
+                        selected = col_selected
+      )
+    }
+    else {
+      updateSelectInput(session,
+                        inputId = "colSelect",
+                        label = "Select Data to Display:",
+                        choices = c("Confirmed COVID-19 Cases" = 'Confirmed',
+                                    #"Recovered" = 'Recovered',
+                                    "Confirmed Deaths" = 'Deaths',
+                                    #"Active" = 'Active',
+                                    "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
+                                    "COVID-19 Deaths per 100,000" = "Deaths_per_capita",
+                                    # "% Daily Change in Confirmed COVID-19 Cases" = "Confirmed_change",
+                                    # "% Daily Change in COVID-19 Deaths" = "Deaths_change",
+                                    "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
+                                    "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
+                                    "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected'
                                     ),
                         selected = col_selected
                         )
@@ -1307,8 +1327,9 @@ shinyServer(function(input, output, session) {
       names = names(values$density))
       #Adding the most red colour to countries with higher value than max restircted to large area country
       values$colours[is.na(values$colours)] <- values$palette[length(values$palette)]
+      cat(file=stderr(), "color update")
     }
-  } # End of get_colours() function
+  } # End of update_colours() function
   
   # The state names that come back from the maps package's state database has
   # state:qualifier format. This function strips off the qualifier.
