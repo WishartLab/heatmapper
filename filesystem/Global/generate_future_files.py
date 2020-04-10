@@ -58,11 +58,6 @@ for continent in continents:
                     max_data = 90
                     total_new_cases = 0                
                     for row in data:
-                        print root
-                        print file
-                        print startdate
-                        print row[0]
-                        print datetime.strptime(row[0],"%Y-%m-%d").date()
                         if datetime.strptime(row[0],"%Y-%m-%d").date() < startdate:
                             continue
                         print parent.split("/")[-1]
