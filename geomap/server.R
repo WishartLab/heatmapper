@@ -370,10 +370,10 @@ shinyServer(function(input, output, session) {
   #If date is changed update dropdown menus
   observe({
     datepart <- input$date
+    #reading file and updating based on file
+    map_file_name <- input$area
     isolate({
       col_selected <- input$colSelect
-      #reading file and updating based on file
-      map_file_name <- input$area
       #Retrieve datafile mapping string
       datafile_mapping <- maps_files_to_data_files %>% 
         filter(datafile == input$area) %>% 
