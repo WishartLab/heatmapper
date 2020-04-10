@@ -161,7 +161,8 @@ shinyServer(function(input, output, session) {
                                                                          "south africa",
                                                                          "china",
                                                                          "brazil",
-                                                                         "australia")]))
+                                                                         "australia")], 
+                             na.rm = TRUE))
         } else if ("united states of america" %in% col_names){
           #Northern America
           max <- ceiling(values$density[names(values$density) == "united states of america"])
@@ -171,12 +172,14 @@ shinyServer(function(input, output, session) {
           #Europe
           max <- ceiling(max(values$density[names(values$density) %in% c("spain",
                                                                          "france",
-                                                                         "italy")]))
+                                                                         "italy")],
+                             na.rm = TRUE))
         } else if ("china" %in% col_names &&
                    "iran" %in% col_names){
           #Asia
           max <- ceiling(max(values$density[names(values$density) %in% c("china",
-                                                                         "iran")]))
+                                                                         "iran")], 
+                             na.rm = TRUE))
         } else if ("brazil" %in% col_names) {
           #South America
           max <- ceiling(values$density[names(values$density) == "brazil"])
@@ -189,8 +192,10 @@ shinyServer(function(input, output, session) {
           #Africa
           max <- ceiling(max(values$density[names(values$density) %in% c("algeria",
                                                                          "egypt",
-                                                                         "south africa")]))
+                                                                         "south africa")], 
+                             na.rm = TRUE))
         }
+
         if (is.infinite(max)){
           max <- 0
         }
@@ -1325,9 +1330,19 @@ shinyServer(function(input, output, session) {
         ordered = TRUE
       ))],
       names = names(values$density))
-      #Adding the most red colour to countries with higher value than max restircted to large area country
-      values$colours[is.na(values$colours)] <- values$palette[length(values$palette)]
-      cat(file=stderr(), "color update")
+      #Adding the most red colour to countries with higher value than max restricted to large area country
+      # Exclude the areas with NA in values$density set them gray
+      for (i in 1:length(values$density)){
+        if (is.na(values$colours[i])){
+          if (is.na(values$density[i])){
+            values$colours[i] <- "#d3d3d3"
+          } else {
+            values$colours[i] <- values$palette[length(values$palette)]
+          }
+        } else {
+          next
+        }
+      }
     }
   } # End of update_colours() function
   
