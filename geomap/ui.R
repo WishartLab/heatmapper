@@ -341,9 +341,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			  column(5,
 			    dateInput("date",
 			              label = NULL,
-			              value = Sys.Date()-1,
-			              min = "2020-01-01",
-			              max = Sys.Date()+90)
+			              value = Sys.Date(),
+			              min = "2020-01-22",
+			              max = min(Sys.Date()+90,"2020-08-31"))
 			    			  ),
 			  column(2,icon("calendar"))
 			),
@@ -363,9 +363,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				                        "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
 				                        "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
 				                        "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected'
-				                        # ,
-				                        # "COVID-19 Tests Performed" = 'Tests',
-				                        # "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
+				                        ,
+				                        "COVID-19 Tests Performed" = 'Tests',
+				                        "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
                                                     # "Expected Cases Per Capita( IFR 0.30%)" = 'IFR_0.30_expected_per_capita',
                                                     # "Expected Cases Per Capita (IFR 0.65%)" = 'IFR_0.65_expected_per_capita',
                                                     # "Expected Cases Per Capita (IFR 1.00%)" = 'IFR_1.0_expected_per_capita' 
@@ -421,6 +421,10 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				License: <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a>.
 				<br>
 				Questions or comments? Please use our <a href="http://feedback.wishartlab.com/?site=covidmapper" target="_blank">feedback page</a>.')
+			),
+			hr(),
+			tags$div(style = "font-size: 11px;",
+			         HTML("Disclaimer: Today's data before 6 pm MST is projected data.")
 			)
 			
 		# 	ADVANCED_OPTIONS_PANEL(
