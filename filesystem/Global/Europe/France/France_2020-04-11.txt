@@ -1,12 +1,12 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-French Guiana	3.422	3.422	N/A	N/A
-France	7135.853	7135.853	N/A	N/A
-French Polynesia	1.218	1.218	N/A	N/A
-New Caledonia	0.009	0.009	N/A	N/A
-Saint Barthelemy	0.0	0.0	N/A	N/A
-Mayotte	8.159	8.159	N/A	N/A
-Saint Pierre and Miquelon	1.0	1.0	N/A	N/A
-Reunion	0.0	0.0	N/A	N/A
-St Martin	1.657	1.657	N/A	N/A
-Guadeloupe	0.173	0.173	N/A	N/A
-Martinique	0.0	0.0	N/A	N/A
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+St Martin	32.0	2.0	11.0	19.0	N/A	N/A	N/A	N/A	666.666666667	307.692307692	200.0	N/A	N/A	N/A
+Mayotte	196.0	3.0	59.0	134.0	N/A	N/A	N/A	N/A	1000.0	461.538461538	300.0	N/A	N/A	N/A
+Reunion	388.0	0.0	40.0	348.0	N/A	N/A	N/A	N/A	1940.0	776.0	485.0	N/A	N/A	N/A
+New Caledonia	18.0	0.0	1.0	17.0	N/A	N/A	N/A	N/A	90.0	36.0	22.5	N/A	N/A	N/A
+French Polynesia	51.0	0.0	0.0	51.0	N/A	N/A	N/A	N/A	255.0	102.0	63.75	N/A	N/A	N/A
+France	129654.0	13832.0	26391.0	89431.0	N/A	N/A	N/A	N/A	4610666.66667	2128000.0	1383200.0	N/A	N/A	N/A
+French Guiana	83.0	0.0	43.0	40.0	N/A	N/A	N/A	N/A	415.0	166.0	103.75	N/A	N/A	N/A
+Saint Pierre and Miquelon	1.0	0.0	0.0	1.0	N/A	N/A	N/A	N/A	5.0	2.0	1.25	N/A	N/A	N/A
+Martinique	155.0	6.0	50.0	99.0	N/A	N/A	N/A	N/A	2000.0	923.076923077	600.0	N/A	N/A	N/A
+Saint Barthelemy	6.0	0.0	1.0	5.0	N/A	N/A	N/A	N/A	30.0	12.0	7.5	N/A	N/A	N/A
+Guadeloupe	143.0	8.0	67.0	68.0	N/A	N/A	N/A	N/A	2666.66666667	1230.76923077	800.0	N/A	N/A	N/A
