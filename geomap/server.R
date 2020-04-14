@@ -395,9 +395,9 @@ shinyServer(function(input, output, session) {
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
-                        choices = c("Predicted New Confirmed Cases" = 'Predicted_New_Cases',
-                                    "Predicted Accumulative New Cases" = 'Total_Predicted_New_Cases',
+                        choices = c("Predicted New Cases" = 'Predicted_New_Cases',
                                     "Predicted New Cases per 100000" = 'Predicted_New_per_capita',
+                                    "Predicted Accumulative New Cases" = 'Total_Predicted_New_Cases',
                                     "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'),
                         selected = col_selected)
     } 
