@@ -27,7 +27,7 @@ germany_data = [csv.reader(open(os.getcwd()+"/Global/Europe/Germany/accumulated.
 yukon_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Yukon/accumulated.txt","rb"), delimiter = '\t'), "Yukon"]
 zealand_data= [csv.reader(open(os.getcwd()+"/Global/Oceania/New_Zealand/accumulated.txt","rb"), delimiter = '\t'), "New Zealand"]
 australia_data= [csv.reader(open(os.getcwd()+"/Global/Oceania/Australia/accumulated.txt","rb"), delimiter = '\t'), "Australia"]
-cases = [ns_data]
+cases = [ontario_data]
 
 def Extract(lst, index,date):
     if date:
@@ -70,14 +70,7 @@ for region,name in cases:
         values = [item for item in filter(lambda item: item[0] != 'N/A' and item[0] != "NA" and item[0] != 0.0 and item[0] != '0' and item[0] != '0.0', values)]
         # if len(values) < 5:
         #     continue
-
         values.sort(key=lambda L: datetime.strptime(L[1], "%Y-%m-%d"))
-        if value_name == "Confirmed":
-            confirmed_diffdate = values[0][1]
-        if value_name == "Deaths":
-            
-            death_diffdate = values[0][1]
-
         original = [float(item[0]) for item in values]
         original_diff = np.diff(original)
         original = medfilt(original,3)
@@ -146,44 +139,25 @@ for region,name in cases:
 
 
 
-with open("ns_predicted.tsv","wb") as tsv_file:
+with open("ontario_predicted.tsv","wb") as tsv_file:
     date = datetime.strptime(confirmed_diffdate,"%Y-%m-%d").date() + timedelta(1)
     death_date = datetime.strptime(death_diffdate,"%Y-%m-%d").date() + timedelta(1)
     makeup = datetime.strptime("2020-03-15","%Y-%m-%d").date()
     writer = csv.writer(tsv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     while makeup < date:
-        confirmed = [item[0] for item in region_confirmed[0] if datetime.strptime(item[1],"%Y-%m-%d").date() == makeup]
-        death = [item[0] for item in region_death[0] if datetime.strptime(item[1],"%Y-%m-%d").date() == makeup]
-        if confirmed and death:
-            writer.writerow([makeup,0.0,confirmed,0.0,death])
-            makeup = makeup + timedelta(1)
-        elif confirmed and not death:
-            writer.writerow([makeup,0.0,confirmed,0.0,0.0])
-            makeup = makeup + timedelta(1)
-        else:
-            writer.writerow([makeup,0.0,0.0,0.0,0.0])
-            makeup = makeup + timedelta(1)
+        writer.writerow([makeup,0.0,"N/A",0.0,"N/A"])
+        makeup = makeup + timedelta(1)
     confirmed_orig = total_rows[0][0]
     confirmed_projected = total_rows[0][1]
     death_orig = total_rows[1][0]
     death_project = total_rows[1][1]
     death_index = 0
     for row in confirmed_orig:
-        confirmed = [confirm[0] for confirm in region_confirmed[0] if datetime.strptime(confirm[1],"%Y-%m-%d").date() == date]
-        death = [dth[0] for dth in region_death[0] if datetime.strptime(dth[1],"%Y-%m-%d").date() == date]
-        if confirmed:
-            confirmed= float(confirmed[0])
-        else:
-            death = 0.0
-        if death:
-            death = float(death[0])
-        else:
-            death = 0.0
         if date < death_date:
-            writer.writerow([date,round(row,3),confirmed,0.0,death])
+            writer.writerow([date,round(row,3),"N/A",0.0,"N/A"])
             date = date + timedelta(1)
         else:
-            writer.writerow([date,round(row,3),confirmed,round(death_orig[death_index],3),death])
+            writer.writerow([date,round(row,3),"N/A",round(death_orig[death_index],3),"N/A"])
             date = date + timedelta(1)
             death_index += 1
     death_index = 0 

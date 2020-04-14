@@ -1,4 +1,4 @@
-startdate=20200329
+startdate=20200409
 enddate=$(date +%Y%m%d)
 loopdate=$startdate
 
@@ -24,3 +24,28 @@ python convolute_regions.py
 cd Global
 
 python generate_future_files.py
+
+
+# ssh ubuntu@52.2.187.145
+# # go to heatmapper directory
+# cd heatmapper-docker/web/heatmapper
+# # check if we are in correct branch
+# git branch
+# #Should be covid-19, pull all the changes
+# git pull
+# # move back to heatmapper-docker directory
+# cd ..
+# cd ..
+# #tag last working container with date
+# sudo docker tag heatmapper:latest heatmapper:date
+# #build containers
+# sudo docker-compose build
+# # bring old containers down
+# sudo docker-compose rm -sf
+# # push new containers live
+# sudo docker-compose up -d
+# # check if everything is working, If yes remove last container
+# #1. Check the image id
+# sudo docker images
+# #2. remove image by image ID
+# sudo docker rmi image_id
