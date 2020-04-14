@@ -36,7 +36,7 @@ for continent in continents:
                     next(data)
                     for row in data:
                         if not os.path.exists(root+"/"+row[0].replace(" ","_")+"/"):
-                            os.mkdir(root+"/"+row[0].replace(" ","_"))
+                            continue
                         with open(root+"/"+row[0].replace(" ","_")+"/"+"accumulated.txt",'a') as csv_file: 
                             writer = csv.writer(csv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                             if os.path.getsize(root+"/"+row[0].replace(" ","_")+"/"+"accumulated.txt") == 0:

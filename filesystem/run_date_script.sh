@@ -1,3 +1,4 @@
+startdate="20200413"
 enddate=$(date +%Y%m%d)
 loopdate=$startdate
 
@@ -5,22 +6,12 @@ cd COVID-19
 git pull
 cd ..
 
-cd ..
-git pull
-cd filesystem/
-
 let j=0
 while [ "$loopdate" -ne "$enddate" ]; do
         loopdate=`date   -j -v+${j}d  -f "%Y%m%d" "$startdate" +"%Y%m%d"`
         python daily_task.py $loopdate
         let j=j+1
 done
-
-
-cd ..
-git add -a filesystem/
-git commit -m "Automated Data Generation $startdate"
-git push
 
 cd Global
 
@@ -34,6 +25,9 @@ cd Global
 
 python generate_future_files.py
 
+
+# ssh ubuntu@52.2.187.145
+# # go to heatmapper directory
 # cd heatmapper-docker/web/heatmapper
 # # check if we are in correct branch
 # git branch
@@ -50,3 +44,8 @@ python generate_future_files.py
 # sudo docker-compose rm -sf
 # # push new containers live
 # sudo docker-compose up -d
+# # check if everything is working, If yes remove last container
+# #1. Check the image id
+# sudo docker images
+# #2. remove image by image ID
+# sudo docker rmi image_id

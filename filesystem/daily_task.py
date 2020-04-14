@@ -227,6 +227,8 @@ with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/{}-{}-{}.csv'
     for row in data: 
         country = row[3]
         state_province = row[2]
+        if (state_province == "Diamond Princess" or state_province == "Grand Princess"):
+            continue
         county_department = row[1]
         if country in country_convert:
             country = country_convert.get(country)
