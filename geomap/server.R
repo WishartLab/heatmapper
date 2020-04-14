@@ -395,10 +395,14 @@ shinyServer(function(input, output, session) {
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
-                        choices = c("Predicted New Cases" = 'Predicted_New_Cases',
-                                    "Predicted New Cases per 100000" = 'Predicted_New_per_capita',
-                                    "Predicted Accumulative New Cases" = 'Total_Predicted_New_Cases',
-                                    "Predicted Accumulative New Cases per 100000" = 'Predicted_Total_per_capita'),
+                        choices = c("Predicted Daily Cases" = 'Predicted_New_Cases',
+                                    "Predicted Daily Cases per 100000" = 'Predicted_New_per_capita',
+                                    "Predicted Total Cases" = 'Total_Predicted_Cases',
+                                    "Predicted Total Cases per 100000" = 'Predicted_Total_Cases_per_capita',
+                                    "Predicted Daily Deaths" = 'Predicted_New_Deaths',
+                                    "Predicted Daily Deaths per 100000" = 'Predicted_New_Deaths_per_capita',
+                                    "Predicted Total Deaths" = 'Total_Predicted_Deaths',
+                                    "Predicted Total Deaths per 100000" = 'Predicted_Total_Deaths_per_capita'),
                         selected = col_selected)
     } 
     else if ("Tests" %in% col_names){

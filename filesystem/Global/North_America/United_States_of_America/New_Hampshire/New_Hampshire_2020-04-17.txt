@@ -1,12 +1,14 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Hillsborough	5.141	25.968	1.238e-05	6.254e-05
-Coos	1.483	6.206	4.693e-05	0.00019647
-Strafford	1.107	4.788	8.51e-06	3.68e-05
-Belknap	0.552	2.301	9.05e-06	3.771e-05
-Merrimack	2.964	12.349	1.961e-05	8.171e-05
-Unassigned	0.0	0.0	N/A	N/A
-Rockingham	6.805	30.305	2.201e-05	9.802e-05
-Cheshire	0.736	3.068	9.63e-06	4.011e-05
-Carroll	0.994	4.142	2.038e-05	8.491e-05
-Sullivan	0.0	0.0	0.0	0.0
-Grafton	0.019	0.133	2.2e-07	1.48e-06
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Hillsborough	19.8	84.675	469.675	0.0	0.0	2.0	4.768e-05	0.00020391	0.00113107	0.0	0.0	4.82e-06
+Coos	0.0	0.0	2.0	0.0	0.0	0.0	0.0	0.0	6.331e-05	0.0	0.0	0.0
+Strafford	1.342	6.781	65.781	0.0	0.0	0.0	1.032e-05	5.213e-05	0.00050566	0.0	0.0	0.0
+Belknap	1.023	4.176	26.176	0.0	0.0	0.0	1.676e-05	6.843e-05	0.00042896	0.0	0.0	0.0
+Merrimack	3.96	16.164	89.164	0.0	0.0	0.0	2.62e-05	0.00010695	0.00058997	0.0	0.0	0.0
+Unassigned	0.0	0.0	1.0	0.0	0.0	20.0	N/A	N/A	N/A	N/A	N/A	N/A
+Rockingham	12.875	55.06	400.06	0.0	0.0	1.0	4.164e-05	0.00017809	0.00129396	0.0	0.0	3.23e-06
+Nashua	3.853	15.728	20.728	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Cheshire	0.833	3.657	22.657	0.0	0.0	0.0	1.089e-05	4.781e-05	0.0002962	0.0	0.0	0.0
+Carroll	1.233	5.033	33.033	0.0	0.0	0.0	2.528e-05	0.00010318	0.0006772	0.0	0.0	0.0
+Manchester	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Sullivan	0.077	0.494	6.494	0.0	0.0	0.0	1.78e-06	1.145e-05	0.00015052	0.0	0.0	0.0
+Grafton	0.24	1.807	46.807	0.0	0.0	0.0	2.67e-06	2.013e-05	0.00052132	0.0	0.0	0.0

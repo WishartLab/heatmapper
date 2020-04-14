@@ -1,17 +1,17 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Pima	32.378	32.378	3.116e-05	3.116e-05
-Cochise	0.699	0.699	5.51e-06	5.51e-06
-Coconino	0.0	0.0	0.0	0.0
-Yavapai	0.934	0.934	4.03e-06	4.03e-06
-Greenlee	0.102	0.102	1.076e-05	1.076e-05
-La Paz	0.166	0.166	7.85e-06	7.85e-06
-Graham	1.797	1.797	4.719e-05	4.719e-05
-Gila	0.0	0.0	0.0	0.0
-Yuma	0.299	0.299	N/A	N/A
-Unassigned	0.0	0.0	N/A	N/A
-Navajo	0.0	0.0	0.0	0.0
-Mohave	0.431	0.431	2.06e-06	2.06e-06
-Santa Cruz	0.539	0.539	1.159e-05	1.159e-05
-Pinal	7.246	7.246	1.621e-05	1.621e-05
-Maricopa	71.012	71.012	1.61e-05	1.61e-05
-Apache	0.0	0.0	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Pima	36.36	36.36	704.36	0.933	0.933	29.933	3.499e-05	3.499e-05	0.00067787	9e-07	9e-07	2.881e-05
+Cochise	0.84	0.84	16.84	0.933	0.933	0.933	6.63e-06	6.63e-06	0.00013284	7.36e-06	7.36e-06	7.36e-06
+Coconino	8.618	8.618	261.618	0.733	0.733	21.733	6.033e-05	6.033e-05	0.00183137	5.13e-06	5.13e-06	0.00015213
+Yavapai	3.711	3.711	68.711	0.0	0.0	1.0	1.6e-05	1.6e-05	0.00029618	0.0	0.0	4.31e-06
+Greenlee	0.0	0.0	2.0	0.0	0.0	0.0	0.0	0.0	0.0002109	0.0	0.0	0.0
+La Paz	0.2	0.2	4.2	0.0	0.0	0.0	9.48e-06	9.48e-06	0.00019907	0.0	0.0	0.0
+Graham	0.0	0.0	2.0	0.0	0.0	0.0	0.0	0.0	5.253e-05	0.0	0.0	0.0
+Gila	0.0	0.0	3.0	0.0	0.0	0.0	0.0	0.0	5.567e-05	0.0	0.0	0.0
+Yuma	0.418	0.418	20.418	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Unassigned	2.0	2.0	20.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Navajo	11.027	11.027	356.027	0.0	0.0	1.0	9.984e-05	9.984e-05	0.00322357	0.0	0.0	9.05e-06
+Mohave	1.6	1.6	41.6	0.0	0.0	0.0	7.64e-06	7.64e-06	0.00019852	0.0	0.0	0.0
+Santa Cruz	0.564	0.564	10.564	0.0	0.0	0.0	1.213e-05	1.213e-05	0.00022713	0.0	0.0	0.0
+Pinal	8.729	8.729	176.729	0.0	0.0	0.0	1.952e-05	1.952e-05	0.00039524	0.0	0.0	0.0
+Maricopa	97.929	97.929	2117.929	3.32	3.32	55.32	2.22e-05	2.22e-05	0.00048017	7.5e-07	7.5e-07	1.254e-05
+Apache	3.396	3.396	92.396	3.32	3.32	3.32	4.729e-05	4.729e-05	0.00128653	4.623e-05	4.623e-05	4.623e-05

@@ -1,17 +1,18 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Cumberland	0.442	90.099	1.5e-06	0.00030692
-Somerset	0.039	6.423	7.6e-07	0.00012695
-Lincoln	0.008	1.215	2.4e-07	3.537e-05
-Penobscot	0.0	3.548	0.0	2.348e-05
-Washington	0.101	15.923	3.21e-06	0.00050564
-Oxford	0.033	4.859	5.8e-07	8.432e-05
-Sagadahoc	0.0	1.951	0.0	5.475e-05
-Kennebec	0.135	21.307	1.11e-06	0.00017453
-Androscoggin	0.01	8.372	1e-07	7.775e-05
-Unassigned	-0.13	-19.376	N/A	N/A
-Franklin	0.054	8.492	1.8e-06	0.00028404
-Hancock	0.034	5.79	6.2e-07	0.00010563
-Aroostook	0.202	31.845	3.01e-06	0.00047452
-Knox	0.022	3.239	5.6e-07	8.144e-05
-York	0.427	83.128	2.07e-06	0.00040309
-Waldo	0.231	34.489	5.82e-06	0.00086886
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Cumberland	0.0	40.059	339.059	0.0	6.734	18.734	0.0	0.00013646	0.001155	0.0	2.294e-05	6.382e-05
+Somerset	0.107	13.883	21.883	0.0	6.857	6.857	2.11e-06	0.00027441	0.00043254	0.0	0.00013554	0.00013554
+Lincoln	0.027	3.497	13.497	0.0	6.857	6.857	7.9e-07	0.00010183	0.00039302	0.0	0.00019967	0.00019967
+Penobscot	0.367	47.515	81.515	0.0	6.857	6.857	2.43e-06	0.00031447	0.00053949	0.0	4.538e-05	4.538e-05
+Washington	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	3.176e-05	0.0	0.0	0.0
+Oxford	0.054	7.321	20.321	0.0	6.857	6.857	9.4e-07	0.00012706	0.00035268	0.0	0.00011901	0.00011901
+Piscataquis	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Sagadahoc	0.0	1.366	16.366	0.0	0.0	1.0	0.0	3.833e-05	0.00045928	0.0	0.0	2.806e-05
+Kennebec	0.0	15.521	93.521	0.0	0.0	1.0	0.0	0.00012713	0.00076604	0.0	0.0	8.19e-06
+Androscoggin	0.0	5.303	33.303	0.0	0.0	0.0	0.0	4.925e-05	0.00030928	0.0	0.0	0.0
+Unassigned	0.156	20.157	25.157	0.0	0.0	3.0	N/A	N/A	N/A	N/A	N/A	N/A
+Franklin	0.095	12.34	20.34	0.0	0.0	0.0	3.18e-06	0.00041275	0.00068034	0.0	0.0	0.0
+Hancock	0.0	0.0	5.0	0.0	0.0	0.0	0.0	0.0	9.122e-05	0.0	0.0	0.0
+Aroostook	0.0	0.0	2.0	0.0	0.0	0.0	0.0	0.0	2.98e-05	0.0	0.0	0.0
+Knox	0.0	0.424	12.424	0.0	0.0	0.0	0.0	1.066e-05	0.00031239	0.0	0.0	0.0
+York	0.76	127.93	278.93	0.0	0.0	3.0	3.69e-06	0.00062033	0.00135253	0.0	0.0	1.455e-05
+Waldo	0.548	70.962	99.962	0.0	0.0	2.0	1.381e-05	0.00178773	0.00251832	0.0	0.0	5.039e-05

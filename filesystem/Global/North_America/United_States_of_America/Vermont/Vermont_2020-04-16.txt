@@ -1,16 +1,16 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Chittenden	0.837	4.116	5.09e-06	2.501e-05
-Bennington	0.983	3.031	2.758e-05	8.507e-05
-Rutland	0.068	0.277	1.15e-06	4.73e-06
-Addison	0.912	3.144	2.467e-05	8.504e-05
-Washington	0.586	1.807	1.008e-05	3.108e-05
-Caledonia	0.019	0.091	6.1e-07	3.01e-06
-Windham	2.363	7.273	5.527e-05	0.0001701
-Unassigned	0.0	0.0	N/A	N/A
-Essex	0.0	0.0	0.0	0.0
-Franklin	2.721	8.394	5.507e-05	0.00016984
-Orleans	0.0	0.0	0.0	0.0
-Windsor	0.027	0.133	4.9e-07	2.41e-06
-Grand Isle	0.0	0.0	0.0	0.0
-Lamoille	0.294	0.932	1.164e-05	3.685e-05
-Orange	0.113	0.35	3.91e-06	1.206e-05
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Chittenden	16.888	52.681	424.681	1.324	4.062	22.062	0.00010262	0.00032011	0.00258052	8.05e-06	2.468e-05	0.00013406
+Bennington	1.413	4.288	36.288	0.0	0.0	1.0	3.966e-05	0.00012034	0.00101844	0.0	0.0	2.807e-05
+Rutland	2.025	6.426	45.426	0.0	0.0	0.0	3.451e-05	0.00010952	0.00077424	0.0	0.0	0.0
+Addison	2.795	8.538	64.538	0.0	0.0	1.0	7.56e-05	0.00023093	0.00174554	0.0	0.0	2.705e-05
+Washington	0.64	2.177	30.177	0.0	0.0	0.0	1.101e-05	3.744e-05	0.00051904	0.0	0.0	0.0
+Caledonia	0.539	1.636	10.636	0.0	0.0	0.0	1.779e-05	5.399e-05	0.000351	0.0	0.0	0.0
+Windham	3.164	9.606	64.606	0.0	0.0	1.0	7.4e-05	0.00022467	0.00151104	0.0	0.0	2.339e-05
+Unassigned	0.0	0.0	8.0	0.158	0.436	1.436	N/A	N/A	N/A	N/A	N/A	N/A
+Essex	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.00016	0.0	0.0	0.0
+Franklin	4.256	12.565	95.565	0.0	0.0	3.0	8.612e-05	0.00025424	0.00193369	0.0	0.0	6.07e-05
+Orleans	0.017	0.088	8.088	0.0	0.0	0.0	6.3e-07	3.27e-06	0.00030059	0.0	0.0	0.0
+Windsor	0.595	1.807	28.807	0.142	0.392	2.392	1.076e-05	3.268e-05	0.00052105	2.57e-06	7.09e-06	4.327e-05
+Grand Isle	0.0	0.0	3.0	0.142	0.392	0.392	0.0	0.0	0.00042313	2.003e-05	5.529e-05	5.529e-05
+Lamoille	0.428	1.475	23.475	0.0	0.0	2.0	1.692e-05	5.83e-05	0.00092787	0.0	0.0	7.905e-05
+Orange	0.117	0.356	5.356	0.0	0.0	0.0	4.03e-06	1.228e-05	0.0001847	0.0	0.0	0.0

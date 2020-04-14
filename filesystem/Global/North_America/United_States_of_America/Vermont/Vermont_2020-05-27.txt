@@ -1,16 +1,16 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Chittenden	0.0	6.373	0.0	3.872e-05
-Bennington	0.109	21.539	3.05e-06	0.00060451
-Rutland	0.0	0.452	0.0	7.7e-06
-Addison	0.0	6.087	0.0	0.00016462
-Washington	0.065	12.841	1.12e-06	0.00022086
-Caledonia	0.0	0.141	0.0	4.66e-06
-Windham	0.233	48.785	5.45e-06	0.00114101
-Unassigned	0.0	0.0	N/A	N/A
-Essex	0.0	0.0	0.0	0.0
-Franklin	0.301	59.648	6.1e-06	0.00120693
-Orleans	0.0	0.0	0.0	0.0
-Windsor	0.0	0.206	0.0	3.73e-06
-Grand Isle	0.0	0.0	0.0	0.0
-Lamoille	0.007	4.986	2.7e-07	0.00019709
-Orange	0.013	2.485	4.3e-07	8.57e-05
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Chittenden	1.427	327.747	699.747	0.168	30.377	48.377	8.67e-06	0.00199151	0.00425192	1.02e-06	0.00018458	0.00029396
+Bennington	0.205	34.32	66.32	0.0	0.0	1.0	5.75e-06	0.00096321	0.0018613	0.0	0.0	2.807e-05
+Rutland	0.0	29.635	68.635	0.0	0.0	0.0	0.0	0.0005051	0.00116981	0.0	0.0	0.0
+Addison	0.37	65.171	121.171	0.0	0.0	1.0	1.001e-05	0.00176266	0.00327728	0.0	0.0	2.705e-05
+Washington	0.0	4.535	32.535	0.0	0.0	0.0	0.0	7.8e-05	0.0005596	0.0	0.0	0.0
+Caledonia	0.078	13.096	22.096	0.0	0.0	0.0	2.57e-06	0.00043218	0.00072919	0.0	0.0	0.0
+Windham	0.459	76.875	131.875	0.0	0.0	1.0	1.074e-05	0.00179799	0.00308436	0.0	0.0	2.339e-05
+Unassigned	0.0	0.0	8.0	0.057	6.362	7.362	N/A	N/A	N/A	N/A	N/A	N/A
+Essex	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.00016	0.0	0.0	0.0
+Franklin	0.761	115.481	198.481	0.0	0.0	3.0	1.54e-05	0.00233668	0.00401613	0.0	0.0	6.07e-05
+Orleans	0.0	0.129	8.129	0.0	0.0	0.0	0.0	4.79e-06	0.00030211	0.0	0.0	0.0
+Windsor	0.086	14.464	41.464	0.051	5.725	7.725	1.56e-06	0.00026162	0.00074999	9.2e-07	0.00010355	0.00013973
+Grand Isle	0.0	0.0	3.0	0.051	5.725	5.725	0.0	0.0	0.00042313	7.19e-06	0.00080748	0.00080748
+Lamoille	0.0	2.856	24.856	0.0	0.0	2.0	0.0	0.00011289	0.00098245	0.0	0.0	7.905e-05
+Orange	0.017	2.852	7.852	0.0	0.0	0.0	5.9e-07	9.835e-05	0.00027077	0.0	0.0	0.0

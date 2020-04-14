@@ -1,12 +1,20 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Lincoln	0.0	0.0	0.0	0.0
-Lyon	0.17	5.943	3.05e-06	0.00010649
-Douglas	0.137	4.709	2.82e-06	9.717e-05
-Carson City	0.005	4.428	1e-07	7.991e-05
-Humboldt	0.392	14.074	2.335e-05	0.00083842
-Unassigned	1.514	51.367	N/A	N/A
-Clark	43.76	1507.627	1.961e-05	0.00067557
-Washoe	8.605	291.997	1.848e-05	0.00062696
-Nye	0.197	6.77	4.33e-06	0.00014929
-Elko	0.161	5.707	3.07e-06	0.00010879
-White Pine	0.0	0.0	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Lincoln	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.00019227	0.0	0.0	0.0
+Lander	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Eureka	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Elko County	0.0	0.0	2.0	9.349	216.424	216.424	N/A	N/A	N/A	N/A	N/A	N/A
+Esmeralda	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Lyon	0.257	7.83	17.83	9.349	216.424	216.424	4.61e-06	0.0001403	0.00031949	0.00016752	0.00387801	0.00387801
+Douglas	0.257	7.83	17.83	9.349	216.424	216.424	5.3e-06	0.00016155	0.00036788	0.00019289	0.00446539	0.00446539
+Carson City	0.604	18.418	40.418	9.349	216.424	216.424	1.09e-05	0.00033237	0.00072938	0.00016871	0.00390558	0.00390558
+Humboldt	0.66	20.135	40.135	9.349	216.424	216.424	3.932e-05	0.00119951	0.00239098	0.00055695	0.01289313	0.01289313
+Mineral	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Unassigned	0.0	0.0	23.0	15.17	351.166	367.166	N/A	N/A	N/A	N/A	N/A	N/A
+Pershing	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Clark	55.182	1842.831	4286.831	4.307	116.767	217.767	2.473e-05	0.00082577	0.00192093	1.93e-06	5.232e-05	9.758e-05
+Washoe	12.22	379.937	840.937	1.286	30.777	42.777	2.624e-05	0.00081578	0.00180561	2.76e-06	6.608e-05	9.185e-05
+Nye	0.33	10.066	20.066	1.286	30.777	30.777	7.28e-06	0.00022198	0.00044251	2.836e-05	0.00067871	0.00067871
+Storey	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Churchill	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+Elko	0.257	7.83	18.83	0.0	0.0	1.0	4.9e-06	0.00014926	0.00035894	0.0	0.0	1.906e-05
+White Pine	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.00010554	0.0	0.0	0.0

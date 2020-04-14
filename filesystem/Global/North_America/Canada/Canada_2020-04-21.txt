@@ -1,15 +1,15 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Prince Edward Island	0.408	3.592	2.64e-06	2.321e-05
-Newfoundland and Labrador	0.071	1.73	1.4e-07	3.3e-06
-New Brunswick	0.105	4.32	1.4e-07	5.59e-06
-Yukon	0.198	1.748	4.9e-06	4.33e-05
-Saskatchewan	4.669	44.661	4e-06	3.822e-05
-British Columbia	18.561	174.218	3.7e-06	3.47e-05
-Manitoba	3.616	34.851	2.66e-06	2.562e-05
-Northwest Territories	0.0	0.0	0.0	0.0
-Ontario	313.649	2759.551	2.171e-05	0.00019102
-Grand Princess	0.0	0.0	N/A	N/A
-Diamond Princess	0.0	0.0	N/A	N/A
-Nova Scotia	18.136	159.562	1.867e-05	0.00016426
-Quebec	547.571	4841.749	6.493e-05	0.00057412
-Alberta	1.309	58.394	3e-07	1.344e-05
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Prince Edward Island	0.412	3.568	28.568	78.227	549.54	549.54	2.66e-06	2.306e-05	0.00018461	0.00050551	0.00355119	0.00355119
+Newfoundland and Labrador	2.403	34.003	278.003	0.0	0.0	3.0	4.59e-06	6.492e-05	0.00053075	0.0	0.0	5.73e-06
+New Brunswick	0.385	12.581	128.581	0.0	0.0	0.0	5e-07	1.629e-05	0.00016654	0.0	0.0	0.0
+Yukon	0.233	2.02	10.02	0.0	0.0	0.0	5.77e-06	5.004e-05	0.00024821	0.0	0.0	0.0
+Saskatchewan	5.606	57.201	357.201	0.0	0.0	4.0	4.8e-06	4.896e-05	0.00030571	0.0	0.0	3.42e-06
+British Columbia	22.981	216.863	1706.863	2.246	19.45	88.45	4.58e-06	4.32e-05	0.00033999	4.5e-07	3.87e-06	1.762e-05
+Manitoba	0.529	25.845	271.845	0.123	1.516	5.516	3.9e-07	1.9e-05	0.00019983	9e-08	1.11e-06	4.05e-06
+Northwest Territories	0.204	2.072	7.072	0.123	1.516	1.516	4.57e-06	4.646e-05	0.00015857	2.76e-06	3.399e-05	3.399e-05
+Ontario	369.867	3170.102	10640.102	19.563	162.83	453.83	2.56e-05	0.00021944	0.00073652	1.35e-06	1.127e-05	3.141e-05
+Grand Princess	0.0	0.0	13.0	19.563	162.83	162.83	N/A	N/A	N/A	N/A	N/A	N/A
+Diamond Princess	0.0	0.0	1.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Nova Scotia	23.277	193.743	667.743	0.0	0.0	3.0	2.396e-05	0.00019945	0.00068741	0.0	0.0	3.09e-06
+Quebec	694.878	6017.697	19574.697	53.475	323.418	683.418	8.24e-05	0.00071356	0.00232112	6.34e-06	3.835e-05	8.104e-05
+Alberta	50.359	477.514	2209.514	2.151	18.924	64.924	1.159e-05	0.00010988	0.00050843	4.9e-07	4.35e-06	1.494e-05

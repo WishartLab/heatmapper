@@ -1,16 +1,16 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Chittenden	0.0	6.373	0.0	3.872e-05
-Bennington	0.0	22.583	0.0	0.00063379
-Rutland	0.0	0.452	0.0	7.7e-06
-Addison	0.0	6.087	0.0	0.00016462
-Washington	0.0	13.463	0.0	0.00023156
-Caledonia	0.0	0.141	0.0	4.66e-06
-Windham	0.0	50.748	0.0	0.00118692
-Unassigned	0.0	0.0	N/A	N/A
-Essex	0.0	0.0	0.0	0.0
-Franklin	0.0	62.536	0.0	0.00126538
-Orleans	0.0	0.0	0.0	0.0
-Windsor	0.0	0.206	0.0	3.73e-06
-Grand Isle	0.0	0.0	0.0	0.0
-Lamoille	0.0	4.999	0.0	0.00019759
-Orange	0.0	2.606	0.0	8.985e-05
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Chittenden	0.0	337.399	709.399	0.0	32.092	50.092	0.0	0.00205016	0.00431057	0.0	0.000195	0.00030438
+Bennington	0.001	36.603	68.603	0.0	0.0	1.0	3e-08	0.00102728	0.00192537	0.0	0.0	2.807e-05
+Rutland	0.0	29.635	68.635	0.0	0.0	0.0	0.0	0.0005051	0.00116981	0.0	0.0	0.0
+Addison	0.001	69.084	125.084	0.0	0.0	1.0	3e-08	0.0018685	0.00338312	0.0	0.0	2.705e-05
+Washington	0.0	4.535	32.535	0.0	0.0	0.0	0.0	7.8e-05	0.0005596	0.0	0.0	0.0
+Caledonia	0.0	13.968	22.968	0.0	0.0	0.0	0.0	0.00046096	0.00075797	0.0	0.0	0.0
+Windham	0.002	81.988	136.988	0.0	0.0	1.0	5e-08	0.00191758	0.00320395	0.0	0.0	2.339e-05
+Unassigned	0.0	0.0	8.0	0.004	7.078	8.078	N/A	N/A	N/A	N/A	N/A	N/A
+Essex	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.00016	0.0	0.0	0.0
+Franklin	0.009	124.84	207.84	0.0	0.0	3.0	1.8e-07	0.00252605	0.0042055	0.0	0.0	6.07e-05
+Orleans	0.0	0.129	8.129	0.0	0.0	0.0	0.0	4.79e-06	0.00030211	0.0	0.0	0.0
+Windsor	0.0	15.421	42.421	0.003	6.373	8.373	0.0	0.00027893	0.0007673	5e-08	0.00011527	0.00015145
+Grand Isle	0.0	0.0	3.0	0.003	6.373	6.373	0.0	0.0	0.00042313	4.2e-07	0.00089887	0.00089887
+Lamoille	0.0	2.856	24.856	0.0	0.0	2.0	0.0	0.00011289	0.00098245	0.0	0.0	7.905e-05
+Orange	0.0	3.041	8.041	0.0	0.0	0.0	0.0	0.00010487	0.00027729	0.0	0.0	0.0

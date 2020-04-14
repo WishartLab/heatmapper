@@ -1,17 +1,17 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Voru	-0.005	-0.311	N/A	N/A
-Rapla	-0.229	-14.641	N/A	N/A
-Jogeva	0.0	0.0	N/A	N/A
-Saare	-2.261	-144.659	N/A	N/A
-Laane-Viru	0.0	0.0	N/A	N/A
-other	0.0	0.0	N/A	N/A
-Ida-Viru	-0.314	-20.081	N/A	N/A
-Parnu	-0.062	-3.988	N/A	N/A
-Hiiu	0.0	0.0	N/A	N/A
-Viljandi	0.0	0.0	N/A	N/A
-Tartu	-0.89	-71.478	N/A	N/A
-Jarva	-0.057	-3.659	N/A	N/A
-Polva	0.0	0.0	N/A	N/A
-Laane	-0.038	-3.042	N/A	N/A
-Harju	-0.492	-31.489	N/A	N/A
-Valga	-0.114	-7.32	N/A	N/A
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Voru	0.003	0.181	0.168	0.0	0.0	-0.013	N/A	N/A	N/A	N/A	N/A	N/A
+Rapla	0.069	4.134	3.567	0.343	14.784	14.217	N/A	N/A	N/A	N/A	N/A	N/A
+Jogeva	0.0	0.0	3.0	0.343	14.784	14.784	N/A	N/A	N/A	N/A	N/A	N/A
+Saare	0.683	40.873	35.272	3.383	145.987	140.386	N/A	N/A	N/A	N/A	N/A	N/A
+Laane-Viru	0.0	0.0	7.0	3.383	145.987	145.987	N/A	N/A	N/A	N/A	N/A	N/A
+other	108.361	1416.179	1404.45	3.383	145.987	145.987	N/A	N/A	N/A	N/A	N/A	N/A
+Ida-Viru	0.095	5.673	4.896	0.469	20.234	19.457	N/A	N/A	N/A	N/A	N/A	N/A
+Parnu	0.034	2.03	1.875	0.0	0.0	-0.155	N/A	N/A	N/A	N/A	N/A	N/A
+Hiiu	0.0	0.0	7.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Viljandi	0.0	0.0	6.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Tartu	0.0	148.949	141.488	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Jarva	0.017	1.032	0.89	0.086	3.694	3.552	N/A	N/A	N/A	N/A	N/A	N/A
+Polva	0.0	0.0	4.0	0.086	3.694	3.694	N/A	N/A	N/A	N/A	N/A	N/A
+Laane	0.69	41.305	41.019	0.086	3.694	3.694	N/A	N/A	N/A	N/A	N/A	N/A
+Harju	0.267	15.963	14.74	0.0	0.0	-1.223	N/A	N/A	N/A	N/A	N/A	N/A
+Valga	0.035	2.07	1.787	0.17	7.352	7.069	N/A	N/A	N/A	N/A	N/A	N/A

@@ -1,7 +1,7 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Washington	7.219	173.617	5.721e-05	0.00137596
-Newport	2.218	53.339	2.687e-05	0.0006462
-Providence	43.71	1051.305	6.872e-05	0.00165278
-Bristol	1.064	25.603	2.188e-05	0.00052627
-Kent	6.731	161.883	4.108e-05	0.00098793
-Unassigned	22.698	545.921	N/A	N/A
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Washington	31.461	439.245	579.245	9.436	153.871	153.871	0.00024934	0.00348113	0.00459066	7.478e-05	0.00121947	0.00121947
+Newport	3.749	74.803	148.803	9.436	153.871	153.871	4.542e-05	0.00090624	0.00180275	0.00011432	0.00186415	0.00186415
+Providence	176.377	2598.07	3876.07	0.0	0.0	3.0	0.00027729	0.00408448	0.00609364	0.0	0.0	4.72e-06
+Bristol	1.568	32.439	71.439	0.0	0.0	0.0	3.223e-05	0.0006668	0.00146846	0.0	0.0	0.0
+Kent	11.551	230.463	399.463	0.0	0.0	0.0	7.049e-05	0.00140645	0.00243782	0.0	0.0	0.0
+Unassigned	660.889	4692.892	5657.892	9.436	153.871	213.871	N/A	N/A	N/A	N/A	N/A	N/A

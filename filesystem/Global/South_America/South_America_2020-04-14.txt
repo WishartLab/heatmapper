@@ -1,16 +1,17 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Predicted_New_per_capita	Predicted_Total_per_capita
-Guyana	2.276	2.276	2.92e-06	2.92e-06
-Brazil	273.785	273.785	1.31e-06	1.31e-06
-Ecuador	355.075	355.075	2.078e-05	2.078e-05
-Uruguay	11.418	11.418	3.31e-06	3.31e-06
-Venezuela	2.217	2.217	8e-08	8e-08
-Argentina	77.77	77.77	1.75e-06	1.75e-06
-Belize	0.858	0.858	2.24e-06	2.24e-06
-Bolivia	18.285	18.285	1.61e-06	1.61e-06
-Colombia	17.384	17.384	3.5e-07	3.5e-07
-Suriname	0.0	0.0	0.0	0.0
-Peru	580.54	580.54	1.815e-05	1.815e-05
-Grenada	0.053	0.053	4.8e-07	4.8e-07
-Barbados	0.288	0.288	1e-06	1e-06
-Chile	338.048	338.048	1.805e-05	1.805e-05
-Aruba	0.0	0.0	0.0	0.0
+Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
+Guyana	2.676	2.676	47.676	0.351	0.351	6.351	3.44e-06	3.44e-06	6.12e-05	4.5e-07	4.5e-07	8.15e-06
+Brazil	1483.484	1483.484	24913.484	95.987	95.987	1423.987	7.08e-06	7.08e-06	0.00011894	4.6e-07	4.6e-07	6.8e-06
+Ecuador	415.182	415.182	7944.182	20.88	20.88	375.88	2.43e-05	2.43e-05	0.000465	1.22e-06	1.22e-06	2.2e-05
+Uruguay	12.916	12.916	492.916	0.067	0.067	8.067	3.74e-06	3.74e-06	0.0001429	2e-08	2e-08	2.34e-06
+Venezuela	3.013	3.013	192.013	0.267	0.267	9.267	1e-07	1e-07	6.65e-06	1e-08	1e-08	3.2e-07
+Argentina	90.0	90.0	2298.0	5.747	5.747	102.747	2.02e-06	2.02e-06	5.165e-05	1.3e-07	1.3e-07	2.31e-06
+Belize	0.969	0.969	18.969	0.0	0.0	2.0	2.53e-06	2.53e-06	4.952e-05	0.0	0.0	5.22e-06
+Bolivia	19.009	19.009	349.009	1.867	1.867	28.867	1.67e-06	1.67e-06	3.074e-05	1.6e-07	1.6e-07	2.54e-06
+Colombia	168.347	168.347	3020.347	7.88	7.88	119.88	3.39e-06	3.39e-06	6.083e-05	1.6e-07	1.6e-07	2.41e-06
+Suriname	0.004	0.004	10.004	0.0	0.0	1.0	1e-08	1e-08	1.737e-05	0.0	0.0	1.74e-06
+Peru	618.924	618.924	10402.924	13.973	13.973	229.973	1.935e-05	1.935e-05	0.0003252	4.4e-07	4.4e-07	7.19e-06
+Grenada	0.267	0.267	14.267	13.973	13.973	13.973	2.4e-06	2.4e-06	0.00012801	0.00012537	0.00012537	0.00012537
+Barbados	2.631	2.631	74.631	0.0	0.0	4.0	9.18e-06	9.18e-06	0.00026036	0.0	0.0	1.395e-05
+Curacao	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	6.26e-06	0.0	0.0	0.0
+Chile	377.769	377.769	7902.769	5.867	5.867	87.867	2.017e-05	2.017e-05	0.00042195	3.1e-07	3.1e-07	4.69e-06
+Aruba	0.0	0.0	4.0	5.867	5.867	5.867	0.0	0.0	3.779e-05	5.543e-05	5.543e-05	5.543e-05
