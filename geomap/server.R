@@ -1488,7 +1488,8 @@ shinyServer(function(input, output, session) {
     # else{
     # 	clearTiles(m)
     # }
-    addTiles(m,
+    addProviderTiles(map = m,
+                     provider = "Stamen.Terrain",
              #REstrict to one copy of the map of Globe
              options=providerTileOptions(noWrap = TRUE))
   }
