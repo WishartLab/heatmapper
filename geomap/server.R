@@ -14,6 +14,8 @@ library(ggdendro)
 library(dbConnect)
 library(dplyr)
 library(stringi)
+library(ggplot2)
+library(scales)
 #library(mapview)
 #library(webshot)
 
