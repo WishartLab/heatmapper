@@ -41,7 +41,7 @@ for continent in continents:
                             writer = csv.writer(csv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
                             if os.path.getsize(root+"/"+row[0].replace(" ","_")+"/"+"accumulated.txt") == 0:
                                 writer.writerow(headers)
-                            row = row[0..12]
+                            row = row[0:12]
                             row.append(file[-14:-4])
                             writer.writerow(row)
 
