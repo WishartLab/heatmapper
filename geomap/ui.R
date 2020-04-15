@@ -495,7 +495,9 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				# 	HTML("<button id='submitName' class='action-button clearButton'>Submit Name</button>"), 
 				# 	selectInput('tableNames', label = NULL, choices = c(" " = 0))		
 				# ),
-				DT::dataTableOutput("table"))
+				DT::dataTableOutput("table")),
+			tabPanel(title = "Plots",
+			         plotOutput("plot"))
 			# , 
 			# tabPanel(title = "Region Names", 
 			# 	tags$br(),

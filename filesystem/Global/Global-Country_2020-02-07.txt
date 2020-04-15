@@ -1,27 +1,27 @@
-Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
-Italy	3.0	0.0	0.0	N/A	5e-08	0.0	15.0	6.0	3.75	2.5e-07	1e-07	6.25e-08
-Finland	1.0	0.0	0.0	N/A	1.8e-07	0.0	5.0	2.0	1.25	9e-07	3.6e-07	2.25e-07
-France	6.0	0.0	0.0	N/A	9e-08	0.0	30.0	12.0	7.5	4.5e-07	1.8e-07	1.125e-07
-United Kingdom	0.0	0.0	0.0	N/A	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
-Sweden	1.0	0.0	0.0	N/A	1e-07	0.0	5.0	2.0	1.25	5e-07	2e-07	1.25e-07
-Germany	13.0	0.0	0.0	N/A	1.6e-07	0.0	65.0	26.0	16.25	8e-07	3.2e-07	2e-07
-Belgium	1.0	0.0	0.0	N/A	9e-08	0.0	5.0	2.0	1.25	4.5e-07	1.8e-07	1.125e-07
-Russia	2.0	0.0	0.0	N/A	1e-08	0.0	10.0	4.0	2.5	5e-08	2e-08	1.25e-08
-Spain	1.0	0.0	0.0	N/A	2e-08	0.0	5.0	2.0	1.25	1e-07	4e-08	2.5e-08
-Canada	7.0	0.0	0.0	N/A	1.9e-07	0.0	35.0	14.0	8.75	9.5e-07	3.8e-07	2.375e-07
-United States of America	7.0	0.0	0.0	N/A	2e-08	0.0	35.0	14.0	8.75	1e-07	4e-08	2.5e-08
-Australia	11.0	0.0	2.0	N/A	4.4e-07	0.0	55.0	22.0	13.75	2.2e-06	8.8e-07	5.5e-07
-Singapore	30.0	0.0	0.0	N/A	5.32e-06	0.0	150.0	60.0	37.5	2.66e-05	1.064e-05	6.65e-06
-United Arab Emirates	5.0	0.0	0.0	N/A	5.2e-07	0.0	25.0	10.0	6.25	2.6e-06	1.04e-06	6.5e-07
-Philippines	3.0	1.0	0.0	N/A	3e-08	1e-08	333.333333333	153.846153846	100.0	3.33333333333e-06	1.53846153846e-06	1e-06
-Nepal	1.0	0.0	0.0	N/A	4e-08	0.0	5.0	2.0	1.25	2e-07	8e-08	5e-08
-India	3.0	0.0	0.0	N/A	0.0	0.0	15.0	6.0	3.75	0.0	0.0	0.0
-Cambodia	1.0	0.0	0.0	N/A	6e-08	0.0	5.0	2.0	1.25	3e-07	1.2e-07	7.5e-08
-Malaysia	12.0	0.0	1.0	N/A	3.8e-07	0.0	60.0	24.0	15.0	1.9e-06	7.6e-07	4.75e-07
-Vietnam	10.0	0.0	1.0	N/A	1e-07	0.0	50.0	20.0	12.5	5e-07	2e-07	1.25e-07
-China	29350.0	705.0	1580.0	N/A	2.107e-05	5.1e-07	235000.0	108461.538462	70500.0	0.00017	7.84615384615e-05	5.1e-05
-Thailand	25.0	0.0	5.0	N/A	3.6e-07	0.0	125.0	50.0	31.25	1.8e-06	7.2e-07	4.5e-07
-Sri Lanka	1.0	0.0	0.0	N/A	5e-08	0.0	5.0	2.0	1.25	2.5e-07	1e-07	6.25e-08
-Japan	25.0	0.0	1.0	N/A	2e-07	0.0	125.0	50.0	31.25	1e-06	4e-07	2.5e-07
-Taiwan	16	0	1	N/A	6.7e-07	0.0	80.0	32.0	20.0	3.35e-06	1.34e-06	8.375e-07
-South Korea	24.0	0.0	1.0	N/A	4.6e-07	0.0	120.0	48.0	30.0	2.3e-06	9.2e-07	5.75e-07
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily
+Italy	3	0	0	N/A	5e-8	0	15	6	3.75	2.5e-7	1e-7	6.25e-8	1	0
+Finland	1	0	0	N/A	1.8e-7	0	5	2	1.25	9e-7	3.6e-7	2.25e-7	0	0
+France	6	0	0	N/A	9e-8	0	30	12	7.5	4.5e-7	1.8e-7	1.125e-7	0	0
+United Kingdom	0	0	0	N/A	0	0	0	0	0	0	0	0	0	0
+Sweden	1	0	0	N/A	1e-7	0	5	2	1.25	5e-7	2e-7	1.25e-7	0	0
+Germany	13	0	0	N/A	1.6e-7	0	65	26	16.25	8e-7	3.2e-7	2e-7	1	0
+Belgium	1	0	0	N/A	9e-8	0	5	2	1.25	4.5e-7	1.8e-7	1.125e-7	0	0
+Russia	2	0	0	N/A	1e-8	0	10	4	2.5	5e-8	2e-8	1.25e-8	0	0
+Spain	1	0	0	N/A	2e-8	0	5	2	1.25	1e-7	4e-8	2.5e-8	0	0
+Canada	7	0	0	N/A	1.9e-7	0	35	14	8.75	9.5e-7	3.8e-7	2.375e-7	4	0
+United States of America	7	0	0	N/A	2e-8	0	35	14	8.75	1e-7	4e-8	2.5e-8	0	0
+Australia	11	0	2	N/A	4.4e-7	0	55	22	13.75	2.2e-6	8.8e-7	5.5e-7	1	0
+Singapore	30	0	0	N/A	5.32e-6	0	150	60	37.5	2.66e-5	1.064e-5	6.65e-6	2	0
+United Arab Emirates	5	0	0	N/A	5.2e-7	0	25	10	6.25	2.6e-6	1.04e-6	6.5e-7	0	0
+Philippines	3	1	0	N/A	3e-8	1e-8	333.333333333	153.846153846	100	3.33333333333e-6	1.53846153846e-6	1e-6	1	0
+Nepal	1	0	0	N/A	4e-8	0	5	2	1.25	2e-7	8e-8	5e-8	0	0
+India	3	0	0	N/A	0	0	15	6	3.75	0	0	0	0	0
+Cambodia	1	0	0	N/A	6e-8	0	5	2	1.25	3e-7	1.2e-7	7.5e-8	0	0
+Malaysia	12	0	1	N/A	3.8e-7	0	60	24	15	1.9e-6	7.6e-7	4.75e-7	0	0
+Vietnam	10	0	1	N/A	1e-7	0	50	20	12.5	5e-7	2e-7	1.25e-7	0	0
+China	29350	705	1580	N/A	2.107e-5	5.1e-7	235000	108461.538462	70500	1.7e-4	7.84615384615e-5	5.1e-5	3139	83
+Thailand	25	0	5	N/A	3.6e-7	0	125	50	31.25	1.8e-6	7.2e-7	4.5e-7	0	0
+Sri Lanka	1	0	0	N/A	5e-8	0	5	2	1.25	2.5e-7	1e-7	6.25e-8	0	0
+Japan	25	0	1	N/A	2e-7	0	125	50	31.25	1e-6	4e-7	2.5e-7	-20	0
+Taiwan	16	0	1	N/A	6.7e-7	0	80	32	20	3.35e-6	1.34e-6	8.375e-7	0	0
+South Korea	24	0	1	N/A	4.6e-7	0	120	48	30	2.3e-6	9.2e-7	5.75e-7	1	0
