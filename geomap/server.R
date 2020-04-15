@@ -427,8 +427,7 @@ shinyServer(function(input, output, session) {
                                     # "% Daily Change in COVID-19 Deaths" = "Deaths_change",
                                     "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
                                     "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
-                                    "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected'
-                                    ,
+                                    "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected',
                                     "COVID-19 Tests Performed" = 'Tests',
                                     "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
                         ),
@@ -472,19 +471,17 @@ shinyServer(function(input, output, session) {
   observe({
     choice <- input$tabSelections
     isolate({
-      col_selected <- input$area
-      if (choice == "Plots" && 
-          (col_selected %in% c('data/World_Countries.rds',
-                               'data/Africa.rds', 
-                               'data/Asia.rds', 
-                               'data/Europe.rds', 
-                               'data/North_America.rds',
-                               'data/Oceania.rds',
-                               'data/South_America.rds'))){
-        col_selected <- "data/CAN_1.rds"
-      } else if (choice == "Heatmap") {
-      col_selected <- "data/World_Countries.rds"
-    }
+      area_selected <- input$area
+      if (area_selected %in% c('data/World_Countries.rds',
+                              'data/Africa.rds', 
+                              'data/Asia.rds', 
+                              'data/Europe.rds', 
+                              'data/North_America.rds',
+                              'data/Oceania.rds',
+                              'data/South_America.rds') &&
+          choice == "Plots"){
+        area_selected <- 'data/CAN_1.rds'
+      }
     })
     if (choice == "Plots"){
       updateSelectInput(session,
@@ -774,7 +771,7 @@ shinyServer(function(input, output, session) {
                                     "US Wisconsin" = 'data/Wisconsin.rds',
                                     "US Wyoming" = 'data/Wyoming.rds'
                         ),
-                        selected = col_selected
+                        selected = area_selected
       )
     } else {
       updateSelectInput(session,
@@ -1077,7 +1074,7 @@ shinyServer(function(input, output, session) {
                           
                           
                         ),
-                        selected = 'data/COL_2.rds')
+                        selected = area_selected)
     }
   })
   # if values$density, values$colours, or values$map is changed update the polygons
