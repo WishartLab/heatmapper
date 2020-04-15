@@ -377,13 +377,13 @@ shinyServer(function(input, output, session) {
     choice = input$tabSelections
     isolate({
       col_selected <- input$colSelect
-        # if (choice == "Plots" && 
-        #     !(col_selected %in% c("Confirmed",
-        #                           "Confirmed_daily",
-        #                           "Deaths",
-        #                           "Deaths_daily"))){
-        #   col_selected <- "Confirmed"
-        # }
+        if (choice == "Plots" &&
+            !(col_selected %in% c("Confirmed",
+                                  "Confirmed_daily",
+                                  "Deaths",
+                                  "Deaths_daily"))){
+          col_selected <- "Confirmed"
+        } 
       #Retrieve datafile mapping string
       datafile_mapping <- maps_files_to_data_files %>% 
         filter(datafile == input$area) %>% 
@@ -401,7 +401,11 @@ shinyServer(function(input, output, session) {
       col_names <- colnames(data_file)
     })
     #TODO Hack for Alberta
-    if (choice == "Plots"){
+    if (choice == "Plots" &&
+        col_selected %in% c("Confirmed",
+                            "Confirmed_daily",
+                            "Deaths",
+                            "Deaths_daily")){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
@@ -413,7 +417,8 @@ shinyServer(function(input, output, session) {
                         selected = col_selected
       )
     } 
-    else if ("Tests" %in% col_names){
+    else if ("Tests" %in% col_names && 
+             choice %in% c("Heatmap", "Table")){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
@@ -433,7 +438,8 @@ shinyServer(function(input, output, session) {
                         ),
                         selected = col_selected
       )
-    } else if ("Predicted_New_Cases" %in% col_names){
+    } else if ("Predicted_New_Cases" %in% col_names && 
+               choice %in% c("Heatmap", "Table")){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
@@ -446,7 +452,7 @@ shinyServer(function(input, output, session) {
                                     "Predicted Total Deaths" = 'Total_Predicted_Deaths',
                                     "Predicted Total Deaths per 100000" = 'Predicted_Total_Deaths_per_capita'),
                         selected = col_selected)
-    }
+    } 
     else {
       updateSelectInput(session,
                         inputId = "colSelect",
