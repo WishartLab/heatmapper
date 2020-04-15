@@ -161,7 +161,7 @@ for continent in continents:
 
                     with open(root+"/"+"predicted.tsv","wb") as tsv_file:    
                         writer = csv.writer(tsv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                        headers = ["Date", "Predicted Daily Cases", "Predicted Total Cases", "Predicted Daily Deaths", "Predicted Total Deaths"]
+                        headers = ["Date", "Predicted_Daily_Cases", "Predicted_Total_Cases", "Predicted_Daily_Deaths", "Predicted_Total_Deaths"]
                         print root
                         print total_rows
                         writer.writerow(headers)
