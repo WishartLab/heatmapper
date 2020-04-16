@@ -27,7 +27,12 @@ source("../config.R") # load DB connection details
 region_names <- read.csv("../department_municipality_name.csv",
                          header = T,
                          sep = ",")
-
+# Data for bar graph variable names mapping
+bar_graphs_mappings <- read.csv("tools/bar_graphs_column_names_mapping.csv",
+                                header = T,
+                                sep = ",",
+                                col.names = c("actual","predicted", "axis_label","best_worst_projection"),
+                                colClasses = c("character","character","character", "character"))
 # Data to map between country names in data files and map file names
 maps_files_to_data_files <- read.csv("tools/map_name_to_data_name.csv",
                                      header = T,
@@ -378,10 +383,8 @@ shinyServer(function(input, output, session) {
     isolate({
       col_selected <- input$colSelect
         if (choice == "Plots" &&
-            !(col_selected %in% c("Confirmed",
-                                  "Confirmed_daily",
-                                  "Deaths",
-                                  "Deaths_daily"))){
+            !(col_selected %in% bar_graphs_mappings$actual)
+            ){
           col_selected <- "Confirmed"
         } 
       #Retrieve datafile mapping string
@@ -413,17 +416,30 @@ shinyServer(function(input, output, session) {
     })
     #TODO Hack for Alberta
     if (choice == "Plots" &&
-        col_selected %in% c("Confirmed",
-                            "Confirmed_daily",
-                            "Deaths",
-                            "Deaths_daily")){
+        col_selected %in% bar_graphs_mappings$actual){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
                         choices = c("Confirmed COVID-19 Cases" = 'Confirmed',
                                     "Confirmed COVID-19 Cases Daily" = 'Confirmed_daily',
                                     "Confirmed Deaths" = 'Deaths',
-                                    "Confirmed Deaths Daily" = 'Deaths_daily'
+                                    "Confirmed Deaths Daily" = 'Deaths_daily',
+                                    'Confirmed COVID-19 Cases Daily Worst Case Scenario' = 'Cases_worst_case',
+                                    'Confirmed COVID-19 Cases Daily per 100,000 Worst Case Scenario' = 'Cases_per_capita_worst_case',
+                                    'Confirmed COVID-19 Cases Worst Case Scenario' = 'Total_Cases_worst_case',
+                                    'Confirmed COVID-19 Cases per 100,000 Worst Case Scenario' = 'Total_Cases_per_capita_worst_case',
+                                    'Confirmed Deaths Daily Worst Case Scenario' = 'Deaths_worst_case',
+                                    'Confirmed Deaths Daily per 100,000 Worst Case Scenario' = 'Deaths_per_capita_worst_case',
+                                    'Confirmed Deaths Worst Case Scenario' = 'Total_Deaths_worst_case',
+                                    'Confirmed Deaths per 100,000 Worst Case Scenario' = 'Total_Deaths_per_capita_worst_case',
+                                    'Confirmed COVID-19 Cases Daily Best Case Scenario' = 'Cases_best_case',
+                                    'Confirmed COVID-19 Cases Daily per 100,000 Best Case Scenario' = 'Cases_per_capita_best_case',
+                                    'Confirmed COVID-19 Cases Best Case Scenario' = 'Total_Cases_best_case',
+                                    'Confirmed COVID-19 Cases per 100,000 Best Case Scenario' = 'Total_Cases_per_capita_best_case',
+                                    'Confirmed Deaths Daily Best Case Scenario' = 'Deaths_best_case',
+                                    'Confirmed Deaths Daily per 100,000 Best Case Scenario' = 'Deaths_per_capita_best_case',
+                                    'Confirmed Deaths Best Case Scenario' = 'Total_Deaths_best_case',
+                                    'Confirmed Deaths per 100,000 Best Case Scenario' = 'Total_Deaths_per_capita_best_case'
                         ),
                         selected = col_selected
       )
@@ -1530,12 +1546,18 @@ shinyServer(function(input, output, session) {
     })
   })
   get_file_for_plot <- function(file_name,
-                                area_name){
+                                area_name,
+                                type){
     #Retrieve datafile mapping string
     datafile_mapping <- maps_files_to_data_files %>% 
       filter(datafile == area_name) %>% 
       pull(prefix)
     path_initial <- strsplit(datafile_mapping, split = "/") %>% unlist()
+    path_initial[1] <- case_when(
+      type == "best_case" ~ "Global_best_case",
+      type == "worst_case" ~ "Global_worst_case",
+      TRUE ~ "Global",
+    )
     path_corrected <- path_initial[-length(path_initial)]
     path_corrected <- paste(path_corrected, collapse = "/")
     file_full_path <- paste("../filesystem", path_corrected,file_name, sep = "/")
@@ -1543,15 +1565,100 @@ shinyServer(function(input, output, session) {
     data_file <- read.csv(file_full_path, sep = "\t")
     return(data_file)
   }
-  #Grab Files for plotting data
-  get_accumulated_for_plot <- reactive({
-    get_file_for_plot(file_name = "accumulated.txt",
-                      area_name = input$area)
-  })
   
-  get_predicted_for_plot <- reactive({
-    get_file_for_plot(file_name = "predicted.tsv",
-                      area_name = input$area)
+  get_dataframe_for_plotting <- reactive({
+    
+    actual_col_names <- bar_graphs_mappings$actual
+    
+    plotted_variable_actual <- input$colSelect
+    
+    if (!(plotted_variable_actual %in% actual_col_names)){
+      plotted_variable_actual <- "Confirmed"
+    }
+    
+    projection_variable <- bar_graphs_mappings %>% 
+      filter(actual == plotted_variable_actual) %>% 
+      pull(best_worst_projection) %>% 
+      as.character()
+    
+    if (grepl(pattern = "_worst_case", plotted_variable_actual)){
+      predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
+                                       area_name = input$area,
+                                       type = "worst_case") %>% 
+        mutate(Date = as.POSIXct(Date))
+      
+      plot_dataset <- predicted_data %>% 
+        dplyr::rename(variable = projection_variable) %>% 
+        dplyr::mutate(type = "Predicted") %>% 
+        dplyr::select(Date,variable, type)
+    } else if (grepl(pattern = "_best_case", plotted_variable_actual)){
+      predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
+                                       area_name = input$area,
+                                       type = "best_case") %>% 
+        mutate(Date = as.POSIXct(Date))
+      plot_dataset <- predicted_data %>% 
+        dplyr::rename(variable = projection_variable) %>% 
+        dplyr::mutate(type = "Predicted") %>% 
+        dplyr::select(Date,variable, type)
+    } else {
+      
+      actual_data <- get_file_for_plot(file_name = "accumulated.txt",
+                                       area_name = input$area,
+                                       type = "normal") %>% 
+        mutate(Date = as.POSIXct(Date))
+      
+      #Generate Confirmed_daily and Deaths Daily
+      dates_vec <- actual_data$Date
+      daily_confirmed_vec <- c(NA)
+      daily_deaths_vec <- c(NA)
+      for (i in 2:length(dates_vec)){
+        day_data <- actual_data %>% filter(Date == dates_vec[i])
+        day_before_data <- actual_data %>% filter(Date == dates_vec[i-1])
+        daily_confirmed <- day_data$Confirmed - day_before_data$Confirmed
+        daily_confirmed <- max(daily_confirmed,0)
+        daily_deaths <- day_data$Deaths - day_before_data$Deaths
+        daily_deaths <- max(daily_deaths,0)
+        daily_confirmed_vec <- c(daily_confirmed_vec,daily_confirmed)
+        daily_deaths_vec <- c(daily_deaths_vec,daily_deaths)
+      }
+      actual_data <- actual_data %>% 
+        dplyr::mutate(Confirmed_daily = daily_confirmed_vec,
+                      Deaths_daily = daily_deaths_vec)
+      
+      predicted_data <- get_file_for_plot(file_name = "predicted.tsv",
+                                          area_name = input$area,
+                                          type = "normal") %>% 
+        mutate(Date = as.POSIXct(Date))
+      
+      plotted_variable_predicted <- bar_graphs_mappings %>% 
+        filter(actual == plotted_variable_actual) %>% 
+        pull(predicted) %>% 
+        as.character()
+      
+      time_lower_limit <- actual_data %>% 
+        filter(Confirmed > 0) %>% 
+        pull(Date) %>% 
+        as.character() %>% 
+        min()
+      
+      time_upper_limit <- predicted_data %>% 
+        filter(Predicted_Daily_Cases > 0) %>% 
+        pull(Date) %>% 
+        as.character() %>% 
+        max()
+      
+      plot_dataset <- actual_data %>% 
+        dplyr::rename(variable = plotted_variable_actual) %>% 
+        dplyr::mutate(type = "Actual") %>% 
+        bind_rows(predicted_data %>% 
+                    dplyr::rename(variable = plotted_variable_predicted) %>% 
+                    dplyr::mutate(type = "Predicted")) %>% 
+        dplyr::select(Date,variable, type) %>% 
+        filter(Date >= time_lower_limit,
+               Date <= time_upper_limit)
+    }
+    
+    return(plot_dataset)
   })
   
   # obtain data from database
@@ -2249,109 +2356,62 @@ shinyServer(function(input, output, session) {
     
     rev_date <- c_trans("reverse", "time")
     
+    plot_dataset <- get_dataframe_for_plotting()
     
-    #Grab data and change data to POSIXct type
-    actual_data <- get_file_for_plot(file_name = "accumulated.txt",
-                                     area_name = input$area) %>% 
-      mutate(Date = as.POSIXct(Date))
-    
-    #Generate Confirmed_daily and Deaths Daily
-    dates_vec <- actual_data$Date
-    daily_confirmed_vec <- c(NA)
-    daily_deaths_vec <- c(NA)
-    for (i in 2:length(dates_vec)){
-      day_data <- actual_data %>% filter(Date == dates_vec[i])
-      day_before_data <- actual_data %>% filter(Date == dates_vec[i-1])
-      daily_confirmed <- day_data$Confirmed - day_before_data$Confirmed
-      daily_confirmed <- max(daily_confirmed,0)
-      daily_deaths <- day_data$Deaths - day_before_data$Deaths
-      daily_deaths <- max(daily_deaths,0)
-      daily_confirmed_vec <- c(daily_confirmed_vec,daily_confirmed)
-      daily_deaths_vec <- c(daily_deaths_vec,daily_deaths)
+    if (grepl(pattern = "per_capita", input$colSelect)){
+      plot_dataset <- plot_dataset %>% 
+        dplyr::mutate(variable = 100000*variable)
     }
-    actual_data <- actual_data %>% 
-      dplyr::mutate(Confirmed_daily = daily_confirmed_vec,
-                    Deaths_daily = daily_deaths_vec)
     
-    predicted_data <- get_file_for_plot(file_name = "predicted.tsv",
-                                        area_name = input$area) %>% 
-      mutate(Date = as.POSIXct(Date))
-    actual_col_names <- c("Confirmed",
-                          "Confirmed_daily",
-                          "Deaths_daily",
-                          "Deaths")
-    plotted_variable_actual <- input$colSelect
-    
-    if (!(plotted_variable_actual %in% actual_col_names)){
-      plotted_variable_actual <- "Confirmed"
-    }
- 
-    
-    mappings_actual_predicted <- data.frame(actual = actual_col_names,
-                                            predicted = c("Predicted_Total_Cases",
-                                                          "Predicted_Daily_Cases",
-                                                          "Predicted_Daily_Deaths",
-                                                          "Predicted_Total_Deaths"),
-                                            axis_labels = c("Confirmed COVID-19 Cases",
-                                                            "Confirmed COVID-19 Cases Daily",
-                                                            "Confirmed Deaths",
-                                                            "Confirmed Deaths Daily")
-                                            )
-    plotted_variable_predicted <- mappings_actual_predicted %>% 
-      filter(actual == plotted_variable_actual) %>% 
-      pull(predicted) %>% 
-      as.character()
-    
-    plot_dataset <- actual_data %>% 
-      dplyr::rename(variable = plotted_variable_actual) %>% 
-      dplyr::mutate(type = "Actual") %>% 
-      bind_rows(predicted_data %>% 
-                  dplyr::rename(variable = plotted_variable_predicted) %>% 
-                  dplyr::mutate(type = "Predicted")) %>% 
-      dplyr::select(Date,variable, type)
-    
-    time_lower_limit <- actual_data %>% 
-      filter(Confirmed > 0) %>% 
+    time_lower_limit <- plot_dataset %>% 
       pull(Date) %>% 
       as.character() %>% 
       min()
-    time_upper_limit <- predicted_data %>% 
-      filter(Predicted_Daily_Cases > 0) %>% 
+    
+    time_upper_limit <- plot_dataset %>% 
       pull(Date) %>% 
       as.character() %>% 
       max()
     
-    label_plotted_variable <- mappings_actual_predicted %>% 
-      filter(actual == plotted_variable_actual) %>% 
-      pull(axis_labels) %>% 
+    label_plotted_variable <- bar_graphs_mappings %>% 
+      filter(actual == input$colSelect) %>% 
+      pull(axis_label) %>% 
       as.character()
+    
     date_breaks <- seq(from =  as.POSIXct(time_lower_limit, tz = "GMT"),
                        to =  as.POSIXct(time_upper_limit, tz = "GMT"),
-                       by = "1 week")
+                       by = "1 day")
     
     date_labels <- seq(from =  as.Date(time_lower_limit),
                        to =  as.Date(time_upper_limit),
-                       by = "1 week")
+                       by = "1 day")
+    
+    len_data_types <- plot_dataset %>% 
+      distinct(type) %>% 
+      pull(type) %>% 
+      length()
+    if (len_data_types < 2){
+      colours <- c("#b10026")
+    } else {
+      colours <- c("#0c2c84","#b10026")
+    }
+
     gray_color <- "#808080"
     font_size <- 14
     axis_text_font_size <- 10
     
     bar_graph <- plot_dataset %>% 
-      filter(Date >= time_lower_limit,
-             Date <= time_upper_limit) %>% 
       ggplot(aes(x = Date,
                  y = variable,
                  fill = type)) +
       geom_col(width = 60*60*24*0.5)+ 
-        #
-        
       labs(x = "Date",
            y = label_plotted_variable)+
       scale_x_continuous(trans = rev_date,
                          breaks = date_breaks,
                          labels = date_labels)+
       scale_y_continuous(position = "right")+
-      scale_fill_manual(values = c("#0c2c84","#b10026"))+
+      scale_fill_manual(values = colours)+
       coord_flip()+
       theme(
         panel.background = element_blank(),
