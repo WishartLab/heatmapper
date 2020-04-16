@@ -1252,7 +1252,11 @@ shinyServer(function(input, output, session) {
           file = log_filename,
           append = TRUE
         )
-      if (is.null(nums_col)) {
+      isolate({
+        tab_selected <- input$tabSelections
+      })
+      if (is.null(nums_col) &&
+          tab_selected != "Plots") {
         nums_col <- data_file[[2]]
         col_names <-colnames(data_file)
         #Update the selected column name, if we grab the second column to show instead of missing column
@@ -2287,7 +2291,12 @@ shinyServer(function(input, output, session) {
                                             predicted = c("Predicted_Total_Cases",
                                                           "Predicted_Daily_Cases",
                                                           "Predicted_Daily_Deaths",
-                                                          "Predicted_Total_Deaths"))
+                                                          "Predicted_Total_Deaths"),
+                                            axis_labels = c("Confirmed COVID-19 Cases",
+                                                            "Confirmed COVID-19 Cases Daily",
+                                                            "Confirmed Deaths",
+                                                            "Confirmed Deaths Daily")
+                                            )
     plotted_variable_predicted <- mappings_actual_predicted %>% 
       filter(actual == plotted_variable_actual) %>% 
       pull(predicted) %>% 
@@ -2312,8 +2321,10 @@ shinyServer(function(input, output, session) {
       as.character() %>% 
       max()
     
-    label_plotted_variable <- gsub(pattern = "_", replacement = " ", plotted_variable_actual)
-    
+    label_plotted_variable <- mappings_actual_predicted %>% 
+      filter(actual == plotted_variable_actual) %>% 
+      pull(axis_labels) %>% 
+      as.character()
     date_breaks <- seq(from =  as.POSIXct(time_lower_limit, tz = "GMT"),
                        to =  as.POSIXct(time_upper_limit, tz = "GMT"),
                        by = "1 week")
