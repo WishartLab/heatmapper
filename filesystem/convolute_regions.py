@@ -89,7 +89,7 @@ for continent in continents:
                         if value_name == "Confirmed":
                             confirmed_diffdate = values[-1][1]
                         if value_name == "Deaths":
-                            if float(values[-1][0]) < 50.0:
+                            if (float(values[-1][0]) < 50.0) and ((float(values[-1][0]) > 3.0)) :
                                 generate_projected_rates = False
                                 projected_rates = italy_deriv_curve[day-10:]
                         original = [float(item[0]) for item in values]
@@ -185,11 +185,15 @@ for continent in continents:
                         if total_rows:
                             for row in confirmed_projected:
                                 confirmed += round(row,3)
-                                if death_index < len(death_project):
-                                    death += round(death_project[death_index],3)
-                                    writer.writerow([date,round(row,3),round(confirmed,3),round(death_project[death_index],3),round(death,3)])
-                                    date = date + timedelta(1)
-                                    death_index += 1
+                                if death_project:
+                                    if death_index < len(death_project):
+                                        death += round(death_project[death_index],3)
+                                        writer.writerow([date,round(row,3),round(confirmed,3),round(death_project[death_index],3),round(death,3)])
+                                        date = date + timedelta(1)
+                                        death_index += 1
+                                    else:
+                                        writer.writerow([date,round(row,3),round(confirmed,3),0.0,round(death,3)])
+                                        date = date + timedelta(1)
                                 else:
                                     writer.writerow([date,round(row,3),round(confirmed,3),0.0,round(death,3)])
                                     date = date + timedelta(1)

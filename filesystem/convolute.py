@@ -28,8 +28,8 @@ germany_data = [csv.reader(open(os.getcwd()+"/Global/Europe/Germany/accumulated.
 yukon_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Yukon/accumulated.txt","rb"), delimiter = '\t'), "Yukon"]
 zealand_data= [csv.reader(open(os.getcwd()+"/Global/Oceania/New_Zealand/accumulated.txt","rb"), delimiter = '\t'), "New Zealand"]
 australia_data= [csv.reader(open(os.getcwd()+"/Global/Oceania/Australia/accumulated.txt","rb"), delimiter = '\t'), "Australia"]
-lebanon_data= [csv.reader(open(os.getcwd()+"/Global/Oceania/Australia/accumulated.txt","rb"), delimiter = '\t'), "Lebanon"]
-cases = [cyprus_data]
+nam_data = [csv.reader(open(os.getcwd()+"/Global/Asia/Vietnam/accumulated.txt","rb"), delimiter = '\t'), "Vietnam"]
+cases = [nam_data]
 
 def Extract(lst, index,date):
     if date:
@@ -78,10 +78,9 @@ for region,name in cases:
         if value_name == "Confirmed":
             confirmed_diffdate = values[-1][1]
         if value_name == "Deaths":
-            if float(values[-1][0]) < 50.0:
+            if (float(values[-1][0]) < 50.0) and (float(values[-1][0]) > 0.0):
                 generate_projected_rates = False
                 projected_rates = italy_deriv_curve[day-10:]
-                print projected_rates
         original = [float(item[0]) for item in values]
         original_diff = np.diff(original)
         original = medfilt(original,3)
@@ -125,7 +124,6 @@ for region,name in cases:
                     i += 1
             projected_rates = italy_deriv_curve[day:]
         region_projected = []
-        print confirmed_diff
         if confirmed_diff.any():
             for rate in projected_rates:
                 if not region_projected:
@@ -150,18 +148,18 @@ for region,name in cases:
         # plt.show()                            
         total_rows.append([region_projected,todays_value])
 
-    with open("cyprus_predicted.tsv","wb") as tsv_file:    
+    with open("predicted.tsv","wb") as tsv_file:    
         writer = csv.writer(tsv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        headers = ["Date", "Predicted Daily Cases", "Predicted Total Cases", "Predicted Daily Deaths", "Predicted Total Deaths"]
-        print total_rows[1]
+        headers = ["Date", "Predicted_Daily_Cases", "Predicted_Total_Cases", "Predicted_Daily_Deaths", "Predicted_Total_Deaths"]
+        print total_rows
         writer.writerow(headers)
         if len(total_rows) < 1:
-            death_projected = None
+            death_project = None
             death = 0.0
             confirmed_projected = None
             confirmed = 0.0
         elif len(total_rows) < 2:
-            death_projected = None
+            death_project = None
             death = 0.0
             confirmed_projected = total_rows[0][0]
             confirmed = total_rows[0][1]
@@ -175,11 +173,15 @@ for region,name in cases:
         if total_rows:
             for row in confirmed_projected:
                 confirmed += round(row,3)
-                if death_index < len(death_project):
-                    death += round(death_project[death_index],3)
-                    writer.writerow([date,round(row,3),round(confirmed,3),round(death_project[death_index],3),round(death,3)])
-                    date = date + timedelta(1)
-                    death_index += 1
+                if death_project:
+                    if death_index < len(death_project):
+                        death += round(death_project[death_index],3)
+                        writer.writerow([date,round(row,3),round(confirmed,3),round(death_project[death_index],3),round(death,3)])
+                        date = date + timedelta(1)
+                        death_index += 1
+                    else:
+                        writer.writerow([date,round(row,3),round(confirmed,3),0.0,round(death,3)])
+                        date = date + timedelta(1)
                 else:
                     writer.writerow([date,round(row,3),round(confirmed,3),0.0,round(death,3)])
                     date = date + timedelta(1)
@@ -192,5 +194,4 @@ for region,name in cases:
             while date < august:
                 writer.writerow([date,0.0,0.0,0.0,0.0])
                 date = date + timedelta(1)
-
 
