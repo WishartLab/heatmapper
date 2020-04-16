@@ -14,6 +14,8 @@ library(ggdendro)
 library(dbConnect)
 library(dplyr)
 library(stringi)
+library(ggplot2)
+library(scales)
 #library(mapview)
 #library(webshot)
 
@@ -372,8 +374,16 @@ shinyServer(function(input, output, session) {
     datepart <- input$date
     #reading file and updating based on file
     map_file_name <- input$area
+    choice = input$tabSelections
     isolate({
       col_selected <- input$colSelect
+        if (choice == "Plots" &&
+            !(col_selected %in% c("Confirmed",
+                                  "Confirmed_daily",
+                                  "Deaths",
+                                  "Deaths_daily"))){
+          col_selected <- "Confirmed"
+        } 
       #Retrieve datafile mapping string
       datafile_mapping <- maps_files_to_data_files %>% 
         filter(datafile == input$area) %>% 
@@ -384,28 +394,42 @@ shinyServer(function(input, output, session) {
       prefix <- paste("../filesystem/",region_name,sep = "")
       file_name <-
         paste(prefix, datepart,".txt", sep = "")
-      #read file
-      data_file <- read.csv(file = file_name,
-                            sep = "\t",
-                            stringsAsFactors = FALSE)
+      if (file.exists(file_name)){
+        #read file
+        data_file <- read.csv(file = file_name,
+                              sep = "\t",
+                              stringsAsFactors = FALSE)
+      } else {
+        path_initial <- strsplit(datafile_mapping, split = "/") %>% unlist()
+        path_corrected <- path_initial[-length(path_initial)]
+        path_corrected <- paste(path_corrected, collapse = "/")
+        file_full_path <- paste("../filesystem", path_corrected,"accumulated.txt", sep = "/")
+        data_file <- read.csv(file = file_full_path,
+                              sep = "\t",
+                              stringsAsFactors = FALSE)
+      }
+      
       col_names <- colnames(data_file)
     })
     #TODO Hack for Alberta
-    if ("Predicted_New_Cases" %in% col_names){
+    if (choice == "Plots" &&
+        col_selected %in% c("Confirmed",
+                            "Confirmed_daily",
+                            "Deaths",
+                            "Deaths_daily")){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
-                        choices = c("Predicted Daily Cases" = 'Predicted_New_Cases',
-                                    "Predicted Daily Cases per 100000" = 'Predicted_New_per_capita',
-                                    "Predicted Total Cases" = 'Total_Predicted_Cases',
-                                    "Predicted Total Cases per 100000" = 'Predicted_Total_Cases_per_capita',
-                                    "Predicted Daily Deaths" = 'Predicted_New_Deaths',
-                                    "Predicted Daily Deaths per 100000" = 'Predicted_New_Deaths_per_capita',
-                                    "Predicted Total Deaths" = 'Total_Predicted_Deaths',
-                                    "Predicted Total Deaths per 100000" = 'Predicted_Total_Deaths_per_capita'),
-                        selected = col_selected)
+                        choices = c("Confirmed COVID-19 Cases" = 'Confirmed',
+                                    "Confirmed COVID-19 Cases Daily" = 'Confirmed_daily',
+                                    "Confirmed Deaths" = 'Deaths',
+                                    "Confirmed Deaths Daily" = 'Deaths_daily'
+                        ),
+                        selected = col_selected
+      )
     } 
-    else if ("Tests" %in% col_names){
+    else if ("Tests" %in% col_names && 
+             choice %in% c("Heatmap", "Table")){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
@@ -419,14 +443,27 @@ shinyServer(function(input, output, session) {
                                     # "% Daily Change in COVID-19 Deaths" = "Deaths_change",
                                     "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
                                     "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
-                                    "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected'
-                                    ,
+                                    "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected',
                                     "COVID-19 Tests Performed" = 'Tests',
                                     "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
                         ),
                         selected = col_selected
       )
-    }
+    } else if ("Predicted_New_Cases" %in% col_names && 
+               choice %in% c("Heatmap", "Table")){
+      updateSelectInput(session,
+                        inputId = "colSelect",
+                        label = "Select Data to Display:",
+                        choices = c("Predicted Daily Cases" = 'Predicted_New_Cases',
+                                    "Predicted Daily Cases per 100000" = 'Predicted_New_per_capita',
+                                    "Predicted Total Cases" = 'Total_Predicted_Cases',
+                                    "Predicted Total Cases per 100000" = 'Predicted_Total_Cases_per_capita',
+                                    "Predicted Daily Deaths" = 'Predicted_New_Deaths',
+                                    "Predicted Daily Deaths per 100000" = 'Predicted_New_Deaths_per_capita',
+                                    "Predicted Total Deaths" = 'Total_Predicted_Deaths',
+                                    "Predicted Total Deaths per 100000" = 'Predicted_Total_Deaths_per_capita'),
+                        selected = col_selected)
+    } 
     else {
       updateSelectInput(session,
                         inputId = "colSelect",
@@ -448,6 +485,615 @@ shinyServer(function(input, output, session) {
     }
   })
   
+  observe({
+    choice <- input$tabSelections
+    isolate({
+      area_selected <- input$area
+      if (area_selected %in% c('data/World_Countries.rds',
+                              'data/Africa.rds', 
+                              'data/Asia.rds', 
+                              'data/Europe.rds', 
+                              'data/North_America.rds',
+                              'data/Oceania.rds',
+                              'data/South_America.rds') &&
+          choice == "Plots"){
+        area_selected <- 'data/CAN_1.rds'
+      }
+    })
+    if (choice == "Plots"){
+      updateSelectInput(session,
+                        inputId = "area",
+                        label = "Plot COVID bar graphs by:",
+                        choices = c("Australia" = 'data/AUS_1.rds',
+                                    "Canada" = 'data/CAN_1.rds',
+                                    "China" = 'data/CHN_1.rds',
+                                    "France" = 'data/FRA_1.rds',
+                                    "Germany" = 'data/DEU_1.rds',
+                                    "Iran" = 'data/IRN_1.rds',
+                                    "Italy" = 'data/ITA_1.rds',
+                                    "Spain" = 'data/ESP_1.rds',
+                                    "United Kingdom" = 'data/GBR_1.rds',
+                                    "United States" = 'data/USA_1.rds',
+                                    #"Canada: Level 2" = 'data/CAN_2.rds',
+                                    
+                                    #"USA: Level 2" = 'data/USA_2.rds',
+                                    #"United Kingdom: Level 2" = 'data/GBR_2.rds',
+                                    #"Australia: Level 2" = 'data/AUS_2.rds',
+                                    
+                                    "Afghanistan" = 'data/AFG_1.rds',
+                                    # "Akrotiri and Dhekelia" = 'data/XAD_1.rds',
+                                    # "Ćland" = 'data/ALA_1.rds',
+                                    "Albania" = 'data/ALB_1.rds',
+                                    "Algeria" = 'data/DZA_1.rds',
+                                    # "American Samoa" = 'data/ASM_1.rds',
+                                    "Andorra" = 'data/AND_1.rds',
+                                    "Angola" = 'data/AGO_1.rds',
+                                    # "Antigua and Barbuda" = 'data/ATG_1.rds',
+                                    "Argentina" = 'data/ARG_1.rds',
+                                    "Armenia" = 'data/ARM_1.rds',
+                                    
+                                    "Austria" = 'data/AUT_1.rds',
+                                    "Azerbaijan" = 'data/AZE_1.rds',
+                                    "Bahamas" = 'data/BHS_1.rds',
+                                    "Bahrain" = 'data/BHR_1.rds',
+                                    "Bangladesh" = 'data/BGD_1.rds',
+                                    "Barbados" = 'data/BRB_1.rds',
+                                    "Belarus" = 'data/BLR_1.rds',
+                                    "Belgium" = 'data/BEL_1.rds',
+                                    "Belize" = 'data/BLZ_1.rds',
+                                    "Benin" = 'data/BEN_1.rds',
+                                    # "Bermuda" = 'data/BMU_1.rds',
+                                    "Bhutan" = 'data/BTN_1.rds',
+                                    "Bolivia" = 'data/BOL_1.rds',
+                                    # "Bonaire, Saint Eustatius and Saba" = 'data/BES_1.rds',
+                                    # "Bosnia and Herzegovina" = 'data/BIH_1.rds',
+                                    "Botswana" = 'data/BWA_1.rds',
+                                    "Brazil" = 'data/BRA_1.rds',
+                                    # "British Virgin Islands" = 'data/VGB_1.rds',
+                                    "Brunei" = 'data/BRN_1.rds',
+                                    "Bulgaria" = 'data/BGR_1.rds',
+                                    "Burkina Faso" = 'data/BFA_1.rds',
+                                    "Burundi" = 'data/BDI_1.rds',
+                                    "Cambodia" = 'data/KHM_1.rds',
+                                    "Cameroon" = 'data/CMR_1.rds',
+                                    "Cape Verde" = 'data/CPV_1.rds',
+                                    # "Cayman Islands" = 'data/CYM_1.rds',
+                                    # "Central African Republic" = 'data/CAF_1.rds',
+                                    "Chad" = 'data/TCD_1.rds',
+                                    "Chile" = 'data/CHL_1.rds',
+                                    "Colombia" = 'data/COL_1.rds',
+                                    # "Comoros" = 'data/COM_1.rds',
+                                    "Costa Rica" = 'data/CRI_1.rds',
+                                    # "CĆ“te d'Ivoire" = 'data/CIV_1.rds',
+                                    "Croatia" = 'data/HRV_1.rds',
+                                    "Cuba" = 'data/CUB_1.rds',
+                                    "Cyprus" = 'data/CYP_1.rds',
+                                    "Czech Republic" = 'data/CZE_1.rds',
+                                    "Democratic Republic of the Congo" = 'data/COD_1.rds',
+                                    "Denmark" = 'data/DNK_1.rds',
+                                    "Djibouti" = 'data/DJI_1.rds',
+                                    "Dominica" = 'data/DMA_1.rds',
+                                    "Dominican Republic" = 'data/DOM_1.rds',
+                                    "Ecuador" = 'data/ECU_1.rds',
+                                    "Egypt" = 'data/EGY_1.rds',
+                                    "El Salvador" = 'data/SLV_1.rds',
+                                    "Equatorial Guinea" = 'data/GNQ_1.rds',
+                                    "Eritrea" = 'data/ERI_1.rds',
+                                    "Estonia" = 'data/EST_1.rds',
+                                    "Ethiopia" = 'data/ETH_1.rds',
+                                    # "Faroe Islands" = 'data/FRO_1.rds',
+                                    "Fiji" = 'data/FJI_1.rds',
+                                    "Finland" = 'data/FIN_1.rds',
+                                    
+                                    # "French Guiana" = 'data/GUF_1.rds',
+                                    # "French Polynesia" = 'data/PYF_1.rds',
+                                    # "French Southern Territories" = 'data/ATF_1.rds',
+                                    "Gabon" = 'data/GAB_1.rds',
+                                    "Gambia" = 'data/GMB_1.rds',
+                                    "Georgia" = 'data/GEO_1.rds',
+                                    
+                                    "Ghana" = 'data/GHA_1.rds',
+                                    "Greece" = 'data/GRC_1.rds',
+                                    # "Greenland" = 'data/GRL_1.rds',
+                                    "Grenada" = 'data/GRD_1.rds',
+                                    # "Guadeloupe" = 'data/GLP_1.rds',
+                                    # "Guam" = 'data/GUM_1.rds',
+                                    "Guatemala" = 'data/GTM_1.rds',
+                                    "Guinea-Bissau" = 'data/GNB_1.rds',
+                                    "Guinea" = 'data/GIN_1.rds',
+                                    "Guyana" = 'data/GUY_1.rds',
+                                    "Haiti" = 'data/HTI_1.rds',
+                                    "Honduras" = 'data/HND_1.rds',
+                                    # "Hong Kong" = 'data/HKG_1.rds',
+                                    "Hungary" = 'data/HUN_1.rds',
+                                    "Iceland" = 'data/ISL_1.rds',
+                                    "India" = 'data/IND_1.rds',
+                                    "Indonesia" = 'data/IDN_1.rds',
+                                    "Iraq" = 'data/IRQ_1.rds',
+                                    "Ireland" = 'data/IRL_1.rds',
+                                    "Israel" = 'data/ISR_1.rds',
+                                    "Jamaica" = 'data/JAM_1.rds',
+                                    "Japan" = 'data/JPN_1.rds',
+                                    "Jordan" = 'data/JOR_1.rds',
+                                    "Kazakhstan" = 'data/KAZ_1.rds',
+                                    "Kenya" = 'data/KEN_1.rds',
+                                    "Kosovo" = 'data/XKO_1.rds',
+                                    "Kuwait" = 'data/KWT_1.rds',
+                                    "Kyrgyzstan" = 'data/KGZ_1.rds',
+                                    "Laos" = 'data/LAO_1.rds',
+                                    "Latvia" = 'data/LVA_1.rds',
+                                    "Lebanon" = 'data/LBN_1.rds',
+                                    # "Lesotho" = 'data/LSO_1.rds',
+                                    "Liberia" = 'data/LBR_1.rds',
+                                    "Libya" = 'data/LBY_1.rds',
+                                    "Liechtenstein" = 'data/LIE_1.rds',
+                                    "Lithuania" = 'data/LTU_1.rds',
+                                    "Luxembourg" = 'data/LUX_1.rds',
+                                    # "Macao" = 'data/MAC_1.rds',
+                                    "Macedonia" = 'data/MKD_1.rds',
+                                    # "Madagascar" = 'data/MDG_1.rds',
+                                    "Malawi" = 'data/MWI_1.rds',
+                                    "Malaysia" = 'data/MYS_1.rds',
+                                    "Mali" = 'data/MLI_1.rds',
+                                    # "Martinique" = 'data/MTQ_1.rds',
+                                    "Mauritania" = 'data/MRT_1.rds',
+                                    "Mauritius" = 'data/MUS_1.rds',
+                                    # "Mayotte" = 'data/MYT_1.rds',
+                                    "Mexico" = 'data/MEX_1.rds',
+                                    # "Micronesia" = 'data/FSM_1.rds',
+                                    "Moldova" = 'data/MDA_1.rds',
+                                    "Mongolia" = 'data/MNG_1.rds',
+                                    "Montenegro" = 'data/MNE_1.rds',
+                                    # "Montserrat" = 'data/MSR_1.rds',
+                                    "Morocco" = 'data/MAR_1.rds',
+                                    "Mozambique" = 'data/MOZ_1.rds',
+                                    "Myanmar" = 'data/MMR_1.rds',
+                                    "Namibia" = 'data/NAM_1.rds',
+                                    # "Nauru" = 'data/NRU_1.rds',
+                                    "Nepal" = 'data/NPL_1.rds',
+                                    "Netherlands" = 'data/NLD_1.rds',
+                                    # "New Caledonia" = 'data/NCL_1.rds',
+                                    "New Zealand" = 'data/NZL_1.rds',
+                                    "Nicaragua" = 'data/NIC_1.rds',
+                                    "Niger" = 'data/NER_1.rds',
+                                    "Nigeria" = 'data/NGA_1.rds',
+                                    # "North Korea" = 'data/PRK_1.rds',
+                                    # "Northern Cyprus" = 'data/XNC_1.rds',
+                                    # "Northern Mariana Islands" = 'data/MNP_1.rds',
+                                    "Norway" = 'data/NOR_1.rds',
+                                    "Oman" = 'data/OMN_1.rds',
+                                    "Pakistan" = 'data/PAK_1.rds',
+                                    # "Palau" = 'data/PLW_1.rds',
+                                    "West Bank and Gaza" = 'data/PSE_1.rds',
+                                    "Panama" = 'data/PAN_1.rds',
+                                    "Papua New Guinea" = 'data/PNG_1.rds',
+                                    "Paraguay" = 'data/PRY_1.rds',
+                                    "Peru" = 'data/PER_1.rds',
+                                    "Philippines" = 'data/PHL_1.rds',
+                                    "Poland" = 'data/POL_1.rds',
+                                    "Portugal" = 'data/PRT_1.rds',
+                                    # "Puerto Rico" = 'data/PRI_1.rds',
+                                    "Qatar" = 'data/QAT_1.rds',
+                                    "Republic of Congo" = 'data/COG_1.rds',
+                                    # "Reunion" = 'data/REU_1.rds',
+                                    "Romania" = 'data/ROU_1.rds',
+                                    "Russia" = 'data/RUS_1.rds',
+                                    "Rwanda" = 'data/RWA_1.rds',
+                                    # "Saint Helena" = 'data/SHN_1.rds',
+                                    "Saint Kitts and Nevis" = 'data/KNA_1.rds',
+                                    "Saint Lucia" = 'data/LCA_1.rds',
+                                    # "Saint Pierre and Miquelon" = 'data/SPM_1.rds',
+                                    "Saint Vincent and the Grenadines" = 'data/VCT_1.rds',
+                                    # "Samoa" = 'data/WSM_1.rds',
+                                    # "San Marino" = 'data/SMR_1.rds',
+                                    "Sao Tome and Principe" = 'data/STP_1.rds',
+                                    "Saudi Arabia" = 'data/SAU_1.rds',
+                                    "Senegal" = 'data/SEN_1.rds',
+                                    "Serbia" = 'data/SRB_1.rds',
+                                    "Sierra Leone" = 'data/SLE_1.rds',
+                                    "Slovakia" = 'data/SVK_1.rds',
+                                    "Slovenia" = 'data/SVN_1.rds',
+                                    # "Solomon Islands" = 'data/SLB_1.rds',
+                                    "Somalia" = 'data/SOM_1.rds',
+                                    "South Africa" = 'data/ZAF_1.rds',
+                                    "South Korea" = 'data/KOR_1.rds',
+                                    "South Sudan" = 'data/SSD_1.rds',
+                                    "Sri Lanka" = 'data/LKA_1.rds',
+                                    "Sudan" = 'data/SDN_1.rds',
+                                    "Suriname" = 'data/SUR_1.rds',
+                                    # "Svalbard and Jan Mayen" = 'data/SJM_1.rds',
+                                    "Swaziland" = 'data/SWZ_1.rds',
+                                    "Sweden" = 'data/SWE_1.rds',
+                                    "Switzerland" = 'data/CHE_1.rds',
+                                    # "Syria" = 'data/SYR_1.rds',
+                                    "Taiwan" = 'data/TWN_1.rds',
+                                    # "Tajikistan" = 'data/TJK_1.rds',
+                                    "Tanzania" = 'data/TZA_1.rds',
+                                    "Thailand" = 'data/THA_1.rds',
+                                    # "Timor-Leste" = 'data/TLS_1.rds',
+                                    "Togo" = 'data/TGO_1.rds',
+                                    # "Tokelau" = 'data/TKL_1.rds',
+                                    # "Tonga" = 'data/TON_1.rds',
+                                    "Trinidad and Tobago" = 'data/TTO_1.rds',
+                                    "Tunisia" = 'data/TUN_1.rds',
+                                    "Turkey" = 'data/TUR_1.rds',
+                                    # "Turkmenistan" = 'data/TKM_1.rds',
+                                    # "Turks and Caicos Islands" = 'data/TCA_1.rds',
+                                    # "Tuvalu" = 'data/TUV_1.rds',
+                                    "Uganda" = 'data/UGA_1.rds',
+                                    "Ukraine" = 'data/UKR_1.rds',
+                                    "United Arab Emirates" = 'data/ARE_1.rds',
+                                    
+                                    # "United States Minor Outlying Islands" = 'data/UMI_1.rds',
+                                    "Uruguay" = 'data/URY_1.rds',
+                                    "Uzbekistan" = 'data/UZB_1.rds',
+                                    # "Vanuatu" = 'data/VUT_1.rds',
+                                    "Venezuela" = 'data/VEN_1.rds',
+                                    "Vietnam" = 'data/VNM_1.rds',
+                                    # "Virgin Islands, U.S." = 'data/VIR_1.rds',
+                                    # "Wallis and Futuna" = 'data/WLF_1.rds',
+                                    # "Western Sahara" = 'data/ESH_1.rds',
+                                    "Yemen" = 'data/YEM_1.rds',
+                                    "Zambia" = 'data/ZMB_1.rds',
+                                    "Zimbabwe" = 'data/ZWE_1.rds',
+                                    "US Alabama" = 'data/Alabama.rds',
+                                    "US Alaska" = 'data/Alaska.rds',
+                                    "US Arizona" = 'data/Arizona.rds',
+                                    "US Arkansas" = 'data/Arkansas.rds',
+                                    "US California" = 'data/California.rds',
+                                    "US Colorado" = 'data/Colorado.rds',
+                                    "US Connecticut" = 'data/Connecticut.rds',
+                                    "US Delaware" = 'data/Delaware.rds',
+                                    "US District of Columbia" = 'data/District_of_Columbia.rds',
+                                    "US Florida" = 'data/Florida.rds',
+                                    "US Georgia" = 'data/Georgia.rds',
+                                    "US Hawaii" = 'data/Hawaii.rds',
+                                    "US Idaho" = 'data/Idaho.rds',
+                                    "US Illinois" = 'data/Illinois.rds',
+                                    "US Indiana" = 'data/Indiana.rds',
+                                    "US Iowa" = 'data/Iowa.rds',
+                                    "US Kansas" = 'data/Kansas.rds',
+                                    "US Kentucky" = 'data/Kentucky.rds',
+                                    "US Louisiana" = 'data/Louisiana.rds',
+                                    "US Maine" = 'data/Maine.rds',
+                                    "US Maryland" = 'data/Maryland.rds',
+                                    "US Massachusetts" = 'data/Massachusetts.rds',
+                                    "US Michigan" = 'data/Michigan.rds',
+                                    "US Minnesota" = 'data/Minnesota.rds',
+                                    "US Mississippi" = 'data/Mississippi.rds',
+                                    "US Missouri" = 'data/Missouri.rds',
+                                    "US Montana" = 'data/Montana.rds',
+                                    "US Nebraska" = 'data/Nebraska.rds',
+                                    "US Nevada" = 'data/Nevada.rds',
+                                    "US New Hampshire" = 'data/New_Hampshire.rds',
+                                    "US New Jersey" = 'data/New_Jersey.rds',
+                                    "US New Mexico" = 'data/New_Mexico.rds',
+                                    "US New York" = 'data/New_York.rds',
+                                    "US North Carolina" = 'data/North_Carolina.rds',
+                                    "US North Dakota" = 'data/North_Dakota.rds',
+                                    "US Ohio" = 'data/Ohio.rds',
+                                    "US Oklahoma" = 'data/Oklahoma.rds',
+                                    "US Oregon" = 'data/Oregon.rds',
+                                    "US Pennsylvania" = 'data/Pennsylvania.rds',
+                                    "US Rhode Island" = 'data/Rhode_Island.rds',
+                                    "US South Carolina" = 'data/South_Carolina.rds',
+                                    "US South Dakota" = 'data/South_Dakota.rds',
+                                    "US Tennessee" = 'data/Tennessee.rds',
+                                    "US Texas" = 'data/Texas.rds',
+                                    "US Utah" = 'data/Utah.rds',
+                                    "US Vermont" = 'data/Vermont.rds',
+                                    "US Virginia" = 'data/Virginia.rds',
+                                    "US Washington" = 'data/Washington.rds',
+                                    "US West Virginia" = 'data/West_Virginia.rds',
+                                    "US Wisconsin" = 'data/Wisconsin.rds',
+                                    "US Wyoming" = 'data/Wyoming.rds'
+                        ),
+                        selected = area_selected
+      )
+    } else {
+      updateSelectInput(session,
+                        inputId = "area",
+                        label = "Plot COVID Heatmap by:", 
+                        choices = c(
+                          #"Municipios" = 'data/COL_2.rds',
+                          #"Departamentos" = 'data/COL_1.rds'
+                          "World (By Country)" = 'data/World_Countries.rds',
+                          "Africa (By Country)" = 'data/Africa.rds', 
+                          "Asia (By Country)" = 'data/Asia.rds', 
+                          "Europe (By Country)" = 'data/Europe.rds', 
+                          "North America (By Country)" = 'data/North_America.rds',
+                          "Oceania (By Country)" = 'data/Oceania.rds',
+                          "South America (By Country)" = 'data/South_America.rds', 
+                          "Australia (By State)" = 'data/AUS_1.rds',
+                          "Canada (By Province)" = 'data/CAN_1.rds',
+                          "China (By Province)" = 'data/CHN_1.rds',
+                          #"United Kingdom (By Country)" = 'data/GBR_1.rds',
+                          "United States (By States)" = 'data/USA_1.rds',
+                          #"Estonia (By County)" = 'data/EST_1.rds',
+                          #"Canada: Level 2" = 'data/CAN_2.rds',
+                          
+                          #"USA: Level 2" = 'data/USA_2.rds',
+                          #"United Kingdom: Level 2" = 'data/GBR_2.rds',
+                          #"Australia: Level 2" = 'data/AUS_2.rds',
+                          
+                          # "Afghanistan" = 'data/AFG_1.rds',
+                          # "Akrotiri and Dhekelia" = 'data/XAD_1.rds',
+                          # "Ćland" = 'data/ALA_1.rds',
+                          # "Albania" = 'data/ALB_1.rds',
+                          # "Algeria" = 'data/DZA_1.rds',
+                          # "American Samoa" = 'data/ASM_1.rds',
+                          # "Andorra" = 'data/AND_1.rds',
+                          # "Angola" = 'data/AGO_1.rds',
+                          # "Antigua and Barbuda" = 'data/ATG_1.rds',
+                          # "Argentina" = 'data/ARG_1.rds',
+                          # "Armenia" = 'data/ARM_1.rds',
+                          
+                          # "Austria" = 'data/AUT_1.rds',
+                          # "Azerbaijan" = 'data/AZE_1.rds',
+                          # "Bahamas" = 'data/BHS_1.rds',
+                          # "Bahrain" = 'data/BHR_1.rds',
+                          # "Bangladesh" = 'data/BGD_1.rds',
+                          # "Barbados" = 'data/BRB_1.rds',
+                          # "Belarus" = 'data/BLR_1.rds',
+                          # "Belgium" = 'data/BEL_1.rds',
+                          # "Belize" = 'data/BLZ_1.rds',
+                          # "Benin" = 'data/BEN_1.rds',
+                          # "Bermuda" = 'data/BMU_1.rds',
+                          # "Bhutan" = 'data/BTN_1.rds',
+                          # "Bolivia" = 'data/BOL_1.rds',
+                          # "Bonaire, Saint Eustatius and Saba" = 'data/BES_1.rds',
+                          # "Bosnia and Herzegovina" = 'data/BIH_1.rds',
+                          # "Botswana" = 'data/BWA_1.rds',
+                          # "Brazil" = 'data/BRA_1.rds',
+                          # "British Virgin Islands" = 'data/VGB_1.rds',
+                          # "Brunei" = 'data/BRN_1.rds',
+                          # "Bulgaria" = 'data/BGR_1.rds',
+                          # "Burkina Faso" = 'data/BFA_1.rds',
+                          # "Burundi" = 'data/BDI_1.rds',
+                          # "Cambodia" = 'data/KHM_1.rds',
+                          # "Cameroon" = 'data/CMR_1.rds',
+                          
+                          # "Cape Verde" = 'data/CPV_1.rds',
+                          # "Cayman Islands" = 'data/CYM_1.rds',
+                          # "Central African Republic" = 'data/CAF_1.rds',
+                          # "Chad" = 'data/TCD_1.rds',
+                          # "Chile" = 'data/CHL_1.rds',
+                          
+                          
+                          # "Comoros" = 'data/COM_1.rds',
+                          # "Costa Rica" = 'data/CRI_1.rds',
+                          # "CĆ“te d'Ivoire" = 'data/CIV_1.rds',
+                          # "Croatia" = 'data/HRV_1.rds',
+                          # "Cuba" = 'data/CUB_1.rds',
+                          # "Cyprus" = 'data/CYP_1.rds',
+                          # "Czech Republic" = 'data/CZE_1.rds',
+                          # "Democratic Republic of the Congo" = 'data/COD_1.rds',
+                          # "Denmark" = 'data/DNK_1.rds',
+                          # "Djibouti" = 'data/DJI_1.rds',
+                          # "Dominica" = 'data/DMA_1.rds',
+                          # "Dominican Republic" = 'data/DOM_1.rds',
+                          # "Ecuador" = 'data/ECU_1.rds',
+                          # "Egypt" = 'data/EGY_1.rds',
+                          # "El Salvador" = 'data/SLV_1.rds',
+                          # "Equatorial Guinea" = 'data/GNQ_1.rds',
+                          # "Eritrea" = 'data/ERI_1.rds',
+                          
+                          # "Ethiopia" = 'data/ETH_1.rds',
+                          # "Faroe Islands" = 'data/FRO_1.rds',
+                          # "Fiji" = 'data/FJI_1.rds',
+                          # "Finland" = 'data/FIN_1.rds',
+                          # "France" = 'data/FRA_1.rds',
+                          # "French Guiana" = 'data/GUF_1.rds',
+                          # "French Polynesia" = 'data/PYF_1.rds',
+                          # "French Southern Territories" = 'data/ATF_1.rds',
+                          # "Gabon" = 'data/GAB_1.rds',
+                          # "Gambia" = 'data/GMB_1.rds',
+                          # "Georgia" = 'data/GEO_1.rds',
+                          # "Germany" = 'data/DEU_1.rds',
+                          # "Ghana" = 'data/GHA_1.rds',
+                          # "Greece" = 'data/GRC_1.rds',
+                          # "Greenland" = 'data/GRL_1.rds',
+                          # "Grenada" = 'data/GRD_1.rds',
+                          # "Guadeloupe" = 'data/GLP_1.rds',
+                          # "Guam" = 'data/GUM_1.rds',
+                          # "Guatemala" = 'data/GTM_1.rds',
+                          # "Guinea-Bissau" = 'data/GNB_1.rds',
+                          # "Guinea" = 'data/GIN_1.rds',
+                          # "Guyana" = 'data/GUY_1.rds',
+                          # "Haiti" = 'data/HTI_1.rds',
+                          # "Honduras" = 'data/HND_1.rds',
+                          # "Hong Kong" = 'data/HKG_1.rds',
+                          # "Hungary" = 'data/HUN_1.rds',
+                          # "Iceland" = 'data/ISL_1.rds',
+                          # "India" = 'data/IND_1.rds',
+                          # "Indonesia" = 'data/IDN_1.rds',
+                          # "Iran" = 'data/IRN_1.rds',
+                          # "Iraq" = 'data/IRQ_1.rds',
+                          # "Ireland" = 'data/IRL_1.rds',
+                          # "Israel" = 'data/ISR_1.rds',
+                          # "Italy" = 'data/ITA_1.rds',
+                          # "Jamaica" = 'data/JAM_1.rds',
+                          # "Japan" = 'data/JPN_1.rds',
+                          # "Jordan" = 'data/JOR_1.rds',
+                          # "Kazakhstan" = 'data/KAZ_1.rds',
+                          # "Kenya" = 'data/KEN_1.rds',
+                          # "Kosovo" = 'data/XKO_1.rds',
+                          # "Kuwait" = 'data/KWT_1.rds',
+                          # "Kyrgyzstan" = 'data/KGZ_1.rds',
+                          # "Laos" = 'data/LAO_1.rds',
+                          # "Latvia" = 'data/LVA_1.rds',
+                          # "Lebanon" = 'data/LBN_1.rds',
+                          # "Lesotho" = 'data/LSO_1.rds',
+                          # "Liberia" = 'data/LBR_1.rds',
+                          # "Libya" = 'data/LBY_1.rds',
+                          # "Liechtenstein" = 'data/LIE_1.rds',
+                          # "Lithuania" = 'data/LTU_1.rds',
+                          # "Luxembourg" = 'data/LUX_1.rds',
+                          # "Macao" = 'data/MAC_1.rds',
+                          # "Macedonia" = 'data/MKD_1.rds',
+                          # "Madagascar" = 'data/MDG_1.rds',
+                          # "Malawi" = 'data/MWI_1.rds',
+                          # "Malaysia" = 'data/MYS_1.rds',
+                          # "Mali" = 'data/MLI_1.rds',
+                          # "Martinique" = 'data/MTQ_1.rds',
+                          # "Mauritania" = 'data/MRT_1.rds',
+                          # "Mauritius" = 'data/MUS_1.rds',
+                          # "Mayotte" = 'data/MYT_1.rds',
+                          # "Mexico" = 'data/MEX_1.rds',
+                          # "Micronesia" = 'data/FSM_1.rds',
+                          # "Moldova" = 'data/MDA_1.rds',
+                          # "Mongolia" = 'data/MNG_1.rds',
+                          # "Montenegro" = 'data/MNE_1.rds',
+                          # "Montserrat" = 'data/MSR_1.rds',
+                          # "Morocco" = 'data/MAR_1.rds',
+                          # "Mozambique" = 'data/MOZ_1.rds',
+                          # "Myanmar" = 'data/MMR_1.rds',
+                          # "Namibia" = 'data/NAM_1.rds',
+                          # "Nauru" = 'data/NRU_1.rds',
+                          # "Nepal" = 'data/NPL_1.rds',
+                          # "Netherlands" = 'data/NLD_1.rds',
+                          # "New Caledonia" = 'data/NCL_1.rds',
+                          # "New Zealand" = 'data/NZL_1.rds',
+                          # "Nicaragua" = 'data/NIC_1.rds',
+                          # "Niger" = 'data/NER_1.rds',
+                          # "Nigeria" = 'data/NGA_1.rds',
+                          # "North Korea" = 'data/PRK_1.rds',
+                          # "Northern Cyprus" = 'data/XNC_1.rds',
+                          # "Northern Mariana Islands" = 'data/MNP_1.rds',
+                          # "Norway" = 'data/NOR_1.rds',
+                          # "Oman" = 'data/OMN_1.rds',
+                          # "Pakistan" = 'data/PAK_1.rds',
+                          # "Palau" = 'data/PLW_1.rds',
+                          # "Palestina" = 'data/PSE_1.rds',
+                          # "Panama" = 'data/PAN_1.rds',
+                          # "Papua New Guinea" = 'data/PNG_1.rds',
+                          # "Paraguay" = 'data/PRY_1.rds',
+                          # "Peru" = 'data/PER_1.rds',
+                          # "Philippines" = 'data/PHL_1.rds',
+                          # "Poland" = 'data/POL_1.rds',
+                          # "Portugal" = 'data/PRT_1.rds',
+                          # "Puerto Rico" = 'data/PRI_1.rds',
+                          # "Qatar" = 'data/QAT_1.rds',
+                          # "Republic of Congo" = 'data/COG_1.rds',
+                          # "Reunion" = 'data/REU_1.rds',
+                          # "Romania" = 'data/ROU_1.rds',
+                          # "Russia" = 'data/RUS_1.rds',
+                          # "Rwanda" = 'data/RWA_1.rds',
+                          # "Saint Helena" = 'data/SHN_1.rds',
+                          # "Saint Kitts and Nevis" = 'data/KNA_1.rds',
+                          # "Saint Lucia" = 'data/LCA_1.rds',
+                          # "Saint Pierre and Miquelon" = 'data/SPM_1.rds',
+                          # "Saint Vincent and the Grenadines" = 'data/VCT_1.rds',
+                          # "Samoa" = 'data/WSM_1.rds',
+                          # "San Marino" = 'data/SMR_1.rds',
+                          # "Sao Tome and Principe" = 'data/STP_1.rds',
+                          # "Saudi Arabia" = 'data/SAU_1.rds',
+                          # "Senegal" = 'data/SEN_1.rds',
+                          # "Serbia" = 'data/SRB_1.rds',
+                          # "Sierra Leone" = 'data/SLE_1.rds',
+                          # "Slovakia" = 'data/SVK_1.rds',
+                          # "Slovenia" = 'data/SVN_1.rds',
+                          # "Solomon Islands" = 'data/SLB_1.rds',
+                          # "Somalia" = 'data/SOM_1.rds',
+                          # "South Africa" = 'data/ZAF_1.rds',
+                          # "South Korea" = 'data/KOR_1.rds',
+                          # "South Sudan" = 'data/SSD_1.rds',
+                          # "Spain" = 'data/ESP_1.rds',
+                          # "Sri Lanka" = 'data/LKA_1.rds',
+                          # "Sudan" = 'data/SDN_1.rds',
+                          # "Suriname" = 'data/SUR_1.rds',
+                          # "Svalbard and Jan Mayen" = 'data/SJM_1.rds',
+                          # "Swaziland" = 'data/SWZ_1.rds',
+                          # "Sweden" = 'data/SWE_1.rds',
+                          # "Switzerland" = 'data/CHE_1.rds',
+                          # "Syria" = 'data/SYR_1.rds',
+                          # "Taiwan" = 'data/TWN_1.rds',
+                          # "Tajikistan" = 'data/TJK_1.rds',
+                          # "Tanzania" = 'data/TZA_1.rds',
+                          # "Thailand" = 'data/THA_1.rds',
+                          # "Timor-Leste" = 'data/TLS_1.rds',
+                          # "Togo" = 'data/TGO_1.rds',
+                          # "Tokelau" = 'data/TKL_1.rds',
+                          # "Tonga" = 'data/TON_1.rds',
+                          # "Trinidad and Tobago" = 'data/TTO_1.rds',
+                          # "Tunisia" = 'data/TUN_1.rds',
+                          # "Turkey" = 'data/TUR_1.rds',
+                          # "Turkmenistan" = 'data/TKM_1.rds',
+                          # "Turks and Caicos Islands" = 'data/TCA_1.rds',
+                          # "Tuvalu" = 'data/TUV_1.rds',
+                          # "Uganda" = 'data/UGA_1.rds',
+                          # "Ukraine" = 'data/UKR_1.rds',
+                          # "United Arab Emirates" = 'data/ARE_1.rds',
+                          
+                          # "United States Minor Outlying Islands" = 'data/UMI_1.rds',
+                          # "Uruguay" = 'data/URY_1.rds',
+                          # "Uzbekistan" = 'data/UZB_1.rds',
+                          # "Vanuatu" = 'data/VUT_1.rds',
+                          # "Venezuela" = 'data/VEN_1.rds',
+                          # "Vietnam" = 'data/VNM_1.rds',
+                          # "Virgin Islands, U.S." = 'data/VIR_1.rds',
+                          # "Wallis and Futuna" = 'data/WLF_1.rds',
+                          # "Western Sahara" = 'data/ESH_1.rds',
+                          # "Yemen" = 'data/YEM_1.rds',
+                          # "Zambia" = 'data/ZMB_1.rds',
+                          # "Zimbabwe" = 'data/ZWE_1.rds'
+                          "US Alabama" = 'data/Alabama.rds',
+                          "US Alaska" = 'data/Alaska.rds',
+                          "US Arizona" = 'data/Arizona.rds',
+                          "US Arkansas" = 'data/Arkansas.rds',
+                          "US California" = 'data/California.rds',
+                          "US Colorado" = 'data/Colorado.rds',
+                          "US Connecticut" = 'data/Connecticut.rds',
+                          "US Delaware" = 'data/Delaware.rds',
+                          "US District of Columbia" = 'data/District_of_Columbia.rds',
+                          "US Florida" = 'data/Florida.rds',
+                          "US Georgia" = 'data/Georgia.rds',
+                          "US Hawaii" = 'data/Hawaii.rds',
+                          "US Idaho" = 'data/Idaho.rds',
+                          "US Illinois" = 'data/Illinois.rds',
+                          "US Indiana" = 'data/Indiana.rds',
+                          "US Iowa" = 'data/Iowa.rds',
+                          "US Kansas" = 'data/Kansas.rds',
+                          "US Kentucky" = 'data/Kentucky.rds',
+                          "US Louisiana" = 'data/Louisiana.rds',
+                          "US Maine" = 'data/Maine.rds',
+                          "US Maryland" = 'data/Maryland.rds',
+                          "US Massachusetts" = 'data/Massachusetts.rds',
+                          "US Michigan" = 'data/Michigan.rds',
+                          "US Minnesota" = 'data/Minnesota.rds',
+                          "US Mississippi" = 'data/Mississippi.rds',
+                          "US Missouri" = 'data/Missouri.rds',
+                          "US Montana" = 'data/Montana.rds',
+                          "US Nebraska" = 'data/Nebraska.rds',
+                          "US Nevada" = 'data/Nevada.rds',
+                          "US New Hampshire" = 'data/New_Hampshire.rds',
+                          "US New Jersey" = 'data/New_Jersey.rds',
+                          "US New Mexico" = 'data/New_Mexico.rds',
+                          "US New York" = 'data/New_York.rds',
+                          "US North Carolina" = 'data/North_Carolina.rds',
+                          "US North Dakota" = 'data/North_Dakota.rds',
+                          "US Ohio" = 'data/Ohio.rds',
+                          "US Oklahoma" = 'data/Oklahoma.rds',
+                          "US Oregon" = 'data/Oregon.rds',
+                          "US Pennsylvania" = 'data/Pennsylvania.rds',
+                          "US Rhode Island" = 'data/Rhode_Island.rds',
+                          "US South Carolina" = 'data/South_Carolina.rds',
+                          "US South Dakota" = 'data/South_Dakota.rds',
+                          "US Tennessee" = 'data/Tennessee.rds',
+                          "US Texas" = 'data/Texas.rds',
+                          "US Utah" = 'data/Utah.rds',
+                          "US Vermont" = 'data/Vermont.rds',
+                          "US Virginia" = 'data/Virginia.rds',
+                          "US Washington" = 'data/Washington.rds',
+                          "US West Virginia" = 'data/West_Virginia.rds',
+                          "US Wisconsin" = 'data/Wisconsin.rds',
+                          "US Wyoming" = 'data/Wyoming.rds'
+                          
+                          
+                        ),
+                        selected = area_selected)
+    }
+  })
   # if values$density, values$colours, or values$map is changed update the polygons
   observe({
     log_activity('geomap', 'layer/tab changes')
@@ -878,6 +1524,30 @@ shinyServer(function(input, output, session) {
     finally = {
       log_activity('geomap', 'end get_file')
     })
+  })
+  get_file_for_plot <- function(file_name,
+                                area_name){
+    #Retrieve datafile mapping string
+    datafile_mapping <- maps_files_to_data_files %>% 
+      filter(datafile == area_name) %>% 
+      pull(prefix)
+    path_initial <- strsplit(datafile_mapping, split = "/") %>% unlist()
+    path_corrected <- path_initial[-length(path_initial)]
+    path_corrected <- paste(path_corrected, collapse = "/")
+    file_full_path <- paste("../filesystem", path_corrected,file_name, sep = "/")
+    validate(need(file.exists(file_full_path),"Unfortuantely we do not provide bar graphs for that region. Please select another region from menu."))
+    data_file <- read.csv(file_full_path, sep = "\t")
+    return(data_file)
+  }
+  #Grab Files for plotting data
+  get_accumulated_for_plot <- reactive({
+    get_file_for_plot(file_name = "accumulated.txt",
+                      area_name = input$area)
+  })
+  
+  get_predicted_for_plot <- reactive({
+    get_file_for_plot(file_name = "predicted.tsv",
+                      area_name = input$area)
   })
   
   # obtain data from database
@@ -1558,7 +2228,142 @@ shinyServer(function(input, output, session) {
                       )))
     }
   })
-  
+  output$plot <- renderPlot({
+    #Functions to enable reverse timeseries:
+    c_trans <- function(a, b, breaks = b$breaks, format = b$format) {
+      a <- as.trans(a)
+      b <- as.trans(b)
+      
+      name <- paste(a$name, b$name, sep = "-")
+      
+      trans <- function(x) a$trans(b$trans(x))
+      inv <- function(x) b$inverse(a$inverse(x))
+      
+      trans_new(name, trans, inverse = inv, breaks = breaks, format=format)
+      
+    }
+    
+    rev_date <- c_trans("reverse", "time")
+    
+    
+    #Grab data and change data to POSIXct type
+    actual_data <- get_file_for_plot(file_name = "accumulated.txt",
+                                     area_name = input$area) %>% 
+      mutate(Date = as.POSIXct(Date))
+    
+    #Generate Confirmed_daily and Deaths Daily
+    dates_vec <- actual_data$Date
+    daily_confirmed_vec <- c(NA)
+    daily_deaths_vec <- c(NA)
+    for (i in 2:length(dates_vec)){
+      day_data <- actual_data %>% filter(Date == dates_vec[i])
+      day_before_data <- actual_data %>% filter(Date == dates_vec[i-1])
+      daily_confirmed <- day_data$Confirmed - day_before_data$Confirmed
+      daily_confirmed <- max(daily_confirmed,0)
+      daily_deaths <- day_data$Deaths - day_before_data$Deaths
+      daily_deaths <- max(daily_deaths,0)
+      daily_confirmed_vec <- c(daily_confirmed_vec,daily_confirmed)
+      daily_deaths_vec <- c(daily_deaths_vec,daily_deaths)
+    }
+    actual_data <- actual_data %>% 
+      dplyr::mutate(Confirmed_daily = daily_confirmed_vec,
+                    Deaths_daily = daily_deaths_vec)
+    
+    predicted_data <- get_file_for_plot(file_name = "predicted.tsv",
+                                        area_name = input$area) %>% 
+      mutate(Date = as.POSIXct(Date))
+    actual_col_names <- c("Confirmed",
+                          "Confirmed_daily",
+                          "Deaths_daily",
+                          "Deaths")
+    plotted_variable_actual <- input$colSelect
+    
+    if (!(plotted_variable_actual %in% actual_col_names)){
+      plotted_variable_actual <- "Confirmed"
+    }
+ 
+    
+    mappings_actual_predicted <- data.frame(actual = actual_col_names,
+                                            predicted = c("Predicted_Total_Cases",
+                                                          "Predicted_Daily_Cases",
+                                                          "Predicted_Daily_Deaths",
+                                                          "Predicted_Total_Deaths"))
+    plotted_variable_predicted <- mappings_actual_predicted %>% 
+      filter(actual == plotted_variable_actual) %>% 
+      pull(predicted) %>% 
+      as.character()
+    
+    plot_dataset <- actual_data %>% 
+      dplyr::rename(variable = plotted_variable_actual) %>% 
+      dplyr::mutate(type = "Actual") %>% 
+      bind_rows(predicted_data %>% 
+                  dplyr::rename(variable = plotted_variable_predicted) %>% 
+                  dplyr::mutate(type = "Predicted")) %>% 
+      dplyr::select(Date,variable, type)
+    
+    time_lower_limit <- actual_data %>% 
+      filter(Confirmed > 0) %>% 
+      pull(Date) %>% 
+      as.character() %>% 
+      min()
+    time_upper_limit <- predicted_data %>% 
+      filter(Predicted_Daily_Cases > 0) %>% 
+      pull(Date) %>% 
+      as.character() %>% 
+      max()
+    
+    label_plotted_variable <- gsub(pattern = "_", replacement = " ", plotted_variable_actual)
+    
+    date_breaks <- seq(from =  as.POSIXct(time_lower_limit, tz = "GMT"),
+                       to =  as.POSIXct(time_upper_limit, tz = "GMT"),
+                       by = "1 week")
+    
+    date_labels <- seq(from =  as.Date(time_lower_limit),
+                       to =  as.Date(time_upper_limit),
+                       by = "1 week")
+    gray_color <- "#808080"
+    font_size <- 14
+    axis_text_font_size <- 10
+    
+    bar_graph <- plot_dataset %>% 
+      filter(Date >= time_lower_limit,
+             Date <= time_upper_limit) %>% 
+      ggplot(aes(x = Date,
+                 y = variable,
+                 fill = type)) +
+      geom_col(width = 60*60*24*0.5)+ 
+        #
+        
+      labs(x = "Date",
+           y = label_plotted_variable)+
+      scale_x_continuous(trans = rev_date,
+                         breaks = date_breaks,
+                         labels = date_labels)+
+      scale_y_continuous(position = "right")+
+      scale_fill_manual(values = c("#0c2c84","#b10026"))+
+      coord_flip()+
+      theme(
+        panel.background = element_blank(),
+        plot.background = element_blank(),
+        axis.title.x = element_text(colour = gray_color,
+                                    size = font_size,
+                                    hjust = 1),
+        axis.title.y = element_text(colour = gray_color,
+                                    size = font_size),
+        axis.text = element_text(colour = gray_color,
+                                 size = axis_text_font_size),
+        axis.ticks = element_blank(),
+        axis.line = element_line(colour = gray_color,
+                                 size = 0.5),
+        legend.title = element_blank(),
+        legend.position = c(0.95,0.95),
+        legend.text = element_text(colour = gray_color,
+                                   size = font_size)
+        )
+
+    bar_graph  
+    
+  })
   # output$regionNames <- renderDataTable({
   # 	data.frame("Regions" = levels(values$map$NAME))
   # }, options = list(pageLength = 10))
