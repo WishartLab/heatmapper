@@ -1252,7 +1252,11 @@ shinyServer(function(input, output, session) {
           file = log_filename,
           append = TRUE
         )
-      if (is.null(nums_col)) {
+      isolate({
+        tab_selected <- input$tabSelections
+      })
+      if (is.null(nums_col) &&
+          tab_selected != "Plots") {
         nums_col <- data_file[[2]]
         col_names <-colnames(data_file)
         #Update the selected column name, if we grab the second column to show instead of missing column
