@@ -424,22 +424,22 @@ shinyServer(function(input, output, session) {
                                     "Confirmed COVID-19 Cases Daily" = 'Confirmed_daily',
                                     "Confirmed Deaths" = 'Deaths',
                                     "Confirmed Deaths Daily" = 'Deaths_daily',
-                                    'Confirmed COVID-19 Cases Daily Worst Case Scenario' = 'Cases_worst_case',
-                                    'Confirmed COVID-19 Cases Daily per 100,000 Worst Case Scenario' = 'Cases_per_capita_worst_case',
-                                    'Confirmed COVID-19 Cases Worst Case Scenario' = 'Total_Cases_worst_case',
-                                    'Confirmed COVID-19 Cases per 100,000 Worst Case Scenario' = 'Total_Cases_per_capita_worst_case',
-                                    'Confirmed Deaths Daily Worst Case Scenario' = 'Deaths_worst_case',
-                                    'Confirmed Deaths Daily per 100,000 Worst Case Scenario' = 'Deaths_per_capita_worst_case',
-                                    'Confirmed Deaths Worst Case Scenario' = 'Total_Deaths_worst_case',
-                                    'Confirmed Deaths per 100,000 Worst Case Scenario' = 'Total_Deaths_per_capita_worst_case',
-                                    'Confirmed COVID-19 Cases Daily Best Case Scenario' = 'Cases_best_case',
-                                    'Confirmed COVID-19 Cases Daily per 100,000 Best Case Scenario' = 'Cases_per_capita_best_case',
-                                    'Confirmed COVID-19 Cases Best Case Scenario' = 'Total_Cases_best_case',
-                                    'Confirmed COVID-19 Cases per 100,000 Best Case Scenario' = 'Total_Cases_per_capita_best_case',
-                                    'Confirmed Deaths Daily Best Case Scenario' = 'Deaths_best_case',
-                                    'Confirmed Deaths Daily per 100,000 Best Case Scenario' = 'Deaths_per_capita_best_case',
-                                    'Confirmed Deaths Best Case Scenario' = 'Total_Deaths_best_case',
-                                    'Confirmed Deaths per 100,000 Best Case Scenario' = 'Total_Deaths_per_capita_best_case'
+                                    'Confirmed COVID-19 Cases Daily (Worst Case Scenario)' = 'Cases_worst_case',
+                                    'Confirmed COVID-19 Cases Daily per 100,000 (Worst Case Scenario)' = 'Cases_per_capita_worst_case',
+                                    'Confirmed COVID-19 Cases (Worst Case Scenario)' = 'Total_Cases_worst_case',
+                                    'Confirmed COVID-19 Cases per 100,000 (Worst Case Scenario)' = 'Total_Cases_per_capita_worst_case',
+                                    'Confirmed Deaths Daily (Worst Case Scenario)' = 'Deaths_worst_case',
+                                    'Confirmed Deaths Daily per 100,000 (Worst Case Scenario)' = 'Deaths_per_capita_worst_case',
+                                    'Confirmed Deaths (Worst Case Scenario)' = 'Total_Deaths_worst_case',
+                                    'Confirmed Deaths per 100,000 (Worst Case Scenario)' = 'Total_Deaths_per_capita_worst_case',
+                                    'Confirmed COVID-19 Cases Daily (Best Case Scenario)' = 'Cases_best_case',
+                                    'Confirmed COVID-19 Cases Daily per 100,000 (Best Case Scenario)' = 'Cases_per_capita_best_case',
+                                    'Confirmed COVID-19 Cases (Best Case Scenario)' = 'Total_Cases_best_case',
+                                    'Confirmed COVID-19 Cases per 100,000 (Best Case Scenario)' = 'Total_Cases_per_capita_best_case',
+                                    'Confirmed Deaths Daily (Best Case Scenario)' = 'Deaths_best_case',
+                                    'Confirmed Deaths Daily per 100,000 (Best Case Scenario)' = 'Deaths_per_capita_best_case',
+                                    'Confirmed Deaths (Best Case Scenario)' = 'Total_Deaths_best_case',
+                                    'Confirmed Deaths per 100,000 (Best Case Scenario)' = 'Total_Deaths_per_capita_best_case'
                         ),
                         selected = col_selected
       )
@@ -2410,7 +2410,9 @@ shinyServer(function(input, output, session) {
       scale_x_continuous(trans = rev_date,
                          breaks = date_breaks,
                          labels = date_labels)+
-      scale_y_continuous(position = "right")+
+      scale_y_continuous(position = "right",
+                         sec.axis = sec_axis(~ .,
+                                             name = label_plotted_variable))+
       scale_fill_manual(values = colours)+
       coord_flip()+
       theme(
@@ -2429,7 +2431,9 @@ shinyServer(function(input, output, session) {
         legend.title = element_blank(),
         legend.position = c(0.95,0.95),
         legend.text = element_text(colour = gray_color,
-                                   size = font_size)
+                                   size = font_size),
+        panel.grid.major.x = element_line(colour = gray_color,
+                                          size = 0.1)
         )
 
     bar_graph  
