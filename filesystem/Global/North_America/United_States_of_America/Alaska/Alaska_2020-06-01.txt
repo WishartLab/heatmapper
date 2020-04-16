@@ -1,13 +1,13 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
 Yakutat	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 Southeast Fairbanks	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.00014455	0.0	0.0	0.0
-Kenai Peninsula	0.0	3.728	18.728	0.0	8.136	8.136	0.0	6.369e-05	0.00031996	0.0	0.000139	0.000139
+Kenai Peninsula	0.0	1.768	17.768	0.0	7.808	7.808	0.0	3.021e-05	0.00030356	0.0	0.00013339	0.00013339
 Bethel	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	5.49e-05	0.0	0.0	0.0
 Sterling	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
 Kusilvak	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 Bristol Bay	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 Lake and Peninsula	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
-Fairbanks North Star	0.476	106.458	185.458	0.0	0.0	1.0	4.81e-06	0.00107565	0.00187386	0.0	0.0	1.01e-05
+Fairbanks North Star	0.35	81.979	160.979	0.0	0.0	1.0	3.54e-06	0.00082831	0.00162653	0.0	0.0	1.01e-05
 Denali	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 Haines	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 North Slope	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
@@ -16,18 +16,18 @@ Yukon-Koyukuk	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.00018772	0.0	0.0	0.0
 Wrangell	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 Hoonah-Angoon	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 Aleutians West	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
-Unassigned	0.0	0.0	4.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Unassigned	0.049	6.942	10.942	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
 Northwest Arctic	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 Soldotna	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Matanuska-Susitna	0.371	65.886	80.886	0.0	0.0	0.0	3.45e-06	0.00061227	0.00075166	0.0	0.0	0.0
+Matanuska-Susitna	0.187	38.615	53.615	0.0	0.0	0.0	1.74e-06	0.00035884	0.00049823	0.0	0.0	0.0
 Petersburg	0.0	0.0	2.0	0.0	0.0	0.0	0.0	0.0	0.00062093	0.0	0.0	0.0
 Aleutians East	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
-Prince of Wales-Hyder	0.108	24.242	26.242	0.0	0.0	0.0	1.682e-05	0.00377484	0.00408627	0.0	0.0	0.0
-Anchorage	0.677	145.741	281.741	0.0	0.0	4.0	2.32e-06	0.0004999	0.0009664	0.0	0.0	1.372e-05
+Prince of Wales-Hyder	0.0	0.0	2.0	0.0	0.0	0.0	0.0	0.0	0.00031143	0.0	0.0	0.0
+Anchorage	0.678	140.196	279.196	0.0	0.0	4.0	2.33e-06	0.00048088	0.00095767	0.0	0.0	1.372e-05
 Skagway	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 Nome	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
-Juneau	0.0	1.388	19.388	0.0	0.0	0.0	0.0	4.322e-05	0.00060374	0.0	0.0	0.0
-Ketchikan Gateway	0.005	1.188	16.188	0.0	0.0	0.0	3.6e-07	8.536e-05	0.0011631	0.0	0.0	0.0
+Juneau	0.036	8.654	29.654	0.0	0.0	0.0	1.12e-06	0.00026949	0.00092343	0.0	0.0	0.0
+Ketchikan Gateway	0.009	1.929	16.929	0.0	0.0	0.0	6.5e-07	0.0001386	0.00121634	0.0	0.0	0.0
 Valdez-Cordova	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 Kodiak Island	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
 Sitka	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
