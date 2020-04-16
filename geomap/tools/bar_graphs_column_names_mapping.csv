@@ -1,8 +1,8 @@
 actual,predicted,axis_label,best_worst_projection
 Confirmed,Predicted_Total_Cases,Confirmed COVID-19 Cases,
 Confirmed_daily,Predicted_Daily_Cases,Confirmed COVID-19 Cases Daily,
-Deaths_daily,Predicted_Daily_Deaths,Confirmed Deaths,
-Deaths,Predicted_Total_Deaths,Confirmed Deaths Daily,
+Deaths_daily,Predicted_Daily_Deaths,Confirmed Deaths Daily,
+Deaths,Predicted_Total_Deaths,Confirmed Deaths,
 Cases_worst_case,,Confirmed COVID-19 Cases Daily Worst Case Scenario,Cases
 Cases_per_capita_worst_case,,"Confirmed COVID-19 Cases Daily per 100,000 Worst Case Scenario",Cases_per_capita
 Total_Cases_worst_case,,Confirmed COVID-19 Cases Worst Case Scenario,Total_Cases
