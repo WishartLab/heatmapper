@@ -18,6 +18,7 @@ library(ggplot2)
 library(scales)
 #library(mapview)
 #library(webshot)
+library(plotly)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
@@ -2351,7 +2352,7 @@ shinyServer(function(input, output, session) {
                       )))
     }
   })
-  output$plot <- renderPlot({
+  output$plot <- renderPlotly({
     #Functions to enable reverse timeseries:
     c_trans <- function(a, b, breaks = b$breaks, format = b$format) {
       a <- as.trans(a)
@@ -2448,7 +2449,8 @@ shinyServer(function(input, output, session) {
                                           size = 0.1)
         )
 
-    bar_graph  
+    ggplotly(bar_graph,
+             tooltip = "variable")
     
   })
   # output$regionNames <- renderDataTable({
