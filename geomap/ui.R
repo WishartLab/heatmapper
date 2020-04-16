@@ -395,7 +395,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			#   "Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
 			#   placement = "right"),
 			
-			FILL_OPACITY_SLIDER(0.5),
+			FILL_OPACITY_SLIDER(0.8),
 
 			# plotdownload and table download buttons
 			# list(
