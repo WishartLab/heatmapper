@@ -2450,7 +2450,7 @@ shinyServer(function(input, output, session) {
         )
 
     ggplotly(bar_graph,
-             tooltip = "variable")
+             tooltip = c("Date","variable"))
     
   })
   # output$regionNames <- renderDataTable({
