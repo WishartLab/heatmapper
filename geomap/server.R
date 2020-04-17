@@ -1404,11 +1404,12 @@ shinyServer(function(input, output, session) {
   # read file if chooseInput is changed or file is uploaded
   get_file <- reactive({
     log_activity('geomap', 'begin get_file')
+    
     write(
       'get_file part',
       file = log_filename,
       append = TRUE
-    )
+      )
    
     date_checked <- input$date
    
@@ -1420,20 +1421,15 @@ shinyServer(function(input, output, session) {
               file = log_filename,
               append = TRUE)
         
-        #Create file name
         file_name <- get_heatmap_file_path(map_file_name = map_file_name,
                                            datepart = date_checked)
         write(paste('  file_name:', file_name, sep = "\t"),
               file = log_filename,
               append = TRUE)
-        #read file
+        
         data_file <- read.csv(file = file_name,
                               sep = "\t",
                               stringsAsFactors = FALSE)
-        
-        # if (grepl("Global-Country_", file_name)) {
-        #   data_file <- data_file[-c((nrow(data_file)-1):nrow(data_file)),]
-        # }
         
         # region names should be in lower case
         data_file[[1]] <- tolower(data_file[[1]])
@@ -1520,6 +1516,7 @@ shinyServer(function(input, output, session) {
     }
     return(data_file)
   }
+ 
   get_file_for_plot <- function(file_name,
                                 area_name,
                                 type){
