@@ -1525,6 +1525,9 @@ shinyServer(function(input, output, session) {
     
     data_file <- read.csv(file_full_path, sep = "\t") %>% 
       mutate(Date = as.POSIXct(Date))
+    
+    data_file <- transform_per_capita_values_per_100000(data_file)
+    
     return(data_file)
   }
   
