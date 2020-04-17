@@ -1439,6 +1439,8 @@ shinyServer(function(input, output, session) {
         data_file[[1]] <- tolower(data_file[[1]])
         
         data_file <- remove_python_NAs(data_file)
+        
+        data_file <- round_to_integers(data_file)
         # check if columns have pyhton N/A-s and substitute them with R NA-s
         nr_columns <- length(data_file)
         col_names <- colnames(data_file)
@@ -1501,6 +1503,19 @@ shinyServer(function(input, output, session) {
       if (grepl(pattern = "N/A",x = data_file[[i]]) %>% sum() >= 1){
         data_file[[i]] <- gsub(pattern = "N/A", replacement = NA, x = data_file[[i]])
       }
+    }
+    return(data_file)
+  }
+  
+  round_to_integers <- function(data_file){
+    col_names <- colnames(data_file)
+    nr_columns <- length(data_file)
+    for (i in 2:nr_columns){
+      data_file[[i]] <- as.numeric(data_file[[i]])
+      #Check if it is not per capita column and round to integers, as we cannot have fraction of people
+      if (!grepl("_per_capita", tolower(col_names[i]))){
+        data_file[[i]] <- round(data_file[[i]], digits = 0)
+      } 
     }
     return(data_file)
   }
