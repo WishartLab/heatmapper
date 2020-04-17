@@ -1752,7 +1752,8 @@ shinyServer(function(input, output, session) {
     strsplit(id, ":")[[1]][1]
   }
   # Rounding for legend numbers 
-  mround <- function(x,base){
+  mround <- function(x,
+                     base){
     return(base*round(x/base))
   }
   
@@ -1779,15 +1780,11 @@ shinyServer(function(input, output, session) {
     mapData$fillColour <- fillArray
     return(mapData)
   })
-  
-  # default map
-  output$map <- renderLeaflet({
-    
+  validate_heatmap_and_table <- function(){
     #Error handling
     #Retrieveing the oldest date for available datafile
-    datafile_prefix <- maps_files_to_data_files %>%
-      filter(datafile == input$area) %>%
-      pull(prefix) %>%
+    datafile_mapping <- get_file_path_mapping(area = input$area)
+    datafile_prefix <- datafile_mapping %>% 
       stri_split(regex = "/") %>%
       unlist()
     path_to_dir <- paste("../filesystem/",
@@ -1803,15 +1800,20 @@ shinyServer(function(input, output, session) {
     }
     oldest_date <- min(dates_vec, na.rm = T)
     newest_date <- max(dates_vec, na.rm = T)
-
+    
     validate(
       #need(input$date <= Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
       need(input$date >= oldest_date,
            paste("No data available for this region on that date.\nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
-      need(!is.null(get_file()),
-           paste("No data available for this region on that date\nWe can provide data for that region starting from",
-                 oldest_date,"to",newest_date)) #Error message for data not available
-      )
+        need(!is.null(get_file()),
+             paste("No data available for this region on that date\nWe can provide data for that region starting from",
+                   oldest_date,"to",newest_date)) #Error message for data not available
+    )
+  }
+  # default map
+  output$map <- renderLeaflet({
+    
+    validate_heatmap_and_table()
     get_file()
     #Present map
     leaflet(
@@ -1901,6 +1903,7 @@ shinyServer(function(input, output, session) {
   
   ################# OUTPUT FUNCTIONS #################
   output$table <- DT::renderDataTable({
+    validate_heatmap_and_table()
     #Correct region  names
     values$file[[1]] <- capitalize_str(values$file[[1]])
     values$file <- rename_per_capita_per_100000(values$file)
