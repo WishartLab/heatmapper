@@ -2452,32 +2452,23 @@ shinyServer(function(input, output, session) {
     secondary_x_axis <- list(
       overlaying = "x",
       side = "top",
-      title = paste0(c(rep("&nbsp;", 20),
-                       label_plotted_variable,
-                       rep("&nbsp;", 20),
-                       rep("\n&nbsp;", 3)),
-                     collapse = ""),
+      title = label_plotted_variable,
       titlefont = list(family = "Arial",
-                       size = font_size*1.3,
+                       size = font_size*1.4,
                        color = gray_color),
       tickfont = list(family = "Arial",
-                      size = axis_text_font_size*1.3,
+                      size = axis_text_font_size*1.4,
                       color = gray_color),
-      rangemode = 'tozero'
+      tickformat = ",",
+      rangemode = 'tozero',
+      showgrid = FALSE,
+      linecolor = toRGB(gray_color),
+      linewidth = 0.5,
+      automargin = TRUE
     )
-    primary_x_axis <- list(
-      overlaying = "x",
-      side = "bottom",
-      title = label_plotted_variable,
-      titlefont = list(size = font_size,
-                       color = gray_color),
-      tickfont = list(size = axis_text_font_size,
-                      color = gray_color),
-      rangemode = 'tozero'
-    )
-    plotly_bar_chart <- ggplotly(bar_graph,
-                                 tooltip = c("Date","variable")) 
-    plotly_bar_chart %>% 
+    
+    ggplotly(bar_graph,
+             tooltip = c("Date","variable")) %>% 
       add_lines(y~Date, x=~variable, colors=NULL, xaxis="x2", 
                 data=plot_dataset, showlegend=FALSE, inherit=FALSE) %>%
       layout(xaxis2 = secondary_x_axis)
