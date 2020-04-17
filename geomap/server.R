@@ -1523,7 +1523,8 @@ shinyServer(function(input, output, session) {
     
     validate(need(file.exists(file_full_path),"Unfortuantely we do not provide bar graphs for that region. Please select another region from menu."))
     
-    data_file <- read.csv(file_full_path, sep = "\t")
+    data_file <- read.csv(file_full_path, sep = "\t") %>% 
+      mutate(Date = as.POSIXct(Date))
     return(data_file)
   }
   
@@ -1560,8 +1561,7 @@ shinyServer(function(input, output, session) {
     if (grepl(pattern = "_worst_case", plotted_variable_actual)){
       predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
                                        area_name = input$area,
-                                       type = "worst_case") %>% 
-        mutate(Date = as.POSIXct(Date))
+                                       type = "worst_case")
       
       plot_dataset <- predicted_data %>% 
         dplyr::rename(variable = all_of(projection_variable)) %>% 
@@ -1570,8 +1570,8 @@ shinyServer(function(input, output, session) {
     } else if (grepl(pattern = "_best_case", plotted_variable_actual)){
       predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
                                        area_name = input$area,
-                                       type = "best_case") %>% 
-        mutate(Date = as.POSIXct(Date))
+                                       type = "best_case")
+      
       plot_dataset <- predicted_data %>% 
         dplyr::rename(variable = all_of(projection_variable)) %>% 
         dplyr::mutate(type = "Predicted") %>% 
@@ -1580,8 +1580,7 @@ shinyServer(function(input, output, session) {
       
       actual_data <- get_file_for_plot(file_name = "accumulated.txt",
                                        area_name = input$area,
-                                       type = "normal") %>% 
-        mutate(Date = as.POSIXct(Date))
+                                       type = "normal") 
       
       #Generate Confirmed_daily and Deaths Daily
       dates_vec <- actual_data$Date
@@ -1603,8 +1602,7 @@ shinyServer(function(input, output, session) {
       
       predicted_data <- get_file_for_plot(file_name = "predicted.tsv",
                                           area_name = input$area,
-                                          type = "normal") %>% 
-        mutate(Date = as.POSIXct(Date))
+                                          type = "normal") 
       
       plotted_variable_predicted <- bar_graphs_mappings %>% 
         filter(actual == plotted_variable_actual) %>% 
