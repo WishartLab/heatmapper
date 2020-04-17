@@ -380,9 +380,20 @@ shinyServer(function(input, output, session) {
         
       if (file.exists(file_name)){
         #read file
-        data_file <- read.csv(file = file_name,
-                              sep = "\t",
-                              stringsAsFactors = FALSE)
+        data_file <- NULL
+        tryCatch({
+          data_file <- read.csv(file = file_name,
+                                sep = "\t",
+                                stringsAsFactors = FALSE)
+        },
+        error = function(err) {
+          write(paste('    updating colSelect columns: caught error:',message(err)),
+                file = log_filename,
+                append = TRUE)
+          return(NULL)
+        })
+        
+        
       } else {
         path_initial <- strsplit(datafile_mapping, split = "/") %>% unlist()
         path_corrected <- path_initial[-length(path_initial)]
@@ -1297,83 +1308,88 @@ shinyServer(function(input, output, session) {
   
   # assign density names and values based on the selected column
   get_density <- reactive({
-    tryCatch({
-      if (debug)
-        write('  get_density triggered',
-              file = log_filename,
-              append = TRUE)
-      
-      data_file <- values$file
-      
-      if (debug) {
-        write('  get_density: data_file:',
-              file = log_filename,
-              append = TRUE)
-        write(paste0(data_file),
-              file = log_filename,
-              append = TRUE)
-        write('  get_density: calling tolower...',
-              file = log_filename,
-              append = TRUE)
-      }
-      
-      name_col <- tolower(data_file[[1]])
-      
-      if (debug) {
-        write('  get_density: name_col:',
-              file = log_filename,
-              append = TRUE)
-        write(name_col, file = log_filename, append = TRUE)
-        write('  get_density: calling get_nums_col...',
-              file = log_filename,
-              append = TRUE)
-      }
-      
-      # nums_col contains values in the selected column 
-      nums_col <- get_nums_col(data_file, input$colSelect)
-      # set legend title
-      legend_title <<- "Person count"
-      
-      if(grepl("_per_capita", input$colSelect)){
-        legend_title <<- "Person count (per 100,000)"
-        #Check if % change column to update the legend title
-      } else if (grepl("_change", input$colSelect)){
-        legend_title <<- "% Change"
-      }
-      
-      if (debug)
-        write(
-          paste('  get_density: nums_col:', nums_col, sep = "\t"),
-          file = log_filename,
-          append = TRUE
-        )
-      
-      names(nums_col) <- name_col
-      
-      if (debug)
-        write(
-          '  get_density: completed without exception',
-          file = log_filename,
-          append = TRUE
-        )
-      return(nums_col)
-      
-    },
-    warning = function(warning_condition) {
-      write('  get_density: caught warning:',
+    isolate({
+      tab_selected <- input$tabSelections
+    })
+    if (tab_selected != "Plots"){
+      tryCatch({
+        if (debug)
+          write('  get_density triggered',
+                file = log_filename,
+                append = TRUE)
+        
+        data_file <- values$file
+        
+        if (debug) {
+          write('  get_density: data_file:',
+                file = log_filename,
+                append = TRUE)
+          write(paste0(data_file),
+                file = log_filename,
+                append = TRUE)
+          write('  get_density: calling tolower...',
+                file = log_filename,
+                append = TRUE)
+        }
+        
+        name_col <- tolower(data_file[[1]])
+        
+        if (debug) {
+          write('  get_density: name_col:',
+                file = log_filename,
+                append = TRUE)
+          write(name_col, file = log_filename, append = TRUE)
+          write('  get_density: calling get_nums_col...',
+                file = log_filename,
+                append = TRUE)
+        }
+        
+        # nums_col contains values in the selected column 
+        nums_col <- get_nums_col(data_file, input$colSelect)
+        # set legend title
+        legend_title <<- "Person count"
+        
+        if(grepl("_per_capita", input$colSelect)){
+          legend_title <<- "Person count (per 100,000)"
+          #Check if % change column to update the legend title
+        } else if (grepl("_change", input$colSelect)){
+          legend_title <<- "% Change"
+        }
+        
+        if (debug)
+          write(
+            paste('  get_density: nums_col:', nums_col, sep = "\t"),
             file = log_filename,
-            append = TRUE)
-      write(paste0(warning_condition),
+            append = TRUE
+          )
+        
+        names(nums_col) <- name_col
+        
+        if (debug)
+          write(
+            '  get_density: completed without exception',
             file = log_filename,
-            append = TRUE)
-    },
-    error = function(err) {
-      write('  get_density: caught error:',
-            file = log_filename,
-            append = TRUE)
-      write(paste0(err), file = log_filename, append = TRUE)
-      validate(txt = paste(ERR_file_read, dimensions_msg))
-    }) 
+            append = TRUE
+          )
+        return(nums_col)
+        
+      },
+      warning = function(warning_condition) {
+        write('  get_density: caught warning:',
+              file = log_filename,
+              append = TRUE)
+        write(paste0(warning_condition),
+              file = log_filename,
+              append = TRUE)
+      },
+      error = function(err) {
+        write('  get_density: caught error:',
+              file = log_filename,
+              append = TRUE)
+        write(paste0(err), file = log_filename, append = TRUE)
+        validate(txt = paste(ERR_file_read, dimensions_msg))
+      })
+    }
   }) # End of get_density, which get the number of person
   
   #Setting values of larger countries as thresholds for max value
@@ -1441,23 +1457,23 @@ shinyServer(function(input, output, session) {
             data_file[[i]] <- as.numeric(data_file[[i]]) * 100000
           }
         }
-      }
-      #Sort the rows by region name  
-      data_file <- data_file %>% 
-        arrange(Name)
-      return(data_file)
-    },
-    error = function(err) {
-      # return message if we do not have data for this country
-      write(paste("ERROR : ", conditionMessage(err), "\n"), sep = "\t",
-            file = log_filename,
-            append = TRUE)
-      
-      return(NULL)
-    },
-    finally = {
-      log_activity('geomap', 'end get_file')
-    })
+        #Sort the rows by region name  
+        data_file <- data_file %>% 
+          arrange(Name)
+        return(data_file)
+      },
+      error = function(err) {
+        # return message if we do not have data for this country
+        write(paste("ERROR : ", conditionMessage(err), "\n"), sep = "\t",
+              file = log_filename,
+              append = TRUE)
+        
+        return(NULL)
+      },
+      finally = {
+        log_activity('geomap', 'end get_file')
+      })
+    }
   })
   
   get_file_path_mapping <- function(area){
