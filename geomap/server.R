@@ -198,7 +198,9 @@ shinyServer(function(input, output, session) {
                 file = log_filename,
                 append = TRUE)
         }
-        min <- floor(min(values$density, na.rm = TRUE))
+        min <- values$density %>% 
+          min(na.rm = TRUE) %>% 
+          floor()
         if (is.infinite(min)){
           min <- 0
         }
@@ -208,7 +210,9 @@ shinyServer(function(input, output, session) {
                 file = log_filename,
                 append = TRUE)
         }
-        max <- ceiling(max(values$density, na.rm = TRUE))
+        max <- values$density %>% 
+          max(na.rm = TRUE) %>% 
+          ceiling()
         
         if (selected_map == "data/World_Countries.rds") {
           
@@ -1491,15 +1495,17 @@ shinyServer(function(input, output, session) {
      
     # Assign colors to states
     if (length(values$from) == 1){
-      values$palette <- colorRampPalette(c("#ffffcc","#b10026"))(length(values$from))
-      values$colours <- structure(rep(values$palette,length(values$density)),names = names(values$density))
+      values$palette <- colorRampPalette(colours[c(1,length(colours))])(length(values$from))
+      values$colours <- structure(rep(values$palette,length(values$density)),
+                                  names = names(values$density)
+                                  )
     } else {
       values$colours <- structure(values$palette[as.integer(cut(
         values$density,
         densityBreaks,
         include.lowest = TRUE,
         ordered = TRUE
-      ))],
+      ))], 
       names = names(values$density))
       #Adding the most red colour to countries with higher value than max restricted to large area country
       # Exclude the areas with NA in values$density set them gray
@@ -1510,9 +1516,7 @@ shinyServer(function(input, output, session) {
           } else {
             values$colours[i] <- values$palette[length(values$palette)]
           }
-        } else {
-          next
-        }
+        } 
       }
     }
   } # End of update_colours() function
@@ -1558,8 +1562,9 @@ shinyServer(function(input, output, session) {
     datafile_prefix <- datafile_mapping %>% 
       stri_split(regex = "/") %>%
       unlist()
+    datafile_prefix <- datafile_prefix[-length(datafile_prefix)]
     path_to_dir <- paste("../filesystem/",
-                         paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
+                         paste(datafile_prefix,collapse = "/"),
                          sep = "/")
     filenames_list <- list.files(path_to_dir)
     dates_vec <- NULL
