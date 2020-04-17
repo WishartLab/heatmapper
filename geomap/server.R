@@ -24,10 +24,6 @@ source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
 source("../config.R") # load DB connection details
 `%then%` <- shiny:::`%OR%` #function to have several validation for error handling
-# Data for region mapping----
-region_names <- read.csv("../department_municipality_name.csv",
-                         header = T,
-                         sep = ",")
 # Data for bar graph variable names mapping
 bar_graphs_mappings <- read.csv("tools/bar_graphs_column_names_mapping.csv",
                                 header = T,
@@ -44,23 +40,6 @@ maps_files_to_data_files <- read.csv("tools/map_name_to_data_name.csv",
 # Constants----
 dimensions_msg <- "Input data can have up to 50 data columns."
 
-#FUNCTIONS----
-mround <- function(x,base){
- return(base*round(x/base))
-}
-#Idea from: https://rstudio-pubs-static.s3.amazonaws.com/408658_512da947714740b99253228f084a08a9.html
-CapStr <- function(y) {
-  c <- strsplit(y, " ")[[1]]
-  capitalized_string <- paste(toupper(substring(c, 1,1)), substring(c, 2),
-                              sep="", collapse=" ")
-  capitalized_string <- gsub(pattern = " And ", replacement = " and ",capitalized_string)
-  capitalized_string <- gsub(pattern = " Of ", replacement = " of ",capitalized_string)
-  capitalized_string <- gsub(pattern = " The ", replacement = " the ",capitalized_string)
-  return(capitalized_string)
-}
-capitalize_str <- function(charcter_string){
-  sapply(charcter_string, CapStr)
-}
 # Logging & debugging
 log_filename = tryCatch({
   paste(system("hostname", intern = TRUE),
@@ -1677,340 +1656,6 @@ shinyServer(function(input, output, session) {
     return(plot_dataset)
   })
   
-  # obtain data from database
-  get_db_data <- reactive({
-    log_activity('geomap', 'begin get_db_data')
-    if (debug)
-      write('get_db_data triggered',
-            file = log_filename,
-            append = TRUE)
-    
-    tryCatch({
-      if (debug) {
-        write('credentials:', file = log_filename, append = TRUE)
-        write(paste('  dbName:', dbName, sep = "\t"),
-              file = log_filename,
-              append = TRUE)
-        write(paste('  hostName:', hostName, sep = "\t"),
-              file = log_filename,
-              append = TRUE)
-        write(paste('  userName:', userName, sep = "\t"),
-              file = log_filename,
-              append = TRUE)
-        # write(paste('  password:', password, sep="\t"), file=log_filename, append=TRUE)
-      }
-      conn <- dbConnect(
-        drv = RMySQL::MySQL(),
-        dbname = dbName,
-        host = hostName,
-        username = userName,
-        password = password
-      )
-      on.exit(dbDisconnect(conn), add = TRUE)
-      data_file <- dbGetQuery(
-        conn,
-        paste0(
-          "select
-			   i.GeolocCiudad as region,
-			   i.GeolocDepartamento as department,
-			   high_score,
-			   fever_count,
-			   cough_count,
-			   difficult_breath_count,
-			   fever_cough_count,
-			   fever_breath_count,
-			   cough_breath_count,
-			   fever_cough_breath_count
-			   -- Distinct of all the regions available in DB
-			   from (select
-			         distinct(k.key_region),
-			         k.GeolocCiudad,
-			         k.GeolocDepartamento
-			         from (select
-			               GeolocCiudad,
-			               GeolocDepartamento,
-			               CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region
-			               from responses) as k
-			         ) as i
-			   -- Add Severity score counting
-			   left join (select
-                    key_region,
-                    count(*) as high_score
-                    from (select
-                    			CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-                    			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
-                    			case when inputTos = 'tos' then 1 else 0 end as score_cough,
-                    			case when inputDigestivos = 'problemas digestivos' then 1 else 0 end as score_digest,
-                    			case when inputRespirar = 'dificultad a respirar' then 3.5 else 0 end as score_breath,
-                    			case when optionsContacto = 'si' then 0.5 else 0 end as score_contact
-                    			from responses )si
-                    where (si.score_fever+si.score_cough+si.score_breath+si.score_digest+si.score_contact) >= 3.5
-                    group by key_region) hs on hs.key_region = i.key_region
-			   -- Add fever cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(inputFebre) as fever_count
-			         from responses
-			         where inputFebre  = 'febre'
-			         group by key_region) f on f.key_region = i.key_region
-			   -- Add Cough cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(inputTos) as cough_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 group by key_region) as c on c.key_region = i.key_region
-         -- Add Breathing difficulties cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(inputRespirar) as difficult_breath_count
-			         from responses
-          		 where inputRespirar  = 'dificultad a respirar'
-          		 group by key_region) r on r.key_region = i.key_region
-         -- Add Fever and Cough combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as fever_cough_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputTos  = 'tos'
-          		 group by key_region) fc on fc.key_region = i.key_region
-         -- Add Fever and Breath difficulties combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as fever_breath_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by key_region) fb on fb.key_region = i.key_region
-         -- Add Cough and Breath difficulties combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by key_region) cb on cb.key_region = i.key_region
-         -- Add Fever, Cough and Breath difficulties combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as fever_cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 and inputFebre  = 'febre'
-          		 group by key_region) fcb on fcb.key_region = i.key_region
-        -- Add everything on department level
-			  union
-			  select
-			   i.GeolocDepartamento as region,
-			   i.GeolocDepartamento as department,
-			   high_score,
-			   fever_count,
-			   cough_count,
-			   difficult_breath_count,
-			   fever_cough_count,
-			   fever_breath_count,
-			   cough_breath_count,
-			   fever_cough_breath_count
-			   -- Distinct of all the regions available in DB
-			   from (select
-			         distinct(GeolocDepartamento)
-			         from responses) as i
-			   left join (select
-                    GeolocDepartamento,
-                    count(*) as high_score
-                    from (select
-                    			GeolocDepartamento,
-                    			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
-                    			case when inputTos = 'tos' then 1 else 0 end as score_cough,
-                    			case when inputDigestivos = 'problemas digestivos' then 1 else 0 end as score_digest,
-                    			case when inputRespirar = 'dificultad a respirar' then 3.5 else 0 end as score_breath,
-                    			case when optionsContacto = 'si' then 0.5 else 0 end as score_contact
-                    			from responses )si
-                    where (si.score_fever+si.score_cough+si.score_breath+si.score_digest+si.score_contact) >= 3.5
-                    group by GeolocDepartamento) as hs on hs.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(inputFebre) as fever_count
-			         from responses
-			         where inputFebre  = 'febre'
-          		 group by GeolocDepartamento) as f on f.GeolocDepartamento = i.GeolocDepartamento
-			   left join (select
-			         GeolocDepartamento,
-			         count(inputTos) as cough_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 group by GeolocDepartamento) as c on c.GeolocDepartamento = i.GeolocDepartamento
-			   left join (select
-			         GeolocDepartamento,
-			         count(inputRespirar) as difficult_breath_count
-			         from responses
-          		 where inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) r on r.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(*) as fever_cough_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputTos  = 'tos'
-          		 group by GeolocDepartamento) fc on fc.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(*) as fever_breath_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) fb on fb.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(*) as cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) cb on cb.GeolocDepartamento = i.GeolocDepartamento
-    		 left join (select
-			         GeolocDepartamento,
-			         count(*) as fever_cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 and inputFebre  = 'febre'
-          		 group by GeolocDepartamento) fcb on fcb.GeolocDepartamento = i.GeolocDepartamento;
-			  "
-        )
-      )
-      #Ouput is "region", "department", "fever_count", "cough_count", "difficult_breath_count", "fever_cough_count",
-      #"fever_breath_count", "cough_breath_count", fever_cough_breath_count
-      
-      if (debug) {
-        write(
-          'get_db_data: raw data_file after SQL query:',
-          file = log_filename,
-          append = TRUE
-        )
-        write(paste0(data_file),
-              file = log_filename,
-              append = TRUE)
-      }
-      
-      data_file <- data_file %>%
-        mutate(row_nr = row_number()) %>%
-        group_by(row_nr) %>%
-        mutate(department = stringi::stri_trans_general(department, id = "Latin-ASCII")) %>%
-        ungroup() %>%
-        dplyr::left_join(
-          region_names %>%
-            dplyr::mutate(department = as.character(department)) %>%
-            dplyr::distinct(department, department_abbreviation),
-          by = "department"
-        ) %>%
-        group_by(row_nr) %>%
-        mutate(
-          region = stringi::stri_trans_general(region, id = "Latin-ASCII"),
-          region = dplyr::case_when(
-            #the departments in the end of table Assumption no municipality has same name as department
-            region == department ~ region,
-            is.na(department_abbreviation) ~ paste0(region),
-            TRUE ~ paste(region, department_abbreviation, sep = ", ")
-          ),
-          region = tolower(region),
-          fever_count = dplyr::if_else(is.na(fever_count),
-                                       0,
-                                       fever_count),
-          cough_count = dplyr::if_else(is.na(cough_count),
-                                       0,
-                                       cough_count),
-          difficult_breath_count = dplyr::if_else(
-            is.na(difficult_breath_count),
-            0,
-            difficult_breath_count
-          ),
-          fever_cough_count = dplyr::if_else(is.na(fever_cough_count),
-                                             0,
-                                             fever_cough_count),
-          fever_breath_count = dplyr::if_else(is.na(fever_breath_count),
-                                              0,
-                                              fever_breath_count),
-          cough_breath_count = dplyr::if_else(is.na(cough_breath_count),
-                                              0,
-                                              cough_breath_count),
-          fever_cough_breath_count = dplyr::if_else(
-            is.na(fever_cough_breath_count),
-            0,
-            fever_cough_breath_count
-          )
-        ) %>%
-        ungroup() %>%
-        dplyr::select(
-          region,
-          fever_count,
-          cough_count,
-          difficult_breath_count,
-          fever_cough_count,
-          fever_breath_count,
-          cough_breath_count,
-          fever_cough_breath_count
-        )
-      
-      # region names should be in lower case
-      #data_file[[1]] <- tolower(data_file[[1]])
-      
-      # # update the column selection options when new DB data is loaded
-      # updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
-      debug = TRUE
-      if (debug) {
-        write(
-          'get_db_data: completed without exception',
-          file = log_filename,
-          append = TRUE
-        )
-        write('get_db_data: data_file:',
-              file = log_filename,
-              append = TRUE)
-        write(paste0(data_file),
-              file = log_filename,
-              append = TRUE)
-      }
-      return(data_file)
-    },
-    warning = function(warning_condition) {
-      write('get_db_data: caught warning:',
-            file = log_filename,
-            append = TRUE)
-      write(paste0(warning_condition),
-            file = log_filename,
-            append = TRUE)
-      if (debug) {
-        write("get_db_data: data_file:",
-              file = log_filename,
-              append = TRUE)
-        write(paste0(data_file),
-              file = log_filename,
-              append = TRUE)
-      }
-    },
-    error = function(error_condition) {
-      write('get_db_data: caught error:',
-            file = log_filename,
-            append = TRUE)
-      write(paste0(error_condition),
-            file = log_filename,
-            append = TRUE)
-      if (debug) {
-        write("get_db_data: data_file:",
-              file = log_filename,
-              append = TRUE)
-        write(paste0(data_file),
-              file = log_filename,
-              append = TRUE)
-      }
-    },
-    finally = {
-      log_activity('geomap', 'end get_db_data')
-    })
-  })
-  
   # returns a list of break points given local min/max, global min/max, and # of bins
   get_breaks <- function(rangeMin, rangeMax, min, max, bins) {
     minadd <- FALSE
@@ -2152,6 +1797,11 @@ shinyServer(function(input, output, session) {
   parseRegionName <- function(id) {
     strsplit(id, ":")[[1]][1]
   }
+  # Rounding for legend numbers 
+  mround <- function(x,base){
+    return(base*round(x/base))
+  }
+  
   
   # add fillColour column to a map, depends on values$map and values$colours
   get_map_data <- reactive({
@@ -2335,6 +1985,38 @@ shinyServer(function(input, output, session) {
     }
   }
   
+  #Formatiing names for Table tab output
+  #Idea from: https://rstudio-pubs-static.s3.amazonaws.com/408658_512da947714740b99253228f084a08a9.html
+  CapStr <- function(y) {
+    
+    c <- strsplit(y, " ")[[1]]
+    
+    capitalized_string <- paste(toupper(substring(c, 1,1)), substring(c, 2),
+                                sep="", collapse=" ")
+    
+    capitalized_string <- gsub(pattern = " And ", replacement = " and ",capitalized_string)
+    capitalized_string <- gsub(pattern = " Of ", replacement = " of ",capitalized_string)
+    capitalized_string <- gsub(pattern = " The ", replacement = " the ",capitalized_string)
+    
+    return(capitalized_string)
+  }
+  capitalize_str <- function(charcter_string){
+    sapply(charcter_string, CapStr)
+  }
+  
+  #Functions to enable reverse timeseries:
+  c_trans <- function(a, b, breaks = b$breaks, format = b$format) {
+    a <- as.trans(a)
+    b <- as.trans(b)
+    
+    name <- paste(a$name, b$name, sep = "-")
+    
+    trans <- function(x) a$trans(b$trans(x))
+    inv <- function(x) b$inverse(a$inverse(x))
+    
+    trans_new(name, trans, inverse = inv, breaks = breaks, format=format)
+    
+  }
   # Dynamically render the box in the upper-right
   output$stateInfo <- renderUI({
     log_activity('geomap', 'stateInfo')
@@ -2356,21 +2038,8 @@ shinyServer(function(input, output, session) {
     }
   })
   output$plot <- renderPlotly({
-    #Functions to enable reverse timeseries:
-    c_trans <- function(a, b, breaks = b$breaks, format = b$format) {
-      a <- as.trans(a)
-      b <- as.trans(b)
-      
-      name <- paste(a$name, b$name, sep = "-")
-      
-      trans <- function(x) a$trans(b$trans(x))
-      inv <- function(x) b$inverse(a$inverse(x))
-      
-      trans_new(name, trans, inverse = inv, breaks = breaks, format=format)
-      
-    }
     
-    rev_date <- c_trans("reverse", "time")
+    reverse_date <- c_trans("reverse", "time")
     
     plot_dataset <- get_dataframe_for_plotting()
     
@@ -2405,6 +2074,7 @@ shinyServer(function(input, output, session) {
       distinct(type) %>% 
       pull(type) %>% 
       length()
+    
     if (len_data_types < 2){
       colours <- c("#b10026")
     } else {
@@ -2414,6 +2084,7 @@ shinyServer(function(input, output, session) {
     gray_color <- "#808080"
     font_size <- 14
     axis_text_font_size <- 10
+    font_family = "Arial"
     
     bar_graph <- plot_dataset %>% 
       ggplot(aes(x = Date,
@@ -2422,7 +2093,7 @@ shinyServer(function(input, output, session) {
       geom_col(width = 60*60*24*0.5)+ 
       labs(x = "Date",
            y = label_plotted_variable)+
-      scale_x_continuous(trans = rev_date,
+      scale_x_continuous(trans = reverse_date,
                          breaks = date_breaks,
                          labels = date_labels,
                          limits = c(as.POSIXct(time_upper_limit, tz = "GMT"),
@@ -2453,15 +2124,17 @@ shinyServer(function(input, output, session) {
                                    size = font_size)
         )
     
+    factor_ggplot_plotly <- 1.4
+    
     secondary_x_axis <- list(
       overlaying = "x",
       side = "top",
       title = label_plotted_variable,
-      titlefont = list(family = "Arial",
-                       size = font_size*1.4,
+      titlefont = list(family = font_family,
+                       size = font_size*factor_ggplot_plotly,
                        color = gray_color),
-      tickfont = list(family = "Arial",
-                      size = axis_text_font_size*1.4,
+      tickfont = list(family = font_family,
+                      size = axis_text_font_size*factor_ggplot_plotly,
                       color = gray_color),
       tickformat = ",",
       rangemode = 'tozero',
