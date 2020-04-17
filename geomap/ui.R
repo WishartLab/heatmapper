@@ -2,7 +2,7 @@ source("../global_ui.R")
 library(leaflet)
 library(d3heatmap)
 library(shinyjs)
-
+library(plotly)
 shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
                                                  useShinyjs(),
 	
