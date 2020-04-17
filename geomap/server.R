@@ -1441,19 +1441,9 @@ shinyServer(function(input, output, session) {
         data_file <- remove_python_NAs(data_file)
         
         data_file <- round_to_integers(data_file)
-        # check if columns have pyhton N/A-s and substitute them with R NA-s
-        nr_columns <- length(data_file)
-        col_names <- colnames(data_file)
-        for (i in 2:nr_columns){
-          data_file[[i]] <- as.numeric(data_file[[i]])
-          #Check if it is not per capita column and round to integers, as we cannot have fraction of people
-          if (!grepl("_per_capita", tolower(col_names[i]))){
-            data_file[[i]] <- round(data_file[[i]], digits = 0)
-          } else {
-            data_file[[i]] <- as.numeric(data_file[[i]]) * 100000
-          }
-        }
-        #Sort the rows by region name  
+        
+        data_file <- transform_per_capita_values_per_100000(data_file)
+          
         data_file <- data_file %>% 
           arrange(Name)
         return(data_file)
@@ -1495,8 +1485,6 @@ shinyServer(function(input, output, session) {
     return(file_full_path)
   }
   
-  round_heatmap_files_integer_level <- function(data_file){
-    
   remove_python_NAs <- function(data_file){
     nr_columns <- length(data_file)
     for (i in 2:nr_columns){
@@ -1519,6 +1507,18 @@ shinyServer(function(input, output, session) {
     }
     return(data_file)
   }
+  
+  transform_per_capita_values_per_100000 <- function(data_file){
+    col_names <- colnames(data_file)
+    nr_columns <- length(data_file)
+    for (i in 2:nr_columns){
+      data_file[[i]] <- as.numeric(data_file[[i]])
+      #Check if it is not per capita column and round to integers, as we cannot have fraction of people
+      if (grepl("_per_capita", tolower(col_names[i]))){
+        data_file[[i]] <- as.numeric(data_file[[i]]) * 100000
+      } 
+    }
+    return(data_file)
   }
   get_file_for_plot <- function(file_name,
                                 area_name,
