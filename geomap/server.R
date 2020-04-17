@@ -1524,7 +1524,7 @@ shinyServer(function(input, output, session) {
     validate(need(file.exists(file_full_path),"Unfortuantely we do not provide bar graphs for that region. Please select another region from menu."))
     
     data_file <- read.csv(file_full_path, sep = "\t") %>% 
-      mutate(Date = as.POSIXct(Date))
+      mutate(Date = as.POSIXct(Date, tz = "GMT"))
     
     data_file <- transform_per_capita_values_per_100000(data_file)
     
@@ -1563,22 +1563,18 @@ shinyServer(function(input, output, session) {
     
     if (grepl(pattern = "_worst_case", plotted_variable_actual)){
       predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
-                                       area_name = input$area,
-                                       type = "worst_case")
+                                          area_name = input$area,
+                                          type = "worst_case")
       
-      plot_dataset <- predicted_data %>% 
-        dplyr::rename(variable = all_of(projection_variable)) %>% 
-        dplyr::mutate(type = "Predicted") %>% 
-        dplyr::select(Date,variable, type)
+      plot_dataset <- get_projection_plot_df(predicted_data,
+                                             projection_variable)
     } else if (grepl(pattern = "_best_case", plotted_variable_actual)){
       predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
-                                       area_name = input$area,
-                                       type = "best_case")
+                                          area_name = input$area,
+                                          type = "best_case")
       
-      plot_dataset <- predicted_data %>% 
-        dplyr::rename(variable = all_of(projection_variable)) %>% 
-        dplyr::mutate(type = "Predicted") %>% 
-        dplyr::select(Date,variable, type)
+      plot_dataset <- get_projection_plot_df(predicted_data,
+                                             projection_variable)
     } else {
       
       actual_data <- get_file_for_plot(file_name = "accumulated.txt",
@@ -1640,6 +1636,15 @@ shinyServer(function(input, output, session) {
       dplyr::mutate(variable = round(variable, 0))
     return(plot_dataset)
   })
+  
+  get_projection_plot_df <- function(data_frame,
+                                     projection_variable){
+    plot_dataset <- data_frame %>% 
+      dplyr::rename(variable = all_of(projection_variable)) %>% 
+      dplyr::mutate(type = "Predicted") %>% 
+      dplyr::select(Date,variable, type)
+    return(plot_dataset)
+  }
   
   # returns a list of break points given local min/max, global min/max, and # of bins
   get_breaks <- function(rangeMin, rangeMax, min, max, bins) {
