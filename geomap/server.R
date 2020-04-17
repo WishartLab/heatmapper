@@ -1670,7 +1670,8 @@ shinyServer(function(input, output, session) {
         filter(Date >= time_lower_limit,
                Date <= time_upper_limit)
     }
-    
+    plot_dataset <- plot_dataset %>% 
+      dplyr::mutate(variable = round(variable, 0))
     return(plot_dataset)
   })
   
