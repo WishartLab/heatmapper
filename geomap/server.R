@@ -1131,7 +1131,7 @@ shinyServer(function(input, output, session) {
   observe({
     get_file()
     if (length(values$from) == 1){
-      colours <- colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from))
+      colours <- colorRampPalette(colours[c(1,length(colours))])(length(values$from))
     } 
     if(!is.null(values$density) && input$tabSelections == "Heatmap"){
       leafletProxy("map", data = isolate({
