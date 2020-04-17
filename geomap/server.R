@@ -1988,11 +1988,6 @@ shinyServer(function(input, output, session) {
     
     plot_dataset <- get_dataframe_for_plotting()
     
-    if (grepl(pattern = "per_capita", input$colSelect)){
-      plot_dataset <- plot_dataset %>% 
-        dplyr::mutate(variable = 100000*variable)
-    }
-    
     dates_with_non_zero_variable <- plot_dataset %>% 
       filter(variable > 0) %>% 
       pull(Date) %>% 
