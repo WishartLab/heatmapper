@@ -395,6 +395,7 @@ shinyServer(function(input, output, session) {
         
         
       } else {
+        datafile_mapping <- get_file_path_mapping(area = map_file_name)
         path_initial <- strsplit(datafile_mapping, split = "/") %>% unlist()
         path_corrected <- path_initial[-length(path_initial)]
         path_corrected <- paste(path_corrected, collapse = "/")
