@@ -36,7 +36,19 @@ maps_files_to_data_files <- read.csv("tools/map_name_to_data_name.csv",
                                      sep = ",",
                                      col.names = c("datafile","prefix"),
                                      colClasses = c("character","character"))
-
+# Colours for legend and heatmap
+#https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=8
+#Colorblind friendly 8 bins
+colours <- c(
+  "#ffffcc",
+  "#ffeda0",
+  "#fed976",
+  "#feb24c",
+  "#fd8d3c",
+  "#fc4e2a",
+  "#e31a1c",
+  "#b10026"
+)
 # Constants----
 dimensions_msg <- "Input data can have up to 50 data columns."
 
@@ -86,6 +98,9 @@ shinyServer(function(input, output, session) {
   # when a valid column is selected set values$density
   observe({
    # input$radio
+    isolate({
+      selected_map <- input$area
+    })
     if (input$colSelect != 0) {
       tryCatch({
         if (debug) {
@@ -130,57 +145,49 @@ shinyServer(function(input, output, session) {
                 append = TRUE)
         }
         max <- ceiling(max(values$density, na.rm = TRUE))
-        #Setting values of larger countries as thresholds for max value
-        col_names <- names(values$density)
-        #World map
-        if ("united states of america" %in% col_names &&
-            "spain" %in% col_names &&
-            "france" %in% col_names &&
-            "italy" %in% col_names &&
-            "south africa" %in% col_names &&
-            "china" %in% col_names &&
-            "brazil" %in% col_names &&
-            "australia" %in% col_names ) {
-          max <- ceiling(max(values$density[names(values$density) %in% c("united states of america",
-                                                                         "spain",
-                                                                         "france",
-                                                                         "italy",
-                                                                         "south africa",
-                                                                         "china",
-                                                                         "brazil",
-                                                                         "australia")], 
-                             na.rm = TRUE))
-        } else if ("united states of america" %in% col_names){
-          #Northern America
-          max <- ceiling(values$density[names(values$density) == "united states of america"])
-        } else if ("spain" %in% col_names &&
-                   "france" %in% col_names &&
-                   "italy" %in% col_names){
-          #Europe
-          max <- ceiling(max(values$density[names(values$density) %in% c("spain",
-                                                                         "france",
-                                                                         "italy")],
-                             na.rm = TRUE))
-        } else if ("china" %in% col_names &&
-                   "iran" %in% col_names){
-          #Asia
-          max <- ceiling(max(values$density[names(values$density) %in% c("china",
-                                                                         "iran")], 
-                             na.rm = TRUE))
-        } else if ("brazil" %in% col_names) {
-          #South America
-          max <- ceiling(values$density[names(values$density) == "brazil"])
-        } else if ("australia" %in% col_names) {
-          # Oceania
-          max <- ceiling(values$density[names(values$density) == "australia"])
-        } else if ("algeria" %in% col_names &&
-                   "egypt" %in% col_names &&
-                   "south africa" %in% col_names) {
-          #Africa
-          max <- ceiling(max(values$density[names(values$density) %in% c("algeria",
-                                                                         "egypt",
-                                                                         "south africa")], 
-                             na.rm = TRUE))
+        
+        if (selected_map == "data/World_Countries.rds") {
+          
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("united states of america",
+                                                            "spain",
+                                                            "france",
+                                                            "italy",
+                                                            "south africa",
+                                                            "china",
+                                                            "brazil",
+                                                            "australia"))
+        } else if (selected_map == "data/North_America.rds"){
+          
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("united states of america"))
+          
+        } else if (selected_map == "data/Europe.rds"){
+          
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("spain",
+                                                            "france",
+                                                            "italy"))
+        } else if (selected_map == "data/Asia.rds"){
+         
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("china",
+                                                            "iran"))
+        } else if (selected_map == "data/South_America.rds") {
+          
+          max <-  max_limit_heatmap(named_vector = values$density,
+                                    considered_countries = c("brazil"))
+        } else if (selected_map == "data/Oceania.rds") {
+          
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("australia"))
+          
+        } else if (selected_map == "data/Africa.rds") {
+          
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("algeria",
+                                                            "egypt",
+                                                            "south africa"))
         }
 
         if (is.infinite(max)){
@@ -510,12 +517,6 @@ shinyServer(function(input, output, session) {
                                     "Spain" = 'data/ESP_1.rds',
                                     "United Kingdom" = 'data/GBR_1.rds',
                                     "United States" = 'data/USA_1.rds',
-                                    #"Canada: Level 2" = 'data/CAN_2.rds',
-                                    
-                                    #"USA: Level 2" = 'data/USA_2.rds',
-                                    #"United Kingdom: Level 2" = 'data/GBR_2.rds',
-                                    #"Australia: Level 2" = 'data/AUS_2.rds',
-                                    
                                     "Afghanistan" = 'data/AFG_1.rds',
                                     # "Akrotiri and Dhekelia" = 'data/XAD_1.rds',
                                     # "Ćland" = 'data/ALA_1.rds',
@@ -1131,18 +1132,7 @@ shinyServer(function(input, output, session) {
     get_file()
     if (length(values$from) == 1){
       colours <- colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from))
-    } else {
-      colours <- c(
-        "#ffffcc",
-        "#ffeda0",
-        "#fed976",
-        "#feb24c",
-        "#fd8d3c",
-        "#fc4e2a",
-        "#e31a1c",
-        "#b10026"
-      )
-    }
+    } 
     if(!is.null(values$density) && input$tabSelections == "Heatmap"){
       leafletProxy("map", data = isolate({
         get_map_data()
@@ -1349,17 +1339,7 @@ shinyServer(function(input, output, session) {
       nums_col <- get_nums_col(data_file, input$colSelect)
       # set legend title
       legend_title <<- "Person count"
-      # indicate names of files that contain country-level data to specify per Million adjustment
-      # keyNames <- c("Global-Country_", "North_America_", 
-      #               "Asia_", "Europe_", "Africa_", "South_America_", "Oceania_", "Canada_", "China_", "United_States_of_America")
-      # # adjust per capita number to per Million and adjsut legend title
-      # if (grepl(paste(keyNames, collapse = "|"), file_name) & grepl("_per_capita", input$colSelect)){
-      #    nums_col <- as.numeric(nums_col) * 1000000
-      #    legend_title <<- "Person count (per 1M)"
-      # } else if (grepl("_per_capita", input$colSelect)){
-         # nums_col <- as.numeric(nums_col) * 1000
-         # legend_title <<- "Person count (per 1000)"
-      #  }
+      
       if(grepl("_per_capita", input$colSelect)){
         legend_title <<- "Person count (per 100,000)"
         #Check if % change column to update the legend title
@@ -1402,6 +1382,18 @@ shinyServer(function(input, output, session) {
     }) 
   }) # End of get_density, which get the number of person
   
+  #Setting values of larger countries as thresholds for max value
+  max_limit_heatmap <- function(named_vector,
+                                considered_countries){
+    
+    country_names <- names(named_vector)
+    
+    max <- named_vector[country_names %in% considered_countries] %>% 
+      max(na.rm = TRUE) %>% 
+      ceiling()
+    return(max)
+  }
+  
   # read file if chooseInput is changed or file is uploaded
   get_file <- reactive({
     log_activity('geomap', 'begin get_file')
@@ -1432,53 +1424,6 @@ shinyServer(function(input, output, session) {
       write(paste('  prefix:', prefix, sep = "\t"),
             file = log_filename,
             append = TRUE)
-      # #Retrieving the datafiles for that region
-      # datafile_prefix <- datafile_mapping %>% 
-      #   stri_split(regex = "/") %>% 
-      #   unlist()
-      # path_to_dir <- paste("../filesystem",
-      #                      paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
-      #                      sep = "/")
-      # 
-      # filenames_list <- list.files(path_to_dir)
-      # #Select only .txt files
-      # filenames_list <- filenames_list[grep(pattern = ".txt", x = filenames_list)]
-      # filenames_list <- filenames_list[!grepl(pattern = "accumulated.txt", x = filenames_list)]
-      # dates_vec <- NULL
-      # for (filename in filenames_list){
-      #   file <- read.csv(paste(path_to_dir,filename, sep = "/"), sep = "\t")
-      #   col_names <- colnames(file)
-      #   #Assumption the file with confirmed data does not have columns with namepart predicted
-      #   if ("Predicted_New_Cases" %in% col_names){
-      #     next
-      #   }
-      #   date <- filename %>% 
-      #     stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
-      #     unlist() 
-      #   dates_vec <- c(dates_vec,date)
-      # }
-      # oldest_date <- min(dates_vec, na.rm = T)
-      # newest_date <- max(dates_vec, na.rm = T)
-      # #TODO Hack for ALberta
-      # if (date_checked <= as.Date(Sys.time()+21600)){
-      #   #
-      #   #Check if we do have file with that date
-      #     date_checked <- case_when(
-      #       date_checked < oldest_date ~ oldest_date %>% as.character(), 
-      #       date_checked > newest_date ~ newest_date %>% as.character(), 
-      #       TRUE ~ date_checked %>% as.character()
-      #   )
-      # } else {
-      #   date_checked <- date_checked %>% as.character()
-      # }
-      # 
-      # #Update input$date in UI if date has been corrected
-      # isolate({
-      #   if (date_checked != input$date){
-      #     #Update input$date in UI
-      #     updateDateInput(session, inputId="date", value = date_checked %>% as.Date())
-      #   }
-      # })
       
       #Extract date information from string this part maybe obsolete as we have now same format as default format
       date <- date_checked %>% stri_split(regex = "-") %>% unlist()
@@ -1537,6 +1482,7 @@ shinyServer(function(input, output, session) {
       log_activity('geomap', 'end get_file')
     })
   })
+  
   get_file_for_plot <- function(file_name,
                                 area_name,
                                 type){
@@ -1553,7 +1499,9 @@ shinyServer(function(input, output, session) {
     path_corrected <- path_initial[-length(path_initial)]
     path_corrected <- paste(path_corrected, collapse = "/")
     file_full_path <- paste("../filesystem", path_corrected,file_name, sep = "/")
+    
     validate(need(file.exists(file_full_path),"Unfortuantely we do not provide bar graphs for that region. Please select another region from menu."))
+    
     data_file <- read.csv(file_full_path, sep = "\t")
     return(data_file)
   }
@@ -1703,12 +1651,6 @@ shinyServer(function(input, output, session) {
     }
     for (i in 1:length(values$from)){
       values$from[i] <- case_when(
-        # values$from[i] < 0.0000001 ~ mround(values$from[i], base = 0.00000001),
-        # values$from[i] < 0.000001 ~ mround(values$from[i], base = 0.0000001),
-        # values$from[i] < 0.00001 ~ mround(values$from[i], base = 0.000001),
-        # values$from[i] < 0.0001 ~ mround(values$from[i], base = 0.00001),
-        # values$from[i] < 0.001 ~ mround(values$from[i], base = 0.0001),
-        # values$from[i] < 0.01 ~ mround(values$from[i], base = 0.001),
         abs(values$from[i]) < 0.3 ~ mround(values$from[i], base = mround_bases[1]),
         abs(values$from[i]) <= 3 ~ mround(values$from[i], base = mround_bases[2]),
         abs(values$from[i]) <= 30 ~ mround(values$from[i], base = mround_bases[3]),
@@ -1718,12 +1660,6 @@ shinyServer(function(input, output, session) {
         TRUE ~ mround(values$from[i], base = mround_bases[7])
         )
       values$to[i] <- case_when(
-        # values$to[i] < 0.0000001 ~ mround(values$to[i], base = 0.00000001),
-        # values$to[i] < 0.000001 ~ mround(values$to[i], base = 0.0000001),
-        # values$to[i] < 0.00001 ~ mround(values$to[i], base = 0.000001),
-        # values$to[i] < 0.0001 ~ mround(values$to[i], base = 0.00001),
-        # values$to[i] < 0.001 ~ mround(values$to[i], base = 0.0001),
-        # values$to[i] < 0.01 ~ mround(values$to[i], base = 0.001),
         abs(values$to[i]) < 0.3 ~ mround(values$to[i], base = mround_bases[1]),
         abs(values$to[i]) <= 3 ~ mround(values$to[i], base = mround_bases[2]),
         abs(values$to[i]) <= 30 ~ mround(values$to[i], base = mround_bases[3]),
@@ -1734,36 +1670,8 @@ shinyServer(function(input, output, session) {
       )
     }
     
-    # Eight colors for eight buckets
-    # if(input$colourScheme == 'red/green'){
-    #   values$palette <- colorRampPalette(c("#FF0000", "#000000", "#33FF00"))(8)#input$binNumber
-    # }else if(input$colourScheme == 'blue/yellow'){
-    #   values$palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(8)#input$binNumber
-    # }else if(input$colourScheme == 'grayscale'){
-    #   values$palette <- colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(8)#input$binNumber
-    # }else if(input$colourScheme == 'piyg'){
-    #   values$palette <- colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(8)#input$binNumber
-    # }else if(input$colourScheme == 'rainbow'){
-    #   values$palette <- rainbow(8)#input$binNumber
-    # }else if(input$colourScheme == 'topo'){
-    #     values$palette <- topo.colors(8)#input$binNumber
-    # }else if(input$colourScheme == 'custom'){
-    # values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)#input$binNumber
-    # }
-    #https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=8
-    #Colorblind friendly 8 bins
-    values$palette <-
-      c(
-        "#ffffcc",
-        "#ffeda0",
-        "#fed976",
-        "#feb24c",
-        "#fd8d3c",
-        "#fc4e2a",
-        "#e31a1c",
-        "#b10026"
-      )
-    
+    values$palette <- colours
+     
     # Assign colors to states
     if (length(values$from) == 1){
       values$palette <- colorRampPalette(c("#ffffcc","#b10026"))(length(values$from))
