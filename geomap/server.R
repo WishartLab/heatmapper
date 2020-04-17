@@ -439,7 +439,7 @@ shinyServer(function(input, output, session) {
                                     #'Confirmed COVID-19 Cases per 100,000 (Best Case Scenario)' = 'Total_Cases_per_capita_best_case',
                                     'Confirmed Deaths Daily (Best Case Scenario)' = 'Deaths_best_case',
                                     #'Confirmed Deaths Daily per 100,000 (Best Case Scenario)' = 'Deaths_per_capita_best_case',
-                                    'Confirmed Deaths (Best Case Scenario)' = 'Total_Deaths_best_case',
+                                    'Confirmed Deaths (Best Case Scenario)' = 'Total_Deaths_best_case'
                                     #'Confirmed Deaths per 100,000 (Best Case Scenario)' = 'Total_Deaths_per_capita_best_case'
                         ),
                         selected = col_selected
@@ -1601,7 +1601,7 @@ shinyServer(function(input, output, session) {
         mutate(Date = as.POSIXct(Date))
       
       plot_dataset <- predicted_data %>% 
-        dplyr::rename(variable = projection_variable) %>% 
+        dplyr::rename(variable = all_of(projection_variable)) %>% 
         dplyr::mutate(type = "Predicted") %>% 
         dplyr::select(Date,variable, type)
     } else if (grepl(pattern = "_best_case", plotted_variable_actual)){
@@ -1610,7 +1610,7 @@ shinyServer(function(input, output, session) {
                                        type = "best_case") %>% 
         mutate(Date = as.POSIXct(Date))
       plot_dataset <- predicted_data %>% 
-        dplyr::rename(variable = projection_variable) %>% 
+        dplyr::rename(variable = all_of(projection_variable)) %>% 
         dplyr::mutate(type = "Predicted") %>% 
         dplyr::select(Date,variable, type)
     } else {
@@ -1661,7 +1661,7 @@ shinyServer(function(input, output, session) {
         max()
       
       plot_dataset <- actual_data %>% 
-        dplyr::rename(variable = plotted_variable_actual) %>% 
+        dplyr::rename(variable = all_of(plotted_variable_actual)) %>% 
         dplyr::mutate(type = "Actual") %>% 
         bind_rows(predicted_data %>% 
                     dplyr::rename(variable = plotted_variable_predicted) %>% 
