@@ -374,16 +374,10 @@ shinyServer(function(input, output, session) {
             ){
           col_selected <- "Confirmed"
         } 
-      #Retrieve datafile mapping string
-      datafile_mapping <- maps_files_to_data_files %>% 
-        filter(datafile == input$area) %>% 
-        pull(prefix)
-      #Extract region name
-      region_name <- datafile_mapping %>% 
-        paste("_",sep = "")
-      prefix <- paste("../filesystem/",region_name,sep = "")
-      file_name <-
-        paste(prefix, datepart,".txt", sep = "")
+      
+      file_name <- get_heatmap_file_path(map_file_name = map_file_name,
+                                         datepart = datepart)
+        
       if (file.exists(file_name)){
         #read file
         data_file <- read.csv(file = file_name,
@@ -1402,67 +1396,50 @@ shinyServer(function(input, output, session) {
       file = log_filename,
       append = TRUE
     )
-      date_checked <- input$date
-      
-    tryCatch({
-      
-      map_file_name <- input$area
-      write(paste('  map-file_name:', map_file_name, sep = "\t"),
-            file = log_filename,
-            append = TRUE)
-      #Retrieve datafile mapping string
-      datafile_mapping <- maps_files_to_data_files %>% 
-        filter(datafile == input$area) %>% 
-        pull(prefix)
-      #Extract region name
-      region_name <- datafile_mapping %>% 
-        paste("_",sep = "")
-      write(paste('  region_name:', region_name, sep = "\t"),
-            file = log_filename,
-            append = TRUE)
-      prefix <- paste("../filesystem/",region_name,sep = "")
-      write(paste('  prefix:', prefix, sep = "\t"),
-            file = log_filename,
-            append = TRUE)
-      
-      #Extract date information from string this part maybe obsolete as we have now same format as default format
-      date <- date_checked %>% stri_split(regex = "-") %>% unlist()
-      write(paste('  date:', date, sep = "\t"),
-            file = log_filename,
-            append = TRUE)
-      datepart <- paste0(date, collapse = "-")
-      #Create file name
-      file_name <-
-        paste(prefix, datepart,".txt", sep = "")
-      write(paste('  file_name:', file_name, sep = "\t"),
-            file = log_filename,
-            append = TRUE)
-      #read file
-      data_file <- read.csv(file = file_name,
-                            sep = "\t",
-                            stringsAsFactors = FALSE)
-      
-      if (grepl("Global-Country_", file_name)) {
-        data_file <- data_file[-c((nrow(data_file)-1):nrow(data_file)),]
-      }
-      
-      # region names should be in lower case
-      data_file[[1]] <- tolower(data_file[[1]])
-      # check if columns have pyhton N/A-s and substitute them with R NA-s
-      nr_columns <- length(data_file)
-      col_names <- colnames(data_file)
-      for (i in 2:nr_columns){
-        if (grepl(pattern = "N/A",x = data_file[[i]]) %>% sum() >= 1){
-          data_file[[i]] <- gsub(pattern = "N/A", replacement = NA, x = data_file[[i]])
-        }
+    isolate({
+      tab_selected <- input$tabSelections
+    })
+    
+    date_checked <- input$date
+    if (tab_selected != "Plots"){    
+      tryCatch({
         
-        data_file[[i]] <- as.numeric(data_file[[i]])
-        #Check if it is not per capita column and round to integers, as we cannot have fraction of people
-        if (!grepl("_per_capita", tolower(col_names[i]))){
-          data_file[[i]] <- round(data_file[[i]], digits = 0)
-        } else {
-          data_file[[i]] <- as.numeric(data_file[[i]]) * 100000
-          #nums_col <- as.numeric(nums_col) * 100000
+        map_file_name <- input$area
+        write(paste('  map-file_name:', map_file_name, sep = "\t"),
+              file = log_filename,
+              append = TRUE)
+        #Create file name
+        file_name <- get_heatmap_file_path(map_file_name = map_file_name,
+                                           datepart = date_checked)
+        write(paste('  file_name:', file_name, sep = "\t"),
+              file = log_filename,
+              append = TRUE)
+        #read file
+        data_file <- read.csv(file = file_name,
+                              sep = "\t",
+                              stringsAsFactors = FALSE)
+        
+        # if (grepl("Global-Country_", file_name)) {
+        #   data_file <- data_file[-c((nrow(data_file)-1):nrow(data_file)),]
+        # }
+        
+        # region names should be in lower case
+        data_file[[1]] <- tolower(data_file[[1]])
+        # check if columns have pyhton N/A-s and substitute them with R NA-s
+        nr_columns <- length(data_file)
+        col_names <- colnames(data_file)
+        for (i in 2:nr_columns){
+          if (grepl(pattern = "N/A",x = data_file[[i]]) %>% sum() >= 1){
+            data_file[[i]] <- gsub(pattern = "N/A", replacement = NA, x = data_file[[i]])
+          }
+          
+          data_file[[i]] <- as.numeric(data_file[[i]])
+          #Check if it is not per capita column and round to integers, as we cannot have fraction of people
+          if (!grepl("_per_capita", tolower(col_names[i]))){
+            data_file[[i]] <- round(data_file[[i]], digits = 0)
+          } else {
+            data_file[[i]] <- as.numeric(data_file[[i]]) * 100000
+          }
         }
       }
       #Sort the rows by region name  
@@ -1483,13 +1460,52 @@ shinyServer(function(input, output, session) {
     })
   })
   
+  get_file_path_mapping <- function(area){
+    path_mapping <- maps_files_to_data_files %>% 
+      filter(datafile == area) %>% 
+      pull(prefix)
+    return(path_mapping)
+  }
+  
+  get_heatmap_file_path <- function(map_file_name,
+                                    datepart){
+    datafile_mapping <- get_file_path_mapping(area = map_file_name)
+    #Extract region name
+    region_name <- datafile_mapping %>% 
+      paste("_",sep = "")
+    write(paste('  region_name:', region_name, sep = "\t"),
+          file = log_filename,
+          append = TRUE)
+    prefix <- paste("../filesystem/",region_name,sep = "")
+    write(paste('  prefix:', prefix, sep = "\t"),
+          file = log_filename,
+          append = TRUE)
+    file_full_path <- paste(prefix, datepart,".txt", sep = "")
+    return(file_full_path)
+  }
+  
+  round_heatmap_files_integer_level <- function(data_file){
+    
+  }
   get_file_for_plot <- function(file_name,
                                 area_name,
                                 type){
+    
+    file_directory <- get_file_directory(area_name = area_name,
+                                         type = type)
+      
+    file_full_path <- paste("../filesystem", file_directory,file_name, sep = "/")
+    
+    validate(need(file.exists(file_full_path),"Unfortuantely we do not provide bar graphs for that region. Please select another region from menu."))
+    
+    data_file <- read.csv(file_full_path, sep = "\t")
+    return(data_file)
+  }
+  
+  get_file_directory <- function(area_name,
+                                 type){
     #Retrieve datafile mapping string
-    datafile_mapping <- maps_files_to_data_files %>% 
-      filter(datafile == area_name) %>% 
-      pull(prefix)
+    datafile_mapping <- get_file_path_mapping(area = area_name)
     path_initial <- strsplit(datafile_mapping, split = "/") %>% unlist()
     path_initial[1] <- case_when(
       type == "best_case" ~ "Global_best_case",
@@ -1498,12 +1514,7 @@ shinyServer(function(input, output, session) {
     )
     path_corrected <- path_initial[-length(path_initial)]
     path_corrected <- paste(path_corrected, collapse = "/")
-    file_full_path <- paste("../filesystem", path_corrected,file_name, sep = "/")
-    
-    validate(need(file.exists(file_full_path),"Unfortuantely we do not provide bar graphs for that region. Please select another region from menu."))
-    
-    data_file <- read.csv(file_full_path, sep = "\t")
-    return(data_file)
+    return(path_corrected)
   }
   
   get_dataframe_for_plotting <- reactive({
