@@ -1492,10 +1492,10 @@ shinyServer(function(input, output, session) {
     col_names <- colnames(data_file)
     nr_columns <- length(data_file)
     for (i in 2:nr_columns){
-      data_file[[i]] <- as.numeric(data_file[[i]])
-      #Check if it is not per capita column and round to integers, as we cannot have fraction of people
       if (!grepl("_per_capita", tolower(col_names[i]))){
-        data_file[[i]] <- round(data_file[[i]], digits = 0)
+        data_file[[i]] <- data_file[[i]] %>%
+          as.numeric() %>% 
+          round(digits = 0)
       } 
     }
     return(data_file)
@@ -1505,8 +1505,6 @@ shinyServer(function(input, output, session) {
     col_names <- colnames(data_file)
     nr_columns <- length(data_file)
     for (i in 2:nr_columns){
-      data_file[[i]] <- as.numeric(data_file[[i]])
-      #Check if it is not per capita column and round to integers, as we cannot have fraction of people
       if (grepl("_per_capita", tolower(col_names[i]))){
         data_file[[i]] <- as.numeric(data_file[[i]]) * 100000
       } 
