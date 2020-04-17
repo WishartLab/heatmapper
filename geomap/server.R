@@ -1649,12 +1649,14 @@ shinyServer(function(input, output, session) {
         as.character()
       
       time_lower_limit <- actual_data %>% 
+        dplyr::mutate(Confirmed = round(Confirmed,0)) %>% 
         filter(Confirmed > 0) %>% 
         pull(Date) %>% 
         as.character() %>% 
         min()
       
       time_upper_limit <- predicted_data %>% 
+        dplyr::mutate(Predicted_Daily_Cases = round(Predicted_Daily_Cases,0)) %>% 
         filter(Predicted_Daily_Cases > 0) %>% 
         pull(Date) %>% 
         as.character() %>% 
@@ -2377,15 +2379,14 @@ shinyServer(function(input, output, session) {
         dplyr::mutate(variable = 100000*variable)
     }
     
-    time_lower_limit <- plot_dataset %>% 
+    dates_with_non_zero_variable <- plot_dataset %>% 
+      filter(variable > 0) %>% 
       pull(Date) %>% 
-      as.character() %>% 
-      min()
+      as.character()
     
-    time_upper_limit <- plot_dataset %>% 
-      pull(Date) %>% 
-      as.character() %>% 
-      max()
+    time_lower_limit <- min(dates_with_non_zero_variable)
+    
+    time_upper_limit <- max(dates_with_non_zero_variable)
     
     label_plotted_variable <- bar_graphs_mappings %>% 
       filter(actual == input$colSelect) %>% 
@@ -2423,7 +2424,9 @@ shinyServer(function(input, output, session) {
            y = label_plotted_variable)+
       scale_x_continuous(trans = rev_date,
                          breaks = date_breaks,
-                         labels = date_labels)+
+                         labels = date_labels,
+                         limits = c(as.POSIXct(time_upper_limit, tz = "GMT"),
+                                    as.POSIXct(time_lower_limit, tz = "GMT")))+
       scale_y_continuous(position = "right",
                          sec.axis = sec_axis(~ .,
                                              name = label_plotted_variable,
