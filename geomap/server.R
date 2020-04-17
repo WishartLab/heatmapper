@@ -308,7 +308,7 @@ shinyServer(function(input, output, session) {
     # input$lowColour
     # input$highColour
     # input$colourScheme
- #   input$radio
+    # input$radio
     log_activity('geomap',
                  'observe rangeSubmit binNumber lowColour highColour colourScheme')
     isolate({
@@ -1308,10 +1308,7 @@ shinyServer(function(input, output, session) {
   
   # assign density names and values based on the selected column
   get_density <- reactive({
-    isolate({
-      tab_selected <- input$tabSelections
-    })
-    if (tab_selected != "Plots"){
+    
       tryCatch({
         if (debug)
           write('  get_density triggered',
@@ -1389,8 +1386,7 @@ shinyServer(function(input, output, session) {
         write(paste0(err), file = log_filename, append = TRUE)
         validate(txt = paste(ERR_file_read, dimensions_msg))
       })
-    }
-  }) # End of get_density, which get the number of person
+   }) # End of get_density, which get the number of person
   
   #Setting values of larger countries as thresholds for max value
   max_limit_heatmap <- function(named_vector,
@@ -1412,18 +1408,17 @@ shinyServer(function(input, output, session) {
       file = log_filename,
       append = TRUE
     )
-    isolate({
-      tab_selected <- input$tabSelections
-    })
-    
+   
     date_checked <- input$date
-    if (tab_selected != "Plots"){    
+   
       tryCatch({
         
         map_file_name <- input$area
+        
         write(paste('  map-file_name:', map_file_name, sep = "\t"),
               file = log_filename,
               append = TRUE)
+        
         #Create file name
         file_name <- get_heatmap_file_path(map_file_name = map_file_name,
                                            datepart = date_checked)
@@ -1473,7 +1468,6 @@ shinyServer(function(input, output, session) {
       finally = {
         log_activity('geomap', 'end get_file')
       })
-    }
   })
   
   get_file_path_mapping <- function(area){
