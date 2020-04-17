@@ -1581,23 +1581,7 @@ shinyServer(function(input, output, session) {
                                        area_name = input$area,
                                        type = "normal") 
       
-      #Generate Confirmed_daily and Deaths Daily
-      dates_vec <- actual_data$Date
-      daily_confirmed_vec <- c(NA)
-      daily_deaths_vec <- c(NA)
-      for (i in 2:length(dates_vec)){
-        day_data <- actual_data %>% filter(Date == dates_vec[i])
-        day_before_data <- actual_data %>% filter(Date == dates_vec[i-1])
-        daily_confirmed <- day_data$Confirmed - day_before_data$Confirmed
-        daily_confirmed <- max(daily_confirmed,0)
-        daily_deaths <- day_data$Deaths - day_before_data$Deaths
-        daily_deaths <- max(daily_deaths,0)
-        daily_confirmed_vec <- c(daily_confirmed_vec,daily_confirmed)
-        daily_deaths_vec <- c(daily_deaths_vec,daily_deaths)
-      }
-      actual_data <- actual_data %>% 
-        dplyr::mutate(Confirmed_daily = daily_confirmed_vec,
-                      Deaths_daily = daily_deaths_vec)
+      actual_data <- get_daily_deaths_and_confirmed(actual_data)
       
       predicted_data <- get_file_for_plot(file_name = "predicted.tsv",
                                           area_name = input$area,
@@ -1646,6 +1630,26 @@ shinyServer(function(input, output, session) {
     return(plot_dataset)
   }
   
+  get_daily_deaths_and_confirmed <- function(actual_data){
+    #Generate Confirmed_daily and Deaths Daily
+    dates_vec <- actual_data$Date
+    daily_confirmed_vec <- c(NA)
+    daily_deaths_vec <- c(NA)
+    for (i in 2:length(dates_vec)){
+      day_data <- actual_data %>% filter(Date == dates_vec[i])
+      day_before_data <- actual_data %>% filter(Date == dates_vec[i-1])
+      daily_confirmed <- day_data$Confirmed - day_before_data$Confirmed
+      daily_confirmed <- max(daily_confirmed,0)
+      daily_deaths <- day_data$Deaths - day_before_data$Deaths
+      daily_deaths <- max(daily_deaths,0)
+      daily_confirmed_vec <- c(daily_confirmed_vec,daily_confirmed)
+      daily_deaths_vec <- c(daily_deaths_vec,daily_deaths)
+    }
+    actual_data <- actual_data %>% 
+      dplyr::mutate(Confirmed_daily = daily_confirmed_vec,
+                    Deaths_daily = daily_deaths_vec)
+    return(actual_data)
+  }
   # returns a list of break points given local min/max, global min/max, and # of bins
   get_breaks <- function(rangeMin, rangeMax, min, max, bins) {
     minadd <- FALSE
