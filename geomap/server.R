@@ -1898,17 +1898,7 @@ shinyServer(function(input, output, session) {
   output$table <- DT::renderDataTable({
     #Correct region  names
     values$file[[1]] <- capitalize_str(values$file[[1]])
-    #Cahnge column names to per 100000, original fiels have per capita, and numeric values are multiplied by 100000 in get_file()
-    nr_columns <- length(values$file)
-    col_names <- colnames(values$file)
-    for (i in 1:nr_columns){
-      if (grepl("_per_capita", tolower(col_names[i]))) {
-        col_name <- gsub(pattern = "_per_capita", replacement = "_per_100000", x = col_names[i])
-        names(values$file)[i] <- col_name
-      } else {
-        next
-      }
-    }
+    values$file <- rename_per_capita_per_100000(values$file)
     x <- datatable(
       rownames = FALSE,
       values$file,
@@ -1934,6 +1924,17 @@ shinyServer(function(input, output, session) {
     }
   }
   
+  rename_per_capita_per_100000 <- function(data_file){
+    nr_columns <- length(data_file)
+    col_names <- colnames(data_file)
+    for (i in 1:nr_columns){
+      if (grepl("_per_capita", tolower(col_names[i]))) {
+        col_name <- gsub(pattern = "_per_capita", replacement = "_per_100000", x = col_names[i])
+        names(data_file)[i] <- col_name
+      } 
+    }
+    return(data_file)
+  }
   #Formatiing names for Table tab output
   #Idea from: https://rstudio-pubs-static.s3.amazonaws.com/408658_512da947714740b99253228f084a08a9.html
   CapStr <- function(y) {
