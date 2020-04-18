@@ -24,10 +24,6 @@ source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
 source("../config.R") # load DB connection details
 `%then%` <- shiny:::`%OR%` #function to have several validation for error handling
-# Data for region mapping----
-region_names <- read.csv("../department_municipality_name.csv",
-                         header = T,
-                         sep = ",")
 # Data for bar graph variable names mapping
 bar_graphs_mappings <- read.csv("tools/bar_graphs_column_names_mapping.csv",
                                 header = T,
@@ -40,27 +36,86 @@ maps_files_to_data_files <- read.csv("tools/map_name_to_data_name.csv",
                                      sep = ",",
                                      col.names = c("datafile","prefix"),
                                      colClasses = c("character","character"))
-
+# Colours for legend and heatmap
+#https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=8
+#Colorblind friendly 8 bins
+colours <- c(
+  "#ffffcc",
+  "#ffeda0",
+  "#fed976",
+  "#feb24c",
+  "#fd8d3c",
+  "#fc4e2a",
+  "#e31a1c",
+  "#b10026"
+)
+heatmap_and_table_tab_regions <- c(
+  "World (By Country)" = 'data/World_Countries.rds',
+  "Africa (By Country)" = 'data/Africa.rds', 
+  "Asia (By Country)" = 'data/Asia.rds', 
+  "Europe (By Country)" = 'data/Europe.rds', 
+  "North America (By Country)" = 'data/North_America.rds',
+  "Oceania (By Country)" = 'data/Oceania.rds',
+  "South America (By Country)" = 'data/South_America.rds', 
+  "Australia (By State)" = 'data/AUS_1.rds',
+  "Canada (By Province)" = 'data/CAN_1.rds',
+  "China (By Province)" = 'data/CHN_1.rds',
+  "United States (By States)" = 'data/USA_1.rds',
+  "US Alabama" = 'data/Alabama.rds',
+  "US Alaska" = 'data/Alaska.rds',
+  "US Arizona" = 'data/Arizona.rds',
+  "US Arkansas" = 'data/Arkansas.rds',
+  "US California" = 'data/California.rds',
+  "US Colorado" = 'data/Colorado.rds',
+  "US Connecticut" = 'data/Connecticut.rds',
+  "US Delaware" = 'data/Delaware.rds',
+  "US District of Columbia" = 'data/District_of_Columbia.rds',
+  "US Florida" = 'data/Florida.rds',
+  "US Georgia" = 'data/Georgia.rds',
+  "US Hawaii" = 'data/Hawaii.rds',
+  "US Idaho" = 'data/Idaho.rds',
+  "US Illinois" = 'data/Illinois.rds',
+  "US Indiana" = 'data/Indiana.rds',
+  "US Iowa" = 'data/Iowa.rds',
+  "US Kansas" = 'data/Kansas.rds',
+  "US Kentucky" = 'data/Kentucky.rds',
+  "US Louisiana" = 'data/Louisiana.rds',
+  "US Maine" = 'data/Maine.rds',
+  "US Maryland" = 'data/Maryland.rds',
+  "US Massachusetts" = 'data/Massachusetts.rds',
+  "US Michigan" = 'data/Michigan.rds',
+  "US Minnesota" = 'data/Minnesota.rds',
+  "US Mississippi" = 'data/Mississippi.rds',
+  "US Missouri" = 'data/Missouri.rds',
+  "US Montana" = 'data/Montana.rds',
+  "US Nebraska" = 'data/Nebraska.rds',
+  "US Nevada" = 'data/Nevada.rds',
+  "US New Hampshire" = 'data/New_Hampshire.rds',
+  "US New Jersey" = 'data/New_Jersey.rds',
+  "US New Mexico" = 'data/New_Mexico.rds',
+  "US New York" = 'data/New_York.rds',
+  "US North Carolina" = 'data/North_Carolina.rds',
+  "US North Dakota" = 'data/North_Dakota.rds',
+  "US Ohio" = 'data/Ohio.rds',
+  "US Oklahoma" = 'data/Oklahoma.rds',
+  "US Oregon" = 'data/Oregon.rds',
+  "US Pennsylvania" = 'data/Pennsylvania.rds',
+  "US Rhode Island" = 'data/Rhode_Island.rds',
+  "US South Carolina" = 'data/South_Carolina.rds',
+  "US South Dakota" = 'data/South_Dakota.rds',
+  "US Tennessee" = 'data/Tennessee.rds',
+  "US Texas" = 'data/Texas.rds',
+  "US Utah" = 'data/Utah.rds',
+  "US Vermont" = 'data/Vermont.rds',
+  "US Virginia" = 'data/Virginia.rds',
+  "US Washington" = 'data/Washington.rds',
+  "US West Virginia" = 'data/West_Virginia.rds',
+  "US Wisconsin" = 'data/Wisconsin.rds',
+  "US Wyoming" = 'data/Wyoming.rds'
+)
 # Constants----
 dimensions_msg <- "Input data can have up to 50 data columns."
 
-#FUNCTIONS----
-mround <- function(x,base){
- return(base*round(x/base))
-}
-#Idea from: https://rstudio-pubs-static.s3.amazonaws.com/408658_512da947714740b99253228f084a08a9.html
-CapStr <- function(y) {
-  c <- strsplit(y, " ")[[1]]
-  capitalized_string <- paste(toupper(substring(c, 1,1)), substring(c, 2),
-                              sep="", collapse=" ")
-  capitalized_string <- gsub(pattern = " And ", replacement = " and ",capitalized_string)
-  capitalized_string <- gsub(pattern = " Of ", replacement = " of ",capitalized_string)
-  capitalized_string <- gsub(pattern = " The ", replacement = " the ",capitalized_string)
-  return(capitalized_string)
-}
-capitalize_str <- function(charcter_string){
-  sapply(charcter_string, CapStr)
-}
 # Logging & debugging
 log_filename = tryCatch({
   paste(system("hostname", intern = TRUE),
@@ -107,6 +162,9 @@ shinyServer(function(input, output, session) {
   # when a valid column is selected set values$density
   observe({
    # input$radio
+    isolate({
+      selected_map <- input$area
+    })
     if (input$colSelect != 0) {
       tryCatch({
         if (debug) {
@@ -140,7 +198,9 @@ shinyServer(function(input, output, session) {
                 file = log_filename,
                 append = TRUE)
         }
-        min <- floor(min(values$density, na.rm = TRUE))
+        min <- values$density %>% 
+          min(na.rm = TRUE) %>% 
+          floor()
         if (is.infinite(min)){
           min <- 0
         }
@@ -150,58 +210,52 @@ shinyServer(function(input, output, session) {
                 file = log_filename,
                 append = TRUE)
         }
-        max <- ceiling(max(values$density, na.rm = TRUE))
-        #Setting values of larger countries as thresholds for max value
-        col_names <- names(values$density)
-        #World map
-        if ("united states of america" %in% col_names &&
-            "spain" %in% col_names &&
-            "france" %in% col_names &&
-            "italy" %in% col_names &&
-            "south africa" %in% col_names &&
-            "china" %in% col_names &&
-            "brazil" %in% col_names &&
-            "australia" %in% col_names ) {
-          max <- ceiling(max(values$density[names(values$density) %in% c("united states of america",
-                                                                         "spain",
-                                                                         "france",
-                                                                         "italy",
-                                                                         "south africa",
-                                                                         "china",
-                                                                         "brazil",
-                                                                         "australia")], 
-                             na.rm = TRUE))
-        } else if ("united states of america" %in% col_names){
-          #Northern America
-          max <- ceiling(values$density[names(values$density) == "united states of america"])
-        } else if ("spain" %in% col_names &&
-                   "france" %in% col_names &&
-                   "italy" %in% col_names){
-          #Europe
-          max <- ceiling(max(values$density[names(values$density) %in% c("spain",
-                                                                         "france",
-                                                                         "italy")],
-                             na.rm = TRUE))
-        } else if ("china" %in% col_names &&
-                   "iran" %in% col_names){
-          #Asia
-          max <- ceiling(max(values$density[names(values$density) %in% c("china",
-                                                                         "iran")], 
-                             na.rm = TRUE))
-        } else if ("brazil" %in% col_names) {
-          #South America
-          max <- ceiling(values$density[names(values$density) == "brazil"])
-        } else if ("australia" %in% col_names) {
-          # Oceania
-          max <- ceiling(values$density[names(values$density) == "australia"])
-        } else if ("algeria" %in% col_names &&
-                   "egypt" %in% col_names &&
-                   "south africa" %in% col_names) {
-          #Africa
-          max <- ceiling(max(values$density[names(values$density) %in% c("algeria",
-                                                                         "egypt",
-                                                                         "south africa")], 
-                             na.rm = TRUE))
+        max <- values$density %>% 
+          max(na.rm = TRUE) %>% 
+          ceiling()
+        
+        if (selected_map == "data/World_Countries.rds") {
+          
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("united states of america",
+                                                            "spain",
+                                                            "france",
+                                                            "italy",
+                                                            "south africa",
+                                                            "china",
+                                                            "brazil",
+                                                            "australia"))
+        } else if (selected_map == "data/North_America.rds"){
+          
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("united states of america"))
+          
+        } else if (selected_map == "data/Europe.rds"){
+          
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("spain",
+                                                            "france",
+                                                            "italy"))
+        } else if (selected_map == "data/Asia.rds"){
+         
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("china",
+                                                            "iran"))
+        } else if (selected_map == "data/South_America.rds") {
+          
+          max <-  max_limit_heatmap(named_vector = values$density,
+                                    considered_countries = c("brazil"))
+        } else if (selected_map == "data/Oceania.rds") {
+          
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("australia"))
+          
+        } else if (selected_map == "data/Africa.rds") {
+          
+          max <- max_limit_heatmap(named_vector = values$density,
+                                   considered_countries = c("algeria",
+                                                            "egypt",
+                                                            "south africa"))
         }
 
         if (is.infinite(max)){
@@ -322,7 +376,7 @@ shinyServer(function(input, output, session) {
     # input$lowColour
     # input$highColour
     # input$colourScheme
- #   input$radio
+    # input$radio
     log_activity('geomap',
                  'observe rangeSubmit binNumber lowColour highColour colourScheme')
     isolate({
@@ -388,22 +442,28 @@ shinyServer(function(input, output, session) {
             ){
           col_selected <- "Confirmed"
         } 
-      #Retrieve datafile mapping string
-      datafile_mapping <- maps_files_to_data_files %>% 
-        filter(datafile == input$area) %>% 
-        pull(prefix)
-      #Extract region name
-      region_name <- datafile_mapping %>% 
-        paste("_",sep = "")
-      prefix <- paste("../filesystem/",region_name,sep = "")
-      file_name <-
-        paste(prefix, datepart,".txt", sep = "")
+      
+      file_name <- get_heatmap_file_path(map_file_name = map_file_name,
+                                         datepart = datepart)
+        
       if (file.exists(file_name)){
         #read file
-        data_file <- read.csv(file = file_name,
-                              sep = "\t",
-                              stringsAsFactors = FALSE)
+        data_file <- NULL
+        tryCatch({
+          data_file <- read.csv(file = file_name,
+                                sep = "\t",
+                                stringsAsFactors = FALSE)
+        },
+        error = function(err) {
+          write(paste('    updating colSelect columns: caught error:',message(err)),
+                file = log_filename,
+                append = TRUE)
+          return(NULL)
+        })
+        
+        
       } else {
+        datafile_mapping <- get_file_path_mapping(area = map_file_name)
         path_initial <- strsplit(datafile_mapping, split = "/") %>% unlist()
         path_corrected <- path_initial[-length(path_initial)]
         path_corrected <- paste(path_corrected, collapse = "/")
@@ -515,6 +575,9 @@ shinyServer(function(input, output, session) {
                               'data/South_America.rds') &&
           choice == "Plots"){
         area_selected <- 'data/CAN_1.rds'
+      } else if (!(area_selected %in% heatmap_and_table_tab_regions) &&
+                 choice != "Plots"){
+        area_selected <- 'data/World_Countries.rds'
       }
     })
     if (choice == "Plots"){
@@ -531,12 +594,6 @@ shinyServer(function(input, output, session) {
                                     "Spain" = 'data/ESP_1.rds',
                                     "United Kingdom" = 'data/GBR_1.rds',
                                     "United States" = 'data/USA_1.rds',
-                                    #"Canada: Level 2" = 'data/CAN_2.rds',
-                                    
-                                    #"USA: Level 2" = 'data/USA_2.rds',
-                                    #"United Kingdom: Level 2" = 'data/GBR_2.rds',
-                                    #"Australia: Level 2" = 'data/AUS_2.rds',
-                                    
                                     "Afghanistan" = 'data/AFG_1.rds',
                                     # "Akrotiri and Dhekelia" = 'data/XAD_1.rds',
                                     # "Ćland" = 'data/ALA_1.rds',
@@ -823,303 +880,7 @@ shinyServer(function(input, output, session) {
       updateSelectInput(session,
                         inputId = "area",
                         label = "Plot COVID Heatmap by:", 
-                        choices = c(
-                          #"Municipios" = 'data/COL_2.rds',
-                          #"Departamentos" = 'data/COL_1.rds'
-                          "World (By Country)" = 'data/World_Countries.rds',
-                          "Africa (By Country)" = 'data/Africa.rds', 
-                          "Asia (By Country)" = 'data/Asia.rds', 
-                          "Europe (By Country)" = 'data/Europe.rds', 
-                          "North America (By Country)" = 'data/North_America.rds',
-                          "Oceania (By Country)" = 'data/Oceania.rds',
-                          "South America (By Country)" = 'data/South_America.rds', 
-                          "Australia (By State)" = 'data/AUS_1.rds',
-                          "Canada (By Province)" = 'data/CAN_1.rds',
-                          "China (By Province)" = 'data/CHN_1.rds',
-                          #"United Kingdom (By Country)" = 'data/GBR_1.rds',
-                          "United States (By States)" = 'data/USA_1.rds',
-                          #"Estonia (By County)" = 'data/EST_1.rds',
-                          #"Canada: Level 2" = 'data/CAN_2.rds',
-                          
-                          #"USA: Level 2" = 'data/USA_2.rds',
-                          #"United Kingdom: Level 2" = 'data/GBR_2.rds',
-                          #"Australia: Level 2" = 'data/AUS_2.rds',
-                          
-                          # "Afghanistan" = 'data/AFG_1.rds',
-                          # "Akrotiri and Dhekelia" = 'data/XAD_1.rds',
-                          # "Ćland" = 'data/ALA_1.rds',
-                          # "Albania" = 'data/ALB_1.rds',
-                          # "Algeria" = 'data/DZA_1.rds',
-                          # "American Samoa" = 'data/ASM_1.rds',
-                          # "Andorra" = 'data/AND_1.rds',
-                          # "Angola" = 'data/AGO_1.rds',
-                          # "Antigua and Barbuda" = 'data/ATG_1.rds',
-                          # "Argentina" = 'data/ARG_1.rds',
-                          # "Armenia" = 'data/ARM_1.rds',
-                          
-                          # "Austria" = 'data/AUT_1.rds',
-                          # "Azerbaijan" = 'data/AZE_1.rds',
-                          # "Bahamas" = 'data/BHS_1.rds',
-                          # "Bahrain" = 'data/BHR_1.rds',
-                          # "Bangladesh" = 'data/BGD_1.rds',
-                          # "Barbados" = 'data/BRB_1.rds',
-                          # "Belarus" = 'data/BLR_1.rds',
-                          # "Belgium" = 'data/BEL_1.rds',
-                          # "Belize" = 'data/BLZ_1.rds',
-                          # "Benin" = 'data/BEN_1.rds',
-                          # "Bermuda" = 'data/BMU_1.rds',
-                          # "Bhutan" = 'data/BTN_1.rds',
-                          # "Bolivia" = 'data/BOL_1.rds',
-                          # "Bonaire, Saint Eustatius and Saba" = 'data/BES_1.rds',
-                          # "Bosnia and Herzegovina" = 'data/BIH_1.rds',
-                          # "Botswana" = 'data/BWA_1.rds',
-                          # "Brazil" = 'data/BRA_1.rds',
-                          # "British Virgin Islands" = 'data/VGB_1.rds',
-                          # "Brunei" = 'data/BRN_1.rds',
-                          # "Bulgaria" = 'data/BGR_1.rds',
-                          # "Burkina Faso" = 'data/BFA_1.rds',
-                          # "Burundi" = 'data/BDI_1.rds',
-                          # "Cambodia" = 'data/KHM_1.rds',
-                          # "Cameroon" = 'data/CMR_1.rds',
-                          
-                          # "Cape Verde" = 'data/CPV_1.rds',
-                          # "Cayman Islands" = 'data/CYM_1.rds',
-                          # "Central African Republic" = 'data/CAF_1.rds',
-                          # "Chad" = 'data/TCD_1.rds',
-                          # "Chile" = 'data/CHL_1.rds',
-                          
-                          
-                          # "Comoros" = 'data/COM_1.rds',
-                          # "Costa Rica" = 'data/CRI_1.rds',
-                          # "CĆ“te d'Ivoire" = 'data/CIV_1.rds',
-                          # "Croatia" = 'data/HRV_1.rds',
-                          # "Cuba" = 'data/CUB_1.rds',
-                          # "Cyprus" = 'data/CYP_1.rds',
-                          # "Czech Republic" = 'data/CZE_1.rds',
-                          # "Democratic Republic of the Congo" = 'data/COD_1.rds',
-                          # "Denmark" = 'data/DNK_1.rds',
-                          # "Djibouti" = 'data/DJI_1.rds',
-                          # "Dominica" = 'data/DMA_1.rds',
-                          # "Dominican Republic" = 'data/DOM_1.rds',
-                          # "Ecuador" = 'data/ECU_1.rds',
-                          # "Egypt" = 'data/EGY_1.rds',
-                          # "El Salvador" = 'data/SLV_1.rds',
-                          # "Equatorial Guinea" = 'data/GNQ_1.rds',
-                          # "Eritrea" = 'data/ERI_1.rds',
-                          
-                          # "Ethiopia" = 'data/ETH_1.rds',
-                          # "Faroe Islands" = 'data/FRO_1.rds',
-                          # "Fiji" = 'data/FJI_1.rds',
-                          # "Finland" = 'data/FIN_1.rds',
-                          # "France" = 'data/FRA_1.rds',
-                          # "French Guiana" = 'data/GUF_1.rds',
-                          # "French Polynesia" = 'data/PYF_1.rds',
-                          # "French Southern Territories" = 'data/ATF_1.rds',
-                          # "Gabon" = 'data/GAB_1.rds',
-                          # "Gambia" = 'data/GMB_1.rds',
-                          # "Georgia" = 'data/GEO_1.rds',
-                          # "Germany" = 'data/DEU_1.rds',
-                          # "Ghana" = 'data/GHA_1.rds',
-                          # "Greece" = 'data/GRC_1.rds',
-                          # "Greenland" = 'data/GRL_1.rds',
-                          # "Grenada" = 'data/GRD_1.rds',
-                          # "Guadeloupe" = 'data/GLP_1.rds',
-                          # "Guam" = 'data/GUM_1.rds',
-                          # "Guatemala" = 'data/GTM_1.rds',
-                          # "Guinea-Bissau" = 'data/GNB_1.rds',
-                          # "Guinea" = 'data/GIN_1.rds',
-                          # "Guyana" = 'data/GUY_1.rds',
-                          # "Haiti" = 'data/HTI_1.rds',
-                          # "Honduras" = 'data/HND_1.rds',
-                          # "Hong Kong" = 'data/HKG_1.rds',
-                          # "Hungary" = 'data/HUN_1.rds',
-                          # "Iceland" = 'data/ISL_1.rds',
-                          # "India" = 'data/IND_1.rds',
-                          # "Indonesia" = 'data/IDN_1.rds',
-                          # "Iran" = 'data/IRN_1.rds',
-                          # "Iraq" = 'data/IRQ_1.rds',
-                          # "Ireland" = 'data/IRL_1.rds',
-                          # "Israel" = 'data/ISR_1.rds',
-                          # "Italy" = 'data/ITA_1.rds',
-                          # "Jamaica" = 'data/JAM_1.rds',
-                          # "Japan" = 'data/JPN_1.rds',
-                          # "Jordan" = 'data/JOR_1.rds',
-                          # "Kazakhstan" = 'data/KAZ_1.rds',
-                          # "Kenya" = 'data/KEN_1.rds',
-                          # "Kosovo" = 'data/XKO_1.rds',
-                          # "Kuwait" = 'data/KWT_1.rds',
-                          # "Kyrgyzstan" = 'data/KGZ_1.rds',
-                          # "Laos" = 'data/LAO_1.rds',
-                          # "Latvia" = 'data/LVA_1.rds',
-                          # "Lebanon" = 'data/LBN_1.rds',
-                          # "Lesotho" = 'data/LSO_1.rds',
-                          # "Liberia" = 'data/LBR_1.rds',
-                          # "Libya" = 'data/LBY_1.rds',
-                          # "Liechtenstein" = 'data/LIE_1.rds',
-                          # "Lithuania" = 'data/LTU_1.rds',
-                          # "Luxembourg" = 'data/LUX_1.rds',
-                          # "Macao" = 'data/MAC_1.rds',
-                          # "Macedonia" = 'data/MKD_1.rds',
-                          # "Madagascar" = 'data/MDG_1.rds',
-                          # "Malawi" = 'data/MWI_1.rds',
-                          # "Malaysia" = 'data/MYS_1.rds',
-                          # "Mali" = 'data/MLI_1.rds',
-                          # "Martinique" = 'data/MTQ_1.rds',
-                          # "Mauritania" = 'data/MRT_1.rds',
-                          # "Mauritius" = 'data/MUS_1.rds',
-                          # "Mayotte" = 'data/MYT_1.rds',
-                          # "Mexico" = 'data/MEX_1.rds',
-                          # "Micronesia" = 'data/FSM_1.rds',
-                          # "Moldova" = 'data/MDA_1.rds',
-                          # "Mongolia" = 'data/MNG_1.rds',
-                          # "Montenegro" = 'data/MNE_1.rds',
-                          # "Montserrat" = 'data/MSR_1.rds',
-                          # "Morocco" = 'data/MAR_1.rds',
-                          # "Mozambique" = 'data/MOZ_1.rds',
-                          # "Myanmar" = 'data/MMR_1.rds',
-                          # "Namibia" = 'data/NAM_1.rds',
-                          # "Nauru" = 'data/NRU_1.rds',
-                          # "Nepal" = 'data/NPL_1.rds',
-                          # "Netherlands" = 'data/NLD_1.rds',
-                          # "New Caledonia" = 'data/NCL_1.rds',
-                          # "New Zealand" = 'data/NZL_1.rds',
-                          # "Nicaragua" = 'data/NIC_1.rds',
-                          # "Niger" = 'data/NER_1.rds',
-                          # "Nigeria" = 'data/NGA_1.rds',
-                          # "North Korea" = 'data/PRK_1.rds',
-                          # "Northern Cyprus" = 'data/XNC_1.rds',
-                          # "Northern Mariana Islands" = 'data/MNP_1.rds',
-                          # "Norway" = 'data/NOR_1.rds',
-                          # "Oman" = 'data/OMN_1.rds',
-                          # "Pakistan" = 'data/PAK_1.rds',
-                          # "Palau" = 'data/PLW_1.rds',
-                          # "Palestina" = 'data/PSE_1.rds',
-                          # "Panama" = 'data/PAN_1.rds',
-                          # "Papua New Guinea" = 'data/PNG_1.rds',
-                          # "Paraguay" = 'data/PRY_1.rds',
-                          # "Peru" = 'data/PER_1.rds',
-                          # "Philippines" = 'data/PHL_1.rds',
-                          # "Poland" = 'data/POL_1.rds',
-                          # "Portugal" = 'data/PRT_1.rds',
-                          # "Puerto Rico" = 'data/PRI_1.rds',
-                          # "Qatar" = 'data/QAT_1.rds',
-                          # "Republic of Congo" = 'data/COG_1.rds',
-                          # "Reunion" = 'data/REU_1.rds',
-                          # "Romania" = 'data/ROU_1.rds',
-                          # "Russia" = 'data/RUS_1.rds',
-                          # "Rwanda" = 'data/RWA_1.rds',
-                          # "Saint Helena" = 'data/SHN_1.rds',
-                          # "Saint Kitts and Nevis" = 'data/KNA_1.rds',
-                          # "Saint Lucia" = 'data/LCA_1.rds',
-                          # "Saint Pierre and Miquelon" = 'data/SPM_1.rds',
-                          # "Saint Vincent and the Grenadines" = 'data/VCT_1.rds',
-                          # "Samoa" = 'data/WSM_1.rds',
-                          # "San Marino" = 'data/SMR_1.rds',
-                          # "Sao Tome and Principe" = 'data/STP_1.rds',
-                          # "Saudi Arabia" = 'data/SAU_1.rds',
-                          # "Senegal" = 'data/SEN_1.rds',
-                          # "Serbia" = 'data/SRB_1.rds',
-                          # "Sierra Leone" = 'data/SLE_1.rds',
-                          # "Slovakia" = 'data/SVK_1.rds',
-                          # "Slovenia" = 'data/SVN_1.rds',
-                          # "Solomon Islands" = 'data/SLB_1.rds',
-                          # "Somalia" = 'data/SOM_1.rds',
-                          # "South Africa" = 'data/ZAF_1.rds',
-                          # "South Korea" = 'data/KOR_1.rds',
-                          # "South Sudan" = 'data/SSD_1.rds',
-                          # "Spain" = 'data/ESP_1.rds',
-                          # "Sri Lanka" = 'data/LKA_1.rds',
-                          # "Sudan" = 'data/SDN_1.rds',
-                          # "Suriname" = 'data/SUR_1.rds',
-                          # "Svalbard and Jan Mayen" = 'data/SJM_1.rds',
-                          # "Swaziland" = 'data/SWZ_1.rds',
-                          # "Sweden" = 'data/SWE_1.rds',
-                          # "Switzerland" = 'data/CHE_1.rds',
-                          # "Syria" = 'data/SYR_1.rds',
-                          # "Taiwan" = 'data/TWN_1.rds',
-                          # "Tajikistan" = 'data/TJK_1.rds',
-                          # "Tanzania" = 'data/TZA_1.rds',
-                          # "Thailand" = 'data/THA_1.rds',
-                          # "Timor-Leste" = 'data/TLS_1.rds',
-                          # "Togo" = 'data/TGO_1.rds',
-                          # "Tokelau" = 'data/TKL_1.rds',
-                          # "Tonga" = 'data/TON_1.rds',
-                          # "Trinidad and Tobago" = 'data/TTO_1.rds',
-                          # "Tunisia" = 'data/TUN_1.rds',
-                          # "Turkey" = 'data/TUR_1.rds',
-                          # "Turkmenistan" = 'data/TKM_1.rds',
-                          # "Turks and Caicos Islands" = 'data/TCA_1.rds',
-                          # "Tuvalu" = 'data/TUV_1.rds',
-                          # "Uganda" = 'data/UGA_1.rds',
-                          # "Ukraine" = 'data/UKR_1.rds',
-                          # "United Arab Emirates" = 'data/ARE_1.rds',
-                          
-                          # "United States Minor Outlying Islands" = 'data/UMI_1.rds',
-                          # "Uruguay" = 'data/URY_1.rds',
-                          # "Uzbekistan" = 'data/UZB_1.rds',
-                          # "Vanuatu" = 'data/VUT_1.rds',
-                          # "Venezuela" = 'data/VEN_1.rds',
-                          # "Vietnam" = 'data/VNM_1.rds',
-                          # "Virgin Islands, U.S." = 'data/VIR_1.rds',
-                          # "Wallis and Futuna" = 'data/WLF_1.rds',
-                          # "Western Sahara" = 'data/ESH_1.rds',
-                          # "Yemen" = 'data/YEM_1.rds',
-                          # "Zambia" = 'data/ZMB_1.rds',
-                          # "Zimbabwe" = 'data/ZWE_1.rds'
-                          "US Alabama" = 'data/Alabama.rds',
-                          "US Alaska" = 'data/Alaska.rds',
-                          "US Arizona" = 'data/Arizona.rds',
-                          "US Arkansas" = 'data/Arkansas.rds',
-                          "US California" = 'data/California.rds',
-                          "US Colorado" = 'data/Colorado.rds',
-                          "US Connecticut" = 'data/Connecticut.rds',
-                          "US Delaware" = 'data/Delaware.rds',
-                          "US District of Columbia" = 'data/District_of_Columbia.rds',
-                          "US Florida" = 'data/Florida.rds',
-                          "US Georgia" = 'data/Georgia.rds',
-                          "US Hawaii" = 'data/Hawaii.rds',
-                          "US Idaho" = 'data/Idaho.rds',
-                          "US Illinois" = 'data/Illinois.rds',
-                          "US Indiana" = 'data/Indiana.rds',
-                          "US Iowa" = 'data/Iowa.rds',
-                          "US Kansas" = 'data/Kansas.rds',
-                          "US Kentucky" = 'data/Kentucky.rds',
-                          "US Louisiana" = 'data/Louisiana.rds',
-                          "US Maine" = 'data/Maine.rds',
-                          "US Maryland" = 'data/Maryland.rds',
-                          "US Massachusetts" = 'data/Massachusetts.rds',
-                          "US Michigan" = 'data/Michigan.rds',
-                          "US Minnesota" = 'data/Minnesota.rds',
-                          "US Mississippi" = 'data/Mississippi.rds',
-                          "US Missouri" = 'data/Missouri.rds',
-                          "US Montana" = 'data/Montana.rds',
-                          "US Nebraska" = 'data/Nebraska.rds',
-                          "US Nevada" = 'data/Nevada.rds',
-                          "US New Hampshire" = 'data/New_Hampshire.rds',
-                          "US New Jersey" = 'data/New_Jersey.rds',
-                          "US New Mexico" = 'data/New_Mexico.rds',
-                          "US New York" = 'data/New_York.rds',
-                          "US North Carolina" = 'data/North_Carolina.rds',
-                          "US North Dakota" = 'data/North_Dakota.rds',
-                          "US Ohio" = 'data/Ohio.rds',
-                          "US Oklahoma" = 'data/Oklahoma.rds',
-                          "US Oregon" = 'data/Oregon.rds',
-                          "US Pennsylvania" = 'data/Pennsylvania.rds',
-                          "US Rhode Island" = 'data/Rhode_Island.rds',
-                          "US South Carolina" = 'data/South_Carolina.rds',
-                          "US South Dakota" = 'data/South_Dakota.rds',
-                          "US Tennessee" = 'data/Tennessee.rds',
-                          "US Texas" = 'data/Texas.rds',
-                          "US Utah" = 'data/Utah.rds',
-                          "US Vermont" = 'data/Vermont.rds',
-                          "US Virginia" = 'data/Virginia.rds',
-                          "US Washington" = 'data/Washington.rds',
-                          "US West Virginia" = 'data/West_Virginia.rds',
-                          "US Wisconsin" = 'data/Wisconsin.rds',
-                          "US Wyoming" = 'data/Wyoming.rds'
-                          
-                          
-                        ),
+                        choices = heatmap_and_table_tab_regions,
                         selected = area_selected)
     }
   })
@@ -1151,19 +912,8 @@ shinyServer(function(input, output, session) {
   observe({
     get_file()
     if (length(values$from) == 1){
-      colours <- colorRampPalette(c("#ffffcc", "#b10026"))(length(values$from))
-    } else {
-      colours <- c(
-        "#ffffcc",
-        "#ffeda0",
-        "#fed976",
-        "#feb24c",
-        "#fd8d3c",
-        "#fc4e2a",
-        "#e31a1c",
-        "#b10026"
-      )
-    }
+      colours <- colorRampPalette(colours[c(1,length(colours))])(length(values$from))
+    } 
     if(!is.null(values$density) && input$tabSelections == "Heatmap"){
       leafletProxy("map", data = isolate({
         get_map_data()
@@ -1267,10 +1017,7 @@ shinyServer(function(input, output, session) {
       }
       
       nums_col <- data_file[[col]]
-      #Check if values have python "N/A" symbol and R NA-s, substitute with 0
-      if (grepl(pattern = "N/A|NA",x = nums_col) %>% sum() >= 1){
-        nums_col <- gsub(pattern = "N/A|NA", replacement = 0, x = nums_col) %>% as.numeric()
-      }
+    
       if (debug)
         write(
           paste(
@@ -1334,237 +1081,235 @@ shinyServer(function(input, output, session) {
   
   # assign density names and values based on the selected column
   get_density <- reactive({
-    tryCatch({
-      if (debug)
-        write('  get_density triggered',
-              file = log_filename,
-              append = TRUE)
-      
-      data_file <- values$file
-      
-      if (debug) {
-        write('  get_density: data_file:',
-              file = log_filename,
-              append = TRUE)
-        write(paste0(data_file),
-              file = log_filename,
-              append = TRUE)
-        write('  get_density: calling tolower...',
-              file = log_filename,
-              append = TRUE)
-      }
-      
-      name_col <- tolower(data_file[[1]])
-      
-      if (debug) {
-        write('  get_density: name_col:',
-              file = log_filename,
-              append = TRUE)
-        write(name_col, file = log_filename, append = TRUE)
-        write('  get_density: calling get_nums_col...',
-              file = log_filename,
-              append = TRUE)
-      }
-      
-      # nums_col contains values in the selected column 
-      nums_col <- get_nums_col(data_file, input$colSelect)
-      # set legend title
-      legend_title <<- "Person count"
-      # indicate names of files that contain country-level data to specify per Million adjustment
-      # keyNames <- c("Global-Country_", "North_America_", 
-      #               "Asia_", "Europe_", "Africa_", "South_America_", "Oceania_", "Canada_", "China_", "United_States_of_America")
-      # # adjust per capita number to per Million and adjsut legend title
-      # if (grepl(paste(keyNames, collapse = "|"), file_name) & grepl("_per_capita", input$colSelect)){
-      #    nums_col <- as.numeric(nums_col) * 1000000
-      #    legend_title <<- "Person count (per 1M)"
-      # } else if (grepl("_per_capita", input$colSelect)){
-         # nums_col <- as.numeric(nums_col) * 1000
-         # legend_title <<- "Person count (per 1000)"
-      #  }
-      if(grepl("_per_capita", input$colSelect)){
-        legend_title <<- "Person count (per 100,000)"
-        #Check if % change column to update the legend title
-      } else if (grepl("_change", input$colSelect)){
-        legend_title <<- "% Change"
-      }
-      
-      if (debug)
-        write(
-          paste('  get_density: nums_col:', nums_col, sep = "\t"),
-          file = log_filename,
-          append = TRUE
-        )
-      
-      names(nums_col) <- name_col
-      
-      if (debug)
-        write(
-          '  get_density: completed without exception',
-          file = log_filename,
-          append = TRUE
-        )
-      return(nums_col)
-      
-    },
-    warning = function(warning_condition) {
-      write('  get_density: caught warning:',
+    
+      tryCatch({
+        if (debug)
+          write('  get_density triggered',
+                file = log_filename,
+                append = TRUE)
+        
+        data_file <- values$file
+        
+        if (debug) {
+          write('  get_density: data_file:',
+                file = log_filename,
+                append = TRUE)
+          write(paste0(data_file),
+                file = log_filename,
+                append = TRUE)
+          write('  get_density: calling tolower...',
+                file = log_filename,
+                append = TRUE)
+        }
+        
+        name_col <- tolower(data_file[[1]])
+        
+        if (debug) {
+          write('  get_density: name_col:',
+                file = log_filename,
+                append = TRUE)
+          write(name_col, file = log_filename, append = TRUE)
+          write('  get_density: calling get_nums_col...',
+                file = log_filename,
+                append = TRUE)
+        }
+        
+        # nums_col contains values in the selected column 
+        nums_col <- get_nums_col(data_file, input$colSelect)
+        # set legend title
+        legend_title <<- "Person count"
+        
+        if(grepl("_per_capita", input$colSelect)){
+          legend_title <<- "Person count (per 100,000)"
+          #Check if % change column to update the legend title
+        } else if (grepl("_change", input$colSelect)){
+          legend_title <<- "% Change"
+        }
+        
+        if (debug)
+          write(
+            paste('  get_density: nums_col:', nums_col, sep = "\t"),
             file = log_filename,
-            append = TRUE)
-      write(paste0(warning_condition),
+            append = TRUE
+          )
+        
+        names(nums_col) <- name_col
+        
+        if (debug)
+          write(
+            '  get_density: completed without exception',
             file = log_filename,
-            append = TRUE)
-    },
-    error = function(err) {
-      write('  get_density: caught error:',
-            file = log_filename,
-            append = TRUE)
-      write(paste0(err), file = log_filename, append = TRUE)
-      validate(txt = paste(ERR_file_read, dimensions_msg))
-    }) 
-  }) # End of get_density, which get the number of person
+            append = TRUE
+          )
+        return(nums_col)
+        
+      },
+      warning = function(warning_condition) {
+        write('  get_density: caught warning:',
+              file = log_filename,
+              append = TRUE)
+        write(paste0(warning_condition),
+              file = log_filename,
+              append = TRUE)
+      },
+      error = function(err) {
+        write('  get_density: caught error:',
+              file = log_filename,
+              append = TRUE)
+        write(paste0(err), file = log_filename, append = TRUE)
+        validate(txt = paste(ERR_file_read, dimensions_msg))
+      })
+   }) # End of get_density, which get the number of person
+  
+  #Setting values of larger countries as thresholds for max value
+  max_limit_heatmap <- function(named_vector,
+                                considered_countries){
+    
+    country_names <- names(named_vector)
+    
+    max <- named_vector[country_names %in% considered_countries] %>% 
+      max(na.rm = TRUE) %>% 
+      ceiling()
+    return(max)
+  }
   
   # read file if chooseInput is changed or file is uploaded
   get_file <- reactive({
     log_activity('geomap', 'begin get_file')
+    
     write(
       'get_file part',
       file = log_filename,
       append = TRUE
-    )
-      date_checked <- input$date
-      
-    tryCatch({
-      
-      map_file_name <- input$area
-      write(paste('  map-file_name:', map_file_name, sep = "\t"),
-            file = log_filename,
-            append = TRUE)
-      #Retrieve datafile mapping string
-      datafile_mapping <- maps_files_to_data_files %>% 
-        filter(datafile == input$area) %>% 
-        pull(prefix)
-      #Extract region name
-      region_name <- datafile_mapping %>% 
-        paste("_",sep = "")
-      write(paste('  region_name:', region_name, sep = "\t"),
-            file = log_filename,
-            append = TRUE)
-      prefix <- paste("../filesystem/",region_name,sep = "")
-      write(paste('  prefix:', prefix, sep = "\t"),
-            file = log_filename,
-            append = TRUE)
-      # #Retrieving the datafiles for that region
-      # datafile_prefix <- datafile_mapping %>% 
-      #   stri_split(regex = "/") %>% 
-      #   unlist()
-      # path_to_dir <- paste("../filesystem",
-      #                      paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
-      #                      sep = "/")
-      # 
-      # filenames_list <- list.files(path_to_dir)
-      # #Select only .txt files
-      # filenames_list <- filenames_list[grep(pattern = ".txt", x = filenames_list)]
-      # filenames_list <- filenames_list[!grepl(pattern = "accumulated.txt", x = filenames_list)]
-      # dates_vec <- NULL
-      # for (filename in filenames_list){
-      #   file <- read.csv(paste(path_to_dir,filename, sep = "/"), sep = "\t")
-      #   col_names <- colnames(file)
-      #   #Assumption the file with confirmed data does not have columns with namepart predicted
-      #   if ("Predicted_New_Cases" %in% col_names){
-      #     next
-      #   }
-      #   date <- filename %>% 
-      #     stri_extract_all(regex = "\\d{4}-\\d{2}-\\d{2}") %>%
-      #     unlist() 
-      #   dates_vec <- c(dates_vec,date)
-      # }
-      # oldest_date <- min(dates_vec, na.rm = T)
-      # newest_date <- max(dates_vec, na.rm = T)
-      # #TODO Hack for ALberta
-      # if (date_checked <= as.Date(Sys.time()+21600)){
-      #   #
-      #   #Check if we do have file with that date
-      #     date_checked <- case_when(
-      #       date_checked < oldest_date ~ oldest_date %>% as.character(), 
-      #       date_checked > newest_date ~ newest_date %>% as.character(), 
-      #       TRUE ~ date_checked %>% as.character()
-      #   )
-      # } else {
-      #   date_checked <- date_checked %>% as.character()
-      # }
-      # 
-      # #Update input$date in UI if date has been corrected
-      # isolate({
-      #   if (date_checked != input$date){
-      #     #Update input$date in UI
-      #     updateDateInput(session, inputId="date", value = date_checked %>% as.Date())
-      #   }
-      # })
-      
-      #Extract date information from string this part maybe obsolete as we have now same format as default format
-      date <- date_checked %>% stri_split(regex = "-") %>% unlist()
-      write(paste('  date:', date, sep = "\t"),
-            file = log_filename,
-            append = TRUE)
-      datepart <- paste0(date, collapse = "-")
-      #Create file name
-      file_name <-
-        paste(prefix, datepart,".txt", sep = "")
-      write(paste('  file_name:', file_name, sep = "\t"),
-            file = log_filename,
-            append = TRUE)
-      #read file
-      data_file <- read.csv(file = file_name,
-                            sep = "\t",
-                            stringsAsFactors = FALSE)
-      
-      if (grepl("Global-Country_", file_name)) {
-        data_file <- data_file[-c((nrow(data_file)-1):nrow(data_file)),]
-      }
-      
-      # region names should be in lower case
-      data_file[[1]] <- tolower(data_file[[1]])
-      # check if columns have pyhton N/A-s and substitute them with R NA-s
-      nr_columns <- length(data_file)
-      col_names <- colnames(data_file)
-      for (i in 2:nr_columns){
-        if (grepl(pattern = "N/A",x = data_file[[i]]) %>% sum() >= 1){
-          data_file[[i]] <- gsub(pattern = "N/A", replacement = NA, x = data_file[[i]])
-        }
+      )
+   
+    date_checked <- input$date
+   
+      tryCatch({
         
-        data_file[[i]] <- as.numeric(data_file[[i]])
-        #Check if it is not per capita column and round to integers, as we cannot have fraction of people
-        if (!grepl("_per_capita", tolower(col_names[i]))){
-          data_file[[i]] <- round(data_file[[i]], digits = 0)
-        } else {
-          data_file[[i]] <- as.numeric(data_file[[i]]) * 100000
-          #nums_col <- as.numeric(nums_col) * 100000
-        }
-      }
-      #Sort the rows by region name  
-      data_file <- data_file %>% 
-        arrange(Name)
-      return(data_file)
-    },
-    error = function(err) {
-      # return message if we do not have data for this country
-      write(paste("ERROR : ", conditionMessage(err), "\n"), sep = "\t",
-            file = log_filename,
-            append = TRUE)
-      
-      return(NULL)
-    },
-    finally = {
-      log_activity('geomap', 'end get_file')
-    })
+        map_file_name <- input$area
+        
+        write(paste('  map-file_name:', map_file_name, sep = "\t"),
+              file = log_filename,
+              append = TRUE)
+        
+        file_name <- get_heatmap_file_path(map_file_name = map_file_name,
+                                           datepart = date_checked)
+        write(paste('  file_name:', file_name, sep = "\t"),
+              file = log_filename,
+              append = TRUE)
+        
+        data_file <- read.csv(file = file_name,
+                              sep = "\t",
+                              stringsAsFactors = FALSE)
+        
+        # region names should be in lower case
+        data_file[[1]] <- tolower(data_file[[1]])
+        
+        data_file <- remove_python_NAs(data_file)
+        
+        data_file <- round_to_integers(data_file)
+        
+        data_file <- transform_per_capita_values_per_100000(data_file)
+          
+        data_file <- data_file %>% 
+          arrange(Name)
+        return(data_file)
+      },
+      error = function(err) {
+        # return message if we do not have data for this country
+        write(paste("ERROR : ", conditionMessage(err), "\n"), sep = "\t",
+              file = log_filename,
+              append = TRUE)
+        
+        return(NULL)
+      },
+      finally = {
+        log_activity('geomap', 'end get_file')
+      })
   })
+  
+  get_file_path_mapping <- function(area){
+    path_mapping <- maps_files_to_data_files %>% 
+      filter(datafile == area) %>% 
+      pull(prefix)
+    return(path_mapping)
+  }
+  
+  get_heatmap_file_path <- function(map_file_name,
+                                    datepart){
+    datafile_mapping <- get_file_path_mapping(area = map_file_name)
+    #Extract region name
+    region_name <- datafile_mapping %>% 
+      paste("_",sep = "")
+    write(paste('  region_name:', region_name, sep = "\t"),
+          file = log_filename,
+          append = TRUE)
+    prefix <- paste("../filesystem/",region_name,sep = "")
+    write(paste('  prefix:', prefix, sep = "\t"),
+          file = log_filename,
+          append = TRUE)
+    file_full_path <- paste(prefix, datepart,".txt", sep = "")
+    return(file_full_path)
+  }
+  
+  remove_python_NAs <- function(data_file){
+    nr_columns <- length(data_file)
+    for (i in 2:nr_columns){
+      if (grepl(pattern = "N/A",x = data_file[[i]]) %>% sum() >= 1){
+        data_file[[i]] <- gsub(pattern = "N/A", replacement = NA, x = data_file[[i]])
+      }
+    }
+    return(data_file)
+  }
+  
+  round_to_integers <- function(data_file){
+    col_names <- colnames(data_file)
+    nr_columns <- length(data_file)
+    for (i in 2:nr_columns){
+      if (!grepl("_per_capita", tolower(col_names[i]))){
+        data_file[[i]] <- data_file[[i]] %>%
+          as.numeric() %>% 
+          round(digits = 0)
+      } 
+    }
+    return(data_file)
+  }
+  
+  transform_per_capita_values_per_100000 <- function(data_file){
+    col_names <- colnames(data_file)
+    nr_columns <- length(data_file)
+    for (i in 2:nr_columns){
+      if (grepl("_per_capita", tolower(col_names[i]))){
+        data_file[[i]] <- as.numeric(data_file[[i]]) * 100000
+      } 
+    }
+    return(data_file)
+  }
+ 
   get_file_for_plot <- function(file_name,
                                 area_name,
                                 type){
+    
+    file_directory <- get_file_directory(area_name = area_name,
+                                         type = type)
+      
+    file_full_path <- paste("../filesystem", file_directory,file_name, sep = "/")
+    
+    validate(need(file.exists(file_full_path),"Unfortuantely we do not provide bar graphs for that region. Please select another region from menu."))
+    
+    data_file <- read.csv(file_full_path, sep = "\t") %>% 
+      mutate(Date = as.POSIXct(Date, tz = "GMT"))
+    
+    data_file <- transform_per_capita_values_per_100000(data_file)
+    
+    return(data_file)
+  }
+  
+  get_file_directory <- function(area_name,
+                                 type){
     #Retrieve datafile mapping string
-    datafile_mapping <- maps_files_to_data_files %>% 
-      filter(datafile == area_name) %>% 
-      pull(prefix)
+    datafile_mapping <- get_file_path_mapping(area = area_name)
     path_initial <- strsplit(datafile_mapping, split = "/") %>% unlist()
     path_initial[1] <- case_when(
       type == "best_case" ~ "Global_best_case",
@@ -1573,10 +1318,7 @@ shinyServer(function(input, output, session) {
     )
     path_corrected <- path_initial[-length(path_initial)]
     path_corrected <- paste(path_corrected, collapse = "/")
-    file_full_path <- paste("../filesystem", path_corrected,file_name, sep = "/")
-    validate(need(file.exists(file_full_path),"Unfortuantely we do not provide bar graphs for that region. Please select another region from menu."))
-    data_file <- read.csv(file_full_path, sep = "\t")
-    return(data_file)
+    return(path_corrected)
   }
   
   get_dataframe_for_plotting <- reactive({
@@ -1596,52 +1338,29 @@ shinyServer(function(input, output, session) {
     
     if (grepl(pattern = "_worst_case", plotted_variable_actual)){
       predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
-                                       area_name = input$area,
-                                       type = "worst_case") %>% 
-        mutate(Date = as.POSIXct(Date))
+                                          area_name = input$area,
+                                          type = "worst_case")
       
-      plot_dataset <- predicted_data %>% 
-        dplyr::rename(variable = all_of(projection_variable)) %>% 
-        dplyr::mutate(type = "Predicted") %>% 
-        dplyr::select(Date,variable, type)
+      plot_dataset <- get_projection_plot_df(predicted_data,
+                                             projection_variable)
     } else if (grepl(pattern = "_best_case", plotted_variable_actual)){
       predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
-                                       area_name = input$area,
-                                       type = "best_case") %>% 
-        mutate(Date = as.POSIXct(Date))
-      plot_dataset <- predicted_data %>% 
-        dplyr::rename(variable = all_of(projection_variable)) %>% 
-        dplyr::mutate(type = "Predicted") %>% 
-        dplyr::select(Date,variable, type)
+                                          area_name = input$area,
+                                          type = "best_case")
+      
+      plot_dataset <- get_projection_plot_df(predicted_data,
+                                             projection_variable)
     } else {
       
       actual_data <- get_file_for_plot(file_name = "accumulated.txt",
                                        area_name = input$area,
-                                       type = "normal") %>% 
-        mutate(Date = as.POSIXct(Date))
+                                       type = "normal") 
       
-      #Generate Confirmed_daily and Deaths Daily
-      dates_vec <- actual_data$Date
-      daily_confirmed_vec <- c(NA)
-      daily_deaths_vec <- c(NA)
-      for (i in 2:length(dates_vec)){
-        day_data <- actual_data %>% filter(Date == dates_vec[i])
-        day_before_data <- actual_data %>% filter(Date == dates_vec[i-1])
-        daily_confirmed <- day_data$Confirmed - day_before_data$Confirmed
-        daily_confirmed <- max(daily_confirmed,0)
-        daily_deaths <- day_data$Deaths - day_before_data$Deaths
-        daily_deaths <- max(daily_deaths,0)
-        daily_confirmed_vec <- c(daily_confirmed_vec,daily_confirmed)
-        daily_deaths_vec <- c(daily_deaths_vec,daily_deaths)
-      }
-      actual_data <- actual_data %>% 
-        dplyr::mutate(Confirmed_daily = daily_confirmed_vec,
-                      Deaths_daily = daily_deaths_vec)
+      actual_data <- get_daily_deaths_and_confirmed(actual_data)
       
       predicted_data <- get_file_for_plot(file_name = "predicted.tsv",
                                           area_name = input$area,
-                                          type = "normal") %>% 
-        mutate(Date = as.POSIXct(Date))
+                                          type = "normal") 
       
       plotted_variable_predicted <- bar_graphs_mappings %>% 
         filter(actual == plotted_variable_actual) %>% 
@@ -1677,340 +1396,35 @@ shinyServer(function(input, output, session) {
     return(plot_dataset)
   })
   
-  # obtain data from database
-  get_db_data <- reactive({
-    log_activity('geomap', 'begin get_db_data')
-    if (debug)
-      write('get_db_data triggered',
-            file = log_filename,
-            append = TRUE)
-    
-    tryCatch({
-      if (debug) {
-        write('credentials:', file = log_filename, append = TRUE)
-        write(paste('  dbName:', dbName, sep = "\t"),
-              file = log_filename,
-              append = TRUE)
-        write(paste('  hostName:', hostName, sep = "\t"),
-              file = log_filename,
-              append = TRUE)
-        write(paste('  userName:', userName, sep = "\t"),
-              file = log_filename,
-              append = TRUE)
-        # write(paste('  password:', password, sep="\t"), file=log_filename, append=TRUE)
-      }
-      conn <- dbConnect(
-        drv = RMySQL::MySQL(),
-        dbname = dbName,
-        host = hostName,
-        username = userName,
-        password = password
-      )
-      on.exit(dbDisconnect(conn), add = TRUE)
-      data_file <- dbGetQuery(
-        conn,
-        paste0(
-          "select
-			   i.GeolocCiudad as region,
-			   i.GeolocDepartamento as department,
-			   high_score,
-			   fever_count,
-			   cough_count,
-			   difficult_breath_count,
-			   fever_cough_count,
-			   fever_breath_count,
-			   cough_breath_count,
-			   fever_cough_breath_count
-			   -- Distinct of all the regions available in DB
-			   from (select
-			         distinct(k.key_region),
-			         k.GeolocCiudad,
-			         k.GeolocDepartamento
-			         from (select
-			               GeolocCiudad,
-			               GeolocDepartamento,
-			               CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region
-			               from responses) as k
-			         ) as i
-			   -- Add Severity score counting
-			   left join (select
-                    key_region,
-                    count(*) as high_score
-                    from (select
-                    			CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-                    			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
-                    			case when inputTos = 'tos' then 1 else 0 end as score_cough,
-                    			case when inputDigestivos = 'problemas digestivos' then 1 else 0 end as score_digest,
-                    			case when inputRespirar = 'dificultad a respirar' then 3.5 else 0 end as score_breath,
-                    			case when optionsContacto = 'si' then 0.5 else 0 end as score_contact
-                    			from responses )si
-                    where (si.score_fever+si.score_cough+si.score_breath+si.score_digest+si.score_contact) >= 3.5
-                    group by key_region) hs on hs.key_region = i.key_region
-			   -- Add fever cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(inputFebre) as fever_count
-			         from responses
-			         where inputFebre  = 'febre'
-			         group by key_region) f on f.key_region = i.key_region
-			   -- Add Cough cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(inputTos) as cough_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 group by key_region) as c on c.key_region = i.key_region
-         -- Add Breathing difficulties cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(inputRespirar) as difficult_breath_count
-			         from responses
-          		 where inputRespirar  = 'dificultad a respirar'
-          		 group by key_region) r on r.key_region = i.key_region
-         -- Add Fever and Cough combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as fever_cough_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputTos  = 'tos'
-          		 group by key_region) fc on fc.key_region = i.key_region
-         -- Add Fever and Breath difficulties combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as fever_breath_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by key_region) fb on fb.key_region = i.key_region
-         -- Add Cough and Breath difficulties combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by key_region) cb on cb.key_region = i.key_region
-         -- Add Fever, Cough and Breath difficulties combination cases
-			   left join (select
-			         CONCAT(GeolocCiudad,'_',GeolocDepartamento) as key_region,
-			         count(*) as fever_cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 and inputFebre  = 'febre'
-          		 group by key_region) fcb on fcb.key_region = i.key_region
-        -- Add everything on department level
-			  union
-			  select
-			   i.GeolocDepartamento as region,
-			   i.GeolocDepartamento as department,
-			   high_score,
-			   fever_count,
-			   cough_count,
-			   difficult_breath_count,
-			   fever_cough_count,
-			   fever_breath_count,
-			   cough_breath_count,
-			   fever_cough_breath_count
-			   -- Distinct of all the regions available in DB
-			   from (select
-			         distinct(GeolocDepartamento)
-			         from responses) as i
-			   left join (select
-                    GeolocDepartamento,
-                    count(*) as high_score
-                    from (select
-                    			GeolocDepartamento,
-                    			case when inputFebre = 'febre' then 1 else 0 end as score_fever,
-                    			case when inputTos = 'tos' then 1 else 0 end as score_cough,
-                    			case when inputDigestivos = 'problemas digestivos' then 1 else 0 end as score_digest,
-                    			case when inputRespirar = 'dificultad a respirar' then 3.5 else 0 end as score_breath,
-                    			case when optionsContacto = 'si' then 0.5 else 0 end as score_contact
-                    			from responses )si
-                    where (si.score_fever+si.score_cough+si.score_breath+si.score_digest+si.score_contact) >= 3.5
-                    group by GeolocDepartamento) as hs on hs.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(inputFebre) as fever_count
-			         from responses
-			         where inputFebre  = 'febre'
-          		 group by GeolocDepartamento) as f on f.GeolocDepartamento = i.GeolocDepartamento
-			   left join (select
-			         GeolocDepartamento,
-			         count(inputTos) as cough_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 group by GeolocDepartamento) as c on c.GeolocDepartamento = i.GeolocDepartamento
-			   left join (select
-			         GeolocDepartamento,
-			         count(inputRespirar) as difficult_breath_count
-			         from responses
-          		 where inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) r on r.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(*) as fever_cough_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputTos  = 'tos'
-          		 group by GeolocDepartamento) fc on fc.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(*) as fever_breath_count
-			         from responses
-          		 where inputFebre  = 'febre'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) fb on fb.GeolocDepartamento = i.GeolocDepartamento
-         left join (select
-			         GeolocDepartamento,
-			         count(*) as cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 group by GeolocDepartamento) cb on cb.GeolocDepartamento = i.GeolocDepartamento
-    		 left join (select
-			         GeolocDepartamento,
-			         count(*) as fever_cough_breath_count
-			         from responses
-          		 where inputTos  = 'tos'
-          		 and inputRespirar  = 'dificultad a respirar'
-          		 and inputFebre  = 'febre'
-          		 group by GeolocDepartamento) fcb on fcb.GeolocDepartamento = i.GeolocDepartamento;
-			  "
-        )
-      )
-      #Ouput is "region", "department", "fever_count", "cough_count", "difficult_breath_count", "fever_cough_count",
-      #"fever_breath_count", "cough_breath_count", fever_cough_breath_count
-      
-      if (debug) {
-        write(
-          'get_db_data: raw data_file after SQL query:',
-          file = log_filename,
-          append = TRUE
-        )
-        write(paste0(data_file),
-              file = log_filename,
-              append = TRUE)
-      }
-      
-      data_file <- data_file %>%
-        mutate(row_nr = row_number()) %>%
-        group_by(row_nr) %>%
-        mutate(department = stringi::stri_trans_general(department, id = "Latin-ASCII")) %>%
-        ungroup() %>%
-        dplyr::left_join(
-          region_names %>%
-            dplyr::mutate(department = as.character(department)) %>%
-            dplyr::distinct(department, department_abbreviation),
-          by = "department"
-        ) %>%
-        group_by(row_nr) %>%
-        mutate(
-          region = stringi::stri_trans_general(region, id = "Latin-ASCII"),
-          region = dplyr::case_when(
-            #the departments in the end of table Assumption no municipality has same name as department
-            region == department ~ region,
-            is.na(department_abbreviation) ~ paste0(region),
-            TRUE ~ paste(region, department_abbreviation, sep = ", ")
-          ),
-          region = tolower(region),
-          fever_count = dplyr::if_else(is.na(fever_count),
-                                       0,
-                                       fever_count),
-          cough_count = dplyr::if_else(is.na(cough_count),
-                                       0,
-                                       cough_count),
-          difficult_breath_count = dplyr::if_else(
-            is.na(difficult_breath_count),
-            0,
-            difficult_breath_count
-          ),
-          fever_cough_count = dplyr::if_else(is.na(fever_cough_count),
-                                             0,
-                                             fever_cough_count),
-          fever_breath_count = dplyr::if_else(is.na(fever_breath_count),
-                                              0,
-                                              fever_breath_count),
-          cough_breath_count = dplyr::if_else(is.na(cough_breath_count),
-                                              0,
-                                              cough_breath_count),
-          fever_cough_breath_count = dplyr::if_else(
-            is.na(fever_cough_breath_count),
-            0,
-            fever_cough_breath_count
-          )
-        ) %>%
-        ungroup() %>%
-        dplyr::select(
-          region,
-          fever_count,
-          cough_count,
-          difficult_breath_count,
-          fever_cough_count,
-          fever_breath_count,
-          cough_breath_count,
-          fever_cough_breath_count
-        )
-      
-      # region names should be in lower case
-      #data_file[[1]] <- tolower(data_file[[1]])
-      
-      # # update the column selection options when new DB data is loaded
-      # updateSelectInput(session, inputId="colSelect", choices = names(data_file)[-1])
-      debug = TRUE
-      if (debug) {
-        write(
-          'get_db_data: completed without exception',
-          file = log_filename,
-          append = TRUE
-        )
-        write('get_db_data: data_file:',
-              file = log_filename,
-              append = TRUE)
-        write(paste0(data_file),
-              file = log_filename,
-              append = TRUE)
-      }
-      return(data_file)
-    },
-    warning = function(warning_condition) {
-      write('get_db_data: caught warning:',
-            file = log_filename,
-            append = TRUE)
-      write(paste0(warning_condition),
-            file = log_filename,
-            append = TRUE)
-      if (debug) {
-        write("get_db_data: data_file:",
-              file = log_filename,
-              append = TRUE)
-        write(paste0(data_file),
-              file = log_filename,
-              append = TRUE)
-      }
-    },
-    error = function(error_condition) {
-      write('get_db_data: caught error:',
-            file = log_filename,
-            append = TRUE)
-      write(paste0(error_condition),
-            file = log_filename,
-            append = TRUE)
-      if (debug) {
-        write("get_db_data: data_file:",
-              file = log_filename,
-              append = TRUE)
-        write(paste0(data_file),
-              file = log_filename,
-              append = TRUE)
-      }
-    },
-    finally = {
-      log_activity('geomap', 'end get_db_data')
-    })
-  })
+  get_projection_plot_df <- function(data_frame,
+                                     projection_variable){
+    plot_dataset <- data_frame %>% 
+      dplyr::rename(variable = all_of(projection_variable)) %>% 
+      dplyr::mutate(type = "Predicted") %>% 
+      dplyr::select(Date,variable, type)
+    return(plot_dataset)
+  }
   
+  get_daily_deaths_and_confirmed <- function(actual_data){
+    #Generate Confirmed_daily and Deaths Daily
+    dates_vec <- actual_data$Date
+    daily_confirmed_vec <- c(NA)
+    daily_deaths_vec <- c(NA)
+    for (i in 2:length(dates_vec)){
+      day_data <- actual_data %>% filter(Date == dates_vec[i])
+      day_before_data <- actual_data %>% filter(Date == dates_vec[i-1])
+      daily_confirmed <- day_data$Confirmed - day_before_data$Confirmed
+      daily_confirmed <- max(daily_confirmed,0)
+      daily_deaths <- day_data$Deaths - day_before_data$Deaths
+      daily_deaths <- max(daily_deaths,0)
+      daily_confirmed_vec <- c(daily_confirmed_vec,daily_confirmed)
+      daily_deaths_vec <- c(daily_deaths_vec,daily_deaths)
+    }
+    actual_data <- actual_data %>% 
+      dplyr::mutate(Confirmed_daily = daily_confirmed_vec,
+                    Deaths_daily = daily_deaths_vec)
+    return(actual_data)
+  }
   # returns a list of break points given local min/max, global min/max, and # of bins
   get_breaks <- function(rangeMin, rangeMax, min, max, bins) {
     minadd <- FALSE
@@ -2058,12 +1472,6 @@ shinyServer(function(input, output, session) {
     }
     for (i in 1:length(values$from)){
       values$from[i] <- case_when(
-        # values$from[i] < 0.0000001 ~ mround(values$from[i], base = 0.00000001),
-        # values$from[i] < 0.000001 ~ mround(values$from[i], base = 0.0000001),
-        # values$from[i] < 0.00001 ~ mround(values$from[i], base = 0.000001),
-        # values$from[i] < 0.0001 ~ mround(values$from[i], base = 0.00001),
-        # values$from[i] < 0.001 ~ mround(values$from[i], base = 0.0001),
-        # values$from[i] < 0.01 ~ mround(values$from[i], base = 0.001),
         abs(values$from[i]) < 0.3 ~ mround(values$from[i], base = mround_bases[1]),
         abs(values$from[i]) <= 3 ~ mround(values$from[i], base = mround_bases[2]),
         abs(values$from[i]) <= 30 ~ mround(values$from[i], base = mround_bases[3]),
@@ -2073,12 +1481,6 @@ shinyServer(function(input, output, session) {
         TRUE ~ mround(values$from[i], base = mround_bases[7])
         )
       values$to[i] <- case_when(
-        # values$to[i] < 0.0000001 ~ mround(values$to[i], base = 0.00000001),
-        # values$to[i] < 0.000001 ~ mround(values$to[i], base = 0.0000001),
-        # values$to[i] < 0.00001 ~ mround(values$to[i], base = 0.000001),
-        # values$to[i] < 0.0001 ~ mround(values$to[i], base = 0.00001),
-        # values$to[i] < 0.001 ~ mround(values$to[i], base = 0.0001),
-        # values$to[i] < 0.01 ~ mround(values$to[i], base = 0.001),
         abs(values$to[i]) < 0.3 ~ mround(values$to[i], base = mround_bases[1]),
         abs(values$to[i]) <= 3 ~ mround(values$to[i], base = mround_bases[2]),
         abs(values$to[i]) <= 30 ~ mround(values$to[i], base = mround_bases[3]),
@@ -2089,47 +1491,21 @@ shinyServer(function(input, output, session) {
       )
     }
     
-    # Eight colors for eight buckets
-    # if(input$colourScheme == 'red/green'){
-    #   values$palette <- colorRampPalette(c("#FF0000", "#000000", "#33FF00"))(8)#input$binNumber
-    # }else if(input$colourScheme == 'blue/yellow'){
-    #   values$palette <- colorRampPalette(c("#0016DB", "#FFFFFF", "#FFFF00"))(8)#input$binNumber
-    # }else if(input$colourScheme == 'grayscale'){
-    #   values$palette <- colorRampPalette(c("#000000", "#bdbdbd", "#FFFFFF"))(8)#input$binNumber
-    # }else if(input$colourScheme == 'piyg'){
-    #   values$palette <- colorRampPalette(c("#C9438C", "#f7f7f7", "#7BC134"))(8)#input$binNumber
-    # }else if(input$colourScheme == 'rainbow'){
-    #   values$palette <- rainbow(8)#input$binNumber
-    # }else if(input$colourScheme == 'topo'){
-    #     values$palette <- topo.colors(8)#input$binNumber
-    # }else if(input$colourScheme == 'custom'){
-    # values$palette <- colorRampPalette(c(input$lowColour, input$highColour))(8)#input$binNumber
-    # }
-    #https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=8
-    #Colorblind friendly 8 bins
-    values$palette <-
-      c(
-        "#ffffcc",
-        "#ffeda0",
-        "#fed976",
-        "#feb24c",
-        "#fd8d3c",
-        "#fc4e2a",
-        "#e31a1c",
-        "#b10026"
-      )
-    
+    values$palette <- colours
+     
     # Assign colors to states
     if (length(values$from) == 1){
-      values$palette <- colorRampPalette(c("#ffffcc","#b10026"))(length(values$from))
-      values$colours <- structure(rep(values$palette,length(values$density)),names = names(values$density))
+      values$palette <- colorRampPalette(colours[c(1,length(colours))])(length(values$from))
+      values$colours <- structure(rep(values$palette,length(values$density)),
+                                  names = names(values$density)
+                                  )
     } else {
       values$colours <- structure(values$palette[as.integer(cut(
         values$density,
         densityBreaks,
         include.lowest = TRUE,
         ordered = TRUE
-      ))],
+      ))], 
       names = names(values$density))
       #Adding the most red colour to countries with higher value than max restricted to large area country
       # Exclude the areas with NA in values$density set them gray
@@ -2140,9 +1516,7 @@ shinyServer(function(input, output, session) {
           } else {
             values$colours[i] <- values$palette[length(values$palette)]
           }
-        } else {
-          next
-        }
+        } 
       }
     }
   } # End of update_colours() function
@@ -2152,6 +1526,12 @@ shinyServer(function(input, output, session) {
   parseRegionName <- function(id) {
     strsplit(id, ":")[[1]][1]
   }
+  # Rounding for legend numbers 
+  mround <- function(x,
+                     base){
+    return(base*round(x/base))
+  }
+  
   
   # add fillColour column to a map, depends on values$map and values$colours
   get_map_data <- reactive({
@@ -2175,19 +1555,16 @@ shinyServer(function(input, output, session) {
     mapData$fillColour <- fillArray
     return(mapData)
   })
-  
-  # default map
-  output$map <- renderLeaflet({
-    
+  validate_heatmap_and_table <- function(){
     #Error handling
     #Retrieveing the oldest date for available datafile
-    datafile_prefix <- maps_files_to_data_files %>%
-      filter(datafile == input$area) %>%
-      pull(prefix) %>%
+    datafile_mapping <- get_file_path_mapping(area = input$area)
+    datafile_prefix <- datafile_mapping %>% 
       stri_split(regex = "/") %>%
       unlist()
+    datafile_prefix <- datafile_prefix[-length(datafile_prefix)]
     path_to_dir <- paste("../filesystem/",
-                         paste(datafile_prefix[1:(length(datafile_prefix)-1)],collapse = "/"),
+                         paste(datafile_prefix,collapse = "/"),
                          sep = "/")
     filenames_list <- list.files(path_to_dir)
     dates_vec <- NULL
@@ -2199,15 +1576,20 @@ shinyServer(function(input, output, session) {
     }
     oldest_date <- min(dates_vec, na.rm = T)
     newest_date <- max(dates_vec, na.rm = T)
-
+    
     validate(
       #need(input$date <= Sys.Date(), "Your selected date is in the future. Please select correct date") %then% #Error message for dates in the future
       need(input$date >= oldest_date,
            paste("No data available for this region on that date.\nWe can provide data for that region starting from",oldest_date)) %then% #Error message for dates that are too early for particular region
-      need(!is.null(get_file()),
-           paste("No data available for this region on that date\nWe can provide data for that region starting from",
-                 oldest_date,"to",newest_date)) #Error message for data not available
-      )
+        need(!is.null(get_file()),
+             paste("No data available for this region on that date\nWe can provide data for that region starting from",
+                   oldest_date,"to",newest_date)) #Error message for data not available
+    )
+  }
+  # default map
+  output$map <- renderLeaflet({
+    
+    validate_heatmap_and_table()
     get_file()
     #Present map
     leaflet(
@@ -2297,19 +1679,10 @@ shinyServer(function(input, output, session) {
   
   ################# OUTPUT FUNCTIONS #################
   output$table <- DT::renderDataTable({
+    validate_heatmap_and_table()
     #Correct region  names
     values$file[[1]] <- capitalize_str(values$file[[1]])
-    #Cahnge column names to per 100000, original fiels have per capita, and numeric values are multiplied by 100000 in get_file()
-    nr_columns <- length(values$file)
-    col_names <- colnames(values$file)
-    for (i in 1:nr_columns){
-      if (grepl("_per_capita", tolower(col_names[i]))) {
-        col_name <- gsub(pattern = "_per_capita", replacement = "_per_100000", x = col_names[i])
-        names(values$file)[i] <- col_name
-      } else {
-        next
-      }
-    }
+    values$file <- rename_per_capita_per_100000(values$file)
     x <- datatable(
       rownames = FALSE,
       values$file,
@@ -2335,6 +1708,49 @@ shinyServer(function(input, output, session) {
     }
   }
   
+  rename_per_capita_per_100000 <- function(data_file){
+    nr_columns <- length(data_file)
+    col_names <- colnames(data_file)
+    for (i in 1:nr_columns){
+      if (grepl("_per_capita", tolower(col_names[i]))) {
+        col_name <- gsub(pattern = "_per_capita", replacement = "_per_100000", x = col_names[i])
+        names(data_file)[i] <- col_name
+      } 
+    }
+    return(data_file)
+  }
+  #Formatiing names for Table tab output
+  #Idea from: https://rstudio-pubs-static.s3.amazonaws.com/408658_512da947714740b99253228f084a08a9.html
+  CapStr <- function(y) {
+    
+    c <- strsplit(y, " ")[[1]]
+    
+    capitalized_string <- paste(toupper(substring(c, 1,1)), substring(c, 2),
+                                sep="", collapse=" ")
+    
+    capitalized_string <- gsub(pattern = " And ", replacement = " and ",capitalized_string)
+    capitalized_string <- gsub(pattern = " Of ", replacement = " of ",capitalized_string)
+    capitalized_string <- gsub(pattern = " The ", replacement = " the ",capitalized_string)
+    
+    return(capitalized_string)
+  }
+  capitalize_str <- function(charcter_string){
+    sapply(charcter_string, CapStr)
+  }
+  
+  #Functions to enable reverse timeseries:
+  c_trans <- function(a, b, breaks = b$breaks, format = b$format) {
+    a <- as.trans(a)
+    b <- as.trans(b)
+    
+    name <- paste(a$name, b$name, sep = "-")
+    
+    trans <- function(x) a$trans(b$trans(x))
+    inv <- function(x) b$inverse(a$inverse(x))
+    
+    trans_new(name, trans, inverse = inv, breaks = breaks, format=format)
+    
+  }
   # Dynamically render the box in the upper-right
   output$stateInfo <- renderUI({
     log_activity('geomap', 'stateInfo')
@@ -2356,28 +1772,10 @@ shinyServer(function(input, output, session) {
     }
   })
   output$plot <- renderPlotly({
-    #Functions to enable reverse timeseries:
-    c_trans <- function(a, b, breaks = b$breaks, format = b$format) {
-      a <- as.trans(a)
-      b <- as.trans(b)
-      
-      name <- paste(a$name, b$name, sep = "-")
-      
-      trans <- function(x) a$trans(b$trans(x))
-      inv <- function(x) b$inverse(a$inverse(x))
-      
-      trans_new(name, trans, inverse = inv, breaks = breaks, format=format)
-      
-    }
     
-    rev_date <- c_trans("reverse", "time")
+    reverse_date <- c_trans("reverse", "time")
     
     plot_dataset <- get_dataframe_for_plotting()
-    
-    if (grepl(pattern = "per_capita", input$colSelect)){
-      plot_dataset <- plot_dataset %>% 
-        dplyr::mutate(variable = 100000*variable)
-    }
     
     dates_with_non_zero_variable <- plot_dataset %>% 
       filter(variable > 0) %>% 
@@ -2405,6 +1803,7 @@ shinyServer(function(input, output, session) {
       distinct(type) %>% 
       pull(type) %>% 
       length()
+    
     if (len_data_types < 2){
       colours <- c("#b10026")
     } else {
@@ -2414,6 +1813,7 @@ shinyServer(function(input, output, session) {
     gray_color <- "#808080"
     font_size <- 14
     axis_text_font_size <- 10
+    font_family = "Arial"
     
     bar_graph <- plot_dataset %>% 
       ggplot(aes(x = Date,
@@ -2422,7 +1822,7 @@ shinyServer(function(input, output, session) {
       geom_col(width = 60*60*24*0.5)+ 
       labs(x = "Date",
            y = label_plotted_variable)+
-      scale_x_continuous(trans = rev_date,
+      scale_x_continuous(trans = reverse_date,
                          breaks = date_breaks,
                          labels = date_labels,
                          limits = c(as.POSIXct(time_upper_limit, tz = "GMT"),
@@ -2453,15 +1853,17 @@ shinyServer(function(input, output, session) {
                                    size = font_size)
         )
     
+    factor_ggplot_plotly <- 1.4
+    
     secondary_x_axis <- list(
       overlaying = "x",
       side = "top",
       title = label_plotted_variable,
-      titlefont = list(family = "Arial",
-                       size = font_size*1.4,
+      titlefont = list(family = font_family,
+                       size = font_size*factor_ggplot_plotly,
                        color = gray_color),
-      tickfont = list(family = "Arial",
-                      size = axis_text_font_size*1.4,
+      tickfont = list(family = font_family,
+                      size = axis_text_font_size*factor_ggplot_plotly,
                       color = gray_color),
       tickformat = ",",
       rangemode = 'tozero',
