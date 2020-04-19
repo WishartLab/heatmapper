@@ -10,7 +10,7 @@ from numpy import random,exp,loadtxt,pi,sqrt
 import matplotlib.pyplot as plt
 from datetime import timedelta, datetime, date
 
-# italy_data =    csv.reader(open(os.getcwd()+"/Global/Europe/Italy/italy_curve.tsv","rb"), delimiter = '\t')
+italy_data =    csv.reader(open(os.getcwd()+"/Global/Europe/Italy/italy_curve.tsv","rb"), delimiter = '\t')
 # ontario_data =  [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Ontario/accumulated.txt","rb"), delimiter = '\t'), "Ontario"]
 # canada_data =  [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/accumulated.txt","rb"), delimiter = '\t'), "Canada"]
 # us_data =  [csv.reader(open(os.getcwd()+"/Global/North_America/United_States_of_America/accumulated.txt","rb"), delimiter = '\t'), "United States of America"]
@@ -25,13 +25,13 @@ from datetime import timedelta, datetime, date
 # quebec_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Quebec/accumulated.txt","rb"), delimiter = '\t'), "Quebec"]
 # sask_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Saskatchewan/accumulated.txt","rb"), delimiter = '\t'), "Saskatchewan"]
 # bc_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/British_Columbia/accumulated.txt","rb"), delimiter = '\t'), "British Columbia"]
-# germany_data = [csv.reader(open(os.getcwd()+"/Global/Europe/Germany/accumulated.txt","rb"), delimiter = '\t'), "Germany"]
+germany_data = [csv.reader(open(os.getcwd()+"/Global/Europe/Germany/accumulated.txt","rb"), delimiter = '\t'), "Germany"]
 # yukon_data = [csv.reader(open(os.getcwd()+"/Global/North_America/Canada/Yukon/accumulated.txt","rb"), delimiter = '\t'), "Yukon"]
 # zealand_data= [csv.reader(open(os.getcwd()+"/Global/Oceania/New_Zealand/accumulated.txt","rb"), delimiter = '\t'), "New Zealand"]
 # australia_data= [csv.reader(open(os.getcwd()+"/Global/Oceania/Australia/accumulated.txt","rb"), delimiter = '\t'), "Australia"]
 # nam_data = [csv.reader(open(os.getcwd()+"/Global/Asia/Vietnam/accumulated.txt","rb"), delimiter = '\t'), "Vietnam"]
 
-cases = [nam_data]
+cases = [germany_data]
 
 def Extract(lst, index,date):
     if date:
@@ -125,6 +125,7 @@ for region,name in cases:
                         day = i + 1
                     i += 1
             projected_rates = italy_deriv_curve[day:]
+        print len(projected_rates)
         region_projected = []
         if confirmed_diff.any():
             for rate in projected_rates:
@@ -147,13 +148,15 @@ for region,name in cases:
         # plt.xlabel("Day",fontsize=18)
         # plt.ylabel(value_name,fontsize=16)
         # plt.title(name,fontsize=22)
-        # plt.show()                            
+        # plt.show()
+        print len(region_projected)
+
         total_rows.append([region_projected,todays_value])
 
     with open("predicted.tsv","wb") as tsv_file:    
         writer = csv.writer(tsv_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         headers = ["Date", "Predicted_Daily_Cases", "Predicted_Total_Cases", "Predicted_Daily_Deaths", "Predicted_Total_Deaths"]
-        print total_rows
+        #print total_rows
         writer.writerow(headers)
         if len(total_rows) < 1:
             death_project = None
@@ -187,6 +190,13 @@ for region,name in cases:
                 else:
                     writer.writerow([date,round(row,3),round(confirmed,3),0.0,round(death,3)])
                     date = date + timedelta(1)
+            if death_project:
+                if death_index < len(death_project):
+                    for row in death_project[death_index:-1]:
+                            death += round(death_project[death_index],3)
+                            writer.writerow([date,0.0,round(confirmed,3),round(death_project[death_index],3),round(death,3)])
+                            date = date + timedelta(1)
+                            death_index += 1
             august = datetime.strptime("2020-08-31","%Y-%m-%d").date()
             while date < august:
                 writer.writerow([date,0.0,round(confirmed,3),0.0,round(death,3)])
