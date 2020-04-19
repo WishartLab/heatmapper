@@ -197,11 +197,6 @@ for continent in continents:
                                 else:
                                     writer.writerow([date,round(row,3),round(confirmed,3),0.0,round(death,3)])
                                     date = date + timedelta(1)
-
-                            august = datetime.strptime("2020-08-31","%Y-%m-%d").date()
-                            while date < august:
-                                writer.writerow([date,0.0,round(confirmed,3),0.0,round(death,3)])
-                                date = date + timedelta(1)
                             if death_project:
                                 if death_index < len(death_project):
                                     for row in death_project[death_index:-1]:
@@ -209,6 +204,11 @@ for continent in continents:
                                             writer.writerow([date,0.0,round(confirmed,3),round(death_project[death_index],3),round(death,3)])
                                             date = date + timedelta(1)
                                             death_index += 1
+                            august = datetime.strptime("2020-08-31","%Y-%m-%d").date()
+                            while date < august:
+                                writer.writerow([date,0.0,round(confirmed,3),0.0,round(death,3)])
+                                date = date + timedelta(1)
+
                         else:
                             august = datetime.strptime("2020-08-31","%Y-%m-%d").date()
                             while date < august:

@@ -12,7 +12,7 @@ continents = ["Other","Europe", "North_America", "South_America", "Oceania","Afr
 for root, dirs, files in os.walk(os.getcwd()):
     os.chdir(root)
     for file in files:
-        if (file == "accumulated.txt") or (file == "predicted.tsv"):
+        if (file == "accumulated.txt") or (file == "predicted.tsv") or (".txt" in file):
             os.remove(file)
     os.chdir("..")
 os.chdir("..")
@@ -56,6 +56,8 @@ for key in country_dates:
     accumulated_writer.writerow(headers)
     print key
     for day in percentage_curve:
+        day = float(day) * population/5000000 * 81
+        print day
         cases_pc = float(day)
         cases = float(day) * population
         deaths = cases * 0.006

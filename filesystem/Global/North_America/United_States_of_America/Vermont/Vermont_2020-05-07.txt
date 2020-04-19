@@ -1,5 +1,5 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Chittenden	0.0	43.214	421.214	0.0	15.097	37.097	0.0	0.00026258	0.00255945	0.0	9.173e-05	0.00022542
+Chittenden	0.0	43.214	421.214	0.029	15.328	37.328	0.0	0.00026258	0.00255945	1.8e-07	9.314e-05	0.00022682
 Bennington	0.0	3.08	36.08	0.0	0.0	1.0	0.0	8.644e-05	0.0010126	0.0	0.0	2.807e-05
 Rutland	0.01	7.466	48.466	0.0	0.0	0.0	1.7e-07	0.00012725	0.00082605	0.0	0.0	0.0
 Addison	0.0	7.612	64.612	0.0	0.0	1.0	0.0	0.00020588	0.00174755	0.0	0.0	2.705e-05
@@ -7,7 +7,7 @@ Washington	0.501	13.814	43.814	0.0	0.0	0.0	8.62e-06	0.0002376	0.00075359	0.0	0.0
 Caledonia	0.0	0.724	10.724	0.0	0.0	0.0	0.0	2.389e-05	0.0003539	0.0	0.0	0.0
 Windham	1.57	45.853	105.853	0.0	0.0	2.0	3.672e-05	0.00107243	0.00247575	0.0	0.0	4.678e-05
 Unassigned	0.528	14.857	24.857	0.002	0.982	1.982	N/A	N/A	N/A	N/A	N/A	N/A
-Essex	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.00016	0.0	0.0	0.0
+Essex	0.0	0.0	1.0	0.002	0.982	0.982	0.0	0.0	0.00016	3.2e-07	0.00015712	0.00015712
 Franklin	6.479	162.561	250.561	0.0	0.0	3.0	0.0001311	0.00328931	0.00506993	0.0	0.0	6.07e-05
 Orleans	0.0	0.0	8.0	0.0	0.0	0.0	0.0	0.0	0.00029732	0.0	0.0	0.0
 Windsor	0.328	9.231	42.231	0.069	1.947	3.947	5.93e-06	0.00016697	0.00076386	1.25e-06	3.522e-05	7.139e-05
