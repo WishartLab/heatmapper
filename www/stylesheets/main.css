@@ -71,6 +71,10 @@
   border-width: 0.5em;
 }
 
+.table-downloads>tbody>tr>th {
+  border-top: none;
+}
+
 footer {
   text-align: center;
 }
