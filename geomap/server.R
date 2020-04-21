@@ -19,6 +19,7 @@ library(scales)
 #library(mapview)
 #library(webshot)
 library(plotly)
+library(magick)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
@@ -142,6 +143,9 @@ shinyServer(function(input, output, session) {
     palette = NULL,
     map = NULL
   )
+  
+  # initial GIF
+  firstgif <- "../filesystem/GIFs/World_Countries_TotalCases_covidmapper.gif"
   #################### OBSERVERS ####################
   observe({
     input$clearFile
@@ -442,10 +446,13 @@ shinyServer(function(input, output, session) {
             ){
           col_selected <- "Confirmed"
         } 
-      
+      if (choice == "Animation")
+      {
+        col_selected <- "TotalCases"
+      }
+
       file_name <- get_heatmap_file_path(map_file_name = map_file_name,
                                          datepart = datepart)
-        
       if (file.exists(file_name)){
         #read file
         data_file <- NULL
@@ -539,6 +546,15 @@ shinyServer(function(input, output, session) {
                                     "Predicted Daily Deaths per 100000" = 'Predicted_New_Deaths_per_capita',
                                     "Predicted Total Deaths" = 'Total_Predicted_Deaths',
                                     "Predicted Total Deaths per 100000" = 'Predicted_Total_Deaths_per_capita'),
+                        selected = col_selected)
+    } else if (choice == "Animation"){
+      updateSelectInput(session,
+                        inputId = "colSelect",
+                        label = "Select Data to Display:",
+                        choices = c("Total COVID-19 Cases" = 'TotalCases',
+                                    "Total Deaths" = 'TotalDeaths',
+                                    "Total COVID-19 Cases per 100000" = 'TotalCasesPerCapita',
+                                    "Total Deaths per 100000" = 'TotalDeathsPerCapita'),
                         selected = col_selected)
     } 
     else {
@@ -1081,7 +1097,7 @@ shinyServer(function(input, output, session) {
   
   # assign density names and values based on the selected column
   get_density <- reactive({
-    
+   
       tryCatch({
         if (debug)
           write('  get_density triggered',
@@ -1425,6 +1441,23 @@ shinyServer(function(input, output, session) {
                     Deaths_daily = daily_deaths_vec)
     return(actual_data)
   }
+  
+  # get GIF
+  get_gif_to_display <- reactive({
+    
+    area_n <- unlist(strsplit(input$area, "/|\\.| "))[2]
+    datatype <- input$colSelect
+    month <- format(as.POSIXct(input$date), "%m")
+    
+    gif_name <- paste(area_n, "_", datatype, "_covidmapper_", month, ".gif", sep = "")
+    
+    gif_full_path <- paste("../filesystem/GIFs", gif_name, sep = "/")
+    
+    validate(need(file.exists(gif_full_path),"Unfortuantely we do not provide animation for that region. Please select another region from menu."))
+    
+    return(gif_full_path)
+  }) # End of get_gif_to_display()
+  
   # returns a list of break points given local min/max, global min/max, and # of bins
   get_breaks <- function(rangeMin, rangeMax, min, max, bins) {
     minadd <- FALSE
@@ -1880,6 +1913,18 @@ shinyServer(function(input, output, session) {
       layout(xaxis2 = secondary_x_axis)
     
     
+  })
+  
+  # GIF output
+  output$animation <- renderImage({
+    
+    # default gif
+    output_gif <- list(src = firstgif,
+                       width = 800,
+                       deleteFile = FALSE)
+    
+    #gif_data <- get_gif_to_display()
+  
   })
   # output$regionNames <- renderDataTable({
   # 	data.frame("Regions" = levels(values$map$NAME))
