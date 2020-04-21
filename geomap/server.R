@@ -1464,32 +1464,12 @@ shinyServer(function(input, output, session) {
       values$from <- densityBreaks
       values$to <- densityBreaks
     }
-    
     #Rounding the bin limits values for legend
-    mround_bases <- c(0.05,0.5,5,50,500,5000,50000)
-    if (grepl("_change", input$colSelect)){
-      mround_bases <- c(0.01,0.1,1,10,100,1000,10000)
-    }
-    for (i in 1:length(values$from)){
-      values$from[i] <- case_when(
-        abs(values$from[i]) < 0.3 ~ mround(values$from[i], base = mround_bases[1]),
-        abs(values$from[i]) <= 3 ~ mround(values$from[i], base = mround_bases[2]),
-        abs(values$from[i]) <= 30 ~ mround(values$from[i], base = mround_bases[3]),
-        abs(values$from[i]) <= 300 ~ mround(values$from[i], base = mround_bases[4]),
-        abs(values$from[i]) <= 3000 ~ mround(values$from[i], base = mround_bases[5]),
-        abs(values$from[i]) <= 30000 ~ mround(values$from[i], base = mround_bases[6]),
-        TRUE ~ mround(values$from[i], base = mround_bases[7])
-        )
-      values$to[i] <- case_when(
-        abs(values$to[i]) < 0.3 ~ mround(values$to[i], base = mround_bases[1]),
-        abs(values$to[i]) <= 3 ~ mround(values$to[i], base = mround_bases[2]),
-        abs(values$to[i]) <= 30 ~ mround(values$to[i], base = mround_bases[3]),
-        abs(values$to[i]) <= 300 ~ mround(values$to[i], base = mround_bases[4]),
-        abs(values$to[i]) <= 3000 ~ mround(values$to[i], base = mround_bases[5]),
-        abs(values$to[i]) <= 30000 ~ mround(values$to[i], base = mround_bases[6]),
-        TRUE ~ mround(values$to[i], base = mround_bases[7])
-      )
-    }
+    values$from <- round_legend_bin_values(values = values$from,
+                                           column_name = input$colSelect)
+   
+    values$to <- round_legend_bin_values(values = values$to,
+                                           column_name = input$colSelect)
     
     values$palette <- colours
      
@@ -1531,7 +1511,25 @@ shinyServer(function(input, output, session) {
                      base){
     return(base*round(x/base))
   }
-  
+  round_legend_bin_values <- function(values,
+                                      column_name){
+    mround_bases <- c(0.05,0.5,5,50,500,5000,50000)
+    if (grepl("_change", column_name)){
+      mround_bases <- c(0.01,0.1,1,10,100,1000,10000)
+    }
+    for (i in 1:length(values)){
+      values[i] <- case_when(
+        abs(values[i]) < 0.3 ~ mround(values[i], base = mround_bases[1]),
+        abs(values[i]) <= 3 ~ mround(values[i], base = mround_bases[2]),
+        abs(values[i]) <= 30 ~ mround(values[i], base = mround_bases[3]),
+        abs(values[i]) <= 300 ~ mround(values[i], base = mround_bases[4]),
+        abs(values[i]) <= 3000 ~ mround(values[i], base = mround_bases[5]),
+        abs(values[i]) <= 30000 ~ mround(values[i], base = mround_bases[6]),
+        TRUE ~ mround(values[i], base = mround_bases[7])
+      )
+    }
+    return(values)
+  }
   
   # add fillColour column to a map, depends on values$map and values$colours
   get_map_data <- reactive({
