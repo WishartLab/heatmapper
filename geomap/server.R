@@ -1919,13 +1919,14 @@ shinyServer(function(input, output, session) {
   output$animation <- renderImage({
     
     # default gif
-    output_gif <- list(src = firstgif,
-                       width = 800,
-                       deleteFile = FALSE)
+    list(src = firstgif,
+         width = 800)
+    }, 
+         deleteFile = FALSE)
     
     #gif_data <- get_gif_to_display()
   
-  })
+  
   # output$regionNames <- renderDataTable({
   # 	data.frame("Regions" = levels(values$map$NAME))
   # }, options = list(pageLength = 10))
