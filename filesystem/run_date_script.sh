@@ -1,7 +1,7 @@
-startdate="20200413"
+startdate="20200418"
 enddate=$(date +%Y%m%d)
 loopdate=$startdate
-
+git pull
 cd COVID-19
 git pull
 cd ..
@@ -29,12 +29,11 @@ cd ..
 cd ..
 
 git add filesystem/
-
 git commit -m "Automated prediction script"
 git push
 
-# ssh ubuntu@52.2.187.145 'cd heatmapper-docker/web/heatmapper;git branch;git pull;cd ..;cd..;sudo docker tag heatmapper:latest heatmapper:date;sudo docker-compose build;sudo docker-compose rm -sf;sudo docker-compose up -d'
-# # go to heatmapper directory
+ssh ubuntu@52.2.187.145 'cd heatmapper-docker/web/heatmapper && git branch && git pull && cd .. && cd.. && sudo docker tag heatmapper:latest heatmapper:date && sudo docker-compose build && sudo docker-compose rm -sf && sudo docker-compose up -d'
+# go to heatmapper directory
 # ssh ubuntu@52.2.187.145 
 # cd heatmapper-docker/web/heatmapper
 # # check if we are in correct branch
