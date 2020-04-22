@@ -225,6 +225,10 @@ with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/{}-{}-{}.csv'
             countries.append(country)
     third_reader = csv.reader(csv_file, delimiter=',')
     for row in data: 
+        if "Federal Bureau of Prisons" in row:
+            continue
+        elif "US Military" in row:
+            continue
         country = row[3]
         state_province = row[2]
         if (state_province == "Diamond Princess" or state_province == "Grand Princess"):
