@@ -28,15 +28,15 @@ python generate_future_files.py
 cd ..
 cd ..
 
-git add filesystem/
-git commit -m "Automated prediction script"
-git push
+# git add filesystem/
+# git commit -m "Automated prediction script"
+# git push
 
-ssh ubuntu@52.2.187.145 'cd heatmapper-docker/web/heatmapper && git branch && git pull && cd .. && cd .. && sudo docker tag heatmapper:latest heatmapper:date && sudo docker-compose build && sudo docker-compose rm -sf && sudo docker-compose up -d'
+# ssh ubuntu@52.2.187.145 'cd heatmapper-docker/web/heatmapper && git branch && git pull && cd .. && cd .. && sudo docker tag heatmapper:latest heatmapper:date && sudo docker-compose build && sudo docker-compose rm -sf && sudo docker-compose up -d'
 
 
-tar -zcvf Downloads/Best_Case.tar Best_Case
-tar -zcvf Downloads/Worst_Case.tar Worst_Case
+# tar -zcvf Downloads/Best_Case.tar Best_Case
+# tar -zcvf Downloads/Worst_Case.tar Worst_Case
 
 
 
