@@ -19,7 +19,6 @@ library(scales)
 #library(mapview)
 #library(webshot)
 library(plotly)
-library(magick)
 
 source("../global_server.R")
 source("../global_ui.R") # so we can see EXAMPLE_FILES
