@@ -1,0 +1,19 @@
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita	Confirmed_daily	Deaths_daily
+Canada	1	0	0	N/A	3e-8	0	5	2	1.25	1.5e-7	6e-8	3.75e-8	0	0
+United States of America	3	0	0	N/A	1e-8	0	15	6	3.75	5e-8	2e-8	1.25e-8	0	0
+United Kingdom	0	0	0	N/A	0	0	0	0	0	0	0	0	0	0
+Italy	0	0	0	N/A	0	0	0	0	0	0	0	0	0	0
+Germany	4	0	0	N/A	5e-8	0	20	8	5	2.5e-7	1e-7	6.25e-8	NA	NA
+France	4	0	0	N/A	6e-8	0	20	8	5	3e-7	1.2e-7	7.5e-8	1	0
+Australia	4	0	0	N/A	1.6e-7	0	20	8	5	8e-7	3.2e-7	2e-7	0	0
+Singapore	7	0	0	N/A	1.24e-6	0	35	14	8.75	6.2e-6	2.48e-6	1.55e-6	2	0
+Nepal	1	0	0	N/A	4e-8	0	5	2	1.25	2e-7	8e-8	5e-8	0	0
+Cambodia	1	0	0	N/A	6e-8	0	5	2	1.25	3e-7	1.2e-7	7.5e-8	0	0
+Malaysia	4	0	0	N/A	1.3e-7	0	20	8	5	6.5e-7	2.6e-7	1.625e-7	0	0
+Vietnam	2	0	0	N/A	2e-8	0	10	4	2.5	1e-7	4e-8	2.5e-8	0	0
+China	5974	126	89	N/A	3.21e-6	9e-8	42000	19384.6153846	12600	3e-5	1.38461538462e-5	9e-6	1459	46
+Thailand	14	0	5	N/A	2e-7	0	70	28	17.5	1e-6	4e-7	2.5e-7	6	0
+Sri Lanka	1	0	0	N/A	5e-8	0	5	2	1.25	2.5e-7	1e-7	6.25e-8	0	0
+Japan	7	0	1	N/A	6e-8	0	35	14	8.75	3e-7	1.2e-7	7.5e-8	3	0
+Taiwan	8	0	0	N/A	3.4e-7	0	40	16	10	1.7e-6	6.8e-7	4.25e-7	3	0
+South Korea	4	0	0	N/A	8e-8	0	20	8	5	4e-7	1.6e-7	1e-7	0	0
