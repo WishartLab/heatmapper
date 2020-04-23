@@ -19,7 +19,6 @@ library(scales)
 #library(mapview)
 #library(webshot)
 library(plotly)
-#library(magick)
 
 
 source("../global_server.R")
@@ -146,7 +145,7 @@ shinyServer(function(input, output, session) {
   )
   
   # initial GIF
-  firstgif <- "../filesystem/GIFs/World_Countries_TotalCases_covidmapper.gif"
+  firstgif <- "../filesystem/GIFs/World_TotalCases_covidmapper.gif"
   #################### OBSERVERS ####################
   observe({
     input$clearFile
@@ -595,6 +594,14 @@ shinyServer(function(input, output, session) {
       } else if (!(area_selected %in% heatmap_and_table_tab_regions) &&
                  choice != "Plots"){
         area_selected <- 'data/World_Countries.rds'
+      } else if (choice == "Animation" && !(area_selected %in% c('data/World_Countries.rds',
+                                                                 'data/Africa.rds', 
+                                                                 'data/Asia.rds', 
+                                                                 'data/Europe.rds', 
+                                                                 'data/North_America.rds',
+                                                                 'data/Oceania.rds',
+                                                                 'data/South_America.rds'))){
+        area_selected <- 'data/World_Countries.rds'
       }
     })
     if (choice == "Plots"){
@@ -893,6 +900,18 @@ shinyServer(function(input, output, session) {
                         ),
                         selected = area_selected
       )
+    } else if (choice == "Animation"){
+      updateSelectInput(session,
+                        inputId = "area",
+                        label = "View animated COVID Heatmaps of:",
+                        choices = c("World" = 'data/World_Countries.rds',
+                                    "Africa" = 'data/Africa.rds', 
+                                    "Asia" = 'data/Asia.rds', 
+                                    "Europe" = 'data/Europe.rds', 
+                                    "North America" = 'data/North_America.rds',
+                                    "Oceania" = 'data/Oceania.rds',
+                                    "South America" = 'data/South_America.rds'),
+                        selected = area_selected)
     } else {
       updateSelectInput(session,
                         inputId = "area",
@@ -1446,11 +1465,21 @@ shinyServer(function(input, output, session) {
   # get GIF
   get_gif_to_display <- reactive({
     
-    area_n <- unlist(strsplit(input$area, "/|\\.| "))[2]
-    datatype <- input$colSelect
-    month <- format(as.POSIXct(input$date), "%m")
+    if ("data/World_Countries.rds" %in% input$area){
+      area_n <- "World"
+    } else {
+      area_n <- unlist(strsplit(input$area, "/|\\.| "))[2]
+    }
     
-    gif_name <- paste(area_n, "_", datatype, "_covidmapper_", month, ".gif", sep = "")
+    gifname_choices <- c("TotalCases", "TotalDeaths", "TotalCasesPerCapita", "TotalDeathsPerCapita")
+    
+    if (input$colSelect %in% gifname_choices){
+      datatype <- input$colSelect
+    } else {
+      datatype <- gifname_choices[1]
+    }
+    
+    gif_name <- paste(area_n, "_", datatype, "_covidmapper", ".gif", sep = "")
     
     gif_full_path <- paste("../filesystem/GIFs", gif_name, sep = "/")
     
@@ -1920,12 +1949,10 @@ shinyServer(function(input, output, session) {
   output$animation <- renderImage({
     
     # default gif
-    list(src = firstgif,
+    list(src = get_gif_to_display(),
          width = 800)
     }, 
          deleteFile = FALSE)
-    
-    #gif_data <- get_gif_to_display()
   
   
   # output$regionNames <- renderDataTable({
