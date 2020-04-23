@@ -1,12 +1,12 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Queensland	0.762	33.824	1055.015	0.052	0.917	7.041	1.5e-07	6.64e-06	0.00020706	1e-08	1.8e-07	1.38e-06
-Western Australia	0.138	15.461	561.35	0.026	0.564	7.653	5e-08	5.9e-06	0.00021412	1e-08	2.2e-07	2.92e-06
-Victoria	0.239	24.819	1352.868	0.033	0.792	14.921	4e-08	3.76e-06	0.00020514	1e-08	1.2e-07	2.26e-06
+Queensland	0.214	19.083	1039.43	0.045	0.775	6.899	4e-08	3.75e-06	0.00020401	1e-08	1.5e-07	1.35e-06
+Western Australia	0.173	15.419	560.739	0.043	0.748	7.868	7e-08	5.88e-06	0.00021389	2e-08	2.9e-07	3e-06
+Victoria	0.257	20.961	1347.677	0.02	0.367	14.429	4e-08	3.18e-06	0.00020435	0.0	6e-08	2.19e-06
 External territories	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
 Australia	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Australian Capital Territory	0.004	0.312	103.476	1.025	5.702	8.853	1e-08	7.3e-07	0.0002425	2.4e-06	1.336e-05	2.075e-05
-Tasmania	6.395	79.912	268.028	0.413	4.173	11.44	1.197e-05	0.00014957	0.00050166	7.7e-07	7.81e-06	2.141e-05
-New South Wales	0.351	33.006	2973.006	0.105	2.823	29.299	4e-08	4.08e-06	0.00036751	1e-08	3.5e-07	3.62e-06
-South Australia	0.034	3.207	439.567	0.0	0.0	4.0	1e-08	1.22e-06	0.00016767	0.0	0.0	1.53e-06
+Australian Capital Territory	0.0	0.125	103.183	0.213	2.076	5.24	0.0	2.9e-07	0.00024181	5e-07	4.87e-06	1.228e-05
+Tasmania	4.511	56.629	243.789	0.279	3.199	10.568	8.44e-06	0.00010599	0.00045629	5.2e-07	5.99e-06	1.978e-05
+New South Wales	0.431	38.081	2976.232	0.13	2.318	28.7	5e-08	4.71e-06	0.00036791	2e-08	2.9e-07	3.55e-06
+South Australia	0.034	2.125	438.178	0.0	0.0	4.0	1e-08	8.1e-07	0.00016714	0.0	0.0	1.53e-06
 Jervis Bay Territory	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
 Northern Territory	0.0	0.0	28.0	0.0	0.0	0.0	0.0	0.0	0.00011388	0.0	0.0	0.0
