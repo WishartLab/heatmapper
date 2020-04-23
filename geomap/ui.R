@@ -501,7 +501,13 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			                    height = "2000px"))
 			 , 
 			tabPanel(title = "Animation",
-			         h3(textOutput("animation_title")),
+			         tipify(
+			           h3(
+			             textOutput("animation_title")
+			             ),
+			           "The animation contains one image per week from the oldest data available for the heatmap",
+			           placement = "left"
+			           ),
 			         imageOutput("animation"
 			                     # ,
 			                     #  height = "800px"
