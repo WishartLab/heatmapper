@@ -114,6 +114,30 @@ heatmap_and_table_tab_regions <- c(
   "US Wisconsin" = 'data/Wisconsin.rds',
   "US Wyoming" = 'data/Wyoming.rds'
 )
+heatmap_actual_columns <- c("Confirmed COVID-19 Cases" = 'Confirmed',
+                            "Confirmed Deaths" = 'Deaths',
+                            "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
+                            "COVID-19 Deaths per 100,000" = "Deaths_per_capita",
+                            "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
+                            "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
+                            "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected',
+                            "COVID-19 Tests Performed" = 'Tests',
+                            "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita')
+
+heatmap_predicted_columns <- c("Predicted Daily Cases" = 'Predicted_New_Cases',
+                               "Predicted Daily Cases per 100000" = 'Predicted_New_per_capita',
+                               "Predicted Total Cases" = 'Total_Predicted_Cases',
+                               "Predicted Total Cases per 100000" = 'Predicted_Total_Cases_per_capita',
+                               "Predicted Daily Deaths" = 'Predicted_New_Deaths',
+                               "Predicted Daily Deaths per 100000" = 'Predicted_New_Deaths_per_capita',
+                               "Predicted Total Deaths" = 'Total_Predicted_Deaths',
+                               "Predicted Total Deaths per 100000" = 'Predicted_Total_Deaths_per_capita')
+
+animation_data_menu <- c("Total COVID-19 Cases" = 'TotalCases',
+                         "Total Deaths" = 'TotalDeaths',
+                         "Total COVID-19 Cases per 100000" = 'TotalCasesPerCapita',
+                         "Total Deaths per 100000" = 'TotalDeathsPerCapita')
+
 # Constants----
 dimensions_msg <- "Input data can have up to 50 data columns."
 
@@ -445,11 +469,10 @@ shinyServer(function(input, output, session) {
             !(col_selected %in% bar_graphs_mappings$actual)
             ){
           col_selected <- "Confirmed"
+        } else if (choice == "Animation" &&
+                   !(col_selected %in% animation_data_menu)) {
+          col_selected <- animation_data_menu[1]
         } 
-      if (choice == "Animation")
-      {
-        col_selected <- "TotalCases"
-      }
 
       file_name <- get_heatmap_file_path(map_file_name = map_file_name,
                                          datepart = datepart)
@@ -517,20 +540,7 @@ shinyServer(function(input, output, session) {
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
-                        choices = c("Confirmed COVID-19 Cases" = 'Confirmed',
-                                    #"Recovered" = 'Recovered',
-                                    "Confirmed Deaths" = 'Deaths',
-                                    #"Active" = 'Active',
-                                    "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
-                                    "COVID-19 Deaths per 100,000" = "Deaths_per_capita",
-                                    # "% Daily Change in Confirmed COVID-19 Cases" = "Confirmed_change",
-                                    # "% Daily Change in COVID-19 Deaths" = "Deaths_change",
-                                    "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
-                                    "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
-                                    "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected',
-                                    "COVID-19 Tests Performed" = 'Tests',
-                                    "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
-                        ),
+                        choices = heatmap_actual_columns,
                         selected = col_selected
       )
     } else if ("Predicted_New_Cases" %in% col_names && 
@@ -538,41 +548,20 @@ shinyServer(function(input, output, session) {
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
-                        choices = c("Predicted Daily Cases" = 'Predicted_New_Cases',
-                                    "Predicted Daily Cases per 100000" = 'Predicted_New_per_capita',
-                                    "Predicted Total Cases" = 'Total_Predicted_Cases',
-                                    "Predicted Total Cases per 100000" = 'Predicted_Total_Cases_per_capita',
-                                    "Predicted Daily Deaths" = 'Predicted_New_Deaths',
-                                    "Predicted Daily Deaths per 100000" = 'Predicted_New_Deaths_per_capita',
-                                    "Predicted Total Deaths" = 'Total_Predicted_Deaths',
-                                    "Predicted Total Deaths per 100000" = 'Predicted_Total_Deaths_per_capita'),
+                        choices = heatmap_predicted_columns,
                         selected = col_selected)
     } else if (choice == "Animation"){
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
-                        choices = c("Total COVID-19 Cases" = 'TotalCases',
-                                    "Total Deaths" = 'TotalDeaths',
-                                    "Total COVID-19 Cases per 100000" = 'TotalCasesPerCapita',
-                                    "Total Deaths per 100000" = 'TotalDeathsPerCapita'),
+                        choices = animation_data_menu,
                         selected = col_selected)
     } 
     else {
       updateSelectInput(session,
                         inputId = "colSelect",
                         label = "Select Data to Display:",
-                        choices = c("Confirmed COVID-19 Cases" = 'Confirmed',
-                                    #"Recovered" = 'Recovered',
-                                    "Confirmed Deaths" = 'Deaths',
-                                    #"Active" = 'Active',
-                                    "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
-                                    "COVID-19 Deaths per 100,000" = "Deaths_per_capita",
-                                    # "% Daily Change in Confirmed COVID-19 Cases" = "Confirmed_change",
-                                    # "% Daily Change in COVID-19 Deaths" = "Deaths_change",
-                                    "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
-                                    "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
-                                    "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected'
-                                    ),
+                        choices = heatmap_actual_columns[!heatmap_actual_columns %in% c("Tests", "Tests_per_capita")],
                         selected = col_selected
                         )
     }
@@ -1068,7 +1057,8 @@ shinyServer(function(input, output, session) {
         tab_selected <- input$tabSelections
       })
       if (is.null(nums_col) &&
-          tab_selected != "Plots") {
+          !(tab_selected %in% c("Plots",
+                                "Animation"))) {
         nums_col <- data_file[[2]]
         col_names <-colnames(data_file)
         #Update the selected column name, if we grab the second column to show instead of missing column
