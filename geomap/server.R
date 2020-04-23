@@ -134,16 +134,16 @@ heatmap_actual_columns <- c("Confirmed COVID-19 Cases" = 'Confirmed',
 heatmap_predicted_columns <- c("Predicted Daily Cases" = 'Predicted_New_Cases',
                                "Predicted Daily Cases per 100000" = 'Predicted_New_per_capita',
                                "Predicted Total Cases" = 'Total_Predicted_Cases',
-                               "Predicted Total Cases per 100000" = 'Predicted_Total_Cases_per_capita',
+                               "Predicted Total Cases per 100,000" = 'Predicted_Total_Cases_per_capita',
                                "Predicted Daily Deaths" = 'Predicted_New_Deaths',
-                               "Predicted Daily Deaths per 100000" = 'Predicted_New_Deaths_per_capita',
+                               "Predicted Daily Deaths per 100,000" = 'Predicted_New_Deaths_per_capita',
                                "Predicted Total Deaths" = 'Total_Predicted_Deaths',
-                               "Predicted Total Deaths per 100000" = 'Predicted_Total_Deaths_per_capita')
+                               "Predicted Total Deaths per 100,000" = 'Predicted_Total_Deaths_per_capita')
 
 animation_data_menu <- c("Total COVID-19 Cases" = 'TotalCases',
                          "Total Deaths" = 'TotalDeaths',
-                         "Total COVID-19 Cases per 100000" = 'TotalCasesPerCapita',
-                         "Total Deaths per 100000" = 'TotalDeathsPerCapita')
+                         "Total COVID-19 Cases per 100,000" = 'TotalCasesPerCapita',
+                         "Total Deaths per 100,000" = 'TotalDeathsPerCapita')
 
 # Constants----
 dimensions_msg <- "Input data can have up to 50 data columns."
@@ -1930,6 +1930,12 @@ shinyServer(function(input, output, session) {
          width = 800)
     }, 
          deleteFile = FALSE)
+  
+  output$animation_title <- renderText({
+    col_selected <- input$colSelect
+    text <- names(animation_data_menu[animation_data_menu == col_selected])
+    text
+  })
   
   
   # output$regionNames <- renderDataTable({

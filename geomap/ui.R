@@ -501,6 +501,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			                    height = "2000px"))
 			 , 
 			tabPanel(title = "Animation",
+			         h3(textOutput("animation_title")),
 			         imageOutput("animation"
 			                     # ,
 			                     #  height = "800px"
