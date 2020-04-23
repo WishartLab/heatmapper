@@ -499,7 +499,12 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			tabPanel(title = "Plots",
 			         plotlyOutput("plot",
 			                    height = "2000px"))
-			# , 
+			 , 
+			tabPanel(title = "Animation",
+			         imageOutput("animation"
+			                     # ,
+			                     #  height = "800px"
+			                      ))
 			# tabPanel(title = "Region Names", 
 			# 	tags$br(),
 			# 	DT::dataTableOutput("regionNames"))
