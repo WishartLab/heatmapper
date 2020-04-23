@@ -114,6 +114,13 @@ heatmap_and_table_tab_regions <- c(
   "US Wisconsin" = 'data/Wisconsin.rds',
   "US Wyoming" = 'data/Wyoming.rds'
 )
+world_and_continents_dropdown <- c("World" = 'data/World_Countries.rds',
+                                   "Africa" = 'data/Africa.rds', 
+                                   "Asia" = 'data/Asia.rds', 
+                                   "Europe" = 'data/Europe.rds', 
+                                   "North America" = 'data/North_America.rds',
+                                   "Oceania" = 'data/Oceania.rds',
+                                   "South America" = 'data/South_America.rds')
 heatmap_actual_columns <- c("Confirmed COVID-19 Cases" = 'Confirmed',
                             "Confirmed Deaths" = 'Deaths',
                             "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
@@ -571,25 +578,13 @@ shinyServer(function(input, output, session) {
     choice <- input$tabSelections
     isolate({
       area_selected <- input$area
-      if (area_selected %in% c('data/World_Countries.rds',
-                              'data/Africa.rds', 
-                              'data/Asia.rds', 
-                              'data/Europe.rds', 
-                              'data/North_America.rds',
-                              'data/Oceania.rds',
-                              'data/South_America.rds') &&
+      if (area_selected %in% world_and_continents_dropdown &&
           choice == "Plots"){
         area_selected <- 'data/CAN_1.rds'
       } else if (!(area_selected %in% heatmap_and_table_tab_regions) &&
                  choice != "Plots"){
         area_selected <- 'data/World_Countries.rds'
-      } else if (choice == "Animation" && !(area_selected %in% c('data/World_Countries.rds',
-                                                                 'data/Africa.rds', 
-                                                                 'data/Asia.rds', 
-                                                                 'data/Europe.rds', 
-                                                                 'data/North_America.rds',
-                                                                 'data/Oceania.rds',
-                                                                 'data/South_America.rds'))){
+      } else if (choice == "Animation" && !(area_selected %in% world_and_continents_dropdown)){
         area_selected <- 'data/World_Countries.rds'
       }
     })
@@ -893,13 +888,7 @@ shinyServer(function(input, output, session) {
       updateSelectInput(session,
                         inputId = "area",
                         label = "View animated COVID Heatmaps of:",
-                        choices = c("World" = 'data/World_Countries.rds',
-                                    "Africa" = 'data/Africa.rds', 
-                                    "Asia" = 'data/Asia.rds', 
-                                    "Europe" = 'data/Europe.rds', 
-                                    "North America" = 'data/North_America.rds',
-                                    "Oceania" = 'data/Oceania.rds',
-                                    "South America" = 'data/South_America.rds'),
+                        choices = world_and_continents_dropdown,
                         selected = area_selected)
     } else {
       updateSelectInput(session,
