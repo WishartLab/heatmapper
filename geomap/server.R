@@ -1399,7 +1399,8 @@ shinyServer(function(input, output, session) {
       plot_dataset <- actual_data %>% 
         dplyr::rename(variable = all_of(plotted_variable_actual)) %>% 
         dplyr::mutate(type = "Actual") %>% 
-        bind_rows(predicted_data %>% 
+        bind_rows(predicted_data %>%
+                    dplyr::filter(Date > max(actual_data$Date, na.rm = T)) %>%
                     dplyr::rename(variable = plotted_variable_predicted) %>% 
                     dplyr::mutate(type = "Predicted")) %>% 
         dplyr::select(Date,variable, type) %>% 
