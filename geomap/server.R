@@ -1357,14 +1357,14 @@ shinyServer(function(input, output, session) {
       as.character()
     
     if (grepl(pattern = "_worst_case", plotted_variable_actual)){
-      predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
+      predicted_data <- get_file_for_plot(file_name = "predicted.tsv",
                                           area_name = input$area,
                                           type = "worst_case")
       
       plot_dataset <- get_projection_plot_df(predicted_data,
                                              projection_variable)
     } else if (grepl(pattern = "_best_case", plotted_variable_actual)){
-      predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
+      predicted_data <- get_file_for_plot(file_name = "predicted.tsv",
                                           area_name = input$area,
                                           type = "best_case")
       
