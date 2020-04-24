@@ -505,10 +505,15 @@ shinyServer(function(input, output, session) {
         path_corrected <- path_initial[-length(path_initial)]
         path_corrected <- paste(path_corrected, collapse = "/")
         file_full_path <- paste("../filesystem", path_corrected,"accumulated.txt", sep = "/")
-        data_file <- read.csv(file = file_full_path,
-                              sep = "\t",
-                              stringsAsFactors = FALSE)
-      }
+        if (file.exists(file_full_path)) {
+          data_file <- read.csv(file = file_full_path,
+                                sep = "\t",
+                                stringsAsFactors = FALSE)
+        } else {
+          data_file <- NULL
+        }
+        
+      } 
       
       col_names <- colnames(data_file)
     })
@@ -1352,14 +1357,14 @@ shinyServer(function(input, output, session) {
       as.character()
     
     if (grepl(pattern = "_worst_case", plotted_variable_actual)){
-      predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
+      predicted_data <- get_file_for_plot(file_name = "predicted.tsv",
                                           area_name = input$area,
                                           type = "worst_case")
       
       plot_dataset <- get_projection_plot_df(predicted_data,
                                              projection_variable)
     } else if (grepl(pattern = "_best_case", plotted_variable_actual)){
-      predicted_data <- get_file_for_plot(file_name = "accumulated.txt",
+      predicted_data <- get_file_for_plot(file_name = "predicted.tsv",
                                           area_name = input$area,
                                           type = "best_case")
       
