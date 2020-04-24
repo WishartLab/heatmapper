@@ -34,7 +34,7 @@ data = list(region_file)
 for item in data:
     percentage_curve.append(item[-1])
 
-headers = ["Date", "Cases","Cases_per_capita" "Total_Cases", "Total_Cases_per_capita",
+headers = ["Date", "Cases","Cases_per_capita","Total_Cases", "Total_Cases_per_capita",
             "Deaths", "Deaths_per_capita", "Total_Deaths", "Total_Deaths_per_capita"]
 other_headers = ["Name", "Cases","Cases_per_capita" "Total_Cases", "Total_Cases_per_capita",
             "Deaths", "Deaths_per_capita", "Total_Deaths", "Total_Deaths_per_capita"]
