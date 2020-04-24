@@ -505,10 +505,15 @@ shinyServer(function(input, output, session) {
         path_corrected <- path_initial[-length(path_initial)]
         path_corrected <- paste(path_corrected, collapse = "/")
         file_full_path <- paste("../filesystem", path_corrected,"accumulated.txt", sep = "/")
-        data_file <- read.csv(file = file_full_path,
-                              sep = "\t",
-                              stringsAsFactors = FALSE)
-      }
+        if (file.exists(file_full_path)) {
+          data_file <- read.csv(file = file_full_path,
+                                sep = "\t",
+                                stringsAsFactors = FALSE)
+        } else {
+          data_file <- NULL
+        }
+        
+      } 
       
       col_names <- colnames(data_file)
     })
