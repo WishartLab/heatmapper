@@ -138,7 +138,7 @@ heatmap_predicted_columns <- c("Predicted Daily Cases" = 'Predicted_New_Cases',
                                "Predicted Daily Deaths" = 'Predicted_New_Deaths',
                                "Predicted Daily Deaths per 100,000" = 'Predicted_New_Deaths_per_capita',
                                "Predicted Total Deaths" = 'Total_Predicted_Deaths',
-                               "Predicted Total Deaths per 100,000" = 'Predicted_Total_Deaths_per_capita')
+                               "Predicted Total Deaths per 100,000" = 'Total_Predicted_Deaths_per_capita')
 
 animation_data_menu <- c("Total COVID-19 Cases" = 'TotalCases',
                          "Total Deaths" = 'TotalDeaths',
