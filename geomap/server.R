@@ -1729,6 +1729,7 @@ shinyServer(function(input, output, session) {
     #Correct region  names
     values$file[[1]] <- capitalize_str(values$file[[1]])
     values$file <- rename_per_capita_per_100000(values$file)
+    values$file <- remove_predicted_total_columns(values$file)
     x <- datatable(
       rownames = FALSE,
       values$file,
@@ -1763,6 +1764,19 @@ shinyServer(function(input, output, session) {
         names(data_file)[i] <- col_name
       } 
     }
+    return(data_file)
+  }
+  
+  remove_predicted_total_columns <- function(data_file){
+    col_names <- colnames(data_file)
+    
+    if ("Total_Predicted_New_Cases" %in% col_names &&
+        "Total_Predicted_New_Deaths" %in% col_names){
+      
+      data_file <- data_file %>% 
+        dplyr::select(-c("Total_Predicted_New_Cases", "Total_Predicted_New_Deaths"))
+    }
+    
     return(data_file)
   }
   #Formatiing names for Table tab output
