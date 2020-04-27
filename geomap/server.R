@@ -37,6 +37,11 @@ maps_files_to_data_files <- read.csv("tools/map_name_to_data_name.csv",
                                      sep = ",",
                                      col.names = c("datafile","prefix"),
                                      colClasses = c("character","character"))
+table_tab_column_names <- read.csv("tools/table_tab_column_names.csv",
+                                   header = T,
+                                   sep = ",",
+                                   col.names = c("original_column_name","presented_column_name"),
+                                   colClasses = c("character","character"))
 # Colours for legend and heatmap
 #https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=8
 #Colorblind friendly 8 bins
@@ -1728,7 +1733,7 @@ shinyServer(function(input, output, session) {
     validate_heatmap_and_table()
     #Correct region  names
     values$file[[1]] <- capitalize_str(values$file[[1]])
-    values$file <- rename_per_capita_per_100000(values$file)
+    values$file <- rename_columns(values$file)
     values$file <- remove_predicted_total_columns(values$file)
     x <- datatable(
       rownames = FALSE,
@@ -1754,7 +1759,16 @@ shinyServer(function(input, output, session) {
       NULL
     }
   }
-  
+  rename_columns <- function(data_file){
+    nr_columns <- length(data_file)
+    col_names <- colnames(data_file)
+    for (i in 1:nr_columns){
+      original_name <- table_tab_column_names$original_column_name[i]
+      presented_name <- table_tab_column_names$presented_column_name[i]
+      names(data_file)[names(data_file) == original_name] <- presented_name
+    }
+    return(data_file)
+  }
   rename_per_capita_per_100000 <- function(data_file){
     nr_columns <- length(data_file)
     col_names <- colnames(data_file)
@@ -1766,15 +1780,21 @@ shinyServer(function(input, output, session) {
     }
     return(data_file)
   }
+  table_tab_column_names
   
   remove_predicted_total_columns <- function(data_file){
     col_names <- colnames(data_file)
     
     if ("Total_Predicted_New_Cases" %in% col_names &&
-        "Total_Predicted_New_Deaths" %in% col_names){
+        "Total_Predicted_New_Deaths" %in% col_names &&
+        "Total_Predicted_New_Deaths_per_capita" %in% col_names &&
+        "Predicted_Total_New_per_capita" %in% col_names){
       
       data_file <- data_file %>% 
-        dplyr::select(-c("Total_Predicted_New_Cases", "Total_Predicted_New_Deaths"))
+        dplyr::select(-c("Total_Predicted_New_Cases", 
+                         "Total_Predicted_New_Deaths",
+                         "Total_Predicted_New_Deaths_per_capita",
+                         "Predicted_Total_New_per_capita"))
     }
     
     return(data_file)
