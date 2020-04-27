@@ -332,51 +332,55 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			#), 
 			"Select map to display:",
 			placement = "right"),
-			tipify(fluidRow(
+			conditionalPanel(
+			  condition = "['Heatmap','Table'].includes(input.tabSelections)",
+			  tipify(fluidRow(
 			  column(5,
 			         tags$label("Select Date:",
 			                    style = "margin-bottom: 1px;"),
 			         tags$div(HTML("<p>Past, Present, Future</p>"),
-			                    style = "font-size: 10px; margin-top: 1px;")),
+			                  style = "font-size: 10px; margin-top: 1px;")),
 			  column(5,
-			    dateInput("date",
-			              label = NULL,
-			              value = Sys.Date(),
-			              min = "2020-01-22",
-			              max = min(Sys.Date()+90,"2020-08-31"))
-			    			  ),
+			         dateInput("date",
+			                   label = NULL,
+			                   value = Sys.Date(),
+			                   min = "2020-01-22",
+			                   max = min(Sys.Date()+90,"2020-08-31"))
+			  ),
 			  column(2,icon("calendar"))
 			),
-			title = "Select past, present or future dates"),
+			title = "Select past, present or future dates")),
 			
-			tipify(
-				selectInput("colSelect", 
-				            label = "Select Data to Display:", 
-				            choices = c("Confirmed COVID-19 Cases" = 'Confirmed',
-				                        #"Recovered" = 'Recovered',
-				                        "Confirmed Deaths" = 'Deaths',
-				                        #"Active" = 'Active',
-                                "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
-                                "COVID-19 Deaths per 100,000" = "Deaths_per_capita",
-				                        # "% Daily Change in Confirmed COVID-19 Cases" = "Confirmed_change",
-				                        # "% Daily Change in COVID-19 Deaths" = "Deaths_change",
-				                        "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
-				                        "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
-				                        "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected'
-				                        ,
-				                        "COVID-19 Tests Performed" = 'Tests',
-				                        "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
-                                                    # "Expected Cases Per Capita( IFR 0.30%)" = 'IFR_0.30_expected_per_capita',
-                                                    # "Expected Cases Per Capita (IFR 0.65%)" = 'IFR_0.65_expected_per_capita',
-                                                    # "Expected Cases Per Capita (IFR 1.00%)" = 'IFR_1.0_expected_per_capita' 
-				                        # "New daily confirmed" = 'Daily_Confirmed',
-				                        # "New daily recovered" = 'Daily_Recovered',
-				                        # "New daily deaths" = 'Daily_Deaths'
-				                        )), 
-				#"Select column from input file",
-				"Select the data to show on the heatmap",
-				placement = "right"
-				),
+			conditionalPanel(
+			  condition = "input.tabSelections != 'Table'",
+  			tipify(
+  				selectInput("colSelect", 
+  				            label = "Select Data to Display:", 
+  				            choices = c("Confirmed COVID-19 Cases" = 'Confirmed',
+  				                        #"Recovered" = 'Recovered',
+  				                        "Confirmed Deaths" = 'Deaths',
+  				                        #"Active" = 'Active',
+                                  "Confirmed COVID-19 Cases per 100,000" = "Confirmed_per_capita",
+                                  "COVID-19 Deaths per 100,000" = "Deaths_per_capita",
+  				                        # "% Daily Change in Confirmed COVID-19 Cases" = "Confirmed_change",
+  				                        # "% Daily Change in COVID-19 Deaths" = "Deaths_change",
+  				                        "Likely COVID-19 Cases (IFR 0.30%)" = 'IFR_0.30_expected',
+  				                        "Likely COVID-19 Cases (IFR 0.65%)" = 'IFR_0.65_expected',
+  				                        "Likely COVID-19 Cases (IFR 1.00%)" = 'IFR_1.0_expected'
+  				                        ,
+  				                        "COVID-19 Tests Performed" = 'Tests',
+  				                        "COVID-19 Tests Performed per 100,000" = 'Tests_per_capita'
+                                                      # "Expected Cases Per Capita( IFR 0.30%)" = 'IFR_0.30_expected_per_capita',
+                                                      # "Expected Cases Per Capita (IFR 0.65%)" = 'IFR_0.65_expected_per_capita',
+                                                      # "Expected Cases Per Capita (IFR 1.00%)" = 'IFR_1.0_expected_per_capita' 
+  				                        # "New daily confirmed" = 'Daily_Confirmed',
+  				                        # "New daily recovered" = 'Daily_Recovered',
+  				                        # "New daily deaths" = 'Daily_Deaths'
+  				                        )), 
+  				#"Select column from input file",
+  				"Select the data to show on the heatmap",
+  				placement = "right"
+  				)),
 			# radioButtons(inputId = "radio",
 			#              label = "Adjust values:",
 			#              choices = c("Unadjusted counts" = 'absolute',
@@ -394,8 +398,11 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 			#               value = c(0, 100)),
 			#   "Adjust the colour assignment cutoff values, then click Submit Range button to update the heatmap",
 			#   placement = "right"),
+			conditionalPanel(
+			  condition = "input.tabSelections == 'Heatmap'",
+			  FILL_OPACITY_SLIDER(0.8)
+			),
 			
-			FILL_OPACITY_SLIDER(0.8),
 
 			# plotdownload and table download buttons
 			# list(
