@@ -62,7 +62,9 @@ for continent in continents:
                     startdate = datetime.date(datetime.now())
                     max_data = 90
                     total_new_cases = 0 
-                    total_new_deaths = 0               
+                    total_new_deaths = 0 
+                    total_new_cases_global = 0 
+                    total_new_deaths_global = 0                 
                     for row in data:
                         print root
                         print file
@@ -109,11 +111,11 @@ for continent in continents:
                                 if os.path.getsize(global_dir+"/"+"Global-Country_"+row[0]+".txt") == 0:
                                     writer.writerow(headers)
                                 new_case = float(row[1])
-                                total_new_cases += new_case
+                                total_new_cases_global += new_case
                                 total_cases = float(row[2])
                                 new_death = float(row[3])
                                 total_deaths = float(row[4])
-                                total_new_deaths += new_death
+                                total_new_deaths_global += new_death
                                 new_case_pc = "N/A"
                                 total_case_pc = "N/A"
                                 total_new_case_pc = "N/A"
@@ -122,14 +124,14 @@ for continent in continents:
                                 total_new_death_pc = "N/A"
                                 if population:
                                     new_case_pc = round(new_case/population,8)
-                                    total_new_case_pc = round(total_new_cases/population,8)
+                                    total_new_case_pc = round(total_new_cases_global/population,8)
                                     total_case_pc = round(total_cases/population,8)
                                     new_death_pc = round(new_death/population,8)
                                     total_death_pc = round(total_deaths/population,8)
-                                    total_new_death_pc = round(total_new_deaths/population,8)
+                                    total_new_death_pc = round(total_new_deaths_global/population,8)
                                 writer.writerow([root.split("/")[-1].replace("_", " "), 
-                                        round(new_case,3), round(total_new_cases,3), round(total_cases,3),
-                                        round(new_death,3),round(total_new_deaths,3),round(total_deaths,3),
+                                        round(new_case,3), round(total_new_cases_global,3), round(total_cases,3),
+                                        round(new_death,3),round(total_new_deaths_global,3),round(total_deaths,3),
                                         new_case_pc, total_new_case_pc,total_case_pc,
                                         new_death_pc, total_new_death_pc, total_death_pc])
         os.chdir("..")
