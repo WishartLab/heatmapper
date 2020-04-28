@@ -601,7 +601,7 @@ shinyServer(function(input, output, session) {
     if (choice == "Plots"){
       updateSelectInput(session,
                         inputId = "area",
-                        label = "Plot COVID bar graphs by:",
+                        label = "Plot COVID bar graphs of:",
                         choices = c("Australia" = 'data/AUS_1.rds',
                                     "Canada" = 'data/CAN_1.rds',
                                     "China" = 'data/CHN_1.rds',
@@ -899,6 +899,12 @@ shinyServer(function(input, output, session) {
                         inputId = "area",
                         label = "View animated COVID Heatmaps of:",
                         choices = world_and_continents_dropdown,
+                        selected = area_selected)
+    } else if (choice == "Table"){
+      updateSelectInput(session,
+                        inputId = "area",
+                        label = "Show COVID data of:", 
+                        choices = heatmap_and_table_tab_regions,
                         selected = area_selected)
     } else {
       updateSelectInput(session,
