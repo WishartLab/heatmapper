@@ -1,13 +1,12 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-French Guiana	1.919	1.919	114.444	0.0	0.0	1.0	N/A	N/A	N/A	N/A	N/A	N/A
-France	3080.443	3080.443	170758.117	705.235	705.235	24734.94	N/A	N/A	N/A	N/A	N/A	N/A
-French Polynesia	0.0	0.0	57.222	705.235	705.235	2878.94	N/A	N/A	N/A	N/A	N/A	N/A
-New Caledonia	0.0	0.0	18.0	705.235	705.235	2878.94	N/A	N/A	N/A	N/A	N/A	N/A
-Saint Barthelemy	0.0	0.0	6.0	705.235	705.235	2878.94	N/A	N/A	N/A	N/A	N/A	N/A
-Mayotte	14.816	14.816	377.921	0.278	0.278	4.882	N/A	N/A	N/A	N/A	N/A	N/A
-Saint Pierre and Miquelon	0.0	0.0	1.0	0.278	0.278	0.882	N/A	N/A	N/A	N/A	N/A	N/A
-Reunion	2.761	2.761	423.271	0.278	0.278	0.882	N/A	N/A	N/A	N/A	N/A	N/A
-St Martin	0.655	0.655	40.674	0.0	0.0	2.0	N/A	N/A	N/A	N/A	N/A	N/A
-Guadeloupe	0.599	0.599	150.431	0.229	0.229	12.812	N/A	N/A	N/A	N/A	N/A	N/A
-Martinique	0.976	0.976	167.626	1.209	1.209	18.016	N/A	N/A	N/A	N/A	N/A	N/A
-Fench Guiana	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+St Martin	38.0	3.0	24.0	11.0	N/A	N/A	N/A	N/A	1000.0	461.538461538	300.0	N/A	N/A	N/A
+Mayotte	401.0	4.0	144.0	253.0	N/A	N/A	N/A	N/A	1333.33333333	615.384615385	400.0	N/A	N/A	N/A
+Reunion	418.0	0.0	300.0	118.0	N/A	N/A	N/A	N/A	2090.0	836.0	522.5	N/A	N/A	N/A
+New Caledonia	18.0	0.0	17.0	1.0	N/A	N/A	N/A	N/A	90.0	36.0	22.5	N/A	N/A	N/A
+French Polynesia	57.0	0.0	43.0	14.0	N/A	N/A	N/A	N/A	285.0	114.0	71.25	N/A	N/A	N/A
+France	164589.0	23293.0	45513.0	95783.0	N/A	N/A	N/A	N/A	7764333.33333	3583538.46154	2329300.0	N/A	N/A	N/A
+French Guiana	111.0	1.0	87.0	23.0	N/A	N/A	N/A	N/A	333.333333333	153.846153846	100.0	N/A	N/A	N/A
+Saint Pierre and Miquelon	1.0	0.0	0.0	1.0	N/A	N/A	N/A	N/A	5.0	2.0	1.25	N/A	N/A	N/A
+Martinique	175.0	14.0	77.0	84.0	N/A	N/A	N/A	N/A	4666.66666667	2153.84615385	1400.0	N/A	N/A	N/A
+Saint Barthelemy	6.0	0.0	6.0	0.0	N/A	N/A	N/A	N/A	30.0	12.0	7.5	N/A	N/A	N/A
+Guadeloupe	149.0	12.0	82.0	55.0	N/A	N/A	N/A	N/A	4000.0	1846.15384615	1200.0	N/A	N/A	N/A

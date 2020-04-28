@@ -1,12 +1,12 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Queensland	0.249	5.819	1041.707	0.069	0.554	6.984	5e-08	1.14e-06	0.00020445	1e-08	1.1e-07	1.37e-06
-Western Australia	0.271	5.964	560.334	0.076	0.606	8.064	1e-07	2.27e-06	0.00021373	3e-08	2.3e-07	3.08e-06
-Victoria	0.3	6.533	1357.245	0.002	0.015	16.027	5e-08	9.9e-07	0.00020581	0.0	0.0	2.43e-06
+Queensland	0.249	3.698	1041.707	0.069	0.435	6.984	5e-08	7.3e-07	0.00020445	1e-08	9e-08	1.37e-06
+Western Australia	0.271	4.01	560.334	0.076	0.477	8.064	1e-07	1.53e-06	0.00021373	3e-08	1.8e-07	3.08e-06
+Victoria	0.3	3.994	1357.245	0.002	0.012	16.027	5e-08	6.1e-07	0.00020581	0.0	0.0	2.43e-06
 External territories	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
 Australia	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Australian Capital Territory	0.0	0.0	104.0	0.102	0.655	4.011	0.0	0.0	0.00024373	2.4e-07	1.54e-06	9.4e-06
-Tasmania	0.392	8.621	227.717	0.121	0.966	9.695	7.3e-07	1.614e-05	0.00042621	2.3e-07	1.81e-06	1.815e-05
-New South Wales	0.79	17.374	3017.751	0.106	0.851	32.494	1e-07	2.15e-06	0.00037304	1e-08	1.1e-07	4.02e-06
-South Australia	0.0	0.285	439.835	0.0	0.0	4.0	0.0	1.1e-07	0.00016777	0.0	0.0	1.53e-06
+Australian Capital Territory	0.0	0.0	104.0	0.102	0.539	4.011	0.0	0.0	0.00024373	2.4e-07	1.26e-06	9.4e-06
+Tasmania	0.392	5.796	227.717	0.121	0.761	9.695	7.3e-07	1.085e-05	0.00042621	2.3e-07	1.42e-06	1.815e-05
+New South Wales	0.79	11.681	3017.751	0.106	0.67	32.494	1e-07	1.44e-06	0.00037304	1e-08	8e-08	4.02e-06
+South Australia	0.0	0.0	439.835	0.0	0.0	4.0	0.0	0.0	0.00016777	0.0	0.0	1.53e-06
 Jervis Bay Territory	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Northern Territory	0.004	0.024	27.036	0.0	0.0	0.0	2e-08	1e-07	0.00010996	0.0	0.0	0.0
+Northern Territory	0.004	0.02	27.036	0.0	0.0	0.0	2e-08	8e-08	0.00010996	0.0	0.0	0.0
