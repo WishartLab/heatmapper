@@ -1,12 +1,12 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Queensland	0.137	0.941	1042.022	0.053	0.26	7.098	3e-08	1.8e-07	0.00020451	1e-08	5e-08	1.39e-06
-Western Australia	0.128	1.008	560.641	0.06	0.288	8.191	5e-08	3.8e-07	0.00021385	2e-08	1.1e-07	3.12e-06
-Victoria	0.185	1.136	1357.662	0.001	0.007	16.03	3e-08	1.7e-07	0.00020587	0.0	0.0	2.43e-06
+Queensland	0.137	0.137	1042.022	0.053	0.053	7.098	3e-08	3e-08	0.00020451	1e-08	1e-08	1.39e-06
+Western Australia	0.128	0.128	560.641	0.06	0.06	8.191	5e-08	5e-08	0.00021385	2e-08	2e-08	3.12e-06
+Victoria	0.185	0.185	1357.662	0.001	0.001	16.03	3e-08	3e-08	0.00020587	0.0	0.0	2.43e-06
 External territories	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
 Australia	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Australian Capital Territory	0.0	0.0	104.0	0.097	0.403	4.207	0.0	0.0	0.00024373	2.3e-07	9.4e-07	9.86e-06
-Tasmania	0.185	1.458	228.161	0.095	0.458	9.897	3.5e-07	2.73e-06	0.00042704	1.8e-07	8.6e-07	1.852e-05
-New South Wales	0.374	2.939	3018.647	0.084	0.404	32.673	5e-08	3.6e-07	0.00037315	1e-08	5e-08	4.04e-06
+Australian Capital Territory	0.0	0.0	104.0	0.097	0.097	4.207	0.0	0.0	0.00024373	2.3e-07	2.3e-07	9.86e-06
+Tasmania	0.185	0.185	228.161	0.095	0.095	9.897	3.5e-07	3.5e-07	0.00042704	1.8e-07	1.8e-07	1.852e-05
+New South Wales	0.374	0.374	3018.647	0.084	0.084	32.673	5e-08	5e-08	0.00037315	1e-08	1e-08	4.04e-06
 South Australia	0.0	0.0	439.835	0.0	0.0	4.0	0.0	0.0	0.00016777	0.0	0.0	1.53e-06
 Jervis Bay Territory	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Northern Territory	0.004	0.016	27.044	0.0	0.0	0.0	2e-08	7e-08	0.00010999	0.0	0.0	0.0
+Northern Territory	0.004	0.004	27.044	0.0	0.0	0.0	2e-08	2e-08	0.00010999	0.0	0.0	0.0
