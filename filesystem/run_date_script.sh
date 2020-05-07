@@ -17,11 +17,7 @@ cd Global
 
 python modify_total_files.py
 
-cd ..
-
 python convolute_regions.py
-
-cd Global
 
 python generate_future_files.py
 
