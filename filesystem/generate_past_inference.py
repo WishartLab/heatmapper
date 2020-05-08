@@ -10,7 +10,7 @@ def daterange(start_date, end_date):
     for n in range(int ((end_date - start_date).days)):
         yield start_date + timedelta(n)
 
-start_date = date.today() - timedelta(1)
+start_date = date.today() - timedelta(14)
 end_date = date.today()
 for single_date in daterange(start_date,end_date):
     date_string = single_date.strftime("%Y-%m-%d")
