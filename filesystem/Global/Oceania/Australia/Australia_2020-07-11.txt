@@ -1,12 +1,12 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Queensland	0.032	33.22	1078.22	0.0	0.0	6.0	1e-08	6.52e-06	0.00021162	0.0	0.0	1.18e-06
-Western Australia	0.0	0.204	552.204	0.0	0.35	9.35	0.0	8e-08	0.00021063	0.0	1.3e-07	3.57e-06
-Victoria	29.366	5524.626	6991.626	0.0	0.35	18.35	4.45e-06	0.00083772	0.00106017	0.0	5e-08	2.78e-06
+Queensland	0.075	46.56	1091.56	0.0	0.0	6.0	1e-08	9.14e-06	0.00021424	0.0	0.0	1.18e-06
+Western Australia	0.0	1.767	553.767	0.002	3.216	12.216	0.0	6.7e-07	0.00021123	0.0	1.23e-06	4.66e-06
+Victoria	0.891	457.694	1953.694	0.001	0.415	18.415	1.4e-07	6.94e-05	0.00029625	0.0	6e-08	2.79e-06
 External territories	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
 Australia	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Australian Capital Territory	0.002	2.133	109.133	0.0	0.0	3.0	0.0	5e-06	0.00025576	0.0	0.0	7.03e-06
-Tasmania	0.0	3.414	230.414	0.0	2.064	15.064	0.0	6.39e-06	0.00043126	0.0	3.86e-06	2.819e-05
-New South Wales	0.0	20.904	3067.904	0.0	8.263	52.263	0.0	2.58e-06	0.00037924	0.0	1.02e-06	6.46e-06
-South Australia	0.0	0.0	439.0	0.0	0.0	4.0	0.0	0.0	0.00016745	0.0	0.0	1.53e-06
+Australian Capital Territory	0.016	6.985	113.985	0.0	0.0	3.0	4e-08	1.637e-05	0.00026713	0.0	0.0	7.03e-06
+Tasmania	0.032	23.377	250.377	0.008	3.237	16.237	6e-08	4.375e-05	0.00046862	1e-08	6.06e-06	3.039e-05
+New South Wales	0.0	25.363	3078.363	0.0	5.892	49.892	0.0	3.14e-06	0.00038054	0.0	7.3e-07	6.17e-06
+South Australia	0.517	65.98	504.98	0.0	0.0	4.0	2e-07	2.517e-05	0.00019262	0.0	0.0	1.53e-06
 Jervis Bay Territory	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Northern Territory	0.789	127.178	156.178	0.0	0.0	0.0	3.21e-06	0.00051726	0.00063521	0.0	0.0	0.0
+Northern Territory	0.004	3.021	32.021	0.0	0.0	0.0	2e-08	1.229e-05	0.00013024	0.0	0.0	0.0
