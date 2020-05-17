@@ -1,2 +1,2 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-District of Columbia	176.111	176.111	6912.111	10.422	10.422	368.422	0.00025071	0.00025071	0.00983993	1.484e-05	1.484e-05	0.00052448
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+District of Columbia	6871.0	368.0	0.0	6503.0	0.00978141	0.00052388	122666.666667	56615.3846154	36800.0	0.174626666667	0.0805969230769	0.052388

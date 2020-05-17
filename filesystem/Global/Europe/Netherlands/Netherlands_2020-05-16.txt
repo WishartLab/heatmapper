@@ -1,6 +1,6 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Bonaire, Sint Eustatius and Saba	0.0	0.0	6.0	52.378	107.414	107.414	N/A	N/A	N/A	N/A	N/A	N/A
-Netherlands	280.694	570.583	44051.583	51.954	106.607	5696.607	N/A	N/A	N/A	N/A	N/A	N/A
-Sint Maarten	0.0	0.0	76.0	0.206	0.437	15.437	N/A	N/A	N/A	N/A	N/A	N/A
-Curacao	0.0	0.0	16.0	0.0	0.0	1.0	N/A	N/A	N/A	N/A	N/A	N/A
-Aruba	0.073	0.153	101.153	0.15	0.301	3.301	N/A	N/A	N/A	N/A	N/A	N/A
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Sint Maarten	77.0	15.0	54.0	8.0	N/A	N/A	N/A	N/A	5000.0	2307.69230769	1500.0	N/A	N/A	N/A
+Bonaire, Sint Eustatius and Saba	6.0	0.0	6.0	0.0	N/A	N/A	N/A	N/A	30.0	12.0	7.5	N/A	N/A	N/A
+Aruba	101.0	3.0	93.0	5.0	N/A	N/A	N/A	N/A	1000.0	461.538461538	300.0	N/A	N/A	N/A
+Curacao	16.0	1.0	14.0	1.0	N/A	N/A	N/A	N/A	333.333333333	153.846153846	100.0	N/A	N/A	N/A
+Netherlands	43870.0	5670.0	0.0	38200.0	N/A	N/A	N/A	N/A	1890000.0	872307.692308	567000.0	N/A	N/A	N/A
