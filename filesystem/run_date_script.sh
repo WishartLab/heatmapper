@@ -28,15 +28,15 @@ git add filesystem/
 git commit -m "Automated prediction script"
 git push
 
-ssh ubuntu@52.2.187.145 'cd heatmapper-docker/web/heatmapper && git branch && git pull && cd .. && cd .. && sudo docker tag heatmapper:latest heatmapper:date && sudo docker-compose build && sudo docker-compose rm -sf && sudo docker-compose up -d'
+# ssh ubuntu@52.2.187.145 'cd heatmapper-docker/web/heatmapper && git branch && git pull && cd .. && cd .. && sudo docker tag heatmapper:latest heatmapper:date && sudo docker-compose build && sudo docker-compose rm -sf && sudo docker-compose up -d'
 
 
-# # tar -zcvf Downloads/Best_Case.tar Best_Case
-# # tar -zcvf Downloads/Worst_Case.tar Worst_Case
+# # # tar -zcvf Downloads/Best_Case.tar Best_Case
+# # # tar -zcvf Downloads/Worst_Case.tar Worst_Case
 
 
 
-#go to heatmapper directory
+# #go to heatmapper directory
 # ssh ubuntu@52.2.187.145 
 # cd heatmapper-docker/web/heatmapper
 # # check if we are in correct branch
@@ -57,5 +57,5 @@ ssh ubuntu@52.2.187.145 'cd heatmapper-docker/web/heatmapper && git branch && gi
 # # check if everything is working, If yes remove last container
 # # 1. Check the image id
 # sudo docker images
-# #2. remove image by image ID
+# # #2. remove image by image ID
 # sudo docker rmi image_id
