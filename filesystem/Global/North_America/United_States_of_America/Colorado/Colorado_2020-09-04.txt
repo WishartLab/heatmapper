@@ -1,4 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Rio Grande	0.0	40.322	48.322	0.0	0.0	0.0	0.0	0.00358418	0.00429529	0.0	0.0	0.0
-Costilla	0.001	137.092	141.092	0.0	29.978	29.978	2.6e-07	0.03581296	0.03685789	0.0	0.00783124	0.00783124
-Otero	0.001	137.092	148.092	0.0	0.0	1.0	5e-08	0.00743772	0.00803451	0.0	0.0	5.425e-05
+Jefferson	0.0	662.439	2544.439	0.07	5585.687	5715.687	0.0	0.00114168	0.0043852	1.2e-07	0.00962663	0.00985068
+Park	0.0	1.63	21.63	0.07	5585.687	5585.687	0.0	8.784e-05	0.00116566	3.77e-06	0.30101784	0.30101784
+Custer	0.0	0.0	2.0	0.07	5585.687	5585.687	0.0	0.0	0.00040371	1.413e-05	1.1275105	1.1275105
+Rio Grande	0.001	72.583	81.583	0.0	25.338	25.338	9e-08	0.00645182	0.00725182	0.0	0.00225227	0.00225227
+Unassigned	0.0	358.607	423.607	0.002	274.188	275.188	N/A	N/A	N/A	N/A	N/A	N/A
+Kit Carson	0.0	0.626	26.626	0.001	108.87	111.87	0.0	8.739e-05	0.00371716	1.4e-07	0.01519894	0.01561776
