@@ -1,4 +1,4 @@
-startdate="20200518"
+startdate="20200524"
 enddate=$(date +%Y%m%d)
 loopdate=$startdate
 git pull
@@ -36,7 +36,7 @@ git push
 
 
 
-# #go to heatmapper directory
+# # # #go to heatmapper directory
 # ssh ubuntu@52.2.187.145 
 # cd heatmapper-docker/web/heatmapper
 # # check if we are in correct branch
@@ -57,5 +57,5 @@ git push
 # # check if everything is working, If yes remove last container
 # # 1. Check the image id
 # sudo docker images
-# # #2. remove image by image ID
-# sudo docker rmi image_id
+# # # #2. remove image by image ID
+# # sudo docker rmi image_id
