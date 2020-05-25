@@ -1,8 +1,7 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Kauai	0.0	0.0	21.0	0.0	0.0	0.0	0.0	0.0	0.00029113	0.0	0.0	0.0
-Out of HI	0.143	0.435	10.435	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Kalawao	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
-Unassigned	0.435	1.533	6.533	0.0	0.0	1.0	N/A	N/A	N/A	N/A	N/A	N/A
-Maui	0.002	0.009	118.009	0.0	0.0	6.0	1e-08	5e-08	0.00070577	0.0	0.0	3.588e-05
-Hawaii	0.491	1.258	83.258	0.0	0.0	0.0	2.44e-06	6.26e-06	0.00041425	0.0	0.0	0.0
-Honolulu	0.636	2.0	418.0	0.0	0.0	11.0	6.5e-07	2.04e-06	0.0004265	0.0	0.0	1.122e-05
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Honolulu	414.0	11.0	0.0	403.0	0.00042241	1.122e-05	3666.66666667	1692.30769231	1100.0	0.00374	0.00172615384615	0.001122
+Hawaii	81.0	0.0	0.0	81.0	0.00040302	0.0	405.0	162.0	101.25	0.0020151	0.00080604	0.000503775
+Unassigned	0.0	0.0	0.0	0.0	N/A	N/A	0.0	0.0	0.0	N/A	N/A	N/A
+Kauai	20.0	0.0	0.0	20.0	0.00027727	0.0	100.0	40.0	25.0	0.00138635	0.00055454	0.0003465875
+Maui	118.0	6.0	0.0	112.0	0.00070571	3.588e-05	2000.0	923.076923077	600.0	0.01196	0.00552	0.003588
+Out of HI	10.0	0.0	0.0	10.0	N/A	N/A	50.0	20.0	12.5	N/A	N/A	N/A

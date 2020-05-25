@@ -1,2 +1,18 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Bavaria	0.0	0.0	2.0	0.0	0.0	2.0	N/A	N/A	N/A	N/A	N/A	N/A
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Hessen	9762.0	460.0	8400.0	902.0	N/A	N/A	N/A	N/A	153333.333333	70769.2307692	46000.0	N/A	N/A	N/A
+Sachsen-Anhalt	1695.0	54.0	1554.0	87.0	N/A	N/A	N/A	N/A	18000.0	8307.69230769	5400.0	N/A	N/A	N/A
+Mecklenburg-Vorpommern	763.0	20.0	707.0	36.0	N/A	N/A	N/A	N/A	6666.66666667	3076.92307692	2000.0	N/A	N/A	N/A
+Nordrhein-Westfalen	37223.0	1563.0	33400.0	2260.0	N/A	N/A	N/A	N/A	521000.0	240461.538462	156300.0	N/A	N/A	N/A
+Baden-Wurttemberg	34399.0	1697.0	31200.0	1502.0	N/A	N/A	N/A	N/A	565666.666667	261076.923077	169700.0	N/A	N/A	N/A
+Unknown	1687.0	0.0	0.0	1687.0	N/A	N/A	N/A	N/A	8435.0	3374.0	2108.75	N/A	N/A	N/A
+Saarland	2713.0	162.0	2447.0	104.0	N/A	N/A	N/A	N/A	54000.0	24923.0769231	16200.0	N/A	N/A	N/A
+Brandenburg	3237.0	168.0	2900.0	169.0	N/A	N/A	N/A	N/A	56000.0	25846.1538462	16800.0	N/A	N/A	N/A
+Schleswig-Holstein	3062.0	137.0	2800.0	125.0	N/A	N/A	N/A	N/A	45666.6666667	21076.9230769	13700.0	N/A	N/A	N/A
+Bremen	1312.0	41.0	1100.0	171.0	N/A	N/A	N/A	N/A	13666.6666667	6307.69230769	4100.0	N/A	N/A	N/A
+Niedersachsen	11578.0	574.0	10200.0	804.0	N/A	N/A	N/A	N/A	191333.333333	88307.6923077	57400.0	N/A	N/A	N/A
+Berlin	6641.0	191.0	6060.0	390.0	N/A	N/A	N/A	N/A	63666.6666667	29384.6153846	19100.0	N/A	N/A	N/A
+Hamburg	5066.0	241.0	4600.0	225.0	N/A	N/A	N/A	N/A	80333.3333333	37076.9230769	24100.0	N/A	N/A	N/A
+Bayern	46505.0	2391.0	41740.0	2374.0	N/A	N/A	N/A	N/A	797000.0	367846.153846	239100.0	N/A	N/A	N/A
+Rheinland-Pfalz	6592.0	228.0	6023.0	341.0	N/A	N/A	N/A	N/A	76000.0	35076.9230769	22800.0	N/A	N/A	N/A
+Sachsen	5228.0	204.0	4700.0	324.0	N/A	N/A	N/A	N/A	68000.0	31384.6153846	20400.0	N/A	N/A	N/A
+Thuringen	2865.0	152.0	2450.0	263.0	N/A	N/A	N/A	N/A	50666.6666667	23384.6153846	15200.0	N/A	N/A	N/A
