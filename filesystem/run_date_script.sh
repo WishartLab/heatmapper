@@ -43,10 +43,10 @@ git push
 # git branch
 # #Should be covid-19, pull all the changes
 # git pull
-# # move back to heatmapper-docker directory
+# # # move back to heatmapper-docker directory
 # cd ..
 # cd ..
-# #tag last working container with date
+# # #tag last working container with date
 # sudo docker tag heatmapper:latest heatmapper:date
 # #build containers
 # sudo docker-compose build
