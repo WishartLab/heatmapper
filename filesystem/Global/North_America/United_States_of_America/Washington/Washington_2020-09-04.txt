@@ -1,3 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Pend Oreille	0.002	40.317	43.317	0.0	35.512	35.512	1.5e-07	0.00296405	0.00318461	0.0	0.00261079	0.00261079
-Spokane	0.075	3753.48	4250.48	0.0	0.547	31.547	1.5e-07	0.00729354	0.00825928	0.0	1.06e-06	6.13e-05
+Pend Oreille	0.006	72.569	75.569	0.0	29.285	29.285	4.4e-07	0.00533517	0.00555573	0.0	0.00215299	0.00215299
+Asotin	0.003	40.315	59.315	0.0	0.0	2.0	1.3e-07	0.00178306	0.0026234	0.0	0.0	8.846e-05
+Chelan	0.0	345.204	581.204	0.0	0.0	6.0	0.0	0.00448107	0.00754458	0.0	0.0	7.789e-05
+Unassigned	0.0	83.572	134.572	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Adams	0.019	217.694	270.694	0.0	0.0	0.0	9.6e-07	0.01101746	0.01369978	0.0	0.0	0.0
+Spokane	0.737	8570.825	9086.825	0.0	0.46	31.46	1.43e-06	0.01665431	0.01765697	0.0	8.9e-07	6.113e-05

@@ -1,2 +1,18 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Bavaria	0.0	0.0	2.0	0.0	0.0	2.0	N/A	N/A	N/A	N/A	N/A	N/A
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Hessen	9860.0	466.0	8700.0	694.0	N/A	N/A	N/A	N/A	155333.333333	71692.3076923	46600.0	N/A	N/A	N/A
+Sachsen-Anhalt	1702.0	55.0	1554.0	93.0	N/A	N/A	N/A	N/A	18333.3333333	8461.53846154	5500.0	N/A	N/A	N/A
+Mecklenburg-Vorpommern	760.0	20.0	707.0	33.0	N/A	N/A	N/A	N/A	6666.66666667	3076.92307692	2000.0	N/A	N/A	N/A
+Nordrhein-Westfalen	37541.0	1577.0	34000.0	1964.0	N/A	N/A	N/A	N/A	525666.666667	242615.384615	157700.0	N/A	N/A	N/A
+Baden-Wurttemberg	34575.0	1738.0	31500.0	1337.0	N/A	N/A	N/A	N/A	579333.333333	267384.615385	173800.0	N/A	N/A	N/A
+Unknown	1534.0	0.0	0.0	1534.0	N/A	N/A	N/A	N/A	7670.0	3068.0	1917.5	N/A	N/A	N/A
+Saarland	2730.0	164.0	2479.0	87.0	N/A	N/A	N/A	N/A	54666.6666667	25230.7692308	16400.0	N/A	N/A	N/A
+Brandenburg	3256.0	169.0	3000.0	87.0	N/A	N/A	N/A	N/A	56333.3333333	26000.0	16900.0	N/A	N/A	N/A
+Schleswig-Holstein	3070.0	140.0	2800.0	130.0	N/A	N/A	N/A	N/A	46666.6666667	21538.4615385	14000.0	N/A	N/A	N/A
+Bremen	1348.0	42.0	1100.0	206.0	N/A	N/A	N/A	N/A	14000.0	6461.53846154	4200.0	N/A	N/A	N/A
+Niedersachsen	11687.0	585.0	10400.0	702.0	N/A	N/A	N/A	N/A	195000.0	90000.0	58500.0	N/A	N/A	N/A
+Berlin	6702.0	193.0	6175.0	334.0	N/A	N/A	N/A	N/A	64333.3333333	29692.3076923	19300.0	N/A	N/A	N/A
+Hamburg	5072.0	242.0	4700.0	130.0	N/A	N/A	N/A	N/A	80666.6666667	37230.7692308	24200.0	N/A	N/A	N/A
+Bayern	46885.0	2442.0	42310.0	2133.0	N/A	N/A	N/A	N/A	814000.0	375692.307692	244200.0	N/A	N/A	N/A
+Rheinland-Pfalz	6644.0	230.0	6105.0	309.0	N/A	N/A	N/A	N/A	76666.6666667	35384.6153846	23000.0	N/A	N/A	N/A
+Sachsen	5248.0	208.0	4770.0	270.0	N/A	N/A	N/A	N/A	69333.3333333	32000.0	20800.0	N/A	N/A	N/A
+Thuringen	2910.0	157.0	2520.0	233.0	N/A	N/A	N/A	N/A	52333.3333333	24153.8461538	15700.0	N/A	N/A	N/A

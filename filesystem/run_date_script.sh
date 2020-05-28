@@ -36,7 +36,7 @@ git push
 
 
 
-# # # #go to heatmapper directory
+# # # # #go to heatmapper directory
 # ssh ubuntu@52.2.187.145 
 # cd heatmapper-docker/web/heatmapper
 # # check if we are in correct branch
