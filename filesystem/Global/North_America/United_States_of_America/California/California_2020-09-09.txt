@@ -1,3 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Placer	0.0	228.892	422.892	0.002	137.087	146.087	0.0	0.0005822	0.00107565	1e-08	0.00034869	0.00037158
-Tuolumne	0.001	72.58	76.58	0.0	0.0	0.0	2e-08	0.00133079	0.00140413	0.0	0.0	0.0
+Placer	0.0	197.203	393.203	0.001	98.044	107.044	0.0	0.0005016	0.00100014	0.0	0.00024938	0.00027227
+Calaveras	0.001	56.449	71.449	0.0	25.338	25.338	2e-08	0.00123786	0.0015668	0.0	0.00055563	0.00055563
+Mariposa	0.001	40.32	56.32	0.0	0.0	1.0	6e-08	0.00230782	0.00322363	0.0	0.0	5.724e-05
+Tuolumne	0.002	124.99	128.99	0.0	0.0	0.0	4e-08	0.00229175	0.0023651	0.0	0.0	0.0
+Yolo	0.0	117.989	324.989	0.0	0.0	23.0	0.0	0.00053532	0.00147449	0.0	0.0	0.00010435
