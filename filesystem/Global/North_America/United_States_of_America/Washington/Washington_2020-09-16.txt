@@ -1,4 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Skagit	0.003	358.864	792.864	0.0	0.016	15.016	2e-08	0.00279912	0.0061843	0.0	1.2e-07	0.00011712
-Adams	0.005	733.856	796.856	0.0	0.0	0.0	2.5e-07	0.03714034	0.04032876	0.0	0.0	0.0
-Clark	0.054	7298.212	7812.212	0.0	0.0	22.0	1.1e-07	0.01514601	0.01621272	0.0	0.0	4.566e-05
+Skagit	0.005	544.34	979.34	0.0	0.0	15.0	4e-08	0.00424582	0.0076388	0.0	0.0	0.000117
+Adams	0.009	935.452	998.452	0.0	0.0	0.0	4.6e-07	0.04734308	0.0505315	0.0	0.0	0.0
+Clark	0.094	9588.406	10104.406	0.0	0.0	22.0	2e-07	0.01989886	0.02096972	0.0	0.0	4.566e-05
+Thurston	0.0	223.518	374.518	0.0	40.322	42.322	0.0	0.00078039	0.00130759	0.0	0.00014078	0.00014776
+Grant	0.015	1483.825	1691.825	0.0	0.0	4.0	1.5e-07	0.01524514	0.01738218	0.0	0.0	4.11e-05

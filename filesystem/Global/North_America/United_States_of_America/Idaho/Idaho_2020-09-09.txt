@@ -1,3 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Lincoln	0.011	293.703	326.703	0.0	0.876	0.876	2.05e-06	0.05479534	0.06095205	0.0	0.00016343	0.00016343
-Cassia	0.21	3874.415	3937.415	0.0	0.0	1.0	8.8e-06	0.16235396	0.16499392	0.0	0.0	4.19e-05
+Kootenai	0.011	124.974	192.974	0.0	12.18	12.18	7e-08	0.00077381	0.00119485	0.0	7.542e-05	7.542e-05
+Power	0.005	56.442	61.442	0.0	7.798	7.798	6.4e-07	0.00726596	0.00790963	0.0	0.00100386	0.00100386
+Bonner	0.007	80.627	86.627	0.0	7.798	7.798	1.6e-07	0.00180265	0.00193679	0.0	0.00017435	0.00017435
+Bonneville	0.063	729.693	776.693	0.0	0.0	0.0	5.4e-07	0.00624448	0.0066467	0.0	0.0	0.0
+Cassia	0.042	2122.71	2185.71	0.0	0.0	1.0	1.76e-06	0.0889503	0.09159026	0.0	0.0	4.19e-05
+Bannock	0.086	995.765	1023.765	0.0	0.0	0.0	9.9e-07	0.01142745	0.01174878	0.0	0.0	0.0
