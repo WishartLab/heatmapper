@@ -1,4 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Alaska	0.0	119.088	585.088	0.0	0.0	10.0	0.0	0.00016279	0.0007998	0.0	0.0	1.367e-05
-Vermont	0.0	89.428	1072.428	0.061	108.674	163.674	0.0	0.00014332	0.00171866	1e-07	0.00017416	0.0002623
-Hawaii	0.001	87.476	739.476	0.0	0.0	17.0	0.0	6.178e-05	0.00052228	0.0	0.0	1.201e-05
+Alaska	5.584	6853.556	7339.556	0.0	0.0	10.0	7.63e-06	0.0093686	0.01003295	0.0	0.0	1.367e-05
+Vermont	0.0	85.937	1073.937	0.088	136.768	191.768	0.0	0.00013772	0.00172108	1.4e-07	0.00021918	0.00030733
+South Dakota	0.0	1099.868	6166.868	0.118	540.82	602.82	0.0	0.00124327	0.0069709	1.3e-07	0.00061133	0.00068142
+Montana	1.959	3053.217	3576.217	0.0	0.558	17.558	1.83e-06	0.00285674	0.00334608	0.0	5.2e-07	1.643e-05
+Hawaii	0.617	961.419	1614.419	0.0	0.0	17.0	4.4e-07	0.00067903	0.00114023	0.0	0.0	1.201e-05

@@ -36,27 +36,27 @@ git push
 
 
 
-# # # # #go to heatmapper directory
-ssh ubuntu@52.2.187.145 
-cd heatmapper-docker/web/heatmapper
-# check if we are in correct branch
-git branch
-#Should be covid-19, pull all the changes
-git pull
-# # move back to heatmapper-docker directory
-cd ..
-cd ..
-# #tag last working container with date
-sudo docker tag heatmapper:latest heatmapper:date
-#build containers
-yes "y" | sudo docker system prune
-sudo docker-compose build
-# bring old containers down
-sudo docker-compose rm -sf
-# push new containers live
-yes "" | sudo docker-compose up -d
-# check if everything is working, If yes remove last container
-# 1. Check the image id
-sudo docker images
+# # # # # #go to heatmapper directory
+# ssh ubuntu@52.2.187.145 
+# cd heatmapper-docker/web/heatmapper
+# # check if we are in correct branch
+# git branch
+# #Should be covid-19, pull all the changes
+# git pull
+# # # move back to heatmapper-docker directory
+# cd ..
+# cd ..
+# # #tag last working container with date
+# sudo docker tag heatmapper:latest heatmapper:date
+# #build containers
+# yes "y" | sudo docker system prune
+# sudo docker-compose build
+# # bring old containers down
+# sudo docker-compose rm -sf
+# # push new containers live
+# yes "" | sudo docker-compose up -d
+# # check if everything is working, If yes remove last container
+# # 1. Check the image id
+# sudo docker images
 # # #2. remove image by image ID
 # # sudo docker rmi image_id

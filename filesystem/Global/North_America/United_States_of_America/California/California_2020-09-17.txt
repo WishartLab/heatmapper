@@ -1,4 +1,8 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Sutter	0.003	387.091	433.091	0.0	0.0	2.0	3e-08	0.00399858	0.00447376	0.0	0.0	2.066e-05
-Mono	0.001	169.354	206.354	0.0	0.0	1.0	7e-08	0.01188449	0.01448098	0.0	0.0	7.018e-05
-Inyo	0.001	72.583	92.583	0.0	0.0	1.0	6e-08	0.0040353	0.00514722	0.0	0.0	5.56e-05
+Madera	0.024	2495.886	2609.886	0.0	0.0	3.0	1.5e-07	0.01582961	0.01655263	0.0	0.0	1.903e-05
+Glenn	0.004	431.44	448.44	0.0	177.167	177.167	1.4e-07	0.01538275	0.01598888	0.0	0.00631679	0.00631679
+San Joaquin	0.0	2540.592	3522.592	0.001	137.09	172.09	0.0	0.00337548	0.00468019	0.0	0.00018214	0.00022864
+Sierra	0.0	0.0	1.0	0.001	137.09	137.09	0.0	0.0	0.00033478	3.3e-07	0.04589555	0.04589555
+Siskiyou	0.001	108.869	116.869	0.0	0.0	1.0	2e-08	0.00248991	0.00267288	0.0	0.0	2.287e-05
+Mono	0.002	229.831	266.831	0.0	0.0	1.0	1.4e-07	0.01612849	0.01872498	0.0	0.0	7.018e-05
+Inyo	0.001	108.869	128.869	0.0	0.0	1.0	6e-08	0.00605265	0.00716456	0.0	0.0	5.56e-05
