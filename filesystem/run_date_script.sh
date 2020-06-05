@@ -32,8 +32,8 @@ git push
 
 
 # # # tar -zcvf Downloads/Best_Case.tar Best_Case
-# # # tar -zcvf Downloads/Worst_Case.tar Worst_Case
-
+# # tar -zcvf Downloads/Worst_Case.tar Worst_Case
+# 
 
 
 # # # # # #go to heatmapper directory

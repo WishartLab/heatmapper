@@ -1,5 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Lewis	0.001	181.445	218.445	0.0	0.0	3.0	1e-08	0.00227935	0.00274415	0.0	0.0	3.769e-05
-Skagit	0.005	971.761	1414.761	0.0	0.0	15.0	4e-08	0.00757968	0.01103506	0.0	0.0	0.000117
-Jefferson	0.0	40.322	71.322	0.0	0.0	0.0	0.0	0.00127082	0.00224785	0.0	0.0	0.0
-Klickitat	0.001	120.966	148.966	0.0	0.0	3.0	5e-08	0.00547184	0.00673841	0.0	0.0	0.0001357
+Lewis	0.002	245.961	282.961	0.0	0.0	3.0	3e-08	0.00308981	0.00355461	0.0	0.0	3.769e-05
+Skagit	0.009	1245.94	1691.94	0.0	0.0	15.0	7e-08	0.00971827	0.01319704	0.0	0.0	0.000117
+Jefferson	0.001	72.583	103.583	0.0	0.0	0.0	3e-08	0.00228759	0.00326462	0.0	0.0	0.0
+Klickitat	0.002	229.833	258.833	0.0	0.0	3.0	9e-08	0.01039639	0.01170819	0.0	0.0	0.0001357
+Island	0.002	270.158	451.158	0.0	0.443	11.443	2e-08	0.00319865	0.00534168	0.0	5.25e-06	0.00013548
+Thurston	0.0	1669.472	1823.472	0.001	137.091	139.091	0.0	0.00582878	0.00636645	0.0	0.00047864	0.00048562
