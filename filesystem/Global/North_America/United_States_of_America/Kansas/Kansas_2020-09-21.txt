@@ -1,6 +1,11 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Cowley	0.003	592.719	607.719	0.0	0.0	1.0	9e-08	0.01683	0.01725592	0.0	0.0	2.839e-05
-Morton	0.001	221.771	227.771	0.0	5.779	5.779	3.7e-07	0.08315373	0.08540345	0.0	0.00216685	0.00216685
-Stanton	0.0	72.583	82.583	0.0	0.0	0.0	0.0	0.03652894	0.04156165	0.0	0.0	0.0
-Unassigned	0.01	1814.487	1816.487	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-McPherson	0.001	104.843	134.843	0.0	0.0	0.0	4e-08	0.00367393	0.0047252	0.0	0.0	0.0
+Cowley	0.012	1189.481	1206.481	0.0	0.0	1.0	3.4e-07	0.0337748	0.03425751	0.0	0.0	2.839e-05
+Ellis	0.001	88.708	98.708	0.0	0.0	0.0	3e-08	0.00308979	0.00343811	0.0	0.0	0.0
+Kiowa	0.001	72.582	75.582	0.0	3.894	3.894	4e-07	0.02884817	0.03004054	0.0	0.00154769	0.00154769
+Reno	0.001	56.452	101.452	0.0	0.0	0.0	2e-08	0.00090552	0.00162735	0.0	0.0	0.0
+Stanton	0.001	137.09	147.09	0.0	0.0	0.0	5e-07	0.06899346	0.07402617	0.0	0.0	0.0
+Osage	0.001	88.708	97.708	0.0	0.0	0.0	6e-08	0.00556477	0.00612935	0.0	0.0	0.0
+Unassigned	0.018	1814.464	1816.464	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Coffey	0.0	40.322	91.322	0.0	0.0	8.0	0.0	0.00489761	0.01109219	0.0	0.0	0.0009717
+Bourbon	0.0	40.322	48.322	0.0	0.0	1.0	0.0	0.00275179	0.00329775	0.0	0.0	6.825e-05
+McPherson	0.003	282.247	315.247	0.0	0.0	0.0	1.1e-07	0.00989056	0.01104696	0.0	0.0	0.0
