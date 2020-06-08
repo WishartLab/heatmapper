@@ -1,4 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Cochise	0.057	2197.705	2319.705	0.0	1.611	5.611	4.5e-07	0.01733616	0.01829853	0.0	1.271e-05	4.426e-05
-La Paz	0.151	4215.677	4373.677	0.0	0.0	1.0	7.16e-06	0.19981406	0.20730292	0.0	0.0	4.74e-05
-Pinal	0.0	1445.63	2512.63	0.001	89.555	130.555	0.0	0.00323307	0.00561936	0.0	0.00020028	0.00029198
+Cochise	0.701	5030.795	5171.795	0.0	1.824	5.824	5.53e-06	0.03968443	0.04079668	0.0	1.439e-05	4.594e-05
+La Paz	3.647	11964.733	12145.733	0.0	0.0	1.0	0.00017286	0.56710271	0.57568172	0.0	0.0	4.74e-05
+Gila	0.0	78.015	123.015	0.011	80.62	83.62	0.0	0.0014477	0.00228275	2e-07	0.00149604	0.00155171
+Yuma	0.0	8721.646	10952.646	0.013	502.06	534.06	N/A	N/A	N/A	N/A	N/A	N/A
+Unassigned	0.0	0.0	2.0	0.013	502.06	502.06	N/A	N/A	N/A	N/A	N/A	N/A
+Pinal	0.0	1833.711	2945.711	0.002	99.783	140.783	0.0	0.004101	0.00658792	0.0	0.00022316	0.00031485

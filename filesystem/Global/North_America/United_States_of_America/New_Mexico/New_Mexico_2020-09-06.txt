@@ -1,7 +1,8 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Valencia	0.001	55.576	136.576	0.0	3.041	5.041	1e-08	0.0007269	0.00178633	0.0	3.977e-05	6.593e-05
-Luna	0.196	269.35	280.35	0.0	0.0	1.0	8.18e-06	0.01124025	0.01169929	0.0	0.0	4.173e-05
-Socorro	0.289	397.991	452.991	0.0	0.558	5.558	1.727e-05	0.02378195	0.02706848	0.0	3.334e-05	0.00033212
-Eddy	0.0	48.235	78.235	0.0	0.0	1.0	0.0	0.00083307	0.00135121	0.0	0.0	1.727e-05
-Taos	0.209	437.676	468.676	0.0	0.0	0.0	6.37e-06	0.01332956	0.01427367	0.0	0.0	0.0
-Unassigned	17.097	23541.719	24149.719	0.0	18.478	24.478	N/A	N/A	N/A	N/A	N/A	N/A
+Valencia	0.695	851.643	932.643	0.0	0.62	2.62	9.09e-06	0.01113899	0.01219843	0.0	8.11e-06	3.427e-05
+Lincoln	0.308	377.617	382.617	0.0	0.0	0.0	1.575e-05	0.01930952	0.0195652	0.0	0.0	0.0
+Luna	0.07	147.477	159.477	0.0	0.0	1.0	2.92e-06	0.00615436	0.00665513	0.0	0.0	4.173e-05
+Socorro	0.756	741.137	796.137	0.0	0.52	5.52	4.517e-05	0.04428664	0.04757317	0.0	3.107e-05	0.00032985
+Eddy	0.002	84.302	119.302	0.0	0.0	1.0	3e-08	0.00145599	0.00206048	0.0	0.0	1.727e-05
+Taos	0.0	51.511	82.511	0.0	0.0	0.0	0.0	0.00156878	0.0025129	0.0	0.0	0.0
+Unassigned	27.411	33587.673	34195.673	0.0	126.707	127.707	N/A	N/A	N/A	N/A	N/A	N/A
