@@ -1,7 +1,8 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Hardy	0.0	1.101	41.101	0.005	193.754	193.754	0.0	7.993e-05	0.00298374	3.6e-07	0.01406563	0.01406563
-Logan	0.06	197.09	217.09	0.0	0.0	1.0	1.84e-06	0.00604441	0.00665777	0.0	0.0	3.067e-05
-Berkeley	0.0	171.808	518.808	0.0	23.532	31.532	0.0	0.0014669	0.0044296	0.0	0.00020092	0.00026922
-Ohio	0.002	124.495	174.495	0.0	0.0	1.0	5e-08	0.00298156	0.00417902	0.0	0.0	2.395e-05
-Tucker	0.045	80.498	86.498	0.0	0.0	0.0	6.47e-06	0.01157412	0.01243681	0.0	0.0	0.0
-Unassigned	36.062	49735.118	49736.118	0.0	0.0	20.0	N/A	N/A	N/A	N/A	N/A	N/A
+Hardy	0.0	4.167	44.167	0.001	90.105	90.105	0.0	0.0003025	0.00320632	7e-08	0.0065412	0.0065412
+Logan	0.0	38.083	58.083	0.0	0.0	1.0	0.0	0.00116794	0.0017813	0.0	0.0	3.067e-05
+Raleigh	0.0	20.115	38.115	0.0	0.0	0.0	0.0	0.00027089	0.00051331	0.0	0.0	0.0
+Marion	0.152	237.338	290.338	0.0	0.0	2.0	2.71e-06	0.00423085	0.00517564	0.0	0.0	3.565e-05
+Tucker	0.093	144.814	150.814	0.0	0.0	0.0	1.337e-05	0.02082157	0.02168426	0.0	0.0	0.0
+Boone	0.256	398.247	414.247	0.0	0.0	0.0	1.166e-05	0.01814254	0.01887144	0.0	0.0	0.0
+Unassigned	40.494	49699.056	49700.056	0.0	0.0	20.0	N/A	N/A	N/A	N/A	N/A	N/A
