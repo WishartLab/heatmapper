@@ -1,7 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Jefferson Davis	0.012	1665.28	1761.28	0.0	0.0	7.0	3.8e-07	0.05272877	0.05576848	0.0	0.0	0.00022165
-Unassigned	0.021	2870.901	3065.901	0.0	19.146	132.146	N/A	N/A	N/A	N/A	N/A	N/A
-Allen	0.002	318.539	507.539	0.0	0.0	10.0	8e-08	0.0124405	0.01982187	0.0	0.0	0.00039055
-Saint Helena	0.003	391.127	446.127	0.0	0.0	1.0	2.9e-07	0.03811411	0.04347369	0.0	0.0	9.745e-05
-Saint Landry	0.119	9490.128	9806.128	0.0	0.014	54.014	1.44e-06	0.11466493	0.11848301	0.0	1.7e-07	0.00065263
-Grant	0.009	1266.097	1314.097	0.0	0.0	1.0	4e-07	0.05631603	0.05845107	0.0	0.0	4.448e-05
+Jefferson Davis	0.0	326.214	428.214	0.0	0.0	7.0	0.0	0.01032911	0.0135588	0.0	0.0	0.00022165
+Lafourche	0.0	286.751	1214.751	0.01	621.999	697.999	0.0	0.0029226	0.01238089	1e-07	0.00633949	0.00711409
+Madison	0.127	12999.594	13220.594	0.0	0.0	2.0	1.138e-05	1.16473381	1.1845349	0.0	0.0	0.0001792
+Unassigned	0.051	5249.836	5463.836	0.0	4.64	117.64	N/A	N/A	N/A	N/A	N/A	N/A
+Saint Helena	0.005	504.019	560.019	0.0	0.0	1.0	4.9e-07	0.04911508	0.05457211	0.0	0.0	9.745e-05
+Grant	0.016	1677.367	1728.367	0.0	0.0	1.0	7.1e-07	0.07460933	0.07687781	0.0	0.0	4.448e-05
