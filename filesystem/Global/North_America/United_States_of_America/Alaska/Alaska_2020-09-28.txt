@@ -1,3 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Northwest Arctic	0.0	40.322	44.322	0.0	0.0	0.0	0.0	0.00525642	0.00577786	0.0	0.0	0.0
-Nome	0.0	40.322	44.322	0.0	1.125	1.125	0.0	0.00402898	0.00442866	0.0	0.00011241	0.00011241
+Fairbanks North Star	0.001	137.09	229.09	0.0	0.0	2.0	1e-08	0.00138515	0.00231472	0.0	0.0	2.021e-05
+Northwest Arctic	0.001	149.186	153.186	0.0	0.0	0.0	1.3e-07	0.01944805	0.0199695	0.0	0.0	0.0
+Nome	0.001	108.869	113.869	0.0	7.325	7.325	1e-07	0.0108782	0.0113778	0.0	0.00073191	0.00073191
+Juneau	0.004	366.921	403.921	0.0	7.325	7.325	1.2e-07	0.01142593	0.01257811	0.0	0.0002281	0.0002281
+Kodiak Island	0.0	40.322	42.322	0.0	7.325	7.325	0.0	0.00302151	0.00317138	0.0	0.00054889	0.00054889
+Sitka	0.002	169.353	177.353	0.0	7.325	7.325	2.3e-07	0.01958517	0.02051035	0.0	0.00084711	0.00084711

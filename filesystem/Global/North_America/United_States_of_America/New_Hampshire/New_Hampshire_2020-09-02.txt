@@ -1,5 +1,9 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Coos	0.128	71.612	77.612	0.0	35.393	35.393	4.05e-06	0.00226699	0.00245693	0.0	0.00112042	0.00112042
-Belknap	0.0	31.769	103.769	0.0	0.0	0.0	0.0	0.00052062	0.00170052	0.0	0.0	0.0
-Merrimack	0.0	104.975	490.975	0.002	25.041	43.041	0.0	0.00069459	0.00324865	1e-08	0.00016569	0.00028479
-Unassigned	0.0	4.167	8.167	0.002	25.989	30.989	N/A	N/A	N/A	N/A	N/A	N/A
+Coos	0.277	134.755	140.755	0.0	77.558	77.558	8.77e-06	0.00426588	0.00445582	0.0	0.00245522	0.00245522
+Belknap	0.0	29.393	103.393	0.0	0.0	1.0	0.0	0.00048168	0.00169436	0.0	0.0	1.639e-05
+Merrimack	0.0	91.157	482.157	0.0	7.297	25.297	0.0	0.00060316	0.0031903	0.0	4.828e-05	0.00016738
+Unassigned	0.0	7.776	12.776	0.004	25.984	30.984	N/A	N/A	N/A	N/A	N/A	N/A
+Nashua	0.001	101.366	106.366	0.0	6.53	6.53	N/A	N/A	N/A	N/A	N/A	N/A
+Cheshire	0.637	309.152	369.152	0.0	0.0	2.0	8.33e-06	0.00404157	0.00482596	0.0	0.0	2.615e-05
+Carroll	0.0	2.14	51.14	0.0	0.0	0.0	0.0	4.387e-05	0.0010484	0.0	0.0	0.0
+Sullivan	0.006	24.105	49.105	0.0	0.0	1.0	1.4e-07	0.00055871	0.00113817	0.0	0.0	2.318e-05

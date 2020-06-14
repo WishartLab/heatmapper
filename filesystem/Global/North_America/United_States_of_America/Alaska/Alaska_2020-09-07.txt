@@ -1,5 +1,11 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Southeast Fairbanks	0.0	0.0	3.0	0.0	2.13	2.13	0.0	0.0	0.00043365	0.0	0.00030789	0.00030789
+Southeast Fairbanks	0.0	0.0	3.0	0.0	7.325	7.325	0.0	0.0	0.00043365	0.0	0.00105883	0.00105883
+Fairbanks North Star	0.19	135.879	227.879	0.0	0.0	2.0	1.92e-06	0.00137292	0.00230248	0.0	0.0	2.021e-05
 Unassigned	0.0	0.0	1.0	0.0	0.0	4.0	N/A	N/A	N/A	N/A	N/A	N/A
-Northwest Arctic	0.046	40.062	44.062	0.0	0.0	0.0	6e-06	0.00522253	0.00574397	0.0	0.0	0.0
-Nome	0.046	40.062	44.062	0.0	1.125	1.125	4.6e-06	0.004003	0.00440268	0.0	0.00011241	0.00011241
+Northwest Arctic	0.207	147.867	151.867	0.0	0.0	0.0	2.698e-05	0.0192761	0.01979755	0.0	0.0	0.0
+Anchorage	0.0	156.78	471.78	0.0	7.325	13.325	0.0	0.00053777	0.00161825	0.0	2.513e-05	4.571e-05
+Nome	0.151	107.905	112.905	0.0	7.325	7.325	1.509e-05	0.01078187	0.01128147	0.0	0.00073191	0.00073191
+Juneau	0.508	363.678	400.678	0.0	7.325	7.325	1.582e-05	0.01132495	0.01247713	0.0	0.0002281	0.0002281
+Ketchikan Gateway	0.0	0.0	19.0	0.0	7.325	7.325	0.0	0.0	0.00136514	0.0	0.0005263	0.0005263
+Kodiak Island	0.056	39.965	41.965	0.0	7.325	7.325	4.2e-06	0.00299475	0.00314462	0.0	0.00054889	0.00054889
+Sitka	0.235	167.856	175.856	0.0	7.325	7.325	2.718e-05	0.01941205	0.02033723	0.0	0.00084711	0.00084711

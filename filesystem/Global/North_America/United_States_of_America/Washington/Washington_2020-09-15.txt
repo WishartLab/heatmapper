@@ -1,5 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Pacific	0.016	40.285	50.285	0.0	0.0	1.0	7.3e-07	0.00182814	0.00228195	0.0	0.0	4.538e-05
-Kitsap	0.001	90.641	260.641	0.0	0.0	2.0	0.0	0.00033595	0.00096603	0.0	0.0	7.41e-06
-Spokane	0.0	745.845	1523.845	0.0	42.012	79.012	0.0	0.00144928	0.00296104	0.0	8.164e-05	0.00015353
-Cowlitz	0.537	1373.685	1474.685	0.0	0.0	0.0	4.93e-06	0.01260412	0.01353083	0.0	0.0	0.0
+Pacific	0.07	124.773	135.773	0.0	0.0	1.0	3.18e-06	0.00566223	0.00616142	0.0	0.0	4.538e-05
+Kitsap	0.005	173.185	349.185	0.0	0.0	2.0	2e-08	0.00064189	0.00129421	0.0	0.0	7.41e-06
+Yakima	0.0	3646.295	8911.295	0.001	130.525	247.525	0.0	0.0145013	0.03544019	0.0	0.0005191	0.00098441
+Whatcom	0.0	95.27	535.27	0.0	10.455	48.455	0.0	0.00042214	0.00237176	0.0	4.633e-05	0.0002147
+Cowlitz	1.299	2326.406	2431.406	0.0	0.0	0.0	1.192e-05	0.02134572	0.02230914	0.0	0.0	0.0

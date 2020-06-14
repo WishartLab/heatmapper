@@ -1,4 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Coos	0.11	71.841	77.841	0.0	35.393	35.393	3.48e-06	0.00227424	0.00246418	0.0	0.00112042	0.00112042
-Merrimack	0.0	104.975	490.975	0.001	25.043	43.043	0.0	0.00069459	0.00324865	1e-08	0.0001657	0.0002848
-Unassigned	0.0	4.167	8.167	0.001	25.991	30.991	N/A	N/A	N/A	N/A	N/A	N/A
+Coos	0.242	135.257	141.257	0.0	77.558	77.558	7.66e-06	0.00428178	0.00447171	0.0	0.00245522	0.00245522
+Merrimack	0.0	91.157	482.157	0.0	7.297	25.297	0.0	0.00060316	0.0031903	0.0	4.828e-05	0.00016738
+Unassigned	0.0	7.776	12.776	0.002	25.989	30.989	N/A	N/A	N/A	N/A	N/A	N/A
+Cheshire	0.556	310.304	370.304	0.0	0.0	2.0	7.27e-06	0.00405663	0.00484102	0.0	0.0	2.615e-05
+Sullivan	0.002	24.111	49.111	0.0	0.0	1.0	5e-08	0.00055885	0.0011383	0.0	0.0	2.318e-05
