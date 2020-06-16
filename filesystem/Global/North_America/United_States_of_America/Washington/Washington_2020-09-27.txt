@@ -1,3 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Pacific	0.002	124.994	135.994	0.0	0.0	1.0	9e-08	0.00567226	0.00617145	0.0	0.0	4.538e-05
-Cowlitz	0.029	2330.544	2435.544	0.0	0.0	0.0	2.7e-07	0.02138369	0.02234711	0.0	0.0	0.0
+Lewis	0.001	72.579	111.579	0.0	0.0	3.0	1e-08	0.00091175	0.00140168	0.0	0.0	3.769e-05
+Walla Walla	0.0	19.631	139.631	0.001	72.579	75.579	0.0	0.00032223	0.00229196	2e-08	0.00119134	0.00124059
+Pacific	0.005	237.888	249.888	0.0	0.0	1.0	2.3e-07	0.01079543	0.01133999	0.0	0.0	4.538e-05
+Asotin	0.001	72.579	92.579	0.0	0.0	2.0	4e-08	0.00321004	0.0040946	0.0	0.0	8.846e-05
+Yakima	0.0	3333.021	8783.021	0.038	1927.289	2048.289	0.0	0.01325541	0.03493005	1.5e-07	0.00766482	0.00814604
+Grant	0.046	2907.769	3171.769	0.0	0.301	5.301	4.7e-07	0.02987506	0.03258745	0.0	3.09e-06	5.446e-05

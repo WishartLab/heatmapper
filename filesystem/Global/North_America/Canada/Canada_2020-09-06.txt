@@ -1,4 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-New Brunswick	0.414	562.257	719.257	0.0	25.338	27.338	5.4e-07	0.00072822	0.00093157	0.0	3.282e-05	3.541e-05
-Saskatchewan	0.055	171.394	835.394	0.227	178.83	191.83	5e-08	0.00014669	0.00071498	1.9e-07	0.00015305	0.00016418
-Alberta	0.044	1504.041	8887.041	0.0	21.179	171.179	1e-08	0.0003461	0.002045	0.0	4.87e-06	3.939e-05
+New Brunswick	0.001	82.971	242.971	0.0	0.0	2.0	0.0	0.00010746	0.00031469	0.0	0.0	2.59e-06
+Saskatchewan	0.002	75.23	758.23	0.023	38.94	51.94	0.0	6.439e-05	0.00064893	2e-08	3.333e-05	4.445e-05
+British Columbia	0.007	374.009	3119.009	0.0	0.908	168.908	0.0	7.45e-05	0.00062128	0.0	1.8e-07	3.364e-05
+Manitoba	0.0	7.094	311.094	0.0	0.0	7.0	0.0	5.21e-06	0.00022868	0.0	0.0	5.15e-06
+Northwest Territories	0.0	0.0	5.0	0.0	0.0	0.0	0.0	0.0	0.00011211	0.0	0.0	0.0
+Alberta	0.069	1671.343	9124.343	0.0	15.546	166.546	2e-08	0.00038459	0.00209961	0.0	3.58e-06	3.832e-05

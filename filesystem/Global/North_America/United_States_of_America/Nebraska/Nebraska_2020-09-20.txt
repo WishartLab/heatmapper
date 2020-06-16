@@ -1,4 +1,8 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Webster	0.006	40.312	46.312	0.0	0.0	0.0	1.7e-06	0.01141013	0.01310841	0.0	0.0	0.0
-Lincoln	0.05	358.767	411.767	0.0	0.0	2.0	1.42e-06	0.01019659	0.01170291	0.0	0.0	5.684e-05
-Polk	0.015	108.841	120.841	0.0	4.716	4.716	2.84e-06	0.02062164	0.02289523	0.0	0.00089352	0.00089352
+Webster	0.033	108.802	114.802	0.0	0.0	0.0	9.34e-06	0.03079592	0.0324942	0.0	0.0	0.0
+Morrill	0.022	72.537	84.537	0.0	9.918	9.918	4.69e-06	0.01547951	0.01804033	0.0	0.00211652	0.00211652
+Dodge	0.0	72.973	710.973	0.022	72.537	75.537	0.0	0.00198345	0.01932464	6e-07	0.0019716	0.00205314
+Sherman	0.0	1.917	6.917	0.022	72.537	72.537	0.0	0.00063101	0.00227683	7.24e-06	0.02387656	0.02387656
+Unassigned	1.224	4009.503	4185.503	0.0	108.123	109.123	N/A	N/A	N/A	N/A	N/A	N/A
+Sioux	0.656	1383.848	1384.848	0.0	0.0	0.0	0.00055265	1.16583656	1.16667902	0.0	0.0	0.0
+Fillmore	0.089	290.137	301.137	0.0	0.0	1.0	1.61e-05	0.05249448	0.05448471	0.0	0.0	0.00018093
