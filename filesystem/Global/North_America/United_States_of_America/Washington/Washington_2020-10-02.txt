@@ -1,4 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Lewis	0.0	72.583	111.583	0.0	0.0	3.0	0.0	0.0009118	0.00140173	0.0	0.0	3.769e-05
-Pacific	0.001	237.9	249.9	0.0	0.0	1.0	5e-08	0.01079597	0.01134053	0.0	0.0	4.538e-05
-Asotin	0.0	72.583	92.583	0.0	0.0	2.0	0.0	0.00321022	0.00409478	0.0	0.0	8.846e-05
+Lewis	0.001	124.996	164.996	0.0	0.0	3.0	1e-08	0.00157022	0.00207271	0.0	0.0	3.769e-05
+Walla Walla	0.0	4.723	126.723	0.001	108.87	111.87	0.0	7.753e-05	0.00208009	2e-08	0.00178704	0.00183628
+Asotin	0.001	108.87	128.87	0.0	0.0	2.0	4e-08	0.00481513	0.00569969	0.0	0.0	8.846e-05
+Whitman	0.006	790.303	819.303	0.0	0.0	0.0	1.2e-07	0.01587241	0.01645484	0.0	0.0	0.0
+Grant	0.034	4544.249	4812.249	0.0	0.443	5.443	3.5e-07	0.04668861	0.0494421	0.0	4.55e-06	5.592e-05

@@ -1,5 +1,8 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Richland	0.0	0.0	3.0	0.0	3.671	3.671	0.0	0.0	0.0002749	0.0	0.00033639	0.00033639
-Lake	0.219	192.29	201.29	0.0	0.0	0.0	7.24e-06	0.00635669	0.00665421	0.0	0.0	0.0
+Richland	0.0	0.0	3.0	0.002	8.03	8.03	0.0	0.0	0.0002749	1.8e-07	0.00073582	0.00073582
+Ravalli	0.213	168.069	186.069	0.0	0.0	0.0	4.93e-06	0.00389301	0.00430995	0.0	0.0	0.0
+Lake	0.411	324.123	333.123	0.0	0.0	0.0	1.359e-05	0.01071481	0.01101233	0.0	0.0	0.0
+Cascade	0.071	56.025	75.025	0.0	0.0	2.0	8.7e-07	0.00068622	0.00091894	0.0	0.0	2.45e-05
 Toole	0.0	0.0	29.0	0.0	0.0	6.0	0.0	0.0	0.00597569	0.0	0.0	0.00123635
-Gallatin	0.004	190.008	378.008	0.0	0.0	1.0	4e-08	0.00169838	0.00337881	0.0	0.0	8.94e-06
+Gallatin	0.016	276.274	464.274	0.0	0.0	1.0	1.4e-07	0.00246947	0.0041499	0.0	0.0	8.94e-06
+Flathead	0.071	56.025	95.025	0.0	0.0	2.0	7e-07	0.00054869	0.00093065	0.0	0.0	1.959e-05

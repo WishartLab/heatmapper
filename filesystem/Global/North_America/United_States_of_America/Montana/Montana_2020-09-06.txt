@@ -1,6 +1,8 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Richland	0.0	0.0	3.0	0.0	3.671	3.671	0.0	0.0	0.0002749	0.0	0.00033639	0.00033639
-Lake	0.342	190.949	199.949	0.0	0.0	0.0	1.131e-05	0.00631236	0.00660988	0.0	0.0	0.0
+Richland	0.0	0.0	3.0	0.005	8.013	8.013	0.0	0.0	0.0002749	4.6e-07	0.00073426	0.00073426
+Ravalli	0.321	166.787	184.787	0.0	0.0	0.0	7.44e-06	0.00386331	0.00428025	0.0	0.0	0.0
+Lake	0.619	321.651	330.651	0.0	0.0	0.0	2.046e-05	0.01063309	0.01093061	0.0	0.0	0.0
+Cascade	0.107	55.598	74.598	0.0	0.0	2.0	1.31e-06	0.00068099	0.00091371	0.0	0.0	2.45e-05
 Toole	0.0	0.0	29.0	0.0	0.0	6.0	0.0	0.0	0.00597569	0.0	0.0	0.00123635
-Gallatin	0.029	189.963	377.963	0.0	0.0	1.0	2.6e-07	0.00169798	0.00337841	0.0	0.0	8.94e-06
-Missoula	0.0	3.244	43.244	0.0	0.0	1.0	0.0	2.731e-05	0.00036403	0.0	0.0	8.42e-06
+Gallatin	0.115	276.038	464.038	0.0	0.0	1.0	1.03e-06	0.00246736	0.00414779	0.0	0.0	8.94e-06
+Flathead	0.107	55.598	94.598	0.0	0.0	2.0	1.05e-06	0.00054451	0.00092647	0.0	0.0	1.959e-05
