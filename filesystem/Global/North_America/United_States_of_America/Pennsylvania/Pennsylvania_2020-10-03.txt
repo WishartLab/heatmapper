@@ -1,5 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Bradford	0.0	72.583	119.583	0.0	0.0	3.0	0.0	0.00119315	0.00196576	0.0	0.0	4.932e-05
-Centre	0.008	1391.103	1568.103	0.0	0.067	6.067	5e-08	0.0085446	0.00963179	0.0	4.1e-07	3.727e-05
-Montour	0.005	979.82	1044.82	0.0	0.0	1.0	2.7e-07	0.0537182	0.0572818	0.0	0.0	5.482e-05
-Crawford	0.004	641.117	676.117	0.0	0.0	0.0	5e-08	0.00753697	0.00794843	0.0	0.0	0.0
+Bradford	0.001	108.87	155.87	0.0	0.0	3.0	2e-08	0.00178965	0.00256226	0.0	0.0	4.932e-05
+Monroe	0.0	12.989	1369.989	0.002	298.384	403.384	0.0	7.663e-05	0.0080822	1e-08	0.0017603	0.00237975
+Cambria	0.0	7.21	68.21	0.001	137.091	140.091	0.0	5.473e-05	0.0005178	1e-08	0.0010407	0.00106347
+Beaver	0.0	13.987	628.987	0.002	229.833	306.833	0.0	8.49e-05	0.00381801	1e-08	0.00139511	0.00186251
+Montour	0.01	1346.742	1413.742	0.0	0.0	1.0	5.5e-07	0.07383454	0.07750779	0.0	0.0	5.482e-05

@@ -1,6 +1,9 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Federal Correctional Institution (FCI)	0.0	48.502	214.502	0.0	14.546	19.546	N/A	N/A	N/A	N/A	N/A	N/A
-Unassigned	0.014	1043.109	1053.109	0.0	2.024	5.024	N/A	N/A	N/A	N/A	N/A	N/A
-Charlevoix	0.0	3.72	25.72	0.089	108.464	110.464	0.0	0.00014175	0.00098003	3.39e-06	0.00413291	0.00420911
-Iron	0.0	0.0	3.0	0.089	108.464	108.464	0.0	0.0	0.00026986	8.01e-06	0.00975659	0.00975659
-Presque Isle	0.111	136.581	148.581	0.0	0.0	0.0	8.71e-06	0.01072233	0.01166439	0.0	0.0	0.0
+Branch	0.005	474.108	712.108	0.0	0.0	2.0	1.1e-07	0.01086855	0.01632452	0.0	0.0	4.585e-05
+Federal Correctional Institution (FCI)	0.0	41.506	209.506	0.0	7.893	12.893	N/A	N/A	N/A	N/A	N/A	N/A
+Sanilac	0.0	2.81	45.81	0.0	0.235	6.235	0.0	6.823e-05	0.00111238	0.0	5.71e-06	0.0001514
+Livingston	0.0	29.393	556.393	0.0	1.18	29.18	0.0	0.00015371	0.00290964	0.0	6.17e-06	0.0001526
+Mackinac	0.0	0.0	8.0	0.0	1.18	1.18	0.0	0.0	0.00074163	0.0	0.00010939	0.00010939
+Charlevoix	0.0	2.589	24.589	0.125	136.47	138.47	0.0	9.865e-05	0.00093694	4.76e-06	0.00520005	0.00527625
+Iron	0.165	180.623	183.623	0.125	136.47	136.47	1.484e-05	0.01624746	0.01651732	1.124e-05	0.01227579	0.01227579
+Otsego	0.0	30.182	150.182	0.0	0.0	10.0	0.0	0.00122368	0.00608887	0.0	0.0	0.00040543
