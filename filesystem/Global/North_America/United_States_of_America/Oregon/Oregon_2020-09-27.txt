@@ -1,4 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Columbia	0.079	917.454	939.454	0.0	0.0	0.0	1.51e-06	0.01751635	0.01793638	0.0	0.0	0.0
-Union	0.255	7120.155	7362.155	0.0	0.0	0.0	9.64e-06	0.2690811	0.27822664	0.0	0.0	0.0
-Polk	0.021	1338.828	1466.828	0.0	0.0	12.0	2.5e-07	0.01570768	0.01720942	0.0	0.0	0.00014079
+Klamath	0.058	1072.416	1140.416	0.0	32.604	32.604	8.6e-07	0.01585171	0.01685684	0.0	0.00048193	0.00048193
+Malheur	0.017	306.404	348.404	0.0	0.0	1.0	5.5e-07	0.00997247	0.01133943	0.0	0.0	3.255e-05
+Union	0.734	13546.346	13793.346	0.0	0.0	0.0	2.774e-05	0.51193628	0.52127078	0.0	0.0	0.0
+Polk	0.0	224.611	355.611	0.0	0.0	12.0	0.0	0.00263523	0.00417217	0.0	0.0	0.00014079
+Grant	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.00013935	0.0	0.0	0.0
+Jackson	0.0	34.237	119.237	0.0	0.0	0.0	0.0	0.00015593	0.00054306	0.0	0.0	0.0

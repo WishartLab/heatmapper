@@ -1,4 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Morrill	0.065	136.909	150.909	0.0	20.164	20.164	1.387e-05	0.0292166	0.03220423	0.0	0.00430303	0.00430303
-Seward	0.17	358.389	390.389	0.0	0.0	1.0	9.82e-06	0.0206946	0.02254238	0.0	0.0	5.774e-05
-Fillmore	0.001	51.401	64.401	0.0	0.0	1.0	1.8e-07	0.00929998	0.01165207	0.0	0.0	0.00018093
+Morrill	0.101	181.119	195.119	0.0	19.584	19.584	2.155e-05	0.03865109	0.04163871	0.0	0.00417926	0.00417926
+Fillmore	0.001	50.928	63.928	0.0	0.0	1.0	1.8e-07	0.0092144	0.01156649	0.0	0.0	0.00018093
+Saunders	0.0	2.322	62.322	0.022	40.25	42.25	0.0	0.000109	0.0029255	1.03e-06	0.00188941	0.00198329
+Johnson	0.0	0.0	6.0	0.022	40.25	40.25	0.0	0.0	0.00116868	4.29e-06	0.00783989	0.00783989
+Red Willow	0.022	40.25	46.25	0.022	40.25	40.25	2.05e-06	0.00375256	0.00431195	2.05e-06	0.00375256	0.00375256

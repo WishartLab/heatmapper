@@ -1,4 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Georgia	0.0	842.201	1730.201	0.001	71.551	85.551	0.0	0.00022573	0.00046374	0.0	1.918e-05	2.293e-05
-Montenegro	0.001	112.898	445.898	0.0	0.0	9.0	0.0	0.00018141	0.00071648	0.0	0.0	1.446e-05
-Croatia	0.008	661.26	2919.26	0.0	10.362	117.362	0.0	0.0001617	0.00071386	0.0	2.53e-06	2.87e-05
+Montenegro	0.005	294.339	631.339	0.0	0.0	9.0	1e-08	0.00047295	0.00101445	0.0	0.0	1.446e-05
+Croatia	0.013	834.628	3103.628	0.0	5.447	112.447	0.0	0.0002041	0.00075894	0.0	1.33e-06	2.75e-05
+Andorra	0.0	5.29	860.29	0.001	40.321	92.321	0.0	6.87e-05	0.01117173	1e-08	0.00052361	0.00119888
+Austria	0.0	647.783	17870.783	0.006	630.682	1318.682	0.0	7.322e-05	0.00201997	0.0	7.129e-05	0.00014905
+Iceland	0.008	499.97	2315.97	0.0	0.0	10.0	2e-08	0.00141405	0.00655017	0.0	0.0	2.828e-05
