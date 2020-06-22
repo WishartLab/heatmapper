@@ -1,4 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Bethel	0.128	176.883	181.883	0.0	0.0	0.0	7.03e-06	0.00971031	0.00998479	0.0	0.0	0.0
-Fairbanks North Star	0.552	986.655	1092.655	0.0	0.0	2.0	5.58e-06	0.00996913	0.01104015	0.0	0.0	2.021e-05
-Ketchikan Gateway	0.309	426.125	447.125	0.0	11.737	11.737	2.22e-05	0.03061683	0.03212566	0.0	0.0008433	0.0008433
+Bethel	0.0	16.774	22.774	0.0	0.0	0.0	0.0	0.00092084	0.00125022	0.0	0.0	0.0
+Fairbanks North Star	0.002	140.736	257.736	0.0	0.0	2.0	2e-08	0.00142199	0.00260416	0.0	0.0	2.021e-05
+North Slope	0.152	148.376	151.376	0.0	0.0	0.0	1.54e-05	0.01502998	0.01533387	0.0	0.0	0.0
+Unassigned	0.0	0.0	1.0	0.0	0.0	4.0	N/A	N/A	N/A	N/A	N/A	N/A
+Northwest Arctic	0.0	0.141	4.141	0.0	0.0	0.0	0.0	1.838e-05	0.00053983	0.0	0.0	0.0
