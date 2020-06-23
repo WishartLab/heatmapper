@@ -1,10 +1,11 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Prince Edward Island	0.0	0.0	27.0	0.0	719.431	719.431	0.0	0.0	0.00017448	0.0	0.00464905	0.00464905
+Prince Edward Island	0.0	0.0	27.0	0.015	968.151	968.151	0.0	0.0	0.00017448	1e-07	0.00625631	0.00625631
 Newfoundland and Labrador	0.0	0.0	261.0	0.0	0.0	3.0	0.0	0.0	0.00049829	0.0	0.0	5.73e-06
-New Brunswick	0.0	11.763	175.763	0.0	0.0	2.0	0.0	1.524e-05	0.00022764	0.0	0.0	2.59e-06
+New Brunswick	0.0	9.127	173.127	0.0	0.0	2.0	0.0	1.182e-05	0.00022423	0.0	0.0	2.59e-06
 Yukon	0.0	0.0	11.0	0.0	0.0	0.0	0.0	0.0	0.00027249	0.0	0.0	0.0
-Saskatchewan	23.905	8866.261	9612.261	0.0	0.0	13.0	2.046e-05	0.00758823	0.0082267	0.0	0.0	1.113e-05
-British Columbia	0.01	370.011	3160.011	0.0	0.62	168.62	0.0	7.37e-05	0.00062945	0.0	1.2e-07	3.359e-05
-Manitoba	0.127	133.618	446.618	0.0	0.0	7.0	9e-08	9.822e-05	0.0003283	0.0	0.0	5.15e-06
+Saskatchewan	4.921	2721.005	3472.005	0.0	0.0	13.0	4.21e-06	0.00232878	0.00297153	0.0	0.0	1.113e-05
+British Columbia	0.006	319.404	3141.404	0.0	0.124	169.124	0.0	6.362e-05	0.00062574	0.0	2e-08	3.369e-05
+Manitoba	0.126	132.324	446.324	0.0	0.0	7.0	9e-08	9.727e-05	0.00032808	0.0	0.0	5.15e-06
 Northwest Territories	0.0	0.0	5.0	0.0	0.0	0.0	0.0	0.0	0.00011211	0.0	0.0	0.0
-Alberta	0.014	947.192	8651.192	0.0	7.21	159.21	0.0	0.00021796	0.00199073	0.0	1.66e-06	3.664e-05
+Ontario	0.044	4641.611	40059.611	0.004	207.567	2873.567	0.0	0.0003213	0.00277296	0.0	1.437e-05	0.00019891
+Alberta	0.019	975.669	8711.669	0.013	20.72	173.72	0.0	0.00022451	0.00200465	0.0	4.77e-06	3.997e-05

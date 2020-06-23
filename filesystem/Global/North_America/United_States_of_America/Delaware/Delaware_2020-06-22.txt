@@ -1,5 +1,5 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Sussex	9.284	9.284	4504.284	0.378	0.378	154.378	4.049e-05	4.049e-05	0.01964483	1.65e-06	1.65e-06	0.0006733
-Kent	7.009	7.009	1620.009	0.742	0.742	84.742	3.926e-05	3.926e-05	0.00907314	4.16e-06	4.16e-06	0.00047461
-New Castle	41.516	41.516	4688.516	1.147	1.147	198.147	7.422e-05	7.422e-05	0.0083823	2.05e-06	2.05e-06	0.00035425
-Unassigned	0.16	0.16	20.16	0.0	0.0	1.0	N/A	N/A	N/A	N/A	N/A	N/A
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+New Castle	4682.0	197.0	0.0	4485.0	0.00837065	0.0003522	65666.6666667	30307.6923077	19700.0	0.1174	0.0541846153846	0.03522
+Sussex	4501.0	154.0	0.0	4347.0	0.01963051	0.00067165	51333.3333333	23692.3076923	15400.0	0.223883333333	0.103330769231	0.067165
+Kent	1620.0	84.0	0.0	1536.0	0.00907309	0.00047046	28000.0	12923.0769231	8400.0	0.15682	0.0723784615385	0.047046
+Unassigned	17.0	0.0	0.0	17.0	N/A	N/A	85.0	34.0	21.25	N/A	N/A	N/A
