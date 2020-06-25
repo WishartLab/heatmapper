@@ -1,4 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Tolland	0.0	5.071	900.071	0.0	7.317	71.317	0.0	3.36e-05	0.00596386	0.0	4.848e-05	0.00047255
-Windham	0.043	420.397	1004.397	0.0	0.0	14.0	3.7e-07	0.00359231	0.00858261	0.0	0.0	0.00011963
-Litchfield	0.001	60.141	1527.141	0.0	0.014	135.014	1e-08	0.00033207	0.00843207	0.0	8e-08	0.00074548
+Tolland	0.001	30.521	928.521	0.0	7.997	71.997	1e-08	0.00020223	0.00615236	0.0	5.299e-05	0.00047705
+Windham	18.222	8268.379	8856.379	0.0	0.0	14.0	0.00015571	0.0706536	0.07567808	0.0	0.0	0.00011963
+Unassigned	0.005	195.402	455.402	0.0	0.626	2.626	N/A	N/A	N/A	N/A	N/A	N/A
+Hartford	0.0	205.957	11655.957	0.001	77.943	1433.943	0.0	0.00023071	0.01305701	0.0	8.731e-05	0.0016063
+New Haven	0.008	511.08	12738.08	0.0	46.863	1112.863	1e-08	0.00059593	0.01485283	0.0	5.464e-05	0.00129762
+Litchfield	0.679	520.13	1989.13	0.0	0.449	136.449	3.75e-06	0.00287189	0.01098293	0.0	2.48e-06	0.0007534

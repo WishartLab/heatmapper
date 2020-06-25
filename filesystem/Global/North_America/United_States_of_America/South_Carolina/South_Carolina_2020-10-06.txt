@@ -1,4 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Barnwell	0.002	288.839	348.839	0.0	0.0	1.0	9e-08	0.01368127	0.01652326	0.0	0.0	4.737e-05
-Lee	0.005	940.064	1196.064	0.0	0.143	20.143	2.9e-07	0.05483981	0.06977389	0.0	8.34e-06	0.00117507
-Allendale	0.006	455.624	501.624	0.0	0.0	3.0	6.7e-07	0.05117646	0.05634326	0.0	0.0	0.00033697
+Fairfield	0.0	456.689	725.689	0.0	10.594	31.594	0.0	0.02038608	0.03239394	0.0	0.0004729	0.00141032
+Lee	0.0	488.76	752.76	0.004	154.495	175.495	0.0	0.02851243	0.0439132	2.3e-07	0.00901266	0.01023772
+Charleston	0.0	12403.159	14820.159	0.004	331.241	352.241	0.0	0.0305568	0.0365114	1e-08	0.00081606	0.00086779
+Jasper	0.038	2388.875	2480.875	0.0	0.124	3.124	1.31e-06	0.08245746	0.08563305	0.0	4.28e-06	0.00010783
+Pickens	0.0	2461.013	3103.013	0.0	0.0	4.0	0.0	0.01969803	0.02483662	0.0	0.0	3.202e-05

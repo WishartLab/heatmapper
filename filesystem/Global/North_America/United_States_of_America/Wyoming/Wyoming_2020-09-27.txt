@@ -1,4 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Natrona	0.228	745.488	843.488	0.0	12.16	12.16	2.88e-06	0.00942284	0.01066154	0.0	0.0001537	0.0001537
-Johnson	0.042	137.005	156.005	0.0	0.0	1.0	4.96e-06	0.01619444	0.01844031	0.0	0.0	0.0001182
-Sublette	0.033	108.802	113.802	0.0	0.0	0.0	3.36e-06	0.01108754	0.01159707	0.0	0.0	0.0
+Platte	0.019	40.269	42.269	0.0	22.356	22.356	2.22e-06	0.00470103	0.00493451	0.0	0.00260985	0.00260985
+Natrona	1.216	1898.52	2000.52	0.0	22.356	22.356	1.537e-05	0.02399697	0.02528623	0.0	0.00028258	0.00028258
+Sweetwater	0.002	208.57	273.57	0.0	22.356	22.356	5e-08	0.00484472	0.00635456	0.0	0.00051929	0.00051929
+unassigned	0.055	180.09	199.09	0.0	22.356	22.356	N/A	N/A	N/A	N/A	N/A	N/A
+Converse	0.019	40.269	65.269	0.0	0.0	0.0	1.39e-06	0.00295227	0.00478512	0.0	0.0	0.0
+Sublette	0.09	189.265	194.265	0.0	0.0	0.0	9.17e-06	0.01928717	0.0197967	0.0	0.0	0.0
