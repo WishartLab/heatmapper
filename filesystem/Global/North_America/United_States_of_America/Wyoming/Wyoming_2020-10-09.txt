@@ -1,3 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Platte	0.001	72.581	74.581	0.0	24.335	24.335	1.2e-07	0.00847315	0.00870663	0.0	0.00284088	0.00284088
-Converse	0.001	72.581	97.581	0.0	0.0	0.0	7e-08	0.00532119	0.00715403	0.0	0.0	0.0
+Laramie	0.016	1600.397	1850.397	0.0	13.441	13.441	1.6e-07	0.01616955	0.01869541	0.0	0.0001358	0.0001358
+Lincoln	0.003	112.893	129.893	0.0	13.441	13.441	1.5e-07	0.00580905	0.0066838	0.0	0.00069162	0.00069162
+unassigned	0.002	95.394	114.394	0.0	13.441	13.441	N/A	N/A	N/A	N/A	N/A	N/A
+Sheridan	0.008	298.364	324.364	0.0	13.441	13.441	2.6e-07	0.00986882	0.01072881	0.0	0.00044458	0.00044458
+Crook	0.004	137.082	144.082	0.0	13.441	13.441	5.4e-07	0.01840027	0.01933987	0.0	0.00180416	0.00180416
+Campbell	0.027	1060.389	1115.389	0.0	13.441	13.441	5.9e-07	0.02298199	0.02417401	0.0	0.00029131	0.00029131

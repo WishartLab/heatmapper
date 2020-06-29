@@ -1,3 +1,8 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Columbia	0.01	391.101	399.101	0.0	2.723	2.723	2.46e-06	0.09635403	0.09832496	0.0	0.00067085	0.00067085
-Kittitas	0.026	1020.072	1132.072	0.0	0.0	1.0	5.5e-07	0.02153686	0.02390153	0.0	0.0	2.111e-05
+Wahkiakum	0.006	72.569	77.569	0.0	0.0	0.0	1.36e-06	0.01639607	0.01752576	0.0	0.0	0.0
+Douglas	0.99	4573.93	4803.93	0.0	0.0	3.0	2.307e-05	0.10660102	0.11196145	0.0	0.0	6.992e-05
+Whitman	0.051	596.654	633.654	0.0	0.124	0.124	1.02e-06	0.01198317	0.01272628	0.0	2.49e-06	2.49e-06
+Chelan	0.0	333.121	648.121	0.0	0.0	6.0	0.0	0.00432423	0.00841322	0.0	0.0	7.789e-05
+Unassigned	0.0	25.338	76.338	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Whatcom	0.0	1827.31	2427.31	0.007	123.999	163.999	0.0	0.00809673	0.0107553	3e-08	0.00054943	0.00072667
+Kittitas	0.745	3441.226	3563.226	0.0	0.0	1.0	1.573e-05	0.07265489	0.07523068	0.0	0.0	2.111e-05
