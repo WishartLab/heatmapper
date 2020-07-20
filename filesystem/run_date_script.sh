@@ -1,4 +1,4 @@
-startdate="20200618"
+startdate="20200718"
 enddate=$(date +%Y%m%d)
 loopdate=$startdate
 git pull

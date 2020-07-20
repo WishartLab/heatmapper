@@ -258,9 +258,16 @@ with open('COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/{}-{}-{}.csv'
                 row[7] =0.0
             if row[5] == '':
                 row[5] = 0.0
-            print [continent,country,state_province,county_department,row[5],row[6],row[7], "N/A"]
             all_rows.append([continent,country,state_province,county_department,float(row[5]),float(row[6]),float(row[7]), "N/A"])
         else:
+            if row[7] == '':
+                row[7] = 0.0
+            if row[8] == '':
+                row[8] =0.0
+            if row[9] == '':
+                row[9] = 0.0
+            if row[10] == '':
+                row[10] = 0.0
             all_rows.append([continent,country,state_province,county_department,float(row[7]),float(row[8]), float(row[9]), float(row[10])])
 
 for row in all_rows:

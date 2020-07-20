@@ -1,2 +1,8 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Nome	0.001	108.871	114.871	0.0	0.0	0.0	1e-07	0.0108784	0.01147792	0.0	0.0	0.0
+Haines	0.06	52.474	55.474	0.0	0.0	0.089	2.425e-05	0.02121019	0.0224228	0.0	0.0	3.597e-05
+Unassigned	0.0	0.0	1.0	0.0	0.0	4.0	N/A	N/A	N/A	N/A	N/A	N/A
+Anchorage	0.0	242.21	1152.21	0.005	319.122	328.122	0.0	0.0008308	0.00395218	2e-08	0.00109462	0.00112549
+Ketchikan Gateway	0.0	17.195	42.195	0.0	0.0	12.002	0.0	0.00123545	0.00303169	0.0	0.0	0.00086234
+Valdez-Cordova	0.0	0.0	17.0	0.0	0.0	0.0	0.0	0.0	0.00185509	0.0	0.0	0.0
+Kodiak Island	0.064	56.089	61.089	0.0	0.0	0.0	4.8e-06	0.004203	0.00457767	0.0	0.0	0.0
+Sitka	0.313	274.502	289.502	0.0	0.0	0.565	3.62e-05	0.03174535	0.03348005	0.0	0.0	6.534e-05
