@@ -1,12 +1,9 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Queensland	196.39	355.522	401.846	2.078	4.175	144.802	3.854e-05	6.978e-05	7.887e-05	4.1e-07	8.2e-07	2.842e-05
-Western Australia	112.217	203.144	229.223	0.467	0.939	80.107	4.28e-05	7.749e-05	8.743e-05	1.8e-07	3.6e-07	3.056e-05
-Victoria	385.512	697.885	737.623	14.919	27.007	159.477	5.846e-05	0.00010582	0.00011185	2.26e-06	4.1e-06	2.418e-05
-External territories	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Australia	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Australian Capital Territory	0.0	0.0	108.0	0.0	0.0	3.0	0.0	0.0	0.0002531	0.0	0.0	7.03e-06
-Tasmania	0.0	0.0	228.0	0.0	0.0	13.0	0.0	0.0	0.00042674	0.0	0.0	2.433e-05
-New South Wales	585.753	1060.378	1221.825	3.202	6.434	452.808	7.241e-05	0.00013108	0.00015104	4e-07	8e-07	5.597e-05
-South Australia	81.14	146.887	176.009	0.725	1.456	73.444	3.095e-05	5.603e-05	6.714e-05	2.8e-07	5.6e-07	2.801e-05
-Jervis Bay Territory	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Northern Territory	1.496	2.709	2.726	0.0	0.0	0.053	6.08e-06	1.102e-05	1.109e-05	0.0	0.0	2.2e-07
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Northern Territory	31.0	0.0	29.0	2.0	0.00012608	0.0	155.0	62.0	38.75	0.0006304	0.00025216	0.0001576
+Western Australia	634.0	9.0	604.0	21.0	0.00024183	3.43e-06	3000.0	1384.61538462	900.0	0.00114333333333	0.000527692307692	0.000343
+Australian Capital Territory	113.0	3.0	105.0	5.0	0.00026482	7.03e-06	1000.0	461.538461538	300.0	0.00234333333333	0.00108153846154	0.000703
+Victoria	3560.0	23.0	2286.0	1251.0	0.00053982	3.49e-06	7666.66666667	3538.46153846	2300.0	0.00116333333333	0.000536923076923	0.000349
+New South Wales	3474.0	49.0	2997.0	428.0	0.00042944	6.06e-06	16333.3333333	7538.46153846	4900.0	0.00202	0.000932307692308	0.000606
+Queensland	1070.0	6.0	1058.0	6.0	0.00021001	1.18e-06	2000.0	923.076923077	600.0	0.000393333333333	0.000181538461538	0.000118
+Tasmania	228.0	13.0	215.0	0.0	0.00042674	2.433e-05	4333.33333333	2000.0	1300.0	0.00811	0.00374307692308	0.002433
+South Australia	443.0	4.0	439.0	0.0	0.00016898	1.53e-06	1333.33333333	615.384615385	400.0	0.00051	0.000235384615385	0.000153
