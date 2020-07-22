@@ -1,12 +1,12 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Queensland	0.048	4.791	1076.791	0.0	0.0	6.0	1e-08	9.4e-07	0.00021134	0.0	0.0	1.18e-06
-Western Australia	0.745	51.373	702.373	0.0	0.0	9.0	2.8e-07	1.96e-05	0.00026791	0.0	0.0	3.43e-06
-Victoria	106.857	6439.017	12381.017	2.255	87.153	126.153	1.62e-05	0.00097638	0.00187739	3.4e-07	1.322e-05	1.913e-05
+Queensland	0.0	0.573	1073.573	0.0	0.0	6.0	0.0	1.1e-07	0.00021071	0.0	0.0	1.18e-06
+Western Australia	0.981	55.975	706.975	0.0	0.0	9.0	3.7e-07	2.135e-05	0.00026966	0.0	0.0	3.43e-06
+Victoria	120.896	6533.425	13272.425	3.134	111.456	155.456	1.833e-05	0.00099069	0.00201256	4.8e-07	1.69e-05	2.357e-05
 External territories	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
 Australia	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Australian Capital Territory	0.0	0.28	113.28	0.0	0.0	3.0	0.0	6.6e-07	0.00026547	0.0	0.0	7.03e-06
-Tasmania	0.0	0.0	228.0	0.0	0.0	13.0	0.0	0.0	0.00042674	0.0	0.0	2.433e-05
-New South Wales	4.0	255.637	3843.637	0.0	0.0	49.0	4.9e-07	3.16e-05	0.00047514	0.0	0.0	6.06e-06
-South Australia	2.733	48.127	492.127	0.0	0.0	4.0	1.04e-06	1.836e-05	0.00018771	0.0	0.0	1.53e-06
+Australian Capital Territory	0.0	0.014	113.014	0.0	0.0	3.0	0.0	3e-08	0.00026485	0.0	0.0	7.03e-06
+Tasmania	0.006	0.367	229.367	0.0	0.0	13.0	1e-08	6.9e-07	0.0004293	0.0	0.0	2.433e-05
+New South Wales	5.341	288.612	3902.612	0.0	0.0	49.0	6.6e-07	3.568e-05	0.00048243	0.0	0.0	6.06e-06
+South Australia	0.114	5.361	449.361	0.0	0.0	4.0	4e-08	2.04e-06	0.0001714	0.0	0.0	1.53e-06
 Jervis Bay Territory	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Northern Territory	0.0	0.124	31.124	0.0	0.0	0.0	0.0	5e-07	0.00012659	0.0	0.0	0.0
+Northern Territory	0.0	0.014	31.014	0.0	0.0	0.0	0.0	6e-08	0.00012614	0.0	0.0	0.0
