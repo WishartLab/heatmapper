@@ -1,5 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Clatsop	0.167	769.83	836.83	0.0	5.917	5.917	4.2e-06	0.01935997	0.02104491	0.0	0.0001488	0.0001488
-Polk	0.0	154.3	361.3	0.0	0.0	12.0	0.0	0.00181031	0.00423892	0.0	0.0	0.00014079
-Grant	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.00013935	0.0	0.0	0.0
-Jackson	0.0	247.357	494.357	0.0	0.0	0.0	0.0	0.00112658	0.00225154	0.0	0.0	0.0
+Curry	0.049	124.881	135.881	0.0	0.0	0.0	2.15e-06	0.00547412	0.0059563	0.0	0.0	0.0
+Lincoln	0.001	150.255	528.255	0.04	185.42	193.42	2e-08	0.00304234	0.01069602	8.1e-07	0.00375435	0.00391634
+Harney	0.06	153.079	158.079	0.0	3.308	3.308	8.19e-06	0.02088675	0.02156897	0.0	0.00045136	0.00045136
+Clatsop	0.047	544.447	612.447	0.0	3.308	3.308	1.18e-06	0.01369196	0.01540205	0.0	8.319e-05	8.319e-05
+Lake	0.247	632.462	663.462	0.0	0.0	0.0	3.135e-05	0.08027186	0.08420637	0.0	0.0	0.0
+Crook	0.449	1148.1	1177.1	0.0	0.0	1.0	1.881e-05	0.04810408	0.04931914	0.0	0.0	4.19e-05

@@ -1,12 +1,12 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Queensland	0.0	0.573	1073.573	0.0	0.0	6.0	0.0	1.1e-07	0.00021071	0.0	0.0	1.18e-06
-Western Australia	0.608	62.104	713.104	0.0	0.0	9.0	2.3e-07	2.369e-05	0.000272	0.0	0.0	3.43e-06
-Victoria	77.29	7296.649	14035.649	2.163	132.062	176.062	1.172e-05	0.00110642	0.00212829	3.3e-07	2.003e-05	2.67e-05
+Queensland	0.048	4.47	1080.47	0.0	0.0	6.0	1e-08	8.8e-07	0.00021206	0.0	0.0	1.18e-06
+Western Australia	0.506	47.469	701.469	0.0	0.0	9.0	1.9e-07	1.811e-05	0.00026756	0.0	0.0	3.43e-06
+Victoria	95.829	7838.571	15243.571	1.076	79.317	134.317	1.453e-05	0.0011886	0.00231145	1.6e-07	1.203e-05	2.037e-05
 External territories	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
 Australia	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Australian Capital Territory	0.0	0.014	113.014	0.0	0.0	3.0	0.0	3e-08	0.00026485	0.0	0.0	7.03e-06
-Tasmania	0.004	0.405	229.405	0.0	0.0	13.0	1e-08	7.6e-07	0.00042937	0.0	0.0	2.433e-05
-New South Wales	3.414	322.326	3936.326	0.0	0.0	49.0	4.2e-07	3.984e-05	0.0004866	0.0	0.0	6.06e-06
-South Australia	0.075	6.09	450.09	0.0	0.0	4.0	3e-08	2.32e-06	0.00017168	0.0	0.0	1.53e-06
+Australian Capital Territory	0.0	0.0	113.0	0.0	0.0	3.0	0.0	0.0	0.00026482	0.0	0.0	7.03e-06
+Tasmania	1.654	38.969	267.969	0.0	0.0	13.0	3.1e-06	7.294e-05	0.00050155	0.0	0.0	2.433e-05
+New South Wales	4.833	382.595	4022.595	0.0	0.0	49.0	6e-07	4.73e-05	0.00049726	0.0	0.0	6.06e-06
+South Australia	0.037	3.479	450.479	0.0	0.0	4.0	1e-08	1.33e-06	0.00017183	0.0	0.0	1.53e-06
 Jervis Bay Territory	0.0	0.0	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Northern Territory	0.0	0.014	31.014	0.0	0.0	0.0	0.0	6e-08	0.00012614	0.0	0.0	0.0
+Northern Territory	0.0	0.0	31.0	0.0	0.0	0.0	0.0	0.0	0.00012608	0.0	0.0	0.0
