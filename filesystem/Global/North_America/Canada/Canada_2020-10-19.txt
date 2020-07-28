@@ -1,4 +1,8 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Yukon	0.0	14.217	27.217	0.0	0.0	0.0	0.0	0.00035218	0.00067421	0.0	0.0	0.0
-Saskatchewan	0.0	403.211	1475.211	0.0	0.0	16.0	0.0	0.00034509	0.00126257	0.0	0.0	1.369e-05
-Manitoba	3.904	3425.246	3800.246	0.0	0.0	7.0	2.87e-06	0.00251783	0.00279349	0.0	0.0	5.15e-06
+Newfoundland and Labrador	0.615	370.581	636.581	0.0	0.0	3.0	1.17e-06	0.0007075	0.00121534	0.0	0.0	5.73e-06
+Saskatchewan	0.053	1319.958	2528.958	0.019	25.205	41.205	5e-08	0.00112969	0.00216442	2e-08	2.157e-05	3.527e-05
+British Columbia	0.0	804.823	4304.823	0.0	7.895	200.895	0.0	0.00016031	0.00085748	0.0	1.57e-06	4.002e-05
+Manitoba	0.003	229.024	629.024	0.0	0.0	7.0	0.0	0.00016835	0.00046238	0.0	0.0	5.15e-06
+Northwest Territories	0.0	0.0	5.0	0.0	0.0	0.0	0.0	0.0	0.00011211	0.0	0.0	0.0
+Ontario	0.032	4262.187	44935.187	0.0	6.405	2813.405	0.0	0.00029503	0.00311045	0.0	4.4e-07	0.00019475
+Alberta	0.027	3577.431	13967.431	0.001	50.54	236.54	1e-08	0.0008232	0.00321405	0.0	1.163e-05	5.443e-05

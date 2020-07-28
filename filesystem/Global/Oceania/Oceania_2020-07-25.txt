@@ -1,5 +1,5 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Fiji	0.119	0.239	27.239	246.438	487.3	487.3	1.3e-07	2.7e-07	3.083e-05	0.00027894	0.00055157	0.00055157
-New Zealand	1.295	2.593	1558.593	0.0	0.0	22.0	2.7e-07	5.3e-07	0.00031902	0.0	0.0	4.5e-06
-Australia	322.779	638.255	14233.255	2.582	4.991	143.991	1.292e-05	2.554e-05	0.0005695	1e-07	2e-07	5.76e-06
-Papua New Guinea	1.799	3.257	34.257	0.0	0.0	1.0	2.1e-07	3.8e-07	3.98e-06	0.0	0.0	1.2e-07
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+New Zealand	1556.0	22.0	1513.0	21.0	0.00031849	4.5e-06	7333.33333333	3384.61538462	2200.0	0.0015	0.000692307692308	0.00045
+Australia	14403	155	9019	5229	0.0005763	6.2e-06	51666.6666667	23846.1538462	15500.0	0.00206666666667	0.000953846153846	0.00062
+Fiji	27.0	0.0	18.0	9.0	3.056e-05	0.0	135.0	54.0	33.75	0.0001528	6.112e-05	3.82e-05
+Papua New Guinea	39.0	0.0	11.0	28.0	4.53e-06	0.0	195.0	78.0	48.75	2.265e-05	9.06e-06	5.6625e-06

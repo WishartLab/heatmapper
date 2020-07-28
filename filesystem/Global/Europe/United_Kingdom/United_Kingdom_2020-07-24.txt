@@ -1,13 +1,16 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Channel Islands	0.48	0.48	583.48	0.0	0.0	47.0	N/A	N/A	N/A	N/A	N/A	N/A
-Cayman Islands	0.089	0.089	203.089	0.0	0.0	1.0	N/A	N/A	N/A	N/A	N/A	N/A
-Bermuda	0.453	0.453	153.453	0.0	0.0	9.0	N/A	N/A	N/A	N/A	N/A	N/A
-Gibraltar	0.036	0.036	184.036	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Falkland Islands (Malvinas)	0.0	0.0	13.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Turks and Caicos Islands	1.018	1.018	91.018	0.0	0.0	2.0	N/A	N/A	N/A	N/A	N/A	N/A
-British Virgin Islands	0.0	0.0	8.0	0.0	0.0	1.0	N/A	N/A	N/A	N/A	N/A	N/A
-United Kingdom	1654.142	1654.142	291797.142	268.951	268.951	41396.951	N/A	N/A	N/A	N/A	N/A	N/A
-Montserrat	0.004	0.004	12.004	0.0	0.0	1.0	N/A	N/A	N/A	N/A	N/A	N/A
-Isle of Man	0.0	0.0	336.0	0.0	0.0	24.0	N/A	N/A	N/A	N/A	N/A	N/A
-Falkland Islands (Islas Malvinas)	0.0	0.0	2.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
-Anguilla	0.0	0.0	3.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Isle of Man	336.0	24.0	312.0	0.0	N/A	N/A	N/A	N/A	8000.0	3692.30769231	2400.0	N/A	N/A	N/A
+England	256428.0	41082.0	0.0	215346.0	N/A	N/A	N/A	N/A	13694000.0	6320307.69231	4108200.0	N/A	N/A	N/A
+Scotland	18520.0	2491.0	0.0	16029.0	N/A	N/A	N/A	N/A	830333.333333	383230.769231	249100.0	N/A	N/A	N/A
+Cayman Islands	203.0	1.0	202.0	0.0	N/A	N/A	N/A	N/A	333.333333333	153.846153846	100.0	N/A	N/A	N/A
+Channel Islands	584.0	47.0	533.0	4.0	N/A	N/A	N/A	N/A	15666.6666667	7230.76923077	4700.0	N/A	N/A	N/A
+Montserrat	12.0	1.0	10.0	1.0	N/A	N/A	N/A	N/A	333.333333333	153.846153846	100.0	N/A	N/A	N/A
+Unknown	0.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	0.0	0.0	0.0	N/A	N/A	N/A
+Falkland Islands (Malvinas)	13.0	0.0	13.0	0.0	N/A	N/A	N/A	N/A	65.0	26.0	16.25	N/A	N/A	N/A
+Bermuda	153.0	9.0	139.0	5.0	N/A	N/A	N/A	N/A	3000.0	1384.61538462	900.0	N/A	N/A	N/A
+British Virgin Islands	8.0	1.0	7.0	0.0	N/A	N/A	N/A	N/A	333.333333333	153.846153846	100.0	N/A	N/A	N/A
+Gibraltar	184.0	0.0	180.0	4.0	N/A	N/A	N/A	N/A	920.0	368.0	230.0	N/A	N/A	N/A
+Northern Ireland	5891.0	556.0	0.0	5335.0	N/A	N/A	N/A	N/A	185333.333333	85538.4615385	55600.0	N/A	N/A	N/A
+Wales	17075.0	1548.0	0.0	15527.0	N/A	N/A	N/A	N/A	516000.0	238153.846154	154800.0	N/A	N/A	N/A
+Anguilla	3.0	0.0	3.0	0.0	N/A	N/A	N/A	N/A	15.0	6.0	3.75	N/A	N/A	N/A
+Turks and Caicos Islands	90.0	2.0	26.0	62.0	N/A	N/A	N/A	N/A	666.666666667	307.692307692	200.0	N/A	N/A	N/A

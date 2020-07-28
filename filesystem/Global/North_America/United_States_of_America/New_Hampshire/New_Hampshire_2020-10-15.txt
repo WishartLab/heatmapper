@@ -1,2 +1,9 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Hillsborough	0.004	453.897	4043.897	0.0	17.341	287.341	1e-08	0.00109308	0.00973853	0.0	4.176e-05	0.00069198
+Hillsborough	0.021	646.362	4315.362	0.029	67.171	339.171	5e-08	0.00155657	0.01039228	7e-08	0.00016176	0.00081679
+Coos	0.0	13.268	29.268	0.029	67.171	67.171	0.0	0.00042002	0.00092653	9.2e-07	0.0021264	0.0021264
+Strafford	0.001	27.696	347.696	0.0	0.0	13.0	1e-08	0.0002129	0.00267273	0.0	0.0	9.993e-05
+Belknap	0.0	16.33	117.33	0.002	6.38	10.38	0.0	0.00026761	0.00192275	3e-08	0.00010455	0.0001701
+Merrimack	0.0	39.421	491.421	0.001	3.307	24.307	0.0	0.00026084	0.0032516	1e-08	2.188e-05	0.00016083
+Rockingham	0.001	101.024	1682.024	0.451	205.672	299.672	0.0	0.00032675	0.00544034	1.46e-06	0.00066523	0.00096926
+Nashua	0.001	101.365	106.365	0.451	205.672	205.672	N/A	N/A	N/A	N/A	N/A	N/A
+Carroll	0.075	110.985	191.985	0.0	0.0	1.0	1.54e-06	0.00227526	0.00393581	0.0	0.0	2.05e-05
