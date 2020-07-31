@@ -1,5 +1,10 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Chittenden	0.0	113.003	826.003	0.0	0.0	39.0	0.0	0.00068665	0.0050191	0.0	0.0	0.00023698
-Essex	0.0	7.112	11.112	0.0	3.375	3.375	0.0	0.00113792	0.00177792	0.0	0.00054	0.00054
-Franklin	0.549	330.735	445.735	0.0	0.0	6.0	1.111e-05	0.0066922	0.00901914	0.0	0.0	0.00012141
-Orange	0.011	28.144	43.144	0.0	0.0	0.0	3.8e-07	0.00097052	0.00148778	0.0	0.0	0.0
+Chittenden	0.0	8.801	13.051	0.0	3.799	16.637	0.0	5.348e-05	7.93e-05	0.0	2.308e-05	0.00010109
+Rutland	0.0	6.236	6.614	0.0	3.751	4.899	0.0	0.00010629	0.00011273	0.0	6.393e-05	8.35e-05
+Washington	0.0	2.843	3.047	0.0	0.039	0.659	0.0	4.89e-05	5.241e-05	0.0	6.7e-07	1.133e-05
+Windham	0.0	7.074	7.235	0.0	0.281	0.769	0.0	0.00016545	0.00016922	0.0	6.57e-06	1.799e-05
+Unassigned	0.0	3.368	3.45	0.0	40.545	40.835	N/A	N/A	N/A	N/A	N/A	N/A
+Franklin	0.0	3.329	3.889	0.0	0.519	1.903	0.0	6.736e-05	7.869e-05	0.0	1.05e-05	3.851e-05
+Orleans	0.0	0.0	14.0	0.0	0.519	0.519	0.0	0.0	0.00052031	0.0	1.929e-05	1.929e-05
+Grand Isle	0.0	0.0	13.0	0.0	0.01	0.01	0.0	0.0	0.00183357	0.0	1.41e-06	1.41e-06
+Orange	0.001	18.997	19.326	0.0	0.072	0.072	3e-08	0.00065509	0.00066644	0.0	2.48e-06	2.48e-06

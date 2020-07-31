@@ -1,4 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Lyon	0.0	45.395	222.395	0.006	40.312	43.312	0.0	0.00081341	0.003985	1.1e-07	0.00072233	0.00077609
-Douglas	0.0	115.626	255.626	0.006	40.312	40.312	0.0	0.00238566	0.00527423	1.2e-07	0.00083174	0.00083174
-Storey	0.01	72.563	75.563	0.0	38.804	38.804	2.48e-06	0.01801018	0.01875478	0.0	0.00963117	0.00963117
+Lander	0.0	5.08	5.169	0.545	976.532	976.826	0.0	0.00091121	0.00092717	9.776e-05	0.17516269	0.17521543
+Eureka	0.0	0.034	0.151	0.545	976.532	976.532	0.0	1.697e-05	7.539e-05	0.00027209	0.4875347	0.4875347
+Elko County	0.0	0.0	2.0	0.545	976.532	976.532	N/A	N/A	N/A	N/A	N/A	N/A
+Unassigned	0.004	467.349	470.922	0.074	341.704	352.55	N/A	N/A	N/A	N/A	N/A	N/A
+Pershing	0.0	1.464	1.466	0.074	341.704	341.704	0.0	0.00021962	0.00021992	1.11e-05	0.05126073	0.05126073
