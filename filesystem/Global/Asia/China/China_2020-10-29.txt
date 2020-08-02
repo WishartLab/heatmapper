@@ -1,4 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Beijing	0.079	96.413	1029.413	0.0	0.0	9.0	0.0	4.92e-06	5.249e-05	0.0	0.0	4.6e-07
-Liaoning	0.003	320.255	323.196	0.0	0.0	7.27	0.0	7.32e-06	7.39e-06	0.0	0.0	1.7e-07
-Xinjiang Uygur	0.015	1773.265	1799.257	0.0	1552.161	1616.411	0.0	8.129e-05	8.248e-05	0.0	7.116e-05	7.41e-05
+Beijing	0.463	453.153	1386.153	0.0	0.0	9.0	2e-08	2.311e-05	7.068e-05	0.0	0.0	4.6e-07
+Yunnan	0.0	16.252	207.252	0.0	0.0	2.0	0.0	3.5e-07	4.51e-06	0.0	0.0	4e-08
+Liaoning	0.005	449.161	693.161	0.0	0.0	2.0	0.0	1.027e-05	1.585e-05	0.0	0.0	5e-08
+Xinjiang Uygur	17.784	24385.542	25053.542	0.0	0.0	3.0	8.2e-07	0.00111792	0.00114854	0.0	0.0	1.4e-07
+Jilin	0.0	14.217	171.217	0.0	0.0	2.0	0.0	5.2e-07	6.23e-06	0.0	0.0	7e-08
+Hong Kong	0.0	3531.239	6927.239	0.001	83.165	116.165	0.0	0.00050009	0.00098103	0.0	1.178e-05	1.645e-05

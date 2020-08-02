@@ -1,6 +1,18 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Bonaire, Sint Eustatius and Saba	0.116	0.116	0.19	24.503	24.503	24.503	N/A	N/A	N/A	N/A	N/A	N/A
-Netherlands	161.149	161.149	224.644	25.726	25.726	218.482	N/A	N/A	N/A	N/A	N/A	N/A
-Sint Maarten	4.178	4.178	6.148	0.045	0.045	4.915	N/A	N/A	N/A	N/A	N/A	N/A
-Curacao	0.036	0.036	0.115	0.003	0.003	0.378	N/A	N/A	N/A	N/A	N/A	N/A
-Aruba	0.076	0.076	1.208	0.0	0.0	3.445	N/A	N/A	N/A	N/A	N/A	N/A
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Groningen	385.0	17.0	0.0	368.0	N/A	N/A	N/A	N/A	5666.66666667	2615.38461538	1700.0	N/A	N/A	N/A
+Gelderland	6620.0	684.0	0.0	5936.0	N/A	N/A	N/A	N/A	228000.0	105230.769231	68400.0	N/A	N/A	N/A
+Curacao	29.0	1.0	24.0	4.0	N/A	N/A	N/A	N/A	333.333333333	153.846153846	100.0	N/A	N/A	N/A
+Flevoland	1007.0	93.0	0.0	914.0	N/A	N/A	N/A	N/A	31000.0	14307.6923077	9300.0	N/A	N/A	N/A
+Unknown	511.0	18.0	0.0	493.0	N/A	N/A	N/A	N/A	6000.0	2769.23076923	1800.0	N/A	N/A	N/A
+Noord-Holland	8098.0	815.0	0.0	7283.0	N/A	N/A	N/A	N/A	271666.666667	125384.615385	81500.0	N/A	N/A	N/A
+Friesland	652.0	69.0	0.0	583.0	N/A	N/A	N/A	N/A	23000.0	10615.3846154	6900.0	N/A	N/A	N/A
+Zuid-Holland	13060.0	1310.0	0.0	11750.0	N/A	N/A	N/A	N/A	436666.666667	201538.461538	131000.0	N/A	N/A	N/A
+Drenthe	551.0	41.0	0.0	510.0	N/A	N/A	N/A	N/A	13666.6666667	6307.69230769	4100.0	N/A	N/A	N/A
+Overijssel	3177.0	311.0	0.0	2866.0	N/A	N/A	N/A	N/A	103666.666667	47846.1538462	31100.0	N/A	N/A	N/A
+Noord-Brabant	10088.0	1536.0	0.0	8552.0	N/A	N/A	N/A	N/A	512000.0	236307.692308	153600.0	N/A	N/A	N/A
+Limburg	4923.0	754.0	0.0	4169.0	N/A	N/A	N/A	N/A	251333.333333	116000.0	75400.0	N/A	N/A	N/A
+Aruba	121.0	3.0	105.0	13.0	N/A	N/A	N/A	N/A	1000.0	461.538461538	300.0	N/A	N/A	N/A
+Utrecht	4366.0	430.0	0.0	3936.0	N/A	N/A	N/A	N/A	143333.333333	66153.8461538	43000.0	N/A	N/A	N/A
+Sint Maarten	128.0	15.0	64.0	49.0	N/A	N/A	N/A	N/A	5000.0	2307.69230769	1500.0	N/A	N/A	N/A
+Bonaire, Sint Eustatius and Saba	11.0	0.0	7.0	4.0	N/A	N/A	N/A	N/A	55.0	22.0	13.75	N/A	N/A	N/A
+Zeeland	863.0	69.0	0.0	794.0	N/A	N/A	N/A	N/A	23000.0	10615.3846154	6900.0	N/A	N/A	N/A

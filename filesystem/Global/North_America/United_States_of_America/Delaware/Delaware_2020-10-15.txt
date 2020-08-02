@@ -1,5 +1,5 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Sussex	0.002	128.495	160.123	0.001	37.952	133.967	1e-08	0.00056041	0.00069835	0.0	0.00016552	0.00058428
-Kent	0.005	188.472	202.958	0.034	63.2	111.084	3e-08	0.00105557	0.0011367	1.9e-07	0.00035396	0.00062215
-New Castle	0.017	723.846	781.048	0.003	125.897	294.777	3e-08	0.00129412	0.00139639	1e-08	0.00022508	0.00052701
-Unassigned	0.001	113.029	118.872	0.002	6.429	24.279	N/A	N/A	N/A	N/A	N/A	N/A
+Sussex	0.0	463.071	6093.071	0.001	35.589	226.589	0.0	0.00201962	0.02657411	0.0	0.00015522	0.00098824
+Kent	0.015	373.664	2556.664	0.001	25.677	132.677	8e-08	0.00209277	0.01431904	1e-08	0.00014381	0.00074308
+New Castle	0.059	1514.803	8357.803	0.004	102.596	389.596	1.1e-07	0.00270822	0.01494239	1e-08	0.00018342	0.00069653
+Unassigned	0.004	138.869	359.869	0.005	7.242	17.242	N/A	N/A	N/A	N/A	N/A	N/A

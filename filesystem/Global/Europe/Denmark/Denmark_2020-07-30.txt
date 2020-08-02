@@ -1,4 +1,4 @@
-Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Denmark	39.443	117.549	13664.549	0.239	0.725	613.725	N/A	N/A	N/A	N/A	N/A	N/A
-Greenland	0.0	0.0	14.0	0.239	0.725	0.725	N/A	N/A	N/A	N/A	N/A	N/A
-Faroe Islands	1.012	2.71	216.71	0.239	0.725	0.725	N/A	N/A	N/A	N/A	N/A	N/A
+Name	Confirmed	Deaths	Recovered	Active	Confirmed_per_capita	Deaths_per_capita	IFR_0.30_expected	IFR_0.65_expected	IFR_1.0_expected	IFR_0.30_expected_per_capita	IFR_0.65_expected_per_capita	IFR_1.0_expected_per_capita
+Faroe Islands	225.0	0.0	188.0	37.0	N/A	N/A	N/A	N/A	1125.0	450.0	281.25	N/A	N/A	N/A
+Denmark	13725.0	615.0	12526.0	584.0	N/A	N/A	N/A	N/A	205000.0	94615.3846154	61500.0	N/A	N/A	N/A
+Greenland	14.0	0.0	13.0	1.0	N/A	N/A	N/A	N/A	70.0	28.0	17.5	N/A	N/A	N/A
