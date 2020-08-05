@@ -1,4 +1,9 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Benton	0.019	1531.643	1688.643	0.0	0.0	6.0	2.1e-07	0.01663004	0.01833469	0.0	0.0	6.515e-05
-Sherman	0.005	249.982	264.982	0.0	0.0	0.0	2.93e-06	0.14635948	0.15514169	0.0	0.0	0.0
-Wallowa	0.003	137.085	156.085	0.0	0.0	1.0	4.2e-07	0.01935955	0.02204279	0.0	0.0	0.00014122
+Clatsop	0.03	1161.187	1243.187	0.0	4.251	4.251	7.5e-07	0.02920197	0.03126413	0.0	0.00010691	0.00010691
+Benton	0.0	246.438	406.438	0.0	0.0	6.0	0.0	0.00267574	0.00441296	0.0	0.0	6.515e-05
+Columbia	0.0	29.958	113.958	0.0	0.0	0.0	0.0	0.00057197	0.00217573	0.0	0.0	0.0
+Sherman	0.011	439.475	453.475	0.0	0.0	0.0	6.44e-06	0.25730386	0.26550059	0.0	0.0	0.0
+Lake	0.0	3.945	35.945	0.0	0.0	0.0	0.0	0.0005007	0.00456213	0.0	0.0	0.0
+Unassigned	0.0	0.0	1.0	0.0	0.0	0.0	N/A	N/A	N/A	N/A	N/A	N/A
+Gilliam	0.0	3.491	7.491	0.0	0.0	0.0	0.0	0.00184319	0.00395512	0.0	0.0	0.0
+Union	0.009	366.899	758.899	0.0	0.0	2.0	3.4e-07	0.01386565	0.02867991	0.0	0.0	7.558e-05
