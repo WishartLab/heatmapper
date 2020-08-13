@@ -796,7 +796,7 @@ shinyServer(function(input, output, session){
 				cexCol = get_label_weight(),
 				lhei = c(col_dendrogram_height, heatmap_height) # set column dendrogram height relative to heatmap height
 			)
-			graphics.off()
+			#graphics.off()
 		},
 		error = function(err){
 			print(paste("ERROR in get_plot(): ", err))
