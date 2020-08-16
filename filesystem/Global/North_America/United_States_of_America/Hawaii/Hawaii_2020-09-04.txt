@@ -1,6 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Kauai	0.062	2.216	53.216	1.754	39.407	39.407	8.6e-07	3.072e-05	0.00073775	2.432e-05	0.00054631	0.00054631
+Kauai	0.167	4.698	4.82	1.856	38.551	38.551	2.32e-06	6.513e-05	6.682e-05	2.573e-05	0.00053444	0.00053444
 Out of HI	0.0	0.0	23.0	0.0	0.0	1.0	N/A	N/A	N/A	N/A	N/A	N/A
-Maui	0.46	22.482	213.482	0.0	0.0	6.0	2.75e-06	0.00013446	0.00127675	0.0	0.0	3.588e-05
-Hawaii	1.356	41.488	176.488	0.0	0.0	0.0	6.75e-06	0.00020643	0.00087812	0.0	0.0	0.0
-Honolulu	102.461	3326.904	6884.904	1.754	39.407	70.407	0.00010454	0.00339452	0.00702484	1.79e-06	4.021e-05	7.184e-05
+Unassigned	0.0	0.075	0.191	11.607	87.865	88.316	N/A	N/A	N/A	N/A	N/A	N/A
+Maui	0.621	17.488	18.974	0.008	0.166	4.834	3.71e-06	0.00010459	0.00011348	5e-08	9.9e-07	2.891e-05
+Hawaii	0.805	22.644	24.626	0.008	0.166	0.166	4.01e-06	0.00011267	0.00012253	4e-08	8.3e-07	8.3e-07
+Honolulu	88.392	2487.884	2657.343	1.856	38.551	538.854	9.019e-05	0.00253845	0.00271135	1.89e-06	3.933e-05	0.00054981

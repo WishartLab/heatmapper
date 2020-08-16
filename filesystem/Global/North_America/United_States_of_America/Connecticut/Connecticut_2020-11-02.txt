@@ -1,3 +1,7 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Unassigned	0.001	31.949	267.949	0.0	1.162	3.162	N/A	N/A	N/A	N/A	N/A	N/A
-Hartford	0.0	82.025	12912.025	0.004	28.559	1444.559	0.0	9.188e-05	0.01446406	0.0	3.199e-05	0.0016182
+Fairfield	0.02	1367.977	1390.837	0.002	144.885	214.471	2e-08	0.0014494	0.00147362	0.0	0.00015351	0.00022724
+Unassigned	0.004	77.393	78.435	0.006	7.676	10.715	N/A	N/A	N/A	N/A	N/A	N/A
+New London	0.0	7.911	12.698	0.006	16.86	31.431	0.0	2.965e-05	4.76e-05	2e-08	6.32e-05	0.00011781
+Hartford	0.0	921.36	933.653	0.006	174.661	217.034	0.0	0.00103211	0.00104588	1e-08	0.00019566	0.00024312
+New Haven	0.015	989.563	1005.34	0.076	221.025	268.92	2e-08	0.00115385	0.00117224	9e-08	0.00025772	0.00031357
+Litchfield	0.002	129.712	131.768	0.006	24.482	30.723	1e-08	0.0007162	0.00072755	3e-08	0.00013518	0.00016964
