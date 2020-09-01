@@ -1,4 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Coconino	0.0	308.47	3488.47	0.073	237.75	357.75	0.0	0.00215934	0.02441983	5.1e-07	0.00166429	0.00250431
-La Paz	0.0	113.137	603.137	0.003	51.679	63.679	0.0	0.00536245	0.0285874	1.4e-07	0.00244947	0.00301825
-Pinal	0.026	4529.783	13239.783	0.0	24.534	193.534	6e-08	0.01013062	0.02961006	0.0	5.487e-05	0.00043283
+Pima	0.0	639.741	829.817	0.002	123.636	3417.3	0.0	0.00061568	0.00079861	0.0	0.00011899	0.0032888
+Coconino	0.0	136.519	145.209	0.0	11.619	182.701	0.0	0.00095565	0.00101649	0.0	8.133e-05	0.00127894
+Gila	0.0	5.158	16.939	0.011	45.88	250.029	0.0	9.572e-05	0.00031433	2e-07	0.00085138	0.0046397
+Yuma	0.0	528.685	547.298	0.022	144.624	619.473	N/A	N/A	N/A	N/A	N/A	N/A
+Santa Cruz	0.0	41.512	44.182	0.279	167.599	232.513	0.0	0.00089252	0.00094993	6e-06	0.00360343	0.0049991

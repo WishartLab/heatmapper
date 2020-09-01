@@ -1,2 +1,6 @@
 Name	Predicted_New_Cases	Total_Predicted_New_Cases	Total_Predicted_Cases	Predicted_New_Deaths	Total_Predicted_New_Deaths	Total_Predicted_Deaths	Predicted_New_per_capita	Predicted_Total_New_per_capita	Predicted_Total_Cases_per_capita	Predicted_New_Deaths_per_capita	Total_Predicted_New_Deaths_per_capita	Total_Predicted_Deaths_per_capita
-Wallowa	0.002	124.994	145.994	0.0	0.0	1.0	2.8e-07	0.01765203	0.02061771	0.0	0.0	0.00014122
+Coos	0.009	241.517	356.517	0.0	0.62	0.62	1.4e-07	0.0037509	0.00553692	0.0	9.63e-06	9.63e-06
+Jefferson	0.0	4.728	9.597	0.0	8.905	100.662	0.0	0.00019544	0.0003967	0.0	0.0003681	0.00416096
+Malheur	0.0	314.821	327.004	0.207	253.083	475.714	0.0	0.01024641	0.01064293	6.74e-06	0.00823704	0.01548296
+Lake	0.177	216.926	246.926	0.0	217.082	217.082	2.246e-05	0.02753217	0.03133976	0.0	0.02755197	0.02755197
+Umatilla	0.0	82.154	84.597	0.18	321.533	522.672	0.0	0.00105983	0.00109135	2.32e-06	0.00414796	0.00674276
