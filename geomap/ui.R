@@ -505,7 +505,7 @@ shinyUI(list(HEAD_TASKS("#geomapTab"), fluidPage(title = "Geomap",
 				DT::dataTableOutput("table")),
 			tabPanel(title = "Plots",
 			         plotlyOutput("plot",
-			                    height = "3000px"))
+			                    height = "5000px"))
 			 , 
 			tabPanel(title = "Animation",
 			         tipify(
