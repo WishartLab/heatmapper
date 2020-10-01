@@ -264,7 +264,8 @@ shinyServer(function(input, output, session) {
                                                             "south africa",
                                                             "china",
                                                             "brazil",
-                                                            "australia"))
+                                                            "australia",
+                                                            "india"))
         } else if (selected_map == "data/North_America.rds"){
           
           max <- max_limit_heatmap(named_vector = values$density,
@@ -280,7 +281,8 @@ shinyServer(function(input, output, session) {
          
           max <- max_limit_heatmap(named_vector = values$density,
                                    considered_countries = c("china",
-                                                            "iran"))
+                                                            "iran",
+                                                            "india"))
         } else if (selected_map == "data/South_America.rds") {
           
           max <-  max_limit_heatmap(named_vector = values$density,
